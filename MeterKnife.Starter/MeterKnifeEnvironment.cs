@@ -39,12 +39,15 @@ namespace MeterKnife.Starter
             //开启UI控制窗体
             var workbench = new MainWorkbench();
             workbench.FormClosed += (s, e) => Application.Exit();
-            workbench.Activated += (s, e) =>
-            {
-                Splasher.Close();
-            };
+            workbench.Activated += WorkbenchOnActivated;
             workbench.Show();
             workbench.Activate();
+        }
+
+        private void WorkbenchOnActivated(object sender, EventArgs eventArgs)
+        {
+            Splasher.Close();
+            ((MainWorkbench) sender).Activated -= WorkbenchOnActivated;
         }
 
         public void InitializeServices()

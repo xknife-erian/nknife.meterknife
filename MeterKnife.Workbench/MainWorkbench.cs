@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using Common.Logging;
+using MeterKnife.Instruments;
 using MeterKnife.Workbench.Views;
 using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
@@ -14,28 +15,14 @@ namespace MeterKnife.Workbench
         private static readonly ILog _logger = LogManager.GetLogger<MainWorkbench>();
 
         private readonly DockPanel _DockPanel = new DockPanel();
-        private readonly string _DockPath = Path.Combine(Application.StartupPath, DOCK_PANEL_CONFIG);
         private readonly DockContent _LoggerView = new LoggerView();
+        private readonly DockContent _InterfaceTreeView = new InterfaceTreeView();
 
         public MainWorkbench()
         {
             InitializeComponent();
             InitializeDockPanel();
             Closing += (s, e) => DockPanelSaveAsXml();
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            try
-            {
-                _DockPanel.SaveAsXml(_DockPath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("保存Dockpanel配置文件失败，" + ex.Message);
-                return;
-            }
-            base.OnFormClosing(e);
         }
 
         #region DockPanel
@@ -59,9 +46,14 @@ namespace MeterKnife.Workbench
 
             DockPanelLoadFromXml();
 
-            //加入日志窗体
             _LoggerView.Text = "运行日志";
             _LoggerView.Show(_DockPanel, DockState.DockBottom);
+
+            _InterfaceTreeView.Text = "仪器列表";
+            _InterfaceTreeView.Show(_DockPanel, DockState.DockRight);
+
+            var collectDataView = new CollectDataView();
+            collectDataView.Show(_DockPanel, DockState.Document);
         }
 
         /// <summary>
@@ -75,7 +67,7 @@ namespace MeterKnife.Workbench
         private void DockPanelLoadFromXml()
         {
             //加载布局
-            var deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
+            var deserializeDockContent = new DeserializeDockContent(GetViewFromPersistString);
             string configFile = LayoutConfigFile;
             if (File.Exists(configFile))
             {
@@ -83,10 +75,12 @@ namespace MeterKnife.Workbench
             }
         }
 
-        private IDockContent GetContentFromPersistString(string persistString)
+        private IDockContent GetViewFromPersistString(string persistString)
         {
-            if (persistString == typeof (LoggerView).ToString())
+            if (persistString == typeof(LoggerView).ToString())
                 return _LoggerView;
+            if (persistString == typeof(InterfaceTreeView).ToString())
+                return _InterfaceTreeView;
             return null;
         }
 

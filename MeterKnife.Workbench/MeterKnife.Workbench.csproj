@@ -68,6 +68,12 @@
       <DependentUpon>MainWorkbench.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\InterfaceTreeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\InterfaceTreeView.Designer.cs">
+      <DependentUpon>InterfaceTreeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoggerView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\InterfaceTreeView.resx">
+      <DependentUpon>InterfaceTreeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LoggerView.resx">
       <DependentUpon>LoggerView.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,6 +117,10 @@
     <ProjectReference Include="..\..\nknife\NKnife\NKnife.csproj">
       <Project>{266fcf12-d8f4-402c-bd7e-fc1df5f6a0bf}</Project>
       <Name>NKnife</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Instruments\MeterKnife.Instruments.csproj">
+      <Project>{e70dc5a1-2900-4a24-937a-28c86100e077}</Project>
+      <Name>MeterKnife.Instruments</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
