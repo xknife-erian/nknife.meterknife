@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
+using MeterKnife.Common.Base;
 using MeterKnife.Workbench;
 using NKnife.GUI.WinForm;
 using NKnife.IoC;
@@ -12,6 +13,8 @@ namespace MeterKnife.Starter
     internal class MeterKnifeEnvironment : ApplicationContext
     {
         private static readonly ILog _logger = LogManager.GetLogger<MeterKnifeEnvironment>();
+
+        private static BaseCareCommunicationService _careComm;
 
         public MeterKnifeEnvironment()
         {
@@ -31,7 +34,6 @@ namespace MeterKnife.Starter
             Thread.Sleep(200);
             Splasher.Status = "加载运行参数......";
 
-            InitializeServices();
 
             Splasher.Status = "参数初始化完成，启动主窗体";
             Thread.Sleep(200);
@@ -40,6 +42,10 @@ namespace MeterKnife.Starter
             var workbench = new MainWorkbench();
             workbench.FormClosed += (s, e) => Application.Exit();
             workbench.Activated += WorkbenchOnActivated;
+
+            var thread = new Thread(BeginInitializeServices) { IsBackground = true };
+            thread.Start();
+
             workbench.Show();
             workbench.Activate();
         }
@@ -50,8 +56,11 @@ namespace MeterKnife.Starter
             ((MainWorkbench) sender).Activated -= WorkbenchOnActivated;
         }
 
-        public void InitializeServices()
+        private void BeginInitializeServices()
         {
+            _logger.Info("启动Care通讯服务");
+            _careComm = DI.Get<BaseCareCommunicationService>();
+            _careComm.Initialize();
         }
 
         /// <summary>
@@ -62,6 +71,7 @@ namespace MeterKnife.Starter
             try
             {
                 //处理程序退出前要处理的东西
+                _careComm.Destroy();
                 Environment.Exit(0);
             }
             catch (Exception e)

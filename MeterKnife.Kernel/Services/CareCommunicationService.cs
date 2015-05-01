@@ -1,32 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Threading;
 using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
+using MeterKnife.Common.Tunnels.CareOne;
 using NKnife.Converts;
+using NKnife.Events;
 using NKnife.IoC;
 using NKnife.Protocol.Generic;
 using NKnife.Tunnel;
 using NKnife.Tunnel.Generic;
+using NKnife.Wrapper;
 using SerialKnife.Common;
 using SerialKnife.Generic.Filters;
 using SerialKnife.Interfaces;
 
 namespace MeterKnife.Kernel.Services
 {
-    public class TunnelService : BaseCareCommunicationService
+    public class CareCommunicationService : BaseCareCommunicationService
     {
         private const string FAMILY_NAME = "careone";
-        private static readonly ILog _logger = LogManager.GetLogger<TunnelService>();
+        private static readonly ILog _logger = LogManager.GetLogger<CareCommunicationService>();
+        private readonly Dictionary<int, CareOneProtocolHandler> _CareHandlers = new Dictionary<int, CareOneProtocolHandler>();
 
         private readonly List<int> _PortList = new List<int>();
-
         private readonly Dictionary<int, SerialProtocolFilter> _ProtocolFilters = new Dictionary<int, SerialProtocolFilter>();
-
         private readonly Dictionary<int, ISerialConnector> _SerialConnector = new Dictionary<int, ISerialConnector>();
+
+        public override Dictionary<int, CareOneProtocolHandler> CareHandlers
+        {
+            get { return _CareHandlers; }
+        }
+
+        public override bool Initialize()
+        {
+            StringCollection serialList = PcInterfaces.GetSerialList();
+            foreach (string serial in serialList)
+            {
+                string com = serial.TrimStart(new[] {'C', 'O', 'M'});
+                int port = 0;
+                if (int.TryParse(com, out port))
+                {
+                    if (port > 0)
+                    {
+                        bool onFindCare = true;
+                        var handler = new ScpiProtocolHandler();
+                        handler.ProtocolRecevied += (s, e) =>
+                        {
+                            if (onFindCare)
+                            {
+                                if (e.Item.ToLower().StartsWith("care"))
+                                {
+                                    OnSerialInitialized(new EventArgs<int>(port));
+                                    _CareHandlers.Add(port, handler);
+                                }
+                            }
+                            onFindCare = false;
+                        };
+                        Build(port, handler);
+                        Start(port);
+                        _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
+                        Send(port, GetCareTest());
+                    }
+                }
+            }
+            return true;
+        }
 
         public override void Build(int port, params CareOneProtocolHandler[] handlers)
         {
@@ -37,16 +80,19 @@ namespace MeterKnife.Kernel.Services
             }
         }
 
-        public override void Destroy(int port)
+        public override void Destroy()
         {
-            ISerialConnector connector;
-            if (_SerialConnector.TryGetValue(port, out connector))
+            foreach (int port in _PortList)
             {
-                connector.Stop();
-                _PortList.Remove(port);
-                _SerialConnector.Remove(port);
-                _ProtocolFilters.Remove(port);
+                ISerialConnector connector;
+                if (_SerialConnector.TryGetValue(port, out connector))
+                {
+                    connector.Stop();
+                    _SerialConnector.Remove(port);
+                    _ProtocolFilters.Remove(port);
+                }
             }
+            _PortList.Clear();
         }
 
         public override bool Start(int port)
@@ -82,7 +128,11 @@ namespace MeterKnife.Kernel.Services
 
         public override void Send(int port, byte[] data)
         {
-            _SerialConnector[port].SendAll(data);
+            ISerialConnector connector;
+            if (_SerialConnector.TryGetValue(port, out connector))
+            {
+                connector.SendAll(data);
+            }
         }
 
         private SerialProtocolFilter BuildConnector(int port)
@@ -129,7 +179,7 @@ namespace MeterKnife.Kernel.Services
 
             _logger.Info("DI初始化结束....");
 
-            var server = new TunnelService();
+            var server = new CareCommunicationService();
             server.Build(PORT, new TestProtocolHandler());
             server.Start(PORT);
 
@@ -164,7 +214,7 @@ namespace MeterKnife.Kernel.Services
 
         private static byte[] GetCareTest()
         {
-            return new byte[] {0x08, 0x17, 0x09, 0xAA, 0x00, 0x43, 0x41, 0x52, 0x45, 0x3F, 0x0D, 0x0A};
+            return new byte[] {0x08, 0x00, 0x02, 0xA0, 0xD1};
         }
 
         private static byte[] GetA0(byte subCommand)

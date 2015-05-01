@@ -21,7 +21,9 @@ namespace MeterKnife.Workbench
         public MainWorkbench()
         {
             InitializeComponent();
+            _logger.Info("主窗体构建完成");
             InitializeDockPanel();
+            _logger.Info("添加Dock面板完成");
             Closing += (s, e) => DockPanelSaveAsXml();
         }
 

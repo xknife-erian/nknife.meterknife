@@ -118,6 +118,10 @@
       <Project>{266fcf12-d8f4-402c-bd7e-fc1df5f6a0bf}</Project>
       <Name>NKnife</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
+      <Project>{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}</Project>
+      <Name>MeterKnife.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Instruments\MeterKnife.Instruments.csproj">
       <Project>{e70dc5a1-2900-4a24-937a-28c86100e077}</Project>
       <Name>MeterKnife.Instruments</Name>

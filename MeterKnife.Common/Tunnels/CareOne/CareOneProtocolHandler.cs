@@ -5,7 +5,7 @@ using MeterKnife.Common.DataModels;
 using NKnife.Protocol;
 using NKnife.Tunnel.Base;
 
-namespace MeterKnife.Common.Tunnels
+namespace MeterKnife.Common.Tunnels.CareOne
 {
     public abstract class CareOneProtocolHandler : BaseProtocolHandler<byte[]>
     {

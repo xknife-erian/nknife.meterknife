@@ -76,15 +76,14 @@
     <Compile Include="IoC\Moduels.cs" />
     <Compile Include="IoC\TunnelModules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tunnels\CareOneProtocolHandler.cs" />
+    <Compile Include="Tunnels\CareOne\CareOneProtocolHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneCodec.cs" />
     <Compile Include="Tunnels\CareOne\CareOneDatagramDecoder.cs" />
     <Compile Include="Tunnels\CareOne\CareOneDatagramEncoder.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolCommandParser.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolPacker.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolUnPacker.cs" />
-    <Compile Include="Tunnels\Handlers\FirstProtocolHandler.cs" />
-    <Compile Include="Tunnels\Handlers\ScpiProtocolHandler.cs" />
+    <Compile Include="Tunnels\ScpiProtocolHandler.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

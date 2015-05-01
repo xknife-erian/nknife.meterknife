@@ -1,4 +1,5 @@
-﻿using MeterKnife.Common.DataModels;
+﻿using MeterKnife.Common.Base;
+using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
@@ -24,8 +25,6 @@ namespace MeterKnife.Common.IoC
 
             Bind<BytesProtocolPacker>().To<CareOneProtocolPacker>().InSingletonScope();
             Bind<BytesProtocolUnPacker>().To<CareOneProtocolUnPacker>().InSingletonScope();
-
-            Bind<ITunnelService>().To<TunnelService>().InSingletonScope();
         }
     }
 }
