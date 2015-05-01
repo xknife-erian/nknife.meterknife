@@ -44,7 +44,7 @@ namespace MeterKnife.Starter
             if (!ApplicationUpdate(args, logger))
             {
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Common.Properties.Settings.Default.CultureInfoName);
-                Application.Run(new SplashForm());
+                Application.Run(new MeterKnifeEnvironment(args));
             }
 #if !DEBUG
                 mutex.ReleaseMutex();

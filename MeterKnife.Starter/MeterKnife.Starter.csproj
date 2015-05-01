@@ -38,6 +38,10 @@
     <Reference Include="Common.Logging.Core">
       <HintPath>..\packages\Common.Logging.Core.3.1.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +57,7 @@
     <Compile Include="FileCleaner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MeterKnifeEnvironment.cs" />
     <Compile Include="SplashForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +91,10 @@
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
       <Project>{572ecf0c-1b6d-4a7c-81f0-ee1326ef47d9}</Project>
       <Name>MeterKnife.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Workbench\MeterKnife.Workbench.csproj">
+      <Project>{9edecd14-77fe-419c-9323-c00bdb6a07ac}</Project>
+      <Name>MeterKnife.Workbench</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
