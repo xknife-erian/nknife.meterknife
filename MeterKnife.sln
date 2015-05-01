@@ -15,9 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife", "..\nknife\NKnife\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.NLog3", "..\nknife\NKnife.NLog3\NKnife.NLog3.csproj", "{3D1D08D2-46B0-4C33-A214-A5A76A998102}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Serial", "..\nknife\NKnife.Serial\NKnife.Serial.csproj", "{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Instruments", "MeterKnife.Instruments\MeterKnife.Instruments.csproj", "{E70DC5A1-2900-4A24-937A-28C86100E077}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Kernel", "MeterKnife.Kernel\MeterKnife.Kernel.csproj", "{8C1D8987-383A-4E9C-B59C-3C3313FDEC3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Serial", "..\nknife\NKnife.Serial\NKnife.Serial.csproj", "{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +47,18 @@ Global
 		{3D1D08D2-46B0-4C33-A214-A5A76A998102}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D1D08D2-46B0-4C33-A214-A5A76A998102}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D1D08D2-46B0-4C33-A214-A5A76A998102}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E70DC5A1-2900-4A24-937A-28C86100E077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E70DC5A1-2900-4A24-937A-28C86100E077}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E70DC5A1-2900-4A24-937A-28C86100E077}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E70DC5A1-2900-4A24-937A-28C86100E077}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C1D8987-383A-4E9C-B59C-3C3313FDEC3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C1D8987-383A-4E9C-B59C-3C3313FDEC3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C1D8987-383A-4E9C-B59C-3C3313FDEC3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C1D8987-383A-4E9C-B59C-3C3313FDEC3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
