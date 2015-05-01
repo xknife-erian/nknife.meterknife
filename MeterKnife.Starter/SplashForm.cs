@@ -11,8 +11,6 @@ namespace MeterKnife.Starter
 {
     internal sealed class SplashForm : Form, ISplashForm
     {
-        private static readonly ILog _logger = LogManager.GetLogger<SplashForm>();
-
         public SplashForm()
         {
             Bitmap bitmap = Resources.MeterKnife2015_Welcome;
@@ -38,34 +36,6 @@ namespace MeterKnife.Starter
             mainVersionLabel.TabIndex = 0;
             mainVersionLabel.Text = string.Format("版本: {0}", AssemblyVersion);
             Controls.Add(mainVersionLabel);
-
-            string projectName = string.Empty;
-            try
-            {
-                var reader = new AppSettingsReader();
-                projectName = reader.GetValue("projectName", typeof (string)).ToString();
-            }
-            catch (Exception e)
-            {
-                _logger.Warn("读取产品所属项目名称失败");
-            }
-            if (!string.IsNullOrWhiteSpace(projectName))
-            {
-                var projectNameLabel = new Label();
-                projectNameLabel.AutoSize = false;
-                projectNameLabel.BackColor = Color.Transparent;
-                projectNameLabel.ForeColor = Color.White;
-                projectNameLabel.Location = new Point(Width - 193, Height - 62);
-                projectNameLabel.TextAlign = ContentAlignment.MiddleRight;
-                projectNameLabel.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, ((0)));
-                projectNameLabel.Size = new Size(160, 18);
-                projectNameLabel.TabIndex = 0;
-                string projectLabelText = string.Empty;
-                if (projectName != "预览版" && projectName != "正式版")
-                    projectLabelText = "项目: ";
-                projectNameLabel.Text = string.Format("{0}{1}", projectLabelText, projectName);
-                Controls.Add(projectNameLabel);
-            }
 
             _StatusInfoLabel = new Label();
             _StatusInfoLabel.AutoSize = true;
