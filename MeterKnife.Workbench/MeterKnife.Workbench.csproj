@@ -68,6 +68,12 @@
     </Compile>
     <Compile Include="Controls\Tree\PCNode.cs" />
     <Compile Include="Controls\Tree\SerialNode.cs" />
+    <Compile Include="Dialogs\AddGpibMeterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddGpibMeterDialog.Designer.cs">
+      <DependentUpon>AddGpibMeterDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="MainWorkbench.cs">
       <SubType>Form</SubType>
@@ -88,6 +94,9 @@
     <Compile Include="Views\LoggerView.Designer.cs">
       <DependentUpon>LoggerView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialogs\AddGpibMeterDialog.resx">
+      <DependentUpon>AddGpibMeterDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWorkbench.resx">
       <DependentUpon>MainWorkbench.cs</DependentUpon>
     </EmbeddedResource>
