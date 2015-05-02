@@ -55,7 +55,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.Name = "InterfaceTreeView";
             this.Padding = new System.Windows.Forms.Padding(1);
-            this.Text = "InterfaceTreeView";
+            this.Text = "仪器列表";
             this.ResumeLayout(false);
 
         }

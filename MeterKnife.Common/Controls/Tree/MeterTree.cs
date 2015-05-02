@@ -23,6 +23,17 @@ namespace MeterKnife.Common.Controls.Tree
             ShowLines = false;
             FullRowSelect = true;
 
+            MouseClick += (s, e) =>
+            {
+                //将点击事件传递到子节点去实现
+                if (SelectedNode != null)
+                {
+                    var node = SelectedNode as InterfaceNode;
+                    if (node != null)
+                        node.OnNodeClicked(e);
+                }
+            };
+
             //自定义绘制节点的文本和图标
             //DrawMode = TreeViewDrawMode.OwnerDrawText;
             //DrawNode += Tree_DrawNode;
@@ -34,8 +45,8 @@ namespace MeterKnife.Common.Controls.Tree
             ItemHeight = 23;
 
             //通过以下手段使得焦点丢失时，选中的节点仍有高亮显示
-            Leave += ProjectTree_Leave;
-            BeforeSelect += ProjectTree_BeforeSelect;
+            Leave += TreeLeave;
+            BeforeSelect += TreeBeforeSelect;
 
             //Microsoft在TreeView控件中自作主张地做成双击节点时自动展开/折叠节点。
             //因已有自定义NodeMouseDoubleClick事件，但是，同时又不希望改变结点的展开/折叠状态，就无法直接达到这一效果。
@@ -54,6 +65,47 @@ namespace MeterKnife.Common.Controls.Tree
             Nodes.Add(new PCNode());
         }
 
+        private ImageList GetImageList()
+        {
+            var il = new ImageList();
+            il.ColorDepth = ColorDepth.Depth32Bit;
+            il.ImageSize = new Size(18, 18);
+
+            il.Images.Add(MeterTreeElement.PC, GlobalResources.pc);
+            il.Images.Add(MeterTreeElement.Serial, GlobalResources.serial);
+            il.Images.Add(MeterTreeElement.Care, GlobalResources.care);
+            il.Images.Add(MeterTreeElement.Meter, GlobalResources.meter);
+            return il;
+        }
+
+        #region 丢焦点时高亮
+
+        private bool _IsTreeLeave = false;
+
+        private void TreeBeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            //在开始选择新的节点前，置上次选择的节点背景回默认状态
+            if (SelectedNode != null && _IsTreeLeave)
+            {
+                SelectedNode.BackColor = Color.White;
+                _IsTreeLeave = false;
+            }
+        }
+
+        private void TreeLeave(object sender, EventArgs e)
+        {
+            //当焦点丢失时，被选中的节点仍有高亮显示
+            if (SelectedNode != null)
+            {
+                SelectedNode.BackColor = Color.Gainsboro;
+                _IsTreeLeave = true;
+            }
+        }
+
+        #endregion
+
+        #region 自绘制节点
+
         private void TreeDrawNode(object sender, DrawTreeNodeEventArgs e)
         {
             Rectangle nodeRect = e.Node.Bounds; //节点区域
@@ -69,7 +121,7 @@ namespace MeterKnife.Common.Controls.Tree
             }
 
             //-----------------------绘制文本 -------------------------------
-            Font nodeFont = e.Node.NodeFont ?? ((TreeView) sender).Font;
+            Font nodeFont = e.Node.NodeFont ?? ((TreeView)sender).Font;
             Brush textBrush = SystemBrushes.WindowText;
             //反色突出显示
             if ((e.State & TreeNodeStates.Focused) != 0)
@@ -77,6 +129,8 @@ namespace MeterKnife.Common.Controls.Tree
             //不限定文本区域，以免大字体时长文本被截取----edited by: Vivi 2009/11/19
             e.Graphics.DrawString(e.Node.Text, nodeFont, textBrush, Rectangle.Inflate(nodeRect, -5, -5));
         }
+
+        #endregion
 
         #region 节点可拖放设计
 
@@ -168,42 +222,5 @@ namespace MeterKnife.Common.Controls.Tree
         }
 
         #endregion
-
-        private bool _IsTreeLeave = false;
-
-        private void ProjectTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
-        {
-            //在开始选择新的节点前，置上次选择的节点背景回默认状态
-            if (SelectedNode != null && _IsTreeLeave)
-            {
-                SelectedNode.BackColor = Color.White;
-                _IsTreeLeave = false;
-            }
-        }
-
-        private void ProjectTree_Leave(object sender, EventArgs e)
-        {
-            //当焦点丢失时，被选中的节点仍有高亮显示
-            if (SelectedNode != null)
-            {
-                SelectedNode.BackColor = Color.Gainsboro;
-                _IsTreeLeave = true;
-            }
-        }
-
-        private ImageList GetImageList()
-        {
-            var il = new ImageList();
-            il.ColorDepth = ColorDepth.Depth32Bit;
-            il.ImageSize = new Size(18, 18);
-
-            il.Images.Add(MeterTreeElement.PC, GlobalResources.pc);
-            il.Images.Add(MeterTreeElement.Serial, GlobalResources.serial);
-            il.Images.Add(MeterTreeElement.Care, GlobalResources.care);
-            il.Images.Add(MeterTreeElement.Meter, GlobalResources.meter);
-            return il;
-        }
-
-
     }
 }

@@ -17,23 +17,24 @@ namespace MeterKnife.Workbench.Views
         public InterfaceTreeView()
         {
             InitializeComponent();
-            var thread = new Thread(UpdateCareNode);
+            //防止卡死界面，交由另一个线程去刷新树节点
+            var thread = new Thread(UpdateTreeNode);
             thread.Start();
         }
 
-        private void UpdateCareNode()
+        private void UpdateTreeNode()
         {
             int i = 1;
             var careComm = DI.Get<BaseCareCommunicationService>();
-            while (!careComm.IsInitialized)
+            while (!careComm.IsInitialized) //等待通讯服务初始化完成
             {
                 if (i > 100)
                 {
                     _logger.Error("Care通讯服务异常，始终未能初始化完成");
                     return;
                 }
-                Thread.Sleep(100);
-                _logger.Debug(string.Format("Care通讯服务未完成，等待{0}次", i));
+                Thread.Sleep(200);
+                _logger.Trace(string.Format("Care通讯服务未完成，树刷新等待{0}次", i));
                 i++;
             }
             Thread.Sleep(200);
@@ -43,24 +44,18 @@ namespace MeterKnife.Workbench.Views
             {
                 string com = serial.ToUpper().TrimStart(new[] {'C', 'O', 'M'});
                 int port = 0;
-                if (int.TryParse(com, out port))
+                if (int.TryParse(com, out port) && port > 0)
                 {
-                    SerialNode node;
-                    if (!careComm.CareHandlers.ContainsKey(port))
-                    {
-                        node = new SerialNode();
-                        node.Text = serial;
-                    }
-                    else
-                    {
-                        node = new CareNode();
-                        node.Text = string.Format("Care[{0}]", serial);
-                    }
+                    SerialNode node = !careComm.CareHandlers.ContainsKey(port)
+                        ? new SerialNode {Text = serial}
+                        : new CareNode {Text = string.Format("Care [{0}]", serial)};
                     node.Port = port;
+                    if (careComm.CareHandlers.ContainsKey(port))
+                        node.Handler = careComm.CareHandlers[port];
                     _MeterTree.ThreadSafeInvoke(() => _MeterTree.RootNode.Nodes.Add(node));
                 }
             }
-            _MeterTree.ThreadSafeInvoke(()=>_MeterTree.ExpandAll());
+            _MeterTree.ThreadSafeInvoke(() => _MeterTree.ExpandAll());
         }
     }
 }

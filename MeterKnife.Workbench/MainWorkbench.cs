@@ -1,27 +1,30 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Properties;
-using MeterKnife.Instruments;
 using MeterKnife.Workbench.Views;
+using NKnife.Interface;
 using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Workbench
 {
-    public partial class MainWorkbench : Form
+    public sealed partial class MainWorkbench : Form
     {
         private const string DOCK_PANEL_CONFIG = "dockpanel.config";
         private static readonly ILog _logger = LogManager.GetLogger<MainWorkbench>();
 
         private readonly DockPanel _DockPanel = new DockPanel();
-        private readonly DockContent _LoggerView = new LoggerView();
         private readonly DockContent _InterfaceTreeView = new InterfaceTreeView();
+        private readonly DockContent _LoggerView = new LoggerView();
 
         public MainWorkbench()
         {
             InitializeComponent();
+            var about = DI.Get<IAbout>();
+            string title = about.AssemblyTitle;
+            int index = title.IndexOf('.');
+            Text = string.Format("{0}2015 - {1}", title.Substring(0, index), about.AssemblyVersion);
             Icon = GlobalResources.main_icon;
             _logger.Info("主窗体构建完成");
             InitializeDockPanel();
@@ -49,15 +52,6 @@ namespace MeterKnife.Workbench
             _DockPanel.BringToFront();
 
             DockPanelLoadFromXml();
-
-            _LoggerView.Text = "运行日志";
-            _LoggerView.Show(_DockPanel, DockState.DockBottom);
-
-            _InterfaceTreeView.Text = "仪器列表";
-            _InterfaceTreeView.Show(_DockPanel, DockState.DockRight);
-
-            var collectDataView = new CollectDataView();
-            collectDataView.Show(_DockPanel, DockState.Document);
         }
 
         /// <summary>
@@ -77,13 +71,20 @@ namespace MeterKnife.Workbench
             {
                 _DockPanel.LoadFromXml(configFile, deserializeDockContent);
             }
+            else
+            {
+                _LoggerView.Show(_DockPanel, DockState.DockBottom);
+                _InterfaceTreeView.Show(_DockPanel, DockState.DockRight);
+                // var collectDataView = new CollectDataView();
+                // collectDataView.Show(_DockPanel, DockState.Document);
+            }
         }
 
         private IDockContent GetViewFromPersistString(string persistString)
         {
-            if (persistString == typeof(LoggerView).ToString())
+            if (persistString == typeof (LoggerView).ToString())
                 return _LoggerView;
-            if (persistString == typeof(InterfaceTreeView).ToString())
+            if (persistString == typeof (InterfaceTreeView).ToString())
                 return _InterfaceTreeView;
             return null;
         }

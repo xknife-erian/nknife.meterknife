@@ -38,7 +38,10 @@ namespace MeterKnife.Workbench.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 262);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.Name = "LoggerView";
+            this.Text = "运行日志";
             this.ResumeLayout(false);
+
         }
 
         #endregion

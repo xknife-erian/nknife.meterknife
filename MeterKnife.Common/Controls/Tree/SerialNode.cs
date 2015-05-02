@@ -1,10 +1,10 @@
 ﻿using System.Windows.Forms;
-using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using SerialKnife.Generic.Filters;
 
 namespace MeterKnife.Common.Controls.Tree
 {
-    public class SerialNode : BaseTreeNode
+    public class SerialNode : InterfaceNode
     {
         public SerialNode()
         {
@@ -12,6 +12,8 @@ namespace MeterKnife.Common.Controls.Tree
             SelectedImageKey = MeterTreeElement.Serial;
         }
 
-        public int Port { get; set; }
+        protected override void BuildContextMenu()
+        {
+        }
     }
 }

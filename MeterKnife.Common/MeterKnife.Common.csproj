@@ -59,6 +59,7 @@
     <Compile Include="Base\BaseMeter.cs" />
     <Compile Include="Base\BaseTreeNode.cs" />
     <Compile Include="Controls\Tree\CareNode.cs" />
+    <Compile Include="Controls\Tree\InterfaceNode.cs" />
     <Compile Include="Controls\Tree\MeterNode.cs" />
     <Compile Include="Controls\Tree\MeterTree.cs">
       <SubType>Component</SubType>
@@ -156,6 +157,9 @@
     <Content Include="Properties\contents\tree-node-image\pc.png" />
     <Content Include="Properties\contents\tree-node-image\meter-enable.png" />
     <Content Include="Properties\contents\tree-node-image\meter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\Tree\Menus\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
