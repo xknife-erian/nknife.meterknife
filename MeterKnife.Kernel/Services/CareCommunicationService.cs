@@ -41,7 +41,7 @@ namespace MeterKnife.Kernel.Services
             StringCollection serialList = PcInterfaces.GetSerialList();
             foreach (string serial in serialList)
             {
-                string com = serial.TrimStart(new[] {'C', 'O', 'M'});
+                string com = serial.ToUpper().TrimStart(new[] {'C', 'O', 'M'});
                 int port = 0;
                 if (int.TryParse(com, out port))
                 {
@@ -68,6 +68,7 @@ namespace MeterKnife.Kernel.Services
                     }
                 }
             }
+            IsInitialized = true;
             return true;
         }
 

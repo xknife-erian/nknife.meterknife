@@ -2,7 +2,7 @@
 
 namespace MeterKnife.Common.DataModels
 {
-    public class Instrument : BaseInstrument
+    public class Meter : BaseMeter
     {
         public void StartCollect(SCPICollection scpis)
         {

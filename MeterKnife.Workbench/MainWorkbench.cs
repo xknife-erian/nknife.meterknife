@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using Common.Logging;
+using MeterKnife.Common.Properties;
 using MeterKnife.Instruments;
 using MeterKnife.Workbench.Views;
 using NKnife.IoC;
@@ -21,6 +22,7 @@ namespace MeterKnife.Workbench
         public MainWorkbench()
         {
             InitializeComponent();
+            Icon = GlobalResources.main_icon;
             _logger.Info("主窗体构建完成");
             InitializeDockPanel();
             _logger.Info("添加Dock面板完成");

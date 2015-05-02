@@ -3,7 +3,7 @@
     /// <summary>
     /// 一个描述仪器的接口
     /// </summary>
-    public interface IInstrument : ICollectSource
+    public interface IMeter : ICollectSource
     {
         string Name { get; }
     }

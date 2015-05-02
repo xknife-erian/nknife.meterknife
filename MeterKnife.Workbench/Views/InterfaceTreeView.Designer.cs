@@ -28,23 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._Tree = new System.Windows.Forms.TreeView();
+            this.components = new System.ComponentModel.Container();
+            this._MeterTree = new MeterKnife.Common.Controls.Tree.MeterTree();
             this.SuspendLayout();
             // 
-            // _Tree
+            // _MeterTree
             // 
-            this._Tree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._Tree.Location = new System.Drawing.Point(1, 1);
-            this._Tree.Name = "_Tree";
-            this._Tree.Size = new System.Drawing.Size(282, 360);
-            this._Tree.TabIndex = 1;
+            this._MeterTree.AllowDrop = true;
+            this._MeterTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._MeterTree.FullRowSelect = true;
+            this._MeterTree.ImageIndex = 0;
+            this._MeterTree.ItemHeight = 22;
+            this._MeterTree.Location = new System.Drawing.Point(1, 1);
+            this._MeterTree.Name = "_MeterTree";
+            this._MeterTree.SelectedImageIndex = 0;
+            this._MeterTree.ShowLines = false;
+            this._MeterTree.Size = new System.Drawing.Size(282, 360);
+            this._MeterTree.TabIndex = 0;
             // 
             // InterfaceTreeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 362);
-            this.Controls.Add(this._Tree);
+            this.Controls.Add(this._MeterTree);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.Name = "InterfaceTreeView";
             this.Padding = new System.Windows.Forms.Padding(1);
@@ -55,6 +62,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView _Tree;
+        private Common.Controls.Tree.MeterTree _MeterTree;
+
     }
 }

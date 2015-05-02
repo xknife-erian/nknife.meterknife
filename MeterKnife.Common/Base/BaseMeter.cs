@@ -4,7 +4,7 @@ using MeterKnife.Common.Interfaces;
 
 namespace MeterKnife.Common.Base
 {
-    public abstract class BaseInstrument : IInstrument
+    public abstract class BaseMeter : IMeter
     {
         public int Port { get; set; }
         public int GpibAddress { get; set; }

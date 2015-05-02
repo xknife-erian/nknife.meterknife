@@ -56,12 +56,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\BaseInstrument.cs" />
+    <Compile Include="Base\BaseMeter.cs" />
+    <Compile Include="Base\BaseTreeNode.cs" />
+    <Compile Include="Controls\Tree\CareNode.cs" />
+    <Compile Include="Controls\Tree\MeterNode.cs" />
+    <Compile Include="Controls\Tree\MeterTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Tree\PCNode.cs" />
+    <Compile Include="DataModels\MeterTreeElement.cs" />
+    <Compile Include="Controls\Tree\SerialNode.cs" />
     <Compile Include="DataModels\CareSaying.cs" />
     <Compile Include="DataModels\CollectData.cs" />
     <Compile Include="DataModels\FiguredData.cs" />
-    <Compile Include="DataModels\Instrument.cs" />
-    <Compile Include="DataModels\InstrumentCollection.cs" />
+    <Compile Include="DataModels\Meter.cs" />
+    <Compile Include="DataModels\MeterCollection.cs" />
     <Compile Include="DataModels\SCPI.cs" />
     <Compile Include="DataModels\SCPICollection.cs" />
     <Compile Include="EventParameters\CollectEventArgs.cs" />
@@ -71,8 +80,8 @@
     <Compile Include="Interfaces\ICentre.cs" />
     <Compile Include="Interfaces\ICollectDataDoor.cs" />
     <Compile Include="Interfaces\ICollectSource.cs" />
-    <Compile Include="Interfaces\IInstrument.cs" />
-    <Compile Include="Interfaces\IInstrumentFinder.cs" />
+    <Compile Include="Interfaces\IMeter.cs" />
+    <Compile Include="Interfaces\IMeterFinder.cs" />
     <Compile Include="IoC\Moduels.cs" />
     <Compile Include="IoC\TunnelModules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,14 +93,15 @@
     <Compile Include="Tunnels\CareOne\CareOneProtocolPacker.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolUnPacker.cs" />
     <Compile Include="Tunnels\ScpiProtocolHandler.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Properties\GlobalResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Properties\GlobalResources.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>GlobalResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -114,6 +124,38 @@
       <Project>{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}</Project>
       <Name>NKnife</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\contents\bar-button\20150314104053895.png" />
+    <Content Include="Properties\contents\bar-button\20150314104116114.png" />
+    <Content Include="Properties\contents\bar-button\20150314104157509.png" />
+    <Content Include="Properties\contents\bar-button\20150314104225616.png" />
+    <Content Include="Properties\contents\bar-button\20150314104258369.png" />
+    <Content Include="Properties\contents\bar-button\20150314104312234.png" />
+    <Content Include="Properties\contents\bar-button\20150314104319194.png" />
+    <Content Include="Properties\contents\bar-button\20150314104336807.png" />
+    <Content Include="Properties\contents\bar-button\20150314104411104.png" />
+    <Content Include="Properties\contents\bar-button\20150314104514654.png" />
+    <Content Include="Properties\contents\bar-button\20150314104602368.png" />
+    <Content Include="Properties\contents\bar-button\20150314111856572.png" />
+    <Content Include="Properties\contents\bar-button\pause-unable.png" />
+    <Content Include="Properties\contents\bar-button\pause.png" />
+    <Content Include="Properties\contents\bar-button\start-unable.png" />
+    <Content Include="Properties\contents\bar-button\start.png" />
+    <Content Include="Properties\contents\bar-button\stop-unable.png" />
+    <Content Include="Properties\contents\bar-button\stop.png" />
+    <Content Include="Properties\contents\main-icon.ico" />
+    <Content Include="Properties\contents\scpi-builder\add.png" />
+    <Content Include="Properties\contents\scpi-builder\down.png" />
+    <Content Include="Properties\contents\scpi-builder\edit.png" />
+    <Content Include="Properties\contents\scpi-builder\remove.png" />
+    <Content Include="Properties\contents\scpi-builder\up.png" />
+    <Content Include="Properties\contents\tree-node-image\care.png" />
+    <Content Include="Properties\contents\tree-node-image\serial-enable.png" />
+    <Content Include="Properties\contents\tree-node-image\serial.png" />
+    <Content Include="Properties\contents\tree-node-image\pc.png" />
+    <Content Include="Properties\contents\tree-node-image\meter-enable.png" />
+    <Content Include="Properties\contents\tree-node-image\meter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

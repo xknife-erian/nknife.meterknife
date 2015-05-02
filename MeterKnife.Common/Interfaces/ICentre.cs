@@ -9,9 +9,9 @@ namespace MeterKnife.Common.Interfaces
     {
         IUserApplicationData UserData { get; }
         bool IsFirstOpen { get; set; }
-        InstrumentCollection Instruments { get; set; }
-        IInstrument CurrentInstrument { get; set; }
-        event EventHandler<EventArgs<IInstrument>> CurrentInstrumentChanged;
+        MeterCollection Instruments { get; set; }
+        IMeter CurrentInstrument { get; set; }
+        event EventHandler<EventArgs<IMeter>> CurrentInstrumentChanged;
 
     }
 }

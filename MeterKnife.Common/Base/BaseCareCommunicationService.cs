@@ -11,12 +11,17 @@ namespace MeterKnife.Common.Base
 {
     public abstract class BaseCareCommunicationService : ITunnelService<byte[]>
     {
+        protected BaseCareCommunicationService()
+        {
+            IsInitialized = false;
+        }
         void ITunnelService<byte[]>.Build(int port, params BaseProtocolHandler<byte[]>[] handlers)
         {
             Build(port, handlers.Cast<CareOneProtocolHandler>().ToArray());
         }
 
         public abstract bool Initialize();
+        public bool IsInitialized { get; protected set; }
 
         public event EventHandler<EventArgs<int>> SerialInitialized;
 
