@@ -5,7 +5,7 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Properties;
 
-namespace MeterKnife.Common.Controls.Tree
+namespace MeterKnife.Workbench.Controls.Tree
 {
     public sealed class MeterTree : TreeView
     {

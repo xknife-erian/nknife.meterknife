@@ -58,15 +58,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseMeter.cs" />
     <Compile Include="Base\BaseTreeNode.cs" />
-    <Compile Include="Controls\Tree\CareNode.cs" />
-    <Compile Include="Controls\Tree\InterfaceNode.cs" />
-    <Compile Include="Controls\Tree\MeterNode.cs" />
-    <Compile Include="Controls\Tree\MeterTree.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Tree\PCNode.cs" />
     <Compile Include="DataModels\MeterTreeElement.cs" />
-    <Compile Include="Controls\Tree\SerialNode.cs" />
     <Compile Include="DataModels\CareSaying.cs" />
     <Compile Include="DataModels\CollectData.cs" />
     <Compile Include="DataModels\FiguredData.cs" />
@@ -158,9 +150,7 @@
     <Content Include="Properties\contents\tree-node-image\meter-enable.png" />
     <Content Include="Properties\contents\tree-node-image\meter.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\Tree\Menus\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

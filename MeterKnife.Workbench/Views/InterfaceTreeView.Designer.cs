@@ -1,4 +1,6 @@
-﻿namespace MeterKnife.Workbench.Views
+﻿using MeterKnife.Workbench.Controls.Tree;
+
+namespace MeterKnife.Workbench.Views
 {
     partial class InterfaceTreeView
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this._MeterTree = new MeterKnife.Common.Controls.Tree.MeterTree();
+            this._MeterTree = new MeterTree();
             this.SuspendLayout();
             // 
             // _MeterTree
@@ -62,7 +64,7 @@
 
         #endregion
 
-        private Common.Controls.Tree.MeterTree _MeterTree;
+        private MeterTree _MeterTree;
 
     }
 }

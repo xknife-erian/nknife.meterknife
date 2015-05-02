@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
 
-namespace MeterKnife.Common.Controls.Tree
+namespace MeterKnife.Workbench.Controls.Tree
 {
     public class CareNode : SerialNode
     {

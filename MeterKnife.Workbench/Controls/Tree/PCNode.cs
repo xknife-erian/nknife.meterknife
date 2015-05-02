@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Net;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 
-namespace MeterKnife.Common.Controls.Tree
+namespace MeterKnife.Workbench.Controls.Tree
 {
     public class PCNode : BaseTreeNode
     {

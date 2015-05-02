@@ -1,7 +1,6 @@
-using System.Windows.Forms;
 using MeterKnife.Common.Base;
 
-namespace MeterKnife.Common.Controls.Tree
+namespace MeterKnife.Workbench.Controls.Tree
 {
     public class MeterNode : BaseTreeNode
     {

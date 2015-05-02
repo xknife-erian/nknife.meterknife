@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Common.DataModels
 {
-    internal class MeterTreeElement
+    public class MeterTreeElement
     {
         public const string PC = "PC";
         public const string Serial = "Serial";

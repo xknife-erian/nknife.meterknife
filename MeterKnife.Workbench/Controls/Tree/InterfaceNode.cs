@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.Tunnels.CareOne;
 
-namespace MeterKnife.Common.Controls.Tree
+namespace MeterKnife.Workbench.Controls.Tree
 {
     public abstract class InterfaceNode : BaseTreeNode
     {

@@ -60,6 +60,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Tree\CareNode.cs" />
+    <Compile Include="Controls\Tree\InterfaceNode.cs" />
+    <Compile Include="Controls\Tree\MeterNode.cs" />
+    <Compile Include="Controls\Tree\MeterTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Tree\PCNode.cs" />
+    <Compile Include="Controls\Tree\SerialNode.cs" />
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="MainWorkbench.cs">
       <SubType>Form</SubType>
