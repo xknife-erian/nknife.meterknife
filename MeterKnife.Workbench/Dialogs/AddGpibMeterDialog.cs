@@ -14,6 +14,13 @@ namespace MeterKnife.Workbench.Dialogs
         public AddGpibMeterDialog()
         {
             InitializeComponent();
+            _AcceptButton.Click += (s, e) => DialogResult = DialogResult.OK;
+            _CancelButton.Click += (s, e) => DialogResult = DialogResult.Cancel;
+        }
+
+        public int GpibAddress
+        {
+            get { return (int)_NumberBox.Value; }
         }
     }
 }

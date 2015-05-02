@@ -28,47 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._NumberBox = new System.Windows.Forms.DomainUpDown();
             this._GroupBox = new System.Windows.Forms.GroupBox();
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this._NumberBox = new System.Windows.Forms.NumericUpDown();
             this._GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._NumberBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // _NumberBox
-            // 
-            this._NumberBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._NumberBox.Font = new System.Drawing.Font("Tahoma", 12F);
-            this._NumberBox.Location = new System.Drawing.Point(96, 36);
-            this._NumberBox.Name = "_NumberBox";
-            this._NumberBox.Size = new System.Drawing.Size(154, 27);
-            this._NumberBox.TabIndex = 0;
-            this._NumberBox.Text = "23";
             // 
             // _GroupBox
             // 
             this._GroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._GroupBox.Controls.Add(this.label1);
             this._GroupBox.Controls.Add(this._NumberBox);
+            this._GroupBox.Controls.Add(this.label1);
             this._GroupBox.Location = new System.Drawing.Point(12, 13);
             this._GroupBox.Name = "_GroupBox";
             this._GroupBox.Size = new System.Drawing.Size(268, 91);
             this._GroupBox.TabIndex = 1;
             this._GroupBox.TabStop = false;
-            this._GroupBox.Text = "设置仪器拥有的GPIB地址";
             // 
             // _CancelButton
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(197, 110);
+            this._CancelButton.Location = new System.Drawing.Point(197, 114);
             this._CancelButton.Name = "_CancelButton";
-            this._CancelButton.Size = new System.Drawing.Size(83, 34);
+            this._CancelButton.Size = new System.Drawing.Size(83, 28);
             this._CancelButton.TabIndex = 2;
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
@@ -76,9 +64,9 @@
             // _AcceptButton
             // 
             this._AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._AcceptButton.Location = new System.Drawing.Point(108, 110);
+            this._AcceptButton.Location = new System.Drawing.Point(108, 114);
             this._AcceptButton.Name = "_AcceptButton";
-            this._AcceptButton.Size = new System.Drawing.Size(83, 34);
+            this._AcceptButton.Size = new System.Drawing.Size(83, 28);
             this._AcceptButton.TabIndex = 3;
             this._AcceptButton.Text = "确认";
             this._AcceptButton.UseVisualStyleBackColor = true;
@@ -93,6 +81,30 @@
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "GPIB Address:";
+            // 
+            // _NumberBox
+            // 
+            this._NumberBox.Font = new System.Drawing.Font("Tahoma", 11F);
+            this._NumberBox.Location = new System.Drawing.Point(103, 37);
+            this._NumberBox.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this._NumberBox.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this._NumberBox.Name = "_NumberBox";
+            this._NumberBox.Size = new System.Drawing.Size(144, 25);
+            this._NumberBox.TabIndex = 2;
+            this._NumberBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._NumberBox.Value = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
             // 
             // AddGpibMeterDialog
             // 
@@ -115,16 +127,17 @@
             this.Text = "添加仪器";
             this._GroupBox.ResumeLayout(false);
             this._GroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._NumberBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DomainUpDown _NumberBox;
         private System.Windows.Forms.GroupBox _GroupBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button _CancelButton;
         private System.Windows.Forms.Button _AcceptButton;
+        private System.Windows.Forms.NumericUpDown _NumberBox;
     }
 }
