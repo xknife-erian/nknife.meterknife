@@ -1,5 +1,6 @@
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Interfaces;
 
 namespace MeterKnife.Workbench.Controls.Tree
 {
@@ -10,5 +11,7 @@ namespace MeterKnife.Workbench.Controls.Tree
             ImageKey = MeterTreeElement.Meter;
             SelectedImageKey = MeterTreeElement.Meter;
         }
+
+        public IMeter Meter { get; set; }
     }
 }

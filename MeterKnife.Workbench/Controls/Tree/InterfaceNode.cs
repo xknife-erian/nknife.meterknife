@@ -60,7 +60,16 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         private void HandlerOnProtocolRecevied(object sender, EventArgs<string> e)
         {
-            var meterNode = new MeterNode {Text = string.Format("{0}-{1}", _CurrGpib, e.Item)};
+            var meterNode = new MeterNode
+            {
+                Text = string.Format("{0}-{1}", _CurrGpib, e.Item),
+                Meter = new Meter
+                {
+                    GpibAddress = _CurrGpib,
+                    Name = e.Item,
+                    Port = this.Port
+                }
+            };
             TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
             ((ScpiProtocolHandler) _CommService.CareHandlers[Port]).ProtocolRecevied -= HandlerOnProtocolRecevied;
             TreeView.ThreadSafeInvoke(Expand);

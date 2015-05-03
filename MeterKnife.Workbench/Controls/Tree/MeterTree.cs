@@ -3,18 +3,15 @@ using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Properties;
+using NKnife.Events;
 
 namespace MeterKnife.Workbench.Controls.Tree
 {
     public sealed class MeterTree : TreeView
     {
         private int _MouseClicks; //记录鼠标在TreeView控件上按下的次数
-
-        public TreeNode RootNode
-        {
-            get { return Nodes[0]; }
-        }
 
         public MeterTree()
         {
@@ -23,16 +20,8 @@ namespace MeterKnife.Workbench.Controls.Tree
             ShowLines = false;
             FullRowSelect = true;
 
-            MouseClick += (s, e) =>
-            {
-                //将点击事件传递到子节点去实现
-                if (SelectedNode != null)
-                {
-                    var node = SelectedNode as InterfaceNode;
-                    if (node != null)
-                        node.OnNodeClicked(e);
-                }
-            };
+            MouseClick += OnMouseClick;
+            DoubleClick += OnMouseDoubleClick;
 
             //自定义绘制节点的文本和图标
             //DrawMode = TreeViewDrawMode.OwnerDrawText;
@@ -65,6 +54,43 @@ namespace MeterKnife.Workbench.Controls.Tree
             Nodes.Add(new PCNode());
         }
 
+        public TreeNode RootNode
+        {
+            get { return Nodes[0]; }
+        }
+
+        private void OnMouseClick(object s, MouseEventArgs e)
+        {
+            //将点击事件传递到子节点去实现
+            if (SelectedNode != null)
+            {
+                if (SelectedNode is InterfaceNode)
+                {
+                    //当点击接口节点时，不做鼠标点击的判断，直接传递给节点，在节点类中进行判断处理
+                    var node = SelectedNode as InterfaceNode;
+                    node.OnNodeClicked(e);
+                }
+            }
+        }
+
+        private void OnMouseDoubleClick(object sender, EventArgs e)
+        {
+            if (SelectedNode is MeterNode)
+            {
+                //当左键双击仪器节点
+                var node = SelectedNode as MeterNode;
+                OnSelectedMeter(new EventArgs<IMeter>(node.Meter));
+            }
+        }
+
+        public event EventHandler<EventArgs<IMeter>> SelectedMeter;
+
+        private void OnSelectedMeter(EventArgs<IMeter> e)
+        {
+            EventHandler<EventArgs<IMeter>> handler = SelectedMeter;
+            if (handler != null) handler(this, e);
+        }
+
         private ImageList GetImageList()
         {
             var il = new ImageList();
@@ -80,7 +106,7 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         #region 丢焦点时高亮
 
-        private bool _IsTreeLeave = false;
+        private bool _IsTreeLeave;
 
         private void TreeBeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
@@ -110,9 +136,9 @@ namespace MeterKnife.Workbench.Controls.Tree
         {
             Rectangle nodeRect = e.Node.Bounds; //节点区域
 
-            Point drawPt = new Point(nodeRect.Location.X - 18, nodeRect.Location.Y); //绘制图标的起始位置
-            Size imgSize = new Size(12, 12); //图片大小
-            Rectangle imgRect = new Rectangle(drawPt, imgSize);
+            var drawPt = new Point(nodeRect.Location.X - 18, nodeRect.Location.Y); //绘制图标的起始位置
+            var imgSize = new Size(12, 12); //图片大小
+            var imgRect = new Rectangle(drawPt, imgSize);
 
             //--------绘制图片: 判断节点类型，并根据各节点的类型绘制不同的图片--------------------
             if (e.Node is BaseTreeNode)
@@ -121,7 +147,7 @@ namespace MeterKnife.Workbench.Controls.Tree
             }
 
             //-----------------------绘制文本 -------------------------------
-            Font nodeFont = e.Node.NodeFont ?? ((TreeView)sender).Font;
+            Font nodeFont = e.Node.NodeFont ?? ((TreeView) sender).Font;
             Brush textBrush = SystemBrushes.WindowText;
             //反色突出显示
             if ((e.State & TreeNodeStates.Focused) != 0)
@@ -134,7 +160,7 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         #region 节点可拖放设计
 
-        private TreeNode _LastNodeOnDrag;//保存前一个鼠标进入的节点
+        private TreeNode _LastNodeOnDrag; //保存前一个鼠标进入的节点
 
         private void OnItemDrag(object sender, ItemDragEventArgs e)
         {
@@ -146,9 +172,9 @@ namespace MeterKnife.Workbench.Controls.Tree
         private void OnDragOver(object sender, DragEventArgs e)
         {
             //获取被拖动的节点
-            var draggingNode = FindDragNode(e.Data);
+            TreeNode draggingNode = FindDragNode(e.Data);
             //修改鼠标进入的目标节点的背景色，还原上一个节点的背景色
-            var targetNode = GetNodeAt(PointToClient(new Point(e.X, e.Y)));
+            TreeNode targetNode = GetNodeAt(PointToClient(new Point(e.X, e.Y)));
             if ((targetNode != null) && (targetNode != _LastNodeOnDrag))
             {
                 targetNode.BackColor = Color.PaleTurquoise;
@@ -159,7 +185,7 @@ namespace MeterKnife.Workbench.Controls.Tree
         }
 
         /// <summary>
-        /// 判断目标节点是否可以接收被拖动的节点
+        ///     判断目标节点是否可以接收被拖动的节点
         /// </summary>
         /// <param name="draggingNode">被拖动的节点</param>
         /// <param name="targetNode">目标节点</param>
@@ -172,10 +198,10 @@ namespace MeterKnife.Workbench.Controls.Tree
         private void OnDragEnter(object sender, DragEventArgs e)
         {
             //获取被拖动的节点
-            var draggingNode = FindDragNode(e.Data);
+            TreeNode draggingNode = FindDragNode(e.Data);
             //如果节点有数据，拖放目标允许移动
             e.Effect = (draggingNode != null) ? DragDropEffects.Move : DragDropEffects.None;
-            var targetNode = GetNodeAt(PointToClient(new Point(e.X, e.Y)));
+            TreeNode targetNode = GetNodeAt(PointToClient(new Point(e.X, e.Y)));
             if (targetNode != null)
             {
                 //改变进入节点的背景色
@@ -187,14 +213,14 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         private static TreeNode FindDragNode(IDataObject dataObject)
         {
-            var types = dataObject.GetFormats(false);
-            foreach (var type in types)
+            string[] types = dataObject.GetFormats(false);
+            foreach (string type in types)
             {
                 if (!type.Contains("Node"))
                 {
                     continue;
                 }
-                var obj = dataObject.GetData(type);
+                object obj = dataObject.GetData(type);
                 var node = obj as TreeNode;
                 if (node != null)
                 {
@@ -207,9 +233,9 @@ namespace MeterKnife.Workbench.Controls.Tree
         private void OnDragDrop(object sender, DragEventArgs e)
         {
             //当拖放结束时
-            var node = FindDragNode(e.Data);
+            TreeNode node = FindDragNode(e.Data);
             //得到当前鼠标进入的节点
-            var targetNode = GetNodeAt(PointToClient(new Point(e.X, e.Y)));
+            TreeNode targetNode = GetNodeAt(PointToClient(new Point(e.X, e.Y)));
             if (targetNode != null)
             {
                 //删除拖放的节点

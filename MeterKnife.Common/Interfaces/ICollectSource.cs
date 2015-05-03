@@ -8,7 +8,6 @@ namespace MeterKnife.Common.Interfaces
     /// </summary>
     public interface ICollectSource
     {
-        int Port { get; set; }
         int GpibAddress { get; set; }
         /// <summary>
         /// 当收到仪器采集数据时
