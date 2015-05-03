@@ -10,7 +10,8 @@ namespace MeterKnife.Common.Util
     {
         public static string SimplifyName(string fullname)
         {
-            return "34401";
+            var nd = fullname.Split(new[] {','});
+            return nd[1].Trim();
         }
     }
 }

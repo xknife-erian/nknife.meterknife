@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Controls\Tree\CareNode.cs" />
     <Compile Include="Controls\Tree\InterfaceNode.cs" />
+    <Compile Include="Controls\Tree\LanNode.cs" />
     <Compile Include="Controls\Tree\MeterNode.cs" />
     <Compile Include="Controls\Tree\MeterTree.cs">
       <SubType>Component</SubType>

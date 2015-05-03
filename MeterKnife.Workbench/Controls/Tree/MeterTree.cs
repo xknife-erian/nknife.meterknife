@@ -3,8 +3,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Properties;
+using MeterKnife.Common.Util;
 using NKnife.Events;
 
 namespace MeterKnife.Workbench.Controls.Tree
@@ -79,15 +81,19 @@ namespace MeterKnife.Workbench.Controls.Tree
             {
                 //µ±×ó¼üË«»÷ÒÇÆ÷½Úµã
                 var node = SelectedNode as MeterNode;
-                OnSelectedMeter(new EventArgs<IMeter>(node.Meter));
+                var interfaceNode = (InterfaceNode) node.Parent;
+                var commType = CommunicationType.Serial;
+                if(interfaceNode is LanNode)
+                    commType = CommunicationType.Socket;
+                OnSelectedMeter(new InterfaceNodeClickedEventArgs(node.Meter, interfaceNode.Port, commType));
             }
         }
 
-        public event EventHandler<EventArgs<IMeter>> SelectedMeter;
+        public event EventHandler<InterfaceNodeClickedEventArgs> SelectedMeter;
 
-        private void OnSelectedMeter(EventArgs<IMeter> e)
+        private void OnSelectedMeter(InterfaceNodeClickedEventArgs e)
         {
-            EventHandler<EventArgs<IMeter>> handler = SelectedMeter;
+            EventHandler<InterfaceNodeClickedEventArgs> handler = SelectedMeter;
             if (handler != null) handler(this, e);
         }
 

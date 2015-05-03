@@ -3,6 +3,7 @@ using System.Collections.Specialized;
 using System.Threading;
 using Common.Logging;
 using MeterKnife.Common.Base;
+using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Instruments;
 using MeterKnife.Workbench.Controls.Tree;
@@ -26,11 +27,13 @@ namespace MeterKnife.Workbench.Views
             thread.Start();
         }
 
-        private void MeterTreeOnSelectedMeter(object sender, EventArgs<IMeter> e)
+        private void MeterTreeOnSelectedMeter(object sender, InterfaceNodeClickedEventArgs e)
         {
             var collectView = DI.Get<CollectDataView>();
-            collectView.Meter = e.Item;
-            collectView.Text = e.Item.Name;
+            collectView.Meter = e.Meter;
+            collectView.Port = e.Port;
+            collectView.CommunicationType = e.CommunicationType;
+            collectView.Text = e.Meter.SimpleName;
             collectView.Show(this.PanelPane.DockPanel, DockState.Document);
         }
 

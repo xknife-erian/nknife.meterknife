@@ -13,14 +13,14 @@ namespace MeterKnife.Common.Tunnels
         public override void Recevied(CareSaying protocol)
         {
             _logger.Trace(string.Format("SCPI:{0}", protocol.Content.TrimEnd('\n')));
-            OnProtocolRecevied(new EventArgs<string>(protocol.Content));
+            OnProtocolRecevied(new EventArgs<CareSaying>(protocol));
         }
 
-        public event EventHandler<EventArgs<string>> ProtocolRecevied;
+        public event EventHandler<EventArgs<CareSaying>> ProtocolRecevied;
 
-        protected virtual void OnProtocolRecevied(EventArgs<string> e)
+        protected virtual void OnProtocolRecevied(EventArgs<CareSaying> e)
         {
-            EventHandler<EventArgs<string>> handler = ProtocolRecevied;
+            EventHandler<EventArgs<CareSaying>> handler = ProtocolRecevied;
             if (handler != null)
                 handler(this, e);
         }

@@ -67,14 +67,12 @@
     <Compile Include="DataModels\SCPI.cs" />
     <Compile Include="DataModels\SCPICollection.cs" />
     <Compile Include="EventParameters\CollectEventArgs.cs" />
-    <Compile Include="Interfaces\ICareLanFinder.cs" />
     <Compile Include="Base\BaseCareCommunicationService.cs" />
-    <Compile Include="Interfaces\ICareUsbFinder.cs" />
+    <Compile Include="EventParameters\InterfaceNodeClickedEventArgs.cs" />
     <Compile Include="Interfaces\ICentre.cs" />
     <Compile Include="Interfaces\ICollectDataDoor.cs" />
     <Compile Include="Interfaces\ICollectSource.cs" />
     <Compile Include="Interfaces\IMeter.cs" />
-    <Compile Include="Interfaces\IMeterFinder.cs" />
     <Compile Include="Interfaces\IMeterParameters.cs" />
     <Compile Include="IoC\Moduels.cs" />
     <Compile Include="IoC\TunnelModules.cs" />
@@ -87,6 +85,7 @@
     <Compile Include="Tunnels\CareOne\CareOneProtocolPacker.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolUnPacker.cs" />
     <Compile Include="Tunnels\ScpiProtocolHandler.cs" />
+    <Compile Include="Util\CommunicationType.cs" />
     <Compile Include="Util\MeterUtil.cs" />
     <EmbeddedResource Include="Properties\GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

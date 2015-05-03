@@ -60,9 +60,9 @@ namespace MeterKnife.Workbench.Controls.Tree
             }
         }
 
-        private void HandlerOnProtocolRecevied(object sender, EventArgs<string> e)
+        private void HandlerOnProtocolRecevied(object sender, EventArgs<CareSaying> e)
         {
-            var meterName = e.Item;
+            var meterName = e.Item.Content;
             var meterNode = new MeterNode
             {
                 Text = string.Format("{0}-{1}", _CurrGpib, meterName),
@@ -71,8 +71,7 @@ namespace MeterKnife.Workbench.Controls.Tree
             var simpleName = MeterUtil.SimplifyName(meterName);
             var meter = DI.Get<BaseMeter>(simpleName);
             meter.GpibAddress = _CurrGpib;
-            meter.Name = e.Item;
-            meter.Port = Port;
+            meter.Name = meterName;
             meter.Parameters = DI.Get<IMeterParameters>(simpleName);
             meterNode.Meter = meter;
 

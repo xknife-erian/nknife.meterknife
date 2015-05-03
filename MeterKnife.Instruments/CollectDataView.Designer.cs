@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CollectDataView));
             this._MainSplitContainer = new System.Windows.Forms.SplitContainer();
             this._LeftSplitContainer = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -38,6 +39,9 @@
             this._PlotPage = new System.Windows.Forms.TabPage();
             this._PlotSplitContainer = new System.Windows.Forms.SplitContainer();
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
+            this._StartStripButton = new System.Windows.Forms.ToolStripButton();
+            this._StopStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this._DataGridPage = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
@@ -54,6 +58,7 @@
             this._PlotPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._PlotSplitContainer)).BeginInit();
             this._PlotSplitContainer.SuspendLayout();
+            this._PlotToolStrip.SuspendLayout();
             this._DataGridPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -175,11 +180,44 @@
             // 
             // _PlotToolStrip
             // 
+            this._PlotToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._StartStripButton,
+            this._StopStripButton,
+            this.toolStripButton3});
             this._PlotToolStrip.Location = new System.Drawing.Point(3, 3);
             this._PlotToolStrip.Name = "_PlotToolStrip";
             this._PlotToolStrip.Size = new System.Drawing.Size(352, 25);
             this._PlotToolStrip.TabIndex = 0;
             this._PlotToolStrip.Text = "toolStrip1";
+            // 
+            // _StartStripButton
+            // 
+            this._StartStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._StartStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_StartStripButton.Image")));
+            this._StartStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._StartStripButton.Name = "_StartStripButton";
+            this._StartStripButton.Size = new System.Drawing.Size(23, 22);
+            this._StartStripButton.Text = "开始";
+            this._StartStripButton.Click += new System.EventHandler(this._StartStripButton_Click);
+            // 
+            // _StopStripButton
+            // 
+            this._StopStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._StopStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_StopStripButton.Image")));
+            this._StopStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._StopStripButton.Name = "_StopStripButton";
+            this._StopStripButton.Size = new System.Drawing.Size(23, 22);
+            this._StopStripButton.Text = "停止";
+            this._StopStripButton.Click += new System.EventHandler(this._StopStripButton_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "toolStripButton3";
             // 
             // _DataGridPage
             // 
@@ -227,6 +265,8 @@
             this._PlotPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._PlotSplitContainer)).EndInit();
             this._PlotSplitContainer.ResumeLayout(false);
+            this._PlotToolStrip.ResumeLayout(false);
+            this._PlotToolStrip.PerformLayout();
             this._DataGridPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -247,5 +287,8 @@
         private System.Windows.Forms.PropertyGrid _FiguredDataPropertyGrid;
         private System.Windows.Forms.PropertyGrid _MeterParamPropertyGrid;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripButton _StartStripButton;
+        private System.Windows.Forms.ToolStripButton _StopStripButton;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }

@@ -53,7 +53,7 @@ namespace MeterKnife.Kernel.Services
                         {
                             if (onFindCare)
                             {
-                                if (e.Item.ToLower().StartsWith("care"))
+                                if (e.Item.Content.ToLower().StartsWith("care"))
                                 {
                                     OnSerialInitialized(new EventArgs<int>(port));
                                     _CareHandlers.Add(port, handler);
