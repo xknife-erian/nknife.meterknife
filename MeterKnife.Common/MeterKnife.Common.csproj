@@ -75,6 +75,7 @@
     <Compile Include="Interfaces\ICollectSource.cs" />
     <Compile Include="Interfaces\IMeter.cs" />
     <Compile Include="Interfaces\IMeterFinder.cs" />
+    <Compile Include="Interfaces\IMeterParameters.cs" />
     <Compile Include="IoC\Moduels.cs" />
     <Compile Include="IoC\TunnelModules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Tunnels\CareOne\CareOneProtocolPacker.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolUnPacker.cs" />
     <Compile Include="Tunnels\ScpiProtocolHandler.cs" />
+    <Compile Include="Util\MeterUtil.cs" />
     <EmbeddedResource Include="Properties\GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>

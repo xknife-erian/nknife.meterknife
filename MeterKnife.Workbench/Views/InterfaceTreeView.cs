@@ -3,7 +3,10 @@ using System.Collections.Specialized;
 using System.Threading;
 using Common.Logging;
 using MeterKnife.Common.Base;
+using MeterKnife.Common.Interfaces;
+using MeterKnife.Instruments;
 using MeterKnife.Workbench.Controls.Tree;
+using NKnife.Events;
 using NKnife.IoC;
 using NKnife.Wrapper;
 using WeifenLuo.WinFormsUI.Docking;
@@ -17,9 +20,18 @@ namespace MeterKnife.Workbench.Views
         public InterfaceTreeView()
         {
             InitializeComponent();
+            _MeterTree.SelectedMeter+= MeterTreeOnSelectedMeter;
             //防止卡死界面，交由另一个线程去刷新树节点
             var thread = new Thread(UpdateTreeNode);
             thread.Start();
+        }
+
+        private void MeterTreeOnSelectedMeter(object sender, EventArgs<IMeter> e)
+        {
+            var collectView = DI.Get<CollectDataView>();
+            collectView.Meter = e.Item;
+            collectView.Text = e.Item.Name;
+            collectView.Show(this.PanelPane.DockPanel, DockState.Document);
         }
 
         private void UpdateTreeNode()

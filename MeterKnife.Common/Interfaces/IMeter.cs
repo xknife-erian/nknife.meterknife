@@ -6,5 +6,6 @@
     public interface IMeter : ICollectSource
     {
         string Name { get; }
+        object Parameters { get; set; }
     }
 }

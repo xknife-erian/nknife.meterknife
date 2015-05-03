@@ -2,8 +2,10 @@
 using System.Windows.Forms;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
+using MeterKnife.Common.Util;
 using MeterKnife.Workbench.Dialogs;
 using NKnife.Events;
 using NKnife.IoC;
@@ -60,16 +62,20 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         private void HandlerOnProtocolRecevied(object sender, EventArgs<string> e)
         {
+            var meterName = e.Item;
             var meterNode = new MeterNode
             {
-                Text = string.Format("{0}-{1}", _CurrGpib, e.Item),
-                Meter = new Meter
-                {
-                    GpibAddress = _CurrGpib,
-                    Name = e.Item,
-                    Port = this.Port
-                }
+                Text = string.Format("{0}-{1}", _CurrGpib, meterName),
             };
+
+            var simpleName = MeterUtil.SimplifyName(meterName);
+            var meter = DI.Get<BaseMeter>(simpleName);
+            meter.GpibAddress = _CurrGpib;
+            meter.Name = e.Item;
+            meter.Port = Port;
+            meter.Parameters = DI.Get<IMeterParameters>(simpleName);
+            meterNode.Meter = meter;
+
             TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
             ((ScpiProtocolHandler) _CommService.CareHandlers[Port]).ProtocolRecevied -= HandlerOnProtocolRecevied;
             TreeView.ThreadSafeInvoke(Expand);

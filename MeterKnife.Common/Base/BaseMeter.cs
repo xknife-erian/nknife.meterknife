@@ -11,6 +11,7 @@ namespace MeterKnife.Common.Base
         public event EventHandler<CollectEventArgs> ReceviedCollectData;
         public event EventHandler<CollectEventArgs> ReceviedTemperatureData;
         public string Name { get; set; }
+        public object Parameters { get; set; }
 
         protected virtual void OnReceviedCollectData(CollectEventArgs e)
         {

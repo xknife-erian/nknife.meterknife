@@ -59,12 +59,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agilent\Ag34401.cs" />
     <Compile Include="CollectDataView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CollectDataView.Designer.cs">
       <DependentUpon>CollectDataView.cs</DependentUpon>
     </Compile>
+    <Compile Include="IoC\MeterModule.cs" />
+    <Compile Include="IoC\Modules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
@@ -78,6 +81,20 @@
     <EmbeddedResource Include="CollectDataView.resx">
       <DependentUpon>CollectDataView.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\nknife\NKnife\NKnife.csproj">
+      <Project>{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}</Project>
+      <Name>NKnife</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
+      <Project>{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}</Project>
+      <Name>MeterKnife.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Advantest\" />
+    <Folder Include="Keithley\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
