@@ -49,11 +49,7 @@ namespace MeterKnife.Workbench.Controls.Tree
                 var handler = (ScpiProtocolHandler) _CommService.CareHandlers[Port];
                 handler.ProtocolRecevied += HandlerOnProtocolRecevied;
 
-                var careSaying = new CareSaying();
-                careSaying.MainCommand = 0xAA;
-                careSaying.SubCommand = 0x00;
-                careSaying.Content = "*IDN?";
-                careSaying.GpibAddress = (byte) _CurrGpib;
+                var careSaying = CareSaying.IDN(_CurrGpib);
                 byte[] data = careSaying.Generate();
 
                 _CommService.Send(Port, data);

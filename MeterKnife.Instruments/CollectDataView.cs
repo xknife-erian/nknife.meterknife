@@ -23,16 +23,21 @@ namespace MeterKnife.Instruments
         private static readonly ILog _logger = LogManager.GetLogger<CollectDataView>();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
-        protected PlotModel _MainPlotModel = new PlotModel();
+        private readonly FiguredData _FiguredData = new FiguredData();
+
+
+        protected LineSeries _MainLineSeries = new LineSeries();
+        protected LinearAxis _MainValueAxis = new LinearAxis();
+        protected LineSeries _TemperatureLineSeries = new LineSeries();
+        protected LinearAxis _TemperatureValueAxis = new LinearAxis();
         private IMeter _Meter;
         private bool _OnCollect; //是否正在采集
-        protected PlotModel _TemperaturePlotModel = new PlotModel();
 
         public CollectDataView()
         {
             InitializeComponent();
 
-            BuildMainPlogModel(_MainPlotModel);
+            PlotModel mainModel = BuildMainPlogModel();
             var mainPlot = new PlotView
             {
                 Dock = DockStyle.Fill,
@@ -41,10 +46,11 @@ namespace MeterKnife.Instruments
                 ZoomHorizontalCursor = Cursors.SizeWE,
                 ZoomRectangleCursor = Cursors.SizeNWSE,
                 ZoomVerticalCursor = Cursors.SizeNS,
-                Model = _MainPlotModel
+                Model = mainModel
             };
             _PlotSplitContainer.Panel1.Controls.Add(mainPlot);
 
+            PlotModel temperatureModel = BuildTemperaturePlogModel();
             var temperaturePlot = new PlotView
             {
                 Dock = DockStyle.Fill,
@@ -53,26 +59,9 @@ namespace MeterKnife.Instruments
                 ZoomHorizontalCursor = Cursors.SizeWE,
                 ZoomRectangleCursor = Cursors.SizeNWSE,
                 ZoomVerticalCursor = Cursors.SizeNS,
-                Model = _TemperaturePlotModel
+                Model = temperatureModel
             };
             _PlotSplitContainer.Panel2.Controls.Add(temperaturePlot);
-        }
-
-        private void BuildMainPlogModel(PlotModel mainModel)
-        {
-            var linearAxis1 = new LinearAxis();
-            mainModel.Axes.Add(linearAxis1);
-            var linearAxis2 = new LinearAxis
-            {
-                Position = AxisPosition.Bottom
-            };
-            mainModel.Axes.Add(linearAxis2);
-            var lineSeries = new LineSeries
-            {
-                Color = OxyColor.FromArgb(255, 78, 154, 6), 
-                MarkerFill = OxyColor.FromArgb(255, 78, 154, 6)
-            };
-            mainModel.Series.Add(lineSeries);
         }
 
         public IMeter Meter
@@ -81,7 +70,7 @@ namespace MeterKnife.Instruments
             set
             {
                 _Meter = value;
-                _FiguredDataPropertyGrid.SelectedObject = new FiguredData();
+                _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
                 _MeterParamPropertyGrid.SelectedObject = Meter.Parameters;
             }
         }
@@ -89,6 +78,56 @@ namespace MeterKnife.Instruments
         public int Port { get; set; }
 
         public CommunicationType CommunicationType { get; set; }
+
+        private PlotModel BuildMainPlogModel()
+        {
+            var model = new PlotModel();
+
+            _MainValueAxis.MaximumPadding = 0;
+            _MainValueAxis.MinimumPadding = 0;
+            _MainValueAxis.Maximum = 15;
+            _MainValueAxis.Minimum = 5;
+            _MainValueAxis.Position = AxisPosition.Left;
+            model.Axes.Add(_MainValueAxis);
+
+            var timeAxis = new DateTimeAxis(); //时间刻度
+            timeAxis.MajorGridlineStyle = LineStyle.Solid;
+            timeAxis.MaximumPadding = 0;
+            timeAxis.MinimumPadding = 0;
+            timeAxis.MinorGridlineStyle = LineStyle.Dot;
+            timeAxis.Position = AxisPosition.Bottom;
+            model.Axes.Add(timeAxis);
+
+            _MainLineSeries.Color = OxyColor.FromArgb(255, 78, 154, 6);
+            _MainLineSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
+            model.Series.Add(_MainLineSeries);
+            return model;
+        }
+
+        private PlotModel BuildTemperaturePlogModel()
+        {
+            var mainModel = new PlotModel();
+
+            _TemperatureValueAxis.MaximumPadding = 0;
+            _TemperatureValueAxis.MinimumPadding = 0;
+            _TemperatureValueAxis.Maximum = 15;
+            _TemperatureValueAxis.Minimum = 5;
+            _TemperatureValueAxis.Position = AxisPosition.Left;
+            mainModel.Axes.Add(_TemperatureValueAxis);
+
+            var timeAxis = new DateTimeAxis(); //时间刻度
+            timeAxis.MajorGridlineStyle = LineStyle.Solid;
+            timeAxis.MaximumPadding = 0;
+            timeAxis.MinimumPadding = 0;
+            timeAxis.MinorGridlineStyle = LineStyle.Dot;
+            timeAxis.Position = AxisPosition.Bottom;
+            mainModel.Axes.Add(timeAxis);
+
+            _TemperatureLineSeries.Color = OxyColor.FromArgb(255, 78, 154, 6);
+            _TemperatureLineSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
+            mainModel.Series.Add(_TemperatureLineSeries);
+            return mainModel;
+        }
 
         private void _StartStripButton_Click(object sender, EventArgs e)
         {
@@ -109,23 +148,77 @@ namespace MeterKnife.Instruments
 
         private void SendRead(object obj)
         {
+            byte[] read = CareSaying.READ(_Meter.GpibAddress).Generate();
+            byte[] temp = CareSaying.TEMP().Generate();
             while (_OnCollect)
             {
-                var careSaying = new CareSaying();
-                careSaying.MainCommand = 0xAA;
-                careSaying.SubCommand = 0x00;
-                careSaying.Content = "READ?";
-                careSaying.GpibAddress = (byte) _Meter.GpibAddress;
-                byte[] data = careSaying.Generate();
-                _Comm.Send(Port, data);
-                Thread.Sleep(500);
+                _Comm.Send(Port, read);
+                Thread.Sleep(600);
+                _Comm.Send(Port, temp);
+                Thread.Sleep(300);
             }
         }
+                int i = 1;
 
         private void OnProtocolRecevied(object sender, EventArgs<CareSaying> e)
         {
             CareSaying saying = e.Item;
-            _logger.Error(saying.Content);
+            
+            if (saying.MainCommand == 0xAE)
+            {
+                string data = saying.Content.Substring(0, 5);
+                double yzl = 0;
+                if (double.TryParse(data, out yzl))
+                {
+                    if (i == 1)
+                    {
+                        _TemperatureValueAxis.Maximum = yzl + 1.5;
+                        _TemperatureValueAxis.Minimum = yzl - 1.5;
+                    }
+                    DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
+                    _TemperatureLineSeries.Points.Add(v);
+                    _TemperatureLineSeries.PlotModel.InvalidatePlot(true);
+                    if (i > 1000)
+                        i = 10;
+                    else
+                        i++;
+                }
+            }
+            else
+            {
+                if (saying.GpibAddress != Meter.GpibAddress)
+                    return;
+                string data = saying.Content.Substring(1, saying.Content.Length - 6);
+                double yzl = 0;
+                if (double.TryParse(data, out yzl))
+                {
+                    _FiguredData.Add(yzl);
+
+                    double j = (Math.Abs(_FiguredData.Max - _FiguredData.Min))/4;
+                    if (_FiguredData.Count <= 1)
+                    {
+                        _MainValueAxis.Maximum = yzl + 1;
+                        _MainValueAxis.Minimum = yzl - 1;
+                    }
+                    else if (_FiguredData.Count == 2)
+                    {
+                        _MainValueAxis.Maximum = yzl + j;
+                        _MainValueAxis.Minimum = yzl - j;
+                    }
+                    else
+                    {
+                        if (_MainValueAxis.Maximum < yzl + j)
+                            _MainValueAxis.Maximum = yzl + j;
+                        if (_MainValueAxis.Minimum > yzl - j)
+                            _MainValueAxis.Minimum = yzl - j;
+                    }
+
+                    DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
+                    _MainLineSeries.Points.Add(v);
+                    _MainLineSeries.PlotModel.InvalidatePlot(true);
+                }
+            }
+            _FiguredDataPropertyGrid.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
     }
 }

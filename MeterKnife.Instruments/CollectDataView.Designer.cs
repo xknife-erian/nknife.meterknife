@@ -34,7 +34,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._MeterParamPropertyGrid = new System.Windows.Forms.PropertyGrid();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
             this._MainTabControl = new System.Windows.Forms.TabControl();
             this._PlotPage = new System.Windows.Forms.TabPage();
             this._PlotSplitContainer = new System.Windows.Forms.SplitContainer();
@@ -44,6 +43,7 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this._DataGridPage = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
             this._MainSplitContainer.Panel1.SuspendLayout();
             this._MainSplitContainer.Panel2.SuspendLayout();
@@ -132,16 +132,6 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "实时分析";
-            // 
-            // _FiguredDataPropertyGrid
-            // 
-            this._FiguredDataPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._FiguredDataPropertyGrid.HelpVisible = false;
-            this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 17);
-            this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
-            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 223);
-            this._FiguredDataPropertyGrid.TabIndex = 0;
-            this._FiguredDataPropertyGrid.ToolbarVisible = false;
             // 
             // _MainTabControl
             // 
@@ -240,6 +230,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(352, 398);
             this.dataGridView1.TabIndex = 0;
             // 
+            // _FiguredDataPropertyGrid
+            // 
+            this._FiguredDataPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._FiguredDataPropertyGrid.HelpVisible = false;
+            this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 17);
+            this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
+            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 223);
+            this._FiguredDataPropertyGrid.TabIndex = 0;
+            this._FiguredDataPropertyGrid.ToolbarVisible = false;
+            // 
             // CollectDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,11 +284,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ToolStrip _PlotToolStrip;
         private System.Windows.Forms.SplitContainer _PlotSplitContainer;
-        private System.Windows.Forms.PropertyGrid _FiguredDataPropertyGrid;
         private System.Windows.Forms.PropertyGrid _MeterParamPropertyGrid;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ToolStripButton _StartStripButton;
         private System.Windows.Forms.ToolStripButton _StopStripButton;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.PropertyGrid _FiguredDataPropertyGrid;
     }
 }

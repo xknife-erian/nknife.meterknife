@@ -9,7 +9,7 @@ namespace MeterKnife.Common.DataModels
     /// <summary>
     ///     面向Care制定的协议的封装
     /// </summary>
-    public class CareSaying : BytesProtocol
+    public partial class CareSaying : BytesProtocol
     {
         private string _Scpi = string.Empty;
         private byte[] _ScpiBytes = null;
@@ -29,7 +29,7 @@ namespace MeterKnife.Common.DataModels
             return result;
         }
 
-        #region
+        #region 基本属性
 
         /// <summary>
         ///     主命令字

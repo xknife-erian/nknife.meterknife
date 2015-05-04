@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseMeter.cs" />
     <Compile Include="Base\BaseTreeNode.cs" />
+    <Compile Include="DataModels\CareSaying.Protocols.cs" />
     <Compile Include="DataModels\MeterTreeElement.cs" />
     <Compile Include="DataModels\CareSaying.cs" />
     <Compile Include="DataModels\CollectData.cs" />
