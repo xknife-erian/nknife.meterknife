@@ -17,8 +17,15 @@ namespace MeterKnife.Workbench.Controls.Tree
         protected readonly MenuItem _AddMeterMenu;
         protected readonly BaseCareCommunicationService _CommService = DI.Get<BaseCareCommunicationService>();
         protected readonly ContextMenu _RightMenu;
+        private MeterInfo _MeterInfo;
 
-        private int _CurrGpib;
+        class MeterInfo
+        {
+            public int GpibAddress { get; set; }
+            public string Brand { get; set; }
+            public string Name { get; set; }
+            public GpibLanguage Language { get; set; }
+        }
 
         protected InterfaceNode()
         {
@@ -45,34 +52,60 @@ namespace MeterKnife.Workbench.Controls.Tree
             var dialog = new AddGpibMeterDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                _CurrGpib = dialog.GpibAddress;
-                var handler = (ScpiProtocolHandler) _CommService.CareHandlers[Port];
-                handler.ProtocolRecevied += HandlerOnProtocolRecevied;
+                if (dialog.AutoFindMeter)
+                {
+                    _MeterInfo = new MeterInfo();
+                    _MeterInfo.Brand = dialog.Brand;
+                    _MeterInfo.Name = dialog.MeterName;
+                    _MeterInfo.GpibAddress = dialog.GpibAddress;
+                    _MeterInfo.Language = dialog.Language;
 
-                var careSaying = CareSaying.IDN(_CurrGpib);
-                byte[] data = careSaying.Generate();
+                    var handler = (ScpiProtocolHandler) _CommService.CareHandlers[Port];
+                    handler.ProtocolRecevied += HandlerOnProtocolRecevied;
 
-                _CommService.Send(Port, data);
+                    var careSaying = CareSaying.IDN(_MeterInfo.GpibAddress);
+                    var data = careSaying.Generate();
+
+                    _CommService.Send(Port, data);
+                }
+                else//当手动选择仪器类型时
+                {
+                    var meterNode = new MeterNode
+                    {
+                        Text = string.Format("{0}-{1},{2}", _MeterInfo.GpibAddress, dialog.Brand, dialog.Name),
+                    };
+                    var meter = DI.Get<BaseMeter>(dialog.Name);
+                    meter.Brand = dialog.Brand;
+                    meter.GpibAddress = dialog.GpibAddress;
+                    meter.Language = dialog.Language;
+                    meter.Name = string.Format("{0},{1}", dialog.Brand, dialog.Name);
+
+                    TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
+                    TreeView.ThreadSafeInvoke(Expand);
+                }
             }
         }
 
         private void HandlerOnProtocolRecevied(object sender, EventArgs<CareSaying> e)
         {
+            ((ScpiProtocolHandler) _CommService.CareHandlers[Port]).ProtocolRecevied -= HandlerOnProtocolRecevied;
+
             var meterName = e.Item.Content;
             var meterNode = new MeterNode
             {
-                Text = string.Format("{0}-{1}", _CurrGpib, meterName),
+                Text = string.Format("{0}-{1}", _MeterInfo.GpibAddress, meterName)
             };
 
-            var simpleName = MeterUtil.SimplifyName(meterName);
-            var meter = DI.Get<BaseMeter>(simpleName);
-            meter.GpibAddress = _CurrGpib;
+            var name = MeterUtil.SimplifyName(meterName);
+            var meter = DI.Get<BaseMeter>(name.Second);
+            meter.GpibAddress = _MeterInfo.GpibAddress;
             meter.Name = meterName;
-            meter.Parameters = DI.Get<IMeterParameters>(simpleName);
+            meter.Brand = name.First;
+            meter.Language = _MeterInfo.Language;
+            meter.Parameters = DI.Get<IMeterParameters>(name.Second);
             meterNode.Meter = meter;
 
             TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
-            ((ScpiProtocolHandler) _CommService.CareHandlers[Port]).ProtocolRecevied -= HandlerOnProtocolRecevied;
             TreeView.ThreadSafeInvoke(Expand);
         }
 
@@ -82,7 +115,7 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         protected internal virtual void OnNodeClicked(MouseEventArgs e)
         {
-            EventHandler<MouseEventArgs> handler = NodeClicked;
+            var handler = NodeClicked;
             if (handler != null) handler(this, e);
         }
     }

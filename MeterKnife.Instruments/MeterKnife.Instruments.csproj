@@ -61,7 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agilent\Ag34401.cs" />
+    <Compile Include="Agilent\Ag34401A.cs" />
+    <Compile Include="Agilent\Ag34401AParameters.cs" />
     <Compile Include="CollectDataView.cs">
       <SubType>Form</SubType>
     </Compile>

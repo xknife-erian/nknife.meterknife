@@ -60,6 +60,12 @@
   <ItemGroup>
     <Compile Include="Base\BaseMeter.cs" />
     <Compile Include="Base\BaseTreeNode.cs" />
+    <Compile Include="Base\DMMMeasure.cs" />
+    <Compile Include="Base\DMMRange.cs" />
+    <Compile Include="Base\DMMRate.cs" />
+    <Compile Include="Base\DMMZeroSet.cs" />
+    <Compile Include="Base\GpibLanguage.cs" />
+    <Compile Include="Base\MultiMeterParameters.cs" />
     <Compile Include="DataModels\CareSaying.Protocols.cs" />
     <Compile Include="DataModels\MeterTreeElement.cs" />
     <Compile Include="DataModels\CareSaying.cs" />

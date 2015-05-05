@@ -8,8 +8,10 @@ namespace MeterKnife.Common.Base
     public abstract class BaseMeter : IMeter
     {
         public int GpibAddress { get; set; }
+        public string Brand { get; set; }
         public string Name { get; set; }
-        public string SimpleName { get { return MeterUtil.SimplifyName(Name); } }
+        public GpibLanguage Language { get; set; }
+        public string SimpleName { get { return MeterUtil.SimplifyName(Name).Second; } }
         public object Parameters { get; set; }
 
     }
