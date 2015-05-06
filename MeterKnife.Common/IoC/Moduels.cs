@@ -1,6 +1,7 @@
 ﻿using Ninject.Modules;
+using NKnife.Configuring.Interfaces;
 
-namespace MeterKnife.Kernel.IoC
+namespace MeterKnife.Common.IoC
 {
     public class Moduels : NinjectModule
     {

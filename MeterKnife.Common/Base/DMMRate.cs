@@ -2,5 +2,6 @@
 {
     public enum DMMRate
     {
+        R6
     }
 }

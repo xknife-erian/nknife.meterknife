@@ -5,14 +5,14 @@ namespace MeterKnife.Common.EventParameters
 {
     public class CollectEventArgs : EventArgs<CollectData>
     {
-        public CollectEventArgs(string source, CollectData data)
+        public CollectEventArgs(int source, CollectData data)
             : base(data)
         {
-            Source = source;
+            Address = source;
             CollectData = data;
         }
 
-        public string Source { get; private set; }
+        public int Address { get; private set; }
         public CollectData CollectData { get; private set; }
     }
 }

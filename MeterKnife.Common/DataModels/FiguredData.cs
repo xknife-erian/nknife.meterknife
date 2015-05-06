@@ -62,6 +62,21 @@ namespace MeterKnife.Common.DataModels
             }
         }
 
+        public void AddTemperature(double value)
+        {
+            _TemperatureDatas.Add(value);
+            if (_TemperatureDatas.Count <= 1)
+            {
+                MaxTemperature = value;
+                MinTemperature = value;
+            }
+            else
+            {
+                if (value > MaxTemperature) MaxTemperature = value;
+                else if (value < MinTemperature) MinTemperature = value;
+            }
+        }
+
         public override string ToString()
         {
             return string.Format("Max:{0}; Min:{1}; RMS:{2}", Max, Min, RootMeanSquare);

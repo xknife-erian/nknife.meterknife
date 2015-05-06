@@ -8,6 +8,7 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
+using MeterKnife.Instruments.Properties;
 using NKnife.Events;
 using NKnife.IoC;
 using OxyPlot;
@@ -25,7 +26,6 @@ namespace MeterKnife.Instruments
 
         private readonly FiguredData _FiguredData = new FiguredData();
 
-
         protected LineSeries _MainLineSeries = new LineSeries();
         protected LinearAxis _MainValueAxis = new LinearAxis();
         protected LineSeries _TemperatureLineSeries = new LineSeries();
@@ -36,6 +36,13 @@ namespace MeterKnife.Instruments
         public CollectDataView()
         {
             InitializeComponent();
+            _StartStripButton.Image = Resources.start;
+            _StopStripButton.Image = Resources.stop;
+            _SaveStripButton3.Image = Resources.save;
+            _ExportStripButton1.Image = Resources.export;
+            _PhotoToolStripButton.Image = Resources.photo;
+            _ZoomInToolStripButton.Image = Resources.zoom_in;
+            _ZoomOutToolStripButton.Image = Resources.zoom_out;
 
             PlotModel mainModel = BuildMainPlogModel();
             var mainPlot = new PlotView
@@ -123,7 +130,7 @@ namespace MeterKnife.Instruments
             timeAxis.Position = AxisPosition.Bottom;
             mainModel.Axes.Add(timeAxis);
 
-            _TemperatureLineSeries.Color = OxyColor.FromArgb(255, 78, 154, 6);
+            _TemperatureLineSeries.Color = OxyColor.FromArgb(255, 124, 124, 248);
             _TemperatureLineSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
             mainModel.Series.Add(_TemperatureLineSeries);
             return mainModel;
@@ -158,7 +165,6 @@ namespace MeterKnife.Instruments
                 Thread.Sleep(300);
             }
         }
-                int i = 1;
 
         private void OnProtocolRecevied(object sender, EventArgs<CareSaying> e)
         {
@@ -170,18 +176,30 @@ namespace MeterKnife.Instruments
                 double yzl = 0;
                 if (double.TryParse(data, out yzl))
                 {
-                    if (i == 1)
+                    _FiguredData.AddTemperature(yzl);
+
+                    double j = (Math.Abs(_FiguredData.MaxTemperature - _FiguredData.MinTemperature)) / 4;
+                    if (_FiguredData.Count <= 1)
                     {
-                        _TemperatureValueAxis.Maximum = yzl + 1.5;
-                        _TemperatureValueAxis.Minimum = yzl - 1.5;
+                        _TemperatureValueAxis.Maximum = yzl + 1;
+                        _TemperatureValueAxis.Minimum = yzl - 1;
                     }
+                    else if (_FiguredData.Count == 2)
+                    {
+                        _TemperatureValueAxis.Maximum = yzl + j;
+                        _TemperatureValueAxis.Minimum = yzl - j;
+                    }
+                    else
+                    {
+                        if (_TemperatureValueAxis.Maximum < yzl + j)
+                            _TemperatureValueAxis.Maximum = yzl + j;
+                        if (_TemperatureValueAxis.Minimum > yzl - j)
+                            _TemperatureValueAxis.Minimum = yzl - j;
+                    }
+
                     DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
                     _TemperatureLineSeries.Points.Add(v);
                     _TemperatureLineSeries.PlotModel.InvalidatePlot(true);
-                    if (i > 1000)
-                        i = 10;
-                    else
-                        i++;
                 }
             }
             else

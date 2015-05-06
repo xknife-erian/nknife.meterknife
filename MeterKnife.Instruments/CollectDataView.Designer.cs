@@ -34,16 +34,22 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._MeterParamPropertyGrid = new System.Windows.Forms.PropertyGrid();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
             this._MainTabControl = new System.Windows.Forms.TabControl();
             this._PlotPage = new System.Windows.Forms.TabPage();
             this._PlotSplitContainer = new System.Windows.Forms.SplitContainer();
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
             this._StartStripButton = new System.Windows.Forms.ToolStripButton();
             this._StopStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this._SaveStripButton3 = new System.Windows.Forms.ToolStripButton();
             this._DataGridPage = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
+            this._ExportStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this._PhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
             this._MainSplitContainer.Panel1.SuspendLayout();
             this._MainSplitContainer.Panel2.SuspendLayout();
@@ -133,6 +139,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "实时分析";
             // 
+            // _FiguredDataPropertyGrid
+            // 
+            this._FiguredDataPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._FiguredDataPropertyGrid.HelpVisible = false;
+            this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 17);
+            this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
+            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 223);
+            this._FiguredDataPropertyGrid.TabIndex = 0;
+            this._FiguredDataPropertyGrid.ToolbarVisible = false;
+            // 
             // _MainTabControl
             // 
             this._MainTabControl.Controls.Add(this._PlotPage);
@@ -173,7 +189,13 @@
             this._PlotToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._StartStripButton,
             this._StopStripButton,
-            this.toolStripButton3});
+            this._SaveStripButton3,
+            this.toolStripSeparator1,
+            this._ExportStripButton1,
+            this._PhotoToolStripButton,
+            this.toolStripSeparator2,
+            this._ZoomInToolStripButton,
+            this._ZoomOutToolStripButton});
             this._PlotToolStrip.Location = new System.Drawing.Point(3, 3);
             this._PlotToolStrip.Name = "_PlotToolStrip";
             this._PlotToolStrip.Size = new System.Drawing.Size(352, 25);
@@ -200,14 +222,14 @@
             this._StopStripButton.Text = "停止";
             this._StopStripButton.Click += new System.EventHandler(this._StopStripButton_Click);
             // 
-            // toolStripButton3
+            // _SaveStripButton3
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this._SaveStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._SaveStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("_SaveStripButton3.Image")));
+            this._SaveStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._SaveStripButton3.Name = "_SaveStripButton3";
+            this._SaveStripButton3.Size = new System.Drawing.Size(23, 22);
+            this._SaveStripButton3.Text = "toolStripButton3";
             // 
             // _DataGridPage
             // 
@@ -230,15 +252,51 @@
             this.dataGridView1.Size = new System.Drawing.Size(352, 398);
             this.dataGridView1.TabIndex = 0;
             // 
-            // _FiguredDataPropertyGrid
+            // _ExportStripButton1
             // 
-            this._FiguredDataPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._FiguredDataPropertyGrid.HelpVisible = false;
-            this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 17);
-            this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
-            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 223);
-            this._FiguredDataPropertyGrid.TabIndex = 0;
-            this._FiguredDataPropertyGrid.ToolbarVisible = false;
+            this._ExportStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ExportStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("_ExportStripButton1.Image")));
+            this._ExportStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ExportStripButton1.Name = "_ExportStripButton1";
+            this._ExportStripButton1.Size = new System.Drawing.Size(23, 22);
+            this._ExportStripButton1.Text = "toolStripButton1";
+            // 
+            // _PhotoToolStripButton
+            // 
+            this._PhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._PhotoToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_PhotoToolStripButton.Image")));
+            this._PhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._PhotoToolStripButton.Name = "_PhotoToolStripButton";
+            this._PhotoToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._PhotoToolStripButton.Text = "toolStripButton1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // _ZoomInToolStripButton
+            // 
+            this._ZoomInToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ZoomInToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_ZoomInToolStripButton.Image")));
+            this._ZoomInToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ZoomInToolStripButton.Name = "_ZoomInToolStripButton";
+            this._ZoomInToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._ZoomInToolStripButton.Text = "toolStripButton1";
+            // 
+            // _ZoomOutToolStripButton
+            // 
+            this._ZoomOutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ZoomOutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_ZoomOutToolStripButton.Image")));
+            this._ZoomOutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ZoomOutToolStripButton.Name = "_ZoomOutToolStripButton";
+            this._ZoomOutToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._ZoomOutToolStripButton.Text = "toolStripButton2";
             // 
             // CollectDataView
             // 
@@ -288,7 +346,13 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ToolStripButton _StartStripButton;
         private System.Windows.Forms.ToolStripButton _StopStripButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton _SaveStripButton3;
         private System.Windows.Forms.PropertyGrid _FiguredDataPropertyGrid;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton _ExportStripButton1;
+        private System.Windows.Forms.ToolStripButton _PhotoToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton _ZoomInToolStripButton;
+        private System.Windows.Forms.ToolStripButton _ZoomOutToolStripButton;
     }
 }
