@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using MeterKnife.Common.DataModels;
 
-namespace MeterKnife.Instruments.Agilent
+namespace MeterKnife.Common.Base
 {
-    public partial class BaseParamPanel : UserControl
+    public abstract partial class BaseParamPanel : UserControl
     {
-        public BaseParamPanel()
+        protected BaseParamPanel()
         {
             InitializeComponent();
         }
+
+        public abstract GpibCommandList GpibCommands { get; set; }
+
+        /*
+            _Panel.ColumnCount = 2;
+            _Panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+
+            _Panel.RowCount = 2;
+            _Panel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+         */
     }
 }

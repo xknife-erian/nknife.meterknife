@@ -1,4 +1,5 @@
 ﻿using MeterKnife.Common.Base;
+using MeterKnife.Common.DataModels;
 
 namespace MeterKnife.Common.Interfaces
 {
@@ -12,6 +13,6 @@ namespace MeterKnife.Common.Interfaces
         GpibLanguage Language { get; set; }
         string Name { get; set; }
         string SimpleName { get; }
-        object Parameters { get; set; }
+        GpibCommandList GetGpibCommands();
     }
 }

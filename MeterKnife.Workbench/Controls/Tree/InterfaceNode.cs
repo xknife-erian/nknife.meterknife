@@ -102,7 +102,6 @@ namespace MeterKnife.Workbench.Controls.Tree
             meter.Name = meterName;
             meter.Brand = name.First;
             meter.Language = _MeterInfo.Language;
-            meter.Parameters = DI.Get<IMeterParameters>(name.Second);
             meterNode.Meter = meter;
 
             TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));

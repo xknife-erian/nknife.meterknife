@@ -12,6 +12,6 @@ namespace MeterKnife.Workbench.Controls.Tree
             SelectedImageKey = MeterTreeElement.Meter;
         }
 
-        public IMeter Meter { get; set; }
+        public BaseMeter Meter { get; set; }
     }
 }

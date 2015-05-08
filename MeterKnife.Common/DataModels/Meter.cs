@@ -4,9 +4,9 @@ namespace MeterKnife.Common.DataModels
 {
     public class Meter : BaseMeter
     {
-        public void StartCollect(ScpiCollection scpis)
+        public override BaseParamPanel ParamPanel
         {
+            get { throw new System.NotImplementedException(); }
         }
-
     }
 }

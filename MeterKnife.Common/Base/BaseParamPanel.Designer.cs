@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Instruments.Agilent
+﻿namespace MeterKnife.Common.Base
 {
     partial class BaseParamPanel
     {
@@ -28,24 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._MainPanel = new System.Windows.Forms.Panel();
+            this._Panel = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
-            // _MainPanel
+            // _Panel
             // 
-            this._MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._MainPanel.Location = new System.Drawing.Point(0, 0);
-            this._MainPanel.Name = "_MainPanel";
-            this._MainPanel.Size = new System.Drawing.Size(270, 351);
-            this._MainPanel.TabIndex = 0;
+            this._Panel.ColumnCount = 2;
+            this._Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this._Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this._Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._Panel.Location = new System.Drawing.Point(8, 8);
+            this._Panel.Name = "_Panel";
+            this._Panel.RowCount = 1;
+            this._Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this._Panel.Size = new System.Drawing.Size(254, 335);
+            this._Panel.TabIndex = 0;
             // 
-            // Ag34401AParamPanel
+            // BaseParamPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._MainPanel);
+            this.Controls.Add(this._Panel);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.Name = "Ag34401AParamPanel";
+            this.Name = "BaseParamPanel";
+            this.Padding = new System.Windows.Forms.Padding(8);
             this.Size = new System.Drawing.Size(270, 351);
             this.ResumeLayout(false);
 
@@ -53,7 +59,8 @@
 
         #endregion
 
-        protected System.Windows.Forms.Panel _MainPanel;
+        protected System.Windows.Forms.TableLayoutPanel _Panel;
+
 
     }
 }

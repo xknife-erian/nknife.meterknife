@@ -137,7 +137,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataModels\GpibCommandList.xml" />
     <Content Include="Properties\contents\bar-button\20150314104053895.png" />
     <Content Include="Properties\contents\bar-button\20150314104116114.png" />
     <Content Include="Properties\contents\bar-button\20150314104157509.png" />

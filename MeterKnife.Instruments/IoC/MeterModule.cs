@@ -14,7 +14,6 @@ namespace MeterKnife.Instruments.IoC
         public override void Load()
         {
             Bind<BaseMeter>().To<Ag34401A>().Named("34401A");
-            Bind<IMeterParameters>().To<Ag34401AParameters>().Named("34401A");
         }
     }
 }

@@ -30,7 +30,7 @@ namespace MeterKnife.Instruments
         protected LinearAxis _MainValueAxis = new LinearAxis();
         protected LineSeries _TemperatureLineSeries = new LineSeries();
         protected LinearAxis _TemperatureValueAxis = new LinearAxis();
-        private IMeter _Meter;
+        private BaseMeter _Meter;
         private bool _OnCollect; //是否正在采集
 
         public CollectDataView()
@@ -71,14 +71,14 @@ namespace MeterKnife.Instruments
             _PlotSplitContainer.Panel2.Controls.Add(temperaturePlot);
         }
 
-        public IMeter Meter
+        public BaseMeter Meter
         {
             get { return _Meter; }
             set
             {
                 _Meter = value;
                 _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
-                _MeterParamPropertyGrid.SelectedObject = Meter.Parameters;
+                _ParamsPanel.Controls.Add(value.ParamPanel);
             }
         }
 

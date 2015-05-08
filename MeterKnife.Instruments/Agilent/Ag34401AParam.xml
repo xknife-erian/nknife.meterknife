@@ -22,7 +22,7 @@
     <command description="二极管" command="DIOD"></command>
   </command>
   <command description="查询配置" command="CONF" isReturn="true"></command>
-  <command description="配置" command="CONF">
+  <command description="配置" command="CONF" isConfig ="true">
     <command description="电压" command="VOLT">
       <command description="直流" command="DC"></command>
       <command description="交流" command="AC"></command>
