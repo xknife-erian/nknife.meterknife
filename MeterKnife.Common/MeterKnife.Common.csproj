@@ -59,13 +59,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseMeter.cs" />
+    <Compile Include="Base\BaseParamPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base\BaseParamPanel.Designer.cs">
+      <DependentUpon>BaseParamPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\BaseTreeNode.cs" />
-    <Compile Include="Base\DMMMeasure.cs" />
-    <Compile Include="Base\DMMRange.cs" />
-    <Compile Include="Base\DMMRate.cs" />
-    <Compile Include="Base\DMMZeroSet.cs" />
-    <Compile Include="Base\GpibLanguage.cs" />
-    <Compile Include="Base\MultiMeterParameters.cs" />
+    <Compile Include="Base\_\DMMMeasure.cs" />
+    <Compile Include="Base\_\DMMRange.cs" />
+    <Compile Include="Base\_\DMMRate.cs" />
+    <Compile Include="Base\_\DMMZeroSet.cs" />
+    <Compile Include="Base\_\GpibLanguage.cs" />
+    <Compile Include="Base\_\MultiMeterParameters.cs" />
     <Compile Include="DataModels\CareSaying.Protocols.cs" />
     <Compile Include="DataModels\MeterTreeElement.cs" />
     <Compile Include="DataModels\CareSaying.cs" />
@@ -73,8 +79,8 @@
     <Compile Include="DataModels\FiguredData.cs" />
     <Compile Include="DataModels\Meter.cs" />
     <Compile Include="DataModels\MeterCollection.cs" />
-    <Compile Include="DataModels\SCPI.cs" />
-    <Compile Include="DataModels\SCPICollection.cs" />
+    <Compile Include="DataModels\GpibCommand.cs" />
+    <Compile Include="DataModels\GpibCommandList.cs" />
     <Compile Include="EventParameters\CollectEventArgs.cs" />
     <Compile Include="Base\BaseCareCommunicationService.cs" />
     <Compile Include="EventParameters\InterfaceNodeClickedEventArgs.cs" />
@@ -95,6 +101,9 @@
     <Compile Include="Tunnels\ScpiProtocolHandler.cs" />
     <Compile Include="Util\CommunicationType.cs" />
     <Compile Include="Util\MeterUtil.cs" />
+    <EmbeddedResource Include="Base\BaseParamPanel.resx">
+      <DependentUpon>BaseParamPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
@@ -128,6 +137,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataModels\GpibCommandList.xml" />
     <Content Include="Properties\contents\bar-button\20150314104053895.png" />
     <Content Include="Properties\contents\bar-button\20150314104116114.png" />
     <Content Include="Properties\contents\bar-button\20150314104157509.png" />

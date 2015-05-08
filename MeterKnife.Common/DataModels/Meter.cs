@@ -4,7 +4,7 @@ namespace MeterKnife.Common.DataModels
 {
     public class Meter : BaseMeter
     {
-        public void StartCollect(SCPICollection scpis)
+        public void StartCollect(ScpiCollection scpis)
         {
         }
 

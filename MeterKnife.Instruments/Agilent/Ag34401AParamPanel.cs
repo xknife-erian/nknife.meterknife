@@ -1,25 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
+using System.Xml;
 
 namespace MeterKnife.Instruments.Agilent
 {
-    public partial class Ag34401AParamPanel : UserControl
+    public class Ag34401AParamPanel : BaseParamPanel
     {
-        public Ag34401AParamPanel()
+        public Ag34401AParamPanel(XmlElement element)
         {
-            InitializeComponent();
         }
-
-        private void Ag34401AParamPanel_Load(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

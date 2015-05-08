@@ -62,12 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agilent\Ag34401A.cs" />
-    <Compile Include="Agilent\Ag34401AParameters.cs" />
     <Compile Include="Agilent\Ag34401AParamPanel.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Agilent\Ag34401AParamPanel.Designer.cs">
-      <DependentUpon>Ag34401AParamPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="CollectDataView.cs">
       <SubType>Form</SubType>
@@ -99,9 +95,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Agilent\Ag34401AParamPanel.resx">
-      <DependentUpon>Ag34401AParamPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CollectDataView.resx">
       <DependentUpon>CollectDataView.cs</DependentUpon>
     </EmbeddedResource>

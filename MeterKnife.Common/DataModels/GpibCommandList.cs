@@ -2,7 +2,7 @@
 
 namespace MeterKnife.Common.DataModels
 {
-    public class SCPICollection : List<SCPI>
+    public class GpibCommandList : List<GpibCommand>
     {
     }
 }
