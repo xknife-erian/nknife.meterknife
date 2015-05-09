@@ -34,8 +34,8 @@
             // _Panel
             // 
             this._Panel.ColumnCount = 2;
-            this._Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this._Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this._Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this._Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this._Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._Panel.Location = new System.Drawing.Point(8, 8);
             this._Panel.Name = "_Panel";

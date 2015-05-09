@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,7 +60,6 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -69,10 +68,9 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -87,10 +85,9 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -112,66 +109,9 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CommandElement" xml:space="preserve">
-    <value>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
-&lt;MeterParam isScpi="true" format="scpi"&gt;
-  &lt;command content="重置" command="*RST"&gt;&lt;/command&gt;
-  &lt;command content="清屏" command="*CLS"&gt;&lt;/command&gt;
-  &lt;command content="初始化" command="INIT"&gt;&lt;/command&gt;
-  &lt;command content="输出" command="FETC" isReturn="true"&gt;&lt;/command&gt;
-  &lt;command content="读取" command="READ" isReturn="true"&gt;&lt;/command&gt;
-  &lt;command content="配置测量项目并测量" command="MEAS" isReturn="true"&gt;
-    &lt;command content="直流电压" command="VOLT:DC"&gt;&lt;/command&gt;
-    &lt;command content="交流电压" command="VOLT:AC"&gt;&lt;/command&gt;
-    &lt;command content="直流电流" command="CURR:DC"&gt;&lt;/command&gt;
-    &lt;command content="交流电流" command="CURR:AC"&gt;&lt;/command&gt;
-    &lt;command content="电阻" command="RES"&gt;&lt;/command&gt;
-    &lt;command content="四线电阻" command="FRES"&gt;&lt;/command&gt;
-    &lt;command content="频率" command="FREQ"&gt;&lt;/command&gt;
-    &lt;command content="周期" command="FER"&gt;&lt;/command&gt;
-    &lt;command content="通断" command="CONT"&gt;&lt;/command&gt;
-    &lt;command content="二极管" command="DIOD"&gt;&lt;/command&gt;
-  &lt;/command&gt;
-  &lt;command content="查询测量项目" command="CONF" isReturn="true"&gt;&lt;/command&gt;
-  &lt;command content="测量项目" command="CONF" isConfig ="true"&gt;
-    &lt;command content="直流电压" command="VOLT:DC"&gt;&lt;/command&gt;
-    &lt;command content="交流电压" command="VOLT:AC"&gt;&lt;/command&gt;
-    &lt;command content="直流电流" command="CURR:DC"&gt;&lt;/command&gt;
-    &lt;command content="交流电流" command="CURR:AC"&gt;&lt;/command&gt;
-    &lt;command content="电阻" command="RES"&gt;&lt;/command&gt;
-    &lt;command content="四线电阻" command="FRES"&gt;&lt;/command&gt;
-    &lt;command content="频率" command="FREQ"&gt;&lt;/command&gt;
-    &lt;command content="周期" command="FER"&gt;&lt;/command&gt;
-    &lt;command content="通断" command="CONT"&gt;&lt;/command&gt;
-    &lt;command content="二极管" command="DIOD"&gt;&lt;/command&gt;
-  &lt;/command&gt;
-&lt;/MeterParam&gt;</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="export" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>toolstripbutton\export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>toolstripbutton\photo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>toolstripbutton\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="start" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>toolstripbutton\start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>toolstripbutton\stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zoom_in" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>toolstripbutton\zoom_in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zoom_out" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>toolstripbutton\zoom_out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

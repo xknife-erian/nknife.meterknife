@@ -31,6 +31,7 @@ namespace MeterKnife.Instruments
         protected LineSeries _TemperatureLineSeries = new LineSeries();
         protected LinearAxis _TemperatureValueAxis = new LinearAxis();
         private BaseMeter _Meter;
+        private BaseParamPanel _Panel;
         private bool _OnCollect; //是否正在采集
 
         public CollectDataView()
@@ -78,7 +79,8 @@ namespace MeterKnife.Instruments
             {
                 _Meter = value;
                 _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
-                _ParamsPanel.Controls.Add(value.ParamPanel);
+                _Panel = value.ParamPanel;
+                _ParamsPanel.Controls.Add(_Panel);
             }
         }
 
@@ -155,6 +157,16 @@ namespace MeterKnife.Instruments
 
         private void SendRead(object obj)
         {
+            var cmdlist = _Panel.GpibCommands;
+            foreach (var cmd in cmdlist)
+            {
+                if (cmd == null)
+                    continue;
+                byte[] cmdBytes = CareSaying.BuildCareSaying(_Meter.GpibAddress, cmd.Command, false).Generate();
+                _Comm.Send(Port, cmdBytes);
+                Thread.Sleep((int) cmd.Interval);
+            }
+
             byte[] read = CareSaying.READ(_Meter.GpibAddress).Generate();
             byte[] temp = CareSaying.TEMP().Generate();
             while (_OnCollect)

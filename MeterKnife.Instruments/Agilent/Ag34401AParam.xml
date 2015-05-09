@@ -1,41 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MeterParam isScpi="true" format="scpi">
-  <command description="重置" command="*RST"></command>
-  <command description="清屏" command="*CLS"></command>
-  <command description="初始化" command="INIT"></command>
-  <command description="输出" command="FETC" isReturn="true"></command>
-  <command description="读取" command="READ" isReturn="true"></command>
-  <command description="配置并测量" command="MEAS" isReturn="true">
-    <command description="电压" command="VOLT">
-      <command description="直流" command="DC"></command>
-      <command description="交流" command="AC"></command>
-    </command>
-    <command description="电流" command="CURR">
-      <command description="直流" command="DC"></command>
-      <command description="交流" command="AC"></command>
-    </command>
-    <command description="电阻" command="RES"></command>
-    <command description="四线电阻" command="FRES"></command>
-    <command description="频率" command="FREQ"></command>
-    <command description="周期" command="FER"></command>
-    <command description="通断" command="CONT"></command>
-    <command description="二极管" command="DIOD"></command>
+  <command content="重置" command="*RST"></command>
+  <command content="清屏" command="*CLS"></command>
+  <command content="初始化" command="INIT"></command>
+  <command content="输出" command="FETC" isReturn="true"></command>
+  <command content="读取" command="READ" isReturn="true"></command>
+  <command content="配置测量项目并测量" command="MEAS" isReturn="true">
+    <command content="直流电压" command="VOLT:DC"></command>
+    <command content="交流电压" command="VOLT:AC"></command>
+    <command content="直流电流" command="CURR:DC"></command>
+    <command content="交流电流" command="CURR:AC"></command>
+    <command content="电阻" command="RES"></command>
+    <command content="四线电阻" command="FRES"></command>
+    <command content="频率" command="FREQ"></command>
+    <command content="周期" command="FER"></command>
+    <command content="通断" command="CONT"></command>
+    <command content="二极管" command="DIOD"></command>
   </command>
-  <command description="查询配置" command="CONF" isReturn="true"></command>
-  <command description="配置" command="CONF" isConfig ="true">
-    <command description="电压" command="VOLT">
-      <command description="直流" command="DC"></command>
-      <command description="交流" command="AC"></command>
-    </command>
-    <command description="电流" command="CURR">
-      <command description="直流" command="DC"></command>
-      <command description="交流" command="AC"></command>
-    </command>
-    <command description="电阻" command="RES"></command>
-    <command description="四线电阻" command="FRES"></command>
-    <command description="频率" command="FREQ"></command>
-    <command description="周期" command="FER"></command>
-    <command description="通断" command="CONT"></command>
-    <command description="二极管" command="DIOD"></command>
+  <command content="查询测量项目" command="CONF" isReturn="true"></command>
+  <command content="测量项目" command="CONF" isConfig ="true">
+    <command content="直流电压" command="VOLT:DC"></command>
+    <command content="交流电压" command="VOLT:AC"></command>
+    <command content="直流电流" command="CURR:DC"></command>
+    <command content="交流电流" command="CURR:AC"></command>
+    <command content="电阻" command="RES"></command>
+    <command content="四线电阻" command="FRES"></command>
+    <command content="频率" command="FREQ"></command>
+    <command content="周期" command="FER"></command>
+    <command content="通断" command="CONT"></command>
+    <command content="二极管" command="DIOD"></command>
   </command>
 </MeterParam>

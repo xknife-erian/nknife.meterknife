@@ -26,10 +26,13 @@
             return _temp;
         }
 
-        private static CareSaying BuildCareSaying(int gpib, string content)
+        public static CareSaying BuildCareSaying(int gpib, string content, bool isReturn = true)
         {
             var careSaying = new CareSaying();
-            careSaying.MainCommand = 0xAA;
+            if (isReturn)
+                careSaying.MainCommand = 0xAA;
+            else
+                careSaying.MainCommand = 0xAB;
             careSaying.SubCommand = 0x00;
             careSaying.Content = content;
             careSaying.GpibAddress = (byte) gpib;

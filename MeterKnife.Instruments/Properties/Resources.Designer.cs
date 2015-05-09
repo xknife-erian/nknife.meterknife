@@ -61,15 +61,16 @@ namespace MeterKnife.Instruments.Properties {
         }
         
         /// <summary>
-        ///   查找类似 &lt;MeterParam isScpi=&quot;true&quot; format=&quot;scpi&quot;&gt;
-        ///  &lt;command description=&quot;重置&quot; command=&quot;*RST&quot;&gt;&lt;/command&gt;
-        ///  &lt;command description=&quot;清屏&quot; command=&quot;*CLS&quot;&gt;&lt;/command&gt;
-        ///  &lt;command description=&quot;初始化&quot; command=&quot;INIT&quot;&gt;&lt;/command&gt;
-        ///  &lt;command description=&quot;输出&quot; command=&quot;FETC&quot; isReturn=&quot;true&quot;&gt;&lt;/command&gt;
-        ///  &lt;command description=&quot;读取&quot; command=&quot;READ&quot; isReturn=&quot;true&quot;&gt;&lt;/command&gt;
-        ///  &lt;command description=&quot;配置并测量&quot; command=&quot;MEAS&quot; isReturn=&quot;true&quot;&gt;
-        ///    &lt;command description=&quot;电压&quot; command=&quot;VOLT&quot;&gt;
-        ///      &lt;command description=&quot;直流&quot; command=&quot;DC&quot;&gt;&lt;/comm [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///   查找类似 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;MeterParam isScpi=&quot;true&quot; format=&quot;scpi&quot;&gt;
+        ///  &lt;command content=&quot;重置&quot; command=&quot;*RST&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;清屏&quot; command=&quot;*CLS&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;初始化&quot; command=&quot;INIT&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;输出&quot; command=&quot;FETC&quot; isReturn=&quot;true&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;读取&quot; command=&quot;READ&quot; isReturn=&quot;true&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;配置测量参数并测量&quot; command=&quot;MEAS&quot; isReturn=&quot;true&quot;&gt;
+        ///    &lt;command content=&quot;直流电压&quot; command=&quot;VOLT:DC&quot;&gt;&lt;/command&gt;
+        ///    &lt;command conten [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string CommandElement {
             get {

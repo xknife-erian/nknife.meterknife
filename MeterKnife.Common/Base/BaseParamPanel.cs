@@ -10,7 +10,7 @@ namespace MeterKnife.Common.Base
             InitializeComponent();
         }
 
-        public abstract GpibCommandList GpibCommands { get; set; }
+        public abstract GpibCommandList GpibCommands { get; }
 
         /*
             _Panel.ColumnCount = 2;
