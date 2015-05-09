@@ -181,7 +181,7 @@ namespace MeterKnife.Instruments
         private void OnProtocolRecevied(object sender, EventArgs<CareSaying> e)
         {
             CareSaying saying = e.Item;
-            
+
             if (saying.MainCommand == 0xAE)
             {
                 string data = saying.Content.Substring(0, 5);
@@ -189,24 +189,21 @@ namespace MeterKnife.Instruments
                 if (double.TryParse(data, out yzl))
                 {
                     _FiguredData.AddTemperature(yzl);
-
-                    double j = (Math.Abs(_FiguredData.MaxTemperature - _FiguredData.MinTemperature)) / 4;
-                    if (_FiguredData.Count <= 1)
+                    if (Math.Abs(_FiguredData.MaxTemperature) > 0 && Math.Abs(_FiguredData.MinTemperature) > 0)
                     {
-                        _TemperatureValueAxis.Maximum = yzl + 1;
-                        _TemperatureValueAxis.Minimum = yzl - 1;
-                    }
-                    else if (_FiguredData.Count == 2)
-                    {
-                        _TemperatureValueAxis.Maximum = yzl + j;
-                        _TemperatureValueAxis.Minimum = yzl - j;
-                    }
-                    else
-                    {
-                        if (_TemperatureValueAxis.Maximum < yzl + j)
-                            _TemperatureValueAxis.Maximum = yzl + j;
-                        if (_TemperatureValueAxis.Minimum > yzl - j)
-                            _TemperatureValueAxis.Minimum = yzl - j;
+                        double j = (Math.Abs(_FiguredData.MaxTemperature - _FiguredData.MinTemperature))/4;
+                        if (Math.Abs(j) <= 0)
+                        {
+                            _TemperatureValueAxis.Maximum = _FiguredData.MaxTemperature + 0.02;
+                            _TemperatureValueAxis.Minimum = _FiguredData.MaxTemperature - 0.02;
+                        }
+                        else
+                        {
+                            if (_TemperatureValueAxis.Maximum < _FiguredData.MaxTemperature + j)
+                                _TemperatureValueAxis.Maximum = _FiguredData.MaxTemperature + j;
+                            if (_TemperatureValueAxis.Minimum > _FiguredData.MinTemperature - j)
+                                _TemperatureValueAxis.Minimum = _FiguredData.MinTemperature - j;
+                        }
                     }
 
                     DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
@@ -216,7 +213,7 @@ namespace MeterKnife.Instruments
             }
             else
             {
-                if (saying.GpibAddress != Meter.GpibAddress)
+                if ((saying.GpibAddress != Meter.GpibAddress) || (saying.Content.Length < 6))
                     return;
                 string data = saying.Content.Substring(1, saying.Content.Length - 6);
                 double yzl = 0;
@@ -224,23 +221,14 @@ namespace MeterKnife.Instruments
                 {
                     _FiguredData.Add(yzl);
 
-                    double j = (Math.Abs(_FiguredData.Max - _FiguredData.Min))/4;
-                    if (_FiguredData.Count <= 1)
+                    if (Math.Abs(_FiguredData.Max) > 0 && Math.Abs(_FiguredData.Min) > 0)
                     {
-                        _MainValueAxis.Maximum = yzl + 1;
-                        _MainValueAxis.Minimum = yzl - 1;
-                    }
-                    else if (_FiguredData.Count == 2)
-                    {
-                        _MainValueAxis.Maximum = yzl + j;
-                        _MainValueAxis.Minimum = yzl - j;
-                    }
-                    else
-                    {
-                        if (_MainValueAxis.Maximum < yzl + j)
-                            _MainValueAxis.Maximum = yzl + j;
-                        if (_MainValueAxis.Minimum > yzl - j)
-                            _MainValueAxis.Minimum = yzl - j;
+                        double j = (Math.Abs(_FiguredData.Max - _FiguredData.Min)) / 4;
+                        if (Math.Abs(j) > 0)
+                        {
+                            _MainValueAxis.Maximum = _FiguredData.Max + j;
+                            _MainValueAxis.Minimum = _FiguredData.Min - j;
+                        }
                     }
 
                     DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);

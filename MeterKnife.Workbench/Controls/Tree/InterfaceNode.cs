@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
@@ -14,6 +15,8 @@ namespace MeterKnife.Workbench.Controls.Tree
 {
     public abstract class InterfaceNode : BaseTreeNode
     {
+        private static readonly ILog _logger = LogManager.GetLogger<InterfaceNode>();
+
         protected readonly MenuItem _AddMeterMenu;
         protected readonly BaseCareCommunicationService _CommService = DI.Get<BaseCareCommunicationService>();
         protected readonly ContextMenu _RightMenu;
@@ -64,8 +67,9 @@ namespace MeterKnife.Workbench.Controls.Tree
                     handler.ProtocolRecevied += HandlerOnProtocolRecevied;
 
                     var careSaying = CareSaying.IDN(_MeterInfo.GpibAddress);
+                    _logger.Debug(string.Format("Send:{0}", careSaying.Content));
                     var data = careSaying.Generate();
-
+                    _logger.Trace(string.Format("Send:{0}", data.ToHexString()));
                     _CommService.Send(Port, data);
                 }
                 else//当手动选择仪器类型时
@@ -96,11 +100,13 @@ namespace MeterKnife.Workbench.Controls.Tree
                 Text = string.Format("{0}-{1}", _MeterInfo.GpibAddress, meterName)
             };
 
-            var name = MeterUtil.SimplifyName(meterName);
-            var meter = DI.Get<BaseMeter>(name.Second);
+            var simpleName = MeterUtil.SimplifyName(meterName);
+            var name = MeterUtil.Named(simpleName);
+            _logger.Info(string.Format("准备创建仪器:{0}", name));
+            var meter = DI.Get<BaseMeter>(name);
             meter.GpibAddress = _MeterInfo.GpibAddress;
             meter.Name = meterName;
-            meter.Brand = name.First;
+            meter.Brand = simpleName.First;
             meter.Language = _MeterInfo.Language;
             meterNode.Meter = meter;
 

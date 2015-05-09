@@ -10,8 +10,9 @@ namespace MeterKnife.Instruments.Agilent
     public sealed class Ag34401AParamPanel : ScpiParamPanel
     {
         public Ag34401AParamPanel(XmlElement element) 
+            : base(element)
         {
-            ParseElement(element);
         }
+
     }
 }

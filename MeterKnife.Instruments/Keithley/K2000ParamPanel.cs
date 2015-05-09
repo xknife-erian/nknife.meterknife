@@ -1,12 +1,12 @@
 ﻿using System.Xml;
 
-namespace MeterKnife.Instruments.Agilent
+namespace MeterKnife.Instruments.Keithley
 {
     public sealed class K2000ParamPanel : ScpiParamPanel
     {
-        public K2000ParamPanel(XmlElement element)
+        public K2000ParamPanel(XmlElement element) 
+            : base(element)
         {
-            ParseElement(element);
         }
     }
 }

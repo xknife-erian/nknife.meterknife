@@ -65,6 +65,7 @@
     <Compile Include="Keithley\K2000ParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ScpiMeter.cs" />
     <Compile Include="ScpiParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

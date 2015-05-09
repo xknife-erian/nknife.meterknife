@@ -12,6 +12,11 @@ namespace MeterKnife.Instruments
         protected readonly List<ComboBox> _ComboBox = new List<ComboBox>();
         protected GpibCommandList _Commandlist;
 
+        public ScpiParamPanel(XmlElement element)
+        {
+            ParseElement(element);
+        }
+
         public override GpibCommandList GpibCommands
         {
             get
