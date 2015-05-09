@@ -77,7 +77,6 @@
     <Compile Include="DataModels\CareSaying.cs" />
     <Compile Include="DataModels\CollectData.cs" />
     <Compile Include="DataModels\FiguredData.cs" />
-    <Compile Include="DataModels\Meter.cs" />
     <Compile Include="DataModels\MeterCollection.cs" />
     <Compile Include="DataModels\GpibCommand.cs" />
     <Compile Include="DataModels\GpibCommandList.cs" />

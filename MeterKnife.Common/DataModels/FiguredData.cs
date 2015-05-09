@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using Common.Logging;
 
 namespace MeterKnife.Common.DataModels
 {
@@ -17,12 +19,6 @@ namespace MeterKnife.Common.DataModels
         [Category("数据分析")]
         [DisplayName("均方根")]
         public double RootMeanSquare { get; set; }
-
-        [Category("数据分析"), DisplayName("均方根差")]
-        public double RootMeanSquareDeviation { get; set; }
-
-        [Category("数据分析"), DisplayName("标准差")]
-        public double StandardDeviation { get; set; }
 
         [Category("数据分析"), DisplayName("算术平均")]
         public double ArithmeticMean { get; set; }
@@ -45,7 +41,13 @@ namespace MeterKnife.Common.DataModels
         #endregion
 
         private readonly List<double> _Datas = new List<double>();
+        private double _SumData = 0;
+        private double _RmsData = 0;
         private readonly List<double> _TemperatureDatas = new List<double>();
+        private double _SumTemperatureData = 0;
+        private double _RmsTemperatureData = 0;
+
+        private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
 
         public void Add(double value)
         {
@@ -57,9 +59,13 @@ namespace MeterKnife.Common.DataModels
             }
             else
             {
-                if (value > Max) Max = value;
-                else if (value < Min) Min = value;
+                if (value > Max) Max = value;//最大值
+                else if (value < Min) Min = value;//最小值
             }
+            _SumData += value;
+            ArithmeticMean = _SumData / _Datas.Count;
+            _RmsData += value * value;
+            RootMeanSquare = Math.Sqrt(_RmsData / _Datas.Count);
         }
 
         public void AddTemperature(double value)
@@ -75,6 +81,10 @@ namespace MeterKnife.Common.DataModels
                 if (value > MaxTemperature) MaxTemperature = value;
                 else if (value < MinTemperature) MinTemperature = value;
             }
+            _SumTemperatureData += value;
+            TemperatureArithmeticMean = _SumTemperatureData / _TemperatureDatas.Count;
+            _RmsTemperatureData += value * value;
+            TemperatureRootMeanSquare = Math.Sqrt(_RmsTemperatureData / _TemperatureDatas.Count);
         }
 
         public override string ToString()
