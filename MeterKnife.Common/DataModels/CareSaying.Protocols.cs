@@ -2,18 +2,16 @@
 {
     public partial class CareSaying
     {
-        private static CareSaying _idn;
-        private static CareSaying _read;
         private static CareSaying _temp;
 
         public static CareSaying IDN(int gpib)
         {
-            return _idn ?? (_idn = BuildCareSaying(gpib, "*IDN?"));
+            return BuildCareSaying(gpib, "*IDN?");
         }
 
         public static CareSaying READ(int gpib)
         {
-            return _read ?? (_read = BuildCareSaying(gpib, "READ?"));
+            return BuildCareSaying(gpib, "READ?");
         }
 
         public static CareSaying TEMP()
