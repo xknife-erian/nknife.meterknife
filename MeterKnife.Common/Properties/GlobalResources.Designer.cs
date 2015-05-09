@@ -71,6 +71,24 @@ namespace MeterKnife.Common.Properties {
         }
         
         /// <summary>
+        ///   查找类似 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;MeterParam isScpi=&quot;true&quot; format=&quot;scpi&quot;&gt;
+        ///  &lt;command content=&quot;重置&quot; command=&quot;*RST&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;清屏&quot; command=&quot;*CLS&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;初始化&quot; command=&quot;INIT&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;输出&quot; command=&quot;FETC&quot; isReturn=&quot;true&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;读取&quot; command=&quot;READ&quot; isReturn=&quot;true&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;配置测量项目并测量&quot; command=&quot;MEAS&quot; isReturn=&quot;true&quot;&gt;
+        ///    &lt;command content=&quot;直流电压&quot; command=&quot;VOLT:DC&quot;&gt;&lt;/command&gt;
+        ///    &lt;command conten [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        public static string DemoMeterParamElement {
+            get {
+                return ResourceManager.GetString("DemoMeterParamElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
         public static System.Drawing.Icon main_icon {

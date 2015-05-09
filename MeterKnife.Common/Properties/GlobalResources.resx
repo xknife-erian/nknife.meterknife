@@ -121,6 +121,41 @@
   <data name="care" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>contents\tree-node-image\care.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DemoMeterParamElement" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;MeterParam isScpi="true" format="scpi"&gt;
+  &lt;command content="重置" command="*RST"&gt;&lt;/command&gt;
+  &lt;command content="清屏" command="*CLS"&gt;&lt;/command&gt;
+  &lt;command content="初始化" command="INIT"&gt;&lt;/command&gt;
+  &lt;command content="输出" command="FETC" isReturn="true"&gt;&lt;/command&gt;
+  &lt;command content="读取" command="READ" isReturn="true"&gt;&lt;/command&gt;
+  &lt;command content="配置测量项目并测量" command="MEAS" isReturn="true"&gt;
+    &lt;command content="直流电压" command="VOLT:DC"&gt;&lt;/command&gt;
+    &lt;command content="交流电压" command="VOLT:AC"&gt;&lt;/command&gt;
+    &lt;command content="直流电流" command="CURR:DC"&gt;&lt;/command&gt;
+    &lt;command content="交流电流" command="CURR:AC"&gt;&lt;/command&gt;
+    &lt;command content="电阻" command="RES"&gt;&lt;/command&gt;
+    &lt;command content="四线电阻" command="FRES"&gt;&lt;/command&gt;
+    &lt;command content="频率" command="FREQ"&gt;&lt;/command&gt;
+    &lt;command content="周期" command="FER"&gt;&lt;/command&gt;
+    &lt;command content="通断" command="CONT"&gt;&lt;/command&gt;
+    &lt;command content="二极管" command="DIOD"&gt;&lt;/command&gt;
+  &lt;/command&gt;
+  &lt;command content="查询测量项目" command="CONF" isReturn="true"&gt;&lt;/command&gt;
+  &lt;command content="测量项目" command="CONF" isConfig ="true"&gt;
+    &lt;command content="直流电压" command="VOLT:DC"&gt;&lt;/command&gt;
+    &lt;command content="交流电压" command="VOLT:AC"&gt;&lt;/command&gt;
+    &lt;command content="直流电流" command="CURR:DC"&gt;&lt;/command&gt;
+    &lt;command content="交流电流" command="CURR:AC"&gt;&lt;/command&gt;
+    &lt;command content="电阻" command="RES"&gt;&lt;/command&gt;
+    &lt;command content="四线电阻" command="FRES"&gt;&lt;/command&gt;
+    &lt;command content="频率" command="FREQ"&gt;&lt;/command&gt;
+    &lt;command content="周期" command="FER"&gt;&lt;/command&gt;
+    &lt;command content="通断" command="CONT"&gt;&lt;/command&gt;
+    &lt;command content="二极管" command="DIOD"&gt;&lt;/command&gt;
+  &lt;/command&gt;
+&lt;/MeterParam&gt;</value>
+  </data>
   <data name="main_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>contents\main-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

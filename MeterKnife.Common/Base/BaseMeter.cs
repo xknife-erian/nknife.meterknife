@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Xml;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
+using MeterKnife.Common.Properties;
 using MeterKnife.Common.Util;
 
 namespace MeterKnife.Common.Base
@@ -20,5 +22,18 @@ namespace MeterKnife.Common.Base
         }
 
         public abstract BaseParamPanel ParamPanel { get; }
+
+
+        protected XmlDocument _TempDocument;
+        protected XmlElement GetTempElement()
+        {
+            if (_TempDocument == null)
+            {
+                var xml = GlobalResources.DemoMeterParamElement;
+                _TempDocument = new XmlDocument();
+                _TempDocument.LoadXml(xml);
+            }
+            return _TempDocument.DocumentElement;
+        }
     }
 }

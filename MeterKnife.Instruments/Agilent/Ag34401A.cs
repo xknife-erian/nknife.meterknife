@@ -12,18 +12,12 @@ namespace MeterKnife.Instruments.Agilent
     public class Ag34401A : BaseMeter
     {
 
-        public override BaseParamPanel ParamPanel { get { return new Ag34401AParamPanel(GetElement()); } }
-
-        private XmlDocument _Document;
-        private XmlElement GetElement()
+        public override BaseParamPanel ParamPanel
         {
-            if (_Document == null)
+            get
             {
-                var xml = Resources.CommandElement;
-                _Document = new XmlDocument();
-                _Document.LoadXml(xml);
+                return new Ag34401AParamPanel(GetTempElement());
             }
-            return _Document.DocumentElement;
         }
     }
 }

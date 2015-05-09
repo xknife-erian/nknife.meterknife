@@ -8,6 +8,8 @@ namespace MeterKnife.Common.Base
         protected BaseParamPanel()
         {
             InitializeComponent();
+            // ReSharper disable once DoNotCallOverridableMethodsInConstructor
+            Dock = DockStyle.Fill;
         }
 
         public abstract GpibCommandList GpibCommands { get; }
