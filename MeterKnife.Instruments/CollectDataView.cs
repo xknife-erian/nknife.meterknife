@@ -70,6 +70,13 @@ namespace MeterKnife.Instruments
                 Model = temperatureModel
             };
             _PlotSplitContainer.Panel2.Controls.Add(temperaturePlot);
+            _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
+        }
+
+        void _FiguredData_ReceviedCollectData(object sender, Common.EventParameters.CollectEventArgs e)
+        {
+            var item = string.Format("{0}\t{1}\t{2}", e.CollectData.DateTime, e.CollectData.Data, e.CollectData.Temperature);
+            _CollectDataList.ThreadSafeInvoke(() => _CollectDataList.Items.Insert(0, item));
         }
 
         public BaseMeter Meter
@@ -237,7 +244,10 @@ namespace MeterKnife.Instruments
                     _MainLineSeries.PlotModel.InvalidatePlot(true);
                 }
             }
-            _FiguredDataPropertyGrid.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
+            _FiguredDataPropertyGrid.ThreadSafeInvoke(() =>
+            {
+                _FiguredDataPropertyGrid.Refresh();
+            });
         }
     }
 }

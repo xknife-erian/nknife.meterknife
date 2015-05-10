@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Windows.Forms.VisualStyles;
 using Common.Logging;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
@@ -28,7 +30,7 @@ namespace MeterKnife.Common.DataModels
         [Category("数据分析"), DisplayName("总采样数")]
         public uint Count
         {
-            get { return (uint) _Datas.Count; }
+            get { return (uint)_DataSet.Tables[1].Rows.Count; }
         }
 
         [Category("温度"), DisplayName("最大值")]
@@ -55,23 +57,40 @@ namespace MeterKnife.Common.DataModels
         #endregion
 
         private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
-        private readonly List<double> _Datas = new List<double>();
-        private readonly List<double> _TemperatureDatas = new List<double>();
         private double _CurrentTemperature;
         private double _RmsData;
         private double _RmsTemperatureData;
         private double _SumData;
         private double _SumTemperatureData;
 
+        protected DataSet _DataSet = new DataSet();
+
+        public FiguredData()
+        {
+            var baseTable = new DataTable("BaseInfomation");
+            baseTable.Columns.Add(new DataColumn("Key", typeof(string)));
+            baseTable.Columns.Add(new DataColumn("Value", typeof(string)));
+            _DataSet.Tables.Add(baseTable);
+            var collectTable = new DataTable("CollectData");
+            collectTable.Columns.Add(new DataColumn("datetime", typeof(DateTime)));
+            collectTable.Columns.Add(new DataColumn("value", typeof(double)));
+            collectTable.Columns.Add(new DataColumn("temperature", typeof(double)));
+            _DataSet.Tables.Add(collectTable);
+        }
+
         [Browsable(false)]
         public IMeter Meter { get; set; }
 
         public event EventHandler<CollectEventArgs> ReceviedCollectData;
 
+        [Browsable(false)]
+        public DataSet DataSet { get { return _DataSet; } }
+
         public void Add(double value)
         {
-            _Datas.Add(value);
-            if (_Datas.Count <= 1)
+            _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature);
+            var count = _DataSet.Tables[1].Rows.Count;
+            if (count <= 1)
             {
                 Max = value;
                 Min = value;
@@ -82,11 +101,11 @@ namespace MeterKnife.Common.DataModels
                 else if (value < Min) Min = value; //最小值
             }
             _SumData += value;
-            ArithmeticMean = _SumData/_Datas.Count;
+            ArithmeticMean = _SumData / count;
 
             //计算均方根
             _RmsData += value*value;
-            RootMeanSquare = Math.Sqrt(_RmsData/_Datas.Count);
+            RootMeanSquare = Math.Sqrt(_RmsData / count);
 
             if (Math.Abs(ExpectedValue) > 0)
             {
@@ -100,8 +119,8 @@ namespace MeterKnife.Common.DataModels
         public void AddTemperature(double value)
         {
             _CurrentTemperature = value;
-            _TemperatureDatas.Add(value);
-            if (_TemperatureDatas.Count <= 1)
+            var count = _DataSet.Tables[1].Rows.Count;
+            if (count <= 1)
             {
                 MaxTemperature = value;
                 MinTemperature = value;
@@ -112,17 +131,18 @@ namespace MeterKnife.Common.DataModels
                 else if (value < MinTemperature) MinTemperature = value;
             }
             _SumTemperatureData += value;
-            TemperatureArithmeticMean = Math.Round(_SumTemperatureData/_TemperatureDatas.Count, 4);
+            TemperatureArithmeticMean = Math.Round(_SumTemperatureData / count, 4);
 
             //计算均方根
             _RmsTemperatureData += value*value;
-            TemperatureRootMeanSquare = Math.Round(Math.Sqrt(_RmsTemperatureData/_TemperatureDatas.Count), 4);
+            TemperatureRootMeanSquare = Math.Round(Math.Sqrt(_RmsTemperatureData / count), 4);
         }
 
         protected virtual void OnReceviedCollectData(CollectEventArgs e)
         {
             EventHandler<CollectEventArgs> handler = ReceviedCollectData;
-            if (handler != null) handler(this, e);
+            if (handler != null) 
+                handler(this, e);
         }
     }
 }

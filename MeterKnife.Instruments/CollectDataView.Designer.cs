@@ -48,10 +48,10 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._DataGridPage = new System.Windows.Forms.TabPage();
-            this._DataGrid = new System.Windows.Forms.DataGridView();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this._DataGridPage = new System.Windows.Forms.TabPage();
+            this._CollectDataList = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
             this._MainSplitContainer.Panel1.SuspendLayout();
             this._MainSplitContainer.Panel2.SuspendLayout();
@@ -68,7 +68,6 @@
             this._PlotSplitContainer.SuspendLayout();
             this._PlotToolStrip.SuspendLayout();
             this._DataGridPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._DataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // _MainSplitContainer
@@ -86,6 +85,7 @@
             // _MainSplitContainer.Panel2
             // 
             this._MainSplitContainer.Panel2.Controls.Add(this._MainTabControl);
+            this._MainSplitContainer.Panel2.Controls.Add(this._PlotToolStrip);
             this._MainSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this._MainSplitContainer.Size = new System.Drawing.Size(899, 475);
             this._MainSplitContainer.SplitterDistance = 250;
@@ -155,21 +155,20 @@
             this._MainTabControl.Controls.Add(this._DataGridPage);
             this._MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._MainTabControl.ItemSize = new System.Drawing.Size(100, 24);
-            this._MainTabControl.Location = new System.Drawing.Point(0, 2);
+            this._MainTabControl.Location = new System.Drawing.Point(0, 27);
             this._MainTabControl.Name = "_MainTabControl";
             this._MainTabControl.Padding = new System.Drawing.Point(18, 3);
             this._MainTabControl.SelectedIndex = 0;
-            this._MainTabControl.Size = new System.Drawing.Size(645, 473);
+            this._MainTabControl.Size = new System.Drawing.Size(645, 448);
             this._MainTabControl.TabIndex = 0;
             // 
             // _PlotPage
             // 
             this._PlotPage.Controls.Add(this._PlotSplitContainer);
-            this._PlotPage.Controls.Add(this._PlotToolStrip);
             this._PlotPage.Location = new System.Drawing.Point(4, 28);
             this._PlotPage.Name = "_PlotPage";
             this._PlotPage.Padding = new System.Windows.Forms.Padding(3);
-            this._PlotPage.Size = new System.Drawing.Size(637, 441);
+            this._PlotPage.Size = new System.Drawing.Size(637, 416);
             this._PlotPage.TabIndex = 0;
             this._PlotPage.Text = "实时图表";
             this._PlotPage.UseVisualStyleBackColor = true;
@@ -177,7 +176,7 @@
             // _PlotSplitContainer
             // 
             this._PlotSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._PlotSplitContainer.Location = new System.Drawing.Point(3, 28);
+            this._PlotSplitContainer.Location = new System.Drawing.Point(3, 3);
             this._PlotSplitContainer.Name = "_PlotSplitContainer";
             this._PlotSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             this._PlotSplitContainer.Size = new System.Drawing.Size(631, 410);
@@ -198,9 +197,9 @@
             this._ZoomOutToolStripButton,
             this.toolStripSeparator3,
             this.toolStripLabel2});
-            this._PlotToolStrip.Location = new System.Drawing.Point(3, 3);
+            this._PlotToolStrip.Location = new System.Drawing.Point(0, 2);
             this._PlotToolStrip.Name = "_PlotToolStrip";
-            this._PlotToolStrip.Size = new System.Drawing.Size(631, 25);
+            this._PlotToolStrip.Size = new System.Drawing.Size(645, 25);
             this._PlotToolStrip.TabIndex = 0;
             this._PlotToolStrip.Text = "toolStrip1";
             // 
@@ -279,27 +278,6 @@
             this._ZoomOutToolStripButton.Size = new System.Drawing.Size(23, 22);
             this._ZoomOutToolStripButton.Text = "缩小";
             // 
-            // _DataGridPage
-            // 
-            this._DataGridPage.Controls.Add(this._DataGrid);
-            this._DataGridPage.Location = new System.Drawing.Point(4, 28);
-            this._DataGridPage.Name = "_DataGridPage";
-            this._DataGridPage.Padding = new System.Windows.Forms.Padding(3);
-            this._DataGridPage.Size = new System.Drawing.Size(358, 404);
-            this._DataGridPage.TabIndex = 1;
-            this._DataGridPage.Text = "实时数据";
-            this._DataGridPage.UseVisualStyleBackColor = true;
-            // 
-            // _DataGrid
-            // 
-            this._DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._DataGrid.Location = new System.Drawing.Point(3, 3);
-            this._DataGrid.Name = "_DataGrid";
-            this._DataGrid.RowTemplate.Height = 23;
-            this._DataGrid.Size = new System.Drawing.Size(352, 398);
-            this._DataGrid.TabIndex = 0;
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -309,6 +287,26 @@
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(0, 22);
+            // 
+            // _DataGridPage
+            // 
+            this._DataGridPage.Controls.Add(this._CollectDataList);
+            this._DataGridPage.Location = new System.Drawing.Point(4, 28);
+            this._DataGridPage.Name = "_DataGridPage";
+            this._DataGridPage.Padding = new System.Windows.Forms.Padding(3);
+            this._DataGridPage.Size = new System.Drawing.Size(637, 416);
+            this._DataGridPage.TabIndex = 1;
+            this._DataGridPage.Text = "实时数据";
+            this._DataGridPage.UseVisualStyleBackColor = true;
+            // 
+            // _CollectDataList
+            // 
+            this._CollectDataList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._CollectDataList.FormattingEnabled = true;
+            this._CollectDataList.Location = new System.Drawing.Point(3, 3);
+            this._CollectDataList.Name = "_CollectDataList";
+            this._CollectDataList.Size = new System.Drawing.Size(631, 410);
+            this._CollectDataList.TabIndex = 0;
             // 
             // CollectDataView
             // 
@@ -322,6 +320,7 @@
             this.Text = "CollectDataView";
             this._MainSplitContainer.Panel1.ResumeLayout(false);
             this._MainSplitContainer.Panel2.ResumeLayout(false);
+            this._MainSplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).EndInit();
             this._MainSplitContainer.ResumeLayout(false);
             this._LeftSplitContainer.Panel1.ResumeLayout(false);
@@ -332,13 +331,11 @@
             this.groupBox2.ResumeLayout(false);
             this._MainTabControl.ResumeLayout(false);
             this._PlotPage.ResumeLayout(false);
-            this._PlotPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._PlotSplitContainer)).EndInit();
             this._PlotSplitContainer.ResumeLayout(false);
             this._PlotToolStrip.ResumeLayout(false);
             this._PlotToolStrip.PerformLayout();
             this._DataGridPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._DataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -354,7 +351,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ToolStrip _PlotToolStrip;
         private System.Windows.Forms.SplitContainer _PlotSplitContainer;
-        private System.Windows.Forms.DataGridView _DataGrid;
         private System.Windows.Forms.ToolStripButton _StartStripButton;
         private System.Windows.Forms.ToolStripButton _StopStripButton;
         private System.Windows.Forms.ToolStripButton _SaveStripButton3;
@@ -368,5 +364,6 @@
         private System.Windows.Forms.Panel _ParamsPanel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ListBox _CollectDataList;
     }
 }
