@@ -10,19 +10,20 @@ namespace MeterKnife.Common.DataModels
         public const short VOLTAGE = 1;
         public const short RESISTANCE = 2;
         public const short CURRENT = 3;
-        public static CollectData Build(DateTime dateTime, double data)
+        public static CollectData Build(DateTime dateTime, double data, double temperature)
         {
-            return new CollectData(dateTime, data);
+            return new CollectData(dateTime, data, temperature);
         }
 
         public CollectData()
         {
 
         }
-        public CollectData(DateTime dateTime, double data)
+        public CollectData(DateTime dateTime, double data, double temperature)
         {
             DateTime = dateTime;
             Data = data;
+            Temperature = temperature;
         }
 
         /// <summary>
@@ -39,5 +40,10 @@ namespace MeterKnife.Common.DataModels
         /// 采集到的数据
         /// </summary>
         public double Data { get; set; }
+
+        /// <summary>
+        /// 温度
+        /// </summary>
+        public double Temperature { get; set; }
     }
 }

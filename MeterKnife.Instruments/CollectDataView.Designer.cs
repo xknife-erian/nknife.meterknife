@@ -32,6 +32,7 @@
             this._MainSplitContainer = new System.Windows.Forms.SplitContainer();
             this._LeftSplitContainer = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._ParamsPanel = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
             this._MainTabControl = new System.Windows.Forms.TabControl();
@@ -48,8 +49,9 @@
             this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DataGridPage = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this._ParamsPanel = new System.Windows.Forms.Panel();
+            this._DataGrid = new System.Windows.Forms.DataGridView();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
             this._MainSplitContainer.Panel1.SuspendLayout();
             this._MainSplitContainer.Panel2.SuspendLayout();
@@ -66,7 +68,7 @@
             this._PlotSplitContainer.SuspendLayout();
             this._PlotToolStrip.SuspendLayout();
             this._DataGridPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._DataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // _MainSplitContainer
@@ -85,7 +87,7 @@
             // 
             this._MainSplitContainer.Panel2.Controls.Add(this._MainTabControl);
             this._MainSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this._MainSplitContainer.Size = new System.Drawing.Size(620, 438);
+            this._MainSplitContainer.Size = new System.Drawing.Size(899, 475);
             this._MainSplitContainer.SplitterDistance = 250;
             this._MainSplitContainer.TabIndex = 0;
             // 
@@ -103,8 +105,8 @@
             // _LeftSplitContainer.Panel2
             // 
             this._LeftSplitContainer.Panel2.Controls.Add(this.groupBox2);
-            this._LeftSplitContainer.Size = new System.Drawing.Size(250, 438);
-            this._LeftSplitContainer.SplitterDistance = 191;
+            this._LeftSplitContainer.Size = new System.Drawing.Size(250, 475);
+            this._LeftSplitContainer.SplitterDistance = 168;
             this._LeftSplitContainer.TabIndex = 0;
             // 
             // groupBox1
@@ -113,10 +115,18 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 191);
+            this.groupBox1.Size = new System.Drawing.Size(250, 168);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数";
+            // 
+            // _ParamsPanel
+            // 
+            this._ParamsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ParamsPanel.Location = new System.Drawing.Point(3, 17);
+            this._ParamsPanel.Name = "_ParamsPanel";
+            this._ParamsPanel.Size = new System.Drawing.Size(244, 148);
+            this._ParamsPanel.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -124,7 +134,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 243);
+            this.groupBox2.Size = new System.Drawing.Size(250, 303);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "实时分析";
@@ -135,7 +145,7 @@
             this._FiguredDataPropertyGrid.HelpVisible = false;
             this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 17);
             this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
-            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 223);
+            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 283);
             this._FiguredDataPropertyGrid.TabIndex = 0;
             this._FiguredDataPropertyGrid.ToolbarVisible = false;
             // 
@@ -149,7 +159,7 @@
             this._MainTabControl.Name = "_MainTabControl";
             this._MainTabControl.Padding = new System.Drawing.Point(18, 3);
             this._MainTabControl.SelectedIndex = 0;
-            this._MainTabControl.Size = new System.Drawing.Size(366, 436);
+            this._MainTabControl.Size = new System.Drawing.Size(645, 473);
             this._MainTabControl.TabIndex = 0;
             // 
             // _PlotPage
@@ -159,7 +169,7 @@
             this._PlotPage.Location = new System.Drawing.Point(4, 28);
             this._PlotPage.Name = "_PlotPage";
             this._PlotPage.Padding = new System.Windows.Forms.Padding(3);
-            this._PlotPage.Size = new System.Drawing.Size(358, 404);
+            this._PlotPage.Size = new System.Drawing.Size(637, 441);
             this._PlotPage.TabIndex = 0;
             this._PlotPage.Text = "实时图表";
             this._PlotPage.UseVisualStyleBackColor = true;
@@ -170,8 +180,8 @@
             this._PlotSplitContainer.Location = new System.Drawing.Point(3, 28);
             this._PlotSplitContainer.Name = "_PlotSplitContainer";
             this._PlotSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this._PlotSplitContainer.Size = new System.Drawing.Size(352, 373);
-            this._PlotSplitContainer.SplitterDistance = 228;
+            this._PlotSplitContainer.Size = new System.Drawing.Size(631, 410);
+            this._PlotSplitContainer.SplitterDistance = 250;
             this._PlotSplitContainer.TabIndex = 2;
             // 
             // _PlotToolStrip
@@ -185,10 +195,12 @@
             this._PhotoToolStripButton,
             this.toolStripSeparator2,
             this._ZoomInToolStripButton,
-            this._ZoomOutToolStripButton});
+            this._ZoomOutToolStripButton,
+            this.toolStripSeparator3,
+            this.toolStripLabel2});
             this._PlotToolStrip.Location = new System.Drawing.Point(3, 3);
             this._PlotToolStrip.Name = "_PlotToolStrip";
-            this._PlotToolStrip.Size = new System.Drawing.Size(352, 25);
+            this._PlotToolStrip.Size = new System.Drawing.Size(631, 25);
             this._PlotToolStrip.TabIndex = 0;
             this._PlotToolStrip.Text = "toolStrip1";
             // 
@@ -219,7 +231,7 @@
             this._SaveStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SaveStripButton3.Name = "_SaveStripButton3";
             this._SaveStripButton3.Size = new System.Drawing.Size(23, 22);
-            this._SaveStripButton3.Text = "toolStripButton3";
+            this._SaveStripButton3.Text = "保存";
             // 
             // toolStripSeparator1
             // 
@@ -233,7 +245,7 @@
             this._ExportStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ExportStripButton1.Name = "_ExportStripButton1";
             this._ExportStripButton1.Size = new System.Drawing.Size(23, 22);
-            this._ExportStripButton1.Text = "toolStripButton1";
+            this._ExportStripButton1.Text = "导出";
             // 
             // _PhotoToolStripButton
             // 
@@ -242,7 +254,7 @@
             this._PhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._PhotoToolStripButton.Name = "_PhotoToolStripButton";
             this._PhotoToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._PhotoToolStripButton.Text = "toolStripButton1";
+            this._PhotoToolStripButton.Text = "截图";
             // 
             // toolStripSeparator2
             // 
@@ -256,7 +268,7 @@
             this._ZoomInToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ZoomInToolStripButton.Name = "_ZoomInToolStripButton";
             this._ZoomInToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._ZoomInToolStripButton.Text = "toolStripButton1";
+            this._ZoomInToolStripButton.Text = "放大";
             // 
             // _ZoomOutToolStripButton
             // 
@@ -265,11 +277,11 @@
             this._ZoomOutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ZoomOutToolStripButton.Name = "_ZoomOutToolStripButton";
             this._ZoomOutToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._ZoomOutToolStripButton.Text = "toolStripButton2";
+            this._ZoomOutToolStripButton.Text = "缩小";
             // 
             // _DataGridPage
             // 
-            this._DataGridPage.Controls.Add(this.dataGridView1);
+            this._DataGridPage.Controls.Add(this._DataGrid);
             this._DataGridPage.Location = new System.Drawing.Point(4, 28);
             this._DataGridPage.Name = "_DataGridPage";
             this._DataGridPage.Padding = new System.Windows.Forms.Padding(3);
@@ -278,29 +290,31 @@
             this._DataGridPage.Text = "实时数据";
             this._DataGridPage.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // _DataGrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(352, 398);
-            this.dataGridView1.TabIndex = 0;
+            this._DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this._DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._DataGrid.Location = new System.Drawing.Point(3, 3);
+            this._DataGrid.Name = "_DataGrid";
+            this._DataGrid.RowTemplate.Height = 23;
+            this._DataGrid.Size = new System.Drawing.Size(352, 398);
+            this._DataGrid.TabIndex = 0;
             // 
-            // _ParamsPanel
+            // toolStripSeparator3
             // 
-            this._ParamsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ParamsPanel.Location = new System.Drawing.Point(3, 17);
-            this._ParamsPanel.Name = "_ParamsPanel";
-            this._ParamsPanel.Size = new System.Drawing.Size(244, 171);
-            this._ParamsPanel.TabIndex = 0;
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(0, 22);
             // 
             // CollectDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 442);
+            this.ClientSize = new System.Drawing.Size(903, 479);
             this.Controls.Add(this._MainSplitContainer);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.Name = "CollectDataView";
@@ -324,7 +338,7 @@
             this._PlotToolStrip.ResumeLayout(false);
             this._PlotToolStrip.PerformLayout();
             this._DataGridPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._DataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -340,7 +354,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ToolStrip _PlotToolStrip;
         private System.Windows.Forms.SplitContainer _PlotSplitContainer;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView _DataGrid;
         private System.Windows.Forms.ToolStripButton _StartStripButton;
         private System.Windows.Forms.ToolStripButton _StopStripButton;
         private System.Windows.Forms.ToolStripButton _SaveStripButton3;
@@ -352,5 +366,7 @@
         private System.Windows.Forms.ToolStripButton _ZoomInToolStripButton;
         private System.Windows.Forms.ToolStripButton _ZoomOutToolStripButton;
         private System.Windows.Forms.Panel _ParamsPanel;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
     }
 }

@@ -1,18 +1,19 @@
 ﻿using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Interfaces;
 using NKnife.Events;
 
 namespace MeterKnife.Common.EventParameters
 {
     public class CollectEventArgs : EventArgs<CollectData>
     {
-        public CollectEventArgs(int source, CollectData data)
+        public CollectEventArgs(IMeter meter, CollectData data)
             : base(data)
         {
-            Address = source;
+            Meter = meter;
             CollectData = data;
         }
 
-        public int Address { get; private set; }
+        public IMeter Meter { get; private set; }
         public CollectData CollectData { get; private set; }
     }
 }

@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
-using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
 using MeterKnife.Instruments.Properties;
@@ -24,19 +23,20 @@ namespace MeterKnife.Instruments
         private static readonly ILog _logger = LogManager.GetLogger<CollectDataView>();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
-        private readonly FiguredData _FiguredData = new FiguredData();
+        private FiguredData _FiguredData = new FiguredData();
 
         protected LineSeries _MainLineSeries = new LineSeries();
         protected LinearAxis _MainValueAxis = new LinearAxis();
+        private BaseMeter _Meter;
+        private bool _OnCollect; //是否正在采集
+        private BaseParamPanel _Panel;
         protected LineSeries _TemperatureLineSeries = new LineSeries();
         protected LinearAxis _TemperatureValueAxis = new LinearAxis();
-        private BaseMeter _Meter;
-        private BaseParamPanel _Panel;
-        private bool _OnCollect; //是否正在采集
 
         public CollectDataView()
         {
             InitializeComponent();
+
             _StartStripButton.Image = Resources.start;
             _StopStripButton.Image = Resources.stop;
             _SaveStripButton3.Image = Resources.save;
@@ -78,6 +78,7 @@ namespace MeterKnife.Instruments
             set
             {
                 _Meter = value;
+                _FiguredData.Meter = _Meter;
                 _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
                 _Panel = value.ParamPanel;
                 _ParamsPanel.Controls.Add(_Panel);
@@ -157,8 +158,8 @@ namespace MeterKnife.Instruments
 
         private void SendRead(object obj)
         {
-            var cmdlist = _Panel.GpibCommands;
-            foreach (var cmd in cmdlist)
+            GpibCommandList cmdlist = _Panel.GpibCommands;
+            foreach (GpibCommand cmd in cmdlist)
             {
                 if (cmd == null)
                     continue;
@@ -184,7 +185,7 @@ namespace MeterKnife.Instruments
 
             if (saying.MainCommand == 0xAE)
             {
-                string data = saying.Content.Substring(0, 5);
+                string data = saying.Content;
                 double yzl = 0;
                 if (double.TryParse(data, out yzl))
                 {
@@ -215,7 +216,7 @@ namespace MeterKnife.Instruments
             {
                 if ((saying.GpibAddress != Meter.GpibAddress) || (saying.Content.Length < 6))
                     return;
-                string data = saying.Content.Substring(1, saying.Content.Length - 6);
+                string data = saying.Content;//.Substring(1, saying.Content.Length - 6);
                 double yzl = 0;
                 if (double.TryParse(data, out yzl))
                 {
@@ -223,7 +224,7 @@ namespace MeterKnife.Instruments
 
                     if (Math.Abs(_FiguredData.Max) > 0 && Math.Abs(_FiguredData.Min) > 0)
                     {
-                        double j = (Math.Abs(_FiguredData.Max - _FiguredData.Min)) / 4;
+                        double j = (Math.Abs(_FiguredData.Max - _FiguredData.Min))/4;
                         if (Math.Abs(j) > 0)
                         {
                             _MainValueAxis.Maximum = _FiguredData.Max + j;

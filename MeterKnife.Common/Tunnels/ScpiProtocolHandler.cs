@@ -12,7 +12,7 @@ namespace MeterKnife.Common.Tunnels
 
         public override void Recevied(CareSaying protocol)
         {
-            _logger.Trace(string.Format("SCPI:{0}", protocol.Content.TrimEnd('\n')));
+            _logger.Trace(string.Format("SCPI:{0}", protocol.Content));
             OnProtocolRecevied(new EventArgs<CareSaying>(protocol));
         }
 

@@ -27,8 +27,16 @@ namespace MeterKnife.Common.Tunnels.CareOne
         {
             ((IProtocol<byte[]>) careSaying).Command = command;
             careSaying.GpibAddress = UtilityConvert.ConvertTo<short>(data[1]);
-            //_logger.Debug(string.Format("UnPack:{0}", data.ToHexString()));
-            careSaying.Content = Encoding.ASCII.GetString(data, 5, data.Length - 5);
+            //_logger.Trace(string.Format("UnPack:{0}", data.ToHexString()));
+
+            //+1.00355300E-01  100mV
+            var value = Encoding.ASCII.GetString(data, 5, data.Length - 5).TrimEnd('\n');
+            double exponent;
+            if (double.TryParse(value, out exponent))
+            {
+                value = exponent.ToString();
+            }
+            careSaying.Content = value;
         }
 
     }

@@ -11,16 +11,14 @@ namespace MeterKnife.Datas
 
         public void BindCollectDataSource(ICollectSource source)
         {
-            _CollectSources.Add(source.GpibAddress, source);
+            _CollectSources.Add(source.Meter.GpibAddress, source);
             source.ReceviedCollectData += CollectSource_ReceviedCollectData;
-            source.ReceviedTemperatureData += CollectSource_ReceviedTemperatureData;
         }
 
         public void UnbindCollectDataSource(ICollectSource source)
         {
-            _CollectSources.Remove(source.GpibAddress);
+            _CollectSources.Remove(source.Meter.GpibAddress);
             source.ReceviedCollectData -= CollectSource_ReceviedCollectData;
-            source.ReceviedTemperatureData -= CollectSource_ReceviedTemperatureData;
         }
 
         protected virtual void CollectSource_ReceviedTemperatureData(object sender, CollectEventArgs e)
