@@ -55,13 +55,13 @@ namespace MeterKnife.Workbench.Controls.Tree
             var dialog = new AddGpibMeterDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                _MeterInfo = new MeterInfo();
+                _MeterInfo.Brand = dialog.Brand;
+                _MeterInfo.Name = dialog.MeterName;
+                _MeterInfo.GpibAddress = dialog.GpibAddress;
+                _MeterInfo.Language = dialog.Language;
                 if (dialog.AutoFindMeter)
                 {
-                    _MeterInfo = new MeterInfo();
-                    _MeterInfo.Brand = dialog.Brand;
-                    _MeterInfo.Name = dialog.MeterName;
-                    _MeterInfo.GpibAddress = dialog.GpibAddress;
-                    _MeterInfo.Language = dialog.Language;
 
                     var handler = (ScpiProtocolHandler) _CommService.CareHandlers[Port];
                     handler.ProtocolRecevied += HandlerOnProtocolRecevied;
@@ -72,17 +72,18 @@ namespace MeterKnife.Workbench.Controls.Tree
                     _logger.Trace(string.Format("Send:{0}", data.ToHexString()));
                     _CommService.Send(Port, data);
                 }
-                else//当手动选择仪器类型时
+                else //当手动选择仪器类型时
                 {
                     var meterNode = new MeterNode
                     {
-                        Text = string.Format("{0}-{1},{2}", _MeterInfo.GpibAddress, dialog.Brand, dialog.Name),
+                        Text = string.Format("[{0}] {1},{2}", _MeterInfo.GpibAddress, dialog.Brand, dialog.MeterName),
                     };
-                    var meter = DI.Get<BaseMeter>(dialog.Name);
+                    var meter = DI.Get<BaseMeter>();
                     meter.Brand = dialog.Brand;
                     meter.GpibAddress = dialog.GpibAddress;
                     meter.Language = dialog.Language;
-                    meter.Name = string.Format("{0},{1}", dialog.Brand, dialog.Name);
+                    meter.Name = string.Format("{0},{1}", dialog.Brand, dialog.MeterName);
+                    meterNode.Meter = meter;
 
                     TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
                     TreeView.ThreadSafeInvoke(Expand);
@@ -97,7 +98,7 @@ namespace MeterKnife.Workbench.Controls.Tree
             var meterName = e.Item.Content;
             var meterNode = new MeterNode
             {
-                Text = string.Format("{0}-{1}", _MeterInfo.GpibAddress, meterName)
+                Text = string.Format("[{0}] {1}", _MeterInfo.GpibAddress, meterName)
             };
 
             var simpleName = MeterUtil.SimplifyName(meterName);
