@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
@@ -30,7 +29,13 @@ namespace MeterKnife.Common.Tunnels.CareOne
             //_logger.Trace(string.Format("UnPack:{0}", data.ToHexString()));
 
             //+1.00355300E-01  100mV
-            var value = Encoding.ASCII.GetString(data, 5, data.Length - 5).TrimEnd('\n');
+            string value = Encoding.ASCII.GetString(data, 5, data.Length - 5).TrimEnd('\n');
+
+            //DI  +1001.874E-06
+            int blank = value.IndexOf(' ');
+            if (blank > 0)
+                value = value.Substring(blank).Trim();
+
             double exponent;
             if (double.TryParse(value, out exponent))
             {
@@ -38,6 +43,5 @@ namespace MeterKnife.Common.Tunnels.CareOne
             }
             careSaying.Content = value;
         }
-
     }
 }

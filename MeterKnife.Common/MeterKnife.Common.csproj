@@ -84,6 +84,7 @@
     <Compile Include="Base\BaseCareCommunicationService.cs" />
     <Compile Include="EventParameters\InterfaceNodeClickedEventArgs.cs" />
     <Compile Include="Interfaces\ICollectSource.cs" />
+    <Compile Include="Interfaces\IMeterKernel.cs" />
     <Compile Include="Interfaces\IMeter.cs" />
     <Compile Include="Interfaces\IMeterParameters.cs" />
     <Compile Include="IoC\Moduels.cs" />

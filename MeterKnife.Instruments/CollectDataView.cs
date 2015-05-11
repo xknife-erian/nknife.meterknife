@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
 using MeterKnife.Instruments.Properties;
@@ -84,11 +85,14 @@ namespace MeterKnife.Instruments
             get { return _Meter; }
             set
             {
-                _Meter = value;
-                _FiguredData.Meter = _Meter;
-                _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
-                _Panel = value.ParamPanel;
-                _ParamsPanel.Controls.Add(_Panel);
+                if (value != null)
+                {
+                    _Meter = value;
+                    _FiguredData.Meter = _Meter;
+                    _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
+                    _Panel = value.ParamPanel;
+                    _ParamsPanel.Controls.Add(_Panel);
+                }
             }
         }
 
@@ -151,6 +155,7 @@ namespace MeterKnife.Instruments
             var handler = (ScpiProtocolHandler) _Comm.CareHandlers[Port];
             handler.ProtocolRecevied += OnProtocolRecevied;
             _OnCollect = true;
+            DI.Get<IMeterKernel>().OnCollected = true;
             var thread = new Thread(SendRead);
             thread.Start();
         }

@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Common.Logging;
 using MeterKnife.Common.Interfaces;
 using NKnife.Base;
 using NKnife.Utility;
 
 namespace MeterKnife.Common.Util
 {
-    public static class MeterUtil
+    public class MeterUtil
     {
+        private static readonly ILog _logger = LogManager.GetLogger<MeterUtil>();
+
         public static Pair<string, string> SimplifyName(string fullname)
         {
             var nd = fullname.Split(new[] {','});
@@ -27,6 +30,7 @@ namespace MeterKnife.Common.Util
                 return namePair.Second;
             if (namePair.Second.Contains("2000"))
                 return "K2000";
+            _logger.Info(string.Format("仪器{0}无映射", namePair));
             return "ScpiMeter";
         }
     }

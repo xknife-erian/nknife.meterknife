@@ -30,4 +30,9 @@
     <command content="通断" command="CONT"></command>
     <command content="二极管" command="DIOD"></command>
   </command>
+  <command content="测量项目" command="CONF" isConfig ="true">
+    <command content="周期" command="FER"></command>
+    <command content="通断" command="CONT"></command>
+    <command content="二极管" command="DIOD"></command>
+  </command>
 </MeterParam>

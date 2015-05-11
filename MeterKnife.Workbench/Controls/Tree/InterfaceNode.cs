@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
@@ -55,6 +56,20 @@ namespace MeterKnife.Workbench.Controls.Tree
             var dialog = new AddGpibMeterDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                var dic = DI.Get<IMeterKernel>().GpibDictionary;
+                List<int> gpibList;
+                if (!dic.TryGetValue(Port, out gpibList))
+                {
+                    gpibList = new List<int>();
+                    dic.Add(Port, gpibList);
+                }
+                if (gpibList.Contains(dialog.GpibAddress))
+                {
+                    MessageBox.Show(TreeView.FindForm(), "请重新输入GPIB地址，该地址已有仪器占用。", "重复的GPIB地址",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
                 _MeterInfo = new MeterInfo();
                 _MeterInfo.Brand = dialog.Brand;
                 _MeterInfo.Name = dialog.MeterName;
@@ -69,7 +84,6 @@ namespace MeterKnife.Workbench.Controls.Tree
                     var careSaying = CareSaying.IDN(_MeterInfo.GpibAddress);
                     _logger.Debug(string.Format("Send:{0}", careSaying.Content));
                     var data = careSaying.Generate();
-                    _logger.Trace(string.Format("Send:{0}", data.ToHexString()));
                     _CommService.Send(Port, data);
                 }
                 else //当手动选择仪器类型时
@@ -88,6 +102,7 @@ namespace MeterKnife.Workbench.Controls.Tree
                     TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
                     TreeView.ThreadSafeInvoke(Expand);
                 }
+                gpibList.Add(dialog.GpibAddress);
             }
         }
 
@@ -95,22 +110,29 @@ namespace MeterKnife.Workbench.Controls.Tree
         {
             ((ScpiProtocolHandler) _CommService.CareHandlers[Port]).ProtocolRecevied -= HandlerOnProtocolRecevied;
 
-            var meterName = e.Item.Content;
-            var meterNode = new MeterNode
-            {
-                Text = string.Format("[{0}] {1}", _MeterInfo.GpibAddress, meterName)
-            };
+            var idnName = e.Item.Content;
+            var meterNode = new MeterNode();
 
-            var simpleName = MeterUtil.SimplifyName(meterName);
-            var name = MeterUtil.Named(simpleName);
-            _logger.Info(string.Format("准备创建仪器:{0}", name));
-            var meter = DI.Get<BaseMeter>(name);
+            var simpleName = MeterUtil.SimplifyName(idnName);
+            var meterName = MeterUtil.Named(simpleName);
+            _logger.Info(string.Format("准备创建仪器:{0}", meterName));
+            BaseMeter meter;
+            try
+            {
+                meter = DI.Get<BaseMeter>(meterName);
+                meter.Name = idnName;
+                meter.Brand = simpleName.First;
+            }
+            catch (Exception ex)
+            {
+                _logger.WarnFormat("未找到{0}的仪器", idnName, ex.Message);
+                meter = DI.Get<BaseMeter>();
+                meter.Name = "Unknown Meter";
+            }
             meter.GpibAddress = _MeterInfo.GpibAddress;
-            meter.Name = meterName;
-            meter.Brand = simpleName.First;
             meter.Language = _MeterInfo.Language;
             meterNode.Meter = meter;
-
+            meterNode.Text = string.Format("[{0}] {1}", _MeterInfo.GpibAddress, meter.Name);
             TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
             TreeView.ThreadSafeInvoke(Expand);
         }

@@ -30,9 +30,9 @@ namespace MeterKnife.Workbench.Views
         private void MeterTreeOnSelectedMeter(object sender, InterfaceNodeClickedEventArgs e)
         {
             var collectView = DI.Get<CollectDataView>();
-            collectView.Meter = e.Meter;
             collectView.Port = e.Port;
             collectView.CommunicationType = e.CommunicationType;
+            collectView.Meter = e.Meter;
             collectView.Text = e.Meter.SimpleName;
             collectView.Show(this.PanelPane.DockPanel, DockState.Document);
         }
