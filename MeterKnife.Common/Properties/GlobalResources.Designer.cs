@@ -78,9 +78,9 @@ namespace MeterKnife.Common.Properties {
         ///  &lt;command content=&quot;初始化&quot; command=&quot;INIT&quot;&gt;&lt;/command&gt;
         ///  &lt;command content=&quot;输出&quot; command=&quot;FETC&quot; isReturn=&quot;true&quot;&gt;&lt;/command&gt;
         ///  &lt;command content=&quot;读取&quot; command=&quot;READ&quot; isReturn=&quot;true&quot;&gt;&lt;/command&gt;
+        ///  &lt;command content=&quot;查询测量项目&quot; command=&quot;CONF&quot; isReturn=&quot;true&quot;&gt;&lt;/command&gt;
         ///  &lt;command content=&quot;配置测量项目并测量&quot; command=&quot;MEAS&quot; isReturn=&quot;true&quot;&gt;
-        ///    &lt;command content=&quot;直流电压&quot; command=&quot;VOLT:DC&quot;&gt;&lt;/command&gt;
-        ///    &lt;command conten [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///    &lt;c [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         public static string DemoMeterParamElement {
             get {

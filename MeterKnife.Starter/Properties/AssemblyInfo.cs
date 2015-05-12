@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("MeterKnife.Starter")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MeterKnife")]
+[assembly: AssemblyDescription("这是一个配套GPIB控制器的上位机管理软件.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("MeterKnife.Starter")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
+[assembly: AssemblyCompany("http://xknife.net")]
+[assembly: AssemblyProduct("MeterKnife")]
+[assembly: AssemblyCopyright("Copyright © xknife.net 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

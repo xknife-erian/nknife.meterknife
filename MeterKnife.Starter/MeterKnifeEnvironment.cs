@@ -47,7 +47,7 @@ namespace MeterKnife.Starter
             Thread.Sleep(200);
 
             //开启UI控制窗体
-            var workbench = new MainWorkbench();
+            var workbench = new _MainWorkbench();
             workbench.FormClosed += (s, e) => Application.Exit();
             workbench.Activated += WorkbenchOnActivated;
 
@@ -61,7 +61,7 @@ namespace MeterKnife.Starter
         private void WorkbenchOnActivated(object sender, EventArgs eventArgs)
         {
             Splasher.Close();
-            ((MainWorkbench) sender).Activated -= WorkbenchOnActivated;
+            ((_MainWorkbench) sender).Activated -= WorkbenchOnActivated;
         }
 
         private void BeginInitializeServices()

@@ -156,6 +156,7 @@
     <Content Include="Properties\contents\bar-button\stop-unable.png" />
     <Content Include="Properties\contents\bar-button\stop.png" />
     <Content Include="Properties\contents\main-icon.ico" />
+    <Content Include="Properties\contents\main-logo.png" />
     <Content Include="Properties\contents\scpi-builder\add.png" />
     <Content Include="Properties\contents\scpi-builder\down.png" />
     <Content Include="Properties\contents\scpi-builder\edit.png" />

@@ -86,7 +86,10 @@ namespace MeterKnife.Instruments
                         {
                             var cmd = new GpibCommand(isScpi);
                             cmd.Content = vNode.GetAttribute("content");
-                            cmd.Command = string.Format("{0}:{1}", rootCmd.Command, vNode.GetAttribute("command"));
+                            if (vNode.LocalName == "command")
+                                cmd.Command = string.Format("{0}:{1}", rootCmd.Command, vNode.GetAttribute("command"));
+                            else if (vNode.LocalName == "param")
+                                cmd.Command = string.Format("{0} {1}", rootCmd.Command, vNode.GetAttribute("command"));
 
                             cbx.Items.Add(cmd);
                         }

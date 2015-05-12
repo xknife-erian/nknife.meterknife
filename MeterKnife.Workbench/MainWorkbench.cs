@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Properties;
+using MeterKnife.Workbench.Dialogs;
 using MeterKnife.Workbench.Views;
 using NKnife.Interface;
 using NKnife.IoC;
@@ -9,22 +10,21 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Workbench
 {
-    public sealed partial class MainWorkbench : Form
+    public sealed partial class _MainWorkbench : Form
     {
         private const string DOCK_PANEL_CONFIG = "dockpanel.config";
-        private static readonly ILog _logger = LogManager.GetLogger<MainWorkbench>();
+        private static readonly ILog _logger = LogManager.GetLogger<_MainWorkbench>();
 
         private readonly DockPanel _DockPanel = new DockPanel();
         private readonly DockContent _InterfaceTreeView = new InterfaceTreeView();
         private readonly DockContent _LoggerView = new LoggerView();
 
-        public MainWorkbench()
+        public _MainWorkbench()
         {
             InitializeComponent();
             var about = DI.Get<IAbout>();
             string title = about.AssemblyTitle;
-            int index = title.IndexOf('.');
-            Text = string.Format("{0}2015 - {1}", title.Substring(0, index), about.AssemblyVersion);
+            Text = string.Format("{0}2015 - {1}", title, about.AssemblyVersion);
             Icon = GlobalResources.main_icon;
             _logger.Info("主窗体构建完成");
             InitializeDockPanel();
@@ -90,5 +90,11 @@ namespace MeterKnife.Workbench
         }
 
         #endregion
+
+        private void _AboutMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var about = new AboutDialog();
+            about.ShowDialog(this);
+        }
     }
 }
