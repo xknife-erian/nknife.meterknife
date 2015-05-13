@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Workbench
 {
-    partial class _MainWorkbench
+    partial class MainWorkbench
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(_MainWorkbench));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWorkbench));
             this._StripContainer = new System.Windows.Forms.ToolStripContainer();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._MenuStrip = new System.Windows.Forms.MenuStrip();

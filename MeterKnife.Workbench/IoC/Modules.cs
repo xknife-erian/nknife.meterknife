@@ -14,7 +14,7 @@ namespace MeterKnife.Workbench.IoC
         public override void Load()
         {
             Bind<IAbout>().To<About>().InSingletonScope();
-            Bind<Form>().To<_MainWorkbench>().InSingletonScope().Named("main");
+            Bind<Form>().To<MainWorkbench>().InSingletonScope().Named("main");
         }
     }
 }

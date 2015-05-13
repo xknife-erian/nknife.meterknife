@@ -10,16 +10,17 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Workbench
 {
-    public sealed partial class _MainWorkbench : Form
+    public sealed partial class MainWorkbench : Form
     {
         private const string DOCK_PANEL_CONFIG = "dockpanel.config";
-        private static readonly ILog _logger = LogManager.GetLogger<_MainWorkbench>();
+        private static readonly ILog _logger = LogManager.GetLogger<MainWorkbench>();
 
         private readonly DockPanel _DockPanel = new DockPanel();
         private readonly DockContent _InterfaceTreeView = new InterfaceTreeView();
         private readonly DockContent _LoggerView = new LoggerView();
+        private readonly DockContent _DataManagerView = new DataMangerView();
 
-        public _MainWorkbench()
+        public MainWorkbench()
         {
             InitializeComponent();
             var about = DI.Get<IAbout>();
@@ -74,6 +75,7 @@ namespace MeterKnife.Workbench
             else
             {
                 _LoggerView.Show(_DockPanel, DockState.DockBottom);
+                _DataManagerView.Show(_DockPanel,DockState.DockRight);
                 _InterfaceTreeView.Show(_DockPanel, DockState.DockRight);
                 // var collectDataView = new CollectDataView();
                 // collectDataView.Show(_DockPanel, DockState.Document);
@@ -84,8 +86,10 @@ namespace MeterKnife.Workbench
         {
             if (persistString == typeof (LoggerView).ToString())
                 return _LoggerView;
-            if (persistString == typeof (InterfaceTreeView).ToString())
+            if (persistString == typeof(InterfaceTreeView).ToString())
                 return _InterfaceTreeView;
+            if (persistString == typeof(DataMangerView).ToString())
+                return _DataManagerView;
             return null;
         }
 
