@@ -24,6 +24,7 @@ namespace MeterKnife.Instruments
         private static readonly ILog _logger = LogManager.GetLogger<CollectDataView>();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
+        private IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
         private FiguredData _FiguredData = new FiguredData();
 
         protected LineSeries _MainLineSeries = new LineSeries();
@@ -45,6 +46,9 @@ namespace MeterKnife.Instruments
             _PhotoToolStripButton.Image = Resources.photo;
             _ZoomInToolStripButton.Image = Resources.zoom_in;
             _ZoomOutToolStripButton.Image = Resources.zoom_out;
+
+            SetStripButtonState(false);
+            _MeterKernel.Collected += (s, e) => SetStripButtonState(e.Item);
 
             PlotModel mainModel = BuildMainPlogModel();
             var mainPlot = new PlotView
@@ -72,6 +76,30 @@ namespace MeterKnife.Instruments
             };
             _PlotSplitContainer.Panel2.Controls.Add(temperaturePlot);
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
+        }
+
+        private void SetStripButtonState(bool isCollected)
+        {
+            if (isCollected)
+            {
+                _StartStripButton.Enabled = false;
+                _StopStripButton.Enabled = true;
+                _SaveStripButton3.Enabled = true;
+                _ExportStripButton1.Enabled = true;
+                _PhotoToolStripButton.Enabled = true;
+                _ZoomInToolStripButton.Enabled = true;
+                _ZoomOutToolStripButton.Enabled = true;
+            }
+            else
+            {
+                _StartStripButton.Enabled = true;
+                _StopStripButton.Enabled = false;
+                _SaveStripButton3.Enabled = false;
+                _ExportStripButton1.Enabled = false;
+                _PhotoToolStripButton.Enabled = false;
+                _ZoomInToolStripButton.Enabled = false;
+                _ZoomOutToolStripButton.Enabled = false;
+            }
         }
 
         void _FiguredData_ReceviedCollectData(object sender, Common.EventParameters.CollectEventArgs e)
