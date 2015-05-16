@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
@@ -13,6 +14,7 @@ namespace MeterKnife.Workbench.Controls.Tree
 {
     public sealed class MeterTree : TreeView
     {
+        private static readonly ILog _logger = LogManager.GetLogger<MeterTree>();
         private int _MouseClicks; //记录鼠标在TreeView控件上按下的次数
 
         public MeterTree()
@@ -83,8 +85,9 @@ namespace MeterKnife.Workbench.Controls.Tree
                 var node = SelectedNode as MeterNode;
                 var interfaceNode = (InterfaceNode) node.Parent;
                 var commType = CommunicationType.Serial;
-                if(interfaceNode is LanNode)
+                if (interfaceNode is LanNode)
                     commType = CommunicationType.Socket;
+                _logger.TraceFormat("左键双击仪器节点");
                 OnSelectedMeter(new InterfaceNodeClickedEventArgs(node.Meter, interfaceNode.Port, commType));
             }
         }

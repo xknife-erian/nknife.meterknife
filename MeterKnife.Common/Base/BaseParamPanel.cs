@@ -3,7 +3,7 @@ using MeterKnife.Common.DataModels;
 
 namespace MeterKnife.Common.Base
 {
-    public abstract partial class BaseParamPanel : UserControl
+    public partial class BaseParamPanel : UserControl
     {
         protected BaseParamPanel()
         {
@@ -12,7 +12,7 @@ namespace MeterKnife.Common.Base
             Dock = DockStyle.Fill;
         }
 
-        public abstract GpibCommandList GpibCommands { get; }
+        public virtual GpibCommandList GpibCommands { get; protected set; }
 
         /*
             _Panel.ColumnCount = 2;

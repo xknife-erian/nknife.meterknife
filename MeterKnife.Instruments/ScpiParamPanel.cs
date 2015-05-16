@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using NKnife.GUI.WinForm;
 
 namespace MeterKnife.Instruments
 {
     public class ScpiParamPanel : BaseParamPanel
     {
-        protected readonly List<ComboBox> _ComboBox = new List<ComboBox>();
+        protected readonly List<ComboBox> _ComboBoxList = new List<ComboBox>();
         protected GpibCommandList _Commandlist;
 
         public ScpiParamPanel(XmlElement element)
@@ -29,7 +31,7 @@ namespace MeterKnife.Instruments
         protected virtual void FillCommandList()
         {
             _Commandlist = GetGpibCommandList();
-            foreach (ComboBox comboBox in _ComboBox)
+            foreach (ComboBox comboBox in _ComboBoxList)
             {
                 if (comboBox.SelectedItem == null)
                     continue;
@@ -55,51 +57,113 @@ namespace MeterKnife.Instruments
             bool isScpi = true;
             bool.TryParse(isScpiStr, out isScpi);
             XmlNodeList nodes = element.SelectNodes("/MeterParam/command[@isConfig='true']");
-            if (nodes != null)
+            if (nodes == null)
+                return;
+
+            int count = nodes.Count;
+            _Panel.RowCount = count + 1;
+            _Panel.RowStyles.Clear();
+            //_Panel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single; //测试
+
+            int index = 0;
+            foreach (XmlElement confEle in nodes)
             {
-                int count = nodes.Count;
-                _Panel.RowCount = count + 1;
-                _Panel.RowStyles.Clear();
-                //_Panel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-                float f = (float) 100/count;
-                int i = 0;
-                foreach (XmlElement configEle in nodes)
+                _Panel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
+
+                var rootCmd = new GpibCommand(isScpi);
+                rootCmd.Content = confEle.GetAttribute("content");
+                rootCmd.Command = confEle.GetAttribute("command");
+
+                GetLabel(rootCmd.Content, index);
+
+                if (!confEle.HasChildNodes)
+                    continue;
+                bool isAddButton = false;
+                Panel cbxPanel;
+                ComboBox cbx = GetComboBox(index, out cbxPanel);
+                foreach (XmlElement confContentEle in confEle.ChildNodes)
                 {
-                    var rootCmd = new GpibCommand(isScpi);
-                    rootCmd.Content = configEle.GetAttribute("content");
-                    rootCmd.Command = configEle.GetAttribute("command");
+                    #region config element
 
-                    _Panel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
-                    var label = new Label();
-                    label.AutoSize = true;
-                    label.Text = rootCmd.Content;
-                    label.Anchor = AnchorStyles.Right;
-                    _Panel.Controls.Add(label, 0, i);
-                    if (configEle.HasChildNodes)
+                    GpibCommand cmd = ParseGpibCommand(isScpi, confContentEle, rootCmd.Command);
+                    cbx.Items.Add(cmd);
+
+                    #region 有配置子项
+
+                    if (!confContentEle.HasChildNodes)
+                        continue;
+                    if (!isAddButton)
                     {
-                        var cbx = new ComboBox
+                        var subButton = new ImageButton
                         {
-                            Width = 140,
-                            Anchor = AnchorStyles.Left
+                            Style = ImageButton.ImageButtonStyle.ArrowRight,
+                            ButtonColor = Color.SlateGray,
+                            FlatStyle = FlatStyle.Popup,
+                            Dock = DockStyle.Right,
+                            Width = 26,
+                            Height = 27
                         };
-                        foreach (XmlElement vNode in configEle.ChildNodes)
-                        {
-                            var cmd = new GpibCommand(isScpi);
-                            cmd.Content = vNode.GetAttribute("content");
-                            if (vNode.LocalName == "command")
-                                cmd.Command = string.Format("{0}:{1}", rootCmd.Command, vNode.GetAttribute("command"));
-                            else if (vNode.LocalName == "param")
-                                cmd.Command = string.Format("{0} {1}", rootCmd.Command, vNode.GetAttribute("command"));
-
-                            cbx.Items.Add(cmd);
-                        }
-                        _ComboBox.Add(cbx);
-                        _Panel.Controls.Add(cbx, 1, i);
+                        cbxPanel.Controls.Add(subButton);
+                        isAddButton = true;
                     }
-                    i++;
+                    foreach (XmlElement groupElement in confContentEle.ChildNodes)
+                    {
+                        if (groupElement.LocalName.ToLower() != "group")
+                            continue;
+                        if (!groupElement.HasChildNodes)
+                            continue;
+                        GpibCommand groupCmd = ParseGpibCommand(isScpi, groupElement, rootCmd.Command);
+                        foreach (XmlElement gpElement in groupElement.ChildNodes)
+                        {
+                            GpibCommand gpCmd = ParseGpibCommand(isScpi, gpElement, groupCmd.Command);
+                        }
+                    }
+
+                    #endregion
+
+                    #endregion
                 }
-                _Panel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                index++;
             }
+            _Panel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        }
+
+        private static GpibCommand ParseGpibCommand(bool isScpi, XmlElement element, string rootCmd)
+        {
+            var cmd = new GpibCommand(isScpi);
+            cmd.Content = element.GetAttribute("content");
+            if (element.LocalName == "command")
+                cmd.Command = string.Format("{0}:{1}", rootCmd, element.GetAttribute("command"));
+            else if (element.LocalName == "param")
+                cmd.Command = string.Format("{0} {1}", rootCmd, element.GetAttribute("command"));
+            return cmd;
+        }
+
+        private void GetLabel(string content, int index)
+        {
+            var label = new Label();
+            label.AutoSize = true;
+            label.Text = content;
+            label.Anchor = AnchorStyles.Right;
+            _Panel.Controls.Add(label, 0, index);
+        }
+
+        private ComboBox GetComboBox(int index, out Panel cbxPanel)
+        {
+            cbxPanel = new Panel();
+            cbxPanel.Dock = DockStyle.Fill;
+            //cbxPanel.BackColor = Color.Red;
+            var cbx = new ComboBox
+            {
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Width = 170,
+                Location = new Point(1, 1),
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
+            };
+            cbxPanel.Controls.Add(cbx);
+            _ComboBoxList.Add(cbx);
+            _Panel.Controls.Add(cbxPanel, 1, index);
+            return cbx;
         }
     }
 }

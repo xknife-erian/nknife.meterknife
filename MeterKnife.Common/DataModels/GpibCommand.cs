@@ -21,6 +21,8 @@
         public string Command { get; set; }
         public long Interval { get; set; }
 
+        public object Tag { get; set; }
+
         public override string ToString()
         {
             return Content;
