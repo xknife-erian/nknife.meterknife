@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 using Common.Logging;
+using MeterKnife.Common;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Instruments;
 using MeterKnife.Workbench.Controls.Tree;
+using MeterKnife.Workbench.Dialogs;
+using NKnife.Configuring.UserData;
 using NKnife.Events;
 using NKnife.IoC;
+using NKnife.Utility;
 using NKnife.Wrapper;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -29,12 +35,33 @@ namespace MeterKnife.Workbench.Views
 
         private void MeterTreeOnSelectedMeter(object sender, InterfaceNodeClickedEventArgs e)
         {
+            var userData = DI.Get<MeterKnifeUserData>();
+            object path;
+            if (!userData.TryGetValue(MeterKnifeUserData.DATA_PATH, out path))
+            {
+                var dialog = new DataPathSetterDialog();
+                if (dialog.ShowDialog(FindForm()) == DialogResult.OK)
+                {
+                    path = dialog.DataPath;
+                    userData.SetValue(MeterKnifeUserData.DATA_PATH, path);
+                    _logger.Info(string.Format("设置用户数据路径:{0}", path));
+                }
+            }
+            else
+            {
+                if (!Directory.Exists(path.ToString()))
+                {
+                    UtilityFile.CreateDirectory(path.ToString());
+                    _logger.Info(string.Format("用户数据路径丢失{0},重新创建", path));
+                }
+            }
+
             var collectView = DI.Get<CollectDataView>();
             collectView.Port = e.Port;
             collectView.CommunicationType = e.CommunicationType;
             collectView.Meter = e.Meter;
             collectView.Text = e.Meter.SimpleName;
-            collectView.Show(this.PanelPane.DockPanel, DockState.Document);
+            collectView.Show(PanelPane.DockPanel, DockState.Document);
         }
 
         private void UpdateTreeNode()

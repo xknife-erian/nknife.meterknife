@@ -18,9 +18,9 @@ namespace MeterKnife.Workbench.Controls.Tree
     {
         private static readonly ILog _logger = LogManager.GetLogger<InterfaceNode>();
 
-        protected readonly MenuItem _AddMeterMenu;
+        protected readonly ToolStripMenuItem _AddMeterMenu;
         protected readonly BaseCareCommunicationService _CommService = DI.Get<BaseCareCommunicationService>();
-        protected readonly ContextMenu _RightMenu;
+        protected readonly ContextMenuStrip _RightMenu;
         private MeterInfo _MeterInfo;
 
         class MeterInfo
@@ -33,10 +33,10 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         protected InterfaceNode()
         {
-            _RightMenu = new ContextMenu();
-            _AddMeterMenu = new MenuItem("新建仪器");
+            _RightMenu = new ContextMenuStrip();
+            _AddMeterMenu = new ToolStripMenuItem("新建仪器");
             _AddMeterMenu.Click += AddMeterMenuOnClick;
-            _RightMenu.MenuItems.Add(_AddMeterMenu);
+            _RightMenu.Items.Add(_AddMeterMenu);
             // ReSharper disable once DoNotCallOverridableMethodsInConstructor
             BuildContextMenu();
             NodeClicked += (sender, e) =>

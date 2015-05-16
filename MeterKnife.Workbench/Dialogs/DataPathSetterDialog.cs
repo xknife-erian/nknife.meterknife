@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -15,6 +16,8 @@ namespace MeterKnife.Workbench.Dialogs
         public DataPathSetterDialog()
         {
             InitializeComponent();
+            if (Directory.Exists(DataPath))
+                _PathTextbox.Text = DataPath;
         }
 
         public string DataPath { get; private set; }
@@ -22,7 +25,8 @@ namespace MeterKnife.Workbench.Dialogs
         private void _PathSelectButton_Click(object sender, EventArgs e)
         {
             var dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog(this)== DialogResult.OK)
+            dialog.RootFolder = Environment.SpecialFolder.MyComputer;
+            if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 _PathTextbox.Text = dialog.SelectedPath;
             }
@@ -30,6 +34,11 @@ namespace MeterKnife.Workbench.Dialogs
 
         private void _ConfirmButton_Click(object sender, EventArgs e)
         {
+            if (!Directory.Exists(_PathTextbox.Text))
+            {
+                MessageBox.Show(this, "请选择正确的数据存储路径.");
+                return;
+            }
             DataPath = _PathTextbox.Text;
             DialogResult = DialogResult.OK;
         }
