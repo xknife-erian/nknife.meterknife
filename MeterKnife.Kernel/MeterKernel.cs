@@ -11,6 +11,8 @@ namespace MeterKnife.Kernel
     {
         private bool _OnCollected;
 
+        public string DataPath { get; set; }
+
         public Dictionary<int, List<int>> GpibDictionary { get; set; }
 
         public bool OnCollected

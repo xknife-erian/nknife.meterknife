@@ -8,6 +8,8 @@ namespace MeterKnife.Common.Interfaces
 {
     public interface IMeterKernel
     {
+        string DataPath { get; set; }
+
         /// <summary>
         /// 串口下的Gpib地址
         /// </summary>

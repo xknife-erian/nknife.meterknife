@@ -15,6 +15,7 @@ namespace MeterKnife.Kernel.Services
         {
             var userdata = DI.Get<IUserApplicationData>();
             var dataPath = userdata.GetValue(MeterKnifeUserData.DATA_PATH, string.Empty);
+            DI.Get<IMeterKernel>().DataPath = dataPath;
             _logger.Info(string.Format("数据存储路径:{0}", dataPath));
             return true;
         }

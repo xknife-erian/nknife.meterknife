@@ -89,6 +89,12 @@
     <Compile Include="Dialogs\CareParameterDialog.Designer.cs">
       <DependentUpon>CareParameterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DataPathSetterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DataPathSetterDialog.Designer.cs">
+      <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\OfflineCollectDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CareParameterDialog.resx">
       <DependentUpon>CareParameterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DataPathSetterDialog.resx">
+      <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\OfflineCollectDialog.resx">
       <DependentUpon>OfflineCollectDialog.cs</DependentUpon>

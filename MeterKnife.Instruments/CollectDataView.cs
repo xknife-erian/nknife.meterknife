@@ -192,6 +192,7 @@ namespace MeterKnife.Instruments
         {
             _OnCollect = false;
             Thread.Sleep(50);
+            DI.Get<IMeterKernel>().OnCollected = false;
             var handler = (ScpiProtocolHandler) _Comm.CareHandlers[Port];
             handler.ProtocolRecevied -= OnProtocolRecevied;
         }

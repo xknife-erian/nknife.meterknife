@@ -50,11 +50,12 @@ namespace MeterKnife.Starter
             var workbench = new MainWorkbench();
             workbench.FormClosed += (s, e) => Application.Exit();
             workbench.Activated += WorkbenchOnActivated;
+            workbench.Show();
+            _logger.Info("主窗体启动完成..");
 
             var thread = new Thread(BeginInitializeServices) { IsBackground = true };
             thread.Start();
 
-            workbench.Show();
             workbench.Activate();
         }
 
@@ -66,6 +67,8 @@ namespace MeterKnife.Starter
 
         private void BeginInitializeServices()
         {
+            _logger.Info("寻找启动时的应用程序服务项..");
+
             Assembly asse = typeof (MeterKernel).Assembly;
             foreach (var type in asse.GetTypes())
             {
