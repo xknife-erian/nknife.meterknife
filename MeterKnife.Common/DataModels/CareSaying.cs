@@ -12,7 +12,7 @@ namespace MeterKnife.Common.DataModels
     public partial class CareSaying : BytesProtocol
     {
         private string _Scpi = string.Empty;
-        private byte[] _ScpiBytes = null;
+        private byte[] _ScpiBytes;
 
         public CareSaying()
         {
@@ -27,6 +27,11 @@ namespace MeterKnife.Common.DataModels
             Buffer.BlockCopy(bs, 0, result, 0, bs.Length);
             Buffer.BlockCopy(_ScpiBytes, 0, result, bs.Length, _ScpiBytes.Length);
             return result;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Command:{0} {1},GPIB:{2},Content:{3}", MainCommand.ToHexString(), SubCommand.ToHexString(), GpibAddress, Content);
         }
 
         #region 基本属性
@@ -45,8 +50,8 @@ namespace MeterKnife.Common.DataModels
         /// </summary>
         public byte SubCommand
         {
-            get { return ((IProtocol<byte[]>)this).Command[1]; }
-            set { ((IProtocol<byte[]>)this).Command[1] = value; }
+            get { return ((IProtocol<byte[]>) this).Command[1]; }
+            set { ((IProtocol<byte[]>) this).Command[1] = value; }
         }
 
         /// <summary>
@@ -54,8 +59,8 @@ namespace MeterKnife.Common.DataModels
         /// </summary>
         public short GpibAddress
         {
-            get { return UtilityConvert.ConvertTo<short>(((IProtocol<byte[]>)this).CommandParam[0]); }
-            set { ((IProtocol<byte[]>)this).CommandParam[0] = UtilityConvert.ConvertTo<byte>(value); }
+            get { return UtilityConvert.ConvertTo<short>(((IProtocol<byte[]>) this).CommandParam[0]); }
+            set { ((IProtocol<byte[]>) this).CommandParam[0] = UtilityConvert.ConvertTo<byte>(value); }
         }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace MeterKnife.Workbench.Controls.Tree
             _CareSettingMenu = new ToolStripMenuItem("Care属性");
             _CareSettingMenu.Click += (s, e) =>
             {
-                var dialog = new CareParameterDialog();
+                var dialog = new CareParameterDialog(Port);
                 dialog.ShowDialog(TreeView.FindForm());
             };
             _RightMenu.Items.Add(_CareSettingMenu);

@@ -27,7 +27,7 @@ namespace MeterKnife.Instruments
     public partial class CollectDataView : DockContent
     {
         private static readonly ILog _logger = LogManager.GetLogger<CollectDataView>();
-        private UtilityRandom _Random = new UtilityRandom();
+        private readonly UtilityRandom _Random = new UtilityRandom();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
         private readonly FiguredData _FiguredData = new FiguredData();
@@ -38,6 +38,8 @@ namespace MeterKnife.Instruments
         private BaseMeter _Meter;
         private bool _OnCollect; //是否正在采集
         private BaseParamPanel _Panel;
+
+        private readonly PlotModel _MainModel;
         protected LineSeries _TemperatureLineSeries = new LineSeries();
         protected LinearAxis _TemperatureValueAxis = new LinearAxis();
 
@@ -45,18 +47,10 @@ namespace MeterKnife.Instruments
         {
             InitializeComponent();
 
-            _StartStripButton.Image = Resources.start;
-            _StopStripButton.Image = Resources.stop;
-            _SaveStripButton.Image = Resources.save;
-            _ExportStripButton.Image = Resources.export;
-            _PhotoToolStripButton.Image = Resources.photo;
-            _ZoomInToolStripButton.Image = Resources.zoom_in;
-            _ZoomOutToolStripButton.Image = Resources.zoom_out;
-
             SetStripButtonState(false);
             _MeterKernel.Collected += (s, e) => SetStripButtonState(e.Item);
 
-            PlotModel mainModel = BuildMainPlogModel();
+            _MainModel = BuildMainPlogModel();
             var mainPlot = new PlotView
             {
                 Dock = DockStyle.Fill,
@@ -65,7 +59,7 @@ namespace MeterKnife.Instruments
                 ZoomHorizontalCursor = Cursors.SizeWE,
                 ZoomRectangleCursor = Cursors.SizeNWSE,
                 ZoomVerticalCursor = Cursors.SizeNS,
-                Model = mainModel
+                Model = _MainModel
             };
             _PlotSplitContainer.Panel1.Controls.Add(mainPlot);
 
@@ -113,6 +107,9 @@ namespace MeterKnife.Instruments
                 _SaveStripButton.Enabled = false;
 
                 _StopStripButton.Enabled = true;
+                _NominalValueTextBox.ReadOnly = true;
+                _IntervalTextBox.ReadOnly = true;
+
                 _PhotoToolStripButton.Enabled = false;
                 _ZoomInToolStripButton.Enabled = false;
                 _ZoomOutToolStripButton.Enabled = false;
@@ -124,6 +121,9 @@ namespace MeterKnife.Instruments
                 _SaveStripButton.Enabled = true;
 
                 _StopStripButton.Enabled = false;
+                _NominalValueTextBox.ReadOnly = false;
+                _IntervalTextBox.ReadOnly = false;
+
                 _PhotoToolStripButton.Enabled = true;
                 _ZoomInToolStripButton.Enabled = true;
                 _ZoomOutToolStripButton.Enabled = true;
@@ -192,6 +192,13 @@ namespace MeterKnife.Instruments
             handler.ProtocolRecevied += OnProtocolRecevied;
             _OnCollect = true;
             DI.Get<IMeterKernel>().OnCollected = true;
+
+            double nv = 0;
+            if (double.TryParse(_NominalValueTextBox.Text, out nv))
+            {
+                _FiguredData.SetNominalValue(nv);
+            }
+
             var thread = new Thread(SendRead);
             thread.Start();
         }
@@ -207,6 +214,12 @@ namespace MeterKnife.Instruments
 
         private void SendRead(object obj)
         {
+            int interval = 1000;
+            this.ThreadSafeInvoke(() =>
+            {
+                var i = _IntervalTextBox.Text;
+                int.TryParse(i, out interval);
+            });
             GpibCommandList cmdlist = _Panel.GpibCommands;
             foreach (GpibCommand cmd in cmdlist)
             {
@@ -222,7 +235,7 @@ namespace MeterKnife.Instruments
             while (_OnCollect)
             {
                 _Comm.Send(Port, read);
-                Thread.Sleep(600);
+                Thread.Sleep(interval);
                 _Comm.Send(Port, temp);
                 Thread.Sleep(300);
             }
@@ -284,9 +297,10 @@ namespace MeterKnife.Instruments
                     DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
                     _MainLineSeries.Points.Add(v);
                     _MainLineSeries.PlotModel.InvalidatePlot(true);
+                    _MainModel.Title = yzl.ToString();
                 }
             }
-            _FiguredDataPropertyGrid.ThreadSafeInvoke(() => { _FiguredDataPropertyGrid.Refresh(); });
+            _FiguredDataPropertyGrid.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
 
         private void _SaveStripButton_Click(object sender, EventArgs e)

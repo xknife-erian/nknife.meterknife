@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Text;
 using System.Threading;
 using Common.Logging;
 using MeterKnife.Common.Base;
@@ -64,7 +65,16 @@ namespace MeterKnife.Kernel.Services
                         Build(port, handler);
                         Start(port);
                         _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
-                        Send(port, GetCareTest());
+                        Send(port, CareSaying.CareGetter());
+                        Thread.Sleep(20);
+                        Send(port, CareSaying.CareGetter(0xD2));
+                        Thread.Sleep(20);
+                        var time = Encoding.ASCII.GetBytes(DateTime.Now.ToString("yyyyMMddHHmmss"));
+                        _logger.Trace(string.Format("Set Time:{0}", time.ToHexString()));
+                        Send(port, CareSaying.CareSetter(0xD9, time));
+                        Thread.Sleep(50);
+                        Send(port, CareSaying.CareReset());
+                        Thread.Sleep(100);
                     }
                 }
             }
@@ -168,70 +178,70 @@ namespace MeterKnife.Kernel.Services
             return serialProtocolFilter;
         }
 
-        #region Test Main
-
-        private static void Main(string[] args)
-        {
-            const int PORT = 4;
-            Console.ResetColor();
-            Console.WriteLine("**** START ****************************");
-
-            DI.Initialize();
-
-            _logger.Info("DI初始化结束....");
-
-            var server = new CareCommunicationService();
-            server.Build(PORT, new TestProtocolHandler());
-            server.Start(PORT);
-
-            Thread.Sleep(100);
-
-            const int COUNT = 5;
-            Console.WriteLine("--{0}--------------", COUNT);
-            var sw = new Stopwatch();
-            sw.Start();
-            for (int i = 0; i < COUNT; i++) //以询查指令进行测试
-            {
-                for (int j = 209; j < 221; j++)
-                {
-                    byte[] command = GetA0(UtilityConvert.ConvertTo<byte>(j));
-                    server.Send(PORT, command);
-                }
-            }
-            for (int i = 0; i < COUNT*10; i++)
-            {
-                byte[] command = GetRead(23);
-                server.Send(PORT, command);
-            }
-            sw.Stop();
-            Console.WriteLine();
-            Console.ReadLine();
-        }
-
-        private static byte[] GetRead(byte address)
-        {
-            return new byte[] {0x08, address, 0x09, 0xAA, 0x00, 0x52, 0x45, 0x41, 0x44, 0x3F, 0x0D, 0x0A};
-        }
-
-        private static byte[] GetCareTest()
-        {
-            return new byte[] {0x08, 0x00, 0x02, 0xA0, 0xD1};
-        }
-
-        private static byte[] GetA0(byte subCommand)
-        {
-            return new byte[] {0x08, 0x00, 0x02, 0xA0, subCommand};
-        }
-
-        public class TestProtocolHandler : CareOneProtocolHandler
-        {
-            public override void Recevied(CareSaying protocol)
-            {
-                CareSaying saying = protocol;
-                _logger.Info(string.Format("{0},Recevied:{1}", protocol.Command.ToHexString(), saying.Content));
-            }
-        }
-
-        #endregion
+//        #region Test Main
+//
+//        private static void Main(string[] args)
+//        {
+//            const int PORT = 4;
+//            Console.ResetColor();
+//            Console.WriteLine("**** START ****************************");
+//
+//            DI.Initialize();
+//
+//            _logger.Info("DI初始化结束....");
+//
+//            var server = new CareCommunicationService();
+//            server.Build(PORT, new TestProtocolHandler());
+//            server.Start(PORT);
+//
+//            Thread.Sleep(100);
+//
+//            const int COUNT = 5;
+//            Console.WriteLine("--{0}--------------", COUNT);
+//            var sw = new Stopwatch();
+//            sw.Start();
+//            for (int i = 0; i < COUNT; i++) //以询查指令进行测试
+//            {
+//                for (int j = 209; j < 221; j++)
+//                {
+//                    byte[] command = GetA0(UtilityConvert.ConvertTo<byte>(j));
+//                    server.Send(PORT, command);
+//                }
+//            }
+//            for (int i = 0; i < COUNT*10; i++)
+//            {
+//                byte[] command = GetRead(23);
+//                server.Send(PORT, command);
+//            }
+//            sw.Stop();
+//            Console.WriteLine();
+//            Console.ReadLine();
+//        }
+//
+//        private static byte[] GetRead(byte address)
+//        {
+//            return new byte[] {0x08, address, 0x09, 0xAA, 0x00, 0x52, 0x45, 0x41, 0x44, 0x3F, 0x0D, 0x0A};
+//        }
+//
+//        private static byte[] GetCareTest()
+//        {
+//            return new byte[] {0x08, 0x00, 0x02, 0xA0, 0xD1};
+//        }
+//
+//        private static byte[] GetA0(byte subCommand)
+//        {
+//            return new byte[] {0x08, 0x00, 0x02, 0xA0, subCommand};
+//        }
+//
+//        public class TestProtocolHandler : CareOneProtocolHandler
+//        {
+//            public override void Recevied(CareSaying protocol)
+//            {
+//                CareSaying saying = protocol;
+//                _logger.Info(string.Format("{0},Recevied:{1}", protocol.Command.ToHexString(), saying.Content));
+//            }
+//        }
+//
+//        #endregion
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace MeterKnife.Common.DataModels
+﻿using NKnife.Utility;
+using NPOI.HPSF;
+
+namespace MeterKnife.Common.DataModels
 {
     public partial class CareSaying
     {
@@ -35,6 +38,22 @@
             careSaying.Content = content;
             careSaying.GpibAddress = (byte) gpib;
             return careSaying;
+        }
+
+        public static byte[] CareGetter(byte subcommand = 0xD1)
+        {
+            return new byte[] { 0x08, 0x00, 0x02, 0xA0, subcommand };
+        }
+
+        public static byte[] CareSetter(byte subcommand, byte[] content)
+        {
+            var head = new byte[] { 0x08, 0x00, 0x02, 0xB0, subcommand};
+            return UtilityCollection.MergerArray(head, content);
+        }
+
+        public static byte[] CareReset()
+        {
+            return new byte[] { 0x08, 0x00, 0x02, 0xB1, 0x00 };
         }
     }
 }

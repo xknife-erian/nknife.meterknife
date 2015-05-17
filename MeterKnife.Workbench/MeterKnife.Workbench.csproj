@@ -95,11 +95,11 @@
     <Compile Include="Dialogs\DataPathSetterDialog.Designer.cs">
       <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\OfflineCollectDialog.cs">
+    <Compile Include="Dialogs\OfflineCollectParameterDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\OfflineCollectDialog.Designer.cs">
-      <DependentUpon>OfflineCollectDialog.cs</DependentUpon>
+    <Compile Include="Dialogs\OfflineCollectParameterDialog.Designer.cs">
+      <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="MainWorkbench.cs">
@@ -139,8 +139,8 @@
     <EmbeddedResource Include="Dialogs\DataPathSetterDialog.resx">
       <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\OfflineCollectDialog.resx">
-      <DependentUpon>OfflineCollectDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\OfflineCollectParameterDialog.resx">
+      <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWorkbench.resx">
       <DependentUpon>MainWorkbench.cs</DependentUpon>

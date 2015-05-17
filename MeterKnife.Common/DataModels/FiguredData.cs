@@ -47,9 +47,6 @@ namespace MeterKnife.Common.DataModels
         [Category("温度"), DisplayName("算术平均")]
         public double TemperatureArithmeticMean { get; private set; }
 
-        [Category("偏差"), DisplayName("标称值")]
-        public double ExpectedValue { get; set; }
-
         [Category("偏差"), DisplayName("阿仑方差")]
         public double AllanVariance { get; private set; }
 
@@ -61,6 +58,9 @@ namespace MeterKnife.Common.DataModels
         private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
         private double _CurrentTemperature;
         protected DataSet _DataSet = new DataSet();
+
+        private double _NominalValue;
+
         private double _RmsData;
         private double _RmsTemperatureData;
         private double _SumData;
@@ -95,6 +95,11 @@ namespace MeterKnife.Common.DataModels
             get { return _DataSet; }
         }
 
+        public void SetNominalValue(double nominalValue)
+        {
+            _NominalValue = nominalValue;
+        }
+
         public bool Export(string fileFullName)
         {
             var hssfworkbook = new HSSFWorkbook();
@@ -113,11 +118,11 @@ namespace MeterKnife.Common.DataModels
                 sheet1.AutoSizeColumn(0);
                 sheet1.AutoSizeColumn(1);
                 sheet1.AutoSizeColumn(2);
-                using (var file = new FileStream(fileFullName, FileMode.Create))
-                {
-                    hssfworkbook.Write(file); //创建test.xls文件。
-                    file.Close();
-                }
+            }
+            using (var file = new FileStream(fileFullName, FileMode.Create))
+            {
+                hssfworkbook.Write(file);
+                file.Close();
             }
             return true;
         }
@@ -143,9 +148,9 @@ namespace MeterKnife.Common.DataModels
             _RmsData += value*value;
             RootMeanSquare = Math.Sqrt(_RmsData/count);
 
-            if (Math.Abs(ExpectedValue) > 0)
+            if (Math.Abs(_NominalValue) > 0)
             {
-                RootMeanSquareDeviation = RootMeanSquare - ExpectedValue;
+                RootMeanSquareDeviation = RootMeanSquare - _NominalValue;
             }
 
             //触发数据源发生变化
