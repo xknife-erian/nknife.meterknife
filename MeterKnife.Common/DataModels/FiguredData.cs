@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Windows.Forms.VisualStyles;
 using Common.Logging;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.Formula.Functions;
+using NPOI.SS.UserModel;
 
 namespace MeterKnife.Common.DataModels
 {
@@ -143,6 +147,33 @@ namespace MeterKnife.Common.DataModels
             EventHandler<CollectEventArgs> handler = ReceviedCollectData;
             if (handler != null) 
                 handler(this, e);
+        }
+
+        public bool Export(string fileFullName)
+        {
+            var hssfworkbook = new HSSFWorkbook(); 
+
+            ISheet sheet1 = hssfworkbook.CreateSheet("测量数据");
+
+            var tableRows = DataSet.Tables[1].Rows;
+            for (int i = 0; i < DataSet.Tables[1].Rows.Count; i++)
+            {
+                IRow row = sheet1.CreateRow(i);
+                var array = tableRows[i].ItemArray;
+                for (int j = 0; j < array.Length; j++)
+                {
+                    row.CreateCell(j).SetCellValue(array[j].ToString());
+                }
+                sheet1.AutoSizeColumn(0);
+                sheet1.AutoSizeColumn(1);
+                sheet1.AutoSizeColumn(2);
+                using (var file = new FileStream(fileFullName, FileMode.Create))
+                {
+                    hssfworkbook.Write(file); //创建test.xls文件。
+                    file.Close();
+                }
+            }
+            return true;
         }
     }
 }

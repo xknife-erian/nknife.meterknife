@@ -3,16 +3,16 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
-using MeterKnife.Common;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
 using MeterKnife.Instruments.Properties;
-using NKnife.Configuring.UserData;
 using NKnife.Events;
 using NKnife.IoC;
+using NKnife.Wrapper;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -26,8 +26,8 @@ namespace MeterKnife.Instruments
         private static readonly ILog _logger = LogManager.GetLogger<CollectDataView>();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
-        private IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
-        private FiguredData _FiguredData = new FiguredData();
+        private readonly FiguredData _FiguredData = new FiguredData();
+        private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
 
         protected LineSeries _MainLineSeries = new LineSeries();
         protected LinearAxis _MainValueAxis = new LinearAxis();
@@ -43,8 +43,8 @@ namespace MeterKnife.Instruments
 
             _StartStripButton.Image = Resources.start;
             _StopStripButton.Image = Resources.stop;
-            _SaveStripButton3.Image = Resources.save;
-            _ExportStripButton1.Image = Resources.export;
+            _SaveStripButton.Image = Resources.save;
+            _ExportStripButton.Image = Resources.export;
             _PhotoToolStripButton.Image = Resources.photo;
             _ZoomInToolStripButton.Image = Resources.zoom_in;
             _ZoomOutToolStripButton.Image = Resources.zoom_out;
@@ -80,36 +80,6 @@ namespace MeterKnife.Instruments
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
         }
 
-        private void SetStripButtonState(bool isCollected)
-        {
-            if (isCollected)
-            {
-                _StartStripButton.Enabled = false;
-                _StopStripButton.Enabled = true;
-                _SaveStripButton3.Enabled = true;
-                _ExportStripButton1.Enabled = true;
-                _PhotoToolStripButton.Enabled = true;
-                _ZoomInToolStripButton.Enabled = true;
-                _ZoomOutToolStripButton.Enabled = true;
-            }
-            else
-            {
-                _StartStripButton.Enabled = true;
-                _StopStripButton.Enabled = false;
-                _SaveStripButton3.Enabled = false;
-                _ExportStripButton1.Enabled = false;
-                _PhotoToolStripButton.Enabled = false;
-                _ZoomInToolStripButton.Enabled = false;
-                _ZoomOutToolStripButton.Enabled = false;
-            }
-        }
-
-        void _FiguredData_ReceviedCollectData(object sender, Common.EventParameters.CollectEventArgs e)
-        {
-            var item = string.Format("{0}\t{1}\t{2}", e.CollectData.DateTime, e.CollectData.Data, e.CollectData.Temperature);
-            _CollectDataList.ThreadSafeInvoke(() => _CollectDataList.Items.Insert(0, item));
-        }
-
         public BaseMeter Meter
         {
             get { return _Meter; }
@@ -129,6 +99,36 @@ namespace MeterKnife.Instruments
         public int Port { get; set; }
 
         public CommunicationType CommunicationType { get; set; }
+
+        private void SetStripButtonState(bool isCollected)
+        {
+            if (isCollected)
+            {
+                _StartStripButton.Enabled = false;
+                _StopStripButton.Enabled = true;
+                _SaveStripButton.Enabled = true;
+                _ExportStripButton.Enabled = true;
+                _PhotoToolStripButton.Enabled = true;
+                _ZoomInToolStripButton.Enabled = true;
+                _ZoomOutToolStripButton.Enabled = true;
+            }
+            else
+            {
+                _StartStripButton.Enabled = true;
+                _StopStripButton.Enabled = false;
+                _SaveStripButton.Enabled = false;
+                _ExportStripButton.Enabled = false;
+                _PhotoToolStripButton.Enabled = false;
+                _ZoomInToolStripButton.Enabled = false;
+                _ZoomOutToolStripButton.Enabled = false;
+            }
+        }
+
+        private void _FiguredData_ReceviedCollectData(object sender, CollectEventArgs e)
+        {
+            string item = string.Format("{0}\t{1}\t{2}", e.CollectData.DateTime, e.CollectData.Data, e.CollectData.Temperature);
+            _CollectDataList.ThreadSafeInvoke(() => _CollectDataList.Items.Insert(0, item));
+        }
 
         private PlotModel BuildMainPlogModel()
         {
@@ -259,7 +259,7 @@ namespace MeterKnife.Instruments
             {
                 if ((saying.GpibAddress != Meter.GpibAddress) || (saying.Content.Length < 6))
                     return;
-                string data = saying.Content;//.Substring(1, saying.Content.Length - 6);
+                string data = saying.Content; //.Substring(1, saying.Content.Length - 6);
                 double yzl = 0;
                 if (double.TryParse(data, out yzl))
                 {
@@ -280,10 +280,32 @@ namespace MeterKnife.Instruments
                     _MainLineSeries.PlotModel.InvalidatePlot(true);
                 }
             }
-            _FiguredDataPropertyGrid.ThreadSafeInvoke(() =>
-            {
-                _FiguredDataPropertyGrid.Refresh();
-            });
+            _FiguredDataPropertyGrid.ThreadSafeInvoke(() => { _FiguredDataPropertyGrid.Refresh(); });
+        }
+
+        private void _SaveStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _ExportStripButton_Click(object sender, EventArgs e)
+        {
+            _FiguredData.Export(@"z:\abc.csv");
+        }
+
+        private void _PhotoToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _ZoomInToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _ZoomOutToolStripButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

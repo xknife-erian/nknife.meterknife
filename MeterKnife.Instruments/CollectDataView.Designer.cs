@@ -43,9 +43,9 @@
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
             this._StartStripButton = new System.Windows.Forms.ToolStripButton();
             this._StopStripButton = new System.Windows.Forms.ToolStripButton();
-            this._SaveStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this._SaveStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this._ExportStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this._ExportStripButton = new System.Windows.Forms.ToolStripButton();
             this._PhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -208,9 +208,9 @@
             this._PlotToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._StartStripButton,
             this._StopStripButton,
-            this._SaveStripButton3,
+            this._SaveStripButton,
             this.toolStripSeparator1,
-            this._ExportStripButton1,
+            this._ExportStripButton,
             this._PhotoToolStripButton,
             this.toolStripSeparator2,
             this._ZoomInToolStripButton,
@@ -243,28 +243,30 @@
             this._StopStripButton.Text = "停止";
             this._StopStripButton.Click += new System.EventHandler(this._StopStripButton_Click);
             // 
-            // _SaveStripButton3
+            // _SaveStripButton
             // 
-            this._SaveStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._SaveStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("_SaveStripButton3.Image")));
-            this._SaveStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._SaveStripButton3.Name = "_SaveStripButton3";
-            this._SaveStripButton3.Size = new System.Drawing.Size(23, 22);
-            this._SaveStripButton3.Text = "保存";
+            this._SaveStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._SaveStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_SaveStripButton.Image")));
+            this._SaveStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._SaveStripButton.Name = "_SaveStripButton";
+            this._SaveStripButton.Size = new System.Drawing.Size(23, 22);
+            this._SaveStripButton.Text = "保存";
+            this._SaveStripButton.Click += new System.EventHandler(this._SaveStripButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // _ExportStripButton1
+            // _ExportStripButton
             // 
-            this._ExportStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ExportStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("_ExportStripButton1.Image")));
-            this._ExportStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ExportStripButton1.Name = "_ExportStripButton1";
-            this._ExportStripButton1.Size = new System.Drawing.Size(23, 22);
-            this._ExportStripButton1.Text = "导出";
+            this._ExportStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ExportStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_ExportStripButton.Image")));
+            this._ExportStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ExportStripButton.Name = "_ExportStripButton";
+            this._ExportStripButton.Size = new System.Drawing.Size(23, 22);
+            this._ExportStripButton.Text = "导出";
+            this._ExportStripButton.Click += new System.EventHandler(this._ExportStripButton_Click);
             // 
             // _PhotoToolStripButton
             // 
@@ -274,6 +276,7 @@
             this._PhotoToolStripButton.Name = "_PhotoToolStripButton";
             this._PhotoToolStripButton.Size = new System.Drawing.Size(23, 22);
             this._PhotoToolStripButton.Text = "截图";
+            this._PhotoToolStripButton.Click += new System.EventHandler(this._PhotoToolStripButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -288,6 +291,7 @@
             this._ZoomInToolStripButton.Name = "_ZoomInToolStripButton";
             this._ZoomInToolStripButton.Size = new System.Drawing.Size(23, 22);
             this._ZoomInToolStripButton.Text = "放大";
+            this._ZoomInToolStripButton.Click += new System.EventHandler(this._ZoomInToolStripButton_Click);
             // 
             // _ZoomOutToolStripButton
             // 
@@ -297,6 +301,7 @@
             this._ZoomOutToolStripButton.Name = "_ZoomOutToolStripButton";
             this._ZoomOutToolStripButton.Size = new System.Drawing.Size(23, 22);
             this._ZoomOutToolStripButton.Text = "缩小";
+            this._ZoomOutToolStripButton.Click += new System.EventHandler(this._ZoomOutToolStripButton_Click);
             // 
             // toolStripSeparator3
             // 
@@ -353,10 +358,10 @@
         private System.Windows.Forms.SplitContainer _PlotSplitContainer;
         private System.Windows.Forms.ToolStripButton _StartStripButton;
         private System.Windows.Forms.ToolStripButton _StopStripButton;
-        private System.Windows.Forms.ToolStripButton _SaveStripButton3;
+        private System.Windows.Forms.ToolStripButton _SaveStripButton;
         private System.Windows.Forms.PropertyGrid _FiguredDataPropertyGrid;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton _ExportStripButton1;
+        private System.Windows.Forms.ToolStripButton _ExportStripButton;
         private System.Windows.Forms.ToolStripButton _PhotoToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton _ZoomInToolStripButton;
