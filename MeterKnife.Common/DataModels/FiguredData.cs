@@ -84,7 +84,7 @@ namespace MeterKnife.Common.DataModels
 
         public bool Save(string fileFullName)
         {
-            return DI.Get<IMeterDataService>().Save(fileFullName, DataSet, Meter);
+            return DI.Get<IMeterDataService>().Save(fileFullName, DataSet);
         }
 
         public event EventHandler<CollectEventArgs> ReceviedCollectData;

@@ -288,7 +288,7 @@ namespace MeterKnife.Instruments
 
         private void _SaveStripButton_Click(object sender, EventArgs e)
         {
-
+            _FiguredData.Save(@"z:\abcd.sqldb");
         }
 
         private void _ExportStripButton_Click(object sender, EventArgs e)

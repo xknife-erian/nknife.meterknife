@@ -4,6 +4,6 @@ namespace MeterKnife.Common.Interfaces
 {
     public interface IMeterDataService
     {
-        bool Save(string fileFullName, DataSet dataSet, IMeter meter);
+        bool Save(string fileFullName, DataSet dataSet);
     }
 }
