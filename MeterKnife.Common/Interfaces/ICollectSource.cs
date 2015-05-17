@@ -14,6 +14,20 @@ namespace MeterKnife.Common.Interfaces
         DataSet DataSet { get; }
 
         /// <summary>
+        /// 导出到Excle文件
+        /// </summary>
+        /// <param name="fileFullName"></param>
+        /// <returns></returns>
+        bool Export(string fileFullName);
+
+        /// <summary>
+        /// 导出到Excle文件
+        /// </summary>
+        /// <param name="fileFullName"></param>
+        /// <returns></returns>
+        bool Save(string fileFullName);
+
+        /// <summary>
         /// 当收到仪器采集数据时
         /// </summary>
         event EventHandler<CollectEventArgs> ReceviedCollectData;

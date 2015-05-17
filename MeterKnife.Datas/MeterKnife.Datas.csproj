@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IoC\Modules.cs" />
+    <Compile Include="MeterDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System.Data.SQLite\SqliteColumn.cs" />
     <Compile Include="System.Data.SQLite\SqLiteColumnCollection.cs" />

@@ -7,6 +7,7 @@ namespace MeterKnife.Datas.IoC
     {
         public override void Load()
         {
+            Bind<IMeterDataService>().To<MeterDataService>().InSingletonScope();
         }
     }
 }

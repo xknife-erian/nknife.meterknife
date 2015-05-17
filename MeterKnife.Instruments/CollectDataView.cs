@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
@@ -105,22 +106,24 @@ namespace MeterKnife.Instruments
             if (isCollected)
             {
                 _StartStripButton.Enabled = false;
+                _ExportStripButton.Enabled = false;
+                _SaveStripButton.Enabled = false;
+
                 _StopStripButton.Enabled = true;
-                _SaveStripButton.Enabled = true;
-                _ExportStripButton.Enabled = true;
-                _PhotoToolStripButton.Enabled = true;
-                _ZoomInToolStripButton.Enabled = true;
-                _ZoomOutToolStripButton.Enabled = true;
+                _PhotoToolStripButton.Enabled = false;
+                _ZoomInToolStripButton.Enabled = false;
+                _ZoomOutToolStripButton.Enabled = false;
             }
             else
             {
                 _StartStripButton.Enabled = true;
+                _ExportStripButton.Enabled = true;
+                _SaveStripButton.Enabled = true;
+
                 _StopStripButton.Enabled = false;
-                _SaveStripButton.Enabled = false;
-                _ExportStripButton.Enabled = false;
-                _PhotoToolStripButton.Enabled = false;
-                _ZoomInToolStripButton.Enabled = false;
-                _ZoomOutToolStripButton.Enabled = false;
+                _PhotoToolStripButton.Enabled = true;
+                _ZoomInToolStripButton.Enabled = true;
+                _ZoomOutToolStripButton.Enabled = true;
             }
         }
 
@@ -290,7 +293,15 @@ namespace MeterKnife.Instruments
 
         private void _ExportStripButton_Click(object sender, EventArgs e)
         {
-            _FiguredData.Export(@"z:\abc.csv");
+            var dialog = new ExportFileSelectorDialog();
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                var dir = dialog.SelectedPath;
+                var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
+                var name = start.ToString("yyyyMMddHHmmss") + ".xls";
+                var full = Path.Combine(dir, name);
+                _FiguredData.Export(full);
+            }
         }
 
         private void _PhotoToolStripButton_Click(object sender, EventArgs e)
