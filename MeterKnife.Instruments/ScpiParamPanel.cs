@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
+using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Instruments.Properties;
@@ -12,6 +13,7 @@ namespace MeterKnife.Instruments
 {
     public class ScpiParamPanel : BaseParamPanel
     {
+        private static readonly ILog _logger = LogManager.GetLogger<ScpiParamPanel>();
         protected readonly List<ComboBox> _ComboBoxList = new List<ComboBox>();
         protected GpibCommandList _Commandlist;
 
@@ -89,22 +91,36 @@ namespace MeterKnife.Instruments
                     GpibCommand cmd = ParseGpibCommand(isScpi, confContentEle, rootCmd.Command);
                     cbx.Items.Add(cmd);
 
-                    #region 有配置子项
-
                     if (!confContentEle.HasChildNodes)
                         continue;
+
+                    #region 有配置子项
+
+                    var subButton = new Button
+                    {
+                        BackgroundImage = Resources.arrow_triangle_down,
+                        BackgroundImageLayout = ImageLayout.Center,
+                        FlatStyle = FlatStyle.Popup,
+                        Dock = DockStyle.Right,
+                        Width = 24,
+                        Height = 22
+                    };
+                    cbx.SelectedIndexChanged += (s, e) =>
+                    {
+                        var selectedCmd = cbx.SelectedItem as GpibCommand;
+                        if (selectedCmd != null && selectedCmd.Tag != null)
+                            subButton.Tag = cmd.Tag;
+                    };
                     if (!isAddButton)
                     {
-                        var subButton = new Button
-                        {
-                            BackgroundImage = Resources.arrow_triangle_down,
-                            BackgroundImageLayout = ImageLayout.Center,
-                            FlatStyle = FlatStyle.Popup,
-                            Dock = DockStyle.Right,
-                            Width = 24,
-                            Height = 22
-                        };
                         cbxPanel.Controls.Add(subButton);
+                        subButton.Click += (s, e) =>
+                        {
+                            if (subButton.Tag != null)
+                            {
+                                ShowSubCommandMenu((GpibCommand) subButton.Tag, subButton);
+                            }
+                        };
                         isAddButton = true;
                     }
                     foreach (XmlElement groupElement in confContentEle.ChildNodes)
@@ -117,7 +133,9 @@ namespace MeterKnife.Instruments
                         foreach (XmlElement gpElement in groupElement.ChildNodes)
                         {
                             GpibCommand gpCmd = ParseGpibCommand(isScpi, gpElement, groupCmd.Command);
+                            //TODO:
                         }
+                        cmd.Tag = groupCmd;
                     }
 
                     #endregion
@@ -127,6 +145,14 @@ namespace MeterKnife.Instruments
                 index++;
             }
             _Panel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        }
+
+        private void ShowSubCommandMenu(GpibCommand tag, Control control)
+        {
+            var menu = new ContextMenuStrip();
+            menu.Items.Add(new ToolStripMenuItem(tag.Content));
+            //TODO:
+            menu.Show(control,new Point(1,1));
         }
 
         private static GpibCommand ParseGpibCommand(bool isScpi, XmlElement element, string rootCmd)
