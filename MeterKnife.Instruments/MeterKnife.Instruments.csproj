@@ -66,6 +66,11 @@
     <Compile Include="Keithley\K2000ParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ScpiMeter.cs" />
     <Compile Include="ScpiParamPanel.cs">
       <SubType>UserControl</SubType>
@@ -83,23 +88,21 @@
     <Compile Include="IoC\MeterModule.cs" />
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Agilent\Ag34401AParam.xml" />
+    <None Include="Agilent\Ag34401AParam.xml">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="license.txt" />
-    <Content Include="Properties\ToolstripButton\export.png" />
-    <Content Include="Properties\ToolstripButton\photo.png" />
-    <Content Include="Properties\ToolstripButton\save.png" />
-    <Content Include="Properties\ToolstripButton\start.png" />
-    <Content Include="Properties\ToolstripButton\stop.png" />
-    <Content Include="Properties\ToolstripButton\zoom_in.png" />
-    <Content Include="Properties\ToolstripButton\zoom_out.png" />
+    <Content Include="Properties\content\arrow_triangle_down.png" />
+    <Content Include="Properties\content\ToolstripButton\export.png" />
+    <Content Include="Properties\content\ToolstripButton\photo.png" />
+    <Content Include="Properties\content\ToolstripButton\save.png" />
+    <Content Include="Properties\content\ToolstripButton\start.png" />
+    <Content Include="Properties\content\ToolstripButton\stop.png" />
+    <Content Include="Properties\content\ToolstripButton\zoom_in.png" />
+    <Content Include="Properties\content\ToolstripButton\zoom_out.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -110,7 +113,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ScpiParamPanel.resx">
       <DependentUpon>ScpiParamPanel.cs</DependentUpon>

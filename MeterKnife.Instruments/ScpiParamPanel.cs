@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Xml;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Instruments.Properties;
 using NKnife.GUI.WinForm;
 
 namespace MeterKnife.Instruments
@@ -94,14 +95,14 @@ namespace MeterKnife.Instruments
                         continue;
                     if (!isAddButton)
                     {
-                        var subButton = new ImageButton
+                        var subButton = new Button
                         {
-                            Style = ImageButton.ImageButtonStyle.ArrowRight,
-                            ButtonColor = Color.SlateGray,
+                            BackgroundImage = Resources.arrow_triangle_down,
+                            BackgroundImageLayout = ImageLayout.Center,
                             FlatStyle = FlatStyle.Popup,
                             Dock = DockStyle.Right,
-                            Width = 26,
-                            Height = 27
+                            Width = 24,
+                            Height = 22
                         };
                         cbxPanel.Controls.Add(subButton);
                         isAddButton = true;
@@ -156,7 +157,7 @@ namespace MeterKnife.Instruments
             var cbx = new ComboBox
             {
                 DropDownStyle = ComboBoxStyle.DropDownList,
-                Width = 170,
+                Width = 172,
                 Location = new Point(1, 1),
                 Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
             };
