@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
+using MeterKnife.Common;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
@@ -13,6 +14,7 @@ using MeterKnife.Common.Util;
 using MeterKnife.Instruments.Properties;
 using NKnife.Events;
 using NKnife.IoC;
+using NKnife.Utility;
 using NKnife.Wrapper;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -25,6 +27,7 @@ namespace MeterKnife.Instruments
     public partial class CollectDataView : DockContent
     {
         private static readonly ILog _logger = LogManager.GetLogger<CollectDataView>();
+        private UtilityRandom _Random = new UtilityRandom();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
         private readonly FiguredData _FiguredData = new FiguredData();
@@ -288,7 +291,14 @@ namespace MeterKnife.Instruments
 
         private void _SaveStripButton_Click(object sender, EventArgs e)
         {
-            _FiguredData.Save(@"z:\abcd.sqldb");
+            var start = (DateTime)_FiguredData.DataSet.Tables[1].Rows[0][0];
+            var random = _Random.GetString(3, UtilityRandom.RandomCharType.Uppercased);
+            var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), random, "s3db");
+            var full = Path.Combine(DI.Get<MeterKnifeUserData>().GetValue(MeterKnifeUserData.DATA_PATH, string.Empty), name);
+            if (_FiguredData.Save(full))
+            {
+                MessageBox.Show(string.Format("数据文件已保存:\r\n{0}", full));
+            }
         }
 
         private void _ExportStripButton_Click(object sender, EventArgs e)
@@ -298,7 +308,8 @@ namespace MeterKnife.Instruments
             {
                 var dir = dialog.SelectedPath;
                 var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
-                var name = start.ToString("yyyyMMddHHmmss") + ".xls";
+                var random = _Random.GetString(3, UtilityRandom.RandomCharType.Uppercased);
+                var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), random, "xls");
                 var full = Path.Combine(dir, name);
                 _FiguredData.Export(full);
             }
