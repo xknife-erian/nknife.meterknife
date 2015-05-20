@@ -18,7 +18,7 @@ namespace MeterKnife.Common.Interfaces
         /// <summary>
         /// 正在采集数据,当正在采集数据,一些功能将被禁用
         /// </summary>
-        bool OnCollected { get; set; }
+        bool CollectBeginning { get; set; }
 
         /// <summary>
         /// 当应用程序的采集状态发生改变时

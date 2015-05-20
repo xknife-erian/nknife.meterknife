@@ -1,7 +1,7 @@
 ﻿using MeterKnife.Common.Base;
-using MeterKnife.Instruments.Agilent;
+using MeterKnife.Instruments.Specified.Agilent;
 
-namespace MeterKnife.Instruments.Keithley
+namespace MeterKnife.Instruments.Specified.Keithley
 {
     public class K2000 : BaseMeter
     {

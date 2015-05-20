@@ -12,7 +12,7 @@ namespace MeterKnife.Instruments.IoC
     {
         public override void Load()
         {
-            Bind<CollectDataView>().To<CollectDataView>().When(Request);
+            Bind<DigitMultiMeterView>().To<DigitMultiMeterView>().When(Request);
         }
 
         private bool Request(IRequest request)

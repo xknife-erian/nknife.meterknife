@@ -1,6 +1,6 @@
 ﻿using MeterKnife.Common.Base;
 
-namespace MeterKnife.Instruments
+namespace MeterKnife.Instruments.Common
 {
     public class ScpiMeter : BaseMeter
     {

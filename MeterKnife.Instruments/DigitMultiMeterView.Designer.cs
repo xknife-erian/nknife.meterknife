@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Instruments
 {
-    partial class CollectDataView
+    partial class DigitMultiMeterView
     {
         /// <summary>
         /// Required designer variable.
@@ -40,8 +40,15 @@
             this._DataGridPage = new System.Windows.Forms.TabPage();
             this._CollectDataList = new System.Windows.Forms.ListBox();
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
+            this._StartStripButton = new System.Windows.Forms.ToolStripButton();
+            this._StopStripButton = new System.Windows.Forms.ToolStripButton();
+            this._SaveStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._ExportStripButton = new System.Windows.Forms.ToolStripButton();
+            this._PhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -50,14 +57,8 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this._IntervalTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this._StartStripButton = new System.Windows.Forms.ToolStripButton();
-            this._StopStripButton = new System.Windows.Forms.ToolStripButton();
-            this._SaveStripButton = new System.Windows.Forms.ToolStripButton();
-            this._ExportStripButton = new System.Windows.Forms.ToolStripButton();
-            this._PhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ChartDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
             this._MainSplitContainer.Panel1.SuspendLayout();
             this._MainSplitContainer.Panel2.SuspendLayout();
@@ -93,7 +94,7 @@
             this._MainSplitContainer.Panel2.Controls.Add(this._MainTabControl);
             this._MainSplitContainer.Panel2.Controls.Add(this._PlotToolStrip);
             this._MainSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this._MainSplitContainer.Size = new System.Drawing.Size(899, 475);
+            this._MainSplitContainer.Size = new System.Drawing.Size(932, 475);
             this._MainSplitContainer.SplitterDistance = 250;
             this._MainSplitContainer.TabIndex = 0;
             // 
@@ -165,7 +166,7 @@
             this._MainTabControl.Name = "_MainTabControl";
             this._MainTabControl.Padding = new System.Drawing.Point(18, 3);
             this._MainTabControl.SelectedIndex = 0;
-            this._MainTabControl.Size = new System.Drawing.Size(645, 448);
+            this._MainTabControl.Size = new System.Drawing.Size(678, 448);
             this._MainTabControl.TabIndex = 0;
             // 
             // _PlotPage
@@ -174,7 +175,7 @@
             this._PlotPage.Location = new System.Drawing.Point(4, 28);
             this._PlotPage.Name = "_PlotPage";
             this._PlotPage.Padding = new System.Windows.Forms.Padding(3);
-            this._PlotPage.Size = new System.Drawing.Size(637, 416);
+            this._PlotPage.Size = new System.Drawing.Size(670, 416);
             this._PlotPage.TabIndex = 0;
             this._PlotPage.Text = "实时图表";
             this._PlotPage.UseVisualStyleBackColor = true;
@@ -185,7 +186,7 @@
             this._PlotSplitContainer.Location = new System.Drawing.Point(3, 3);
             this._PlotSplitContainer.Name = "_PlotSplitContainer";
             this._PlotSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this._PlotSplitContainer.Size = new System.Drawing.Size(631, 410);
+            this._PlotSplitContainer.Size = new System.Drawing.Size(664, 410);
             this._PlotSplitContainer.SplitterDistance = 250;
             this._PlotSplitContainer.TabIndex = 2;
             // 
@@ -195,7 +196,7 @@
             this._DataGridPage.Location = new System.Drawing.Point(4, 28);
             this._DataGridPage.Name = "_DataGridPage";
             this._DataGridPage.Padding = new System.Windows.Forms.Padding(3);
-            this._DataGridPage.Size = new System.Drawing.Size(637, 416);
+            this._DataGridPage.Size = new System.Drawing.Size(670, 416);
             this._DataGridPage.TabIndex = 1;
             this._DataGridPage.Text = "实时数据";
             this._DataGridPage.UseVisualStyleBackColor = true;
@@ -206,7 +207,7 @@
             this._CollectDataList.FormattingEnabled = true;
             this._CollectDataList.Location = new System.Drawing.Point(3, 3);
             this._CollectDataList.Name = "_CollectDataList";
-            this._CollectDataList.Size = new System.Drawing.Size(631, 410);
+            this._CollectDataList.Size = new System.Drawing.Size(664, 410);
             this._CollectDataList.TabIndex = 0;
             // 
             // _PlotToolStrip
@@ -229,22 +230,93 @@
             this.toolStripLabel3,
             this._IntervalTextBox,
             this.toolStripSeparator5,
-            this._ChartDropDownButton});
+            this._ChartDropDownButton,
+            this.toolStripSeparator6});
             this._PlotToolStrip.Location = new System.Drawing.Point(0, 2);
             this._PlotToolStrip.Name = "_PlotToolStrip";
-            this._PlotToolStrip.Size = new System.Drawing.Size(645, 25);
+            this._PlotToolStrip.Size = new System.Drawing.Size(678, 25);
             this._PlotToolStrip.TabIndex = 0;
             this._PlotToolStrip.Text = "toolStrip1";
+            // 
+            // _StartStripButton
+            // 
+            this._StartStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._StartStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.start;
+            this._StartStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._StartStripButton.Name = "_StartStripButton";
+            this._StartStripButton.Size = new System.Drawing.Size(23, 22);
+            this._StartStripButton.Text = "开始";
+            this._StartStripButton.Click += new System.EventHandler(this._StartStripButton_Click);
+            // 
+            // _StopStripButton
+            // 
+            this._StopStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._StopStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.stop;
+            this._StopStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._StopStripButton.Name = "_StopStripButton";
+            this._StopStripButton.Size = new System.Drawing.Size(23, 22);
+            this._StopStripButton.Text = "停止";
+            this._StopStripButton.Click += new System.EventHandler(this._StopStripButton_Click);
+            // 
+            // _SaveStripButton
+            // 
+            this._SaveStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._SaveStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.save;
+            this._SaveStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._SaveStripButton.Name = "_SaveStripButton";
+            this._SaveStripButton.Size = new System.Drawing.Size(23, 22);
+            this._SaveStripButton.Text = "保存";
+            this._SaveStripButton.Click += new System.EventHandler(this._SaveStripButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // _ExportStripButton
+            // 
+            this._ExportStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ExportStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.export;
+            this._ExportStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ExportStripButton.Name = "_ExportStripButton";
+            this._ExportStripButton.Size = new System.Drawing.Size(23, 22);
+            this._ExportStripButton.Text = "导出";
+            this._ExportStripButton.Click += new System.EventHandler(this._ExportStripButton_Click);
+            // 
+            // _PhotoToolStripButton
+            // 
+            this._PhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._PhotoToolStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.photo;
+            this._PhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._PhotoToolStripButton.Name = "_PhotoToolStripButton";
+            this._PhotoToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._PhotoToolStripButton.Text = "截图";
+            this._PhotoToolStripButton.Click += new System.EventHandler(this._PhotoToolStripButton_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // _ZoomInToolStripButton
+            // 
+            this._ZoomInToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ZoomInToolStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.zoom_in;
+            this._ZoomInToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ZoomInToolStripButton.Name = "_ZoomInToolStripButton";
+            this._ZoomInToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._ZoomInToolStripButton.Text = "放大";
+            this._ZoomInToolStripButton.Click += new System.EventHandler(this._ZoomInToolStripButton_Click);
+            // 
+            // _ZoomOutToolStripButton
+            // 
+            this._ZoomOutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ZoomOutToolStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.zoom_out;
+            this._ZoomOutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ZoomOutToolStripButton.Name = "_ZoomOutToolStripButton";
+            this._ZoomOutToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._ZoomOutToolStripButton.Text = "缩小";
+            this._ZoomOutToolStripButton.Click += new System.EventHandler(this._ZoomOutToolStripButton_Click);
             // 
             // toolStripSeparator3
             // 
@@ -289,92 +361,27 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // _StartStripButton
-            // 
-            this._StartStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._StartStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.start;
-            this._StartStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._StartStripButton.Name = "_StartStripButton";
-            this._StartStripButton.Size = new System.Drawing.Size(23, 22);
-            this._StartStripButton.Text = "开始";
-            this._StartStripButton.Click += new System.EventHandler(this._StartStripButton_Click);
-            // 
-            // _StopStripButton
-            // 
-            this._StopStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._StopStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.stop;
-            this._StopStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._StopStripButton.Name = "_StopStripButton";
-            this._StopStripButton.Size = new System.Drawing.Size(23, 22);
-            this._StopStripButton.Text = "停止";
-            this._StopStripButton.Click += new System.EventHandler(this._StopStripButton_Click);
-            // 
-            // _SaveStripButton
-            // 
-            this._SaveStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._SaveStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.save;
-            this._SaveStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._SaveStripButton.Name = "_SaveStripButton";
-            this._SaveStripButton.Size = new System.Drawing.Size(23, 22);
-            this._SaveStripButton.Text = "保存";
-            this._SaveStripButton.Click += new System.EventHandler(this._SaveStripButton_Click);
-            // 
-            // _ExportStripButton
-            // 
-            this._ExportStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ExportStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.export;
-            this._ExportStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ExportStripButton.Name = "_ExportStripButton";
-            this._ExportStripButton.Size = new System.Drawing.Size(23, 22);
-            this._ExportStripButton.Text = "导出";
-            this._ExportStripButton.Click += new System.EventHandler(this._ExportStripButton_Click);
-            // 
-            // _PhotoToolStripButton
-            // 
-            this._PhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._PhotoToolStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.photo;
-            this._PhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._PhotoToolStripButton.Name = "_PhotoToolStripButton";
-            this._PhotoToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._PhotoToolStripButton.Text = "截图";
-            this._PhotoToolStripButton.Click += new System.EventHandler(this._PhotoToolStripButton_Click);
-            // 
-            // _ZoomInToolStripButton
-            // 
-            this._ZoomInToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ZoomInToolStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.zoom_in;
-            this._ZoomInToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ZoomInToolStripButton.Name = "_ZoomInToolStripButton";
-            this._ZoomInToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._ZoomInToolStripButton.Text = "放大";
-            this._ZoomInToolStripButton.Click += new System.EventHandler(this._ZoomInToolStripButton_Click);
-            // 
-            // _ZoomOutToolStripButton
-            // 
-            this._ZoomOutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ZoomOutToolStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.zoom_out;
-            this._ZoomOutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ZoomOutToolStripButton.Name = "_ZoomOutToolStripButton";
-            this._ZoomOutToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._ZoomOutToolStripButton.Text = "缩小";
-            this._ZoomOutToolStripButton.Click += new System.EventHandler(this._ZoomOutToolStripButton_Click);
-            // 
             // _ChartDropDownButton
             // 
-            this._ChartDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._ChartDropDownButton.Image = global::MeterKnife.Instruments.Properties.Resources.chart;
             this._ChartDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ChartDropDownButton.Name = "_ChartDropDownButton";
-            this._ChartDropDownButton.Size = new System.Drawing.Size(29, 22);
+            this._ChartDropDownButton.Size = new System.Drawing.Size(61, 22);
+            this._ChartDropDownButton.Text = "分析";
             // 
-            // CollectDataView
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
+            // DigitMultiMeterView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(903, 479);
+            this.ClientSize = new System.Drawing.Size(936, 479);
             this.Controls.Add(this._MainSplitContainer);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.Name = "CollectDataView";
+            this.Name = "DigitMultiMeterView";
             this.Padding = new System.Windows.Forms.Padding(2);
             this.Text = "CollectDataView";
             this._MainSplitContainer.Panel1.ResumeLayout(false);
@@ -431,5 +438,6 @@
         private System.Windows.Forms.ToolStripTextBox _IntervalTextBox;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripDropDownButton _ChartDropDownButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }

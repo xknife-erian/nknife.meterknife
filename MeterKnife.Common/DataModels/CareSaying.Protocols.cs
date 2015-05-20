@@ -48,7 +48,9 @@ namespace MeterKnife.Common.DataModels
         public static byte[] CareSetter(byte subcommand, byte[] content)
         {
             var head = new byte[] { 0x08, 0x00, 0x02, 0xB0, subcommand};
-            return UtilityCollection.MergerArray(head, content);
+            var newbs = UtilityCollection.MergerArray(head, content);
+            newbs[2] = (byte)(newbs.Length - 3);
+            return newbs;
         }
 
         public static byte[] CareReset()

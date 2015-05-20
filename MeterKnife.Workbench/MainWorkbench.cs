@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Properties;
@@ -14,15 +15,20 @@ namespace MeterKnife.Workbench
     {
         private const string DOCK_PANEL_CONFIG = "dockpanel.config";
         private static readonly ILog _logger = LogManager.GetLogger<MainWorkbench>();
+        private readonly DockContent _CommandConsoleView = new CommandConsoleView();
+        private readonly DockContent _DataManagerView = new DataMangerView();
 
         private readonly DockPanel _DockPanel = new DockPanel();
         private readonly DockContent _InterfaceTreeView = new InterfaceTreeView();
         private readonly DockContent _LoggerView = new LoggerView();
-        private readonly DockContent _DataManagerView = new DataMangerView();
 
         public MainWorkbench()
         {
             InitializeComponent();
+#if DEBUG
+            _LoggerViewMenuItem.Checked = true;
+#endif
+            ViewMenuItemClickMethod();
             var about = DI.Get<IAbout>();
             string title = about.AssemblyTitle;
             Text = string.Format("{0}2015 - {1}", title, about.AssemblyVersion);
@@ -33,15 +39,51 @@ namespace MeterKnife.Workbench
             Closing += (s, e) => DockPanelSaveAsXml();
         }
 
+        private void ViewMenuItemClickMethod()
+        {
+            _ResetViewMenuItem.Click += (s, e) =>
+            {
+                //重置视图(删除视图配置文件,然后重新Load所有视图)
+                string configFile = GetLayoutConfigFile();
+                File.Delete(configFile);
+                DockPanelLoadFromXml();
+            };
+            _DataManagerViewMenuItem.CheckedChanged += (s, e) =>
+            {
+                if (_DataManagerViewMenuItem.Checked)
+                    _DataManagerView.Show(_DockPanel, DockState.DockRight);
+                else
+                    _DataManagerView.Hide();
+            };
+            _InterfaceTreeViewMenuItem.CheckedChanged += (s, e) =>
+            {
+                if (_InterfaceTreeViewMenuItem.Checked)
+                    _InterfaceTreeView.Show(_DockPanel, DockState.DockRight);
+                else
+                    _InterfaceTreeView.Hide();
+            };
+            _CommandConsoleViewMenuItem.CheckedChanged += (s, e) =>
+            {
+                if (_CommandConsoleViewMenuItem.Checked)
+                    _CommandConsoleView.Show(_DockPanel, DockState.DockRight);
+                else
+                    _CommandConsoleView.Hide();
+            };
+            _LoggerViewMenuItem.CheckedChanged += (s, e) =>
+            {
+                if (_LoggerViewMenuItem.Checked)
+                    _LoggerView.Show(_DockPanel, DockState.DockRight);
+                else
+                    _LoggerView.Hide();
+            };
+        }
+
         #region DockPanel
 
-        private static string LayoutConfigFile
+        private static string GetLayoutConfigFile()
         {
-            get
-            {
-                string dir = Path.GetDirectoryName(Application.ExecutablePath);
-                return dir != null ? Path.Combine(dir, DOCK_PANEL_CONFIG) : DOCK_PANEL_CONFIG;
-            }
+            string dir = Path.GetDirectoryName(Application.ExecutablePath);
+            return dir != null ? Path.Combine(dir, DOCK_PANEL_CONFIG) : DOCK_PANEL_CONFIG;
         }
 
         private void InitializeDockPanel()
@@ -60,23 +102,30 @@ namespace MeterKnife.Workbench
         /// </summary>
         private void DockPanelSaveAsXml()
         {
-            _DockPanel.SaveAsXml(LayoutConfigFile);
+            _DockPanel.SaveAsXml(GetLayoutConfigFile());
         }
 
         private void DockPanelLoadFromXml()
         {
             //加载布局
             var deserializeDockContent = new DeserializeDockContent(GetViewFromPersistString);
-            string configFile = LayoutConfigFile;
+            string configFile = GetLayoutConfigFile();
             if (File.Exists(configFile))
             {
                 _DockPanel.LoadFromXml(configFile, deserializeDockContent);
             }
             else
             {
-                _LoggerView.Show(_DockPanel, DockState.DockBottom);
-                _DataManagerView.Show(_DockPanel,DockState.DockRight);
-                _InterfaceTreeView.Show(_DockPanel, DockState.DockRight);
+                if (_DataManagerViewMenuItem.Checked)
+                    _DataManagerView.Show(_DockPanel, DockState.DockRight);
+                if (_InterfaceTreeViewMenuItem.Checked)
+                    _InterfaceTreeView.Show(_DockPanel, DockState.DockRight);
+
+                if (_CommandConsoleViewMenuItem.Checked)
+                    _CommandConsoleView.Show(_DockPanel, DockState.DockBottom);
+                if (_LoggerViewMenuItem.Checked)
+                    _LoggerView.Show(_DockPanel, DockState.DockBottom);
+
                 // var collectDataView = new CollectDataView();
                 // collectDataView.Show(_DockPanel, DockState.Document);
             }
@@ -85,17 +134,31 @@ namespace MeterKnife.Workbench
         private IDockContent GetViewFromPersistString(string persistString)
         {
             if (persistString == typeof (LoggerView).ToString())
-                return _LoggerView;
-            if (persistString == typeof(InterfaceTreeView).ToString())
-                return _InterfaceTreeView;
-            if (persistString == typeof(DataMangerView).ToString())
-                return _DataManagerView;
+            {
+                if (_LoggerViewMenuItem.Checked)
+                    return _LoggerView;
+            }
+            if (persistString == typeof (InterfaceTreeView).ToString())
+            {
+                if (_InterfaceTreeViewMenuItem.Checked)
+                    return _InterfaceTreeView;
+            }
+            if (persistString == typeof (DataMangerView).ToString())
+            {
+                if (_DataManagerViewMenuItem.Checked)
+                    return _DataManagerView;
+            }
+            if (persistString == typeof (CommandConsoleView).ToString())
+            {
+                if (_CommandConsoleViewMenuItem.Checked)
+                    return _CommandConsoleView;
+            }
             return null;
         }
 
         #endregion
 
-        private void _AboutMenuItem_Click(object sender, System.EventArgs e)
+        private void _AboutMenuItem_Click(object sender, EventArgs e)
         {
             var about = new AboutDialog();
             about.ShowDialog(this);

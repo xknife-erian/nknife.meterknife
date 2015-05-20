@@ -1,6 +1,7 @@
 ﻿using System.Xml;
+using MeterKnife.Instruments.Common;
 
-namespace MeterKnife.Instruments.Keithley
+namespace MeterKnife.Instruments.Specified.Keithley
 {
     public sealed class K2000ParamPanel : ScpiParamPanel
     {

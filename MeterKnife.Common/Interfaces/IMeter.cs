@@ -8,11 +8,14 @@ namespace MeterKnife.Common.Interfaces
     /// </summary>
     public interface IMeter
     {
-        int GpibAddress { get; set; }
+        /// <summary>
+        /// 品牌
+        /// </summary>
         string Brand { get; set; }
-        GpibLanguage Language { get; set; }
         string Name { get; set; }
-        string SimpleName { get; }
+        string AbbrName { get; }
+        int GpibAddress { get; set; }
+        GpibLanguage Language { get; set; }
         GpibCommandList GetGpibCommands();
     }
 }

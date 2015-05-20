@@ -69,12 +69,11 @@ namespace MeterKnife.Kernel.Services
                         Thread.Sleep(20);
                         Send(port, CareSaying.CareGetter(0xD2));
                         Thread.Sleep(20);
-                        var time = Encoding.ASCII.GetBytes(DateTime.Now.ToString("yyyyMMddHHmmss"));
-                        _logger.Trace(string.Format("Set Time:{0}", time.ToHexString()));
-                        Send(port, CareSaying.CareSetter(0xD9, time));
+                        var time = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        var timebs = Encoding.ASCII.GetBytes(time);
+                        _logger.Info(string.Format("Set Care Time:{0}", time));
+                        Send(port, CareSaying.CareSetter(0xD9, timebs));
                         Thread.Sleep(50);
-                        Send(port, CareSaying.CareReset());
-                        Thread.Sleep(100);
                     }
                 }
             }

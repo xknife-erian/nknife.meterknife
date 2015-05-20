@@ -14,7 +14,7 @@ namespace MeterKnife.Common.Base
         public string Brand { get; set; }
         public string Name { get; set; }
         public GpibLanguage Language { get; set; }
-        public string SimpleName { get { return MeterUtil.SimplifyName(Name).Second; } }
+        public string AbbrName { get { return MeterUtil.SimplifyName(Name).Second; } }
 
         public GpibCommandList GetGpibCommands()
         {

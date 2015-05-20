@@ -13,6 +13,7 @@ using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
 using MeterKnife.Instruments.Properties;
 using NKnife.Events;
+using NKnife.GUI.WinForm;
 using NKnife.IoC;
 using NKnife.Utility;
 using NKnife.Wrapper;
@@ -21,12 +22,13 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 using WeifenLuo.WinFormsUI.Docking;
+using LineStyle = OxyPlot.LineStyle;
 
 namespace MeterKnife.Instruments
 {
-    public partial class CollectDataView : DockContent
+    public partial class DigitMultiMeterView : DockContent
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CollectDataView>();
+        private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
         private readonly UtilityRandom _Random = new UtilityRandom();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
@@ -43,9 +45,13 @@ namespace MeterKnife.Instruments
         protected LineSeries _TemperatureLineSeries = new LineSeries();
         protected LinearAxis _TemperatureValueAxis = new LinearAxis();
 
-        public CollectDataView()
+        public DigitMultiMeterView()
         {
             InitializeComponent();
+
+            var tempcheckbox = new ToolStripCheckBox();
+            tempcheckbox.Text = "合并温度";
+            _PlotToolStrip.Items.Add(tempcheckbox);
 
             SetStripButtonState(false);
             _MeterKernel.Collected += (s, e) => SetStripButtonState(e.Item);
@@ -191,7 +197,7 @@ namespace MeterKnife.Instruments
             var handler = (ScpiProtocolHandler) _Comm.CareHandlers[Port];
             handler.ProtocolRecevied += OnProtocolRecevied;
             _OnCollect = true;
-            DI.Get<IMeterKernel>().OnCollected = true;
+            DI.Get<IMeterKernel>().CollectBeginning = true;
 
             double nv = 0;
             if (double.TryParse(_NominalValueTextBox.Text, out nv))
@@ -207,7 +213,7 @@ namespace MeterKnife.Instruments
         {
             _OnCollect = false;
             Thread.Sleep(50);
-            DI.Get<IMeterKernel>().OnCollected = false;
+            DI.Get<IMeterKernel>().CollectBeginning = false;
             var handler = (ScpiProtocolHandler) _Comm.CareHandlers[Port];
             handler.ProtocolRecevied -= OnProtocolRecevied;
         }

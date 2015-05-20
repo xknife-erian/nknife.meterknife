@@ -15,7 +15,7 @@ namespace MeterKnife.Kernel
 
         public Dictionary<int, List<int>> GpibDictionary { get; set; }
 
-        public bool OnCollected
+        public bool CollectBeginning
         {
             get { return _OnCollected; }
             set

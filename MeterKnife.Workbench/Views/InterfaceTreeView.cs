@@ -56,13 +56,13 @@ namespace MeterKnife.Workbench.Views
                 }
             }
 
-            var collectView = DI.Get<CollectDataView>();
+            var collectView = DI.Get<DigitMultiMeterView>();
             collectView.Port = e.Port;
             collectView.CommunicationType = e.CommunicationType;
             collectView.Meter = e.Meter;
-            collectView.Text = e.Meter.SimpleName;
+            collectView.Text = e.Meter.AbbrName;
             collectView.Show(PanelPane.DockPanel, DockState.Document);
-            _logger.InfoFormat("由仪器树面板创建仪器{0}实时窗体", e.Meter.SimpleName);
+            _logger.InfoFormat("由仪器树面板创建仪器{0}实时窗体", e.Meter.AbbrName);
         }
 
         private void UpdateTreeNode()

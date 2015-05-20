@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MeterKnife.Instruments.Agilent;
+using MeterKnife.Instruments.Specified.Agilent;
 
 namespace DemoApplication
 {

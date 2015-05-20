@@ -45,8 +45,15 @@
             this._TestMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._ToolMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.选项OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._ViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._InterfaceTreeViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._DataManagerViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._CommandConsoleViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this._LoggerViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._ResetViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StripContainer.BottomToolStripPanel.SuspendLayout();
             this._StripContainer.TopToolStripPanel.SuspendLayout();
             this._StripContainer.SuspendLayout();
@@ -89,6 +96,7 @@
             this._FileMenuItem,
             this._TestMenuItem,
             this._ToolMenuItem,
+            this._ViewMenuItem,
             this._HelpMenuItem});
             this._MenuStrip.Location = new System.Drawing.Point(0, 0);
             this._MenuStrip.Name = "_MenuStrip";
@@ -191,8 +199,60 @@
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.选项OToolStripMenuItem.Text = "选项(&O)";
+            // 
+            // _ViewMenuItem
+            // 
+            this._ViewMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._InterfaceTreeViewMenuItem,
+            this._DataManagerViewMenuItem,
+            this._CommandConsoleViewMenuItem,
+            this._LoggerViewMenuItem,
+            this.toolStripSeparator3,
+            this._ResetViewMenuItem});
+            this._ViewMenuItem.Name = "_ViewMenuItem";
+            this._ViewMenuItem.Size = new System.Drawing.Size(60, 21);
+            this._ViewMenuItem.Text = "视图(&V)";
+            // 
+            // _InterfaceTreeViewMenuItem
+            // 
+            this._InterfaceTreeViewMenuItem.Checked = true;
+            this._InterfaceTreeViewMenuItem.CheckOnClick = true;
+            this._InterfaceTreeViewMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._InterfaceTreeViewMenuItem.Name = "_InterfaceTreeViewMenuItem";
+            this._InterfaceTreeViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._InterfaceTreeViewMenuItem.Text = "仪器列表";
+            // 
+            // _DataManagerViewMenuItem
+            // 
+            this._DataManagerViewMenuItem.Checked = true;
+            this._DataManagerViewMenuItem.CheckOnClick = true;
+            this._DataManagerViewMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._DataManagerViewMenuItem.Name = "_DataManagerViewMenuItem";
+            this._DataManagerViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._DataManagerViewMenuItem.Text = "数据管理器";
+            // 
+            // _CommandConsoleViewMenuItem
+            // 
+            this._CommandConsoleViewMenuItem.Checked = true;
+            this._CommandConsoleViewMenuItem.CheckOnClick = true;
+            this._CommandConsoleViewMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._CommandConsoleViewMenuItem.Name = "_CommandConsoleViewMenuItem";
+            this._CommandConsoleViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._CommandConsoleViewMenuItem.Text = "命令控制台";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            // 
+            // _LoggerViewMenuItem
+            // 
+            this._LoggerViewMenuItem.CheckOnClick = true;
+            this._LoggerViewMenuItem.Name = "_LoggerViewMenuItem";
+            this._LoggerViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._LoggerViewMenuItem.Text = "程序日志";
             // 
             // _HelpMenuItem
             // 
@@ -205,11 +265,17 @@
             // _AboutMenuItem
             // 
             this._AboutMenuItem.Name = "_AboutMenuItem";
-            this._AboutMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._AboutMenuItem.Size = new System.Drawing.Size(125, 22);
             this._AboutMenuItem.Text = "关于(&A)...";
             this._AboutMenuItem.Click += new System.EventHandler(this._AboutMenuItem_Click);
             // 
-            // _MainWorkbench
+            // _ResetViewMenuItem
+            // 
+            this._ResetViewMenuItem.Name = "_ResetViewMenuItem";
+            this._ResetViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._ResetViewMenuItem.Text = "重置视图";
+            // 
+            // MainWorkbench
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -217,7 +283,7 @@
             this.Controls.Add(this._StripContainer);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.MainMenuStrip = this._MenuStrip;
-            this.Name = "_MainWorkbench";
+            this.Name = "MainWorkbench";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainWorkbench";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -253,6 +319,13 @@
         private System.Windows.Forms.ToolStripMenuItem _AddMeterMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem _TestMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _ViewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _InterfaceTreeViewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _DataManagerViewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _CommandConsoleViewMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem _LoggerViewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _ResetViewMenuItem;
     }
 }
 

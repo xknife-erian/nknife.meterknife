@@ -62,14 +62,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExportFileSelectorDialog.cs">
+    <Compile Include="Dialog\ExportFileSelectorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExportFileSelectorDialog.Designer.cs">
+    <Compile Include="Dialog\ExportFileSelectorDialog.Designer.cs">
       <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Keithley\K2000.cs" />
-    <Compile Include="Keithley\K2000ParamPanel.cs">
+    <Compile Include="Specified\Keithley\K2000.cs" />
+    <Compile Include="Specified\Keithley\K2000ParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -77,19 +77,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ScpiMeter.cs" />
-    <Compile Include="ScpiParamPanel.cs">
+    <Compile Include="Common\ScpiMeter.cs" />
+    <Compile Include="Common\ScpiParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Agilent\Ag34401A.cs" />
-    <Compile Include="Agilent\Ag34401AParamPanel.cs">
+    <Compile Include="Specified\Agilent\Ag34401A.cs" />
+    <Compile Include="Specified\Agilent\Ag34401AParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CollectDataView.cs">
+    <Compile Include="DigitMultiMeterView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CollectDataView.Designer.cs">
-      <DependentUpon>CollectDataView.cs</DependentUpon>
+    <Compile Include="DigitMultiMeterView.Designer.cs">
+      <DependentUpon>DigitMultiMeterView.cs</DependentUpon>
     </Compile>
     <Compile Include="IoC\MeterModule.cs" />
     <Compile Include="IoC\Modules.cs" />
@@ -97,7 +97,7 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Agilent\Ag34401AParam.xml">
+    <None Include="Specified\Agilent\Ag34401AParam.xml">
       <SubType>Designer</SubType>
     </None>
     <Content Include="license.txt" />
@@ -115,17 +115,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CollectDataView.resx">
-      <DependentUpon>CollectDataView.cs</DependentUpon>
+    <EmbeddedResource Include="DigitMultiMeterView.resx">
+      <DependentUpon>DigitMultiMeterView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExportFileSelectorDialog.resx">
+    <EmbeddedResource Include="Dialog\ExportFileSelectorDialog.resx">
       <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScpiParamPanel.resx">
+    <EmbeddedResource Include="Common\ScpiParamPanel.resx">
       <DependentUpon>ScpiParamPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -140,7 +140,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Advantest\" />
+    <Folder Include="Specified\Advantest\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

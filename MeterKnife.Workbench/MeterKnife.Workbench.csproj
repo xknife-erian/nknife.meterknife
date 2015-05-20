@@ -127,6 +127,12 @@
     <Compile Include="Views\LoggerView.Designer.cs">
       <DependentUpon>LoggerView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CommandConsoleView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CommandConsoleView.Designer.cs">
+      <DependentUpon>CommandConsoleView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoggerView.resx">
       <DependentUpon>LoggerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandConsoleView.resx">
+      <DependentUpon>CommandConsoleView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
