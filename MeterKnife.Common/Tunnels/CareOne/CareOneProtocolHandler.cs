@@ -20,17 +20,17 @@ namespace MeterKnife.Common.Tunnels.CareOne
 
         public override void Recevied(long sessionId, IProtocol<byte[]> protocol)
         {
-            if (!(protocol is CareSaying))
+            if (!(protocol is CareTalking))
             {
                 Debug.Assert(false, "Protocol类型有误, 不是CareSaying类型");
                 _logger.Warn("Protocol类型有误, 不是CareSaying类型");
                 return;
             }
 
-            Recevied((CareSaying)protocol);
+            Recevied((CareTalking)protocol);
         }
 
-        public abstract void Recevied(CareSaying protocol);
+        public abstract void Recevied(CareTalking protocol);
     }
 
 

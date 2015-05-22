@@ -199,6 +199,17 @@ namespace MeterKnife.Instruments
 
         private void _StopStripButton_Click(object sender, EventArgs e)
         {
+            StopProtocolRecevied();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            StopProtocolRecevied();
+        }
+
+        private void StopProtocolRecevied()
+        {
             _OnCollect = false;
             Thread.Sleep(50);
             DI.Get<IMeterKernel>().CollectBeginning = false;
@@ -219,13 +230,13 @@ namespace MeterKnife.Instruments
             {
                 if (cmd == null)
                     continue;
-                byte[] cmdBytes = CareSaying.BuildCareSaying(_Meter.GpibAddress, cmd.Command, false).Generate();
+                byte[] cmdBytes = CareTalking.BuildCareSaying(_Meter.GpibAddress, cmd.Command, false).Generate();
                 _Comm.Send(Port, cmdBytes);
                 Thread.Sleep((int) cmd.Interval);
             }
 
-            byte[] read = CareSaying.READ(_Meter.GpibAddress).Generate();
-            byte[] temp = CareSaying.TEMP().Generate();
+            byte[] read = CareTalking.READ(_Meter.GpibAddress).Generate();
+            byte[] temp = CareTalking.TEMP().Generate();
             while (_OnCollect)
             {
                 _Comm.Send(Port, read);
@@ -235,13 +246,13 @@ namespace MeterKnife.Instruments
             }
         }
 
-        private void OnProtocolRecevied(object sender, EventArgs<CareSaying> e)
+        private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
         {
-            CareSaying saying = e.Item;
+            CareTalking saying = e.Item;
 
             if (saying.MainCommand == 0xAE)
             {
-                string data = saying.Content;
+                string data = saying.Scpi;
                 double yzl = 0;
                 if (double.TryParse(data, out yzl))
                 {
@@ -270,9 +281,9 @@ namespace MeterKnife.Instruments
             }
             else
             {
-                if ((saying.GpibAddress != _Meter.GpibAddress) || (saying.Content.Length < 6))
+                if ((saying.GpibAddress != _Meter.GpibAddress) || (saying.Scpi.Length < 6))
                     return;
-                string data = saying.Content; //.Substring(1, saying.Content.Length - 6);
+                string data = saying.Scpi; //.Substring(1, saying.Content.Length - 6);
                 double yzl = 0;
                 if (double.TryParse(data, out yzl))
                 {

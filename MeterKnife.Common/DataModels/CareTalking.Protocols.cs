@@ -1,23 +1,38 @@
-﻿using NKnife.Utility;
+﻿using System.Text;
+using NKnife.Utility;
 using NPOI.HPSF;
 
 namespace MeterKnife.Common.DataModels
 {
-    public partial class CareSaying
+    public partial class CareTalking
     {
-        private static CareSaying _temp;
+        private static CareTalking _temp;
 
-        public static CareSaying IDN(int gpib)
+        public static CareTalking BuildCareSaying(int gpib, string scpi, bool isReturn = true)
+        {
+            var careTalking = new CareTalking();
+            if (isReturn)
+                careTalking.MainCommand = 0xAA;
+            else
+                careTalking.MainCommand = 0xAB;
+            careTalking.SubCommand = 0x00;
+            careTalking.Scpi = scpi;
+            careTalking.ScpiBytes = Encoding.ASCII.GetBytes(scpi);
+            careTalking.GpibAddress = (byte) gpib;
+            return careTalking;
+        }
+
+        public static CareTalking IDN(int gpib)
         {
             return BuildCareSaying(gpib, "*IDN?");
         }
 
-        public static CareSaying READ(int gpib)
+        public static CareTalking READ(int gpib)
         {
             return BuildCareSaying(gpib, "READ?");
         }
 
-        public static CareSaying TEMP()
+        public static CareTalking TEMP()
         {
             if (_temp == null)
             {
@@ -25,19 +40,6 @@ namespace MeterKnife.Common.DataModels
                 _temp.MainCommand = 0xAE;
             }
             return _temp;
-        }
-
-        public static CareSaying BuildCareSaying(int gpib, string content, bool isReturn = true)
-        {
-            var careSaying = new CareSaying();
-            if (isReturn)
-                careSaying.MainCommand = 0xAA;
-            else
-                careSaying.MainCommand = 0xAB;
-            careSaying.SubCommand = 0x00;
-            careSaying.Content = content;
-            careSaying.GpibAddress = (byte) gpib;
-            return careSaying;
         }
 
         public static byte[] CareGetter(byte subcommand = 0xD1)

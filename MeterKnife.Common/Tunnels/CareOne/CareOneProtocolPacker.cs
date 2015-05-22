@@ -11,7 +11,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
     {
         public override byte[] Combine(BytesProtocol content)
         {
-            var careSaying = content as CareSaying;
+            var careSaying = content as CareTalking;
             if (careSaying == null)
             {
                 Debug.Assert(careSaying == null, "协议不应为Null");
@@ -20,9 +20,9 @@ namespace MeterKnife.Common.Tunnels.CareOne
             return Combine(careSaying);
         }
 
-        protected virtual byte[] Combine(CareSaying content)
+        protected virtual byte[] Combine(CareTalking content)
         {
-            var p = Encoding.ASCII.GetBytes(content.Content);
+            var p = Encoding.ASCII.GetBytes(content.Scpi);
             var bs = new byte[5 + p.Length];
             bs[0] = 0x80;
             bs[1] = UtilityConvert.ConvertTo<byte>(content.GpibAddress);

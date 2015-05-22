@@ -9,12 +9,11 @@ namespace MeterKnife.Common.DataModels
     /// <summary>
     ///     面向Care制定的协议的封装
     /// </summary>
-    public partial class CareSaying : BytesProtocol
+    public partial class CareTalking : BytesProtocol
     {
         private string _Scpi = string.Empty;
-        private byte[] _ScpiBytes;
 
-        public CareSaying()
+        public CareTalking()
         {
             ((IProtocol<byte[]>) this).Command = new byte[2];
             ((IProtocol<byte[]>) this).CommandParam = new byte[1];
@@ -22,16 +21,16 @@ namespace MeterKnife.Common.DataModels
 
         public byte[] Generate()
         {
-            var bs = new byte[] {0x08, (byte) GpibAddress, (byte) (_ScpiBytes.Length + 2), MainCommand, SubCommand};
-            var result = new byte[bs.Length + _ScpiBytes.Length];
+            var bs = new byte[] {0x08, (byte) GpibAddress, (byte) (ScpiBytes.Length + 2), MainCommand, SubCommand};
+            var result = new byte[bs.Length + ScpiBytes.Length];
             Buffer.BlockCopy(bs, 0, result, 0, bs.Length);
-            Buffer.BlockCopy(_ScpiBytes, 0, result, bs.Length, _ScpiBytes.Length);
+            Buffer.BlockCopy(ScpiBytes, 0, result, bs.Length, ScpiBytes.Length);
             return result;
         }
 
         public override string ToString()
         {
-            return string.Format("Command:{0} {1},GPIB:{2},Content:{3}", MainCommand.ToHexString(), SubCommand.ToHexString(), GpibAddress, Content);
+            return string.Format("Command:{0} {1},GPIB:{2},Content:{3}", MainCommand.ToHexString(), SubCommand.ToHexString(), GpibAddress, Scpi);
         }
 
         #region 基本属性
@@ -68,32 +67,28 @@ namespace MeterKnife.Common.DataModels
         /// </summary>
         public short Length
         {
-            get { return (short) (_ScpiBytes.Length); }
+            get { return (short) (ScpiBytes.Length); }
         }
+
+        public byte[] ScpiBytes { get; set; }
 
         /// <summary>
         ///     内容
         /// </summary>
-        public string Content
+        public string Scpi
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(_Scpi) && _ScpiBytes != null && _ScpiBytes.Length > 0)
-                    _Scpi = Encoding.ASCII.GetString(_ScpiBytes);
+                if (string.IsNullOrWhiteSpace(_Scpi) && ScpiBytes != null && ScpiBytes.Length > 0)
+                    _Scpi = Encoding.ASCII.GetString(ScpiBytes);
                 return _Scpi;
             }
             set
             {
                 if (!string.IsNullOrEmpty(value))
-                {
                     _Scpi = value[value.Length - 1] != '\n' ? string.Format("{0}{1}", value, '\n') : value;
-                    _ScpiBytes = Encoding.ASCII.GetBytes(_Scpi);
-                }
                 else
-                {
                     _Scpi = string.Empty;
-                    _ScpiBytes = new byte[0];
-                }
             }
         }
 

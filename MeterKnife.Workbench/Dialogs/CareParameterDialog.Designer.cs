@@ -28,224 +28,148 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.ipAddressControl3 = new NKnife.GUI.WinForm.IPAddressControl.IpAddressControl();
-            this.ipAddressControl2 = new NKnife.GUI.WinForm.IPAddressControl.IpAddressControl();
-            this.ipAddressControl1 = new NKnife.GUI.WinForm.IPAddressControl.IpAddressControl();
+            this._MainGroupBox = new System.Windows.Forms.GroupBox();
+            this._DhcpGroupBox = new System.Windows.Forms.GroupBox();
+            this._DhcpEnableRadioButton = new System.Windows.Forms.RadioButton();
+            this._DhcpAbleRadioButton = new System.Windows.Forms.RadioButton();
+            this._MaskAddressControl = new NKnife.GUI.WinForm.IPAddressControl.IpAddressControl();
+            this._GatwayAddressControl = new NKnife.GUI.WinForm.IPAddressControl.IpAddressControl();
+            this._IpAddressControl = new NKnife.GUI.WinForm.IPAddressControl.IpAddressControl();
             this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this._MacTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this._ConfirmButton = new System.Windows.Forms.Button();
             this._CancelButton = new System.Windows.Forms.Button();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            this._TcpNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this._Dht22RadioButton = new System.Windows.Forms.RadioButton();
+            this._18b20RadioButton = new System.Windows.Forms.RadioButton();
+            this._Dht11RadioButton = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this._GpibNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this._MainGroupBox.SuspendLayout();
+            this._DhcpGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._TcpNumericUpDown)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._GpibNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox3
+            // _MainGroupBox
             // 
-            this.groupBox3.Controls.Add(this.numericUpDown3);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.groupBox2);
-            this.groupBox3.Controls.Add(this.groupBox1);
-            this.groupBox3.Controls.Add(this.numericUpDown2);
-            this.groupBox3.Controls.Add(this.numericUpDown1);
-            this.groupBox3.Controls.Add(this.ipAddressControl3);
-            this.groupBox3.Controls.Add(this.ipAddressControl2);
-            this.groupBox3.Controls.Add(this.ipAddressControl1);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(12, 12);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(284, 348);
-            this.groupBox3.TabIndex = 23;
-            this.groupBox3.TabStop = false;
+            this._MainGroupBox.Controls.Add(this._GpibNumericUpDown);
+            this._MainGroupBox.Controls.Add(this.label1);
+            this._MainGroupBox.Controls.Add(this.groupBox2);
+            this._MainGroupBox.Controls.Add(this._TcpNumericUpDown);
+            this._MainGroupBox.Controls.Add(this.label5);
+            this._MainGroupBox.Controls.Add(this._DhcpGroupBox);
+            this._MainGroupBox.Location = new System.Drawing.Point(12, 12);
+            this._MainGroupBox.Name = "_MainGroupBox";
+            this._MainGroupBox.Size = new System.Drawing.Size(284, 348);
+            this._MainGroupBox.TabIndex = 23;
+            this._MainGroupBox.TabStop = false;
             // 
-            // numericUpDown3
+            // _DhcpGroupBox
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(159, 299);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(65, 21);
-            this.numericUpDown3.TabIndex = 38;
+            this._DhcpGroupBox.Controls.Add(this._DhcpEnableRadioButton);
+            this._DhcpGroupBox.Controls.Add(this._DhcpAbleRadioButton);
+            this._DhcpGroupBox.Controls.Add(this.label8);
+            this._DhcpGroupBox.Controls.Add(this.label2);
+            this._DhcpGroupBox.Controls.Add(this._MacTextBox);
+            this._DhcpGroupBox.Controls.Add(this._MaskAddressControl);
+            this._DhcpGroupBox.Controls.Add(this.label3);
+            this._DhcpGroupBox.Controls.Add(this._GatwayAddressControl);
+            this._DhcpGroupBox.Controls.Add(this.label4);
+            this._DhcpGroupBox.Controls.Add(this._IpAddressControl);
+            this._DhcpGroupBox.Location = new System.Drawing.Point(24, 23);
+            this._DhcpGroupBox.Name = "_DhcpGroupBox";
+            this._DhcpGroupBox.Size = new System.Drawing.Size(235, 162);
+            this._DhcpGroupBox.TabIndex = 35;
+            this._DhcpGroupBox.TabStop = false;
+            this._DhcpGroupBox.Text = "DHCP";
             // 
-            // label1
+            // _DhcpEnableRadioButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 301);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 13);
-            this.label1.TabIndex = 37;
-            this.label1.Text = "透明传输时GPIB地址:";
+            this._DhcpEnableRadioButton.AutoSize = true;
+            this._DhcpEnableRadioButton.Location = new System.Drawing.Point(48, 17);
+            this._DhcpEnableRadioButton.Name = "_DhcpEnableRadioButton";
+            this._DhcpEnableRadioButton.Size = new System.Drawing.Size(61, 17);
+            this._DhcpEnableRadioButton.TabIndex = 6;
+            this._DhcpEnableRadioButton.TabStop = true;
+            this._DhcpEnableRadioButton.Text = "未激活";
+            this._DhcpEnableRadioButton.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // _DhcpAbleRadioButton
             // 
-            this.groupBox2.Controls.Add(this.radioButton3);
-            this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Location = new System.Drawing.Point(30, 241);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(223, 50);
-            this.groupBox2.TabIndex = 36;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "温湿度传感器";
+            this._DhcpAbleRadioButton.AutoSize = true;
+            this._DhcpAbleRadioButton.Location = new System.Drawing.Point(121, 17);
+            this._DhcpAbleRadioButton.Name = "_DhcpAbleRadioButton";
+            this._DhcpAbleRadioButton.Size = new System.Drawing.Size(49, 17);
+            this._DhcpAbleRadioButton.TabIndex = 7;
+            this._DhcpAbleRadioButton.TabStop = true;
+            this._DhcpAbleRadioButton.Text = "激活";
+            this._DhcpAbleRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // _MaskAddressControl
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(50, 20);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(55, 17);
-            this.radioButton3.TabIndex = 8;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "18B20";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this._MaskAddressControl.AllowInternalTab = false;
+            this._MaskAddressControl.AutoHeight = true;
+            this._MaskAddressControl.BackColor = System.Drawing.SystemColors.Window;
+            this._MaskAddressControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._MaskAddressControl.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._MaskAddressControl.Location = new System.Drawing.Point(65, 125);
+            this._MaskAddressControl.MinimumSize = new System.Drawing.Size(90, 21);
+            this._MaskAddressControl.Name = "_MaskAddressControl";
+            this._MaskAddressControl.ReadOnly = false;
+            this._MaskAddressControl.Size = new System.Drawing.Size(140, 21);
+            this._MaskAddressControl.TabIndex = 32;
+            this._MaskAddressControl.Text = "...";
             // 
-            // radioButton4
+            // _GatwayAddressControl
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(123, 20);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(57, 17);
-            this.radioButton4.TabIndex = 9;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "DHT22";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this._GatwayAddressControl.AllowInternalTab = false;
+            this._GatwayAddressControl.AutoHeight = true;
+            this._GatwayAddressControl.BackColor = System.Drawing.SystemColors.Window;
+            this._GatwayAddressControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._GatwayAddressControl.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._GatwayAddressControl.Location = new System.Drawing.Point(65, 98);
+            this._GatwayAddressControl.MinimumSize = new System.Drawing.Size(90, 21);
+            this._GatwayAddressControl.Name = "_GatwayAddressControl";
+            this._GatwayAddressControl.ReadOnly = false;
+            this._GatwayAddressControl.Size = new System.Drawing.Size(140, 21);
+            this._GatwayAddressControl.TabIndex = 31;
+            this._GatwayAddressControl.Text = "...";
             // 
-            // groupBox1
+            // _IpAddressControl
             // 
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Location = new System.Drawing.Point(30, 25);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(224, 40);
-            this.groupBox1.TabIndex = 35;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "DHCP";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(48, 17);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(61, 17);
-            this.radioButton1.TabIndex = 6;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "未激活";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(121, 17);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(49, 17);
-            this.radioButton2.TabIndex = 7;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "激活";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(84, 207);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(65, 21);
-            this.numericUpDown2.TabIndex = 34;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(84, 179);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(65, 21);
-            this.numericUpDown1.TabIndex = 33;
-            // 
-            // ipAddressControl3
-            // 
-            this.ipAddressControl3.AllowInternalTab = false;
-            this.ipAddressControl3.AutoHeight = true;
-            this.ipAddressControl3.BackColor = System.Drawing.SystemColors.Window;
-            this.ipAddressControl3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ipAddressControl3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ipAddressControl3.Location = new System.Drawing.Point(84, 152);
-            this.ipAddressControl3.MinimumSize = new System.Drawing.Size(90, 21);
-            this.ipAddressControl3.Name = "ipAddressControl3";
-            this.ipAddressControl3.ReadOnly = false;
-            this.ipAddressControl3.Size = new System.Drawing.Size(140, 21);
-            this.ipAddressControl3.TabIndex = 32;
-            this.ipAddressControl3.Text = "...";
-            // 
-            // ipAddressControl2
-            // 
-            this.ipAddressControl2.AllowInternalTab = false;
-            this.ipAddressControl2.AutoHeight = true;
-            this.ipAddressControl2.BackColor = System.Drawing.SystemColors.Window;
-            this.ipAddressControl2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ipAddressControl2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ipAddressControl2.Location = new System.Drawing.Point(84, 125);
-            this.ipAddressControl2.MinimumSize = new System.Drawing.Size(90, 21);
-            this.ipAddressControl2.Name = "ipAddressControl2";
-            this.ipAddressControl2.ReadOnly = false;
-            this.ipAddressControl2.Size = new System.Drawing.Size(140, 21);
-            this.ipAddressControl2.TabIndex = 31;
-            this.ipAddressControl2.Text = "...";
-            // 
-            // ipAddressControl1
-            // 
-            this.ipAddressControl1.AllowInternalTab = false;
-            this.ipAddressControl1.AutoHeight = true;
-            this.ipAddressControl1.BackColor = System.Drawing.SystemColors.Window;
-            this.ipAddressControl1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ipAddressControl1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ipAddressControl1.Location = new System.Drawing.Point(84, 98);
-            this.ipAddressControl1.MinimumSize = new System.Drawing.Size(90, 21);
-            this.ipAddressControl1.Name = "ipAddressControl1";
-            this.ipAddressControl1.ReadOnly = false;
-            this.ipAddressControl1.Size = new System.Drawing.Size(140, 21);
-            this.ipAddressControl1.TabIndex = 30;
-            this.ipAddressControl1.Text = "...";
+            this._IpAddressControl.AllowInternalTab = false;
+            this._IpAddressControl.AutoHeight = true;
+            this._IpAddressControl.BackColor = System.Drawing.SystemColors.Window;
+            this._IpAddressControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._IpAddressControl.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._IpAddressControl.Location = new System.Drawing.Point(65, 71);
+            this._IpAddressControl.MinimumSize = new System.Drawing.Size(90, 21);
+            this._IpAddressControl.Name = "_IpAddressControl";
+            this._IpAddressControl.ReadOnly = false;
+            this._IpAddressControl.Size = new System.Drawing.Size(140, 21);
+            this._IpAddressControl.TabIndex = 30;
+            this._IpAddressControl.Text = "...";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(33, 74);
+            this.label8.Location = new System.Drawing.Point(14, 47);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(50, 13);
             this.label8.TabIndex = 29;
             this.label8.Text = "Mac地址";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 209);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 13);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "UDP端口";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 181);
+            this.label5.Location = new System.Drawing.Point(29, 201);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 27;
@@ -254,7 +178,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 155);
+            this.label4.Location = new System.Drawing.Point(33, 128);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 26;
@@ -263,23 +187,24 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(52, 128);
+            this.label3.Location = new System.Drawing.Point(33, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 25;
             this.label3.Text = "网关";
             // 
-            // textBox2
+            // _MacTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(84, 71);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(158, 21);
-            this.textBox2.TabIndex = 24;
+            this._MacTextBox.Location = new System.Drawing.Point(65, 44);
+            this._MacTextBox.Name = "_MacTextBox";
+            this._MacTextBox.ReadOnly = true;
+            this._MacTextBox.Size = new System.Drawing.Size(158, 21);
+            this._MacTextBox.TabIndex = 24;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 101);
+            this.label2.Location = new System.Drawing.Point(23, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 23;
@@ -304,6 +229,104 @@
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
             // 
+            // _TcpNumericUpDown
+            // 
+            this._TcpNumericUpDown.Location = new System.Drawing.Point(80, 199);
+            this._TcpNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this._TcpNumericUpDown.Minimum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this._TcpNumericUpDown.Name = "_TcpNumericUpDown";
+            this._TcpNumericUpDown.Size = new System.Drawing.Size(65, 21);
+            this._TcpNumericUpDown.TabIndex = 33;
+            this._TcpNumericUpDown.Value = new decimal(new int[] {
+            6035,
+            0,
+            0,
+            0});
+            // 
+            // _Dht22RadioButton
+            // 
+            this._Dht22RadioButton.AutoSize = true;
+            this._Dht22RadioButton.Location = new System.Drawing.Point(154, 21);
+            this._Dht22RadioButton.Name = "_Dht22RadioButton";
+            this._Dht22RadioButton.Size = new System.Drawing.Size(57, 17);
+            this._Dht22RadioButton.TabIndex = 9;
+            this._Dht22RadioButton.TabStop = true;
+            this._Dht22RadioButton.Text = "DHT22";
+            this._Dht22RadioButton.UseVisualStyleBackColor = true;
+            // 
+            // _18b20RadioButton
+            // 
+            this._18b20RadioButton.AutoSize = true;
+            this._18b20RadioButton.Location = new System.Drawing.Point(17, 21);
+            this._18b20RadioButton.Name = "_18b20RadioButton";
+            this._18b20RadioButton.Size = new System.Drawing.Size(68, 17);
+            this._18b20RadioButton.TabIndex = 8;
+            this._18b20RadioButton.TabStop = true;
+            this._18b20RadioButton.Text = "DS18B20";
+            this._18b20RadioButton.UseVisualStyleBackColor = true;
+            // 
+            // _Dht11RadioButton
+            // 
+            this._Dht11RadioButton.AutoSize = true;
+            this._Dht11RadioButton.Location = new System.Drawing.Point(91, 21);
+            this._Dht11RadioButton.Name = "_Dht11RadioButton";
+            this._Dht11RadioButton.Size = new System.Drawing.Size(57, 17);
+            this._Dht11RadioButton.TabIndex = 10;
+            this._Dht11RadioButton.TabStop = true;
+            this._Dht11RadioButton.Text = "DHT11";
+            this._Dht11RadioButton.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this._Dht11RadioButton);
+            this.groupBox2.Controls.Add(this._18b20RadioButton);
+            this.groupBox2.Controls.Add(this._Dht22RadioButton);
+            this.groupBox2.Location = new System.Drawing.Point(28, 238);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(223, 50);
+            this.groupBox2.TabIndex = 36;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "温湿度传感器";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 304);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 13);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "透明传输时GPIB地址:";
+            // 
+            // _GpibNumericUpDown
+            // 
+            this._GpibNumericUpDown.Location = new System.Drawing.Point(159, 302);
+            this._GpibNumericUpDown.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this._GpibNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this._GpibNumericUpDown.Name = "_GpibNumericUpDown";
+            this._GpibNumericUpDown.Size = new System.Drawing.Size(65, 21);
+            this._GpibNumericUpDown.TabIndex = 38;
+            this._GpibNumericUpDown.Value = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            // 
             // CareParameterDialog
             // 
             this.AcceptButton = this._ConfirmButton;
@@ -313,7 +336,7 @@
             this.ClientSize = new System.Drawing.Size(314, 422);
             this.Controls.Add(this._CancelButton);
             this.Controls.Add(this._ConfirmButton);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this._MainGroupBox);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(120, 149);
@@ -322,43 +345,41 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Care参数设置";
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            this._MainGroupBox.ResumeLayout(false);
+            this._MainGroupBox.PerformLayout();
+            this._DhcpGroupBox.ResumeLayout(false);
+            this._DhcpGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._TcpNumericUpDown)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._GpibNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl ipAddressControl3;
-        private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl ipAddressControl2;
-        private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl ipAddressControl1;
+        private System.Windows.Forms.GroupBox _MainGroupBox;
+        private System.Windows.Forms.GroupBox _DhcpGroupBox;
+        private System.Windows.Forms.RadioButton _DhcpEnableRadioButton;
+        private System.Windows.Forms.RadioButton _DhcpAbleRadioButton;
+        private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl _MaskAddressControl;
+        private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl _GatwayAddressControl;
+        private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl _IpAddressControl;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox _MacTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button _ConfirmButton;
         private System.Windows.Forms.Button _CancelButton;
+        private System.Windows.Forms.NumericUpDown _GpibNumericUpDown;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton _Dht11RadioButton;
+        private System.Windows.Forms.RadioButton _18b20RadioButton;
+        private System.Windows.Forms.RadioButton _Dht22RadioButton;
+        private System.Windows.Forms.NumericUpDown _TcpNumericUpDown;
     }
 }

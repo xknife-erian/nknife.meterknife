@@ -81,9 +81,9 @@ namespace MeterKnife.Workbench.Controls.Tree
                     var handler = (ScpiProtocolHandler) _CommService.CareHandlers[Port];
                     handler.ProtocolRecevied += HandlerOnProtocolRecevied;
 
-                    var careSaying = CareSaying.IDN(_MeterInfo.GpibAddress);
-                    _logger.Debug(string.Format("Send:{0}", careSaying.Content));
-                    var data = careSaying.Generate();
+                    var careTalking = CareTalking.IDN(_MeterInfo.GpibAddress);
+                    _logger.Debug(string.Format("Send:{0}", careTalking.Scpi));
+                    var data = careTalking.Generate();
                     _CommService.Send(Port, data);
                 }
                 else //当手动选择仪器类型时
@@ -106,11 +106,11 @@ namespace MeterKnife.Workbench.Controls.Tree
             }
         }
 
-        private void HandlerOnProtocolRecevied(object sender, EventArgs<CareSaying> e)
+        private void HandlerOnProtocolRecevied(object sender, EventArgs<CareTalking> e)
         {
             ((ScpiProtocolHandler) _CommService.CareHandlers[Port]).ProtocolRecevied -= HandlerOnProtocolRecevied;
 
-            var idnName = e.Item.Content;
+            var idnName = e.Item.Scpi;
             var meterNode = new MeterNode();
 
             var simpleName = MeterUtil.SimplifyName(idnName);

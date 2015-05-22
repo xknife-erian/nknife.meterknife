@@ -21,7 +21,7 @@ namespace MeterKnife.Common.IoC
             Bind<BytesProtocolCommandParser>().To<CareOneProtocolCommandParser>().InSingletonScope();
             Bind<BytesDatagramDecoder>().To<CareOneDatagramDecoder>().InSingletonScope().Named("careone");
             Bind<BytesDatagramEncoder>().To<CareOneDatagramEncoder>().InSingletonScope().Named("careone");
-            Bind<BytesProtocol>().To<CareSaying>();
+            Bind<BytesProtocol>().To<CareTalking>();
 
             Bind<BytesProtocolPacker>().To<CareOneProtocolPacker>().InSingletonScope();
             Bind<BytesProtocolUnPacker>().To<CareOneProtocolUnPacker>().InSingletonScope();

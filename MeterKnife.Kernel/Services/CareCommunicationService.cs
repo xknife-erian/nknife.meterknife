@@ -54,7 +54,7 @@ namespace MeterKnife.Kernel.Services
                         {
                             if (onFindCare)
                             {
-                                if (e.Item.Content.ToLower().StartsWith("care"))
+                                if (e.Item.Scpi.ToLower().StartsWith("care"))
                                 {
                                     OnSerialInitialized(new EventArgs<int>(port));
                                     _CareHandlers.Add(port, handler);
@@ -65,14 +65,14 @@ namespace MeterKnife.Kernel.Services
                         Build(port, handler);
                         Start(port);
                         _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
-                        Send(port, CareSaying.CareGetter());
+                        Send(port, CareTalking.CareGetter());
                         Thread.Sleep(20);
-                        Send(port, CareSaying.CareGetter(0xD2));
+                        Send(port, CareTalking.CareGetter(0xD2));
                         Thread.Sleep(20);
                         var time = DateTime.Now.ToString("yyyyMMddHHmmss");
                         var timebs = Encoding.ASCII.GetBytes(time);
                         _logger.Info(string.Format("Set Care Time:{0}", time));
-                        Send(port, CareSaying.CareSetter(0xD9, timebs));
+                        Send(port, CareTalking.CareSetter(0xD9, timebs));
                         Thread.Sleep(50);
                     }
                 }

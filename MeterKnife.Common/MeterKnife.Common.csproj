@@ -90,10 +90,10 @@
     <Compile Include="Base\_\DMMZeroSet.cs" />
     <Compile Include="Base\_\GpibLanguage.cs" />
     <Compile Include="Base\_\MultiMeterParameters.cs" />
-    <Compile Include="DataModels\CareSaying.Protocols.cs" />
+    <Compile Include="DataModels\CareTalking.Protocols.cs" />
     <Compile Include="Interfaces\IMeterDataService.cs" />
     <Compile Include="DataModels\MeterTreeElement.cs" />
-    <Compile Include="DataModels\CareSaying.cs" />
+    <Compile Include="DataModels\CareTalking.cs" />
     <Compile Include="DataModels\CollectData.cs" />
     <Compile Include="DataModels\FiguredData.cs" />
     <Compile Include="DataModels\MeterCollection.cs" />

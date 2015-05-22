@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
@@ -14,7 +16,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
 
         public override void Execute(BytesProtocol protocol, byte[] data, byte[] command)
         {
-            var careSaying = protocol as CareSaying;
+            var careSaying = protocol as CareTalking;
             if (careSaying == null)
             {
                 Debug.Assert(careSaying == null, "协议不应为Null");
@@ -22,14 +24,16 @@ namespace MeterKnife.Common.Tunnels.CareOne
             Execute(careSaying, data, command);
         }
 
-        protected virtual void Execute(CareSaying careSaying, byte[] data, byte[] command)
+        protected virtual void Execute(CareTalking talking, byte[] data, byte[] command)
         {
-            ((IProtocol<byte[]>) careSaying).Command = command;
-            careSaying.GpibAddress = UtilityConvert.ConvertTo<short>(data[1]);
+            ((IProtocol<byte[]>) talking).Command = command;
+            talking.GpibAddress = UtilityConvert.ConvertTo<short>(data[1]);
             //_logger.Trace(string.Format("UnPack:{0}", data.ToHexString()));
 
+            var contentBytes = new byte[data.Length - 5];
+            Buffer.BlockCopy(data, 5, contentBytes, 0, data.Length - 5);
             //+1.00355300E-01  100mV
-            string value = Encoding.ASCII.GetString(data, 5, data.Length - 5).TrimEnd('\n');
+            string value = Encoding.ASCII.GetString(contentBytes).TrimEnd('\n');
 
             //DI  +1001.874E-06
             int blank = value.IndexOf(' ');
@@ -41,7 +45,8 @@ namespace MeterKnife.Common.Tunnels.CareOne
             {
                 value = exponent.ToString();
             }
-            careSaying.Content = value;
+            talking.ScpiBytes = contentBytes;
+            talking.Scpi = value;
         }
     }
 }
