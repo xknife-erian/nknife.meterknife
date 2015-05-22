@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MeterKnife.Common.Base;
 using NKnife.Events;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Common.Interfaces
 {
@@ -13,7 +15,9 @@ namespace MeterKnife.Common.Interfaces
         /// <summary>
         /// 串口下的Gpib地址
         /// </summary>
-        Dictionary<int, List<int>> GpibDictionary { get; set; }
+        Dictionary<int, List<int>> GpibDictionary { get; }
+
+        Dictionary<BaseMeter, DockContent> MeterContents { get; }
 
         /// <summary>
         /// 正在采集数据,当正在采集数据,一些功能将被禁用

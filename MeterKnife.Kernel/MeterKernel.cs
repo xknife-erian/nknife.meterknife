@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MeterKnife.Common.Base;
 using MeterKnife.Common.Interfaces;
 using NKnife.Events;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Kernel
 {
@@ -13,7 +15,8 @@ namespace MeterKnife.Kernel
 
         public string DataPath { get; set; }
 
-        public Dictionary<int, List<int>> GpibDictionary { get; set; }
+        public Dictionary<int, List<int>> GpibDictionary { get; private set; }
+        public Dictionary<BaseMeter, DockContent> MeterContents { get; private set; }
 
         public bool CollectBeginning
         {
@@ -36,6 +39,7 @@ namespace MeterKnife.Kernel
         public MeterKernel()
         {
             GpibDictionary = new Dictionary<int, List<int>>();
+            MeterContents = new Dictionary<BaseMeter, DockContent>();
         }
     }
 }

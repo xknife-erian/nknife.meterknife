@@ -71,6 +71,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\packages\DockPanelSuite.2.9.0.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseMeter.cs" />
@@ -153,6 +156,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="license.txt" />
     <Content Include="Properties\contents\bar-button\20150314104053895.png" />
     <Content Include="Properties\contents\bar-button\20150314104116114.png" />
     <Content Include="Properties\contents\bar-button\20150314104157509.png" />

@@ -68,6 +68,9 @@
     <Compile Include="Dialog\ExportFileSelectorDialog.Designer.cs">
       <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="MeterView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Specified\Keithley\K2000.cs" />
     <Compile Include="Specified\Keithley\K2000ParamPanel.cs">
       <SubType>UserControl</SubType>

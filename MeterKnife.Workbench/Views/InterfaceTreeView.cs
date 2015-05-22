@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common;
@@ -29,11 +30,34 @@ namespace MeterKnife.Workbench.Views
             InitializeComponent();
             _MeterTree.SelectedMeter+= MeterTreeOnSelectedMeter;
             //防止卡死界面，交由另一个线程去刷新树节点
-            var thread = new Thread(UpdateTreeNode);
+            var thread = new Task(UpdateTreeNode);
             thread.Start();
         }
 
         private void MeterTreeOnSelectedMeter(object sender, InterfaceNodeClickedEventArgs e)
+        {
+            CheckDataPath();
+
+            var dic = DI.Get<IMeterKernel>().MeterContents;
+            DockContent dockContent;
+            if (!dic.TryGetValue(e.Meter, out dockContent))
+            {
+                var collectView = DI.Get<DigitMultiMeterView>();
+                collectView.Port = e.Port;
+                collectView.CommunicationType = e.CommunicationType;
+                collectView.SetMeter(e.Meter);
+                collectView.Text = e.Meter.AbbrName;
+                dic.Add(e.Meter, collectView);
+                dockContent = collectView;
+            }
+            dockContent.Show(PanelPane.DockPanel, DockState.Document);
+            _logger.InfoFormat("由仪器树面板创建仪器{0}实时窗体", e.Meter.AbbrName);
+        }
+
+        /// <summary>
+        /// 检查数据路径是否设置,当第一次使本软件时是未设置的状态的.
+        /// </summary>
+        private void CheckDataPath()
         {
             var userData = DI.Get<MeterKnifeUserData>();
             object path;
@@ -55,14 +79,6 @@ namespace MeterKnife.Workbench.Views
                     _logger.Info(string.Format("用户数据路径丢失{0},重新创建", path));
                 }
             }
-
-            var collectView = DI.Get<DigitMultiMeterView>();
-            collectView.Port = e.Port;
-            collectView.CommunicationType = e.CommunicationType;
-            collectView.Meter = e.Meter;
-            collectView.Text = e.Meter.AbbrName;
-            collectView.Show(PanelPane.DockPanel, DockState.Document);
-            _logger.InfoFormat("由仪器树面板创建仪器{0}实时窗体", e.Meter.AbbrName);
         }
 
         private void UpdateTreeNode()

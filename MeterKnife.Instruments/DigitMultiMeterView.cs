@@ -10,7 +10,6 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
-using MeterKnife.Common.Util;
 using MeterKnife.Instruments.Properties;
 using NKnife.Events;
 using NKnife.GUI.WinForm;
@@ -21,12 +20,11 @@ using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
-using WeifenLuo.WinFormsUI.Docking;
 using LineStyle = OxyPlot.LineStyle;
 
 namespace MeterKnife.Instruments
 {
-    public partial class DigitMultiMeterView : DockContent
+    public partial class DigitMultiMeterView : MeterView
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
         private readonly UtilityRandom _Random = new UtilityRandom();
@@ -37,7 +35,6 @@ namespace MeterKnife.Instruments
 
         protected LineSeries _MainLineSeries = new LineSeries();
         protected LinearAxis _MainValueAxis = new LinearAxis();
-        private BaseMeter _Meter;
         private bool _OnCollect; //是否正在采集
         private BaseParamPanel _Panel;
 
@@ -84,25 +81,15 @@ namespace MeterKnife.Instruments
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
         }
 
-        public BaseMeter Meter
+        public override void SetMeter(BaseMeter meter)
         {
-            get { return _Meter; }
-            set
-            {
-                if (value != null)
-                {
-                    _Meter = value;
-                    _FiguredData.Meter = _Meter;
-                    _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
-                    _Panel = value.ParamPanel;
-                    _ParamsPanel.Controls.Add(_Panel);
-                }
-            }
+            base.SetMeter(meter);
+            _FiguredData.Meter = _Meter;
+            _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
+            _Panel = meter.ParamPanel;
+            _ParamsPanel.Controls.Add(_Panel);
+            _logger.Info("面板初始化仪器完成..");
         }
-
-        public int Port { get; set; }
-
-        public CommunicationType CommunicationType { get; set; }
 
         private void SetStripButtonState(bool isCollected)
         {
@@ -138,7 +125,8 @@ namespace MeterKnife.Instruments
 
         private void _FiguredData_ReceviedCollectData(object sender, CollectEventArgs e)
         {
-            string item = string.Format("{0}\t{1}\t{2}", e.CollectData.DateTime, e.CollectData.Data, e.CollectData.Temperature);
+            var data = e.CollectData;
+            string item = string.Format("{0}\t{1}\t{2}", data.DateTime, data.Data, data.Temperature);
             _CollectDataList.ThreadSafeInvoke(() => _CollectDataList.Items.Insert(0, item));
         }
 
@@ -197,7 +185,7 @@ namespace MeterKnife.Instruments
             var handler = (ScpiProtocolHandler) _Comm.CareHandlers[Port];
             handler.ProtocolRecevied += OnProtocolRecevied;
             _OnCollect = true;
-            DI.Get<IMeterKernel>().CollectBeginning = true;
+            _MeterKernel.CollectBeginning = true;
 
             double nv = 0;
             if (double.TryParse(_NominalValueTextBox.Text, out nv))
@@ -282,7 +270,7 @@ namespace MeterKnife.Instruments
             }
             else
             {
-                if ((saying.GpibAddress != Meter.GpibAddress) || (saying.Content.Length < 6))
+                if ((saying.GpibAddress != _Meter.GpibAddress) || (saying.Content.Length < 6))
                     return;
                 string data = saying.Content; //.Substring(1, saying.Content.Length - 6);
                 double yzl = 0;
