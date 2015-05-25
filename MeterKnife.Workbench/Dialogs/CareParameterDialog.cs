@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -28,6 +29,10 @@ namespace MeterKnife.Workbench.Dialogs
         {
             _Port = port;
             InitializeComponent();
+            _DhcpEnableRadioButton.CheckedChanged += (s, e) =>
+            {
+                _DhcpGroupBox.Enabled = _DhcpEnableRadioButton.Checked;
+            };
             var handler = (ScpiProtocolHandler) _Comm.CareHandlers[_Port];
             handler.ProtocolRecevied += OnProtocolRecevied;
         }
@@ -40,12 +45,26 @@ namespace MeterKnife.Workbench.Dialogs
                 switch (talking.SubCommand)
                 {
                     case 0xD2: //查询设备版本
-                        _MainGroupBox.ThreadSafeInvoke(() =>
+                        this.ThreadSafeInvoke(() =>
                         {
                             _MainGroupBox.Text = string.Format("Care.v{0}", talking.Scpi);
                         });
                         break;
                     case 0xD3: //查询DHCP是否激活（0x00:未激活;0x01:激活）
+                        this.ThreadSafeInvoke(() =>
+                        {
+                            var bs = talking.ScpiBytes[0];
+                            if (bs == 0x00)
+                            {
+                                _DhcpEnableRadioButton.Checked = false;
+                                _DhcpDisableRadioButton.Checked = true;
+                            }
+                            else
+                            {
+                                _DhcpEnableRadioButton.Checked = true;
+                                _DhcpDisableRadioButton.Checked = false;
+                            }
+                        });
                         break;
                     case 0xD4: //查询Care的IP地址；
                         this.ThreadSafeInvoke(() =>
@@ -72,7 +91,7 @@ namespace MeterKnife.Workbench.Dialogs
                         this.ThreadSafeInvoke(() =>
                         {
                             var bs = talking.ScpiBytes;
-                            var port = byte2Int(bs);
+                            var port = BitConverter.ToInt16(bs.Reverse().ToArray(), 0);
                             _TcpNumericUpDown.Value = port;
                         });
                         break;
@@ -94,22 +113,21 @@ namespace MeterKnife.Workbench.Dialogs
                         });
                         break;
                     case 0xDB: //查询透明协议时仪器的GPIB地址；
+                        this.ThreadSafeInvoke(() =>
+                        {
+                            var bs = talking.ScpiBytes[0];
+                            _GpibNumericUpDown.Value = (int) bs;
+                        });
                         break;
                     case 0xDC: //查询Care的MAC地址；
+                        this.ThreadSafeInvoke(() =>
+                        {
+                            var bs = talking.ScpiBytes;
+                            _MacTextBox.Text = bs.ToHexString(':');
+                        });
                         break;
                 }
             }
-        }
-
-        public static int byte2Int(byte[] b)
-        {
-            int iOutcome = 0;
-            for (int i = 0; i < b.Length; i++)
-            {
-                byte bLoop = b[i];
-                iOutcome += (bLoop & 0xFF) << (8*i);
-            }
-            return iOutcome;
         }
 
         protected override void OnShown(EventArgs e)
