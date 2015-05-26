@@ -86,9 +86,16 @@ namespace MeterKnife.Common.DataModels
             set
             {
                 if (!string.IsNullOrEmpty(value))
-                    _Scpi = value[value.Length - 1] != '\n' ? string.Format("{0}{1}", value, '\n') : value;
+                {
+                    if (value.Length > 1 && value[value.Length - 1] != '\n')
+                        _Scpi = string.Format("{0}{1}", value, '\n');
+                    else
+                        _Scpi = value;
+                }
                 else
+                {
                     _Scpi = string.Empty;
+                }
             }
         }
 

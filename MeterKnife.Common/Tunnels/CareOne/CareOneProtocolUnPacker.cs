@@ -32,6 +32,14 @@ namespace MeterKnife.Common.Tunnels.CareOne
 
             var contentBytes = new byte[data.Length - 5];
             Buffer.BlockCopy(data, 5, contentBytes, 0, data.Length - 5);
+
+            //一般回复确认信息，无直接内容
+            if (contentBytes.Length == 1)
+            {
+                talking.ScpiBytes = contentBytes;
+                talking.Scpi = ((int)contentBytes[0]).ToString();
+            }
+
             //+1.00355300E-01  100mV
             string value = Encoding.ASCII.GetString(contentBytes).TrimEnd('\n');
 

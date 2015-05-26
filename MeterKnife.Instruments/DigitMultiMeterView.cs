@@ -46,10 +46,6 @@ namespace MeterKnife.Instruments
         {
             InitializeComponent();
 
-            var tempcheckbox = new ToolStripCheckBox();
-            tempcheckbox.Text = "合并温度";
-            _PlotToolStrip.Items.Add(tempcheckbox);
-
             SetStripButtonState(false);
             _MeterKernel.Collected += (s, e) => SetStripButtonState(e.Item);
 

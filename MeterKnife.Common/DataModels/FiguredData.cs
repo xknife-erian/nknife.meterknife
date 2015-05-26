@@ -95,36 +95,63 @@ namespace MeterKnife.Common.DataModels
             get { return _DataSet; }
         }
 
-        public void SetNominalValue(double nominalValue)
-        {
-            _NominalValue = nominalValue;
-        }
-
         public bool Export(string fileFullName)
         {
-            var hssfworkbook = new HSSFWorkbook();
+            var book = new HSSFWorkbook();
 
-            ISheet sheet1 = hssfworkbook.CreateSheet("测量数据");
+            ISheet sheet1 = book.CreateSheet("测量数据");
+
+            var dateStyle = book.CreateCellStyle();
+            dateStyle.Alignment = HorizontalAlignment.Left;
+            var format = book.CreateDataFormat();
+            dateStyle.DataFormat = format.GetFormat("yyyy/m/d HH:MM:ss");
 
             DataRowCollection tableRows = DataSet.Tables[1].Rows;
-            for (int i = 0; i < DataSet.Tables[1].Rows.Count; i++)
+            for (int i = 0; i < tableRows.Count; i++)
             {
                 IRow row = sheet1.CreateRow(i);
                 object[] array = tableRows[i].ItemArray;
                 for (int j = 0; j < array.Length; j++)
                 {
-                    row.CreateCell(j).SetCellValue(array[j].ToString());
+                    if (array[j] is DateTime)
+                    {
+                        var datetime = (DateTime) array[j];
+                        var cell = row.CreateCell(j);
+                        cell.CellStyle = dateStyle;
+                        cell.SetCellValue(datetime);
+                    }
+                    else if (array[j] is double)
+                    {
+                        var d = (double) array[j];
+                        row.CreateCell(j).SetCellValue(d);
+                    }
+                    else if (array[j] is int)
+                    {
+                        var d = (int) array[j];
+                        row.CreateCell(j).SetCellValue(d);
+                    }
+                    else
+                    {
+                        row.CreateCell(j).SetCellValue(array[j].ToString());
+                    }
                 }
-                sheet1.AutoSizeColumn(0);
-                sheet1.AutoSizeColumn(1);
-                sheet1.AutoSizeColumn(2);
             }
+            sheet1.AutoSizeColumn(0);
+            sheet1.AutoSizeColumn(1);
+            sheet1.AutoSizeColumn(2);
             using (var file = new FileStream(fileFullName, FileMode.Create))
             {
-                hssfworkbook.Write(file);
+                book.Write(file);
+                file.Flush();
                 file.Close();
             }
+
             return true;
+        }
+
+        public void SetNominalValue(double nominalValue)
+        {
+            _NominalValue = nominalValue;
         }
 
         public void Add(double value)

@@ -13,7 +13,8 @@ namespace MeterKnife.Common.Tunnels
         public override void Recevied(CareTalking protocol)
         {
             _logger.Trace(string.Format("{1}^{2}:{0}", protocol.Scpi, protocol.MainCommand.ToHexString(), protocol.SubCommand.ToHexString()));
-            OnProtocolRecevied(new EventArgs<CareTalking>(protocol));
+            if (!string.IsNullOrEmpty(protocol.Scpi))
+                OnProtocolRecevied(new EventArgs<CareTalking>(protocol));
         }
 
         public event EventHandler<EventArgs<CareTalking>> ProtocolRecevied;

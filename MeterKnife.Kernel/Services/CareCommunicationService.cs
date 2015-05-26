@@ -67,8 +67,7 @@ namespace MeterKnife.Kernel.Services
                         _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
                         Send(port, CareTalking.CareGetter());
                         Thread.Sleep(20);
-                        Send(port, CareTalking.CareGetter(0xD2));
-                        Thread.Sleep(20);
+
                         var time = DateTime.Now.ToString("yyyyMMddHHmmss");
                         var timebs = Encoding.ASCII.GetBytes(time);
                         _logger.Info(string.Format("Set Care Time:{0}", time));

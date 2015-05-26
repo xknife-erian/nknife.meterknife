@@ -84,7 +84,7 @@ namespace MeterKnife.Workbench.Controls.Tree
                     var careTalking = CareTalking.IDN(_MeterInfo.GpibAddress);
                     _logger.Debug(string.Format("Send:{0}", careTalking.Scpi));
                     var data = careTalking.Generate();
-                    _CommService.Send(Port, data);
+                    _CommService.Send(Port, data);//08 17 07 AA 00 2A 49 44 4E 3F
                 }
                 else //当手动选择仪器类型时
                 {

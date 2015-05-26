@@ -110,7 +110,9 @@ namespace MeterKnife.Workbench.Views
                         : new CareNode {Text = string.Format("Care [{0}]", serial)};
                     node.Port = port;
                     if (careComm.CareHandlers.ContainsKey(port))
+                    {
                         node.Handler = careComm.CareHandlers[port];
+                    }
                     _MeterTree.ThreadSafeInvoke(() => _MeterTree.RootNode.Nodes.Add(node));
                 }
             }
