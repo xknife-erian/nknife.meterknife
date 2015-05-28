@@ -87,7 +87,7 @@ namespace MeterKnife.Common.DataModels
             return DI.Get<IMeterDataService>().Save(fileFullName, DataSet);
         }
 
-        public event EventHandler<CollectEventArgs> ReceviedCollectData;
+        public event EventHandler<CollectDataEventArgs> ReceviedCollectData;
 
         [Browsable(false)]
         public DataSet DataSet
@@ -181,7 +181,7 @@ namespace MeterKnife.Common.DataModels
             }
 
             //触发数据源发生变化
-            OnReceviedCollectData(new CollectEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
+            OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
         }
 
         public void AddTemperature(double value)
@@ -206,9 +206,9 @@ namespace MeterKnife.Common.DataModels
             TemperatureRootMeanSquare = Math.Round(Math.Sqrt(_RmsTemperatureData/count), 4);
         }
 
-        protected virtual void OnReceviedCollectData(CollectEventArgs e)
+        protected virtual void OnReceviedCollectData(CollectDataEventArgs e)
         {
-            EventHandler<CollectEventArgs> handler = ReceviedCollectData;
+            EventHandler<CollectDataEventArgs> handler = ReceviedCollectData;
             if (handler != null)
                 handler(this, e);
         }

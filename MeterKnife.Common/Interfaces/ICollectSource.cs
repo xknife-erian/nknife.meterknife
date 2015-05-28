@@ -30,6 +30,6 @@ namespace MeterKnife.Common.Interfaces
         /// <summary>
         /// 当收到仪器采集数据时
         /// </summary>
-        event EventHandler<CollectEventArgs> ReceviedCollectData;
+        event EventHandler<CollectDataEventArgs> ReceviedCollectData;
     }
 }

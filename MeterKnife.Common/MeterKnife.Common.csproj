@@ -91,6 +91,7 @@
     <Compile Include="Base\_\GpibLanguage.cs" />
     <Compile Include="Base\_\MultiMeterParameters.cs" />
     <Compile Include="DataModels\CareTalking.Protocols.cs" />
+    <Compile Include="EventParameters\CollectedEventArgs.cs" />
     <Compile Include="Interfaces\IMeterDataService.cs" />
     <Compile Include="DataModels\MeterTreeElement.cs" />
     <Compile Include="DataModels\CareTalking.cs" />
@@ -99,7 +100,7 @@
     <Compile Include="DataModels\MeterCollection.cs" />
     <Compile Include="DataModels\GpibCommand.cs" />
     <Compile Include="DataModels\GpibCommandList.cs" />
-    <Compile Include="EventParameters\CollectEventArgs.cs" />
+    <Compile Include="EventParameters\CollectDataEventArgs.cs" />
     <Compile Include="Base\BaseCareCommunicationService.cs" />
     <Compile Include="EventParameters\InterfaceNodeClickedEventArgs.cs" />
     <Compile Include="Interfaces\ICollectSource.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="IoC\TunnelModules.cs" />
     <Compile Include="MeterKnifeUserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tunnels\CareConfigHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneCodec.cs" />
     <Compile Include="Tunnels\CareOne\CareOneDatagramDecoder.cs" />

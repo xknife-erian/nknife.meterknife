@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MeterKnife.Common.Base;
+using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
+using NKnife.Base;
 using NKnife.Events;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -18,21 +20,17 @@ namespace MeterKnife.Kernel
         public Dictionary<int, List<int>> GpibDictionary { get; private set; }
         public Dictionary<BaseMeter, DockContent> MeterContents { get; private set; }
 
-        public bool CollectBeginning
+        public void CollectBeginning(int address, bool value)
         {
-            get { return _OnCollected; }
-            set
-            {
-                _OnCollected = value;
-                OnCollectedEvent(new EventArgs<bool>(value));
-            }
+            _OnCollected = value;
+            OnCollectedEvent(new CollectedEventArgs(address, value));
         }
 
-        public event EventHandler<EventArgs<bool>> Collected;
+        public event EventHandler<CollectedEventArgs> Collected;
 
-        protected virtual void OnCollectedEvent(EventArgs<bool> e)
+        protected virtual void OnCollectedEvent(CollectedEventArgs e)
         {
-            EventHandler<EventArgs<bool>> handler = Collected;
+            EventHandler<CollectedEventArgs> handler = Collected;
             if (handler != null) handler(this, e);
         }
 

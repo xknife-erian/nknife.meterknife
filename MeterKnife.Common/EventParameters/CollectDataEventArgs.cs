@@ -4,9 +4,9 @@ using NKnife.Events;
 
 namespace MeterKnife.Common.EventParameters
 {
-    public class CollectEventArgs : EventArgs<CollectData>
+    public class CollectDataEventArgs : EventArgs<CollectData>
     {
-        public CollectEventArgs(IMeter meter, CollectData data)
+        public CollectDataEventArgs(IMeter meter, CollectData data)
             : base(data)
         {
             Meter = meter;

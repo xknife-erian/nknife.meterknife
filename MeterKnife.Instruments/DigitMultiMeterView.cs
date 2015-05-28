@@ -47,7 +47,11 @@ namespace MeterKnife.Instruments
             InitializeComponent();
 
             SetStripButtonState(false);
-            _MeterKernel.Collected += (s, e) => SetStripButtonState(e.Item);
+            _MeterKernel.Collected += (s, e) =>
+            {
+                if (e.GpibAddress == _Meter.GpibAddress)
+                    SetStripButtonState(e.IsCollected);
+            };
 
             _MainModel = BuildMainPlogModel();
             var mainPlot = new PlotView
@@ -119,7 +123,7 @@ namespace MeterKnife.Instruments
             }
         }
 
-        private void _FiguredData_ReceviedCollectData(object sender, CollectEventArgs e)
+        private void _FiguredData_ReceviedCollectData(object sender, CollectDataEventArgs e)
         {
             var data = e.CollectData;
             string item = string.Format("{0}\t{1}\t{2}", data.DateTime, data.Data, data.Temperature);
@@ -181,7 +185,7 @@ namespace MeterKnife.Instruments
             var handler = (ScpiProtocolHandler) _Comm.CareHandlers[Port];
             handler.ProtocolRecevied += OnProtocolRecevied;
             _OnCollect = true;
-            _MeterKernel.CollectBeginning = true;
+            _MeterKernel.CollectBeginning(_Meter.GpibAddress, true);
 
             double nv = 0;
             if (double.TryParse(_NominalValueTextBox.Text, out nv))
@@ -208,7 +212,7 @@ namespace MeterKnife.Instruments
         {
             _OnCollect = false;
             Thread.Sleep(50);
-            DI.Get<IMeterKernel>().CollectBeginning = false;
+            DI.Get<IMeterKernel>().CollectBeginning(_Meter.GpibAddress, false);
             var handler = (ScpiProtocolHandler) _Comm.CareHandlers[Port];
             handler.ProtocolRecevied -= OnProtocolRecevied;
         }

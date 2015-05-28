@@ -10,28 +10,30 @@ namespace MeterKnife.Common.DataModels
 
         public static CareTalking BuildCareSaying(int gpib, string scpi, bool isReturn = true)
         {
-            var careTalking = new CareTalking();
-            if (isReturn)
-                careTalking.MainCommand = 0xAA;
-            else
-                careTalking.MainCommand = 0xAB;
-            careTalking.SubCommand = 0x00;
-            careTalking.Scpi = scpi;
-            careTalking.ScpiBytes = Encoding.ASCII.GetBytes(scpi);
-            careTalking.GpibAddress = (byte) gpib;
+            var careTalking = new CareTalking
+            {
+                MainCommand = isReturn ? (byte) 0xAA : (byte) 0xAB, 
+                SubCommand = 0x00, 
+                Scpi = scpi, 
+                ScpiBytes = Encoding.ASCII.GetBytes(scpi), 
+                GpibAddress = (byte) gpib
+            };
             return careTalking;
         }
 
+        // ReSharper disable once InconsistentNaming
         public static CareTalking IDN(int gpib)
         {
             return BuildCareSaying(gpib, "*IDN?");
         }
 
+        // ReSharper disable once InconsistentNaming
         public static CareTalking READ(int gpib)
         {
             return BuildCareSaying(gpib, "READ?");
         }
 
+        // ReSharper disable once InconsistentNaming
         public static CareTalking TEMP()
         {
             if (_temp == null)
