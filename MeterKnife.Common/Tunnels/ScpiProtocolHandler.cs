@@ -10,6 +10,13 @@ namespace MeterKnife.Common.Tunnels
     {
         private static readonly ILog _logger = LogManager.GetLogger<ScpiProtocolHandler>();
 
+        public ScpiProtocolHandler()
+        {
+            Commands.Add(new byte[] { 0xAA, 0x01 });
+            Commands.Add(new byte[] { 0xAB, 0x00 });
+            Commands.Add(new byte[] { 0xAE, 0x00 });
+        }
+
         public override void Recevied(CareTalking protocol)
         {
             _logger.Trace(string.Format("{1}^{2}:{0}", protocol.Scpi, protocol.MainCommand.ToHexString(), protocol.SubCommand.ToHexString()));
@@ -25,5 +32,6 @@ namespace MeterKnife.Common.Tunnels
             if (handler != null)
                 handler(this, e);
         }
+
     }
 }

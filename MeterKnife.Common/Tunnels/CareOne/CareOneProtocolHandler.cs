@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Common.Logging;
@@ -13,6 +14,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
 
         protected CareOneProtocolHandler()
         {
+            _Id = Guid.NewGuid();
             Commands = new List<byte[]>();
         }
 
@@ -31,6 +33,24 @@ namespace MeterKnife.Common.Tunnels.CareOne
         }
 
         public abstract void Recevied(CareTalking protocol);
+
+        private readonly Guid _Id;
+
+        public override bool Equals(object obj)
+        {
+            return false;
+        }
+
+        protected bool Equals(ScpiProtocolHandler other)
+        {
+            return _Id.Equals(other._Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return _Id.GetHashCode();
+        }
+
     }
 
 

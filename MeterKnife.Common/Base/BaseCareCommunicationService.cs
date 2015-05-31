@@ -48,9 +48,9 @@ namespace MeterKnife.Common.Base
             get { return "Care通讯服务"; }
         }
 
-        void ITunnelService<byte[]>.Build(int port, params BaseProtocolHandler<byte[]>[] handlers)
+        void ITunnelService<byte[]>.Bind(int port, params BaseProtocolHandler<byte[]>[] handlers)
         {
-            Build(port, handlers.Cast<CareOneProtocolHandler>().ToArray());
+            Bind(port, handlers.Cast<CareOneProtocolHandler>().ToArray());
         }
 
         public abstract void Destroy();
@@ -58,6 +58,7 @@ namespace MeterKnife.Common.Base
         public abstract bool Stop(int port);
         public abstract void Send(int port, byte[] data);
         public abstract bool Initialize();
+
         public event EventHandler<EventArgs<int>> SerialInitialized;
 
         protected virtual void OnSerialInitialized(EventArgs<int> e)
@@ -67,6 +68,8 @@ namespace MeterKnife.Common.Base
                 handler(this, e);
         }
 
-        public abstract void Build(int port, params CareOneProtocolHandler[] handlers);
+        public abstract void Bind(int port, params CareOneProtocolHandler[] handlers);
+
+        public abstract void Remove(int port, CareOneProtocolHandler handler);
     }
 }

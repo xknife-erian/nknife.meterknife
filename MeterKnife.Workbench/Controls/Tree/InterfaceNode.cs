@@ -77,9 +77,8 @@ namespace MeterKnife.Workbench.Controls.Tree
                 _MeterInfo.Language = dialog.Language;
                 if (dialog.AutoFindMeter)
                 {
-
-                    var handler = (ScpiProtocolHandler) _CommService.CareHandlers[Port];
-                    handler.ProtocolRecevied += HandlerOnProtocolRecevied;
+                    var handler = (CareConfigHandler) _CommService.CareHandlers[Port];
+                    handler.CareConfigging += HandlerOnProtocolRecevied;
 
                     var careTalking = CareTalking.IDN(_MeterInfo.GpibAddress);
                     _logger.Debug(string.Format("Send:{0}", careTalking.Scpi));
@@ -108,7 +107,8 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         private void HandlerOnProtocolRecevied(object sender, EventArgs<CareTalking> e)
         {
-            ((ScpiProtocolHandler) _CommService.CareHandlers[Port]).ProtocolRecevied -= HandlerOnProtocolRecevied;
+            var handler = ((CareConfigHandler)_CommService.CareHandlers[Port]);
+            handler.CareConfigging -= HandlerOnProtocolRecevied;
 
             var idnName = e.Item.Scpi;
             var meterNode = new MeterNode();

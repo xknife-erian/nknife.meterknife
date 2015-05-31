@@ -10,9 +10,11 @@ namespace MeterKnife.Instruments
     public class MeterView : DockContent
     {
         protected BaseMeter _Meter;
+        protected int _Port;
 
-        public virtual void SetMeter(BaseMeter meter)
+        public virtual void SetMeter(int port, BaseMeter meter)
         {
+            _Port = port;
             _Meter = meter;
         }
 

@@ -29,6 +29,7 @@ namespace MeterKnife.Instruments
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
         private readonly UtilityRandom _Random = new UtilityRandom();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
+        private readonly ScpiProtocolHandler _Handler = new ScpiProtocolHandler();
 
         private readonly FiguredData _FiguredData = new FiguredData();
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
@@ -81,9 +82,10 @@ namespace MeterKnife.Instruments
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
         }
 
-        public override void SetMeter(BaseMeter meter)
+        public override void SetMeter(int port, BaseMeter meter)
         {
-            base.SetMeter(meter);
+            base.SetMeter(port, meter);
+            _Comm.Bind(port, _Handler);
             _FiguredData.Meter = _Meter;
             _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
             _Panel = meter.ParamPanel;
@@ -182,8 +184,7 @@ namespace MeterKnife.Instruments
 
         private void _StartStripButton_Click(object sender, EventArgs e)
         {
-            var handler = (ScpiProtocolHandler) _Comm.CareHandlers[Port];
-            handler.ProtocolRecevied += OnProtocolRecevied;
+            _Handler.ProtocolRecevied += OnProtocolRecevied;
             _OnCollect = true;
             _MeterKernel.CollectBeginning(_Meter.GpibAddress, true);
 

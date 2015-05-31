@@ -44,49 +44,57 @@ namespace MeterKnife.Kernel.Services
             {
                 string com = serial.ToUpper().TrimStart(new[] {'C', 'O', 'M'});
                 int port = 0;
-                if (int.TryParse(com, out port))
+                if (!int.TryParse(com, out port)) 
+                    continue;
+                if (port <= 0) 
+                    continue;
+                bool onFindCare = true;
+                var handler = new CareConfigHandler();
+                handler.CareConfigging += (s, e) =>
                 {
-                    if (port > 0)
+                    if (onFindCare)
                     {
-                        bool onFindCare = true;
-                        var handler = new ScpiProtocolHandler();
-                        handler.ProtocolRecevied += (s, e) =>
+                        if (e.Item.Scpi.ToLower().StartsWith("care"))
                         {
-                            if (onFindCare)
-                            {
-                                if (e.Item.Scpi.ToLower().StartsWith("care"))
-                                {
-                                    OnSerialInitialized(new EventArgs<int>(port));
-                                    _CareHandlers.Add(port, handler);
-                                }
-                            }
-                            onFindCare = false;
-                        };
-                        Build(port, handler);
-                        Start(port);
-                        _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
-                        Send(port, CareTalking.CareGetter());
-                        Thread.Sleep(20);
-
-                        var time = DateTime.Now.ToString("yyyyMMddHHmmss");
-                        var timebs = Encoding.ASCII.GetBytes(time);
-                        _logger.Info(string.Format("Set Care Time:{0}", time));
-                        Send(port, CareTalking.CareSetter(0xD9, timebs));
-                        Thread.Sleep(50);
+                            OnSerialInitialized(new EventArgs<int>(port));
+                            _CareHandlers.Add(port, handler);
+                        }
                     }
-                }
+                    onFindCare = false;
+                };
+
+                Bind(port, handler);
+                Start(port);
+
+
+                _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
+                Send(port, CareTalking.CareGetter());
+                Thread.Sleep(20);
+
+                var time = DateTime.Now.ToString("yyyyMMddHHmmss");
+                var timebs = Encoding.ASCII.GetBytes(time);
+                _logger.Info(string.Format("Set Care Time:{0}", time));
+                Send(port, CareTalking.CareSetter(0xD9, timebs));
+                Thread.Sleep(50);
+                Remove(port, handler);
             }
             IsInitialized = true;
             return true;
         }
 
-        public override void Build(int port, params CareOneProtocolHandler[] handlers)
+        public override void Bind(int port, params CareOneProtocolHandler[] handlers)
         {
             SerialProtocolFilter filter = BuildConnector(port);
             foreach (CareOneProtocolHandler handler in handlers)
             {
                 filter.AddHandlers(handler);
             }
+        }
+
+        public override void Remove(int port, CareOneProtocolHandler handler)
+        {
+            SerialProtocolFilter filter = BuildConnector(port);
+            filter.RemoveHandler(handler);
         }
 
         public override void Destroy()
@@ -176,7 +184,7 @@ namespace MeterKnife.Kernel.Services
             return serialProtocolFilter;
         }
 
-//        #region Test Main
+        // #region Test Main
 //
 //        private static void Main(string[] args)
 //        {

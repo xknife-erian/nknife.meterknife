@@ -45,7 +45,7 @@ namespace MeterKnife.Workbench.Views
                 var collectView = DI.Get<DigitMultiMeterView>();
                 collectView.Port = e.Port;
                 collectView.CommunicationType = e.CommunicationType;
-                collectView.SetMeter(e.Meter);
+                collectView.SetMeter(e.Port, e.Meter);
                 collectView.Text = e.Meter.AbbrName;
                 dic.Add(e.Meter, collectView);
                 dockContent = collectView;
