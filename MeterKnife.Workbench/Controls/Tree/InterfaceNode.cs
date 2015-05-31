@@ -23,6 +23,8 @@ namespace MeterKnife.Workbench.Controls.Tree
         protected readonly ContextMenuStrip _RightMenu;
         private MeterInfo _MeterInfo;
 
+        private CareConfigHandler _Handler;
+
         class MeterInfo
         {
             public int GpibAddress { get; set; }
@@ -49,7 +51,6 @@ namespace MeterKnife.Workbench.Controls.Tree
         }
 
         public int Port { get; set; }
-        public CareOneProtocolHandler Handler { get; set; }
 
         private void AddMeterMenuOnClick(object sender, EventArgs eventArgs)
         {
@@ -70,15 +71,18 @@ namespace MeterKnife.Workbench.Controls.Tree
                     return;
                 }
 
-                _MeterInfo = new MeterInfo();
-                _MeterInfo.Brand = dialog.Brand;
-                _MeterInfo.Name = dialog.MeterName;
-                _MeterInfo.GpibAddress = dialog.GpibAddress;
-                _MeterInfo.Language = dialog.Language;
+                _MeterInfo = new MeterInfo
+                {
+                    Brand = dialog.Brand, 
+                    Name = dialog.MeterName, 
+                    GpibAddress = dialog.GpibAddress, 
+                    Language = dialog.Language
+                };
                 if (dialog.AutoFindMeter)
                 {
-                    var handler = (CareConfigHandler) _CommService.CareHandlers[Port];
-                    handler.CareConfigging += HandlerOnProtocolRecevied;
+                    _Handler = new CareConfigHandler();
+                    _CommService.Bind(Port, _Handler);
+                    _Handler.CareConfigging += OnCareConfigging;
 
                     var careTalking = CareTalking.IDN(_MeterInfo.GpibAddress);
                     _logger.Debug(string.Format("Send:{0}", careTalking.Scpi));
@@ -105,10 +109,9 @@ namespace MeterKnife.Workbench.Controls.Tree
             }
         }
 
-        private void HandlerOnProtocolRecevied(object sender, EventArgs<CareTalking> e)
+        private void OnCareConfigging(object sender, EventArgs<CareTalking> e)
         {
-            var handler = ((CareConfigHandler)_CommService.CareHandlers[Port]);
-            handler.CareConfigging -= HandlerOnProtocolRecevied;
+            _Handler.CareConfigging -= OnCareConfigging;
 
             var idnName = e.Item.Scpi;
             var meterNode = new MeterNode();
@@ -144,7 +147,8 @@ namespace MeterKnife.Workbench.Controls.Tree
         protected internal virtual void OnNodeClicked(MouseEventArgs e)
         {
             var handler = NodeClicked;
-            if (handler != null) handler(this, e);
+            if (handler != null) 
+                handler(this, e);
         }
     }
 }

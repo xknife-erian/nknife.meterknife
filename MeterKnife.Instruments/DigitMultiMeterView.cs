@@ -27,12 +27,14 @@ namespace MeterKnife.Instruments
     public partial class DigitMultiMeterView : MeterView
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
+
         private readonly UtilityRandom _Random = new UtilityRandom();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
         private readonly ScpiProtocolHandler _Handler = new ScpiProtocolHandler();
 
         private readonly FiguredData _FiguredData = new FiguredData();
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
+        private bool _IsDispose = false;
 
         protected LineSeries _MainLineSeries = new LineSeries();
         protected LinearAxis _MainValueAxis = new LinearAxis();
@@ -95,6 +97,8 @@ namespace MeterKnife.Instruments
 
         private void SetStripButtonState(bool isCollected)
         {
+            if (_IsDispose)
+                return;
             if (isCollected)
             {
                 _StartStripButton.Enabled = false;
@@ -205,8 +209,10 @@ namespace MeterKnife.Instruments
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            _IsDispose = true;
             base.OnFormClosing(e);
             StopProtocolRecevied();
+            _Comm.Remove(_Port, _Handler);
         }
 
         private void StopProtocolRecevied()
@@ -214,8 +220,7 @@ namespace MeterKnife.Instruments
             _OnCollect = false;
             Thread.Sleep(50);
             DI.Get<IMeterKernel>().CollectBeginning(_Meter.GpibAddress, false);
-            var handler = (ScpiProtocolHandler) _Comm.CareHandlers[Port];
-            handler.ProtocolRecevied -= OnProtocolRecevied;
+            _Handler.ProtocolRecevied -= OnProtocolRecevied;
         }
 
         private void SendRead(object obj)

@@ -24,6 +24,8 @@ namespace MeterKnife.Workbench.Dialogs
         private static readonly ILog _logger = LogManager.GetLogger<CareParameterDialog>();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
         private readonly int _Port;
+        private readonly CareConfigHandler _Handler = new CareConfigHandler();
+
 
         public CareParameterDialog(int port)
         {
@@ -33,8 +35,7 @@ namespace MeterKnife.Workbench.Dialogs
             {
                 _DhcpGroupBox.Enabled = _DhcpEnableRadioButton.Checked;
             };
-            var handler = (ScpiProtocolHandler) _Comm.CareHandlers[_Port];
-            handler.ProtocolRecevied += OnProtocolRecevied;
+            _Handler.CareConfigging += OnProtocolRecevied;
         }
 
         private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
@@ -139,9 +140,9 @@ namespace MeterKnife.Workbench.Dialogs
 
         protected override void OnClosed(EventArgs e)
         {
-            var handler = (ScpiProtocolHandler) _Comm.CareHandlers[_Port];
-            handler.ProtocolRecevied -= OnProtocolRecevied;
+            _Handler.CareConfigging -= OnProtocolRecevied;
             base.OnClosed(e);
+            _Comm.Remove(_Port, _Handler);
         }
 
         private void GetCareParameter()

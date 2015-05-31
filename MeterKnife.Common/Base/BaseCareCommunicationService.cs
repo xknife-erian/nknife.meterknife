@@ -18,7 +18,7 @@ namespace MeterKnife.Common.Base
 
         public bool IsInitialized { get; protected set; }
 
-        public abstract Dictionary<int, CareOneProtocolHandler> CareHandlers { get; }
+        //public abstract Dictionary<int, CareOneProtocolHandler> CareHandlers { get; }
 
         public int Order
         {
@@ -47,6 +47,11 @@ namespace MeterKnife.Common.Base
         {
             get { return "Care通讯服务"; }
         }
+
+        /// <summary>
+        /// 是连接Care的串口
+        /// </summary>
+        public List<int> Cares { get; protected set; }
 
         void ITunnelService<byte[]>.Bind(int port, params BaseProtocolHandler<byte[]>[] handlers)
         {

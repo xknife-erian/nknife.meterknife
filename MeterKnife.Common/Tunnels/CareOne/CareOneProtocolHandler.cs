@@ -28,7 +28,6 @@ namespace MeterKnife.Common.Tunnels.CareOne
                 _logger.Warn("Protocol类型有误, 不是CareSaying类型");
                 return;
             }
-
             Recevied((CareTalking)protocol);
         }
 
@@ -38,10 +37,12 @@ namespace MeterKnife.Common.Tunnels.CareOne
 
         public override bool Equals(object obj)
         {
-            return false;
+            if (obj == null) return false;
+            if (!(obj is CareOneProtocolHandler)) return false;
+            return Equals((CareOneProtocolHandler) obj);
         }
 
-        protected bool Equals(ScpiProtocolHandler other)
+        protected bool Equals(CareOneProtocolHandler other)
         {
             return _Id.Equals(other._Id);
         }
@@ -50,8 +51,5 @@ namespace MeterKnife.Common.Tunnels.CareOne
         {
             return _Id.GetHashCode();
         }
-
     }
-
-
 }

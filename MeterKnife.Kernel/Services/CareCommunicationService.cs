@@ -26,19 +26,14 @@ namespace MeterKnife.Kernel.Services
     {
         private const string FAMILY_NAME = "careone";
         private static readonly ILog _logger = LogManager.GetLogger<CareCommunicationService>();
-        private readonly Dictionary<int, CareOneProtocolHandler> _CareHandlers = new Dictionary<int, CareOneProtocolHandler>();
 
         private readonly List<int> _PortList = new List<int>();
         private readonly Dictionary<int, SerialProtocolFilter> _ProtocolFilters = new Dictionary<int, SerialProtocolFilter>();
         private readonly Dictionary<int, ISerialConnector> _SerialConnector = new Dictionary<int, ISerialConnector>();
 
-        public override Dictionary<int, CareOneProtocolHandler> CareHandlers
-        {
-            get { return _CareHandlers; }
-        }
-
         public override bool Initialize()
         {
+            Cares = new List<int>();
             StringCollection serialList = PcInterfaces.GetSerialList();
             foreach (string serial in serialList)
             {
@@ -57,7 +52,7 @@ namespace MeterKnife.Kernel.Services
                         if (e.Item.Scpi.ToLower().StartsWith("care"))
                         {
                             OnSerialInitialized(new EventArgs<int>(port));
-                            _CareHandlers.Add(port, handler);
+                            Cares.Add(port);
                         }
                     }
                     onFindCare = false;
@@ -75,7 +70,7 @@ namespace MeterKnife.Kernel.Services
                 var timebs = Encoding.ASCII.GetBytes(time);
                 _logger.Info(string.Format("Set Care Time:{0}", time));
                 Send(port, CareTalking.CareSetter(0xD9, timebs));
-                Thread.Sleep(50);
+                Thread.Sleep(200);
                 Remove(port, handler);
             }
             IsInitialized = true;

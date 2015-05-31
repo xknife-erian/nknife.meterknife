@@ -105,14 +105,10 @@ namespace MeterKnife.Workbench.Views
                 int port = 0;
                 if (int.TryParse(com, out port) && port > 0)
                 {
-                    SerialNode node = !careComm.CareHandlers.ContainsKey(port)
-                        ? new SerialNode {Text = serial}
+                    SerialNode node = !careComm.Cares.Contains(port) 
+                        ? new SerialNode {Text = serial} 
                         : new CareNode {Text = string.Format("Care [{0}]", serial)};
                     node.Port = port;
-                    if (careComm.CareHandlers.ContainsKey(port))
-                    {
-                        node.Handler = careComm.CareHandlers[port];
-                    }
                     _MeterTree.ThreadSafeInvoke(() => _MeterTree.RootNode.Nodes.Add(node));
                 }
             }
