@@ -12,14 +12,15 @@ namespace MeterKnife.Common.Tunnels
 
         public ScpiProtocolHandler()
         {
-            Commands.Add(new byte[] { 0xAA, 0x01 });
+            Commands.Add(new byte[] { 0xAA, 0x00 });
             Commands.Add(new byte[] { 0xAB, 0x00 });
             Commands.Add(new byte[] { 0xAE, 0x00 });
+            //---
+            Commands.Add(new byte[] { 0xAA, 0x01 });
         }
 
         public override void Recevied(CareTalking protocol)
         {
-            _logger.Trace(string.Format("{1}^{2}:{0}", protocol.Scpi, protocol.MainCommand.ToHexString(), protocol.SubCommand.ToHexString()));
             if (!string.IsNullOrEmpty(protocol.Scpi))
                 OnProtocolRecevied(new EventArgs<CareTalking>(protocol));
         }

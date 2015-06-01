@@ -254,11 +254,11 @@ namespace MeterKnife.Instruments
 
         private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
         {
-            CareTalking saying = e.Item;
+            CareTalking talking = e.Item;
 
-            if (saying.MainCommand == 0xAE)
+            if (talking.MainCommand == 0xAE)
             {
-                string data = saying.Scpi;
+                string data = talking.Scpi;
                 double yzl = 0;
                 if (double.TryParse(data, out yzl))
                 {
@@ -287,9 +287,10 @@ namespace MeterKnife.Instruments
             }
             else
             {
-                if ((saying.GpibAddress != _Meter.GpibAddress) || (saying.Scpi.Length < 6))
+                if ((talking.GpibAddress != _Meter.GpibAddress) || (talking.Scpi.Length < 6))
                     return;
-                string data = saying.Scpi; //.Substring(1, saying.Content.Length - 6);
+                string data = talking.Scpi; //.Substring(1, saying.Content.Length - 6);
+                _logger.Info(data);
                 double yzl = 0;
                 if (double.TryParse(data, out yzl))
                 {

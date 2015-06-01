@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
@@ -23,7 +24,7 @@ namespace MeterKnife.Workbench.Controls.Tree
         protected readonly ContextMenuStrip _RightMenu;
         private MeterInfo _MeterInfo;
 
-        private CareConfigHandler _Handler;
+        private AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
 
         class MeterInfo
         {
@@ -80,14 +81,16 @@ namespace MeterKnife.Workbench.Controls.Tree
                 };
                 if (dialog.AutoFindMeter)
                 {
-                    _Handler = new CareConfigHandler();
-                    _CommService.Bind(Port, _Handler);
-                    _Handler.CareConfigging += OnCareConfigging;
+                    var handler = new CareConfigHandler();
+                    _CommService.Bind(Port, handler);
+                    handler.CareConfigging += OnCareConfigging;
 
                     var careTalking = CareTalking.IDN(_MeterInfo.GpibAddress);
                     _logger.Debug(string.Format("Send:{0}", careTalking.Scpi));
                     var data = careTalking.Generate();
+                    _logger.Trace(data.ToHexString());
                     _CommService.Send(Port, data);//08 17 07 AA 00 2A 49 44 4E 3F
+                    _AutoResetEvent.Reset();
                 }
                 else //当手动选择仪器类型时
                 {
@@ -111,7 +114,9 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         private void OnCareConfigging(object sender, EventArgs<CareTalking> e)
         {
-            _Handler.CareConfigging -= OnCareConfigging;
+            var handler = (CareConfigHandler) sender;
+            handler.CareConfigging -= OnCareConfigging;
+            _CommService.Remove(Port, handler);
 
             var idnName = e.Item.Scpi;
             var meterNode = new MeterNode();
@@ -130,14 +135,15 @@ namespace MeterKnife.Workbench.Controls.Tree
             {
                 _logger.WarnFormat("未找到{0}的仪器", idnName, ex.Message);
                 meter = DI.Get<BaseMeter>();
-                meter.Name = "Unknown Meter";
+                meter.Name = string.IsNullOrEmpty(idnName) ? "Unknown Meter" : idnName;
             }
             meter.GpibAddress = _MeterInfo.GpibAddress;
             meter.Language = _MeterInfo.Language;
             meterNode.Meter = meter;
-            meterNode.Text = string.Format("[{0}] {1}", _MeterInfo.GpibAddress, meter.Name);
+            meterNode.Text = string.Format("[{0}] {1}", _MeterInfo.GpibAddress, idnName);
             TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
             TreeView.ThreadSafeInvoke(Expand);
+            _AutoResetEvent.Set();
         }
 
         protected abstract void BuildContextMenu();
