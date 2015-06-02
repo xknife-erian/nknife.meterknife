@@ -1,8 +1,5 @@
 ﻿namespace MeterKnife.Common.DataModels
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class GpibCommand
     {
         public GpibCommand()
@@ -15,6 +12,8 @@
             IsScpi = isScpi;
             Interval = 500;
         }
+
+        public GpibCommand Next { get; set; }
 
         public bool IsScpi { get; set; }
         public string Content { get; set; }

@@ -95,20 +95,14 @@ namespace MeterKnife.Instruments.Common
 
                     #region 有配置子项
 
-                    var subButton = new Button
-                    {
-                        BackgroundImage = Resources.arrow_triangle_down,
-                        BackgroundImageLayout = ImageLayout.Center,
-                        FlatStyle = FlatStyle.Popup,
-                        Dock = DockStyle.Right,
-                        Width = 24,
-                        Height = 22
-                    };
+                    var subButton = GetSubButton();
                     cbx.SelectedIndexChanged += (s, e) =>
                     {
                         var selectedCmd = cbx.SelectedItem as GpibCommand;
                         if (selectedCmd != null && selectedCmd.Tag != null)
+                        {
                             subButton.Tag = cmd.Tag;
+                        }
                     };
                     if (!isAddButton)
                     {
@@ -132,7 +126,7 @@ namespace MeterKnife.Instruments.Common
                         foreach (XmlElement gpElement in groupElement.ChildNodes)
                         {
                             GpibCommand gpCmd = ParseGpibCommand(isScpi, gpElement, groupCmd.Command);
-                            //TODO:
+                            groupCmd.Next = gpCmd;
                         }
                         cmd.Tag = groupCmd;
                     }
@@ -146,10 +140,23 @@ namespace MeterKnife.Instruments.Common
             _Panel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         }
 
-        private void ShowSubCommandMenu(GpibCommand tag, Control control)
+        private static Button GetSubButton()
+        {
+            return new Button
+            {
+                BackgroundImage = Resources.arrow_triangle_down,
+                BackgroundImageLayout = ImageLayout.Center,
+                FlatStyle = FlatStyle.Popup,
+                Dock = DockStyle.Right,
+                Width = 24,
+                Height = 22
+            };
+        }
+
+        private void ShowSubCommandMenu(GpibCommand command, Control control)
         {
             var menu = new ContextMenuStrip();
-            menu.Items.Add(new ToolStripMenuItem(tag.Content));
+            menu.Items.Add(new ToolStripMenuItem(command.Content));
             //TODO:
             menu.Show(control,new Point(1,1));
         }

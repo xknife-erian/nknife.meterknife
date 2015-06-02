@@ -26,7 +26,6 @@ namespace MeterKnife.Workbench.Dialogs
         private readonly int _Port;
         private readonly CareConfigHandler _Handler = new CareConfigHandler();
 
-
         public CareParameterDialog(int port)
         {
             _Port = port;
@@ -36,6 +35,7 @@ namespace MeterKnife.Workbench.Dialogs
                 _DhcpGroupBox.Enabled = _DhcpEnableRadioButton.Checked;
             };
             _Handler.CareConfigging += OnProtocolRecevied;
+            _Comm.Bind(port, _Handler);
         }
 
         private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)

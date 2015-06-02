@@ -31,9 +31,12 @@ namespace MeterKnife.Workbench.Views
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfaceTreeView));
             this._MeterTree = new MeterKnife.Workbench.Controls.Tree.MeterTree();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
-            this._MenuStrip = new System.Windows.Forms.MenuStrip();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _MeterTree
@@ -43,11 +46,11 @@ namespace MeterKnife.Workbench.Views
             this._MeterTree.FullRowSelect = true;
             this._MeterTree.ImageIndex = 0;
             this._MeterTree.ItemHeight = 22;
-            this._MeterTree.Location = new System.Drawing.Point(1, 25);
+            this._MeterTree.Location = new System.Drawing.Point(1, 26);
             this._MeterTree.Name = "_MeterTree";
             this._MeterTree.SelectedImageIndex = 0;
             this._MeterTree.ShowLines = false;
-            this._MeterTree.Size = new System.Drawing.Size(282, 314);
+            this._MeterTree.Size = new System.Drawing.Size(282, 313);
             this._MeterTree.TabIndex = 0;
             // 
             // _StatusStrip
@@ -57,12 +60,24 @@ namespace MeterKnife.Workbench.Views
             this._StatusStrip.Size = new System.Drawing.Size(282, 22);
             this._StatusStrip.TabIndex = 1;
             // 
-            // _MenuStrip
+            // toolStrip1
             // 
-            this._MenuStrip.Location = new System.Drawing.Point(1, 1);
-            this._MenuStrip.Name = "_MenuStrip";
-            this._MenuStrip.Size = new System.Drawing.Size(282, 24);
-            this._MenuStrip.TabIndex = 2;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1});
+            this.toolStrip1.Location = new System.Drawing.Point(1, 1);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(282, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // InterfaceTreeView
             // 
@@ -70,13 +85,14 @@ namespace MeterKnife.Workbench.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 362);
             this.Controls.Add(this._MeterTree);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this._StatusStrip);
-            this.Controls.Add(this._MenuStrip);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.MainMenuStrip = this._MenuStrip;
             this.Name = "InterfaceTreeView";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Text = "仪器列表";
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -86,7 +102,8 @@ namespace MeterKnife.Workbench.Views
 
         private MeterTree _MeterTree;
         private System.Windows.Forms.StatusStrip _StatusStrip;
-        private System.Windows.Forms.MenuStrip _MenuStrip;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
 
     }
 }
