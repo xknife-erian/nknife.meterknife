@@ -26,9 +26,10 @@ namespace MeterKnife.Common.Util
 
         public static string Named(Pair<string, string> namePair)
         {
-            if (namePair.Second.Contains("344"))
+            var name = namePair.Second;
+            if (name.Contains("344"))
                 return namePair.Second;
-            if (namePair.Second.Contains("2000"))
+            if (name.Contains("2000"))
                 return "K2000";
             _logger.Info(string.Format("仪器{0}无映射", namePair));
             return "ScpiMeter";

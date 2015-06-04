@@ -36,8 +36,6 @@ namespace MeterKnife.Workbench.Views
 
         private void MeterTreeOnSelectedMeter(object sender, InterfaceNodeClickedEventArgs e)
         {
-            CheckDataPath();
-
             var dic = DI.Get<IMeterKernel>().MeterContents;
             DockContent dockContent;
             if (!dic.TryGetValue(e.Meter, out dockContent))
@@ -54,32 +52,6 @@ namespace MeterKnife.Workbench.Views
             _logger.InfoFormat("由仪器树面板创建仪器{0}实时窗体", e.Meter.AbbrName);
         }
 
-        /// <summary>
-        /// 检查数据路径是否设置,当第一次使本软件时是未设置的状态的.
-        /// </summary>
-        private void CheckDataPath()
-        {
-            var userData = DI.Get<MeterKnifeUserData>();
-            object path;
-            if (!userData.TryGetValue(MeterKnifeUserData.DATA_PATH, out path))
-            {
-                var dialog = new DataPathSetterDialog();
-                if (dialog.ShowDialog(FindForm()) == DialogResult.OK)
-                {
-                    path = dialog.DataPath;
-                    userData.SetValue(MeterKnifeUserData.DATA_PATH, path);
-                    _logger.Info(string.Format("设置用户数据路径:{0}", path));
-                }
-            }
-            else
-            {
-                if (!Directory.Exists(path.ToString()))
-                {
-                    UtilityFile.CreateDirectory(path.ToString());
-                    _logger.Info(string.Format("用户数据路径丢失{0},重新创建", path));
-                }
-            }
-        }
 
         private void UpdateTreeNode()
         {

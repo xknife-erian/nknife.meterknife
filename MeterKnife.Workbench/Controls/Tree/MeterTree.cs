@@ -86,8 +86,10 @@ namespace MeterKnife.Workbench.Controls.Tree
                 var interfaceNode = (InterfaceNode) node.Parent;
                 var commType = CommunicationType.Serial;
                 if (interfaceNode is LanNode)
+                {
                     commType = CommunicationType.Socket;
-                _logger.TraceFormat("×ó¼üË«»÷ÒÇÆ÷½Úµã");
+                }
+                _logger.Trace("×ó¼üË«»÷ÒÇÆ÷½Úµã");
                 OnSelectedMeter(new InterfaceNodeClickedEventArgs(node.Meter, interfaceNode.Port, commType));
             }
         }
@@ -102,9 +104,11 @@ namespace MeterKnife.Workbench.Controls.Tree
 
         private ImageList GetImageList()
         {
-            var il = new ImageList();
-            il.ColorDepth = ColorDepth.Depth32Bit;
-            il.ImageSize = new Size(18, 18);
+            var il = new ImageList
+            {
+                ColorDepth = ColorDepth.Depth32Bit, 
+                ImageSize = new Size(18, 18)
+            };
 
             il.Images.Add(MeterTreeElement.PC, GlobalResources.pc);
             il.Images.Add(MeterTreeElement.Serial, GlobalResources.serial);

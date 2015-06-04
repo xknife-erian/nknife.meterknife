@@ -20,10 +20,10 @@ namespace MeterKnife.Common.Tunnels.CareOne
         {
             finishedIndex = 0;
             var css = new List<byte[]>();
-            bool hasData = true;//是否有数据未解析完成
+            bool hasData = true; //是否有数据未解析完成
             while (hasData)
             {
-                if (data[finishedIndex] == LEAD)
+                if (data.Length > 0 && data[finishedIndex] == LEAD)
                 {
                     int length;
                     byte[] cs;
@@ -31,7 +31,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
                     if (!parseSuccess)
                     {
                         hasData = false;
-                        finishedIndex = data.Length;//当解析失败时，丢弃数据
+                        finishedIndex = data.Length; //当解析失败时，丢弃数据
                         continue;
                     }
                     css.Add(cs);

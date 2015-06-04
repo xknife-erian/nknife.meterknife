@@ -61,7 +61,6 @@ namespace MeterKnife.Kernel.Services
                 Bind(port, handler);
                 Start(port);
 
-
                 _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
                 Send(port, CareTalking.CareGetter());
                 Thread.Sleep(20);
@@ -152,6 +151,8 @@ namespace MeterKnife.Kernel.Services
             if (_PortList.Contains(port))
                 return _ProtocolFilters[port];
             _PortList.Add(port);
+
+            //启动串口数据管道
             var tunnel = DI.Get<ITunnel>();
             var serialProtocolFilter = new SerialProtocolFilter();
 
@@ -169,10 +170,10 @@ namespace MeterKnife.Kernel.Services
             {
                 BaudRate = 115200,
                 ReadBufferSize = 258,
-                ReadTimeout = 100
+                ReadTimeout = 100*10
             };
             dataConnector.PortNumber = port; //串口
-            _ProtocolFilters.Add(port, serialProtocolFilter);
+            _ProtocolFilters.Add(port, serialProtocolFilter);//增加协议过滤器
             _SerialConnector.Add(port, dataConnector);
 
             tunnel.BindDataConnector(dataConnector); //dataConnector是数据流动的动力

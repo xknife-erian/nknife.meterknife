@@ -18,8 +18,6 @@ namespace MeterKnife.Common.Base
 
         public bool IsInitialized { get; protected set; }
 
-        //public abstract Dictionary<int, CareOneProtocolHandler> CareHandlers { get; }
-
         public int Order
         {
             get { return 100; }

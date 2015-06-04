@@ -122,6 +122,7 @@ namespace MeterKnife.Instruments.Common
                             continue;
                         if (!groupElement.HasChildNodes)
                             continue;
+                        //将所有命令解析成链式后，置入Tag中，待显示时再进行链式生成菜单
                         GpibCommand groupCmd = ParseGpibCommand(isScpi, groupElement, rootCmd.Command);
                         foreach (XmlElement gpElement in groupElement.ChildNodes)
                         {
@@ -156,9 +157,26 @@ namespace MeterKnife.Instruments.Common
         private void ShowSubCommandMenu(GpibCommand command, Control control)
         {
             var menu = new ContextMenuStrip();
-            menu.Items.Add(new ToolStripMenuItem(command.Content));
-            //TODO:
-            menu.Show(control,new Point(1,1));
+            var menuItem = new ToolStripMenuItem(command.Content);
+            Next(command, menuItem);
+
+            menu.Items.Add(menuItem);
+            menu.Show(control, new Point(1, control.Height));
+        }
+
+        /// <summary>
+        /// 递归生成菜单项
+        /// </summary>
+        /// <param name="command">命令</param>
+        /// <param name="parentMenu">父菜单</param>
+        private void Next(GpibCommand command, ToolStripMenuItem parentMenu)
+        {
+            if (command.Next != null)
+            {
+                var menu = new ToolStripMenuItem(command.Content);
+                parentMenu.DropDownItems.Add(menu);
+                Next(command.Next, menu);
+            }
         }
 
         private static GpibCommand ParseGpibCommand(bool isScpi, XmlElement element, string rootCmd)

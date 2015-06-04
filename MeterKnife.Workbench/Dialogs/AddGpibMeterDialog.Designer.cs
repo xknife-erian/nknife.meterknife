@@ -34,16 +34,16 @@
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this._StandardScpiRadiobox = new System.Windows.Forms.RadioButton();
-            this._HP3478RadioBox = new System.Windows.Forms.RadioButton();
-            this._Fluke8840Radiobox = new System.Windows.Forms.RadioButton();
             this._AdvantestRadiobox = new System.Windows.Forms.RadioButton();
+            this._Fluke8840Radiobox = new System.Windows.Forms.RadioButton();
+            this._HP3478RadioBox = new System.Windows.Forms.RadioButton();
+            this._StandardScpiRadiobox = new System.Windows.Forms.RadioButton();
             this._MeterTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this._AutoFindMeterCheckbox = new System.Windows.Forms.CheckBox();
-            this._MeterTypeComboBox = new System.Windows.Forms.ComboBox();
-            this._MeterBrandComboBox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this._MeterBrandComboBox = new System.Windows.Forms.ComboBox();
+            this._MeterTypeComboBox = new System.Windows.Forms.ComboBox();
+            this._AutoFindMeterCheckbox = new System.Windows.Forms.CheckBox();
             this._GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._NumberBox)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -59,7 +59,7 @@
             this._GroupBox.Location = new System.Drawing.Point(12, 13);
             this._GroupBox.Name = "_GroupBox";
             this._GroupBox.Size = new System.Drawing.Size(282, 61);
-            this._GroupBox.TabIndex = 1;
+            this._GroupBox.TabIndex = 0;
             this._GroupBox.TabStop = false;
             // 
             // _NumberBox
@@ -78,7 +78,7 @@
             0});
             this._NumberBox.Name = "_NumberBox";
             this._NumberBox.Size = new System.Drawing.Size(144, 25);
-            this._NumberBox.TabIndex = 2;
+            this._NumberBox.TabIndex = 0;
             this._NumberBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._NumberBox.Value = new decimal(new int[] {
             23,
@@ -104,7 +104,7 @@
             this._CancelButton.Location = new System.Drawing.Point(211, 283);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(83, 28);
-            this._CancelButton.TabIndex = 2;
+            this._CancelButton.TabIndex = 5;
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
             // 
@@ -114,7 +114,7 @@
             this._AcceptButton.Location = new System.Drawing.Point(122, 283);
             this._AcceptButton.Name = "_AcceptButton";
             this._AcceptButton.Size = new System.Drawing.Size(83, 28);
-            this._AcceptButton.TabIndex = 3;
+            this._AcceptButton.TabIndex = 4;
             this._AcceptButton.Text = "确认";
             this._AcceptButton.UseVisualStyleBackColor = true;
             // 
@@ -129,9 +129,42 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 80);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(282, 88);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "语言选择";
+            // 
+            // _AdvantestRadiobox
+            // 
+            this._AdvantestRadiobox.AutoSize = true;
+            this._AdvantestRadiobox.Enabled = false;
+            this._AdvantestRadiobox.Location = new System.Drawing.Point(148, 49);
+            this._AdvantestRadiobox.Name = "_AdvantestRadiobox";
+            this._AdvantestRadiobox.Size = new System.Drawing.Size(75, 17);
+            this._AdvantestRadiobox.TabIndex = 3;
+            this._AdvantestRadiobox.Text = "Advantest";
+            this._AdvantestRadiobox.UseVisualStyleBackColor = true;
+            // 
+            // _Fluke8840Radiobox
+            // 
+            this._Fluke8840Radiobox.AutoSize = true;
+            this._Fluke8840Radiobox.Enabled = false;
+            this._Fluke8840Radiobox.Location = new System.Drawing.Point(25, 49);
+            this._Fluke8840Radiobox.Name = "_Fluke8840Radiobox";
+            this._Fluke8840Radiobox.Size = new System.Drawing.Size(102, 17);
+            this._Fluke8840Radiobox.TabIndex = 2;
+            this._Fluke8840Radiobox.Text = "Fluke8840/8842";
+            this._Fluke8840Radiobox.UseVisualStyleBackColor = true;
+            // 
+            // _HP3478RadioBox
+            // 
+            this._HP3478RadioBox.AutoSize = true;
+            this._HP3478RadioBox.Enabled = false;
+            this._HP3478RadioBox.Location = new System.Drawing.Point(148, 29);
+            this._HP3478RadioBox.Name = "_HP3478RadioBox";
+            this._HP3478RadioBox.Size = new System.Drawing.Size(62, 17);
+            this._HP3478RadioBox.TabIndex = 1;
+            this._HP3478RadioBox.Text = "HP3478";
+            this._HP3478RadioBox.UseVisualStyleBackColor = true;
             // 
             // _StandardScpiRadiobox
             // 
@@ -145,36 +178,6 @@
             this._StandardScpiRadiobox.Text = "标准SCPI";
             this._StandardScpiRadiobox.UseVisualStyleBackColor = true;
             // 
-            // _HP3478RadioBox
-            // 
-            this._HP3478RadioBox.AutoSize = true;
-            this._HP3478RadioBox.Location = new System.Drawing.Point(148, 29);
-            this._HP3478RadioBox.Name = "_HP3478RadioBox";
-            this._HP3478RadioBox.Size = new System.Drawing.Size(62, 17);
-            this._HP3478RadioBox.TabIndex = 1;
-            this._HP3478RadioBox.Text = "HP3478";
-            this._HP3478RadioBox.UseVisualStyleBackColor = true;
-            // 
-            // _Fluke8840Radiobox
-            // 
-            this._Fluke8840Radiobox.AutoSize = true;
-            this._Fluke8840Radiobox.Location = new System.Drawing.Point(25, 49);
-            this._Fluke8840Radiobox.Name = "_Fluke8840Radiobox";
-            this._Fluke8840Radiobox.Size = new System.Drawing.Size(102, 17);
-            this._Fluke8840Radiobox.TabIndex = 2;
-            this._Fluke8840Radiobox.Text = "Fluke8840/8842";
-            this._Fluke8840Radiobox.UseVisualStyleBackColor = true;
-            // 
-            // _AdvantestRadiobox
-            // 
-            this._AdvantestRadiobox.AutoSize = true;
-            this._AdvantestRadiobox.Location = new System.Drawing.Point(148, 49);
-            this._AdvantestRadiobox.Name = "_AdvantestRadiobox";
-            this._AdvantestRadiobox.Size = new System.Drawing.Size(75, 17);
-            this._AdvantestRadiobox.TabIndex = 3;
-            this._AdvantestRadiobox.Text = "Advantest";
-            this._AdvantestRadiobox.UseVisualStyleBackColor = true;
-            // 
             // _MeterTypeGroupBox
             // 
             this._MeterTypeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -187,36 +190,17 @@
             this._MeterTypeGroupBox.Location = new System.Drawing.Point(12, 179);
             this._MeterTypeGroupBox.Name = "_MeterTypeGroupBox";
             this._MeterTypeGroupBox.Size = new System.Drawing.Size(282, 98);
-            this._MeterTypeGroupBox.TabIndex = 5;
+            this._MeterTypeGroupBox.TabIndex = 2;
             this._MeterTypeGroupBox.TabStop = false;
             // 
-            // _AutoFindMeterCheckbox
+            // label3
             // 
-            this._AutoFindMeterCheckbox.AutoSize = true;
-            this._AutoFindMeterCheckbox.Checked = true;
-            this._AutoFindMeterCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this._AutoFindMeterCheckbox.Location = new System.Drawing.Point(23, 178);
-            this._AutoFindMeterCheckbox.Name = "_AutoFindMeterCheckbox";
-            this._AutoFindMeterCheckbox.Size = new System.Drawing.Size(122, 17);
-            this._AutoFindMeterCheckbox.TabIndex = 0;
-            this._AutoFindMeterCheckbox.Text = "自动确认仪器类型";
-            this._AutoFindMeterCheckbox.UseVisualStyleBackColor = true;
-            // 
-            // _MeterTypeComboBox
-            // 
-            this._MeterTypeComboBox.FormattingEnabled = true;
-            this._MeterTypeComboBox.Location = new System.Drawing.Point(109, 55);
-            this._MeterTypeComboBox.Name = "_MeterTypeComboBox";
-            this._MeterTypeComboBox.Size = new System.Drawing.Size(165, 21);
-            this._MeterTypeComboBox.TabIndex = 1;
-            // 
-            // _MeterBrandComboBox
-            // 
-            this._MeterBrandComboBox.FormattingEnabled = true;
-            this._MeterBrandComboBox.Location = new System.Drawing.Point(11, 55);
-            this._MeterBrandComboBox.Name = "_MeterBrandComboBox";
-            this._MeterBrandComboBox.Size = new System.Drawing.Size(92, 21);
-            this._MeterBrandComboBox.TabIndex = 2;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(136, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "型号:";
             // 
             // label2
             // 
@@ -227,14 +211,51 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "品牌:";
             // 
-            // label3
+            // _MeterBrandComboBox
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(107, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "型号:";
+            this._MeterBrandComboBox.FormattingEnabled = true;
+            this._MeterBrandComboBox.Items.AddRange(new object[] {
+            "Agilent(HP)",
+            "Advantest",
+            "Anritsu-Wiltron",
+            "EIP PhaseMatrix",
+            "Fluke",
+            "Harris",
+            "Heathkit",
+            "ICOM",
+            "Kenwood",
+            "LeCroy",
+            "Marconi",
+            "Motorola",
+            "Philips",
+            "RCA",
+            "Racal",
+            "Rohde Schwarz",
+            "Tektronix",
+            "Wavetek(Datron)",
+            "Yaesu"});
+            this._MeterBrandComboBox.Location = new System.Drawing.Point(11, 55);
+            this._MeterBrandComboBox.Name = "_MeterBrandComboBox";
+            this._MeterBrandComboBox.Size = new System.Drawing.Size(122, 21);
+            this._MeterBrandComboBox.TabIndex = 0;
+            // 
+            // _MeterTypeComboBox
+            // 
+            this._MeterTypeComboBox.FormattingEnabled = true;
+            this._MeterTypeComboBox.Location = new System.Drawing.Point(139, 55);
+            this._MeterTypeComboBox.Name = "_MeterTypeComboBox";
+            this._MeterTypeComboBox.Size = new System.Drawing.Size(135, 21);
+            this._MeterTypeComboBox.TabIndex = 1;
+            // 
+            // _AutoFindMeterCheckbox
+            // 
+            this._AutoFindMeterCheckbox.AutoSize = true;
+            this._AutoFindMeterCheckbox.Location = new System.Drawing.Point(23, 178);
+            this._AutoFindMeterCheckbox.Name = "_AutoFindMeterCheckbox";
+            this._AutoFindMeterCheckbox.Size = new System.Drawing.Size(122, 17);
+            this._AutoFindMeterCheckbox.TabIndex = 3;
+            this._AutoFindMeterCheckbox.Text = "自动确认仪器类型";
+            this._AutoFindMeterCheckbox.UseVisualStyleBackColor = true;
             // 
             // AddGpibMeterDialog
             // 

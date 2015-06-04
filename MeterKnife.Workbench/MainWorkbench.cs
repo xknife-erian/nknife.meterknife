@@ -2,11 +2,13 @@
 using System.IO;
 using System.Windows.Forms;
 using Common.Logging;
+using MeterKnife.Common;
 using MeterKnife.Common.Properties;
 using MeterKnife.Workbench.Dialogs;
 using MeterKnife.Workbench.Views;
 using NKnife.Interface;
 using NKnife.IoC;
+using NKnife.Utility;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Workbench
@@ -37,6 +39,12 @@ namespace MeterKnife.Workbench
             InitializeDockPanel();
             _logger.Info("添加Dock面板完成");
             Closing += (s, e) => DockPanelSaveAsXml();
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            CheckDataPath();
         }
 
         private void ViewMenuItemClickMethod()
@@ -163,5 +171,30 @@ namespace MeterKnife.Workbench
             var about = new AboutDialog();
             about.ShowDialog(this);
         }
+
+        private void CheckDataPath()// 检查数据路径是否设置,当第一次使本软件时是未设置的状态的.
+        {
+            var userData = DI.Get<MeterKnifeUserData>();
+            object path;
+            if (!userData.TryGetValue(MeterKnifeUserData.DATA_PATH, out path))
+            {
+                var dialog = new DataPathSetterDialog();
+                if (dialog.ShowDialog(FindForm()) == DialogResult.OK)
+                {
+                    path = dialog.DataPath;
+                    userData.SetValue(MeterKnifeUserData.DATA_PATH, path);
+                    _logger.Info(string.Format("设置用户数据路径:{0}", path));
+                }
+            }
+            else
+            {
+                if (!Directory.Exists(path.ToString()))
+                {
+                    UtilityFile.CreateDirectory(path.ToString());
+                    _logger.Info(string.Format("用户数据路径丢失{0},重新创建", path));
+                }
+            }
+        }
+
     }
 }

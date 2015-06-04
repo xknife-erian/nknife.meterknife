@@ -18,6 +18,9 @@ namespace MeterKnife.Common.Interfaces
         /// </summary>
         Dictionary<int, List<int>> GpibDictionary { get; }
 
+        /// <summary>
+        /// 已存在的仪器面板集合
+        /// </summary>
         Dictionary<BaseMeter, DockContent> MeterContents { get; }
 
         /// <summary>
