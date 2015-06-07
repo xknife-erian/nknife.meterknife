@@ -133,6 +133,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\nknife\NKnife\NKnife.csproj">
       <Project>{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}</Project>
       <Name>NKnife</Name>

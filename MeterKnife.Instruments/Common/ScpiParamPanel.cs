@@ -7,6 +7,7 @@ using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Instruments.Properties;
+using ScpiKnife;
 
 namespace MeterKnife.Instruments.Common
 {
@@ -14,14 +15,15 @@ namespace MeterKnife.Instruments.Common
     {
         private static readonly ILog _logger = LogManager.GetLogger<ScpiParamPanel>();
         protected readonly List<ComboBox> _ComboBoxList = new List<ComboBox>();
-        protected GpibCommandList _Commandlist;
+        protected ScpiCommandList _Commandlist;
 
         public ScpiParamPanel(XmlElement element)
         {
+            // ReSharper disable once DoNotCallOverridableMethodsInConstructor
             ParseElement(element);
         }
 
-        public override GpibCommandList GpibCommands
+        public override ScpiCommandList ScpiCommands
         {
             get
             {
@@ -37,19 +39,19 @@ namespace MeterKnife.Instruments.Common
             {
                 if (comboBox.SelectedItem == null)
                     continue;
-                var cmd = (GpibCommand) (comboBox.SelectedItem);
+                var cmd = (ScpiCommand)(comboBox.SelectedItem);
                 _Commandlist.AddLast(cmd);
             }
         }
 
-        protected static GpibCommandList GetGpibCommandList()
+        protected static ScpiCommandList GetGpibCommandList()
         {
-            var cmdlist = new GpibCommandList();
-            cmdlist.AddLast(new GpibCommand {Command = "*CLS", Interval = 50});
-            cmdlist.AddLast(new GpibCommand {Command = "*CLS", Interval = 50});
-            cmdlist.AddLast(new GpibCommand {Command = "*RST", Interval = 200});
-            cmdlist.AddLast(new GpibCommand {Command = "*CLS", Interval = 50});
-            cmdlist.AddLast(new GpibCommand {Command = "INIT", Interval = 50});
+            var cmdlist = new ScpiCommandList();
+            cmdlist.AddLast(new ScpiCommand {Command = "*CLS", Interval = 50});
+            cmdlist.AddLast(new ScpiCommand { Command = "*CLS", Interval = 50 });
+            cmdlist.AddLast(new ScpiCommand { Command = "*RST", Interval = 200 });
+            cmdlist.AddLast(new ScpiCommand { Command = "*CLS", Interval = 50 });
+            cmdlist.AddLast(new ScpiCommand { Command = "INIT", Interval = 50 });
             return cmdlist;
         }
 
@@ -72,7 +74,7 @@ namespace MeterKnife.Instruments.Common
             {
                 _Panel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
 
-                var rootCmd = new GpibCommand(isScpi);
+                var rootCmd = new ScpiCommand(isScpi);
                 rootCmd.Content = confEle.GetAttribute("content");
                 rootCmd.Command = confEle.GetAttribute("command");
 
@@ -87,7 +89,7 @@ namespace MeterKnife.Instruments.Common
                 {
                     #region config element
 
-                    GpibCommand cmd = ParseGpibCommand(isScpi, confContentEle, rootCmd.Command);
+                    ScpiCommand cmd = ParseGpibCommand(isScpi, confContentEle, rootCmd.Command);
                     cbx.Items.Add(cmd);
 
                     if (!confContentEle.HasChildNodes)
@@ -98,7 +100,7 @@ namespace MeterKnife.Instruments.Common
                     var subButton = GetSubButton();
                     cbx.SelectedIndexChanged += (s, e) =>
                     {
-                        var selectedCmd = cbx.SelectedItem as GpibCommand;
+                        var selectedCmd = cbx.SelectedItem as ScpiCommand;
                         if (selectedCmd != null && selectedCmd.Tag != null)
                         {
                             subButton.Tag = cmd.Tag;
@@ -111,7 +113,7 @@ namespace MeterKnife.Instruments.Common
                         {
                             if (subButton.Tag != null)
                             {
-                                ShowSubCommandMenu((GpibCommand) subButton.Tag, subButton);
+                                ShowSubCommandMenu((ScpiCommand)subButton.Tag, subButton);
                             }
                         };
                         isAddButton = true;
@@ -123,10 +125,10 @@ namespace MeterKnife.Instruments.Common
                         if (!groupElement.HasChildNodes)
                             continue;
                         //将所有命令解析成链式后，置入Tag中，待显示时再进行链式生成菜单
-                        GpibCommand groupCmd = ParseGpibCommand(isScpi, groupElement, rootCmd.Command);
+                        ScpiCommand groupCmd = ParseGpibCommand(isScpi, groupElement, rootCmd.Command);
                         foreach (XmlElement gpElement in groupElement.ChildNodes)
                         {
-                            GpibCommand gpCmd = ParseGpibCommand(isScpi, gpElement, groupCmd.Command);
+                            ScpiCommand gpCmd = ParseGpibCommand(isScpi, gpElement, groupCmd.Command);
                             groupCmd.Next = gpCmd;
                         }
                         cmd.Tag = groupCmd;
@@ -143,8 +145,9 @@ namespace MeterKnife.Instruments.Common
 
         private static Button GetSubButton()
         {
-            return new Button
+            var button = new Button
             {
+                
                 BackgroundImage = Resources.arrow_triangle_down,
                 BackgroundImageLayout = ImageLayout.Center,
                 FlatStyle = FlatStyle.Popup,
@@ -152,9 +155,10 @@ namespace MeterKnife.Instruments.Common
                 Width = 24,
                 Height = 22
             };
+            return button;
         }
 
-        private void ShowSubCommandMenu(GpibCommand command, Control control)
+        private void ShowSubCommandMenu(ScpiCommand command, Control control)
         {
             var menu = new ContextMenuStrip();
             var menuItem = new ToolStripMenuItem(command.Content);
@@ -169,7 +173,7 @@ namespace MeterKnife.Instruments.Common
         /// </summary>
         /// <param name="command">命令</param>
         /// <param name="parentMenu">父菜单</param>
-        private void Next(GpibCommand command, ToolStripMenuItem parentMenu)
+        private void Next(ScpiCommand command, ToolStripMenuItem parentMenu)
         {
             if (command.Next != null)
             {
@@ -179,9 +183,9 @@ namespace MeterKnife.Instruments.Common
             }
         }
 
-        private static GpibCommand ParseGpibCommand(bool isScpi, XmlElement element, string rootCmd)
+        private static ScpiCommand ParseGpibCommand(bool isScpi, XmlElement element, string rootCmd)
         {
-            var cmd = new GpibCommand(isScpi);
+            var cmd = new ScpiCommand(isScpi);
             cmd.Content = element.GetAttribute("content");
             if (element.LocalName == "command")
                 cmd.Command = string.Format("{0}:{1}", rootCmd, element.GetAttribute("command"));

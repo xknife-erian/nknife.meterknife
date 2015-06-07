@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
+using ScpiKnife;
 
 namespace MeterKnife.Common.Base
 {
@@ -12,7 +13,7 @@ namespace MeterKnife.Common.Base
             Dock = DockStyle.Fill;
         }
 
-        public virtual GpibCommandList GpibCommands { get; protected set; }
+        public virtual ScpiCommandList ScpiCommands { get; protected set; }
 
         /*
             _Panel.ColumnCount = 2;

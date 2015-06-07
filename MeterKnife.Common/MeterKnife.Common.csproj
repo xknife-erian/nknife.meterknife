@@ -98,8 +98,6 @@
     <Compile Include="DataModels\CollectData.cs" />
     <Compile Include="DataModels\FiguredData.cs" />
     <Compile Include="DataModels\MeterCollection.cs" />
-    <Compile Include="DataModels\GpibCommand.cs" />
-    <Compile Include="DataModels\GpibCommandList.cs" />
     <Compile Include="EventParameters\CollectDataEventArgs.cs" />
     <Compile Include="Base\BaseCareCommunicationService.cs" />
     <Compile Include="EventParameters\InterfaceNodeClickedEventArgs.cs" />
@@ -148,6 +146,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\nknife\NKnife.Serial\NKnife.Serial.csproj">
       <Project>{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}</Project>
       <Name>NKnife.Serial</Name>

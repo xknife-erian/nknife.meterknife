@@ -1,5 +1,6 @@
 ﻿using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using ScpiKnife;
 
 namespace MeterKnife.Common.Interfaces
 {
@@ -16,6 +17,6 @@ namespace MeterKnife.Common.Interfaces
         string AbbrName { get; }
         int GpibAddress { get; set; }
         GpibLanguage Language { get; set; }
-        GpibCommandList GetGpibCommands();
+        ScpiCommandList GetScpiCommands();
     }
 }

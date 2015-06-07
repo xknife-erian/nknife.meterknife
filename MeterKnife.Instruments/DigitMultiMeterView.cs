@@ -20,6 +20,7 @@ using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
+using ScpiKnife;
 using LineStyle = OxyPlot.LineStyle;
 
 namespace MeterKnife.Instruments
@@ -231,8 +232,8 @@ namespace MeterKnife.Instruments
                 var i = _IntervalTextBox.Text;
                 int.TryParse(i, out interval);
             });
-            GpibCommandList cmdlist = _Panel.GpibCommands;
-            foreach (GpibCommand cmd in cmdlist)
+            ScpiCommandList cmdlist = _Panel.ScpiCommands;
+            foreach (ScpiCommand cmd in cmdlist)
             {
                 if (cmd == null)
                     continue;

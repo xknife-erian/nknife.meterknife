@@ -5,6 +5,7 @@ using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Properties;
 using MeterKnife.Common.Util;
+using ScpiKnife;
 
 namespace MeterKnife.Common.Base
 {
@@ -16,9 +17,9 @@ namespace MeterKnife.Common.Base
         public GpibLanguage Language { get; set; }
         public string AbbrName { get { return MeterUtil.SimplifyName(Name).Second; } }
 
-        public GpibCommandList GetGpibCommands()
+        public ScpiCommandList GetScpiCommands()
         {
-            return ParamPanel.GpibCommands;
+            return ParamPanel.ScpiCommands;
         }
 
         public abstract BaseParamPanel ParamPanel { get; }

@@ -112,6 +112,10 @@
       <Project>{3d1d08d2-46b0-4c33-a214-a5a76a998102}</Project>
       <Name>NKnife.NLog3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\nknife\NKnife.Serial\NKnife.Serial.csproj">
       <Project>{3b1ba8e0-29dd-4cfc-8593-889b9d547ab7}</Project>
       <Name>NKnife.Serial</Name>
