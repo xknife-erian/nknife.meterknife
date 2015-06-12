@@ -98,14 +98,14 @@ namespace MeterKnife.Instruments.Common
                     #region 有配置子项
 
                     var subButton = GetSubButton();
-                    cbx.SelectedIndexChanged += (s, e) =>
-                    {
-                        var selectedCmd = cbx.SelectedItem as ScpiCommand;
-                        if (selectedCmd != null && selectedCmd.Tag != null)
-                        {
-                            subButton.Tag = cmd.Tag;
-                        }
-                    };
+//                    cbx.SelectedIndexChanged += (s, e) =>
+//                    {
+//                        var selectedCmd = cbx.SelectedItem as ScpiCommand;
+//                        if (selectedCmd != null && selectedCmd.Tag != null)
+//                        {
+//                            subButton.Tag = cmd.Tag;
+//                        }
+//                    };
                     if (!isAddButton)
                     {
                         cbxPanel.Controls.Add(subButton);
@@ -131,7 +131,7 @@ namespace MeterKnife.Instruments.Common
                             ScpiCommand gpCmd = ParseGpibCommand(isScpi, gpElement, groupCmd.Command);
                             groupCmd.Next = gpCmd;
                         }
-                        cmd.Tag = groupCmd;
+                        //cmd.Tag = groupCmd;
                     }
 
                     #endregion
