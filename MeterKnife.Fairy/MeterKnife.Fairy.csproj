@@ -62,13 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\MeterKnife.Starter\FileCleaner.cs">
-      <Link>FileCleaner.cs</Link>
+      <Link>Ref\FileCleaner.cs</Link>
     </Compile>
     <Compile Include="..\MeterKnife.Starter\MeterKnifeEnvironment.cs">
-      <Link>MeterKnifeEnvironment.cs</Link>
+      <Link>Ref\MeterKnifeEnvironment.cs</Link>
     </Compile>
     <Compile Include="..\MeterKnife.Starter\SplashForm.cs">
-      <Link>SplashForm.cs</Link>
+      <Link>Ref\SplashForm.cs</Link>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FairyForm.cs">
@@ -86,7 +86,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="..\MeterKnife.Starter\SplashForm.resx">
-      <Link>SplashForm.resx</Link>
+      <Link>Ref\SplashForm.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="FairyForm.resx">
       <DependentUpon>FairyForm.cs</DependentUpon>
