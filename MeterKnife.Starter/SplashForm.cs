@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using Common.Logging;
-using MeterKnife.Starter.Properties;
+using MeterKnife.Fairy.Properties;
 using NKnife.GUI.WinForm;
 
 namespace MeterKnife.Starter

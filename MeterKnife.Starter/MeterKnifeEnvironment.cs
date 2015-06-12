@@ -24,6 +24,8 @@ namespace MeterKnife.Starter
         /// </summary>
         private static readonly List<IEnvironmentItem> _starterItems = new List<IEnvironmentItem>();
 
+        public static Form Workbench { get; set; }
+
         public MeterKnifeEnvironment()
         {
             Initialize();
@@ -37,7 +39,7 @@ namespace MeterKnife.Starter
             OptionInitializes();
 
             //开启欢迎屏幕
-            Splasher.Show(typeof(SplashForm));
+            Splasher.Show(typeof (SplashForm));
             Splasher.Status = "参数初始化进行中......";
             Thread.Sleep(200);
             Splasher.Status = "加载运行参数......";
@@ -47,16 +49,17 @@ namespace MeterKnife.Starter
             Thread.Sleep(200);
 
             //开启UI控制窗体
-            var workbench = new MainWorkbench();
-            workbench.FormClosed += (s, e) => Application.Exit();
-            workbench.Activated += WorkbenchOnActivated;
-            workbench.Show();
+            if (Workbench == null)
+                Workbench = new MainWorkbench();
+            Workbench.FormClosed += (s, e) => Application.Exit();
+            Workbench.Activated += WorkbenchOnActivated;
+            Workbench.Show();
             _logger.Info("主窗体启动完成..");
 
-            var thread = new Thread(BeginInitializeServices) { IsBackground = true };
+            var thread = new Thread(BeginInitializeServices) {IsBackground = true};
             thread.Start();
 
-            workbench.Activate();
+            Workbench.Activate();
         }
 
         private void WorkbenchOnActivated(object sender, EventArgs eventArgs)

@@ -5,7 +5,7 @@ using NKnife.IoC;
 
 namespace MeterKnife.Workbench.Dialogs
 {
-    sealed partial class AboutDialog : Form
+    public sealed partial class AboutDialog : Form
     {
         public AboutDialog()
         {

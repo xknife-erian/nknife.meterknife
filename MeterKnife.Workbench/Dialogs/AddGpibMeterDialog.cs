@@ -24,6 +24,7 @@ namespace MeterKnife.Workbench.Dialogs
 
         protected readonly BaseCareCommunicationService _CommService = DI.Get<BaseCareCommunicationService>();
         private readonly AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
+        public static bool IsFairy { get; set; }
 
         public AddGpibMeterDialog()
         {
@@ -34,6 +35,15 @@ namespace MeterKnife.Workbench.Dialogs
             _AutoFindMeterCheckbox.CheckedChanged += (s, e) => _MeterTypeGroupBox.Enabled = !_AutoFindMeterCheckbox.Checked;
             _AcceptButton.Click += OnAcceptButtonClick;
             _CancelButton.Click += (s, e) => DialogResult = DialogResult.Cancel;
+            if (IsFairy)
+            {
+                _AutoFindMeterCheckbox.Visible = false;
+            }
+        }
+
+        static AddGpibMeterDialog()
+        {
+            IsFairy = false;
         }
 
         private void OnAcceptButtonClick(object s, EventArgs e)

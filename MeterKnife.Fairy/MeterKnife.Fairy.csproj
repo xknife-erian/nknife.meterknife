@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MeterKnife.Fairy</RootNamespace>
-    <AssemblyName>MeterKnife.Fairy</AssemblyName>
+    <AssemblyName>MeterKnife-Fairy</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -32,6 +32,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>main-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging">
@@ -58,16 +61,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MeterKnife.Starter\FileCleaner.cs">
+      <Link>FileCleaner.cs</Link>
+    </Compile>
+    <Compile Include="..\MeterKnife.Starter\MeterKnifeEnvironment.cs">
+      <Link>MeterKnifeEnvironment.cs</Link>
+    </Compile>
+    <Compile Include="..\MeterKnife.Starter\SplashForm.cs">
+      <Link>SplashForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FairyForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FairyForm.Designer.cs">
       <DependentUpon>FairyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterfaceSelectorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InterfaceSelectorDialog.Designer.cs">
+      <DependentUpon>InterfaceSelectorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="..\MeterKnife.Starter\SplashForm.resx">
+      <Link>SplashForm.resx</Link>
+    </EmbeddedResource>
     <EmbeddedResource Include="FairyForm.resx">
       <DependentUpon>FairyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfaceSelectorDialog.resx">
+      <DependentUpon>InterfaceSelectorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,6 +102,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -91,16 +117,44 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\MeterKnife.Starter\Properties\MeterKnife2015-Welcome.png">
+      <Link>Properties\MeterKnife2015-Welcome.png</Link>
+    </Content>
     <Content Include="license.txt" />
+    <Content Include="main-icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\nknife\NKnife.NLog3\NKnife.NLog3.csproj">
       <Project>{3d1d08d2-46b0-4c33-a214-a5a76a998102}</Project>
       <Name>NKnife.NLog3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\nknife\NKnife.Serial\NKnife.Serial.csproj">
+      <Project>{3b1ba8e0-29dd-4cfc-8593-889b9d547ab7}</Project>
+      <Name>NKnife.Serial</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\nknife\NKnife\NKnife.csproj">
       <Project>{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}</Project>
       <Name>NKnife</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
+      <Project>{572ecf0c-1b6d-4a7c-81f0-ee1326ef47d9}</Project>
+      <Name>MeterKnife.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Instruments\MeterKnife.Instruments.csproj">
+      <Project>{E70DC5A1-2900-4A24-937A-28C86100E077}</Project>
+      <Name>MeterKnife.Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Kernel\MeterKnife.Kernel.csproj">
+      <Project>{8c1d8987-383a-4e9c-b59c-3c3313fdec3b}</Project>
+      <Name>MeterKnife.Kernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Workbench\MeterKnife.Workbench.csproj">
+      <Project>{9edecd14-77fe-419c-9323-c00bdb6a07ac}</Project>
+      <Name>MeterKnife.Workbench</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
