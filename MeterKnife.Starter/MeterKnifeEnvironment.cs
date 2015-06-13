@@ -44,7 +44,6 @@ namespace MeterKnife.Starter
             Thread.Sleep(200);
             Splasher.Status = "加载运行参数......";
 
-
             Splasher.Status = "参数初始化完成，启动主窗体";
             Thread.Sleep(200);
 
@@ -65,7 +64,7 @@ namespace MeterKnife.Starter
         private void WorkbenchOnActivated(object sender, EventArgs eventArgs)
         {
             Splasher.Close();
-            ((MainWorkbench) sender).Activated -= WorkbenchOnActivated;
+            ((Form) sender).Activated -= WorkbenchOnActivated;
         }
 
         private void BeginInitializeServices()

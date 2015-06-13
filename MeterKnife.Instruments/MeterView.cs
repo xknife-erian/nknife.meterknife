@@ -26,7 +26,7 @@ namespace MeterKnife.Instruments
         {
             base.OnFormClosed(e);
             var map = DI.Get<IMeterKernel>().MeterContents;
-            if (map.ContainsKey(_Meter))
+            if (_Meter!= null && map.ContainsKey(_Meter))
             {
                 map.Remove(_Meter);
             }

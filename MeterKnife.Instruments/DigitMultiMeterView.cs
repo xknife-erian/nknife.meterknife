@@ -220,7 +220,11 @@ namespace MeterKnife.Instruments
         {
             _OnCollect = false;
             Thread.Sleep(50);
-            DI.Get<IMeterKernel>().CollectBeginning(_Meter.GpibAddress, false);
+            var kernel = DI.Get<IMeterKernel>();
+            if (kernel != null && _Meter != null)
+            {
+                kernel.CollectBeginning(_Meter.GpibAddress, false);
+            }
             _Handler.ProtocolRecevied -= OnProtocolRecevied;
         }
 
