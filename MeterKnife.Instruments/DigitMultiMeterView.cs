@@ -28,6 +28,10 @@ namespace MeterKnife.Instruments
     public partial class DigitMultiMeterView : MeterView
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
+        /// <summary>
+        /// 是否是精灵版
+        /// </summary>
+        public static bool IsFairy { get; set; }
 
         private readonly UtilityRandom _Random = new UtilityRandom();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
@@ -83,6 +87,12 @@ namespace MeterKnife.Instruments
             };
             _PlotSplitContainer.Panel2.Controls.Add(temperaturePlot);
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
+            if (IsFairy)
+            {
+                _ParamsGroupBox.Visible = false;
+                _LeftSplitContainer.Panel1.Visible = false;
+                _LeftSplitContainer.Panel1Collapsed = true;
+            }
         }
 
         public override void SetMeter(int port, BaseMeter meter)
@@ -91,8 +101,11 @@ namespace MeterKnife.Instruments
             _Comm.Bind(port, _Handler);
             _FiguredData.Meter = _Meter;
             _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
-            _Panel = meter.ParamPanel;
-            _ParamsPanel.Controls.Add(_Panel);
+            if (!IsFairy)
+            {
+                _Panel = meter.ParamPanel;
+                _ParamsPanel.Controls.Add(_Panel);
+            }
             _logger.Info("面板初始化仪器完成..");
         }
 

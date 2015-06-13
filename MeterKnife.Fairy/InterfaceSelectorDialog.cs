@@ -43,6 +43,8 @@ namespace MeterKnife.Fairy
             }
         }
 
+        public bool IsSerial { get { return _SerialRadioButton.Checked; } }
+
         public int Serial
         {
             get { return int.Parse(_SerialComboBox.Text); }

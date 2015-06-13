@@ -24,6 +24,9 @@ namespace MeterKnife.Workbench.Dialogs
 
         protected readonly BaseCareCommunicationService _CommService = DI.Get<BaseCareCommunicationService>();
         private readonly AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
+        /// <summary>
+        /// 是否是精灵版
+        /// </summary>
         public static bool IsFairy { get; set; }
 
         public AddGpibMeterDialog()

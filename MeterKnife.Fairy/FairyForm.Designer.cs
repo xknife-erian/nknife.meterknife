@@ -39,9 +39,12 @@
             this._SettingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CareOptionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this._PortLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._StripContainer.BottomToolStripPanel.SuspendLayout();
             this._StripContainer.TopToolStripPanel.SuspendLayout();
             this._StripContainer.SuspendLayout();
+            this._StatusStrip.SuspendLayout();
             this._MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +73,9 @@
             // _StatusStrip
             // 
             this._StatusStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this._PortLabel});
             this._StatusStrip.Location = new System.Drawing.Point(0, 0);
             this._StatusStrip.Name = "_StatusStrip";
             this._StatusStrip.Size = new System.Drawing.Size(784, 22);
@@ -100,19 +106,19 @@
             // _AddMeterMenuItem
             // 
             this._AddMeterMenuItem.Name = "_AddMeterMenuItem";
-            this._AddMeterMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._AddMeterMenuItem.Size = new System.Drawing.Size(142, 22);
             this._AddMeterMenuItem.Text = "新建仪器(&N)";
             this._AddMeterMenuItem.Click += new System.EventHandler(this._AddMeterMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
             // 
             // _ExitMenuItem
             // 
             this._ExitMenuItem.Name = "_ExitMenuItem";
-            this._ExitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._ExitMenuItem.Size = new System.Drawing.Size(142, 22);
             this._ExitMenuItem.Text = "退出(&X)";
             this._ExitMenuItem.Click += new System.EventHandler(this._ExitMenuItem_Click);
             // 
@@ -138,6 +144,17 @@
             this._AboutMenuItem.Text = "关于(&A)";
             this._AboutMenuItem.Click += new System.EventHandler(this._AboutMenuItem_Click);
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(53, 17);
+            this.toolStripStatusLabel1.Text = "Care at:";
+            // 
+            // _PortLabel
+            // 
+            this._PortLabel.Name = "_PortLabel";
+            this._PortLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // FairyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -156,6 +173,8 @@
             this._StripContainer.TopToolStripPanel.PerformLayout();
             this._StripContainer.ResumeLayout(false);
             this._StripContainer.PerformLayout();
+            this._StatusStrip.ResumeLayout(false);
+            this._StatusStrip.PerformLayout();
             this._MenuStrip.ResumeLayout(false);
             this._MenuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -174,5 +193,7 @@
         private System.Windows.Forms.ToolStripMenuItem _CareOptionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _AboutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _AddMeterMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel _PortLabel;
     }
 }

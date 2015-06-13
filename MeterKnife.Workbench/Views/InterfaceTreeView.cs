@@ -40,13 +40,13 @@ namespace MeterKnife.Workbench.Views
             DockContent dockContent;
             if (!dic.TryGetValue(e.Meter, out dockContent))
             {
-                var collectView = DI.Get<DigitMultiMeterView>();
-                collectView.Port = e.Port;
-                collectView.CommunicationType = e.CommunicationType;
-                collectView.SetMeter(e.Port, e.Meter);
-                collectView.Text = e.Meter.AbbrName;
-                dic.Add(e.Meter, collectView);
-                dockContent = collectView;
+                var meterView = DI.Get<DigitMultiMeterView>();
+                meterView.Port = e.Port;
+                meterView.CommunicationType = e.CommunicationType;
+                meterView.SetMeter(e.Port, e.Meter);
+                meterView.Text = e.Meter.AbbrName;
+                dic.Add(e.Meter, meterView);
+                dockContent = meterView;
             }
             dockContent.Show(PanelPane.DockPanel, DockState.Document);
             _logger.InfoFormat("由仪器树面板创建仪器{0}实时窗体", e.Meter.AbbrName);

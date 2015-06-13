@@ -7,8 +7,10 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using MeterKnife.Common.Util;
 using MeterKnife.Instruments;
 using MeterKnife.Workbench.Dialogs;
+using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Fairy
@@ -23,11 +25,12 @@ namespace MeterKnife.Fairy
 
         private int _Port;
 
+        private CommunicationType _CommunicationType;
+
         public FairyForm()
         {
             InitializeComponent();
             InitializeDockPanel();
-            AddGpibMeterDialog.IsFairy = true;
         }
 
         private void InitializeDockPanel()
@@ -48,6 +51,16 @@ namespace MeterKnife.Fairy
                 _Serial = dialog.Serial;
                 _IpAddress = dialog.IpAddress;
                 _Port = dialog.Port;
+                if (dialog.IsSerial)
+                {
+                    _PortLabel.Text = string.Format("COM{0}", dialog.Serial);
+                    _CommunicationType = CommunicationType.Serial;
+                }
+                else
+                {
+                    _PortLabel.Text = string.Format("{0):{1}", dialog.IpAddress, dialog.Port);
+                    _CommunicationType = CommunicationType.Socket;
+                }
             }
         }
 
@@ -61,8 +74,12 @@ namespace MeterKnife.Fairy
             var dialog = new AddGpibMeterDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                var view = new DigitMultiMeterView();
-                view.Show(_DockPanel, DockState.Document);
+                var meterView = DI.Get<DigitMultiMeterView>();
+                meterView.Port = dialog.Port;
+                meterView.CommunicationType = _CommunicationType;
+                meterView.SetMeter(dialog.Port, dialog.Meter);
+                meterView.Text = dialog.Meter.AbbrName;
+                meterView.Show(_DockPanel, DockState.Document);
             }
         }
 

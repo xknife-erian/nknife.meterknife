@@ -30,7 +30,7 @@
         {
             this._MainSplitContainer = new System.Windows.Forms.SplitContainer();
             this._LeftSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._ParamsGroupBox = new System.Windows.Forms.GroupBox();
             this._ParamsPanel = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
@@ -67,7 +67,7 @@
             this._LeftSplitContainer.Panel1.SuspendLayout();
             this._LeftSplitContainer.Panel2.SuspendLayout();
             this._LeftSplitContainer.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this._ParamsGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this._MainTabControl.SuspendLayout();
             this._PlotPage.SuspendLayout();
@@ -107,7 +107,7 @@
             // 
             // _LeftSplitContainer.Panel1
             // 
-            this._LeftSplitContainer.Panel1.Controls.Add(this.groupBox1);
+            this._LeftSplitContainer.Panel1.Controls.Add(this._ParamsGroupBox);
             // 
             // _LeftSplitContainer.Panel2
             // 
@@ -116,16 +116,16 @@
             this._LeftSplitContainer.SplitterDistance = 227;
             this._LeftSplitContainer.TabIndex = 0;
             // 
-            // groupBox1
+            // _ParamsGroupBox
             // 
-            this.groupBox1.Controls.Add(this._ParamsPanel);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 227);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "参数";
+            this._ParamsGroupBox.Controls.Add(this._ParamsPanel);
+            this._ParamsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ParamsGroupBox.Location = new System.Drawing.Point(0, 0);
+            this._ParamsGroupBox.Name = "_ParamsGroupBox";
+            this._ParamsGroupBox.Size = new System.Drawing.Size(250, 227);
+            this._ParamsGroupBox.TabIndex = 0;
+            this._ParamsGroupBox.TabStop = false;
+            this._ParamsGroupBox.Text = "参数";
             // 
             // _ParamsPanel
             // 
@@ -393,7 +393,7 @@
             this._LeftSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._LeftSplitContainer)).EndInit();
             this._LeftSplitContainer.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
+            this._ParamsGroupBox.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this._MainTabControl.ResumeLayout(false);
             this._PlotPage.ResumeLayout(false);
@@ -413,7 +413,7 @@
         private System.Windows.Forms.TabControl _MainTabControl;
         private System.Windows.Forms.TabPage _PlotPage;
         private System.Windows.Forms.TabPage _DataGridPage;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox _ParamsGroupBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ToolStrip _PlotToolStrip;
         private System.Windows.Forms.SplitContainer _PlotSplitContainer;
