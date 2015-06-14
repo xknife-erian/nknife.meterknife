@@ -408,36 +408,36 @@
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer _MainSplitContainer;
+        protected System.Windows.Forms.SplitContainer _MainSplitContainer;
         protected System.Windows.Forms.SplitContainer _LeftSplitContainer;
-        private System.Windows.Forms.TabControl _MainTabControl;
-        private System.Windows.Forms.TabPage _PlotPage;
-        private System.Windows.Forms.TabPage _DataGridPage;
+        protected System.Windows.Forms.TabControl _MainTabControl;
+        protected System.Windows.Forms.TabPage _PlotPage;
+        protected System.Windows.Forms.TabPage _DataGridPage;
         protected System.Windows.Forms.GroupBox _ParamsGroupBox;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ToolStrip _PlotToolStrip;
-        private System.Windows.Forms.SplitContainer _PlotSplitContainer;
-        private System.Windows.Forms.ToolStripButton _StartStripButton;
-        private System.Windows.Forms.ToolStripButton _StopStripButton;
-        private System.Windows.Forms.ToolStripButton _SaveStripButton;
-        private System.Windows.Forms.PropertyGrid _FiguredDataPropertyGrid;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton _ExportStripButton;
-        private System.Windows.Forms.ToolStripButton _PhotoToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton _ZoomInToolStripButton;
-        private System.Windows.Forms.ToolStripButton _ZoomOutToolStripButton;
+        protected System.Windows.Forms.GroupBox groupBox2;
+        protected System.Windows.Forms.ToolStrip _PlotToolStrip;
+        protected System.Windows.Forms.SplitContainer _PlotSplitContainer;
+        protected System.Windows.Forms.ToolStripButton _StartStripButton;
+        protected System.Windows.Forms.ToolStripButton _StopStripButton;
+        protected System.Windows.Forms.ToolStripButton _SaveStripButton;
+        protected System.Windows.Forms.PropertyGrid _FiguredDataPropertyGrid;
+        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        protected System.Windows.Forms.ToolStripButton _ExportStripButton;
+        protected System.Windows.Forms.ToolStripButton _PhotoToolStripButton;
+        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        protected System.Windows.Forms.ToolStripButton _ZoomInToolStripButton;
+        protected System.Windows.Forms.ToolStripButton _ZoomOutToolStripButton;
         protected System.Windows.Forms.Panel _ParamsPanel;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ListBox _CollectDataList;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripTextBox _NominalValueTextBox;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripTextBox _IntervalTextBox;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripDropDownButton _ChartDropDownButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        protected System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        protected System.Windows.Forms.ListBox _CollectDataList;
+        protected System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        protected System.Windows.Forms.ToolStripTextBox _NominalValueTextBox;
+        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        protected System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        protected System.Windows.Forms.ToolStripTextBox _IntervalTextBox;
+        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        protected System.Windows.Forms.ToolStripDropDownButton _ChartDropDownButton;
+        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }

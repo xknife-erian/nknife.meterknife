@@ -24,6 +24,7 @@ namespace MeterKnife.Fairy
                 _ParamsGroupBox.Visible = false;
                 _LeftSplitContainer.Panel1.Visible = false;
                 _LeftSplitContainer.Panel1Collapsed = true;
+                _SaveStripButton.Visible = false;
             }
         }
 

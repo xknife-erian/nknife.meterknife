@@ -78,6 +78,27 @@ namespace MeterKnife.Fairy
 
         private void _AcceptButton_Click(object sender, EventArgs e)
         {
+            if (IsSerial)
+            {
+                if (string.IsNullOrEmpty(_SerialComboBox.Text))
+                {
+                    MessageBox.Show(this, "必须选择一个串口");
+                    return;
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(_IpAddressControl.Text) || _IpAddressControl.Text == "...")
+                {
+                    MessageBox.Show(this, "必须设置一个IP地址");
+                    return;
+                }
+                if (string.IsNullOrEmpty(_PortNumericUpDown.Text))
+                {
+                    MessageBox.Show(this, "必须设置一个TCPIP通讯端口");
+                    return;
+                }
+            }
             DialogResult = DialogResult.OK;
             Close();
         }
