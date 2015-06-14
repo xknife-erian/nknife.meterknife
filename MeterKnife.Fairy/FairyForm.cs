@@ -75,7 +75,7 @@ namespace MeterKnife.Fairy
             dialog.Port = _Serial;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                var meterView = DI.Get<DigitMultiMeterView>();
+                var meterView = DI.Get<FairyMeterView>();
                 meterView.Port = dialog.Port;
                 meterView.CommunicationType = _CommunicationType;
                 meterView.SetMeter(dialog.Port, dialog.Meter);

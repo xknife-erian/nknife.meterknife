@@ -28,13 +28,9 @@ namespace MeterKnife.Instruments
     public partial class DigitMultiMeterView : MeterView
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
-        /// <summary>
-        /// 是否是精灵版
-        /// </summary>
-        public static bool IsFairy { get; set; }
 
         private readonly UtilityRandom _Random = new UtilityRandom();
-        private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
+        protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
         private readonly ScpiProtocolHandler _Handler = new ScpiProtocolHandler();
 
         private readonly FiguredData _FiguredData = new FiguredData();
@@ -44,7 +40,7 @@ namespace MeterKnife.Instruments
         protected LineSeries _MainLineSeries = new LineSeries();
         protected LinearAxis _MainValueAxis = new LinearAxis();
         private bool _OnCollect; //是否正在采集
-        private BaseParamPanel _Panel;
+        protected BaseParamPanel _Panel;
 
         private readonly PlotModel _MainModel;
         protected LineSeries _TemperatureLineSeries = new LineSeries();
@@ -87,12 +83,6 @@ namespace MeterKnife.Instruments
             };
             _PlotSplitContainer.Panel2.Controls.Add(temperaturePlot);
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
-            if (IsFairy)
-            {
-                _ParamsGroupBox.Visible = false;
-                _LeftSplitContainer.Panel1.Visible = false;
-                _LeftSplitContainer.Panel1Collapsed = true;
-            }
         }
 
         public override void SetMeter(int port, BaseMeter meter)
@@ -101,19 +91,10 @@ namespace MeterKnife.Instruments
             _Comm.Bind(port, _Handler);
             _FiguredData.Meter = _Meter;
             _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
-            if (!IsFairy)
-            {
-                _Panel = meter.ParamPanel;
-                _ParamsPanel.Controls.Add(_Panel);
-            }
             _logger.Info("面板初始化仪器完成..");
-            if (!_Comm.IsInitialized)
-            {
-                _Comm.Start(port);
-            }
         }
 
-        private void SetStripButtonState(bool isCollected)
+        protected void SetStripButtonState(bool isCollected)
         {
             if (_IsDispose)
                 return;
@@ -206,6 +187,11 @@ namespace MeterKnife.Instruments
 
         private void _StartStripButton_Click(object sender, EventArgs e)
         {
+            StartCollect();
+        }
+
+        protected virtual void StartCollect()
+        {
             _Handler.ProtocolRecevied += OnProtocolRecevied;
             _OnCollect = true;
             _MeterKernel.CollectBeginning(_Meter.GpibAddress, true);
@@ -221,6 +207,11 @@ namespace MeterKnife.Instruments
         }
 
         private void _StopStripButton_Click(object sender, EventArgs e)
+        {
+            StopCollect();
+        }
+
+        protected virtual void StopCollect()
         {
             StopProtocolRecevied();
         }
@@ -253,20 +244,17 @@ namespace MeterKnife.Instruments
                 var i = _IntervalTextBox.Text;
                 int.TryParse(i, out interval);
             });
-            if (_Panel != null && _Panel.ScpiCommands != null)
+            ScpiCommandList cmdlist = GetInitCommands();
+            foreach (ScpiCommand cmd in cmdlist)
             {
-                ScpiCommandList cmdlist = _Panel.ScpiCommands;
-                foreach (ScpiCommand cmd in cmdlist)
-                {
-                    if (cmd == null)
-                        continue;
-                    byte[] cmdBytes = CareTalking.BuildCareSaying(_Meter.GpibAddress, cmd.Command, false).Generate();
-                    _Comm.Send(Port, cmdBytes);
-                    Thread.Sleep((int) cmd.Interval);
-                }
+                if (cmd == null)
+                    continue;
+                byte[] cmdBytes = CareTalking.BuildCareSaying(_Meter.GpibAddress, cmd.Command, false).Generate();
+                _Comm.Send(Port, cmdBytes);
+                Thread.Sleep((int) cmd.Interval);
             }
 
-            byte[] read = CareTalking.READ(_Meter.GpibAddress).Generate();
+            byte[] read = GetCollectCommand();
             byte[] temp = CareTalking.TEMP().Generate();
             while (_OnCollect)
             {
@@ -277,67 +265,16 @@ namespace MeterKnife.Instruments
             }
         }
 
-        private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
+        protected virtual ScpiCommandList GetInitCommands()
         {
-            CareTalking talking = e.Item;
+            if (_Panel != null && _Panel.ScpiCommands != null)
+                return _Panel.ScpiCommands;
+            return new ScpiCommandList();
+        }
 
-            if (talking.MainCommand == 0xAE)
-            {
-                string data = talking.Scpi;
-                double yzl = 0;
-                if (double.TryParse(data, out yzl))
-                {
-                    _FiguredData.AddTemperature(yzl);
-                    if (Math.Abs(_FiguredData.MaxTemperature) > 0 && Math.Abs(_FiguredData.MinTemperature) > 0)
-                    {
-                        double j = (Math.Abs(_FiguredData.MaxTemperature - _FiguredData.MinTemperature))/4;
-                        if (Math.Abs(j) <= 0)
-                        {
-                            _TemperatureValueAxis.Maximum = _FiguredData.MaxTemperature + 0.02;
-                            _TemperatureValueAxis.Minimum = _FiguredData.MaxTemperature - 0.02;
-                        }
-                        else
-                        {
-                            if (_TemperatureValueAxis.Maximum < _FiguredData.MaxTemperature + j)
-                                _TemperatureValueAxis.Maximum = _FiguredData.MaxTemperature + j;
-                            if (_TemperatureValueAxis.Minimum > _FiguredData.MinTemperature - j)
-                                _TemperatureValueAxis.Minimum = _FiguredData.MinTemperature - j;
-                        }
-                    }
-
-                    DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
-                    _TemperatureLineSeries.Points.Add(v);
-                    _TemperatureLineSeries.PlotModel.InvalidatePlot(true);
-                }
-            }
-            else
-            {
-                if ((talking.GpibAddress != _Meter.GpibAddress) || (talking.Scpi.Length < 6))
-                    return;
-                string data = talking.Scpi; //.Substring(1, saying.Content.Length - 6);
-                _logger.Info(data);
-                double yzl = 0;
-                if (double.TryParse(data, out yzl))
-                {
-                    _FiguredData.Add(yzl);
-
-                    if (Math.Abs(_FiguredData.Max) > 0 && Math.Abs(_FiguredData.Min) > 0)
-                    {
-                        double j = (Math.Abs(_FiguredData.Max - _FiguredData.Min))/4;
-                        if (Math.Abs(j) > 0)
-                        {
-                            _MainValueAxis.Maximum = _FiguredData.Max + j;
-                            _MainValueAxis.Minimum = _FiguredData.Min - j;
-                        }
-                    }
-
-                    DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
-                    _MainLineSeries.Points.Add(v);
-                    _MainLineSeries.PlotModel.InvalidatePlot(true);
-                    _MainModel.Title = yzl.ToString();
-                }
-            }
-            _FiguredDataPropertyGrid.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
+        protected virtual byte[] GetCollectCommand()
+        {
+            return CareTalking.READ(_Meter.GpibAddress).Generate();
         }
 
         private void _SaveStripButton_Click(object sender, EventArgs e)
@@ -380,5 +317,69 @@ namespace MeterKnife.Instruments
         {
 
         }
+
+        private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
+        {
+            CareTalking talking = e.Item;
+
+            if (talking.MainCommand == 0xAE)
+            {
+                string data = talking.Scpi;
+                double yzl = 0;
+                if (double.TryParse(data, out yzl))
+                {
+                    _FiguredData.AddTemperature(yzl);
+                    if (Math.Abs(_FiguredData.MaxTemperature) > 0 && Math.Abs(_FiguredData.MinTemperature) > 0)
+                    {
+                        double j = (Math.Abs(_FiguredData.MaxTemperature - _FiguredData.MinTemperature)) / 4;
+                        if (Math.Abs(j) <= 0)
+                        {
+                            _TemperatureValueAxis.Maximum = _FiguredData.MaxTemperature + 0.02;
+                            _TemperatureValueAxis.Minimum = _FiguredData.MaxTemperature - 0.02;
+                        }
+                        else
+                        {
+                            if (_TemperatureValueAxis.Maximum < _FiguredData.MaxTemperature + j)
+                                _TemperatureValueAxis.Maximum = _FiguredData.MaxTemperature + j;
+                            if (_TemperatureValueAxis.Minimum > _FiguredData.MinTemperature - j)
+                                _TemperatureValueAxis.Minimum = _FiguredData.MinTemperature - j;
+                        }
+                    }
+
+                    DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
+                    _TemperatureLineSeries.Points.Add(v);
+                    _TemperatureLineSeries.PlotModel.InvalidatePlot(true);
+                }
+            }
+            else
+            {
+                if ((talking.GpibAddress != _Meter.GpibAddress) || (talking.Scpi.Length < 6))
+                    return;
+                string data = talking.Scpi; //.Substring(1, saying.Content.Length - 6);
+                _logger.Info(data);
+                double yzl = 0;
+                if (double.TryParse(data, out yzl))
+                {
+                    _FiguredData.Add(yzl);
+
+                    if (Math.Abs(_FiguredData.Max) > 0 && Math.Abs(_FiguredData.Min) > 0)
+                    {
+                        double j = (Math.Abs(_FiguredData.Max - _FiguredData.Min)) / 4;
+                        if (Math.Abs(j) > 0)
+                        {
+                            _MainValueAxis.Maximum = _FiguredData.Max + j;
+                            _MainValueAxis.Minimum = _FiguredData.Min - j;
+                        }
+                    }
+
+                    DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
+                    _MainLineSeries.Points.Add(v);
+                    _MainLineSeries.PlotModel.InvalidatePlot(true);
+                    _MainModel.Title = yzl.ToString();
+                }
+            }
+            _FiguredDataPropertyGrid.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
+        }
+
     }
 }

@@ -409,11 +409,11 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer _MainSplitContainer;
-        private System.Windows.Forms.SplitContainer _LeftSplitContainer;
+        protected System.Windows.Forms.SplitContainer _LeftSplitContainer;
         private System.Windows.Forms.TabControl _MainTabControl;
         private System.Windows.Forms.TabPage _PlotPage;
         private System.Windows.Forms.TabPage _DataGridPage;
-        private System.Windows.Forms.GroupBox _ParamsGroupBox;
+        protected System.Windows.Forms.GroupBox _ParamsGroupBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ToolStrip _PlotToolStrip;
         private System.Windows.Forms.SplitContainer _PlotSplitContainer;
@@ -427,7 +427,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton _ZoomInToolStripButton;
         private System.Windows.Forms.ToolStripButton _ZoomOutToolStripButton;
-        private System.Windows.Forms.Panel _ParamsPanel;
+        protected System.Windows.Forms.Panel _ParamsPanel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ListBox _CollectDataList;
