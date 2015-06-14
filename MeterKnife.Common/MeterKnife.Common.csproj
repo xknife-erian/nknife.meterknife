@@ -135,6 +135,7 @@
     </Compile>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\contents\MeterKnife2015-Welcome.psd" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -181,6 +182,7 @@
     <Content Include="Properties\contents\bar-button\stop.png" />
     <Content Include="Properties\contents\main-icon.ico" />
     <Content Include="Properties\contents\main-logo.png" />
+    <Content Include="Properties\contents\MeterKnife2015-Welcome.png" />
     <Content Include="Properties\contents\scpi-builder\add.png" />
     <Content Include="Properties\contents\scpi-builder\down.png" />
     <Content Include="Properties\contents\scpi-builder\edit.png" />

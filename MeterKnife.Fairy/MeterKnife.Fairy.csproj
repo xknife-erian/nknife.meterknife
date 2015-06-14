@@ -117,9 +117,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\MeterKnife.Starter\Properties\MeterKnife2015-Welcome.png">
-      <Link>Properties\MeterKnife2015-Welcome.png</Link>
-    </Content>
     <Content Include="license.txt" />
     <Content Include="main-icon.ico" />
   </ItemGroup>

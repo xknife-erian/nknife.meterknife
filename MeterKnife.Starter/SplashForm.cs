@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using Common.Logging;
-using MeterKnife.Fairy.Properties;
+using MeterKnife.Common.Properties;
 using NKnife.GUI.WinForm;
 
 namespace MeterKnife.Starter
@@ -13,7 +13,7 @@ namespace MeterKnife.Starter
     {
         public SplashForm()
         {
-            Bitmap bitmap = Resources.MeterKnife2015_Welcome;
+            Bitmap bitmap = GlobalResources.MeterKnife2015_Welcome;
 
             SuspendLayout();
 

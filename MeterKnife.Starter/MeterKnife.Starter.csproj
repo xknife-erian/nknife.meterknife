@@ -97,7 +97,6 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\MeterKnife2015-Welcome.psd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -150,7 +149,6 @@
     <Content Include="..\MeterKnife.Common\Properties\contents\main-icon.ico">
       <Link>main-icon.ico</Link>
     </Content>
-    <Content Include="Properties\MeterKnife2015-Welcome.png" />
     <Content Include="x64\SQLite.Interop.dll" />
     <Content Include="x86\SQLite.Interop.dll" />
   </ItemGroup>
