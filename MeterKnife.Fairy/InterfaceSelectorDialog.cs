@@ -32,6 +32,8 @@ namespace MeterKnife.Fairy
                 _PortNumericUpDown.Enabled = _LanRadioButton.Checked;
             };
             _SerialRadioButton.Checked = true;
+            //临时
+            _LanRadioButton.Enabled = false;
         }
 
         private void FillSerialComonbox()
@@ -41,18 +43,32 @@ namespace MeterKnife.Fairy
             {
                 _SerialComboBox.Items.Add(s);
             }
+            if (!UtilityCollection.IsNullOrEmpty(list))
+            {
+                _SerialComboBox.SelectedItem = list[list.Length - 1];
+            }
         }
 
         public bool IsSerial { get { return _SerialRadioButton.Checked; } }
 
         public int Serial
         {
-            get { return int.Parse(_SerialComboBox.Text); }
+            get
+            {
+                var v = _SerialComboBox.Text.TrimStart(new char[] {'C', 'O', 'M'});
+                return int.Parse(v);
+            }
         }
 
         public IPAddress IpAddress
         {
-            get { return IPAddress.Parse(_IpAddressControl.Text); }
+            get
+            {
+                string value = _IpAddressControl.Text == "..." 
+                    ? "0.0.0.0" 
+                    : _IpAddressControl.Text;
+                return IPAddress.Parse(value);
+            }
         }
 
         public int Port
@@ -62,6 +78,7 @@ namespace MeterKnife.Fairy
 
         private void _AcceptButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.OK;
             Close();
         }
     }

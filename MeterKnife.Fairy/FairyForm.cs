@@ -58,7 +58,7 @@ namespace MeterKnife.Fairy
                 }
                 else
                 {
-                    _PortLabel.Text = string.Format("{0):{1}", dialog.IpAddress, dialog.Port);
+                    _PortLabel.Text = string.Format("{0}:{1}", dialog.IpAddress, dialog.Port);
                     _CommunicationType = CommunicationType.Socket;
                 }
             }
@@ -72,6 +72,7 @@ namespace MeterKnife.Fairy
         private void _AddMeterMenuItem_Click(object sender, EventArgs e)
         {
             var dialog = new AddGpibMeterDialog();
+            dialog.Port = _Serial;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var meterView = DI.Get<DigitMultiMeterView>();

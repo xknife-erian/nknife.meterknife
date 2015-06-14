@@ -62,6 +62,7 @@
             // 
             // _SerialComboBox
             // 
+            this._SerialComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._SerialComboBox.FormattingEnabled = true;
             this._SerialComboBox.Location = new System.Drawing.Point(70, 26);
             this._SerialComboBox.Name = "_SerialComboBox";
@@ -109,9 +110,24 @@
             // _PortNumericUpDown
             // 
             this._PortNumericUpDown.Location = new System.Drawing.Point(226, 52);
+            this._PortNumericUpDown.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this._PortNumericUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this._PortNumericUpDown.Name = "_PortNumericUpDown";
             this._PortNumericUpDown.Size = new System.Drawing.Size(66, 21);
             this._PortNumericUpDown.TabIndex = 4;
+            this._PortNumericUpDown.Value = new decimal(new int[] {
+            6035,
+            0,
+            0,
+            0});
             // 
             // InterfaceSelectorDialog
             // 

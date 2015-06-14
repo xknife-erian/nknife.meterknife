@@ -107,6 +107,10 @@ namespace MeterKnife.Instruments
                 _ParamsPanel.Controls.Add(_Panel);
             }
             _logger.Info("面板初始化仪器完成..");
+            if (!_Comm.IsInitialized)
+            {
+                _Comm.Start(port);
+            }
         }
 
         private void SetStripButtonState(bool isCollected)
@@ -249,14 +253,17 @@ namespace MeterKnife.Instruments
                 var i = _IntervalTextBox.Text;
                 int.TryParse(i, out interval);
             });
-            ScpiCommandList cmdlist = _Panel.ScpiCommands;
-            foreach (ScpiCommand cmd in cmdlist)
+            if (_Panel != null && _Panel.ScpiCommands != null)
             {
-                if (cmd == null)
-                    continue;
-                byte[] cmdBytes = CareTalking.BuildCareSaying(_Meter.GpibAddress, cmd.Command, false).Generate();
-                _Comm.Send(Port, cmdBytes);
-                Thread.Sleep((int) cmd.Interval);
+                ScpiCommandList cmdlist = _Panel.ScpiCommands;
+                foreach (ScpiCommand cmd in cmdlist)
+                {
+                    if (cmd == null)
+                        continue;
+                    byte[] cmdBytes = CareTalking.BuildCareSaying(_Meter.GpibAddress, cmd.Command, false).Generate();
+                    _Comm.Send(Port, cmdBytes);
+                    Thread.Sleep((int) cmd.Interval);
+                }
             }
 
             byte[] read = CareTalking.READ(_Meter.GpibAddress).Generate();
