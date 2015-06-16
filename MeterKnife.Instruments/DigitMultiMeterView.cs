@@ -57,19 +57,6 @@ namespace MeterKnife.Instruments
                     SetStripButtonState(e.IsCollected);
             };
 
-            _MainModel = BuildMainPlogModel();
-            var mainPlot = new PlotView
-            {
-                Dock = DockStyle.Fill,
-                PanCursor = Cursors.Hand,
-                BackColor = Color.White,
-                ZoomHorizontalCursor = Cursors.SizeWE,
-                ZoomRectangleCursor = Cursors.SizeNWSE,
-                ZoomVerticalCursor = Cursors.SizeNS,
-                Model = _MainModel
-            };
-            _PlotSplitContainer.Panel1.Controls.Add(mainPlot);
-
             PlotModel temperatureModel = BuildTemperaturePlogModel();
             var temperaturePlot = new PlotView
             {
@@ -82,6 +69,25 @@ namespace MeterKnife.Instruments
                 Model = temperatureModel
             };
             _PlotSplitContainer.Panel2.Controls.Add(temperaturePlot);
+
+            _MainModel = BuildMainPlogModel();
+            var mainPlot = new PlotView
+            {
+                Dock = DockStyle.Fill,
+                PanCursor = Cursors.Hand,
+                BackColor = Color.White,
+                ZoomHorizontalCursor = Cursors.SizeWE,
+                ZoomRectangleCursor = Cursors.SizeNWSE,
+                ZoomVerticalCursor = Cursors.SizeNS,
+                Model = _MainModel
+            };
+            mainPlot.PaddingChanged += (sender, args) =>
+            {
+                var p = temperatureModel.Padding;
+                temperatureModel.Padding = new OxyThickness(mainPlot.Left, p.Top, p.Right, p.Bottom);
+            };
+            _PlotSplitContainer.Panel1.Controls.Add(mainPlot);
+
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
         }
 

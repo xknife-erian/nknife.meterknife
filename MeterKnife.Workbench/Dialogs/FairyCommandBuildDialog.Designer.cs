@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Fairy
+﻿namespace MeterKnife.Workbench.Dialogs
 {
     partial class FairyCommandBuildDialog
     {

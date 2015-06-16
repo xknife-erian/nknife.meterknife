@@ -19,8 +19,12 @@ namespace MeterKnife.Common.DataModels
         public double Max { get; private set; }
 
         [Category("数据分析")]
-        [DisplayName("最大值")]
+        [DisplayName("最小值")]
         public double Min { get; private set; }
+
+        [Category("数据分析")]
+        [DisplayName("峰峰值")]
+        public double Ppvalue { get; private set; }
 
         [Category("数据分析")]
         [DisplayName("均方根")]
@@ -38,7 +42,7 @@ namespace MeterKnife.Common.DataModels
         [Category("温度"), DisplayName("最大值")]
         public double MaxTemperature { get; private set; }
 
-        [Category("温度"), DisplayName("最大值")]
+        [Category("温度"), DisplayName("最小值")]
         public double MinTemperature { get; private set; }
 
         [Category("温度"), DisplayName("均方根")]
@@ -47,6 +51,7 @@ namespace MeterKnife.Common.DataModels
         [Category("温度"), DisplayName("算术平均")]
         public double TemperatureArithmeticMean { get; private set; }
 
+        [Browsable(false)]
         [Category("偏差"), DisplayName("阿仑方差")]
         public double AllanVariance { get; private set; }
 
@@ -179,6 +184,8 @@ namespace MeterKnife.Common.DataModels
             {
                 RootMeanSquareDeviation = RootMeanSquare - _NominalValue;
             }
+
+            Ppvalue = Math.Abs(Max - Min);
 
             //触发数据源发生变化
             OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));

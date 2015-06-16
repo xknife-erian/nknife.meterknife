@@ -6,12 +6,14 @@ using System.Windows.Forms;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Instruments;
+using MeterKnife.Instruments.Common;
 using ScpiKnife;
 
 namespace MeterKnife.Fairy
 {
     internal class FairyMeterView : DigitMultiMeterView
     {
+        private UserScpiCommandPanel _ScpiCommandPanel = new UserScpiCommandPanel();
         /// <summary>
         /// 是否是精灵版
         /// </summary>
@@ -22,9 +24,9 @@ namespace MeterKnife.Fairy
             if (IsFairy)
             {
                 _ParamsGroupBox.Visible = false;
-                _LeftSplitContainer.Panel1.Visible = false;
-                _LeftSplitContainer.Panel1Collapsed = true;
                 _SaveStripButton.Visible = false;
+                _ScpiCommandPanel.Dock = DockStyle.Fill;
+                _LeftSplitContainer.Panel1.Controls.Add(_ScpiCommandPanel);
             }
         }
 
@@ -42,31 +44,11 @@ namespace MeterKnife.Fairy
             }
         }
 
-        private string[] _InitCommands;
-        private string _CollectCommand;
-
-        protected override void StartCollect()
-        {
-            var dialog = new FairyCommandBuildDialog();
-            if (string.IsNullOrEmpty(_CollectCommand))
-            {
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    _InitCommands = dialog.InitCommands.ToArray();
-                    _CollectCommand = dialog.CollectCommand;
-                }
-                else
-                {
-                    return;
-                }
-            }
-            base.StartCollect();
-        }
-
         protected override ScpiCommandList GetInitCommands()
         {
+            var commands = _ScpiCommandPanel.InitCommands;
             var list = new ScpiCommandList();
-            foreach (var command in _InitCommands)
+            foreach (var command in commands)
             {
                 var sc = new ScpiCommand();
                 sc.Command = command;

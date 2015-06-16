@@ -71,12 +71,6 @@
       <Link>Ref\SplashForm.cs</Link>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FairyCommandBuildDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FairyCommandBuildDialog.Designer.cs">
-      <DependentUpon>FairyCommandBuildDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="FairyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,9 +90,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="..\MeterKnife.Starter\SplashForm.resx">
       <Link>Ref\SplashForm.resx</Link>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FairyCommandBuildDialog.resx">
-      <DependentUpon>FairyCommandBuildDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FairyForm.resx">
       <DependentUpon>FairyForm.cs</DependentUpon>
