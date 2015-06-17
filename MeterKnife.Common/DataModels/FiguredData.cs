@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Text;
 using Common.Logging;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
@@ -24,7 +25,7 @@ namespace MeterKnife.Common.DataModels
 
         [Category("数据分析")]
         [DisplayName("峰峰值")]
-        public double Ppvalue { get; private set; }
+        public string Ppvalue { get; private set; }
 
         [Category("数据分析")]
         [DisplayName("均方根")]
@@ -161,6 +162,9 @@ namespace MeterKnife.Common.DataModels
 
         public void Add(double value)
         {
+            var s = value.ToString();
+            var n = s.Length - s.IndexOf('.') - 1;
+
             _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature);
             int count = _DataSet.Tables[1].Rows.Count;
             if (count <= 1)
@@ -173,19 +177,20 @@ namespace MeterKnife.Common.DataModels
                 if (value > Max) Max = value; //最大值
                 else if (value < Min) Min = value; //最小值
             }
+            var t = new StringBuilder("{0:N").Append(n).Append("}").ToString();
+            Ppvalue = String.Format(t, Math.Abs(Max - Min));//峰峰值
             _SumData += value;
-            ArithmeticMean = _SumData/count;
+            ArithmeticMean = Math.Round(_SumData / count, n);//算术平均
 
             //计算均方根
             _RmsData += value*value;
-            RootMeanSquare = Math.Sqrt(_RmsData/count);
+            RootMeanSquare = Math.Round(Math.Sqrt(_RmsData/count), n);
 
             if (Math.Abs(_NominalValue) > 0)
             {
                 RootMeanSquareDeviation = RootMeanSquare - _NominalValue;
             }
 
-            Ppvalue = Math.Abs(Max - Min);
 
             //触发数据源发生变化
             OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
