@@ -21,35 +21,51 @@ namespace MeterKnife.Instruments.Common
             get
             {
                 var commands = new List<string>(6);
-                if (!string.IsNullOrEmpty(_CommandTextBox1.Text))
-                    commands.Add(_CommandTextBox1.Text);
-                if (!string.IsNullOrEmpty(_CommandTextBox2.Text))
-                    commands.Add(_CommandTextBox2.Text);
-                if (!string.IsNullOrEmpty(_CommandTextBox3.Text))
-                    commands.Add(_CommandTextBox3.Text);
-                if (!string.IsNullOrEmpty(_CommandTextBox4.Text))
-                    commands.Add(_CommandTextBox4.Text);
-                if (!string.IsNullOrEmpty(_CommandTextBox5.Text))
-                    commands.Add(_CommandTextBox5.Text);
-                if (!string.IsNullOrEmpty(_CommandTextBox6.Text))
-                    commands.Add(_CommandTextBox6.Text);
+                string text = GetText(_CommandTextBox1);
+                if (!string.IsNullOrEmpty(text))
+                    commands.Add(text);
+                text = GetText(_CommandTextBox2);
+                if (!string.IsNullOrEmpty(text))
+                    commands.Add(text);
+                text = GetText(_CommandTextBox3);
+                if (!string.IsNullOrEmpty(text))
+                    commands.Add(text);
+                text = GetText(_CommandTextBox4);
+                if (!string.IsNullOrEmpty(text))
+                    commands.Add(text);
+                text = GetText(_CommandTextBox5);
+                if (!string.IsNullOrEmpty(text))
+                    commands.Add(text);
+                text = GetText(_CommandTextBox6);
+                if (!string.IsNullOrEmpty(text))
+                    commands.Add(text);
                 return commands;
             }
         }
 
-        public List<string> CollectCommand
+        public List<string> CollectCommands
         {
             get
             {
                 var commands = new List<string>(3);
-                if (!string.IsNullOrEmpty(_CollectCommandBox1.Text))
-                    commands.Add(_CollectCommandBox1.Text);
-                if (!string.IsNullOrEmpty(_CollectCommandBox2.Text))
-                    commands.Add(_CollectCommandBox2.Text);
-                if (!string.IsNullOrEmpty(_CollectCommandBox3.Text))
-                    commands.Add(_CollectCommandBox3.Text);
+                string text = GetText(_CollectCommandBox1);
+                if (!string.IsNullOrEmpty(text))
+                    commands.Add(text);
+                text = GetText(_CollectCommandBox2);
+                if (!string.IsNullOrEmpty(text))
+                    commands.Add(text);
+                text = GetText(_CollectCommandBox3);
+                if (!string.IsNullOrEmpty(text))
+                    commands.Add(text);
                 return commands;
             }
+        }
+
+        private string GetText(Control control)
+        {
+            string text = "";
+            this.ThreadSafeInvoke(() => text = control.Text);
+            return text;
         }
 
     }

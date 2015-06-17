@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -255,17 +256,23 @@ namespace MeterKnife.Instruments
             {
                 if (cmd == null)
                     continue;
-                byte[] cmdBytes = CareTalking.BuildCareSaying(_Meter.GpibAddress, cmd.Command, false).Generate();
+                byte[] cmdBytes = CareTalking.BuildCareTalking(_Meter.GpibAddress, cmd.Command, false).Generate();
                 _Comm.Send(Port, cmdBytes);
-                Thread.Sleep((int) cmd.Interval);
+                long i = interval;
+                if (cmd.Interval > 0)
+                    i = cmd.Interval;
+                Thread.Sleep((int) i);
             }
 
-            byte[] read = GetCollectCommand();
+            List<byte[]> reads = GetCollectCommands();
             byte[] temp = CareTalking.TEMP().Generate();
             while (_OnCollect)
             {
-                _Comm.Send(Port, read);
-                Thread.Sleep(interval);
+                foreach (var read in reads)
+                {
+                    _Comm.Send(Port, read);
+                    Thread.Sleep(interval);
+                }
                 _Comm.Send(Port, temp);
                 Thread.Sleep(300);
             }
@@ -278,9 +285,10 @@ namespace MeterKnife.Instruments
             return new ScpiCommandList();
         }
 
-        protected virtual byte[] GetCollectCommand()
+        protected virtual List<byte[]> GetCollectCommands()
         {
-            return CareTalking.READ(_Meter.GpibAddress).Generate();
+            var list = new List<byte[]> {CareTalking.READ(_Meter.GpibAddress).Generate()};
+            return list;
         }
 
         private void _SaveStripButton_Click(object sender, EventArgs e)

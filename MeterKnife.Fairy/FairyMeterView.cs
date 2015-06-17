@@ -13,7 +13,7 @@ namespace MeterKnife.Fairy
 {
     internal class FairyMeterView : DigitMultiMeterView
     {
-        private UserScpiCommandPanel _ScpiCommandPanel = new UserScpiCommandPanel();
+        private readonly UserScpiCommandPanel _ScpiCommandPanel = new UserScpiCommandPanel();
         /// <summary>
         /// 是否是精灵版
         /// </summary>
@@ -57,9 +57,10 @@ namespace MeterKnife.Fairy
             return list;
         }
 
-        protected override byte[] GetCollectCommand()
+        protected override List<byte[]> GetCollectCommands()
         {
-            return CareTalking.BuildCareSaying(_Meter.GpibAddress, _CollectCommand).Generate();
+            var commands = _ScpiCommandPanel.CollectCommands;
+            return commands.Select(command => CareTalking.BuildCareTalking(_Meter.GpibAddress, command).Generate()).ToList();
         }
 
     }

@@ -8,7 +8,7 @@ namespace MeterKnife.Common.DataModels
     {
         private static CareTalking _temp;
 
-        public static CareTalking BuildCareSaying(int gpib, string scpi, bool isReturn = true)
+        public static CareTalking BuildCareTalking(int gpib, string scpi, bool isReturn = true)
         {
             var careTalking = new CareTalking
             {
@@ -24,13 +24,13 @@ namespace MeterKnife.Common.DataModels
         // ReSharper disable once InconsistentNaming
         public static CareTalking IDN(int gpib)
         {
-            return BuildCareSaying(gpib, "*IDN?");
+            return BuildCareTalking(gpib, "*IDN?");
         }
 
         // ReSharper disable once InconsistentNaming
         public static CareTalking READ(int gpib)
         {
-            return BuildCareSaying(gpib, "READ?");
+            return BuildCareTalking(gpib, "READ?");
         }
 
         // ReSharper disable once InconsistentNaming
@@ -38,7 +38,7 @@ namespace MeterKnife.Common.DataModels
         {
             if (_temp == null)
             {
-                _temp = BuildCareSaying(0, string.Empty);
+                _temp = BuildCareTalking(0, string.Empty);
                 _temp.MainCommand = 0xAE;
             }
             return _temp;
