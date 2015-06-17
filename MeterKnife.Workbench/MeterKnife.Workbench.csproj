@@ -101,6 +101,12 @@
     <Compile Include="Dialogs\FairyCommandBuildDialog.Designer.cs">
       <DependentUpon>FairyCommandBuildDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\InterfaceSelectorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\InterfaceSelectorDialog.Designer.cs">
+      <DependentUpon>InterfaceSelectorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\OfflineCollectParameterDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FairyCommandBuildDialog.resx">
       <DependentUpon>FairyCommandBuildDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\InterfaceSelectorDialog.resx">
+      <DependentUpon>InterfaceSelectorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\OfflineCollectParameterDialog.resx">
       <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>

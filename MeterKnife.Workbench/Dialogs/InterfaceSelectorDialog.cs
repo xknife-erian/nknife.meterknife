@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO.Ports;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
 using NKnife.GUI.WinForm;
 using NKnife.Utility;
 
-namespace MeterKnife.Fairy
+namespace MeterKnife.Workbench.Dialogs
 {
     public partial class InterfaceSelectorDialog : SimpleForm
     {
@@ -38,6 +32,7 @@ namespace MeterKnife.Fairy
 
         private void FillSerialComonbox()
         {
+            _SerialComboBox.Items.Clear();
             var list = SerialPort.GetPortNames();
             foreach (var s in list)
             {
@@ -101,6 +96,20 @@ namespace MeterKnife.Fairy
             }
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void _RefreshButton_Click(object sender, EventArgs e)
+        {
+            FillSerialComonbox();
+        }
+
+        private void _CloseButton_Click(object sender, EventArgs e)
+        {
+            var rs = MessageBox.Show(this, "您确认关闭应用程序么？", "关闭", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (rs == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

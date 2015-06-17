@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Fairy
+﻿namespace MeterKnife.Workbench.Dialogs
 {
     partial class InterfaceSelectorDialog
     {
@@ -35,6 +35,8 @@
             this._AcceptButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._PortNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this._RefreshButton = new System.Windows.Forms.Button();
+            this._CloseButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._PortNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -96,6 +98,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._RefreshButton);
             this.groupBox1.Controls.Add(this._PortNumericUpDown);
             this.groupBox1.Controls.Add(this._SerialRadioButton);
             this.groupBox1.Controls.Add(this._LanRadioButton);
@@ -129,13 +132,35 @@
             0,
             0});
             // 
+            // _RefreshButton
+            // 
+            this._RefreshButton.Location = new System.Drawing.Point(151, 25);
+            this._RefreshButton.Name = "_RefreshButton";
+            this._RefreshButton.Size = new System.Drawing.Size(39, 23);
+            this._RefreshButton.TabIndex = 5;
+            this._RefreshButton.Text = "刷新";
+            this._RefreshButton.UseVisualStyleBackColor = true;
+            this._RefreshButton.Click += new System.EventHandler(this._RefreshButton_Click);
+            // 
+            // _CloseButton
+            // 
+            this._CloseButton.Location = new System.Drawing.Point(23, 121);
+            this._CloseButton.Name = "_CloseButton";
+            this._CloseButton.Size = new System.Drawing.Size(84, 27);
+            this._CloseButton.TabIndex = 8;
+            this._CloseButton.Text = "关闭";
+            this._CloseButton.UseVisualStyleBackColor = true;
+            this._CloseButton.Click += new System.EventHandler(this._CloseButton_Click);
+            // 
             // InterfaceSelectorDialog
             // 
             this.AcceptButton = this._AcceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this._CloseButton;
             this.ClientSize = new System.Drawing.Size(367, 169);
             this.ControlBox = false;
+            this.Controls.Add(this._CloseButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._AcceptButton);
             this.MaximizeBox = false;
@@ -162,5 +187,7 @@
         private System.Windows.Forms.Button _AcceptButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown _PortNumericUpDown;
+        private System.Windows.Forms.Button _RefreshButton;
+        private System.Windows.Forms.Button _CloseButton;
     }
 }
