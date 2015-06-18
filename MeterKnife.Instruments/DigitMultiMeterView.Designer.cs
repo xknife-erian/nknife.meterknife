@@ -101,6 +101,7 @@
             // _LeftSplitContainer
             // 
             this._LeftSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._LeftSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this._LeftSplitContainer.Location = new System.Drawing.Point(0, 0);
             this._LeftSplitContainer.Name = "_LeftSplitContainer";
             this._LeftSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -113,7 +114,7 @@
             // 
             this._LeftSplitContainer.Panel2.Controls.Add(this.groupBox2);
             this._LeftSplitContainer.Size = new System.Drawing.Size(250, 475);
-            this._LeftSplitContainer.SplitterDistance = 227;
+            this._LeftSplitContainer.SplitterDistance = 350;
             this._LeftSplitContainer.TabIndex = 0;
             // 
             // _ParamsGroupBox
@@ -122,7 +123,7 @@
             this._ParamsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ParamsGroupBox.Location = new System.Drawing.Point(0, 0);
             this._ParamsGroupBox.Name = "_ParamsGroupBox";
-            this._ParamsGroupBox.Size = new System.Drawing.Size(250, 227);
+            this._ParamsGroupBox.Size = new System.Drawing.Size(250, 350);
             this._ParamsGroupBox.TabIndex = 0;
             this._ParamsGroupBox.TabStop = false;
             this._ParamsGroupBox.Text = "参数";
@@ -132,7 +133,7 @@
             this._ParamsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ParamsPanel.Location = new System.Drawing.Point(3, 17);
             this._ParamsPanel.Name = "_ParamsPanel";
-            this._ParamsPanel.Size = new System.Drawing.Size(244, 207);
+            this._ParamsPanel.Size = new System.Drawing.Size(244, 330);
             this._ParamsPanel.TabIndex = 0;
             // 
             // groupBox2
@@ -141,7 +142,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 244);
+            this.groupBox2.Size = new System.Drawing.Size(250, 121);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "实时分析";
@@ -152,7 +153,7 @@
             this._FiguredDataPropertyGrid.HelpVisible = false;
             this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 17);
             this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
-            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 224);
+            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 101);
             this._FiguredDataPropertyGrid.TabIndex = 0;
             this._FiguredDataPropertyGrid.ToolbarVisible = false;
             // 

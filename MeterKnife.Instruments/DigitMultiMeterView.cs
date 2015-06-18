@@ -82,11 +82,6 @@ namespace MeterKnife.Instruments
                 ZoomVerticalCursor = Cursors.SizeNS,
                 Model = _MainModel
             };
-            mainPlot.PaddingChanged += (sender, args) =>
-            {
-                var p = temperatureModel.Padding;
-                temperatureModel.Padding = new OxyThickness(mainPlot.Left, p.Top, p.Right, p.Bottom);
-            };
             _PlotSplitContainer.Panel1.Controls.Add(mainPlot);
 
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
@@ -194,6 +189,17 @@ namespace MeterKnife.Instruments
 
         private void _StartStripButton_Click(object sender, EventArgs e)
         {
+            if (_FiguredData.HasData)
+            {
+                var rs = MessageBox.Show(this, "是否继续采集?\r\n点击“是”继续采集数据并记录；\r\n点击“否”将清空原有数据重新开始记录。",
+                    "数据采集", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                if (rs == DialogResult.No)
+                {
+                    _FiguredData.Clear();
+                    _MainLineSeries.Points.Clear();
+                    _TemperatureLineSeries.Points.Clear();
+                }
+            }
             StartCollect();
         }
 
@@ -305,7 +311,7 @@ namespace MeterKnife.Instruments
 
         private void _ExportStripButton_Click(object sender, EventArgs e)
         {
-            var dialog = new ExportFileSelectorDialog();
+            var dialog = new FolderBrowserDialog();//new ExportFileSelectorDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var dir = dialog.SelectedPath;

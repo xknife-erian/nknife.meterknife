@@ -101,6 +101,12 @@ namespace MeterKnife.Common.DataModels
             get { return _DataSet; }
         }
 
+        [Browsable(false)]
+        public bool HasData
+        {
+            get { return _DataSet.Tables[1].Rows.Count > 0; }
+        }
+
         public bool Export(string fileFullName)
         {
             var book = new HSSFWorkbook();
@@ -223,6 +229,12 @@ namespace MeterKnife.Common.DataModels
             EventHandler<CollectDataEventArgs> handler = ReceviedCollectData;
             if (handler != null)
                 handler(this, e);
+        }
+
+        public void Clear()
+        {
+            _DataSet.Tables[1].Rows.Clear();
+            _DataSet.AcceptChanges();
         }
     }
 }

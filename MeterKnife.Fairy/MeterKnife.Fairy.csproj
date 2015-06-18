@@ -71,6 +71,9 @@
       <Link>Ref\SplashForm.cs</Link>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AddFairyMeterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FairyForm.cs">
       <SubType>Form</SubType>
     </Compile>

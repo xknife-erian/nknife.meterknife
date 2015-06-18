@@ -297,17 +297,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button _CancelButton;
         private System.Windows.Forms.Button _AcceptButton;
-        private System.Windows.Forms.NumericUpDown _NumberBox;
+        protected System.Windows.Forms.NumericUpDown _NumberBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton _AdvantestRadiobox;
         private System.Windows.Forms.RadioButton _Fluke8840Radiobox;
         private System.Windows.Forms.RadioButton _HP3478RadioBox;
         private System.Windows.Forms.RadioButton _StandardScpiRadiobox;
         private System.Windows.Forms.GroupBox _MeterTypeGroupBox;
-        private System.Windows.Forms.ComboBox _MeterTypeComboBox;
-        private System.Windows.Forms.CheckBox _AutoFindMeterCheckbox;
+        protected System.Windows.Forms.ComboBox _MeterTypeComboBox;
+        protected System.Windows.Forms.CheckBox _AutoFindMeterCheckbox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox _MeterBrandComboBox;
+        protected System.Windows.Forms.ComboBox _MeterBrandComboBox;
     }
 }

@@ -68,5 +68,15 @@ namespace MeterKnife.Instruments.Common
             return text;
         }
 
+        private void _LoadButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _SaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

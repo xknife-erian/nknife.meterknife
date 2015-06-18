@@ -77,7 +77,7 @@ namespace MeterKnife.Fairy
 
         private void AddMeterView()
         {
-            var dialog = new AddGpibMeterDialog();
+            var dialog = new AddFairyMeterDialog();
             dialog.Port = _Serial;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {

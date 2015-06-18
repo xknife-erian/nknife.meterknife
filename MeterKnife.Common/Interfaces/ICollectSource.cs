@@ -13,6 +13,10 @@ namespace MeterKnife.Common.Interfaces
 
         DataSet DataSet { get; }
 
+        bool HasData { get; }
+
+        void Clear();
+
         /// <summary>
         /// 导出到Excle文件
         /// </summary>

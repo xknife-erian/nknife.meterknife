@@ -66,9 +66,9 @@
             this.groupBox2.Controls.Add(this._CollectCommandBox2);
             this.groupBox2.Controls.Add(this._CollectCommandBox1);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Location = new System.Drawing.Point(3, 239);
+            this.groupBox2.Location = new System.Drawing.Point(7, 214);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(376, 117);
+            this.groupBox2.Size = new System.Drawing.Size(226, 100);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "采集指令";
@@ -76,7 +76,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 86);
+            this.label8.Location = new System.Drawing.Point(18, 72);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 12);
             this.label8.TabIndex = 22;
@@ -86,15 +86,15 @@
             // 
             this._CollectCommandBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._CollectCommandBox3.Location = new System.Drawing.Point(65, 83);
+            this._CollectCommandBox3.Location = new System.Drawing.Point(65, 69);
             this._CollectCommandBox3.Name = "_CollectCommandBox3";
-            this._CollectCommandBox3.Size = new System.Drawing.Size(294, 21);
+            this._CollectCommandBox3.Size = new System.Drawing.Size(144, 21);
             this._CollectCommandBox3.TabIndex = 2;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 59);
+            this.label7.Location = new System.Drawing.Point(18, 47);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
             this.label7.TabIndex = 20;
@@ -104,9 +104,9 @@
             // 
             this._CollectCommandBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._CollectCommandBox2.Location = new System.Drawing.Point(65, 56);
+            this._CollectCommandBox2.Location = new System.Drawing.Point(65, 44);
             this._CollectCommandBox2.Name = "_CollectCommandBox2";
-            this._CollectCommandBox2.Size = new System.Drawing.Size(294, 21);
+            this._CollectCommandBox2.Size = new System.Drawing.Size(144, 21);
             this._CollectCommandBox2.TabIndex = 1;
             // 
             // _CollectCommandBox1
@@ -117,15 +117,15 @@
             this._CollectCommandBox1.Items.AddRange(new object[] {
             "READ?",
             "FETC?"});
-            this._CollectCommandBox1.Location = new System.Drawing.Point(66, 30);
+            this._CollectCommandBox1.Location = new System.Drawing.Point(66, 20);
             this._CollectCommandBox1.Name = "_CollectCommandBox1";
-            this._CollectCommandBox1.Size = new System.Drawing.Size(293, 20);
+            this._CollectCommandBox1.Size = new System.Drawing.Size(143, 20);
             this._CollectCommandBox1.TabIndex = 0;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 33);
+            this.label9.Location = new System.Drawing.Point(18, 23);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 12);
             this.label9.TabIndex = 17;
@@ -147,17 +147,17 @@
             this.groupBox1.Controls.Add(this._CommandTextBox2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this._CommandTextBox1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 38);
+            this.groupBox1.Location = new System.Drawing.Point(7, 34);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(376, 197);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(226, 175);
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "采集前初始化指令";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 165);
+            this.label6.Location = new System.Drawing.Point(18, 150);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 11;
@@ -167,15 +167,15 @@
             // 
             this._CommandTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._CommandTextBox6.Location = new System.Drawing.Point(65, 162);
+            this._CommandTextBox6.Location = new System.Drawing.Point(65, 147);
             this._CommandTextBox6.Name = "_CommandTextBox6";
-            this._CommandTextBox6.Size = new System.Drawing.Size(294, 21);
+            this._CommandTextBox6.Size = new System.Drawing.Size(144, 21);
             this._CommandTextBox6.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 138);
+            this.label5.Location = new System.Drawing.Point(18, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 9;
@@ -185,15 +185,15 @@
             // 
             this._CommandTextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._CommandTextBox5.Location = new System.Drawing.Point(65, 135);
+            this._CommandTextBox5.Location = new System.Drawing.Point(65, 122);
             this._CommandTextBox5.Name = "_CommandTextBox5";
-            this._CommandTextBox5.Size = new System.Drawing.Size(294, 21);
+            this._CommandTextBox5.Size = new System.Drawing.Size(144, 21);
             this._CommandTextBox5.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 111);
+            this.label4.Location = new System.Drawing.Point(18, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 12);
             this.label4.TabIndex = 7;
@@ -203,15 +203,15 @@
             // 
             this._CommandTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._CommandTextBox4.Location = new System.Drawing.Point(65, 108);
+            this._CommandTextBox4.Location = new System.Drawing.Point(65, 97);
             this._CommandTextBox4.Name = "_CommandTextBox4";
-            this._CommandTextBox4.Size = new System.Drawing.Size(294, 21);
+            this._CommandTextBox4.Size = new System.Drawing.Size(144, 21);
             this._CommandTextBox4.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 84);
+            this.label3.Location = new System.Drawing.Point(18, 76);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 12);
             this.label3.TabIndex = 5;
@@ -221,15 +221,15 @@
             // 
             this._CommandTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._CommandTextBox3.Location = new System.Drawing.Point(65, 81);
+            this._CommandTextBox3.Location = new System.Drawing.Point(65, 72);
             this._CommandTextBox3.Name = "_CommandTextBox3";
-            this._CommandTextBox3.Size = new System.Drawing.Size(294, 21);
+            this._CommandTextBox3.Size = new System.Drawing.Size(144, 21);
             this._CommandTextBox3.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 57);
+            this.label2.Location = new System.Drawing.Point(18, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 3;
@@ -239,15 +239,15 @@
             // 
             this._CommandTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._CommandTextBox2.Location = new System.Drawing.Point(65, 54);
+            this._CommandTextBox2.Location = new System.Drawing.Point(65, 47);
             this._CommandTextBox2.Name = "_CommandTextBox2";
-            this._CommandTextBox2.Size = new System.Drawing.Size(294, 21);
+            this._CommandTextBox2.Size = new System.Drawing.Size(144, 21);
             this._CommandTextBox2.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 30);
+            this.label1.Location = new System.Drawing.Point(18, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 1;
@@ -257,20 +257,22 @@
             // 
             this._CommandTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._CommandTextBox1.Location = new System.Drawing.Point(65, 27);
+            this._CommandTextBox1.Location = new System.Drawing.Point(65, 22);
             this._CommandTextBox1.Name = "_CommandTextBox1";
-            this._CommandTextBox1.Size = new System.Drawing.Size(294, 21);
+            this._CommandTextBox1.Size = new System.Drawing.Size(144, 21);
             this._CommandTextBox1.TabIndex = 0;
             // 
             // toolStrip1
             // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.CanOverflow = false;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._LoadButton,
             this._SaveButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(376, 25);
-            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Size = new System.Drawing.Size(234, 25);
+            this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // _LoadButton
@@ -280,7 +282,8 @@
             this._LoadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._LoadButton.Name = "_LoadButton";
             this._LoadButton.Size = new System.Drawing.Size(23, 22);
-            this._LoadButton.Text = "载入常用指令集";
+            this._LoadButton.Text = "载入指令集";
+            this._LoadButton.Click += new System.EventHandler(this._LoadButton_Click);
             // 
             // _SaveButton
             // 
@@ -289,18 +292,20 @@
             this._SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SaveButton.Name = "_SaveButton";
             this._SaveButton.Size = new System.Drawing.Size(23, 22);
-            this._SaveButton.Text = "保存常用指令集";
+            this._SaveButton.Text = "保存指令集";
+            this._SaveButton.Click += new System.EventHandler(this._SaveButton_Click);
             // 
             // UserScpiCommandPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Name = "UserScpiCommandPanel";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(382, 364);
+            this.Size = new System.Drawing.Size(240, 319);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -308,7 +313,6 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -335,7 +339,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox _CommandTextBox1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton _SaveButton;
         private System.Windows.Forms.ToolStripButton _LoadButton;
+        private System.Windows.Forms.ToolStripButton _SaveButton;
     }
 }

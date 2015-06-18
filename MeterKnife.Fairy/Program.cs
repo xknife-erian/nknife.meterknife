@@ -44,7 +44,6 @@ namespace MeterKnife.Fairy
 
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Common.Properties.Settings.Default.CultureInfoName);
 
-            AddGpibMeterDialog.IsFairy = true;
             FairyMeterView.IsFairy = true;
 
             MeterKnifeEnvironment.Workbench = new FairyForm();

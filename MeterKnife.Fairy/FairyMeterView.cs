@@ -14,6 +14,7 @@ namespace MeterKnife.Fairy
     internal class FairyMeterView : DigitMultiMeterView
     {
         private readonly UserScpiCommandPanel _ScpiCommandPanel = new UserScpiCommandPanel();
+
         /// <summary>
         /// 是否是精灵版
         /// </summary>
@@ -26,18 +27,15 @@ namespace MeterKnife.Fairy
                 _ParamsGroupBox.Visible = false;
                 _SaveStripButton.Visible = false;
                 _ScpiCommandPanel.Dock = DockStyle.Fill;
+                _LeftSplitContainer.Panel1.Controls.Clear();
                 _LeftSplitContainer.Panel1.Controls.Add(_ScpiCommandPanel);
+                _LeftSplitContainer.SplitterDistance = _ScpiCommandPanel.Height;
             }
         }
 
         public override void SetMeter(int port, BaseMeter meter)
         {
             base.SetMeter(port, meter);
-            if (!IsFairy)
-            {
-                _Panel = meter.ParamPanel;
-                _ParamsPanel.Controls.Add(_Panel);
-            }
             if (!_Comm.IsInitialized)
             {
                 _Comm.Start(port);
@@ -50,8 +48,7 @@ namespace MeterKnife.Fairy
             var list = new ScpiCommandList();
             foreach (var command in commands)
             {
-                var sc = new ScpiCommand();
-                sc.Command = command;
+                var sc = new ScpiCommand {Command = command};
                 list.AddLast(sc);
             }
             return list;
