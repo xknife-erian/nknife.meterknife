@@ -107,7 +107,7 @@
             this.groupBox1.Location = new System.Drawing.Point(23, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(317, 96);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // _RefreshButton
@@ -148,14 +148,13 @@
             this._CloseButton.Location = new System.Drawing.Point(23, 121);
             this._CloseButton.Name = "_CloseButton";
             this._CloseButton.Size = new System.Drawing.Size(84, 27);
-            this._CloseButton.TabIndex = 1;
+            this._CloseButton.TabIndex = 2;
             this._CloseButton.Text = "关闭";
             this._CloseButton.UseVisualStyleBackColor = true;
             this._CloseButton.Click += new System.EventHandler(this._CloseButton_Click);
             // 
             // InterfaceSelectorDialog
             // 
-            this.AcceptButton = this._AcceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(367, 169);

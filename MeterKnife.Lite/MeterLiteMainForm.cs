@@ -6,6 +6,7 @@ using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Util;
 using MeterKnife.Workbench.Dialogs;
 using NKnife.IoC;
+using NKnife.NLog3.Controls;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Lite
@@ -98,7 +99,7 @@ namespace MeterKnife.Lite
 
         private void _CareOptionMenuItem_Click(object sender, EventArgs e)
         {
-            var dialog = new CareParameterDialog(1);
+            var dialog = new CareParameterDialog(_SerialPort);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
             }
@@ -108,6 +109,12 @@ namespace MeterKnife.Lite
         {
             var dialog = new AboutDialog();
             dialog.ShowDialog(this);
+        }
+
+        private void _LoggerMenuItem_Click(object sender, EventArgs e)
+        {
+            var loggerForm = new NLogForm {TopMost = true};
+            loggerForm.Show();
         }
     }
 }

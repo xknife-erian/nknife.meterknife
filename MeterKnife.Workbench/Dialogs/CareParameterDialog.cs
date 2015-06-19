@@ -127,6 +127,29 @@ namespace MeterKnife.Workbench.Dialogs
                             _MacTextBox.Text = bs.ToHexString(':');
                         });
                         break;
+                    case 0xDD: //查询USB串口波特率；
+                        this.ThreadSafeInvoke(() =>
+                        {
+                            var bs = talking.ScpiBytes;
+                            var port = BitConverter.ToInt32(bs.Reverse().ToArray(), 0);
+                            _Usart1NumberBox.Value = port;
+                        });
+                        break;
+                    case 0xDE: //查询WIFI模块前置串口波特率；
+                        this.ThreadSafeInvoke(() =>
+                        {
+                            var bs = talking.ScpiBytes;
+                            var port = BitConverter.ToInt32(bs.Reverse().ToArray(), 0);
+                            _Usart2NumberBox.Value = port;
+                        });
+                        break;
+                    case 0xDF: //查询USB串口与WIFI模块前置串口是否可以互相转发；
+                        this.ThreadSafeInvoke(() =>
+                        {
+                            var bs = talking.ScpiBytes[0];
+                            _UsartSwitchCheckBox.Checked = (bs != 0x00);
+                        });
+                        break;
                 }
             }
         }
@@ -134,7 +157,7 @@ namespace MeterKnife.Workbench.Dialogs
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            var task = new Task(GetCareParameter);
+            var task = new Thread(GetCareParameter) {IsBackground = true};
             task.Start();
         }
 
@@ -147,13 +170,13 @@ namespace MeterKnife.Workbench.Dialogs
 
         private void GetCareParameter()
         {
-            for (int i = 0xD2; i <= 0xDC; i++)
+            for (int i = 0xD0; i <= 0xDF; i++)
             {
                 if (i == 0xD8 || i == 0xD9)
                     continue;
                 var data = CareTalking.CareGetter((byte) i);
                 _Comm.Send(_Port, data);
-                Thread.Sleep(50);
+                Thread.Sleep(20);
             }
         }
     }

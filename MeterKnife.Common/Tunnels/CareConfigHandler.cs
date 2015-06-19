@@ -15,6 +15,7 @@ namespace MeterKnife.Common.Tunnels
 
         public CareConfigHandler()
         {
+            Commands.Add(new byte[] { 0xA0, 0xD0 });
             Commands.Add(new byte[] { 0xA0, 0xD1 });
             Commands.Add(new byte[] { 0xA0, 0xD2 });
             Commands.Add(new byte[] { 0xA0, 0xD3 });
@@ -27,6 +28,9 @@ namespace MeterKnife.Common.Tunnels
             Commands.Add(new byte[] { 0xA0, 0xDA });
             Commands.Add(new byte[] { 0xA0, 0xDB });
             Commands.Add(new byte[] { 0xA0, 0xDC });
+            Commands.Add(new byte[] { 0xA0, 0xDD });
+            Commands.Add(new byte[] { 0xA0, 0xDE });
+            Commands.Add(new byte[] { 0xA0, 0xDF });
         }
 
         public override void Recevied(CareTalking protocol)

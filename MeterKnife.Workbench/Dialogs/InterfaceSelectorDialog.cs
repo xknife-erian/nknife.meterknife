@@ -105,7 +105,8 @@ namespace MeterKnife.Workbench.Dialogs
 
         private void _CloseButton_Click(object sender, EventArgs e)
         {
-            var rs = MessageBox.Show(this, "您确认关闭应用程序么？", "关闭", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            var rs = MessageBox.Show(this, "您确认关闭应用程序么？", "关闭", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (rs == DialogResult.Yes)
             {
                 Application.Exit();
