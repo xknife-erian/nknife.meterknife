@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Windows.Forms;
+using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Util;
 using MeterKnife.Workbench.Dialogs;
 using NKnife.IoC;
@@ -12,11 +14,11 @@ namespace MeterKnife.Lite
     {
         private readonly DockPanel _DockPanel = new DockPanel();
 
-        private int _Serial;
+        private int _SerialPort;
 
         private IPAddress _IpAddress;
 
-        private int _Port;
+        private int _SocketPort;
 
         private CommunicationType _CommunicationType;
 
@@ -41,9 +43,9 @@ namespace MeterKnife.Lite
             var dialog = new InterfaceSelectorDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _Serial = dialog.Serial;
+                _SerialPort = dialog.Serial;
                 _IpAddress = dialog.IpAddress;
-                _Port = dialog.Port;
+                _SocketPort = dialog.Port;
                 if (dialog.IsSerial)
                 {
                     _PortLabel.Text = string.Format("COM{0}", dialog.Serial);
@@ -70,8 +72,18 @@ namespace MeterKnife.Lite
 
         private void AddMeterView()
         {
-            var dialog = new AddMeterDialog();
-            dialog.Port = _Serial;
+            Dictionary<int, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
+            List<int> gpibList;
+            if (!dic.TryGetValue(_SerialPort, out gpibList))
+            {
+                gpibList = new List<int>();
+                dic.Add(_SerialPort, gpibList);
+            }
+
+            var dialog = new AddMeterLiteDialog();
+            dialog.GpibList.AddRange(gpibList);
+            dialog.Port = _SerialPort;
+
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var meterView = DI.Get<MeterLiteView>();
@@ -80,6 +92,7 @@ namespace MeterKnife.Lite
                 meterView.SetMeter(dialog.Port, dialog.Meter);
                 meterView.Text = dialog.Meter.AbbrName;
                 meterView.Show(_DockPanel, DockState.Document);
+                dic[_SerialPort].Add(dialog.GpibAddress);
             }
         }
 

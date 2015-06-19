@@ -191,7 +191,7 @@ namespace MeterKnife.Instruments
         {
             if (_FiguredData.HasData)
             {
-                var rs = MessageBox.Show(this, "是否继续采集?\r\n点击“是”继续采集数据并记录；\r\n点击“否”将清空原有数据重新开始记录。",
+                var rs = MessageBox.Show(this, "是否延续采集?\r\n点击“是”延续采集数据并记录；\r\n点击“否”将清空原有数据重新开始记录。",
                     "数据采集", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (rs == DialogResult.No)
                 {

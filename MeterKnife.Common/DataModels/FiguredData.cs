@@ -78,6 +78,7 @@ namespace MeterKnife.Common.DataModels
             baseTable.Columns.Add(new DataColumn("Key", typeof (string)));
             baseTable.Columns.Add(new DataColumn("Value", typeof (string)));
             _DataSet.Tables.Add(baseTable);
+
             var collectTable = new DataTable("CollectData");
             collectTable.Columns.Add(new DataColumn("datetime", typeof (DateTime)));
             collectTable.Columns.Add(new DataColumn("value", typeof (double)));
@@ -180,8 +181,10 @@ namespace MeterKnife.Common.DataModels
             }
             else
             {
-                if (value > Max) Max = value; //最大值
-                else if (value < Min) Min = value; //最小值
+                if (value > Max) 
+                    Max = value; //最大值
+                else if (value < Min)
+                    Min = value; //最小值
             }
             var t = new StringBuilder("{0:N").Append(n).Append("}").ToString();
             Ppvalue = String.Format(t, Math.Abs(Max - Min));//峰峰值
@@ -196,7 +199,6 @@ namespace MeterKnife.Common.DataModels
             {
                 RootMeanSquareDeviation = RootMeanSquare - _NominalValue;
             }
-
 
             //触发数据源发生变化
             OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
@@ -235,6 +237,20 @@ namespace MeterKnife.Common.DataModels
         {
             _DataSet.Tables[1].Rows.Clear();
             _DataSet.AcceptChanges();
+
+            Max = 0;
+            Min = 0;
+            Ppvalue = 0.ToString();
+            RootMeanSquare = 0;
+            ArithmeticMean = 0;
+
+            MaxTemperature = 0;
+            MinTemperature = 0;
+            TemperatureRootMeanSquare = 0;
+            TemperatureArithmeticMean = 0;
+
+            AllanVariance = 0;
+            RootMeanSquareDeviation = 0;
         }
     }
 }

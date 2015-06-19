@@ -303,7 +303,7 @@
         private System.Windows.Forms.RadioButton _Fluke8840Radiobox;
         private System.Windows.Forms.RadioButton _HP3478RadioBox;
         private System.Windows.Forms.RadioButton _StandardScpiRadiobox;
-        private System.Windows.Forms.GroupBox _MeterTypeGroupBox;
+        protected System.Windows.Forms.GroupBox _MeterTypeGroupBox;
         protected System.Windows.Forms.ComboBox _MeterTypeComboBox;
         protected System.Windows.Forms.CheckBox _AutoFindMeterCheckbox;
         private System.Windows.Forms.Label label3;
