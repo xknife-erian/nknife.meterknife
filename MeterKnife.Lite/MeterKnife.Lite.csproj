@@ -71,13 +71,13 @@
       <Link>Ref\SplashForm.cs</Link>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LiteForm.cs">
+    <Compile Include="MeterLiteMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LiteForm.Designer.cs">
-      <DependentUpon>LiteForm.cs</DependentUpon>
+    <Compile Include="MeterLiteMainForm.Designer.cs">
+      <DependentUpon>MeterLiteMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LiteMeterView.cs">
+    <Compile Include="MeterLiteView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -85,8 +85,8 @@
     <EmbeddedResource Include="..\MeterKnife.Starter\SplashForm.resx">
       <Link>Ref\SplashForm.resx</Link>
     </EmbeddedResource>
-    <EmbeddedResource Include="LiteForm.resx">
-      <DependentUpon>LiteForm.cs</DependentUpon>
+    <EmbeddedResource Include="MeterLiteMainForm.resx">
+      <DependentUpon>MeterLiteMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

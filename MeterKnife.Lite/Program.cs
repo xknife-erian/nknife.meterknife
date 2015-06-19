@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
-using MeterKnife.Fairy.Properties;
-using MeterKnife.Instruments;
 using MeterKnife.Starter;
 using MeterKnife.Workbench.Dialogs;
 using NKnife;
 using NKnife.IoC;
 
-namespace MeterKnife.Fairy
+namespace MeterKnife.Lite
 {
     class Program
     {
@@ -44,10 +40,9 @@ namespace MeterKnife.Fairy
 
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Common.Properties.Settings.Default.CultureInfoName);
 
-            AddGpibMeterDialog.IsFairy = true;
-            FairyMeterView.IsFairy = true;
+            MeterLiteView.IsFairy = true;
 
-            MeterKnifeEnvironment.Workbench = new FairyForm();
+            MeterKnifeEnvironment.Workbench = new MeterLiteMainForm();
             Application.Run(new MeterKnifeEnvironment());
 #if !DEBUG
             mutex.ReleaseMutex();

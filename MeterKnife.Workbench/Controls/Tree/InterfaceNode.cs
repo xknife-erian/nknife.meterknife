@@ -45,7 +45,7 @@ namespace MeterKnife.Workbench.Controls.Tree
                 gpibList = new List<int>();
                 dic.Add(Port, gpibList);
             }
-            var dialog = new AddGpibMeterDialog();
+            var dialog = new AddMeterDialog();
             dialog.GpibList.AddRange(gpibList);
             dialog.Port = Port;
 

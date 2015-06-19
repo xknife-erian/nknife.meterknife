@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
@@ -9,9 +7,9 @@ using MeterKnife.Instruments;
 using MeterKnife.Instruments.Common;
 using ScpiKnife;
 
-namespace MeterKnife.Fairy
+namespace MeterKnife.Lite
 {
-    internal class FairyMeterView : DigitMultiMeterView
+    internal class MeterLiteView : DigitMultiMeterView
     {
         private readonly UserScpiCommandPanel _ScpiCommandPanel = new UserScpiCommandPanel();
         /// <summary>
@@ -19,7 +17,7 @@ namespace MeterKnife.Fairy
         /// </summary>
         public static bool IsFairy { get; set; }
 
-        public FairyMeterView()
+        public MeterLiteView()
         {
             if (IsFairy)
             {

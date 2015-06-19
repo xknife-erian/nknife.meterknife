@@ -18,14 +18,14 @@ using NKnife.IoC;
 
 namespace MeterKnife.Workbench.Dialogs
 {
-    public partial class AddGpibMeterDialog : Form
+    public partial class AddMeterDialog : Form
     {
-        private static readonly ILog _logger = LogManager.GetLogger<AddGpibMeterDialog>();
+        private static readonly ILog _logger = LogManager.GetLogger<AddMeterDialog>();
 
         protected readonly BaseCareCommunicationService _CommService = DI.Get<BaseCareCommunicationService>();
         private readonly AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
 
-        public AddGpibMeterDialog()
+        public AddMeterDialog()
         {
             GpibList = new List<int>();
             InitializeComponent();

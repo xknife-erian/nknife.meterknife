@@ -5,9 +5,9 @@ using NKnife.GUI.WinForm;
 
 namespace MeterKnife.Workbench.Dialogs
 {
-    public partial class FairyCommandBuildDialog : SimpleForm
+    public partial class CommandBuildDialog : SimpleForm
     {
-        public FairyCommandBuildDialog()
+        public CommandBuildDialog()
         {
             InitCommands = new List<string>(8);
             InitializeComponent();

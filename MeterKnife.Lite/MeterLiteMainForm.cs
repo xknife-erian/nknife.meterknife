@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
 using MeterKnife.Common.Util;
-using MeterKnife.Instruments;
 using MeterKnife.Workbench.Dialogs;
 using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Fairy
+namespace MeterKnife.Lite
 {
-    public partial class FairyForm : Form
+    public partial class MeterLiteMainForm : Form
     {
         private readonly DockPanel _DockPanel = new DockPanel();
 
@@ -27,7 +20,7 @@ namespace MeterKnife.Fairy
 
         private CommunicationType _CommunicationType;
 
-        public FairyForm()
+        public MeterLiteMainForm()
         {
             InitializeComponent();
             InitializeDockPanel();
@@ -77,11 +70,11 @@ namespace MeterKnife.Fairy
 
         private void AddMeterView()
         {
-            var dialog = new AddGpibMeterDialog();
+            var dialog = new AddMeterDialog();
             dialog.Port = _Serial;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                var meterView = DI.Get<FairyMeterView>();
+                var meterView = DI.Get<MeterLiteView>();
                 meterView.Port = dialog.Port;
                 meterView.CommunicationType = _CommunicationType;
                 meterView.SetMeter(dialog.Port, dialog.Meter);

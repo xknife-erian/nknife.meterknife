@@ -77,11 +77,11 @@
     <Compile Include="Dialogs\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\AddGpibMeterDialog.cs">
+    <Compile Include="Dialogs\AddMeterDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\AddGpibMeterDialog.Designer.cs">
-      <DependentUpon>AddGpibMeterDialog.cs</DependentUpon>
+    <Compile Include="Dialogs\AddMeterDialog.Designer.cs">
+      <DependentUpon>AddMeterDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\CareParameterDialog.cs">
       <SubType>Form</SubType>
@@ -95,11 +95,11 @@
     <Compile Include="Dialogs\DataPathSetterDialog.Designer.cs">
       <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\FairyCommandBuildDialog.cs">
+    <Compile Include="Dialogs\CommandBuildDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\FairyCommandBuildDialog.Designer.cs">
-      <DependentUpon>FairyCommandBuildDialog.cs</DependentUpon>
+    <Compile Include="Dialogs\CommandBuildDialog.Designer.cs">
+      <DependentUpon>CommandBuildDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\InterfaceSelectorDialog.cs">
       <SubType>Form</SubType>
@@ -153,8 +153,8 @@
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\AddGpibMeterDialog.resx">
-      <DependentUpon>AddGpibMeterDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\AddMeterDialog.resx">
+      <DependentUpon>AddMeterDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CareParameterDialog.resx">
       <DependentUpon>CareParameterDialog.cs</DependentUpon>
@@ -162,8 +162,8 @@
     <EmbeddedResource Include="Dialogs\DataPathSetterDialog.resx">
       <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\FairyCommandBuildDialog.resx">
-      <DependentUpon>FairyCommandBuildDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\CommandBuildDialog.resx">
+      <DependentUpon>CommandBuildDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\InterfaceSelectorDialog.resx">
       <DependentUpon>InterfaceSelectorDialog.cs</DependentUpon>

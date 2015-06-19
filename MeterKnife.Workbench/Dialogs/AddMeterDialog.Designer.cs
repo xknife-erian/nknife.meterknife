@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Workbench.Dialogs
 {
-    partial class AddGpibMeterDialog
+    partial class AddMeterDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -101,7 +101,7 @@
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(211, 283);
+            this._CancelButton.Location = new System.Drawing.Point(211, 275);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(83, 28);
             this._CancelButton.TabIndex = 5;
@@ -111,7 +111,7 @@
             // _AcceptButton
             // 
             this._AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._AcceptButton.Location = new System.Drawing.Point(122, 283);
+            this._AcceptButton.Location = new System.Drawing.Point(122, 275);
             this._AcceptButton.Name = "_AcceptButton";
             this._AcceptButton.Size = new System.Drawing.Size(83, 28);
             this._AcceptButton.TabIndex = 4;
@@ -189,14 +189,14 @@
             this._MeterTypeGroupBox.Controls.Add(this._MeterTypeComboBox);
             this._MeterTypeGroupBox.Location = new System.Drawing.Point(12, 179);
             this._MeterTypeGroupBox.Name = "_MeterTypeGroupBox";
-            this._MeterTypeGroupBox.Size = new System.Drawing.Size(282, 98);
+            this._MeterTypeGroupBox.Size = new System.Drawing.Size(282, 87);
             this._MeterTypeGroupBox.TabIndex = 2;
             this._MeterTypeGroupBox.TabStop = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(136, 37);
+            this.label3.Location = new System.Drawing.Point(136, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 4;
@@ -205,7 +205,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 37);
+            this.label2.Location = new System.Drawing.Point(11, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 3;
@@ -234,7 +234,7 @@
             "Tektronix",
             "Wavetek(Datron)",
             "Yaesu"});
-            this._MeterBrandComboBox.Location = new System.Drawing.Point(11, 55);
+            this._MeterBrandComboBox.Location = new System.Drawing.Point(11, 43);
             this._MeterBrandComboBox.Name = "_MeterBrandComboBox";
             this._MeterBrandComboBox.Size = new System.Drawing.Size(122, 21);
             this._MeterBrandComboBox.TabIndex = 0;
@@ -242,7 +242,7 @@
             // _MeterTypeComboBox
             // 
             this._MeterTypeComboBox.FormattingEnabled = true;
-            this._MeterTypeComboBox.Location = new System.Drawing.Point(139, 55);
+            this._MeterTypeComboBox.Location = new System.Drawing.Point(139, 43);
             this._MeterTypeComboBox.Name = "_MeterTypeComboBox";
             this._MeterTypeComboBox.Size = new System.Drawing.Size(135, 21);
             this._MeterTypeComboBox.TabIndex = 1;

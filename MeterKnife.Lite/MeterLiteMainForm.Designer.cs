@@ -1,6 +1,6 @@
-﻿namespace MeterKnife.Fairy
+﻿namespace MeterKnife.Lite
 {
-    partial class FairyForm
+    partial class MeterLiteMainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FairyForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterLiteMainForm));
             this._StripContainer = new System.Windows.Forms.ToolStripContainer();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._MenuStrip = new System.Windows.Forms.MenuStrip();

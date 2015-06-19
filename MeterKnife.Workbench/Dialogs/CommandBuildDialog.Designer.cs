@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Workbench.Dialogs
 {
-    partial class FairyCommandBuildDialog
+    partial class CommandBuildDialog
     {
         /// <summary>
         /// Required designer variable.
