@@ -49,7 +49,12 @@ namespace MeterKnife.Common.DataModels
             return new byte[] { 0x08, 0x00, 0x02, 0xA0, subcommand };
         }
 
-        public static byte[] CareSetter(byte subcommand, byte[] content)
+        /// <summary>
+        /// Care的参数设置指令
+        /// </summary>
+        /// <param name="subcommand">子命令</param>
+        /// <param name="content">设置的参数内容</param>
+        public static byte[] CareSetter(byte subcommand, params byte[] content)
         {
             var head = new byte[] { 0x08, 0x00, 0x02, 0xB0, subcommand};
             var newbs = UtilityCollection.MergerArray(head, content);
@@ -60,6 +65,10 @@ namespace MeterKnife.Common.DataModels
         public static byte[] CareReset()
         {
             return new byte[] { 0x08, 0x00, 0x02, 0xB1, 0x00 };
+        }
+        public static byte[] CareRestoreDefault()
+        {
+            return new byte[] { 0x08, 0x00, 0x02, 0xB0, 0xD8 };
         }
     }
 }

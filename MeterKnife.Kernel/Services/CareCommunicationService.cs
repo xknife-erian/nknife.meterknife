@@ -144,6 +144,7 @@ namespace MeterKnife.Kernel.Services
             {
                 connector.SendAll(data);
             }
+            _logger.Trace(string.Format("To:{0}", data.ToHexString()));
         }
 
         private SerialProtocolFilter BuildConnector(int port)

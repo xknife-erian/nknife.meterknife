@@ -29,8 +29,14 @@
         private void InitializeComponent()
         {
             this._MainGroupBox = new System.Windows.Forms.GroupBox();
-            this._DhcpDisableRadioButton = new System.Windows.Forms.RadioButton();
+            this._UsartGroupBox = new System.Windows.Forms.GroupBox();
+            this._UsartSwitchCheckBox = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this._Usart2NumberBox = new System.Windows.Forms.NumericUpDown();
+            this._Usart1NumberBox = new System.Windows.Forms.NumericUpDown();
             this._DhcpEnableRadioButton = new System.Windows.Forms.RadioButton();
+            this._DhcpDisableRadioButton = new System.Windows.Forms.RadioButton();
             this._GpibNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -50,61 +56,140 @@
             this._IpAddressControl = new NKnife.GUI.WinForm.IPAddressControl.IpAddressControl();
             this._ConfirmButton = new System.Windows.Forms.Button();
             this._CancelButton = new System.Windows.Forms.Button();
-            this._Usart1NumberBox = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this._Usart2NumberBox = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this._UsartGroupBox = new System.Windows.Forms.GroupBox();
-            this._UsartSwitchCheckBox = new System.Windows.Forms.CheckBox();
-            this._DefaultSettingButton = new System.Windows.Forms.Button();
+            this._RestoreDefaultButton = new System.Windows.Forms.Button();
             this._MainGroupBox.SuspendLayout();
+            this._UsartGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._Usart2NumberBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._Usart1NumberBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._GpibNumericUpDown)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._TcpNumericUpDown)).BeginInit();
             this._DhcpGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._Usart1NumberBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._Usart2NumberBox)).BeginInit();
-            this._UsartGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // _MainGroupBox
             // 
             this._MainGroupBox.Controls.Add(this._UsartGroupBox);
-            this._MainGroupBox.Controls.Add(this._DhcpDisableRadioButton);
             this._MainGroupBox.Controls.Add(this._DhcpEnableRadioButton);
+            this._MainGroupBox.Controls.Add(this._DhcpDisableRadioButton);
             this._MainGroupBox.Controls.Add(this._GpibNumericUpDown);
             this._MainGroupBox.Controls.Add(this.label1);
             this._MainGroupBox.Controls.Add(this.groupBox2);
             this._MainGroupBox.Controls.Add(this._TcpNumericUpDown);
             this._MainGroupBox.Controls.Add(this.label5);
             this._MainGroupBox.Controls.Add(this._DhcpGroupBox);
-            this._MainGroupBox.Location = new System.Drawing.Point(12, 4);
+            this._MainGroupBox.Location = new System.Drawing.Point(14, 15);
             this._MainGroupBox.Name = "_MainGroupBox";
             this._MainGroupBox.Size = new System.Drawing.Size(284, 392);
             this._MainGroupBox.TabIndex = 3;
             this._MainGroupBox.TabStop = false;
             // 
-            // _DhcpDisableRadioButton
+            // _UsartGroupBox
             // 
-            this._DhcpDisableRadioButton.AutoSize = true;
-            this._DhcpDisableRadioButton.Location = new System.Drawing.Point(27, 19);
-            this._DhcpDisableRadioButton.Name = "_DhcpDisableRadioButton";
-            this._DhcpDisableRadioButton.Size = new System.Drawing.Size(76, 17);
-            this._DhcpDisableRadioButton.TabIndex = 0;
-            this._DhcpDisableRadioButton.TabStop = true;
-            this._DhcpDisableRadioButton.Text = "启用DHCP";
-            this._DhcpDisableRadioButton.UseVisualStyleBackColor = true;
+            this._UsartGroupBox.Controls.Add(this._UsartSwitchCheckBox);
+            this._UsartGroupBox.Controls.Add(this.label6);
+            this._UsartGroupBox.Controls.Add(this.label7);
+            this._UsartGroupBox.Controls.Add(this._Usart2NumberBox);
+            this._UsartGroupBox.Controls.Add(this._Usart1NumberBox);
+            this._UsartGroupBox.Location = new System.Drawing.Point(24, 207);
+            this._UsartGroupBox.Name = "_UsartGroupBox";
+            this._UsartGroupBox.Size = new System.Drawing.Size(235, 84);
+            this._UsartGroupBox.TabIndex = 10;
+            this._UsartGroupBox.TabStop = false;
+            // 
+            // _UsartSwitchCheckBox
+            // 
+            this._UsartSwitchCheckBox.AutoSize = true;
+            this._UsartSwitchCheckBox.Location = new System.Drawing.Point(9, 1);
+            this._UsartSwitchCheckBox.Name = "_UsartSwitchCheckBox";
+            this._UsartSwitchCheckBox.Size = new System.Drawing.Size(98, 17);
+            this._UsartSwitchCheckBox.TabIndex = 10;
+            this._UsartSwitchCheckBox.Text = "串口数据互转";
+            this._UsartSwitchCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(65, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "USB串口波特率";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 53);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(139, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "WIFI模块前置串口波特率";
+            // 
+            // _Usart2NumberBox
+            // 
+            this._Usart2NumberBox.Location = new System.Drawing.Point(151, 51);
+            this._Usart2NumberBox.Maximum = new decimal(new int[] {
+            65535000,
+            0,
+            0,
+            0});
+            this._Usart2NumberBox.Minimum = new decimal(new int[] {
+            4799,
+            0,
+            0,
+            0});
+            this._Usart2NumberBox.Name = "_Usart2NumberBox";
+            this._Usart2NumberBox.Size = new System.Drawing.Size(65, 21);
+            this._Usart2NumberBox.TabIndex = 8;
+            this._Usart2NumberBox.Value = new decimal(new int[] {
+            115200,
+            0,
+            0,
+            0});
+            // 
+            // _Usart1NumberBox
+            // 
+            this._Usart1NumberBox.Location = new System.Drawing.Point(151, 24);
+            this._Usart1NumberBox.Maximum = new decimal(new int[] {
+            65535000,
+            0,
+            0,
+            0});
+            this._Usart1NumberBox.Minimum = new decimal(new int[] {
+            4799,
+            0,
+            0,
+            0});
+            this._Usart1NumberBox.Name = "_Usart1NumberBox";
+            this._Usart1NumberBox.Size = new System.Drawing.Size(65, 21);
+            this._Usart1NumberBox.TabIndex = 6;
+            this._Usart1NumberBox.Value = new decimal(new int[] {
+            115200,
+            0,
+            0,
+            0});
             // 
             // _DhcpEnableRadioButton
             // 
             this._DhcpEnableRadioButton.AutoSize = true;
-            this._DhcpEnableRadioButton.Location = new System.Drawing.Point(106, 19);
+            this._DhcpEnableRadioButton.Location = new System.Drawing.Point(27, 19);
             this._DhcpEnableRadioButton.Name = "_DhcpEnableRadioButton";
-            this._DhcpEnableRadioButton.Size = new System.Drawing.Size(88, 17);
-            this._DhcpEnableRadioButton.TabIndex = 1;
-            this._DhcpEnableRadioButton.TabStop = true;
-            this._DhcpEnableRadioButton.Text = "不启用DHCP";
+            this._DhcpEnableRadioButton.Size = new System.Drawing.Size(76, 17);
+            this._DhcpEnableRadioButton.TabIndex = 0;
+            this._DhcpEnableRadioButton.Text = "启用DHCP";
             this._DhcpEnableRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // _DhcpDisableRadioButton
+            // 
+            this._DhcpDisableRadioButton.AutoSize = true;
+            this._DhcpDisableRadioButton.Checked = true;
+            this._DhcpDisableRadioButton.Location = new System.Drawing.Point(106, 19);
+            this._DhcpDisableRadioButton.Name = "_DhcpDisableRadioButton";
+            this._DhcpDisableRadioButton.Size = new System.Drawing.Size(88, 17);
+            this._DhcpDisableRadioButton.TabIndex = 1;
+            this._DhcpDisableRadioButton.TabStop = true;
+            this._DhcpDisableRadioButton.Text = "不启用DHCP";
+            this._DhcpDisableRadioButton.UseVisualStyleBackColor = true;
             // 
             // _GpibNumericUpDown
             // 
@@ -321,126 +406,41 @@
             // 
             // _ConfirmButton
             // 
-            this._ConfirmButton.Location = new System.Drawing.Point(157, 399);
+            this._ConfirmButton.Location = new System.Drawing.Point(159, 410);
             this._ConfirmButton.Name = "_ConfirmButton";
             this._ConfirmButton.Size = new System.Drawing.Size(67, 30);
             this._ConfirmButton.TabIndex = 1;
             this._ConfirmButton.Text = "写入配置";
             this._ConfirmButton.UseVisualStyleBackColor = true;
+            this._ConfirmButton.Click += new System.EventHandler(this._ConfirmButton_Click);
             // 
             // _CancelButton
             // 
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(229, 399);
+            this._CancelButton.Location = new System.Drawing.Point(231, 410);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(67, 30);
             this._CancelButton.TabIndex = 0;
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
+            this._CancelButton.Click += new System.EventHandler(this._CancelButton_Click);
             // 
-            // _Usart1NumberBox
+            // _RestoreDefaultButton
             // 
-            this._Usart1NumberBox.Location = new System.Drawing.Point(151, 24);
-            this._Usart1NumberBox.Maximum = new decimal(new int[] {
-            65535000,
-            0,
-            0,
-            0});
-            this._Usart1NumberBox.Minimum = new decimal(new int[] {
-            4799,
-            0,
-            0,
-            0});
-            this._Usart1NumberBox.Name = "_Usart1NumberBox";
-            this._Usart1NumberBox.Size = new System.Drawing.Size(65, 21);
-            this._Usart1NumberBox.TabIndex = 6;
-            this._Usart1NumberBox.Value = new decimal(new int[] {
-            115200,
-            0,
-            0,
-            0});
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(65, 26);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "USB串口波特率";
-            // 
-            // _Usart2NumberBox
-            // 
-            this._Usart2NumberBox.Location = new System.Drawing.Point(151, 51);
-            this._Usart2NumberBox.Maximum = new decimal(new int[] {
-            65535000,
-            0,
-            0,
-            0});
-            this._Usart2NumberBox.Minimum = new decimal(new int[] {
-            4799,
-            0,
-            0,
-            0});
-            this._Usart2NumberBox.Name = "_Usart2NumberBox";
-            this._Usart2NumberBox.Size = new System.Drawing.Size(65, 21);
-            this._Usart2NumberBox.TabIndex = 8;
-            this._Usart2NumberBox.Value = new decimal(new int[] {
-            115200,
-            0,
-            0,
-            0});
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 53);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(139, 13);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "WIFI模块前置串口波特率";
-            // 
-            // _UsartGroupBox
-            // 
-            this._UsartGroupBox.Controls.Add(this._UsartSwitchCheckBox);
-            this._UsartGroupBox.Controls.Add(this.label6);
-            this._UsartGroupBox.Controls.Add(this.label7);
-            this._UsartGroupBox.Controls.Add(this._Usart2NumberBox);
-            this._UsartGroupBox.Controls.Add(this._Usart1NumberBox);
-            this._UsartGroupBox.Location = new System.Drawing.Point(24, 207);
-            this._UsartGroupBox.Name = "_UsartGroupBox";
-            this._UsartGroupBox.Size = new System.Drawing.Size(235, 84);
-            this._UsartGroupBox.TabIndex = 10;
-            this._UsartGroupBox.TabStop = false;
-            // 
-            // _UsartSwitchCheckBox
-            // 
-            this._UsartSwitchCheckBox.AutoSize = true;
-            this._UsartSwitchCheckBox.Location = new System.Drawing.Point(9, 1);
-            this._UsartSwitchCheckBox.Name = "_UsartSwitchCheckBox";
-            this._UsartSwitchCheckBox.Size = new System.Drawing.Size(98, 17);
-            this._UsartSwitchCheckBox.TabIndex = 10;
-            this._UsartSwitchCheckBox.Text = "串口数据互转";
-            this._UsartSwitchCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // _DefaultSettingButton
-            // 
-            this._DefaultSettingButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._DefaultSettingButton.Location = new System.Drawing.Point(12, 399);
-            this._DefaultSettingButton.Name = "_DefaultSettingButton";
-            this._DefaultSettingButton.Size = new System.Drawing.Size(67, 30);
-            this._DefaultSettingButton.TabIndex = 2;
-            this._DefaultSettingButton.Text = "还原默认";
-            this._DefaultSettingButton.UseVisualStyleBackColor = true;
+            this._RestoreDefaultButton.Location = new System.Drawing.Point(14, 410);
+            this._RestoreDefaultButton.Name = "_RestoreDefaultButton";
+            this._RestoreDefaultButton.Size = new System.Drawing.Size(75, 30);
+            this._RestoreDefaultButton.TabIndex = 4;
+            this._RestoreDefaultButton.Text = "还原默认";
+            this._RestoreDefaultButton.UseVisualStyleBackColor = true;
+            this._RestoreDefaultButton.Click += new System.EventHandler(this._RestoreDefaultButton_Click);
             // 
             // CareParameterDialog
             // 
-            this.AcceptButton = this._ConfirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(314, 444);
-            this.Controls.Add(this._DefaultSettingButton);
+            this.ClientSize = new System.Drawing.Size(314, 455);
+            this.Controls.Add(this._RestoreDefaultButton);
             this.Controls.Add(this._CancelButton);
             this.Controls.Add(this._ConfirmButton);
             this.Controls.Add(this._MainGroupBox);
@@ -454,16 +454,16 @@
             this.Text = "Care参数设置";
             this._MainGroupBox.ResumeLayout(false);
             this._MainGroupBox.PerformLayout();
+            this._UsartGroupBox.ResumeLayout(false);
+            this._UsartGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._Usart2NumberBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._Usart1NumberBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._GpibNumericUpDown)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._TcpNumericUpDown)).EndInit();
             this._DhcpGroupBox.ResumeLayout(false);
             this._DhcpGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._Usart1NumberBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._Usart2NumberBox)).EndInit();
-            this._UsartGroupBox.ResumeLayout(false);
-            this._UsartGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -472,8 +472,8 @@
 
         private System.Windows.Forms.GroupBox _MainGroupBox;
         private System.Windows.Forms.GroupBox _DhcpGroupBox;
-        private System.Windows.Forms.RadioButton _DhcpDisableRadioButton;
         private System.Windows.Forms.RadioButton _DhcpEnableRadioButton;
+        private System.Windows.Forms.RadioButton _DhcpDisableRadioButton;
         private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl _MaskAddressControl;
         private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl _GatwayAddressControl;
         private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl _IpAddressControl;
@@ -498,6 +498,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox _UsartGroupBox;
         private System.Windows.Forms.CheckBox _UsartSwitchCheckBox;
-        private System.Windows.Forms.Button _DefaultSettingButton;
+        private System.Windows.Forms.Button _RestoreDefaultButton;
     }
 }
