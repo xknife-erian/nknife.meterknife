@@ -108,7 +108,7 @@ namespace MeterKnife.Common.DataModels
             get { return _DataSet.Tables[1].Rows.Count > 0; }
         }
 
-        public bool Export(string fileFullName)
+        public bool Export(string fileFullName, Action<int> rowCount)
         {
             var book = new HSSFWorkbook();
 
@@ -148,6 +148,7 @@ namespace MeterKnife.Common.DataModels
                         row.CreateCell(j).SetCellValue(array[j].ToString());
                     }
                 }
+                rowCount.Invoke(i);
             }
             sheet1.AutoSizeColumn(0);
             sheet1.AutoSizeColumn(1);

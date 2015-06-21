@@ -74,6 +74,12 @@
     <Compile Include="Dialog\ExportFileSelectorDialog.Designer.cs">
       <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\ExportProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\ExportProgressDialog.Designer.cs">
+      <DependentUpon>ExportProgressDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MeterView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Common\UserScpiCommandPanel.resx">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\ExportProgressDialog.resx">
+      <DependentUpon>ExportProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DigitMultiMeterView.resx">
       <DependentUpon>DigitMultiMeterView.cs</DependentUpon>

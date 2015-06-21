@@ -46,7 +46,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._ExportStripButton = new System.Windows.Forms.ToolStripButton();
             this._PhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -57,8 +56,7 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this._IntervalTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this._ChartDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this._TempTabPage = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
             this._MainSplitContainer.Panel1.SuspendLayout();
             this._MainSplitContainer.Panel2.SuspendLayout();
@@ -161,6 +159,7 @@
             // 
             this._MainTabControl.Controls.Add(this._PlotPage);
             this._MainTabControl.Controls.Add(this._DataGridPage);
+            this._MainTabControl.Controls.Add(this._TempTabPage);
             this._MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._MainTabControl.ItemSize = new System.Drawing.Size(100, 24);
             this._MainTabControl.Location = new System.Drawing.Point(0, 27);
@@ -220,7 +219,6 @@
             this.toolStripSeparator1,
             this._ExportStripButton,
             this._PhotoToolStripButton,
-            this.toolStripSeparator2,
             this._ZoomInToolStripButton,
             this._ZoomOutToolStripButton,
             this.toolStripSeparator3,
@@ -230,9 +228,7 @@
             this.toolStripSeparator4,
             this.toolStripLabel3,
             this._IntervalTextBox,
-            this.toolStripSeparator5,
-            this._ChartDropDownButton,
-            this.toolStripSeparator6});
+            this.toolStripSeparator5});
             this._PlotToolStrip.Location = new System.Drawing.Point(0, 2);
             this._PlotToolStrip.Name = "_PlotToolStrip";
             this._PlotToolStrip.Size = new System.Drawing.Size(678, 25);
@@ -293,11 +289,6 @@
             this._PhotoToolStripButton.Size = new System.Drawing.Size(23, 22);
             this._PhotoToolStripButton.Text = "截图";
             this._PhotoToolStripButton.Click += new System.EventHandler(this._PhotoToolStripButton_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // _ZoomInToolStripButton
             // 
@@ -362,18 +353,15 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // _ChartDropDownButton
+            // _TempTabPage
             // 
-            this._ChartDropDownButton.Image = global::MeterKnife.Instruments.Properties.Resources.chart;
-            this._ChartDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ChartDropDownButton.Name = "_ChartDropDownButton";
-            this._ChartDropDownButton.Size = new System.Drawing.Size(61, 22);
-            this._ChartDropDownButton.Text = "分析";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            this._TempTabPage.Location = new System.Drawing.Point(4, 28);
+            this._TempTabPage.Name = "_TempTabPage";
+            this._TempTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this._TempTabPage.Size = new System.Drawing.Size(670, 416);
+            this._TempTabPage.TabIndex = 2;
+            this._TempTabPage.Text = "温度特性图";
+            this._TempTabPage.UseVisualStyleBackColor = true;
             // 
             // DigitMultiMeterView
             // 
@@ -425,7 +413,6 @@
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         protected System.Windows.Forms.ToolStripButton _ExportStripButton;
         protected System.Windows.Forms.ToolStripButton _PhotoToolStripButton;
-        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         protected System.Windows.Forms.ToolStripButton _ZoomInToolStripButton;
         protected System.Windows.Forms.ToolStripButton _ZoomOutToolStripButton;
         protected System.Windows.Forms.Panel _ParamsPanel;
@@ -438,7 +425,6 @@
         protected System.Windows.Forms.ToolStripLabel toolStripLabel3;
         protected System.Windows.Forms.ToolStripTextBox _IntervalTextBox;
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        protected System.Windows.Forms.ToolStripDropDownButton _ChartDropDownButton;
-        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.TabPage _TempTabPage;
     }
 }

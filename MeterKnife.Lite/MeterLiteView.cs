@@ -21,6 +21,9 @@ namespace MeterKnife.Lite
         {
             if (IsFairy)
             {
+                _PhotoToolStripButton.Visible = false;
+                _ZoomInToolStripButton.Visible = false;
+                _ZoomOutToolStripButton.Visible = false;
                 _ParamsGroupBox.Visible = false;
                 _SaveStripButton.Visible = false;
                 _ScpiCommandPanel.Dock = DockStyle.Fill;

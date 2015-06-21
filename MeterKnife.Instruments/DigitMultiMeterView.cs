@@ -11,6 +11,7 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
+using MeterKnife.Instruments.Dialog;
 using MeterKnife.Instruments.Properties;
 using NKnife.Events;
 using NKnife.GUI.WinForm;
@@ -38,14 +39,18 @@ namespace MeterKnife.Instruments
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
         private bool _IsDispose = false;
 
-        protected LineSeries _MainLineSeries = new LineSeries();
-        protected LinearAxis _MainValueAxis = new LinearAxis();
         private bool _OnCollect; //是否正在采集
         protected BaseParamPanel _Panel;
+
+        protected LineSeries _MainLineSeries = new LineSeries();
+        protected LinearAxis _MainValueAxis = new LinearAxis();
 
         private readonly PlotModel _MainModel;
         protected LineSeries _TemperatureLineSeries = new LineSeries();
         protected LinearAxis _TemperatureValueAxis = new LinearAxis();
+
+        protected LineSeries _TemperatureCharacteristicLineSeries = new LineSeries();
+        protected LinearAxis _TemperatureCharacteristicValueAxis = new LinearAxis();
 
         public DigitMultiMeterView()
         {
@@ -70,6 +75,19 @@ namespace MeterKnife.Instruments
                 Model = temperatureModel
             };
             _PlotSplitContainer.Panel2.Controls.Add(temperaturePlot);
+
+            PlotModel temperatureCharacteristicModel = BuildTemperatureCharacteristicPlogModel();
+            var temperatureCharacteristicPlot = new PlotView
+            {
+                Dock = DockStyle.Fill,
+                PanCursor = Cursors.Hand,
+                BackColor = Color.White,
+                ZoomHorizontalCursor = Cursors.SizeWE,
+                ZoomRectangleCursor = Cursors.SizeNWSE,
+                ZoomVerticalCursor = Cursors.SizeNS,
+                Model = temperatureCharacteristicModel
+            };
+            _TempTabPage.Controls.Add(temperatureCharacteristicPlot);
 
             _MainModel = BuildMainPlogModel();
             var mainPlot = new PlotView
@@ -185,6 +203,31 @@ namespace MeterKnife.Instruments
             _TemperatureLineSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
             mainModel.Series.Add(_TemperatureLineSeries);
             return mainModel;
+        }
+
+        private PlotModel BuildTemperatureCharacteristicPlogModel()
+        {
+            var model = new PlotModel();
+
+            _TemperatureCharacteristicValueAxis.MaximumPadding = 0;
+            _TemperatureCharacteristicValueAxis.MinimumPadding = 0;
+            _TemperatureCharacteristicValueAxis.Maximum = 15;
+            _TemperatureCharacteristicValueAxis.Minimum = 5;
+            _TemperatureCharacteristicValueAxis.Position = AxisPosition.Left;
+            model.Axes.Add(_TemperatureCharacteristicValueAxis);
+
+            var timeAxis = new DateTimeAxis(); //时间刻度
+            timeAxis.MajorGridlineStyle = LineStyle.Solid;
+            timeAxis.MaximumPadding = 0;
+            timeAxis.MinimumPadding = 0;
+            timeAxis.MinorGridlineStyle = LineStyle.Dot;
+            timeAxis.Position = AxisPosition.Bottom;
+            model.Axes.Add(timeAxis);
+
+            _TemperatureCharacteristicLineSeries.Color = OxyColor.FromArgb(255, 124, 124, 248);
+            _TemperatureCharacteristicLineSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
+            model.Series.Add(_TemperatureCharacteristicLineSeries);
+            return model;
         }
 
         private void _StartStripButton_Click(object sender, EventArgs e)
@@ -311,7 +354,7 @@ namespace MeterKnife.Instruments
 
         private void _ExportStripButton_Click(object sender, EventArgs e)
         {
-            var dialog = new FolderBrowserDialog();//new ExportFileSelectorDialog();
+            var dialog = new FolderBrowserDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var dir = dialog.SelectedPath;
@@ -319,8 +362,27 @@ namespace MeterKnife.Instruments
                 var random = _Random.GetString(3, UtilityRandom.RandomCharType.Uppercased);
                 var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), random, "xls");
                 var full = Path.Combine(dir, name);
-                _FiguredData.Export(full);
+                var progressDialog = new ExportProgressDialog();
+                ExportRowCountChanged += (s, ex) => progressDialog.SetCurrentCount(ex.Item);
+                progressDialog.SetTotalCount(_FiguredData.Count);
+                progressDialog.SetPath(full);
+                progressDialog.Show(this);
+                _FiguredData.Export(full, AddRowCount);
+                progressDialog.SetFinished();
             }
+        }
+
+        private event EventHandler<EventArgs<int>> ExportRowCountChanged;
+
+        private void OnExportRowCountChanged(EventArgs<int> e)
+        {
+            EventHandler<EventArgs<int>> handler = ExportRowCountChanged;
+            if (handler != null) handler(this, e);
+        }
+
+        private void AddRowCount(int rowCount)
+        {
+            OnExportRowCountChanged(new EventArgs<int>(rowCount));
         }
 
         private void _PhotoToolStripButton_Click(object sender, EventArgs e)
@@ -400,6 +462,5 @@ namespace MeterKnife.Instruments
             }
             _FiguredDataPropertyGrid.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
-
     }
 }

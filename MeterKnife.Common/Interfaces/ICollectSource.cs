@@ -21,8 +21,9 @@ namespace MeterKnife.Common.Interfaces
         /// 导出到Excle文件
         /// </summary>
         /// <param name="fileFullName"></param>
+        /// <param name="rowAction"></param>
         /// <returns></returns>
-        bool Export(string fileFullName);
+        bool Export(string fileFullName, Action<int> rowAction);
 
         /// <summary>
         /// 导出到Excle文件
