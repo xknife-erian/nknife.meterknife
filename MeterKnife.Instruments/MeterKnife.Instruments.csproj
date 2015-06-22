@@ -117,6 +117,7 @@
     </None>
     <Content Include="license.txt" />
     <Content Include="Properties\content\arrow_triangle_down.png" />
+    <Content Include="Properties\content\ToolstripButton\clear.png" />
     <Content Include="Properties\content\ToolstripButton\load.png" />
     <Content Include="Properties\content\ToolstripButton\chart.png" />
     <Content Include="Properties\content\ToolstripButton\export.png" />

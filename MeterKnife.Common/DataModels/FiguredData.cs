@@ -114,9 +114,9 @@ namespace MeterKnife.Common.DataModels
 
             ISheet sheet1 = book.CreateSheet("测量数据");
 
-            var dateStyle = book.CreateCellStyle();
+            ICellStyle dateStyle = book.CreateCellStyle();
             dateStyle.Alignment = HorizontalAlignment.Left;
-            var format = book.CreateDataFormat();
+            IDataFormat format = book.CreateDataFormat();
             dateStyle.DataFormat = format.GetFormat("yyyy/m/d HH:MM:ss");
 
             DataRowCollection tableRows = DataSet.Tables[1].Rows;
@@ -129,7 +129,7 @@ namespace MeterKnife.Common.DataModels
                     if (array[j] is DateTime)
                     {
                         var datetime = (DateTime) array[j];
-                        var cell = row.CreateCell(j);
+                        ICell cell = row.CreateCell(j);
                         cell.CellStyle = dateStyle;
                         cell.SetCellValue(datetime);
                     }
@@ -163,6 +163,33 @@ namespace MeterKnife.Common.DataModels
             return true;
         }
 
+        public void Clear()
+        {
+            _DataSet.Tables[1].Rows.Clear();
+            _DataSet.AcceptChanges();
+
+            _CurrentTemperature = 0;
+            _NominalValue = 0;
+            _RmsData = 0;
+            _RmsTemperatureData = 0;
+            _SumData = 0;
+            _SumTemperatureData = 0;
+
+            Max = 0;
+            Min = 0;
+            Ppvalue = 0.ToString();
+            RootMeanSquare = 0;
+            ArithmeticMean = 0;
+
+            MaxTemperature = 0;
+            MinTemperature = 0;
+            TemperatureRootMeanSquare = 0;
+            TemperatureArithmeticMean = 0;
+
+            AllanVariance = 0;
+            RootMeanSquareDeviation = 0;
+        }
+
         public void SetNominalValue(double nominalValue)
         {
             _NominalValue = nominalValue;
@@ -170,8 +197,8 @@ namespace MeterKnife.Common.DataModels
 
         public void Add(double value)
         {
-            var s = value.ToString();
-            var n = s.Length - s.IndexOf('.') - 1;
+            string s = value.ToString();
+            int n = s.Length - s.IndexOf('.') - 1;
 
             _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature);
             int count = _DataSet.Tables[1].Rows.Count;
@@ -182,15 +209,15 @@ namespace MeterKnife.Common.DataModels
             }
             else
             {
-                if (value > Max) 
+                if (value > Max)
                     Max = value; //最大值
                 else if (value < Min)
                     Min = value; //最小值
             }
-            var t = new StringBuilder("{0:N").Append(n).Append("}").ToString();
-            Ppvalue = String.Format(t, Math.Abs(Max - Min));//峰峰值
+            string t = new StringBuilder("{0:N").Append(n).Append("}").ToString();
+            Ppvalue = String.Format(t, Math.Abs(Max - Min)); //峰峰值
             _SumData += value;
-            ArithmeticMean = Math.Round(_SumData / count, n);//算术平均
+            ArithmeticMean = Math.Round(_SumData/count, n); //算术平均
 
             //计算均方根
             _RmsData += value*value;
@@ -232,26 +259,6 @@ namespace MeterKnife.Common.DataModels
             EventHandler<CollectDataEventArgs> handler = ReceviedCollectData;
             if (handler != null)
                 handler(this, e);
-        }
-
-        public void Clear()
-        {
-            _DataSet.Tables[1].Rows.Clear();
-            _DataSet.AcceptChanges();
-
-            Max = 0;
-            Min = 0;
-            Ppvalue = 0.ToString();
-            RootMeanSquare = 0;
-            ArithmeticMean = 0;
-
-            MaxTemperature = 0;
-            MinTemperature = 0;
-            TemperatureRootMeanSquare = 0;
-            TemperatureArithmeticMean = 0;
-
-            AllanVariance = 0;
-            RootMeanSquareDeviation = 0;
         }
     }
 }

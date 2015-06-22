@@ -123,6 +123,7 @@ namespace MeterKnife.Instruments
                 _StartStripButton.Enabled = false;
                 _ExportStripButton.Enabled = false;
                 _SaveStripButton.Enabled = false;
+                _ClearDataToolStripButton.Enabled = false;
 
                 _StopStripButton.Enabled = true;
                 _NominalValueTextBox.ReadOnly = true;
@@ -137,6 +138,7 @@ namespace MeterKnife.Instruments
                 _StartStripButton.Enabled = true;
                 _ExportStripButton.Enabled = true;
                 _SaveStripButton.Enabled = true;
+                _ClearDataToolStripButton.Enabled = true;
 
                 _StopStripButton.Enabled = false;
                 _NominalValueTextBox.ReadOnly = false;
@@ -278,6 +280,8 @@ namespace MeterKnife.Instruments
             base.OnFormClosing(e);
             StopProtocolRecevied();
             _Comm.Remove(_Port, _Handler);
+            Dictionary<int, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
+            dic[_Port].Remove(_Meter.GpibAddress);
         }
 
         private void StopProtocolRecevied()
@@ -367,8 +371,11 @@ namespace MeterKnife.Instruments
                 progressDialog.SetTotalCount(_FiguredData.Count);
                 progressDialog.SetPath(full);
                 progressDialog.Show(this);
-                _FiguredData.Export(full, AddRowCount);
-                progressDialog.SetFinished();
+                progressDialog.Shown += (s, args) =>
+                {
+                    _FiguredData.Export(full, AddRowCount);
+                    progressDialog.SetFinished();
+                };
             }
         }
 
@@ -461,6 +468,11 @@ namespace MeterKnife.Instruments
                 }
             }
             _FiguredDataPropertyGrid.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
+        }
+
+        private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
+        {
+            _FiguredData.Clear();
         }
     }
 }
