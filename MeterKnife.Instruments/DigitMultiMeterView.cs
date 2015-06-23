@@ -467,12 +467,13 @@ namespace MeterKnife.Instruments
                     _MainModel.Title = yzl.ToString();
                 }
             }
-            _FiguredDataPropertyGrid.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
+            this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
 
         private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
         {
             _FiguredData.Clear();
+            this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
     }
 }

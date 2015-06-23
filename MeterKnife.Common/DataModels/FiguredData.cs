@@ -56,6 +56,10 @@ namespace MeterKnife.Common.DataModels
         [Category("偏差"), DisplayName("阿仑方差")]
         public double AllanVariance { get; private set; }
 
+        [Category("偏差"), DisplayName("标准差")]
+        public double StandardDeviation { get; private set; }
+
+        [Browsable(false)]
         [Category("偏差"), DisplayName("均方根差")]
         public double RootMeanSquareDeviation { get; private set; }
 
