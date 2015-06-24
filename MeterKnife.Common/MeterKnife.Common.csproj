@@ -76,6 +76,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Difference\AllanVariance.cs" />
+    <Compile Include="Algorithms\ArithmeticMean.cs" />
+    <Compile Include="Algorithms\Min.cs" />
+    <Compile Include="Algorithms\RootMeanSquare.cs" />
+    <Compile Include="Algorithms\Difference\RootMeanSquareDeviation.cs" />
+    <Compile Include="Algorithms\Difference\StandardDeviation.cs" />
+    <Compile Include="Algorithms\TemperatureArithmeticMean.cs" />
+    <Compile Include="Algorithms\TemperatureMax.cs" />
+    <Compile Include="Algorithms\TemperatureMin.cs" />
+    <Compile Include="Algorithms\TemperatureRootMeanSquare.cs" />
     <Compile Include="Base\BaseMeter.cs" />
     <Compile Include="Base\BaseParamPanel.cs">
       <SubType>UserControl</SubType>
@@ -91,7 +101,10 @@
     <Compile Include="Base\_\GpibLanguage.cs" />
     <Compile Include="Base\_\MultiMeterParameters.cs" />
     <Compile Include="DataModels\CareTalking.Protocols.cs" />
+    <Compile Include="Algorithms\Max.cs" />
     <Compile Include="EventParameters\CollectedEventArgs.cs" />
+    <Compile Include="Interfaces\IElectronAlgorithm.cs" />
+    <Compile Include="Interfaces\IElectronDifferenceAlgorithm.cs" />
     <Compile Include="Interfaces\IMeterDataService.cs" />
     <Compile Include="DataModels\MeterTreeElement.cs" />
     <Compile Include="DataModels\CareTalking.cs" />

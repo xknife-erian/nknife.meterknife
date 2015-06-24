@@ -214,26 +214,6 @@
             // _MeterBrandComboBox
             // 
             this._MeterBrandComboBox.FormattingEnabled = true;
-            this._MeterBrandComboBox.Items.AddRange(new object[] {
-            "Agilent(HP)",
-            "Advantest",
-            "Anritsu-Wiltron",
-            "EIP PhaseMatrix",
-            "Fluke",
-            "Harris",
-            "Heathkit",
-            "ICOM",
-            "Kenwood",
-            "LeCroy",
-            "Marconi",
-            "Motorola",
-            "Philips",
-            "RCA",
-            "Racal",
-            "Rohde Schwarz",
-            "Tektronix",
-            "Wavetek(Datron)",
-            "Yaesu"});
             this._MeterBrandComboBox.Location = new System.Drawing.Point(11, 43);
             this._MeterBrandComboBox.Name = "_MeterBrandComboBox";
             this._MeterBrandComboBox.Size = new System.Drawing.Size(122, 21);
@@ -257,7 +237,7 @@
             this._AutoFindMeterCheckbox.Text = "自动确认仪器类型";
             this._AutoFindMeterCheckbox.UseVisualStyleBackColor = true;
             // 
-            // AddGpibMeterDialog
+            // AddMeterDialog
             // 
             this.AcceptButton = this._AcceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,7 +253,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddGpibMeterDialog";
+            this.Name = "AddMeterDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

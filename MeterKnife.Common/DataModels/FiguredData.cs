@@ -27,8 +27,7 @@ namespace MeterKnife.Common.DataModels
         [DisplayName("峰峰值")]
         public string Ppvalue { get; private set; }
 
-        [Category("数据分析")]
-        [DisplayName("均方根")]
+        [Category("数据分析")][DisplayName("均方根")]
         public double RootMeanSquare { get; private set; }
 
         [Category("数据分析"), DisplayName("算术平均")]
