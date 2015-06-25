@@ -76,6 +76,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MeterKnife.Starter\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Algorithms\Difference\AllanVariance.cs" />
     <Compile Include="Algorithms\ArithmeticMean.cs" />
     <Compile Include="Algorithms\Min.cs" />
@@ -122,7 +125,7 @@
     <Compile Include="IoC\Moduels.cs" />
     <Compile Include="IoC\TunnelModules.cs" />
     <Compile Include="MeterKnifeUserData.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\OwnerAssemblyInfo.cs" />
     <Compile Include="Tunnels\CareConfigHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneCodec.cs" />

@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MeterKnife.Starter\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Common\UserScpiCommandPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,6 +86,7 @@
     <Compile Include="MeterView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Properties\OwnerAssemblyInfo.cs" />
     <Compile Include="Specified\Keithley\K2000.cs" />
     <Compile Include="Specified\Keithley\K2000ParamPanel.cs">
       <SubType>UserControl</SubType>
@@ -108,7 +112,6 @@
     </Compile>
     <Compile Include="IoC\MeterModule.cs" />
     <Compile Include="IoC\Modules.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>

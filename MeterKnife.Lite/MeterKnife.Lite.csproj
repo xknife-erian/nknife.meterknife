@@ -67,6 +67,9 @@
     <Compile Include="..\MeterKnife.Starter\MeterKnifeEnvironment.cs">
       <Link>Ref\MeterKnifeEnvironment.cs</Link>
     </Compile>
+    <Compile Include="..\MeterKnife.Starter\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="..\MeterKnife.Starter\SplashForm.cs">
       <Link>Ref\SplashForm.cs</Link>
       <SubType>Form</SubType>
@@ -84,7 +87,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="..\MeterKnife.Starter\SplashForm.resx">
       <Link>Ref\SplashForm.resx</Link>
     </EmbeddedResource>
@@ -96,6 +98,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="Properties\OwnerAssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
