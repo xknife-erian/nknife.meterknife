@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using MeterKnife.Common.Base;
 
-namespace MeterKnife.Common.Algorithms
+namespace MeterKnife.Common.Algorithms.Difference
 {
-    class AllanVariance
+    public class AllanVariance : BaseDifferenceAlgorithm
     {
+        public override void Input(double src)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

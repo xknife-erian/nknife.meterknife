@@ -418,20 +418,20 @@ namespace MeterKnife.Instruments
                 if (double.TryParse(data, out yzl))
                 {
                     _FiguredData.AddTemperature(yzl);
-                    if (Math.Abs(_FiguredData.MaxTemperature) > 0 && Math.Abs(_FiguredData.MinTemperature) > 0)
+                    if (Math.Abs(_FiguredData.TemperatureMax.Output) > 0 && Math.Abs(_FiguredData.TemperatureMin.Output) > 0)
                     {
-                        double j = (Math.Abs(_FiguredData.MaxTemperature - _FiguredData.MinTemperature)) / 4;
+                        double j = (Math.Abs(_FiguredData.TemperatureMax.Output - _FiguredData.TemperatureMin.Output)) / 4;
                         if (Math.Abs(j) <= 0)
                         {
-                            _TemperatureValueAxis.Maximum = _FiguredData.MaxTemperature + 0.02;
-                            _TemperatureValueAxis.Minimum = _FiguredData.MaxTemperature - 0.02;
+                            _TemperatureValueAxis.Maximum = _FiguredData.TemperatureMax.Output + 0.02;
+                            _TemperatureValueAxis.Minimum = _FiguredData.TemperatureMax.Output - 0.02;
                         }
                         else
                         {
-                            if (_TemperatureValueAxis.Maximum < _FiguredData.MaxTemperature + j)
-                                _TemperatureValueAxis.Maximum = _FiguredData.MaxTemperature + j;
-                            if (_TemperatureValueAxis.Minimum > _FiguredData.MinTemperature - j)
-                                _TemperatureValueAxis.Minimum = _FiguredData.MinTemperature - j;
+                            if (_TemperatureValueAxis.Maximum < _FiguredData.TemperatureMax.Output + j)
+                                _TemperatureValueAxis.Maximum = _FiguredData.TemperatureMax.Output + j;
+                            if (_TemperatureValueAxis.Minimum > _FiguredData.TemperatureMin.Output - j)
+                                _TemperatureValueAxis.Minimum = _FiguredData.TemperatureMin.Output - j;
                         }
                     }
 
@@ -451,13 +451,13 @@ namespace MeterKnife.Instruments
                 {
                     _FiguredData.Add(yzl);
 
-                    if (Math.Abs(_FiguredData.Max) > 0 && Math.Abs(_FiguredData.Min) > 0)
+                    if (Math.Abs(_FiguredData.Max.Output) > 0 && Math.Abs(_FiguredData.Min.Output) > 0)
                     {
-                        double j = (Math.Abs(_FiguredData.Max - _FiguredData.Min)) / 4;
+                        double j = (Math.Abs(_FiguredData.Max.Output - _FiguredData.Min.Output)) / 4;
                         if (Math.Abs(j) > 0)
                         {
-                            _MainValueAxis.Maximum = _FiguredData.Max + j;
-                            _MainValueAxis.Minimum = _FiguredData.Min - j;
+                            _MainValueAxis.Maximum = _FiguredData.Max.Output + j;
+                            _MainValueAxis.Minimum = _FiguredData.Min.Output - j;
                         }
                     }
 

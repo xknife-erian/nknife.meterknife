@@ -1,17 +1,14 @@
+using MeterKnife.Common.Base;
 using MeterKnife.Common.Interfaces;
 
 namespace MeterKnife.Common.Algorithms
 {
-    public class Max : IElectronAlgorithm
+    public class Max : BaseAlgorithm 
     {
-        public double Output { get; private set; }
-        public void Input(params double[] src)
+        public override void Input(double src)
         {
-            foreach (var v in src)
-            {
-                if (v > Output)
-                    Output = v;
-            }
+            if (src > Output)
+                Output = src;
         }
     }
 }

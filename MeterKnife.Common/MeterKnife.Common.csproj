@@ -94,6 +94,7 @@
       <DependentUpon>BaseParamPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\BaseTreeNode.cs" />
+    <Compile Include="Base\BaseDifferenceAlgorithm.cs" />
     <Compile Include="Base\_\DMMMeasure.cs" />
     <Compile Include="Base\_\DMMRange.cs" />
     <Compile Include="Base\_\DMMRate.cs" />
@@ -103,8 +104,8 @@
     <Compile Include="DataModels\CareTalking.Protocols.cs" />
     <Compile Include="Algorithms\Max.cs" />
     <Compile Include="EventParameters\CollectedEventArgs.cs" />
+    <Compile Include="Base\BaseAlgorithm.cs" />
     <Compile Include="Interfaces\IElectronAlgorithm.cs" />
-    <Compile Include="Interfaces\IElectronDifferenceAlgorithm.cs" />
     <Compile Include="Interfaces\IMeterDataService.cs" />
     <Compile Include="DataModels\MeterTreeElement.cs" />
     <Compile Include="DataModels\CareTalking.cs" />

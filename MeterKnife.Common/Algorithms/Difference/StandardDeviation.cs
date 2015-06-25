@@ -1,21 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MeterKnife.Common.Interfaces;
+using MeterKnife.Common.Base;
 
-namespace MeterKnife.Common.Algorithms
+namespace MeterKnife.Common.Algorithms.Difference
 {
     /// <summary>
     /// 标准差
     /// </summary>
-    public class StandardDeviation : IElectronDifferenceAlgorithm
+    public class StandardDeviation : BaseDifferenceAlgorithm
     {
-        public double NominalValue { get; set; }
-        public IElectronAlgorithm Original { get; set; }
-        public double Output()
+        private uint _Count = 0;
+        private double _Temp;
+
+        public StandardDeviation()
         {
-            throw new NotImplementedException();
+            DecimalDigit = 5;
+        }
+
+        public override void Input(double src)
+        {
+            _Count++;
+            if (_Count <= 1)
+                return;
+            var v = src - ValueOfComparison.Output;
+            _Temp += v*v;
+            Output = (Math.Sqrt(_Temp/_Count))/ValueOfComparison.Output;
+        }
+
+        public override string ToString()
+        {
+            var op = Output*1000000;
+            return string.Format("{0}ppm", Math.Round(op, DecimalDigit));
         }
     }
 }

@@ -7,5 +7,9 @@ namespace MeterKnife.Common.Algorithms
 {
     public class TemperatureRootMeanSquare : RootMeanSquare
     {
+        public TemperatureRootMeanSquare()
+        {
+            DecimalDigit = 3;
+        }
     }
 }

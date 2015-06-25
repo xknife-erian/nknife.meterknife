@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MeterKnife.Common.Base;
 using MeterKnife.Common.Interfaces;
 
 namespace MeterKnife.Common.Algorithms
@@ -9,21 +10,16 @@ namespace MeterKnife.Common.Algorithms
     /// <summary>
     /// 均方根
     /// </summary>
-    public class RootMeanSquare : IElectronAlgorithm
+    public class RootMeanSquare : BaseAlgorithm
     {
-        public double Output { get; private set; }
-
         private double _RmsData;
         private uint _Count;
 
-        public void Input(params double[] src)
+        public override void Input(double src)
         {
-            foreach (var value in src)
-            {
-                _RmsData += value*value;
-                _Count++;
-                Output = Math.Sqrt(_RmsData/_Count);
-            }
+            _RmsData += src*src;
+            _Count++;
+            Output = Math.Sqrt(_RmsData/_Count);
         }
     }
 }

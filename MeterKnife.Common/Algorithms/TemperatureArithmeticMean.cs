@@ -7,5 +7,9 @@ namespace MeterKnife.Common.Algorithms
 {
     public class TemperatureArithmeticMean : ArithmeticMean
     {
+        public TemperatureArithmeticMean()
+        {
+            DecimalDigit = 3;
+        }
     }
 }

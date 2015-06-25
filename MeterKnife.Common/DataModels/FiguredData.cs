@@ -4,6 +4,8 @@ using System.Data;
 using System.IO;
 using System.Text;
 using Common.Logging;
+using MeterKnife.Common.Algorithms;
+using MeterKnife.Common.Algorithms.Difference;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using NKnife.IoC;
@@ -17,66 +19,62 @@ namespace MeterKnife.Common.DataModels
         #region 分析内容
 
         [Category("数据分析"), DisplayName("最大值")]
-        public double Max { get; private set; }
+        public Max Max { get; private set; }
 
-        [Category("数据分析")]
-        [DisplayName("最小值")]
-        public double Min { get; private set; }
+        [Category("数据分析"),DisplayName("最小值")]
+        public Min Min { get; private set; }
 
-        [Category("数据分析")]
-        [DisplayName("峰峰值")]
-        public string Ppvalue { get; private set; }
-
-        [Category("数据分析")][DisplayName("均方根")]
-        public double RootMeanSquare { get; private set; }
+        [Category("数据分析"),DisplayName("均方根")]
+        public RootMeanSquare RootMeanSquare { get; private set; }
 
         [Category("数据分析"), DisplayName("算术平均")]
-        public double ArithmeticMean { get; private set; }
+        public ArithmeticMean ArithmeticMean { get; private set; }
+
+        [Category("温度"), DisplayName("最大值")]
+        public TemperatureMax TemperatureMax { get; private set; }
+
+        [Category("温度"), DisplayName("最小值")]
+        public TemperatureMin TemperatureMin { get; private set; }
+
+        [Category("温度"), DisplayName("均方根")]
+        public TemperatureRootMeanSquare TemperatureRootMeanSquare { get; private set; }
+
+        [Category("温度"), DisplayName("算术平均")]
+        public TemperatureArithmeticMean TemperatureArithmeticMean { get; private set; }
+
+        [Category("偏差"), DisplayName("标准差")]
+        public StandardDeviation StandardDeviation { get; private set; }
+
+        [Category("数据分析"), DisplayName("峰峰值")]
+        public string Ppvalue { get; private set; }
 
         [Category("数据分析"), DisplayName("总采样数")]
         public uint Count
         {
-            get { return (uint) _DataSet.Tables[1].Rows.Count; }
+            get { return (uint)_DataSet.Tables[1].Rows.Count; }
         }
-
-        [Category("温度"), DisplayName("最大值")]
-        public double MaxTemperature { get; private set; }
-
-        [Category("温度"), DisplayName("最小值")]
-        public double MinTemperature { get; private set; }
-
-        [Category("温度"), DisplayName("均方根")]
-        public double TemperatureRootMeanSquare { get; private set; }
-
-        [Category("温度"), DisplayName("算术平均")]
-        public double TemperatureArithmeticMean { get; private set; }
-
-        [Browsable(false)]
-        [Category("偏差"), DisplayName("阿仑方差")]
-        public double AllanVariance { get; private set; }
-
-        [Category("偏差"), DisplayName("标准差")]
-        public double StandardDeviation { get; private set; }
-
-        [Browsable(false)]
-        [Category("偏差"), DisplayName("均方根差")]
-        public double RootMeanSquareDeviation { get; private set; }
 
         #endregion
 
         private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
         private double _CurrentTemperature;
-        protected DataSet _DataSet = new DataSet();
-
         private double _NominalValue;
-
-        private double _RmsData;
-        private double _RmsTemperatureData;
-        private double _SumData;
-        private double _SumTemperatureData;
+        protected DataSet _DataSet = new DataSet();
 
         public FiguredData()
         {
+            Max = new Max();
+            Min = new Min();
+            ArithmeticMean = new ArithmeticMean();
+            RootMeanSquare = new RootMeanSquare();
+
+            TemperatureMax = new TemperatureMax();
+            TemperatureMin = new TemperatureMin();
+            TemperatureArithmeticMean = new TemperatureArithmeticMean();
+            TemperatureRootMeanSquare = new TemperatureRootMeanSquare();
+
+            StandardDeviation = new StandardDeviation {ValueOfComparison = ArithmeticMean};
+
             var baseTable = new DataTable("BaseInfomation");
             baseTable.Columns.Add(new DataColumn("Key", typeof (string)));
             baseTable.Columns.Add(new DataColumn("Value", typeof (string)));
@@ -172,25 +170,20 @@ namespace MeterKnife.Common.DataModels
             _DataSet.AcceptChanges();
 
             _CurrentTemperature = 0;
-            _NominalValue = 0;
-            _RmsData = 0;
-            _RmsTemperatureData = 0;
-            _SumData = 0;
-            _SumTemperatureData = 0;
 
-            Max = 0;
-            Min = 0;
+            Max.Clear();
+            Min.Clear();
+            RootMeanSquare.Clear();
+            ArithmeticMean.Clear();
+
+            TemperatureMax.Clear();
+            TemperatureMin.Clear();
+            TemperatureRootMeanSquare.Clear();
+            TemperatureArithmeticMean.Clear();
+
+            StandardDeviation.Clear();
+
             Ppvalue = 0.ToString();
-            RootMeanSquare = 0;
-            ArithmeticMean = 0;
-
-            MaxTemperature = 0;
-            MinTemperature = 0;
-            TemperatureRootMeanSquare = 0;
-            TemperatureArithmeticMean = 0;
-
-            AllanVariance = 0;
-            RootMeanSquareDeviation = 0;
         }
 
         public void SetNominalValue(double nominalValue)
@@ -200,36 +193,18 @@ namespace MeterKnife.Common.DataModels
 
         public void Add(double value)
         {
+            _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature);
             string s = value.ToString();
             int n = s.Length - s.IndexOf('.') - 1;
 
-            _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature);
-            int count = _DataSet.Tables[1].Rows.Count;
-            if (count <= 1)
-            {
-                Max = value;
-                Min = value;
-            }
-            else
-            {
-                if (value > Max)
-                    Max = value; //最大值
-                else if (value < Min)
-                    Min = value; //最小值
-            }
+            Max.Input(value);
+            Min.Input(value);
+            ArithmeticMean.Input(value);
+            RootMeanSquare.Input(value);
+
             string t = new StringBuilder("{0:N").Append(n).Append("}").ToString();
-            Ppvalue = String.Format(t, Math.Abs(Max - Min)); //峰峰值
-            _SumData += value;
-            ArithmeticMean = Math.Round(_SumData/count, n); //算术平均
-
-            //计算均方根
-            _RmsData += value*value;
-            RootMeanSquare = Math.Round(Math.Sqrt(_RmsData/count), n);
-
-            if (Math.Abs(_NominalValue) > 0)
-            {
-                RootMeanSquareDeviation = RootMeanSquare - _NominalValue;
-            }
+            Ppvalue = String.Format(t, Math.Abs(Max.Output - Min.Output)); //峰峰值
+            StandardDeviation.Input(value);
 
             //触发数据源发生变化
             OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
@@ -238,23 +213,10 @@ namespace MeterKnife.Common.DataModels
         public void AddTemperature(double value)
         {
             _CurrentTemperature = value;
-            int count = _DataSet.Tables[1].Rows.Count;
-            if (count <= 1)
-            {
-                MaxTemperature = value;
-                MinTemperature = value;
-            }
-            else
-            {
-                if (value > MaxTemperature) MaxTemperature = value;
-                else if (value < MinTemperature) MinTemperature = value;
-            }
-            _SumTemperatureData += value;
-            TemperatureArithmeticMean = Math.Round(_SumTemperatureData/count, 4);
-
-            //计算均方根
-            _RmsTemperatureData += value*value;
-            TemperatureRootMeanSquare = Math.Round(Math.Sqrt(_RmsTemperatureData/count), 4);
+            TemperatureArithmeticMean.Input(value);
+            TemperatureRootMeanSquare.Input(value);
+            TemperatureMax.Input(value);
+            TemperatureMin.Input(value);
         }
 
         protected virtual void OnReceviedCollectData(CollectDataEventArgs e)
