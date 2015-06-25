@@ -20,6 +20,11 @@ namespace MeterKnife.Common.Algorithms
                 Output = src;
         }
 
+        public override void Clear()
+        {
+            Output = double.MaxValue;
+        }
+
         public override string ToString()
         {
             if (Output == double.MaxValue)

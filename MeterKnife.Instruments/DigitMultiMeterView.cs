@@ -473,6 +473,14 @@ namespace MeterKnife.Instruments
         private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
         {
             _FiguredData.Clear();
+
+            _MainLineSeries.Points.Clear();
+            _MainLineSeries.PlotModel.InvalidatePlot(true);
+            _MainModel.Title = string.Empty;
+
+            _TemperatureLineSeries.Points.Clear();
+            _TemperatureLineSeries.PlotModel.InvalidatePlot(true);
+
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
     }
