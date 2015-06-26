@@ -16,6 +16,8 @@ namespace MeterKnife.Common.DataModels
 {
     public class FiguredData : ICollectSource
     {
+        private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
+
         #region 分析内容
 
         [Category("数据分析"), DisplayName("最大值")]
@@ -56,7 +58,6 @@ namespace MeterKnife.Common.DataModels
 
         #endregion
 
-        private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
         private double _CurrentTemperature;
         protected DataSet _DataSet = new DataSet();
 

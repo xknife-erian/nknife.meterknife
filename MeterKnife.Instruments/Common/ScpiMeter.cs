@@ -1,4 +1,5 @@
 ﻿using MeterKnife.Common.Base;
+using MeterKnife.Common.Controls;
 
 namespace MeterKnife.Instruments.Common
 {

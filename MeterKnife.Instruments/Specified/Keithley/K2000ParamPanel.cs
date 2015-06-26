@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using MeterKnife.Common.Controls;
 using MeterKnife.Instruments.Common;
 
 namespace MeterKnife.Instruments.Specified.Keithley

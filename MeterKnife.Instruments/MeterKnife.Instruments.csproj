@@ -65,12 +65,6 @@
     <Compile Include="..\MeterKnife.Starter\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Common\UserScpiCommandPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Common\UserScpiCommandPanel.Designer.cs">
-      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialog\ExportFileSelectorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,9 +91,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Common\ScpiMeter.cs" />
-    <Compile Include="Common\ScpiParamPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Specified\Agilent\Ag34401A.cs" />
     <Compile Include="Specified\Agilent\Ag34401AParamPanel.cs">
       <SubType>UserControl</SubType>
@@ -119,7 +110,6 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="license.txt" />
-    <Content Include="Properties\content\arrow_triangle_down.png" />
     <Content Include="Properties\content\ToolstripButton\clear.png" />
     <Content Include="Properties\content\ToolstripButton\load.png" />
     <Content Include="Properties\content\ToolstripButton\chart.png" />
@@ -135,9 +125,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Common\UserScpiCommandPanel.resx">
-      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\ExportProgressDialog.resx">
       <DependentUpon>ExportProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,9 +137,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Common\ScpiParamPanel.resx">
-      <DependentUpon>ScpiParamPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

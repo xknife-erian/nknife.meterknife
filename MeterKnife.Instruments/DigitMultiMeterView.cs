@@ -12,18 +12,14 @@ using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Instruments.Dialog;
-using MeterKnife.Instruments.Properties;
 using NKnife.Events;
-using NKnife.GUI.WinForm;
 using NKnife.IoC;
 using NKnife.Utility;
-using NKnife.Wrapper;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 using ScpiKnife;
-using LineStyle = OxyPlot.LineStyle;
 
 namespace MeterKnife.Instruments
 {
@@ -31,26 +27,24 @@ namespace MeterKnife.Instruments
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
 
-        private readonly UtilityRandom _Random = new UtilityRandom();
         protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
-        private readonly ScpiProtocolHandler _Handler = new ScpiProtocolHandler();
 
         private readonly FiguredData _FiguredData = new FiguredData();
+        private readonly ScpiProtocolHandler _Handler = new ScpiProtocolHandler();
+        private readonly PlotModel _MainModel;
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
-        private bool _IsDispose = false;
-
-        private bool _OnCollect; //是否正在采集
-        protected BaseParamPanel _Panel;
+        private readonly UtilityRandom _Random = new UtilityRandom();
+        private bool _IsDispose;
 
         protected LineSeries _MainLineSeries = new LineSeries();
         protected LinearAxis _MainValueAxis = new LinearAxis();
-
-        private readonly PlotModel _MainModel;
-        protected LineSeries _TemperatureLineSeries = new LineSeries();
-        protected LinearAxis _TemperatureValueAxis = new LinearAxis();
+        private bool _OnCollect; //是否正在采集
+        protected BaseParamPanel _Panel;
 
         protected LineSeries _TemperatureCharacteristicLineSeries = new LineSeries();
         protected LinearAxis _TemperatureCharacteristicValueAxis = new LinearAxis();
+        protected LineSeries _TemperatureLineSeries = new LineSeries();
+        protected LinearAxis _TemperatureValueAxis = new LinearAxis();
 
         public DigitMultiMeterView()
         {
@@ -162,7 +156,7 @@ namespace MeterKnife.Instruments
 
         private void _FiguredData_ReceviedCollectData(object sender, CollectDataEventArgs e)
         {
-            var data = e.CollectData;
+            CollectData data = e.CollectData;
             string item = string.Format("{0}\t{1}\t{2}", data.DateTime, data.Data, data.Temperature);
             _CollectDataList.ThreadSafeInvoke(() => _CollectDataList.Items.Insert(0, item));
         }
@@ -246,7 +240,7 @@ namespace MeterKnife.Instruments
         {
             if (_FiguredData.HasData)
             {
-                var rs = MessageBox.Show(this, "是否延续采集?\r\n点击“是”延续采集数据并记录；\r\n点击“否”将清空原有数据重新开始记录。",
+                DialogResult rs = MessageBox.Show(this, "是否延续采集?\r\n点击“是”延续采集数据并记录；\r\n点击“否”将清空原有数据重新开始记录。",
                     "数据采集", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (rs == DialogResult.No)
                 {
@@ -305,7 +299,7 @@ namespace MeterKnife.Instruments
             int interval = 1000;
             this.ThreadSafeInvoke(() =>
             {
-                var i = _IntervalTextBox.Text;
+                string i = _IntervalTextBox.Text;
                 int.TryParse(i, out interval);
             });
             ScpiCommandList cmdlist = GetInitCommands();
@@ -350,10 +344,10 @@ namespace MeterKnife.Instruments
 
         private void _SaveStripButton_Click(object sender, EventArgs e)
         {
-            var start = (DateTime)_FiguredData.DataSet.Tables[1].Rows[0][0];
-            var random = _Random.GetString(3, UtilityRandom.RandomCharType.Uppercased);
-            var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), random, "s3db");
-            var full = Path.Combine(DI.Get<MeterKnifeUserData>().GetValue(MeterKnifeUserData.DATA_PATH, string.Empty), name);
+            var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
+            string random = _Random.GetString(3, UtilityRandom.RandomCharType.Uppercased);
+            string name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), random, "s3db");
+            string full = Path.Combine(DI.Get<MeterKnifeUserData>().GetValue(MeterKnifeUserData.DATA_PATH, string.Empty), name);
             if (_FiguredData.Save(full))
             {
                 MessageBox.Show(string.Format("数据文件已保存:\r\n{0}", full));
@@ -365,11 +359,11 @@ namespace MeterKnife.Instruments
             var dialog = new FolderBrowserDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                var dir = dialog.SelectedPath;
+                string dir = dialog.SelectedPath;
                 var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
-                var random = _Random.GetString(3, UtilityRandom.RandomCharType.Uppercased);
-                var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), random, "xls");
-                var full = Path.Combine(dir, name);
+                string random = _Random.GetString(3, UtilityRandom.RandomCharType.Uppercased);
+                string name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), random, "xls");
+                string full = Path.Combine(dir, name);
                 var progressDialog = new ExportProgressDialog();
                 ExportRowCountChanged += (s, ex) => progressDialog.SetCurrentCount(ex.Item);
                 progressDialog.SetTotalCount(_FiguredData.Count);
@@ -385,30 +379,35 @@ namespace MeterKnife.Instruments
 
         private event EventHandler<EventArgs<int>> ExportRowCountChanged;
 
-        private void OnExportRowCountChanged(EventArgs<int> e)
-        {
-            EventHandler<EventArgs<int>> handler = ExportRowCountChanged;
-            if (handler != null) handler(this, e);
-        }
-
         private void AddRowCount(int rowCount)
         {
             OnExportRowCountChanged(new EventArgs<int>(rowCount));
         }
 
+        private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
+        {
+            _FiguredData.Clear();
+
+            _MainLineSeries.Points.Clear();
+            _MainLineSeries.PlotModel.InvalidatePlot(true);
+            _MainModel.Title = string.Empty;
+
+            _TemperatureLineSeries.Points.Clear();
+            _TemperatureLineSeries.PlotModel.InvalidatePlot(true);
+
+            this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
+        }
+
         private void _PhotoToolStripButton_Click(object sender, EventArgs e)
         {
-
         }
 
         private void _ZoomInToolStripButton_Click(object sender, EventArgs e)
         {
-
         }
 
         private void _ZoomOutToolStripButton_Click(object sender, EventArgs e)
         {
-
         }
 
         private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
@@ -424,7 +423,7 @@ namespace MeterKnife.Instruments
                     _FiguredData.AddTemperature(yzl);
                     if (Math.Abs(_FiguredData.TemperatureMax.Output) > 0 && Math.Abs(_FiguredData.TemperatureMin.Output) > 0)
                     {
-                        double j = (Math.Abs(_FiguredData.TemperatureMax.Output - _FiguredData.TemperatureMin.Output)) / 4;
+                        double j = (Math.Abs(_FiguredData.TemperatureMax.Output - _FiguredData.TemperatureMin.Output))/4;
                         if (Math.Abs(j) <= 0)
                         {
                             _TemperatureValueAxis.Maximum = _FiguredData.TemperatureMax.Output + 0.02;
@@ -457,7 +456,7 @@ namespace MeterKnife.Instruments
 
                     if (Math.Abs(_FiguredData.Max.Output) > 0 && Math.Abs(_FiguredData.Min.Output) > 0)
                     {
-                        double j = (Math.Abs(_FiguredData.Max.Output - _FiguredData.Min.Output)) / 4;
+                        double j = (Math.Abs(_FiguredData.Max.Output - _FiguredData.Min.Output))/4;
                         if (Math.Abs(j) > 0)
                         {
                             _MainValueAxis.Maximum = _FiguredData.Max.Output + j;
@@ -474,18 +473,11 @@ namespace MeterKnife.Instruments
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
 
-        private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
+        private void OnExportRowCountChanged(EventArgs<int> e)
         {
-            _FiguredData.Clear();
-
-            _MainLineSeries.Points.Clear();
-            _MainLineSeries.PlotModel.InvalidatePlot(true);
-            _MainModel.Title = string.Empty;
-
-            _TemperatureLineSeries.Points.Clear();
-            _TemperatureLineSeries.PlotModel.InvalidatePlot(true);
-
-            this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
+            EventHandler<EventArgs<int>> handler = ExportRowCountChanged;
+            if (handler != null)
+                handler(this, e);
         }
     }
 }

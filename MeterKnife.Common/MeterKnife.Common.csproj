@@ -61,6 +61,12 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot">
+      <HintPath>..\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.WindowsForms">
+      <HintPath>..\packages\OxyPlot.WindowsForms.2014.1.546\lib\net40\OxyPlot.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -104,6 +110,27 @@
     <Compile Include="Base\_\DMMZeroSet.cs" />
     <Compile Include="Base\_\GpibLanguage.cs" />
     <Compile Include="Base\_\MultiMeterParameters.cs" />
+    <Compile Include="Controls\Plots\DataPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Plots\DataPlot.Designer.cs">
+      <DependentUpon>DataPlot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Plots\FiguredDataPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Plots\TemperatureDataPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ScpiParamPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserScpiCommandPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
+      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataModels\CareTalking.Protocols.cs" />
     <Compile Include="Algorithms\Max.cs" />
     <Compile Include="EventParameters\CollectedEventArgs.cs" />
@@ -126,6 +153,11 @@
     <Compile Include="IoC\TunnelModules.cs" />
     <Compile Include="MeterKnifeUserData.cs" />
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tunnels\CareConfigHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneCodec.cs" />
@@ -140,6 +172,15 @@
     <EmbeddedResource Include="Base\BaseParamPanel.resx">
       <DependentUpon>BaseParamPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Plots\DataPlot.resx">
+      <DependentUpon>DataPlot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScpiParamPanel.resx">
+      <DependentUpon>ScpiParamPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserScpiCommandPanel.resx">
+      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
@@ -150,6 +191,10 @@
       <DependentUpon>GlobalResources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\contents\MeterKnife2015-Welcome.psd" />
@@ -197,6 +242,9 @@
     <Content Include="Properties\contents\bar-button\start.png" />
     <Content Include="Properties\contents\bar-button\stop-unable.png" />
     <Content Include="Properties\contents\bar-button\stop.png" />
+    <Content Include="Properties\contents\base-toolstrip\arrow_triangle_down.png" />
+    <Content Include="Properties\contents\base-toolstrip\load.png" />
+    <Content Include="Properties\contents\base-toolstrip\save.png" />
     <Content Include="Properties\contents\main-icon.ico" />
     <Content Include="Properties\contents\main-logo.png" />
     <Content Include="Properties\contents\MeterKnife2015-Welcome.png" />

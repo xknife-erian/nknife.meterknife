@@ -9,8 +9,10 @@ namespace MeterKnife.Common.Base
         {
             DecimalDigit = 8;
         }
+
         public ushort DecimalDigit { get; set; }
         public double Output { get; protected set; }
+
         public virtual void Clear()
         {
             Output = 0;

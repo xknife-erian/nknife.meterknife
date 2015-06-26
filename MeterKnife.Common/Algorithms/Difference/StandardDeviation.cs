@@ -37,6 +37,7 @@ namespace MeterKnife.Common.Algorithms.Difference
         {
             _Count = 0;
             _Values = new List<double>(_Range);
+            base.Clear();
         }
 
         public override void Input(double src)
