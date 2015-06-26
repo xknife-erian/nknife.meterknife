@@ -43,10 +43,10 @@
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
             this._StartStripButton = new System.Windows.Forms.ToolStripButton();
             this._StopStripButton = new System.Windows.Forms.ToolStripButton();
+            this._ClearDataToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._SaveStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._ExportStripButton = new System.Windows.Forms.ToolStripButton();
-            this._ClearDataToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._PhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -55,6 +55,8 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this._IntervalTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this._StandardDeviationRangeComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
             this._MainSplitContainer.Panel1.SuspendLayout();
             this._MainSplitContainer.Panel2.SuspendLayout();
@@ -234,7 +236,9 @@
             this.toolStripLabel2,
             this.toolStripLabel3,
             this._IntervalTextBox,
-            this.toolStripSeparator5});
+            this.toolStripSeparator5,
+            this.toolStripLabel1,
+            this._StandardDeviationRangeComboBox});
             this._PlotToolStrip.Location = new System.Drawing.Point(0, 2);
             this._PlotToolStrip.Name = "_PlotToolStrip";
             this._PlotToolStrip.Size = new System.Drawing.Size(678, 25);
@@ -261,6 +265,16 @@
             this._StopStripButton.Text = "停止";
             this._StopStripButton.Click += new System.EventHandler(this._StopStripButton_Click);
             // 
+            // _ClearDataToolStripButton
+            // 
+            this._ClearDataToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ClearDataToolStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.clear;
+            this._ClearDataToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ClearDataToolStripButton.Name = "_ClearDataToolStripButton";
+            this._ClearDataToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._ClearDataToolStripButton.Text = "清除数据";
+            this._ClearDataToolStripButton.Click += new System.EventHandler(this._ClearDataToolStripButton_Click);
+            // 
             // _SaveStripButton
             // 
             this._SaveStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -285,16 +299,6 @@
             this._ExportStripButton.Size = new System.Drawing.Size(23, 22);
             this._ExportStripButton.Text = "导出";
             this._ExportStripButton.Click += new System.EventHandler(this._ExportStripButton_Click);
-            // 
-            // _ClearDataToolStripButton
-            // 
-            this._ClearDataToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ClearDataToolStripButton.Image = global::MeterKnife.Instruments.Properties.Resources.clear;
-            this._ClearDataToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ClearDataToolStripButton.Name = "_ClearDataToolStripButton";
-            this._ClearDataToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._ClearDataToolStripButton.Text = "清除数据";
-            this._ClearDataToolStripButton.Click += new System.EventHandler(this._ClearDataToolStripButton_Click);
             // 
             // _PhotoToolStripButton
             // 
@@ -352,6 +356,26 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // _StandardDeviationRangeComboBox
+            // 
+            this._StandardDeviationRangeComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this._StandardDeviationRangeComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this._StandardDeviationRangeComboBox.Items.AddRange(new object[] {
+            "50",
+            "100",
+            "200",
+            "500",
+            "1000"});
+            this._StandardDeviationRangeComboBox.Name = "_StandardDeviationRangeComboBox";
+            this._StandardDeviationRangeComboBox.Size = new System.Drawing.Size(75, 25);
+            this._StandardDeviationRangeComboBox.Text = "100";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(71, 22);
+            this.toolStripLabel1.Text = "标准差范围:";
             // 
             // DigitMultiMeterView
             // 
@@ -414,5 +438,7 @@
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.TabPage _TempTabPage;
         private System.Windows.Forms.ToolStripButton _ClearDataToolStripButton;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripComboBox _StandardDeviationRangeComboBox;
     }
 }

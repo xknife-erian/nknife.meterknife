@@ -102,7 +102,19 @@ namespace MeterKnife.Instruments
             };
             _PlotSplitContainer.Panel1.Controls.Add(mainPlot);
 
+            SetStandardDeviationRange();
+            _StandardDeviationRangeComboBox.TextUpdate += (s, e) => SetStandardDeviationRange();
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
+        }
+
+        private void SetStandardDeviationRange()
+        {
+            int range = 100;
+            if (!int.TryParse(_StandardDeviationRangeComboBox.Text, out range))
+            {
+                _logger.Warn(string.Format("{0}解析错误", _StandardDeviationRangeComboBox.Text));
+            }
+            _FiguredData.StandardDeviation.SetRange(range);
         }
 
         public override void SetMeter(int port, BaseMeter meter)
