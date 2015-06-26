@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Instruments.Common
+﻿namespace MeterKnife.Common.Controls
 {
     partial class UserScpiCommandPanel
     {
@@ -278,7 +278,7 @@
             // _LoadButton
             // 
             this._LoadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._LoadButton.Image = global::MeterKnife.Instruments.Properties.Resources.load;
+            this._LoadButton.Image = global::MeterKnife.Common.Properties.Resources.load;
             this._LoadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._LoadButton.Name = "_LoadButton";
             this._LoadButton.Size = new System.Drawing.Size(23, 22);
@@ -288,7 +288,7 @@
             // _SaveButton
             // 
             this._SaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._SaveButton.Image = global::MeterKnife.Instruments.Properties.Resources.save;
+            this._SaveButton.Image = global::MeterKnife.Common.Properties.Resources.save;
             this._SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SaveButton.Name = "_SaveButton";
             this._SaveButton.Size = new System.Drawing.Size(23, 22);

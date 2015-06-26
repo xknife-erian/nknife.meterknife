@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using MeterKnife.Common.Base;
+using MeterKnife.Common.Controls;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Instruments;
 using MeterKnife.Instruments.Common;

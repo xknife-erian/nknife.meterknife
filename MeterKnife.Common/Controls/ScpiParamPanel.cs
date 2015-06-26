@@ -5,11 +5,9 @@ using System.Windows.Forms;
 using System.Xml;
 using Common.Logging;
 using MeterKnife.Common.Base;
-using MeterKnife.Common.DataModels;
-using MeterKnife.Instruments.Properties;
 using ScpiKnife;
 
-namespace MeterKnife.Instruments.Common
+namespace MeterKnife.Common.Controls
 {
     public class ScpiParamPanel : BaseParamPanel
     {
@@ -147,8 +145,7 @@ namespace MeterKnife.Instruments.Common
         {
             var button = new Button
             {
-                
-                BackgroundImage = Resources.arrow_triangle_down,
+                //BackgroundImage = Resources.arrow_triangle_down,
                 BackgroundImageLayout = ImageLayout.Center,
                 FlatStyle = FlatStyle.Popup,
                 Dock = DockStyle.Right,
