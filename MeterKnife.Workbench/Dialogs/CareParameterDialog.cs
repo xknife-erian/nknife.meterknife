@@ -30,9 +30,19 @@ namespace MeterKnife.Workbench.Dialogs
         {
             _Port = port;
             InitializeComponent();
+            _Usart1NumberBox.SelectedItem = "115200";
+            _Usart2NumberBox.SelectedItem = "115200";
             _DhcpDisableRadioButton.CheckedChanged += (s, e) =>
             {
                 _DhcpGroupBox.Enabled = _DhcpDisableRadioButton.Checked;
+            };
+            _UsartSwitchCheckBox.CheckedChanged += (s, e) =>
+            {
+                if (_UsartSwitchCheckBox.Checked)
+                {
+                    MessageBox.Show(this, "WIFI透传模式说明：\r\n\r\nWIFI透传模式生效后，USB连接将失效，指示灯将快速闪烁……\r\n退出透传模式时，请按住设备按键4秒以上，并重启本软件进行应用", "透传模式",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             };
             _Handler.CareConfigging += OnProtocolRecevied;
             _Comm.Bind(port, _Handler);
@@ -171,7 +181,11 @@ namespace MeterKnife.Workbench.Dialogs
                         this.ThreadSafeInvoke(() =>
                         {
                             var bs = talking.ScpiBytes[0];
-                            _GpibNumericUpDown.Value = (int) bs;
+                            _USBGpibNumericUpDown.Value = (int)bs;
+                            bs = talking.ScpiBytes[2];
+                            _LANGpibNumericUpDown.Value = (int)bs;
+                            bs = talking.ScpiBytes[1];
+                            _WifiGpibNumericUpDown.Value = (int)bs;
                         });
                         break;
                     case 0xDC: //查询Care的MAC地址；
@@ -186,7 +200,7 @@ namespace MeterKnife.Workbench.Dialogs
                         {
                             var bs = talking.ScpiBytes;
                             var port = BitConverter.ToInt32(bs.Reverse().ToArray(), 0);
-                            _Usart1NumberBox.Value = port;
+                            _Usart1NumberBox.SelectedItem = port.ToString();
                         });
                         break;
                     case 0xDE: //查询WIFI模块前置串口波特率；
@@ -194,7 +208,7 @@ namespace MeterKnife.Workbench.Dialogs
                         {
                             var bs = talking.ScpiBytes;
                             var port = BitConverter.ToInt32(bs.Reverse().ToArray(), 0);
-                            _Usart2NumberBox.Value = port;
+                            _Usart2NumberBox.SelectedItem = port.ToString();
                         });
                         break;
                     case 0xDF: //查询USB串口与WIFI模块前置串口是否可以互相转发；
@@ -253,7 +267,12 @@ namespace MeterKnife.Workbench.Dialogs
             _Comm.Send(_Port, config);
 
             //默认的GPIB地址
-            var defaultGpibAddress = new byte[] {(byte) _GpibNumericUpDown.Value};
+            var defaultGpibAddress = new byte[]
+            {
+                (byte)_USBGpibNumericUpDown.Value,
+                (byte)_WifiGpibNumericUpDown.Value,
+                (byte)_LANGpibNumericUpDown.Value,
+            };
             config = CareTalking.CareSetter(0xDB, defaultGpibAddress);
             _Comm.Send(_Port, config);
 
@@ -275,18 +294,20 @@ namespace MeterKnife.Workbench.Dialogs
             _Comm.Send(_Port, config); 
 
             //USB串口波特率
-            var usbBaud = BitConverter.GetBytes((Int32) _Usart1NumberBox.Value).Reverse().ToArray();
+            var usart1 = Int32.Parse(_Usart1NumberBox.SelectedItem.ToString());
+            var usbBaud = BitConverter.GetBytes(usart1).Reverse().ToArray();
             config = CareTalking.CareSetter(0xDD, usbBaud);
             _Comm.Send(_Port, config);
 
             //WIFI串口波特率
-            var wifiBaud = BitConverter.GetBytes((Int32) _Usart2NumberBox.Value).Reverse().ToArray();
+            var usart2 = Int32.Parse(_Usart2NumberBox.SelectedItem.ToString());
+            var wifiBaud = BitConverter.GetBytes(usart2).Reverse().ToArray();
             config = CareTalking.CareSetter(0xDE, wifiBaud);
             _Comm.Send(_Port, config);
 
             var talking = CareTalking.CareReset(); //重启
             _Comm.Send(_Port, talking);
-            Thread.Sleep(200);
+            Thread.Sleep(300);
 
             MessageBox.Show(this, "Care参数配置完成。", "Care参数", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
