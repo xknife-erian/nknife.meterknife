@@ -58,7 +58,6 @@ namespace MeterKnife.Common.DataModels
 
         private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
         private double _CurrentTemperature;
-        private double _NominalValue;
         protected DataSet _DataSet = new DataSet();
 
         public FiguredData()
@@ -184,11 +183,6 @@ namespace MeterKnife.Common.DataModels
             StandardDeviation.Clear();
 
             Ppvalue = 0.ToString();
-        }
-
-        public void SetNominalValue(double nominalValue)
-        {
-            _NominalValue = nominalValue;
         }
 
         public void Add(double value)

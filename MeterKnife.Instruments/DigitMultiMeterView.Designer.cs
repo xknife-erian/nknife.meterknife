@@ -41,23 +41,20 @@
             this._CollectDataList = new System.Windows.Forms.ListBox();
             this._TempTabPage = new System.Windows.Forms.TabPage();
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this._NominalValueTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this._IntervalTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this._StartStripButton = new System.Windows.Forms.ToolStripButton();
             this._StopStripButton = new System.Windows.Forms.ToolStripButton();
             this._SaveStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._ExportStripButton = new System.Windows.Forms.ToolStripButton();
             this._ClearDataToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._PhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this._IntervalTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
             this._MainSplitContainer.Panel1.SuspendLayout();
             this._MainSplitContainer.Panel2.SuspendLayout();
@@ -226,18 +223,15 @@
             this._PlotToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._StartStripButton,
             this._StopStripButton,
+            this._ClearDataToolStripButton,
             this._SaveStripButton,
             this.toolStripSeparator1,
             this._ExportStripButton,
-            this._ClearDataToolStripButton,
             this._PhotoToolStripButton,
             this._ZoomInToolStripButton,
             this._ZoomOutToolStripButton,
             this.toolStripSeparator3,
             this.toolStripLabel2,
-            this.toolStripLabel1,
-            this._NominalValueTextBox,
-            this.toolStripSeparator4,
             this.toolStripLabel3,
             this._IntervalTextBox,
             this.toolStripSeparator5});
@@ -246,54 +240,6 @@
             this._PlotToolStrip.Size = new System.Drawing.Size(678, 25);
             this._PlotToolStrip.TabIndex = 0;
             this._PlotToolStrip.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(0, 22);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(44, 22);
-            this.toolStripLabel1.Text = "标称值";
-            // 
-            // _NominalValueTextBox
-            // 
-            this._NominalValueTextBox.Name = "_NominalValueTextBox";
-            this._NominalValueTextBox.Size = new System.Drawing.Size(100, 25);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(57, 22);
-            this.toolStripLabel3.Text = "间隔(ms)";
-            // 
-            // _IntervalTextBox
-            // 
-            this._IntervalTextBox.Name = "_IntervalTextBox";
-            this._IntervalTextBox.Size = new System.Drawing.Size(50, 25);
-            this._IntervalTextBox.Text = "700";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // _StartStripButton
             // 
@@ -324,6 +270,11 @@
             this._SaveStripButton.Size = new System.Drawing.Size(23, 22);
             this._SaveStripButton.Text = "保存";
             this._SaveStripButton.Click += new System.EventHandler(this._SaveStripButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // _ExportStripButton
             // 
@@ -374,6 +325,33 @@
             this._ZoomOutToolStripButton.Size = new System.Drawing.Size(23, 22);
             this._ZoomOutToolStripButton.Text = "缩小";
             this._ZoomOutToolStripButton.Click += new System.EventHandler(this._ZoomOutToolStripButton_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(0, 22);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(57, 22);
+            this.toolStripLabel3.Text = "间隔(ms)";
+            // 
+            // _IntervalTextBox
+            // 
+            this._IntervalTextBox.Name = "_IntervalTextBox";
+            this._IntervalTextBox.Size = new System.Drawing.Size(50, 25);
+            this._IntervalTextBox.Text = "500";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // DigitMultiMeterView
             // 
@@ -431,9 +409,6 @@
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         protected System.Windows.Forms.ToolStripLabel toolStripLabel2;
         protected System.Windows.Forms.ListBox _CollectDataList;
-        protected System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        protected System.Windows.Forms.ToolStripTextBox _NominalValueTextBox;
-        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         protected System.Windows.Forms.ToolStripLabel toolStripLabel3;
         protected System.Windows.Forms.ToolStripTextBox _IntervalTextBox;
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator5;

@@ -126,7 +126,6 @@ namespace MeterKnife.Instruments
                 _ClearDataToolStripButton.Enabled = false;
 
                 _StopStripButton.Enabled = true;
-                _NominalValueTextBox.ReadOnly = true;
                 _IntervalTextBox.ReadOnly = true;
 
                 _PhotoToolStripButton.Enabled = false;
@@ -141,7 +140,6 @@ namespace MeterKnife.Instruments
                 _ClearDataToolStripButton.Enabled = true;
 
                 _StopStripButton.Enabled = false;
-                _NominalValueTextBox.ReadOnly = false;
                 _IntervalTextBox.ReadOnly = false;
 
                 _PhotoToolStripButton.Enabled = true;
@@ -253,12 +251,6 @@ namespace MeterKnife.Instruments
             _Handler.ProtocolRecevied += OnProtocolRecevied;
             _OnCollect = true;
             _MeterKernel.CollectBeginning(_Meter.GpibAddress, true);
-
-            double nv = 0;
-            if (double.TryParse(_NominalValueTextBox.Text, out nv))
-            {
-                _FiguredData.SetNominalValue(nv);
-            }
 
             var thread = new Thread(SendRead);
             thread.Start();
