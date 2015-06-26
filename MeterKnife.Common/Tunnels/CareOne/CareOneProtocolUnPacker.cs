@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
 using NKnife.Converts;
@@ -13,6 +14,11 @@ namespace MeterKnife.Common.Tunnels.CareOne
     public class CareOneProtocolUnPacker : BytesProtocolUnPacker
     {
         private static readonly ILog _logger = LogManager.GetLogger<CareOneProtocolUnPacker>();
+
+        /// <summary>
+        /// 科学计数法正则
+        /// </summary>
+        private static readonly Regex _scientificNotationRegex = new Regex(@"([+-]?)([^0]\d\.\d{1,})E([+-]?)(\d+)", RegexOptions.IgnoreCase);
 
         public override void Execute(BytesProtocol protocol, byte[] data, byte[] command)
         {
@@ -40,18 +46,18 @@ namespace MeterKnife.Common.Tunnels.CareOne
                 talking.Scpi = ((int)contentBytes[0]).ToString();
             }
 
-            //+1.00355300E-01  100mV
+            //+1.00355300E-01
             string value = Encoding.ASCII.GetString(contentBytes).TrimEnd('\n');
 
-            //DI  +1001.874E-06
-            int blank = value.IndexOf(' ');
-            if (blank > 0)
-                value = value.Substring(blank).Trim();
-
-            double exponent;
-            if (double.TryParse(value, out exponent))
+            MatchCollection mac = _scientificNotationRegex.Matches(value);
+            if (mac.Count > 0)
             {
-                value = exponent.ToString();
+                string firstMatch = mac[0].Groups[0].Value;
+                double exponent;
+                if (double.TryParse(firstMatch, out exponent))
+                {
+                    value = exponent.ToString();
+                }
             }
             talking.ScpiBytes = contentBytes;
             talking.Scpi = value;
