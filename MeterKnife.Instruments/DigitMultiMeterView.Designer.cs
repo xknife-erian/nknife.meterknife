@@ -41,7 +41,7 @@ namespace MeterKnife.Instruments
             this._RealtimePlotSplitContainer = new System.Windows.Forms.SplitContainer();
             this._FeaturesPage = new System.Windows.Forms.TabPage();
             this._FeaturesTabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this._TemperatureFeaturesTabPage = new System.Windows.Forms.TabPage();
             this._DataGridPage = new System.Windows.Forms.TabPage();
             this._CollectDataList = new System.Windows.Forms.ListBox();
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
@@ -168,10 +168,10 @@ namespace MeterKnife.Instruments
             // _MainTabControl
             // 
             this._MainTabControl.Controls.Add(this._PlotPage);
-            this._MainTabControl.Controls.Add(this._FeaturesPage);
             this._MainTabControl.Controls.Add(this._DataGridPage);
+            this._MainTabControl.Controls.Add(this._FeaturesPage);
             this._MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._MainTabControl.ItemSize = new System.Drawing.Size(100, 24);
+            this._MainTabControl.ItemSize = new System.Drawing.Size(100, 30);
             this._MainTabControl.Location = new System.Drawing.Point(0, 27);
             this._MainTabControl.Name = "_MainTabControl";
             this._MainTabControl.Padding = new System.Drawing.Point(18, 3);
@@ -211,35 +211,36 @@ namespace MeterKnife.Instruments
             // _FeaturesPage
             // 
             this._FeaturesPage.Controls.Add(this._FeaturesTabControl);
-            this._FeaturesPage.Location = new System.Drawing.Point(4, 28);
+            this._FeaturesPage.Location = new System.Drawing.Point(4, 34);
             this._FeaturesPage.Name = "_FeaturesPage";
             this._FeaturesPage.Padding = new System.Windows.Forms.Padding(3);
-            this._FeaturesPage.Size = new System.Drawing.Size(652, 416);
+            this._FeaturesPage.Size = new System.Drawing.Size(652, 410);
             this._FeaturesPage.TabIndex = 2;
             this._FeaturesPage.Text = "特性";
             this._FeaturesPage.UseVisualStyleBackColor = true;
             // 
             // _FeaturesTabControl
             // 
-            this._FeaturesTabControl.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this._FeaturesTabControl.Controls.Add(this.tabPage1);
+            this._FeaturesTabControl.Controls.Add(this._TemperatureFeaturesTabPage);
             this._FeaturesTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._FeaturesTabControl.ItemSize = new System.Drawing.Size(60, 22);
             this._FeaturesTabControl.Location = new System.Drawing.Point(3, 3);
             this._FeaturesTabControl.Multiline = true;
             this._FeaturesTabControl.Name = "_FeaturesTabControl";
+            this._FeaturesTabControl.Padding = new System.Drawing.Point(10, 3);
             this._FeaturesTabControl.SelectedIndex = 0;
-            this._FeaturesTabControl.Size = new System.Drawing.Size(646, 410);
+            this._FeaturesTabControl.Size = new System.Drawing.Size(646, 404);
             this._FeaturesTabControl.TabIndex = 0;
             // 
-            // tabPage1
+            // _TemperatureFeaturesTabPage
             // 
-            this.tabPage1.Location = new System.Drawing.Point(24, 4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(618, 402);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "温度特性";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this._TemperatureFeaturesTabPage.Location = new System.Drawing.Point(4, 26);
+            this._TemperatureFeaturesTabPage.Name = "_TemperatureFeaturesTabPage";
+            this._TemperatureFeaturesTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this._TemperatureFeaturesTabPage.Size = new System.Drawing.Size(638, 374);
+            this._TemperatureFeaturesTabPage.TabIndex = 0;
+            this._TemperatureFeaturesTabPage.Text = "温度特性";
+            this._TemperatureFeaturesTabPage.UseVisualStyleBackColor = true;
             // 
             // _DataGridPage
             // 
@@ -484,6 +485,6 @@ namespace MeterKnife.Instruments
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripComboBox _StandardDeviationRangeComboBox;
         private System.Windows.Forms.TabControl _FeaturesTabControl;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage _TemperatureFeaturesTabPage;
     }
 }

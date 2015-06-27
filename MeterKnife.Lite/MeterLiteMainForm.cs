@@ -14,6 +14,7 @@ namespace MeterKnife.Lite
     public partial class MeterLiteMainForm : Form
     {
         private readonly DockPanel _DockPanel = new DockPanel();
+        private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
 
         private int _SerialPort;
 
@@ -27,6 +28,12 @@ namespace MeterKnife.Lite
         {
             InitializeComponent();
             InitializeDockPanel();
+
+            _MeterKernel.Collected += (s, e) =>
+            {
+                _CareOptionMenuItem.Enabled = !e.IsCollected;
+                _AddMeterMenuItem.Enabled = !e.IsCollected;
+            };
         }
 
         private void InitializeDockPanel()

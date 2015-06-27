@@ -19,6 +19,10 @@ namespace MeterKnife.Common.Controls.Plots
             var yzl = SelectValue(fd);
             var value = double.Parse(yzl.ToString());
 
+            //初期会出现未采集到温度，这时温度是初始值，为0
+            if (Math.Abs(value) <= 0 && _Series.Points.Count <= 1)
+                return;
+
             _PlotModel.Title = value.ToString();
 
             var dataPoint = DateTimeAxis.CreateDataPoint(DateTime.Now, value);

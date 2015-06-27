@@ -58,7 +58,7 @@ namespace MeterKnife.Common.Controls.Plots
         {
             if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
             {
-                double j = (Math.Abs(max - min)) / 4;
+                double j = (Math.Abs(max - min))/4;
                 if (Math.Abs(j) > 0)
                 {
                     _LeftAxis.Maximum = max + j;
@@ -83,9 +83,15 @@ namespace MeterKnife.Common.Controls.Plots
 
             var dataPoint = DateTimeAxis.CreateDataPoint(DateTime.Now, value);
             _Series.Points.Add(dataPoint);
-            _Series.PlotModel.InvalidatePlot(true);
+            this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
 
             UpdateRange(fd.Max.Output, fd.Min.Output);
+        }
+
+        public virtual void Clear()
+        {
+            _Series.Points.Clear();
+            this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
         }
 
         public abstract string ValueHead { get; }

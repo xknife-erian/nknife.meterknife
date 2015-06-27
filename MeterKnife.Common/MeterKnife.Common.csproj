@@ -122,6 +122,12 @@
     <Compile Include="Controls\Plots\TemperatureDataPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\Plots\TemperatureFeaturesPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Plots\TemperatureFeaturesPlot.Designer.cs">
+      <DependentUpon>TemperatureFeaturesPlot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ScpiParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

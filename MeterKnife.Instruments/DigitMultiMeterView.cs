@@ -40,12 +40,14 @@ namespace MeterKnife.Instruments
 
         protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
         protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
+        protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
 
         public DigitMultiMeterView()
         {
             InitializeComponent();
             _RealtimePlotSplitContainer.Panel1.Controls.Add(_DataPlot);
             _RealtimePlotSplitContainer.Panel2.Controls.Add(_TempPlot);
+            _TemperatureFeaturesTabPage.Controls.Add(_TempFeaturesPlot);
 
             SetStripButtonState(false);
             SetStandardDeviationRange();
@@ -82,34 +84,22 @@ namespace MeterKnife.Instruments
         {
             if (_IsDispose)
                 return;
+            _StartStripButton.Enabled = !isCollected;
+            _ExportStripButton.Enabled = !isCollected;
+            _SaveStripButton.Enabled = !isCollected;
+            _ClearDataToolStripButton.Enabled = !isCollected;
+
+            _PhotoToolStripButton.Enabled = !isCollected;
+            _ZoomInToolStripButton.Enabled = !isCollected;
+            _ZoomOutToolStripButton.Enabled = !isCollected;
+
             if (isCollected)
-            {
-                _StartStripButton.Enabled = false;
-                _ExportStripButton.Enabled = false;
-                _SaveStripButton.Enabled = false;
-                _ClearDataToolStripButton.Enabled = false;
-
-                _StopStripButton.Enabled = true;
-                _IntervalTextBox.ReadOnly = true;
-
-                _PhotoToolStripButton.Enabled = false;
-                _ZoomInToolStripButton.Enabled = false;
-                _ZoomOutToolStripButton.Enabled = false;
-            }
+                _FeaturesPage.Parent = null;
             else
-            {
-                _StartStripButton.Enabled = true;
-                _ExportStripButton.Enabled = true;
-                _SaveStripButton.Enabled = true;
-                _ClearDataToolStripButton.Enabled = true;
+                _FeaturesPage.Parent = _MainTabControl;
 
-                _StopStripButton.Enabled = false;
-                _IntervalTextBox.ReadOnly = false;
-
-                _PhotoToolStripButton.Enabled = true;
-                _ZoomInToolStripButton.Enabled = true;
-                _ZoomOutToolStripButton.Enabled = true;
-            }
+            _StopStripButton.Enabled = isCollected;
+            _IntervalTextBox.ReadOnly = isCollected;
         }
 
         protected virtual void StartCollect()
@@ -121,7 +111,6 @@ namespace MeterKnife.Instruments
             var thread = new Thread(SendRead);
             thread.Start();
         }
-
 
         protected virtual void StopCollect()
         {
@@ -260,6 +249,8 @@ namespace MeterKnife.Instruments
         private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
         {
             _FiguredData.Clear();
+            _DataPlot.Clear();
+            _TempPlot.Clear();
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
 
