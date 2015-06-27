@@ -69,7 +69,9 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected object SelectValue(FiguredData fd)
         {
-            return fd.DataSet.Tables[1].Rows[fd.DataSet.Tables[1].Rows.Count][ValueHead];
+            var table = fd.DataSet.Tables[1];
+            var count = fd.DataSet.Tables[1].Rows.Count - 1;
+            return table.Rows[count][ValueHead];
         }
 
         public virtual void Update(FiguredData fd)

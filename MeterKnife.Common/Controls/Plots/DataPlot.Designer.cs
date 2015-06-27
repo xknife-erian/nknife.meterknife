@@ -1,4 +1,6 @@
-﻿namespace MeterKnife.Common.Controls.Plots
+﻿using System.Windows.Forms;
+
+namespace MeterKnife.Common.Controls.Plots
 {
     partial class DataPlot
     {
@@ -32,6 +34,7 @@
             // 
             // FiguredDataPlot
             // 
+            this.Dock = DockStyle.Fill;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "FiguredDataPlot";

@@ -1,4 +1,6 @@
-﻿namespace MeterKnife.Instruments
+﻿using NKnife.GUI.WinForm;
+
+namespace MeterKnife.Instruments
 {
     partial class DigitMultiMeterView
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._MainSplitContainer = new System.Windows.Forms.SplitContainer();
+            this._MainSplitContainer = new NKnife.GUI.WinForm.CollapsibleSplitContainer();
             this._LeftSplitContainer = new System.Windows.Forms.SplitContainer();
             this._ParamsGroupBox = new System.Windows.Forms.GroupBox();
             this._ParamsPanel = new System.Windows.Forms.Panel();
@@ -36,10 +38,12 @@
             this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
             this._MainTabControl = new System.Windows.Forms.TabControl();
             this._PlotPage = new System.Windows.Forms.TabPage();
-            this._PlotSplitContainer = new System.Windows.Forms.SplitContainer();
+            this._RealtimePlotSplitContainer = new System.Windows.Forms.SplitContainer();
+            this._FeaturesPage = new System.Windows.Forms.TabPage();
+            this._FeaturesTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this._DataGridPage = new System.Windows.Forms.TabPage();
             this._CollectDataList = new System.Windows.Forms.ListBox();
-            this._TempTabPage = new System.Windows.Forms.TabPage();
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
             this._StartStripButton = new System.Windows.Forms.ToolStripButton();
             this._StopStripButton = new System.Windows.Forms.ToolStripButton();
@@ -55,8 +59,8 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this._IntervalTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this._StandardDeviationRangeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this._StandardDeviationRangeComboBox = new System.Windows.Forms.ToolStripComboBox();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
             this._MainSplitContainer.Panel1.SuspendLayout();
             this._MainSplitContainer.Panel2.SuspendLayout();
@@ -69,14 +73,17 @@
             this.groupBox2.SuspendLayout();
             this._MainTabControl.SuspendLayout();
             this._PlotPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._PlotSplitContainer)).BeginInit();
-            this._PlotSplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._RealtimePlotSplitContainer)).BeginInit();
+            this._RealtimePlotSplitContainer.SuspendLayout();
+            this._FeaturesPage.SuspendLayout();
+            this._FeaturesTabControl.SuspendLayout();
             this._DataGridPage.SuspendLayout();
             this._PlotToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _MainSplitContainer
             // 
+            this._MainSplitContainer.Cursor = System.Windows.Forms.Cursors.Default;
             this._MainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._MainSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this._MainSplitContainer.Location = new System.Drawing.Point(2, 2);
@@ -85,15 +92,18 @@
             // _MainSplitContainer.Panel1
             // 
             this._MainSplitContainer.Panel1.Controls.Add(this._LeftSplitContainer);
-            this._MainSplitContainer.Panel1MinSize = 250;
+            this._MainSplitContainer.Panel1MinSize = 1;
             // 
             // _MainSplitContainer.Panel2
             // 
             this._MainSplitContainer.Panel2.Controls.Add(this._MainTabControl);
             this._MainSplitContainer.Panel2.Controls.Add(this._PlotToolStrip);
             this._MainSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this._MainSplitContainer.Panel2MinSize = 100;
             this._MainSplitContainer.Size = new System.Drawing.Size(932, 475);
+            this._MainSplitContainer.SplitterButtonStyle = NKnife.GUI.WinForm.CollapsibleSplitContainer.ButtonStyle.ScrollBar;
             this._MainSplitContainer.SplitterDistance = 250;
+            this._MainSplitContainer.SplitterWidth = 22;
             this._MainSplitContainer.TabIndex = 0;
             // 
             // _LeftSplitContainer
@@ -158,37 +168,78 @@
             // _MainTabControl
             // 
             this._MainTabControl.Controls.Add(this._PlotPage);
+            this._MainTabControl.Controls.Add(this._FeaturesPage);
             this._MainTabControl.Controls.Add(this._DataGridPage);
-            this._MainTabControl.Controls.Add(this._TempTabPage);
             this._MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._MainTabControl.ItemSize = new System.Drawing.Size(100, 24);
             this._MainTabControl.Location = new System.Drawing.Point(0, 27);
             this._MainTabControl.Name = "_MainTabControl";
             this._MainTabControl.Padding = new System.Drawing.Point(18, 3);
             this._MainTabControl.SelectedIndex = 0;
-            this._MainTabControl.Size = new System.Drawing.Size(678, 448);
+            this._MainTabControl.Size = new System.Drawing.Size(660, 448);
             this._MainTabControl.TabIndex = 0;
             // 
             // _PlotPage
             // 
-            this._PlotPage.Controls.Add(this._PlotSplitContainer);
+            this._PlotPage.Controls.Add(this._RealtimePlotSplitContainer);
             this._PlotPage.Location = new System.Drawing.Point(4, 28);
             this._PlotPage.Name = "_PlotPage";
             this._PlotPage.Padding = new System.Windows.Forms.Padding(3);
-            this._PlotPage.Size = new System.Drawing.Size(670, 416);
+            this._PlotPage.Size = new System.Drawing.Size(652, 416);
             this._PlotPage.TabIndex = 0;
-            this._PlotPage.Text = "实时图表";
+            this._PlotPage.Text = "实时图";
             this._PlotPage.UseVisualStyleBackColor = true;
             // 
-            // _PlotSplitContainer
+            // _RealtimePlotSplitContainer
             // 
-            this._PlotSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._PlotSplitContainer.Location = new System.Drawing.Point(3, 3);
-            this._PlotSplitContainer.Name = "_PlotSplitContainer";
-            this._PlotSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this._PlotSplitContainer.Size = new System.Drawing.Size(664, 410);
-            this._PlotSplitContainer.SplitterDistance = 250;
-            this._PlotSplitContainer.TabIndex = 2;
+            this._RealtimePlotSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._RealtimePlotSplitContainer.Location = new System.Drawing.Point(3, 3);
+            this._RealtimePlotSplitContainer.Name = "_RealtimePlotSplitContainer";
+            this._RealtimePlotSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // _RealtimePlotSplitContainer.Panel1
+            // 
+            this._RealtimePlotSplitContainer.Panel1.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // _RealtimePlotSplitContainer.Panel2
+            // 
+            this._RealtimePlotSplitContainer.Panel2.BackColor = System.Drawing.Color.Transparent;
+            this._RealtimePlotSplitContainer.Size = new System.Drawing.Size(646, 410);
+            this._RealtimePlotSplitContainer.SplitterDistance = 250;
+            this._RealtimePlotSplitContainer.TabIndex = 2;
+            // 
+            // _FeaturesPage
+            // 
+            this._FeaturesPage.Controls.Add(this._FeaturesTabControl);
+            this._FeaturesPage.Location = new System.Drawing.Point(4, 28);
+            this._FeaturesPage.Name = "_FeaturesPage";
+            this._FeaturesPage.Padding = new System.Windows.Forms.Padding(3);
+            this._FeaturesPage.Size = new System.Drawing.Size(652, 416);
+            this._FeaturesPage.TabIndex = 2;
+            this._FeaturesPage.Text = "特性";
+            this._FeaturesPage.UseVisualStyleBackColor = true;
+            // 
+            // _FeaturesTabControl
+            // 
+            this._FeaturesTabControl.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this._FeaturesTabControl.Controls.Add(this.tabPage1);
+            this._FeaturesTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._FeaturesTabControl.Location = new System.Drawing.Point(3, 3);
+            this._FeaturesTabControl.Multiline = true;
+            this._FeaturesTabControl.Name = "_FeaturesTabControl";
+            this._FeaturesTabControl.SelectedIndex = 0;
+            this._FeaturesTabControl.Size = new System.Drawing.Size(646, 410);
+            this._FeaturesTabControl.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(24, 4);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(618, 402);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "温度特性";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // _DataGridPage
             // 
@@ -196,7 +247,7 @@
             this._DataGridPage.Location = new System.Drawing.Point(4, 28);
             this._DataGridPage.Name = "_DataGridPage";
             this._DataGridPage.Padding = new System.Windows.Forms.Padding(3);
-            this._DataGridPage.Size = new System.Drawing.Size(670, 416);
+            this._DataGridPage.Size = new System.Drawing.Size(652, 416);
             this._DataGridPage.TabIndex = 1;
             this._DataGridPage.Text = "实时数据";
             this._DataGridPage.UseVisualStyleBackColor = true;
@@ -207,18 +258,8 @@
             this._CollectDataList.FormattingEnabled = true;
             this._CollectDataList.Location = new System.Drawing.Point(3, 3);
             this._CollectDataList.Name = "_CollectDataList";
-            this._CollectDataList.Size = new System.Drawing.Size(664, 410);
+            this._CollectDataList.Size = new System.Drawing.Size(646, 410);
             this._CollectDataList.TabIndex = 0;
-            // 
-            // _TempTabPage
-            // 
-            this._TempTabPage.Location = new System.Drawing.Point(4, 28);
-            this._TempTabPage.Name = "_TempTabPage";
-            this._TempTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this._TempTabPage.Size = new System.Drawing.Size(670, 416);
-            this._TempTabPage.TabIndex = 2;
-            this._TempTabPage.Text = "温度特性图";
-            this._TempTabPage.UseVisualStyleBackColor = true;
             // 
             // _PlotToolStrip
             // 
@@ -241,7 +282,7 @@
             this._StandardDeviationRangeComboBox});
             this._PlotToolStrip.Location = new System.Drawing.Point(0, 2);
             this._PlotToolStrip.Name = "_PlotToolStrip";
-            this._PlotToolStrip.Size = new System.Drawing.Size(678, 25);
+            this._PlotToolStrip.Size = new System.Drawing.Size(660, 25);
             this._PlotToolStrip.TabIndex = 0;
             this._PlotToolStrip.Text = "toolStrip1";
             // 
@@ -357,6 +398,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(71, 22);
+            this.toolStripLabel1.Text = "标准差范围:";
+            // 
             // _StandardDeviationRangeComboBox
             // 
             this._StandardDeviationRangeComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
@@ -370,12 +417,6 @@
             this._StandardDeviationRangeComboBox.Name = "_StandardDeviationRangeComboBox";
             this._StandardDeviationRangeComboBox.Size = new System.Drawing.Size(75, 25);
             this._StandardDeviationRangeComboBox.Text = "100";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(71, 22);
-            this.toolStripLabel1.Text = "标准差范围:";
             // 
             // DigitMultiMeterView
             // 
@@ -400,8 +441,10 @@
             this.groupBox2.ResumeLayout(false);
             this._MainTabControl.ResumeLayout(false);
             this._PlotPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._PlotSplitContainer)).EndInit();
-            this._PlotSplitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._RealtimePlotSplitContainer)).EndInit();
+            this._RealtimePlotSplitContainer.ResumeLayout(false);
+            this._FeaturesPage.ResumeLayout(false);
+            this._FeaturesTabControl.ResumeLayout(false);
             this._DataGridPage.ResumeLayout(false);
             this._PlotToolStrip.ResumeLayout(false);
             this._PlotToolStrip.PerformLayout();
@@ -411,7 +454,7 @@
 
         #endregion
 
-        protected System.Windows.Forms.SplitContainer _MainSplitContainer;
+        protected CollapsibleSplitContainer _MainSplitContainer;
         protected System.Windows.Forms.SplitContainer _LeftSplitContainer;
         protected System.Windows.Forms.TabControl _MainTabControl;
         protected System.Windows.Forms.TabPage _PlotPage;
@@ -419,7 +462,7 @@
         protected System.Windows.Forms.GroupBox _ParamsGroupBox;
         protected System.Windows.Forms.GroupBox groupBox2;
         protected System.Windows.Forms.ToolStrip _PlotToolStrip;
-        protected System.Windows.Forms.SplitContainer _PlotSplitContainer;
+        protected System.Windows.Forms.SplitContainer _RealtimePlotSplitContainer;
         protected System.Windows.Forms.ToolStripButton _StartStripButton;
         protected System.Windows.Forms.ToolStripButton _StopStripButton;
         protected System.Windows.Forms.ToolStripButton _SaveStripButton;
@@ -436,9 +479,11 @@
         protected System.Windows.Forms.ToolStripLabel toolStripLabel3;
         protected System.Windows.Forms.ToolStripTextBox _IntervalTextBox;
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.TabPage _TempTabPage;
+        private System.Windows.Forms.TabPage _FeaturesPage;
         private System.Windows.Forms.ToolStripButton _ClearDataToolStripButton;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripComboBox _StandardDeviationRangeComboBox;
+        private System.Windows.Forms.TabControl _FeaturesTabControl;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common;
 using MeterKnife.Common.Base;
+using MeterKnife.Common.Controls.Plots;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
@@ -31,72 +32,29 @@ namespace MeterKnife.Instruments
 
         private readonly FiguredData _FiguredData = new FiguredData();
         private readonly ScpiProtocolHandler _Handler = new ScpiProtocolHandler();
-        private readonly PlotModel _MainModel;
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
-        private readonly UtilityRandom _Random = new UtilityRandom();
         private bool _IsDispose;
 
-        protected LineSeries _MainLineSeries = new LineSeries();
-        protected LinearAxis _MainValueAxis = new LinearAxis();
         private bool _OnCollect; //是否正在采集
         protected BaseParamPanel _Panel;
 
-        protected LineSeries _TemperatureCharacteristicLineSeries = new LineSeries();
-        protected LinearAxis _TemperatureCharacteristicValueAxis = new LinearAxis();
-        protected LineSeries _TemperatureLineSeries = new LineSeries();
-        protected LinearAxis _TemperatureValueAxis = new LinearAxis();
+        protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
+        protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
 
         public DigitMultiMeterView()
         {
             InitializeComponent();
+            _RealtimePlotSplitContainer.Panel1.Controls.Add(_DataPlot);
+            _RealtimePlotSplitContainer.Panel2.Controls.Add(_TempPlot);
 
             SetStripButtonState(false);
+            SetStandardDeviationRange();
             _MeterKernel.Collected += (s, e) =>
             {
                 if (e.GpibAddress == _Meter.GpibAddress)
                     SetStripButtonState(e.IsCollected);
             };
 
-            PlotModel temperatureModel = BuildTemperaturePlogModel();
-            var temperaturePlot = new PlotView
-            {
-                Dock = DockStyle.Fill,
-                PanCursor = Cursors.Hand,
-                BackColor = Color.White,
-                ZoomHorizontalCursor = Cursors.SizeWE,
-                ZoomRectangleCursor = Cursors.SizeNWSE,
-                ZoomVerticalCursor = Cursors.SizeNS,
-                Model = temperatureModel
-            };
-            _PlotSplitContainer.Panel2.Controls.Add(temperaturePlot);
-
-            PlotModel temperatureCharacteristicModel = BuildTemperatureCharacteristicPlogModel();
-            var temperatureCharacteristicPlot = new PlotView
-            {
-                Dock = DockStyle.Fill,
-                PanCursor = Cursors.Hand,
-                BackColor = Color.White,
-                ZoomHorizontalCursor = Cursors.SizeWE,
-                ZoomRectangleCursor = Cursors.SizeNWSE,
-                ZoomVerticalCursor = Cursors.SizeNS,
-                Model = temperatureCharacteristicModel
-            };
-            _TempTabPage.Controls.Add(temperatureCharacteristicPlot);
-
-            _MainModel = BuildMainPlogModel();
-            var mainPlot = new PlotView
-            {
-                Dock = DockStyle.Fill,
-                PanCursor = Cursors.Hand,
-                BackColor = Color.White,
-                ZoomHorizontalCursor = Cursors.SizeWE,
-                ZoomRectangleCursor = Cursors.SizeNWSE,
-                ZoomVerticalCursor = Cursors.SizeNS,
-                Model = _MainModel
-            };
-            _PlotSplitContainer.Panel1.Controls.Add(mainPlot);
-
-            SetStandardDeviationRange();
             _StandardDeviationRangeComboBox.TextUpdate += (s, e) => SetStandardDeviationRange();
             _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
         }
@@ -154,104 +112,6 @@ namespace MeterKnife.Instruments
             }
         }
 
-        private void _FiguredData_ReceviedCollectData(object sender, CollectDataEventArgs e)
-        {
-            CollectData data = e.CollectData;
-            string item = string.Format("{0}\t{1}\t{2}", data.DateTime, data.Data, data.Temperature);
-            _CollectDataList.ThreadSafeInvoke(() => _CollectDataList.Items.Insert(0, item));
-        }
-
-        private PlotModel BuildMainPlogModel()
-        {
-            var model = new PlotModel();
-
-            _MainValueAxis.MaximumPadding = 0;
-            _MainValueAxis.MinimumPadding = 0;
-            _MainValueAxis.Maximum = 15;
-            _MainValueAxis.Minimum = 5;
-            _MainValueAxis.Position = AxisPosition.Left;
-            model.Axes.Add(_MainValueAxis);
-
-            var timeAxis = new DateTimeAxis(); //时间刻度
-            timeAxis.MajorGridlineStyle = LineStyle.Solid;
-            timeAxis.MaximumPadding = 0;
-            timeAxis.MinimumPadding = 0;
-            timeAxis.MinorGridlineStyle = LineStyle.Dot;
-            timeAxis.Position = AxisPosition.Bottom;
-            model.Axes.Add(timeAxis);
-
-            _MainLineSeries.Color = OxyColor.FromArgb(255, 78, 154, 6);
-            _MainLineSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
-            model.Series.Add(_MainLineSeries);
-            return model;
-        }
-
-        private PlotModel BuildTemperaturePlogModel()
-        {
-            var mainModel = new PlotModel();
-
-            _TemperatureValueAxis.MaximumPadding = 0;
-            _TemperatureValueAxis.MinimumPadding = 0;
-            _TemperatureValueAxis.Maximum = 15;
-            _TemperatureValueAxis.Minimum = 5;
-            _TemperatureValueAxis.Position = AxisPosition.Left;
-            mainModel.Axes.Add(_TemperatureValueAxis);
-
-            var timeAxis = new DateTimeAxis(); //时间刻度
-            timeAxis.MajorGridlineStyle = LineStyle.Solid;
-            timeAxis.MaximumPadding = 0;
-            timeAxis.MinimumPadding = 0;
-            timeAxis.MinorGridlineStyle = LineStyle.Dot;
-            timeAxis.Position = AxisPosition.Bottom;
-            mainModel.Axes.Add(timeAxis);
-
-            _TemperatureLineSeries.Color = OxyColor.FromArgb(255, 124, 124, 248);
-            _TemperatureLineSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
-            mainModel.Series.Add(_TemperatureLineSeries);
-            return mainModel;
-        }
-
-        private PlotModel BuildTemperatureCharacteristicPlogModel()
-        {
-            var model = new PlotModel();
-
-            _TemperatureCharacteristicValueAxis.MaximumPadding = 0;
-            _TemperatureCharacteristicValueAxis.MinimumPadding = 0;
-            _TemperatureCharacteristicValueAxis.Maximum = 15;
-            _TemperatureCharacteristicValueAxis.Minimum = 5;
-            _TemperatureCharacteristicValueAxis.Position = AxisPosition.Left;
-            model.Axes.Add(_TemperatureCharacteristicValueAxis);
-
-            var timeAxis = new DateTimeAxis(); //时间刻度
-            timeAxis.MajorGridlineStyle = LineStyle.Solid;
-            timeAxis.MaximumPadding = 0;
-            timeAxis.MinimumPadding = 0;
-            timeAxis.MinorGridlineStyle = LineStyle.Dot;
-            timeAxis.Position = AxisPosition.Bottom;
-            model.Axes.Add(timeAxis);
-
-            _TemperatureCharacteristicLineSeries.Color = OxyColor.FromArgb(255, 124, 124, 248);
-            _TemperatureCharacteristicLineSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
-            model.Series.Add(_TemperatureCharacteristicLineSeries);
-            return model;
-        }
-
-        private void _StartStripButton_Click(object sender, EventArgs e)
-        {
-            if (_FiguredData.HasData)
-            {
-                DialogResult rs = MessageBox.Show(this, "是否延续采集?\r\n点击“是”延续采集数据并记录；\r\n点击“否”将清空原有数据重新开始记录。",
-                    "数据采集", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-                if (rs == DialogResult.No)
-                {
-                    _FiguredData.Clear();
-                    _MainLineSeries.Points.Clear();
-                    _TemperatureLineSeries.Points.Clear();
-                }
-            }
-            StartCollect();
-        }
-
         protected virtual void StartCollect()
         {
             _Handler.ProtocolRecevied += OnProtocolRecevied;
@@ -262,10 +122,6 @@ namespace MeterKnife.Instruments
             thread.Start();
         }
 
-        private void _StopStripButton_Click(object sender, EventArgs e)
-        {
-            StopCollect();
-        }
 
         protected virtual void StopCollect()
         {
@@ -342,11 +198,36 @@ namespace MeterKnife.Instruments
             return list;
         }
 
+        private void _FiguredData_ReceviedCollectData(object sender, CollectDataEventArgs e)
+        {
+            CollectData data = e.CollectData;
+            string item = string.Format("{0}\t{1}\t{2}", data.DateTime, data.Data, data.Temperature);
+            _CollectDataList.ThreadSafeInvoke(() => _CollectDataList.Items.Insert(0, item));
+        }
+
+        private void _StartStripButton_Click(object sender, EventArgs e)
+        {
+            if (_FiguredData.HasData)
+            {
+                DialogResult rs = MessageBox.Show(this, "是否延续采集?\r\n点击“是”延续采集数据并记录；\r\n点击“否”将清空原有数据重新开始记录。",
+                    "数据采集", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                if (rs == DialogResult.No)
+                {
+                    _FiguredData.Clear();
+                }
+            }
+            StartCollect();
+        }
+
+        private void _StopStripButton_Click(object sender, EventArgs e)
+        {
+            StopCollect();
+        }
+
         private void _SaveStripButton_Click(object sender, EventArgs e)
         {
             var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
-            string random = _Random.GetString(3, UtilityRandom.RandomCharType.Uppercased);
-            string name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), random, "s3db");
+            string name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), _Meter.Name, "s3db");
             string full = Path.Combine(DI.Get<MeterKnifeUserData>().GetValue(MeterKnifeUserData.DATA_PATH, string.Empty), name);
             if (_FiguredData.Save(full))
             {
@@ -361,8 +242,7 @@ namespace MeterKnife.Instruments
             {
                 string dir = dialog.SelectedPath;
                 var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
-                string random = _Random.GetString(3, UtilityRandom.RandomCharType.Uppercased);
-                string name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), random, "xls");
+                string name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), _Meter.Name, "xls");
                 string full = Path.Combine(dir, name);
                 var progressDialog = new ExportProgressDialog();
                 ExportRowCountChanged += (s, ex) => progressDialog.SetCurrentCount(ex.Item);
@@ -377,24 +257,9 @@ namespace MeterKnife.Instruments
             }
         }
 
-        private event EventHandler<EventArgs<int>> ExportRowCountChanged;
-
-        private void AddRowCount(int rowCount)
-        {
-            OnExportRowCountChanged(new EventArgs<int>(rowCount));
-        }
-
         private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
         {
             _FiguredData.Clear();
-
-            _MainLineSeries.Points.Clear();
-            _MainLineSeries.PlotModel.InvalidatePlot(true);
-            _MainModel.Title = string.Empty;
-
-            _TemperatureLineSeries.Points.Clear();
-            _TemperatureLineSeries.PlotModel.InvalidatePlot(true);
-
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
 
@@ -421,26 +286,7 @@ namespace MeterKnife.Instruments
                 if (double.TryParse(data, out yzl))
                 {
                     _FiguredData.AddTemperature(yzl);
-                    if (Math.Abs(_FiguredData.TemperatureMax.Output) > 0 && Math.Abs(_FiguredData.TemperatureMin.Output) > 0)
-                    {
-                        double j = (Math.Abs(_FiguredData.TemperatureMax.Output - _FiguredData.TemperatureMin.Output))/4;
-                        if (Math.Abs(j) <= 0)
-                        {
-                            _TemperatureValueAxis.Maximum = _FiguredData.TemperatureMax.Output + 0.02;
-                            _TemperatureValueAxis.Minimum = _FiguredData.TemperatureMax.Output - 0.02;
-                        }
-                        else
-                        {
-                            if (_TemperatureValueAxis.Maximum < _FiguredData.TemperatureMax.Output + j)
-                                _TemperatureValueAxis.Maximum = _FiguredData.TemperatureMax.Output + j;
-                            if (_TemperatureValueAxis.Minimum > _FiguredData.TemperatureMin.Output - j)
-                                _TemperatureValueAxis.Minimum = _FiguredData.TemperatureMin.Output - j;
-                        }
-                    }
-
-                    DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
-                    _TemperatureLineSeries.Points.Add(v);
-                    _TemperatureLineSeries.PlotModel.InvalidatePlot(true);
+                    this.ThreadSafeInvoke(() => _TempPlot.Update(_FiguredData));
                 }
             }
             else
@@ -453,25 +299,18 @@ namespace MeterKnife.Instruments
                 if (double.TryParse(data, out yzl))
                 {
                     _FiguredData.Add(yzl);
-
-                    if (Math.Abs(_FiguredData.Max.Output) > 0 && Math.Abs(_FiguredData.Min.Output) > 0)
-                    {
-                        double j = (Math.Abs(_FiguredData.Max.Output - _FiguredData.Min.Output))/4;
-                        if (Math.Abs(j) > 0)
-                        {
-                            _MainValueAxis.Maximum = _FiguredData.Max.Output + j;
-                            _MainValueAxis.Minimum = _FiguredData.Min.Output - j;
-                        }
-                    }
-
-                    DataPoint v = DateTimeAxis.CreateDataPoint(DateTime.Now, yzl);
-                    _MainLineSeries.Points.Add(v);
-                    _MainLineSeries.PlotModel.InvalidatePlot(true);
-                    _MainModel.Title = yzl.ToString();
+                    this.ThreadSafeInvoke(() => _DataPlot.Update(_FiguredData));
                 }
             }
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
+
+        private void AddRowCount(int rowCount)
+        {
+            OnExportRowCountChanged(new EventArgs<int>(rowCount));
+        }
+
+        private event EventHandler<EventArgs<int>> ExportRowCountChanged;
 
         private void OnExportRowCountChanged(EventArgs<int> e)
         {
