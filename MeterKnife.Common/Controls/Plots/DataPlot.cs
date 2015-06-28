@@ -48,14 +48,21 @@ namespace MeterKnife.Common.Controls.Plots
             timeAxis.Position = AxisPosition.Bottom;
             _PlotModel.Axes.Add(timeAxis);
 
-            _Series.Color = OxyColor.FromArgb(255, 78, 154, 6);
+            _Series.Color = GetColor();
             _Series.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
             _PlotModel.Series.Add(_Series);
             return _PlotModel;
         }
 
-        protected virtual void UpdateRange(double max, double min)
+        protected virtual OxyColor GetColor()
         {
+            return OxyColor.FromArgb(255, 78, 154, 6);
+        }
+
+        protected virtual void UpdateRange(FiguredData fd)
+        {
+            var max = fd.Max.Output;
+            var min = fd.Min.Output;
             if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
             {
                 double j = (Math.Abs(max - min))/4;
@@ -85,7 +92,7 @@ namespace MeterKnife.Common.Controls.Plots
             _Series.Points.Add(dataPoint);
             this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
 
-            UpdateRange(fd.Max.Output, fd.Min.Output);
+            UpdateRange(fd);
         }
 
         public virtual void Clear()

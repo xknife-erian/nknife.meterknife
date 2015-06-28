@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MeterKnife.Common.DataModels;
+using OxyPlot;
 using OxyPlot.Axes;
 
 namespace MeterKnife.Common.Controls.Plots
@@ -12,6 +13,11 @@ namespace MeterKnife.Common.Controls.Plots
         public override string ValueHead
         {
             get { return "temperature"; }
+        }
+
+        protected override OxyColor GetColor()
+        {
+            return OxyColor.FromArgb(255, 86, 96, 225);
         }
 
         public override void Update(FiguredData fd)
@@ -29,7 +35,7 @@ namespace MeterKnife.Common.Controls.Plots
             _Series.Points.Add(dataPoint);
             _Series.PlotModel.InvalidatePlot(true);
 
-            UpdateRange(fd.TemperatureMax.Output, fd.TemperatureMin.Output);
+            UpdateRange(fd);
         }
     }
 }

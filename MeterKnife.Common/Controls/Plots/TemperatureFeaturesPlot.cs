@@ -7,17 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
+using NPOI.HSSF.Record.Chart;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
+using MarkerType = OxyPlot.MarkerType;
 
 namespace MeterKnife.Common.Controls.Plots
 {
     public partial class TemperatureFeaturesPlot : UserControl
     {
         protected PlotModel _PlotModel = new PlotModel();
-        protected ScatterSeries _Series = new ScatterSeries();
+        protected ScatterSeries _DataSeries = new ScatterSeries();
+        protected LineSeries _QuadraticCurveFittingSeries = new LineSeries();
 
         protected LinearAxis _DataAxis = new LinearAxis();
         protected LinearAxis _TempAxis = new LinearAxis();
@@ -54,13 +57,22 @@ namespace MeterKnife.Common.Controls.Plots
             _TempAxis.Position = AxisPosition.Bottom;
             _PlotModel.Axes.Add(_TempAxis);
 
-            _Series.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
-            _PlotModel.Series.Add(_Series);
+            _DataSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
+            _PlotModel.Series.Add(_DataSeries);
+
+            _QuadraticCurveFittingSeries.MarkerType = MarkerType.Circle;
+            _QuadraticCurveFittingSeries.Smooth = true;
+            _QuadraticCurveFittingSeries.Color = OxyColor.FromArgb(255, 255, 100, 100);
+            _QuadraticCurveFittingSeries.MarkerFill = OxyColor.FromArgb(255, 255, 100, 100);
+            _PlotModel.Series.Add(_QuadraticCurveFittingSeries);
+
             return _PlotModel;
         }
 
-        protected virtual void UpdateRange(double max, double min)
+        protected virtual void UpdateRange(FiguredData fd)
         {
+            var max = fd.Max.Output;
+            var min = fd.Min.Output;
             if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
             {
                 double j = (Math.Abs(max - min)) / 4;
@@ -70,23 +82,68 @@ namespace MeterKnife.Common.Controls.Plots
                     _DataAxis.Minimum = min - j;
                 }
             }
+            max = fd.TemperatureMax.Output;
+            min = fd.TemperatureMin.Output;
+            if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
+            {
+                double j = (Math.Abs(max - min)) / 4;
+                if (Math.Abs(j) > 0)
+                {
+                    _TempAxis.Maximum = max + j;
+                    _TempAxis.Minimum = min - j;
+                }
+            }
         }
 
         public virtual void Update(FiguredData fd)
         {
-            UpdateRange(fd.Max.Output, fd.Min.Output);
+            Clear();
+            UpdateRange(fd);
+
+            var lsqr = new LstSquQuadRegr();
             foreach (DataRow row in fd.DataSet.Tables[1].Rows)
             {
-                var point = new DataPoint((double)row[2], (double)row[1]);
-                //_Series.Points.Add(point);
+                var x = (double) row[2];//温度
+                var y = (double) row[1];//采集值
+                if (Math.Abs(x) <= 0)
+                    continue;
+                var point = new ScatterPoint(x, y);
+                _DataSeries.Points.Add(point);
+                lsqr.AddPoints(x, y);
             }
-            this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
+
+            var a = lsqr.aTerm();
+            var b = lsqr.bTerm();
+            var c = lsqr.cTerm();
+
+            var min = fd.TemperatureMin.Output;
+            var max = fd.TemperatureMax.Output;
+            var f = (max - min)/100;
+            var lx = min;
+            double yoffset = 0;
+            for (int i = 1; i <= 100; i++)
+            {
+                var ly = a*lx*lx + b*lx + c;
+                if (i == 1)
+                {
+                    yoffset = fd.Min.Output - ly;
+                }
+                ly += yoffset;
+                _QuadraticCurveFittingSeries.Points.Add(new DataPoint(lx, ly));
+                lx += f;
+            }
+            this.ThreadSafeInvoke(() =>
+            {
+                _DataSeries.PlotModel.InvalidatePlot(true);
+                _QuadraticCurveFittingSeries.PlotModel.InvalidatePlot(true);
+            });
         }
 
         public virtual void Clear()
         {
-            _Series.Points.Clear();
-            this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
+            _DataSeries.Points.Clear();
+            _QuadraticCurveFittingSeries.Points.Clear();
+            this.ThreadSafeInvoke(() => _DataSeries.PlotModel.InvalidatePlot(true));
         }
     }
 }

@@ -41,13 +41,17 @@ namespace MeterKnife.Instruments
         protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
         protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
         protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
+        protected TemperatureTrendPlot _TempTrendPlot = new TemperatureTrendPlot();
+        protected StandardDeviationPlot _SdPlot = new StandardDeviationPlot();
 
         public DigitMultiMeterView()
         {
             InitializeComponent();
             _RealtimePlotSplitContainer.Panel1.Controls.Add(_DataPlot);
             _RealtimePlotSplitContainer.Panel2.Controls.Add(_TempPlot);
-            _TemperatureFeaturesTabPage.Controls.Add(_TempFeaturesPlot);
+            _TempFeaturesPanel.Controls.Add(_TempFeaturesPlot);
+            _TempTrendPanel.Controls.Add(_TempTrendPlot);
+            _SdPanel.Controls.Add(_SdPlot);
 
             SetStripButtonState(false);
             SetStandardDeviationRange();
@@ -308,6 +312,13 @@ namespace MeterKnife.Instruments
             EventHandler<EventArgs<int>> handler = ExportRowCountChanged;
             if (handler != null)
                 handler(this, e);
+        }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+            _TempFeaturesPlot.Update(_FiguredData);
+            _TempTrendPlot.Update(_FiguredData);
+            _SdPlot.Update(_FiguredData);
         }
     }
 }

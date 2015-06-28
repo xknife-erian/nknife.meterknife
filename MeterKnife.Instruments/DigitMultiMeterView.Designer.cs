@@ -30,6 +30,7 @@ namespace MeterKnife.Instruments
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DigitMultiMeterView));
             this._MainSplitContainer = new NKnife.GUI.WinForm.CollapsibleSplitContainer();
             this._LeftSplitContainer = new System.Windows.Forms.SplitContainer();
             this._ParamsGroupBox = new System.Windows.Forms.GroupBox();
@@ -39,11 +40,18 @@ namespace MeterKnife.Instruments
             this._MainTabControl = new System.Windows.Forms.TabControl();
             this._PlotPage = new System.Windows.Forms.TabPage();
             this._RealtimePlotSplitContainer = new System.Windows.Forms.SplitContainer();
+            this._DataGridPage = new System.Windows.Forms.TabPage();
+            this._CollectDataList = new System.Windows.Forms.ListBox();
             this._FeaturesPage = new System.Windows.Forms.TabPage();
             this._FeaturesTabControl = new System.Windows.Forms.TabControl();
             this._TemperatureFeaturesTabPage = new System.Windows.Forms.TabPage();
-            this._DataGridPage = new System.Windows.Forms.TabPage();
-            this._CollectDataList = new System.Windows.Forms.ListBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this._TempFeaturesPanel = new System.Windows.Forms.Panel();
+            this._SdPanel = new System.Windows.Forms.Panel();
+            this._TempTrendPanel = new System.Windows.Forms.Panel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
             this._StartStripButton = new System.Windows.Forms.ToolStripButton();
             this._StopStripButton = new System.Windows.Forms.ToolStripButton();
@@ -75,9 +83,19 @@ namespace MeterKnife.Instruments
             this._PlotPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._RealtimePlotSplitContainer)).BeginInit();
             this._RealtimePlotSplitContainer.SuspendLayout();
+            this._DataGridPage.SuspendLayout();
             this._FeaturesPage.SuspendLayout();
             this._FeaturesTabControl.SuspendLayout();
-            this._DataGridPage.SuspendLayout();
+            this._TemperatureFeaturesTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this._PlotToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,10 +200,10 @@ namespace MeterKnife.Instruments
             // _PlotPage
             // 
             this._PlotPage.Controls.Add(this._RealtimePlotSplitContainer);
-            this._PlotPage.Location = new System.Drawing.Point(4, 28);
+            this._PlotPage.Location = new System.Drawing.Point(4, 34);
             this._PlotPage.Name = "_PlotPage";
             this._PlotPage.Padding = new System.Windows.Forms.Padding(3);
-            this._PlotPage.Size = new System.Drawing.Size(652, 416);
+            this._PlotPage.Size = new System.Drawing.Size(652, 410);
             this._PlotPage.TabIndex = 0;
             this._PlotPage.Text = "实时图";
             this._PlotPage.UseVisualStyleBackColor = true;
@@ -204,13 +222,34 @@ namespace MeterKnife.Instruments
             // _RealtimePlotSplitContainer.Panel2
             // 
             this._RealtimePlotSplitContainer.Panel2.BackColor = System.Drawing.Color.Transparent;
-            this._RealtimePlotSplitContainer.Size = new System.Drawing.Size(646, 410);
-            this._RealtimePlotSplitContainer.SplitterDistance = 250;
+            this._RealtimePlotSplitContainer.Size = new System.Drawing.Size(646, 404);
+            this._RealtimePlotSplitContainer.SplitterDistance = 246;
             this._RealtimePlotSplitContainer.TabIndex = 2;
+            // 
+            // _DataGridPage
+            // 
+            this._DataGridPage.Controls.Add(this._CollectDataList);
+            this._DataGridPage.Location = new System.Drawing.Point(4, 34);
+            this._DataGridPage.Name = "_DataGridPage";
+            this._DataGridPage.Padding = new System.Windows.Forms.Padding(3);
+            this._DataGridPage.Size = new System.Drawing.Size(652, 410);
+            this._DataGridPage.TabIndex = 1;
+            this._DataGridPage.Text = "实时数据";
+            this._DataGridPage.UseVisualStyleBackColor = true;
+            // 
+            // _CollectDataList
+            // 
+            this._CollectDataList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._CollectDataList.FormattingEnabled = true;
+            this._CollectDataList.Location = new System.Drawing.Point(3, 3);
+            this._CollectDataList.Name = "_CollectDataList";
+            this._CollectDataList.Size = new System.Drawing.Size(646, 404);
+            this._CollectDataList.TabIndex = 0;
             // 
             // _FeaturesPage
             // 
             this._FeaturesPage.Controls.Add(this._FeaturesTabControl);
+            this._FeaturesPage.Controls.Add(this.toolStrip1);
             this._FeaturesPage.Location = new System.Drawing.Point(4, 34);
             this._FeaturesPage.Name = "_FeaturesPage";
             this._FeaturesPage.Padding = new System.Windows.Forms.Padding(3);
@@ -224,43 +263,103 @@ namespace MeterKnife.Instruments
             this._FeaturesTabControl.Controls.Add(this._TemperatureFeaturesTabPage);
             this._FeaturesTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._FeaturesTabControl.ItemSize = new System.Drawing.Size(60, 22);
-            this._FeaturesTabControl.Location = new System.Drawing.Point(3, 3);
+            this._FeaturesTabControl.Location = new System.Drawing.Point(3, 28);
             this._FeaturesTabControl.Multiline = true;
             this._FeaturesTabControl.Name = "_FeaturesTabControl";
             this._FeaturesTabControl.Padding = new System.Drawing.Point(10, 3);
             this._FeaturesTabControl.SelectedIndex = 0;
-            this._FeaturesTabControl.Size = new System.Drawing.Size(646, 404);
+            this._FeaturesTabControl.Size = new System.Drawing.Size(646, 379);
             this._FeaturesTabControl.TabIndex = 0;
             // 
             // _TemperatureFeaturesTabPage
             // 
+            this._TemperatureFeaturesTabPage.Controls.Add(this.splitContainer1);
             this._TemperatureFeaturesTabPage.Location = new System.Drawing.Point(4, 26);
             this._TemperatureFeaturesTabPage.Name = "_TemperatureFeaturesTabPage";
             this._TemperatureFeaturesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this._TemperatureFeaturesTabPage.Size = new System.Drawing.Size(638, 374);
+            this._TemperatureFeaturesTabPage.Size = new System.Drawing.Size(638, 349);
             this._TemperatureFeaturesTabPage.TabIndex = 0;
             this._TemperatureFeaturesTabPage.Text = "温度特性";
             this._TemperatureFeaturesTabPage.UseVisualStyleBackColor = true;
             // 
-            // _DataGridPage
+            // splitContainer1
             // 
-            this._DataGridPage.Controls.Add(this._CollectDataList);
-            this._DataGridPage.Location = new System.Drawing.Point(4, 28);
-            this._DataGridPage.Name = "_DataGridPage";
-            this._DataGridPage.Padding = new System.Windows.Forms.Padding(3);
-            this._DataGridPage.Size = new System.Drawing.Size(652, 416);
-            this._DataGridPage.TabIndex = 1;
-            this._DataGridPage.Text = "实时数据";
-            this._DataGridPage.UseVisualStyleBackColor = true;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // _CollectDataList
+            // splitContainer1.Panel1
             // 
-            this._CollectDataList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._CollectDataList.FormattingEnabled = true;
-            this._CollectDataList.Location = new System.Drawing.Point(3, 3);
-            this._CollectDataList.Name = "_CollectDataList";
-            this._CollectDataList.Size = new System.Drawing.Size(646, 410);
-            this._CollectDataList.TabIndex = 0;
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this._TempTrendPanel);
+            this.splitContainer1.Size = new System.Drawing.Size(632, 343);
+            this.splitContainer1.SplitterDistance = 173;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this._TempFeaturesPanel);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this._SdPanel);
+            this.splitContainer2.Size = new System.Drawing.Size(632, 173);
+            this.splitContainer2.SplitterDistance = 324;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // _TempFeaturesPanel
+            // 
+            this._TempFeaturesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._TempFeaturesPanel.Location = new System.Drawing.Point(0, 0);
+            this._TempFeaturesPanel.Name = "_TempFeaturesPanel";
+            this._TempFeaturesPanel.Size = new System.Drawing.Size(324, 173);
+            this._TempFeaturesPanel.TabIndex = 0;
+            // 
+            // _SdPanel
+            // 
+            this._SdPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._SdPanel.Location = new System.Drawing.Point(0, 0);
+            this._SdPanel.Name = "_SdPanel";
+            this._SdPanel.Size = new System.Drawing.Size(304, 173);
+            this._SdPanel.TabIndex = 0;
+            // 
+            // _TempTrendPanel
+            // 
+            this._TempTrendPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._TempTrendPanel.Location = new System.Drawing.Point(0, 0);
+            this._TempTrendPanel.Name = "_TempTrendPanel";
+            this._TempTrendPanel.Size = new System.Drawing.Size(632, 166);
+            this._TempTrendPanel.TabIndex = 0;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(646, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
             // _PlotToolStrip
             // 
@@ -444,9 +543,21 @@ namespace MeterKnife.Instruments
             this._PlotPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._RealtimePlotSplitContainer)).EndInit();
             this._RealtimePlotSplitContainer.ResumeLayout(false);
-            this._FeaturesPage.ResumeLayout(false);
-            this._FeaturesTabControl.ResumeLayout(false);
             this._DataGridPage.ResumeLayout(false);
+            this._FeaturesPage.ResumeLayout(false);
+            this._FeaturesPage.PerformLayout();
+            this._FeaturesTabControl.ResumeLayout(false);
+            this._TemperatureFeaturesTabPage.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this._PlotToolStrip.ResumeLayout(false);
             this._PlotToolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -486,5 +597,12 @@ namespace MeterKnife.Instruments
         private System.Windows.Forms.ToolStripComboBox _StandardDeviationRangeComboBox;
         private System.Windows.Forms.TabControl _FeaturesTabControl;
         private System.Windows.Forms.TabPage _TemperatureFeaturesTabPage;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Panel _TempFeaturesPanel;
+        private System.Windows.Forms.Panel _SdPanel;
+        private System.Windows.Forms.Panel _TempTrendPanel;
     }
 }

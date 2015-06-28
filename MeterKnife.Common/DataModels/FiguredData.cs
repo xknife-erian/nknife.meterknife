@@ -84,9 +84,10 @@ namespace MeterKnife.Common.DataModels
             collectTable.Columns.Add(new DataColumn("datetime", typeof (DateTime)));
             collectTable.Columns.Add(new DataColumn("value", typeof (double)));
             collectTable.Columns.Add(new DataColumn("temperature", typeof (double)));
+            collectTable.Columns.Add(new DataColumn("standard_deviation", typeof(double)));
             _DataSet.Tables.Add(collectTable);
         }
-
+        
         [Browsable(false)]
         public IMeter Meter { get; set; }
 
@@ -188,7 +189,6 @@ namespace MeterKnife.Common.DataModels
 
         public void Add(double value)
         {
-            _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature);
             string s = value.ToString();
             int n = s.Length - s.IndexOf('.') - 1;
 
@@ -200,6 +200,8 @@ namespace MeterKnife.Common.DataModels
             string t = new StringBuilder("{0:N").Append(n).Append("}").ToString();
             Ppvalue = String.Format(t, Math.Abs(Max.Output - Min.Output)); //峰峰值
             StandardDeviation.Input(value);
+
+            _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature, StandardDeviation.Output);
 
             //触发数据源发生变化
             OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
