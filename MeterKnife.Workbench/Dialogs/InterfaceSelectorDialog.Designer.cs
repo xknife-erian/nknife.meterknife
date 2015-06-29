@@ -137,7 +137,7 @@
             this._PortNumericUpDown.Size = new System.Drawing.Size(66, 21);
             this._PortNumericUpDown.TabIndex = 3;
             this._PortNumericUpDown.Value = new decimal(new int[] {
-            6035,
+            5025,
             0,
             0,
             0});

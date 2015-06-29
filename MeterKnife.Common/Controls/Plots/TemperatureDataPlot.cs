@@ -20,6 +20,13 @@ namespace MeterKnife.Common.Controls.Plots
             return OxyColor.FromArgb(255, 86, 96, 225);
         }
 
+        protected override void UpdateRange(FiguredData fd)
+        {
+            var max = fd.TemperatureMax.Output;
+            var min = fd.TemperatureMin.Output;
+            UpdateRange(max, min);
+        }
+
         public override void Update(FiguredData fd)
         {
             var yzl = SelectValue(fd);

@@ -26,8 +26,6 @@ namespace MeterKnife.Workbench.Dialogs
                 _PortNumericUpDown.Enabled = _LanRadioButton.Checked;
             };
             _SerialRadioButton.Checked = true;
-            //临时
-            _LanRadioButton.Enabled = false;
         }
 
         private void FillSerialComonbox()

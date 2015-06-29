@@ -29,7 +29,7 @@ namespace MeterKnife.Kernel.Services
 
         private readonly List<int> _PortList = new List<int>();
         private readonly Dictionary<int, SerialProtocolFilter> _ProtocolFilters = new Dictionary<int, SerialProtocolFilter>();
-        private readonly Dictionary<int, ISerialConnector> _SerialConnector = new Dictionary<int, ISerialConnector>();
+        private readonly Dictionary<int, IDataConnector> _SerialConnector = new Dictionary<int, IDataConnector>();
 
         public override bool Initialize()
         {
@@ -95,7 +95,7 @@ namespace MeterKnife.Kernel.Services
         {
             foreach (int port in _PortList)
             {
-                ISerialConnector connector;
+                IDataConnector connector;
                 if (_SerialConnector.TryGetValue(port, out connector))
                 {
                     connector.Stop();
@@ -108,7 +108,7 @@ namespace MeterKnife.Kernel.Services
 
         public override bool Start(int port)
         {
-            ISerialConnector dataConnector;
+            IDataConnector dataConnector;
             if (_SerialConnector.TryGetValue(port, out dataConnector))
             {
                 try
@@ -128,7 +128,7 @@ namespace MeterKnife.Kernel.Services
 
         public override bool Stop(int port)
         {
-            ISerialConnector connector;
+            IDataConnector connector;
             if (_SerialConnector.TryGetValue(port, out connector))
             {
                 connector.Stop();
@@ -139,7 +139,7 @@ namespace MeterKnife.Kernel.Services
 
         public override void Send(int port, byte[] data)
         {
-            ISerialConnector connector;
+            IDataConnector connector;
             if (_SerialConnector.TryGetValue(port, out connector))
             {
                 connector.SendAll(data);

@@ -63,6 +63,11 @@ namespace MeterKnife.Common.Controls.Plots
         {
             var max = fd.Max.Output;
             var min = fd.Min.Output;
+            UpdateRange(max, min);
+        }
+
+        protected virtual void UpdateRange(double max, double min)
+        {
             if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
             {
                 double j = (Math.Abs(max - min))/4;

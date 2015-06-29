@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Common.Logging;
 using MeterKnife.Common.DataModels;
 using NPOI.HSSF.Record.Chart;
 using OxyPlot;
@@ -18,6 +19,8 @@ namespace MeterKnife.Common.Controls.Plots
 {
     public partial class TemperatureFeaturesPlot : UserControl
     {
+        private static readonly ILog _logger = LogManager.GetLogger<TemperatureFeaturesPlot>();
+
         protected PlotModel _PlotModel = new PlotModel();
         protected ScatterSeries _DataSeries = new ScatterSeries();
         protected LineSeries _QuadraticCurveFittingSeries = new LineSeries();
@@ -100,37 +103,35 @@ namespace MeterKnife.Common.Controls.Plots
             Clear();
             UpdateRange(fd);
 
+            var temps = new List<double>();
             var lsqr = new LstSquQuadRegr();
             foreach (DataRow row in fd.DataSet.Tables[1].Rows)
             {
-                var x = (double) row[2];//温度
-                var y = (double) row[1];//采集值
+                var x = (double) row[2]; //温度
+                var y = (double) row[1]; //采集值
                 if (Math.Abs(x) <= 0)
                     continue;
                 var point = new ScatterPoint(x, y);
                 _DataSeries.Points.Add(point);
                 lsqr.AddPoints(x, y);
+                temps.Add(x);
             }
 
             var a = lsqr.aTerm();
             var b = lsqr.bTerm();
             var c = lsqr.cTerm();
 
-            var min = fd.TemperatureMin.Output;
-            var max = fd.TemperatureMax.Output;
-            var f = (max - min)/100;
-            var lx = min;
-            double yoffset = 0;
-            for (int i = 1; i <= 100; i++)
+            temps.Sort();
+            _logger.Info(string.Format("y={0} x*x + {1} x + {2}", a, b, c));
+            double t = 0;
+            foreach (var temp in temps)
             {
-                var ly = a*lx*lx + b*lx + c;
-                if (i == 1)
-                {
-                    yoffset = fd.Min.Output - ly;
-                }
-                ly += yoffset;
-                _QuadraticCurveFittingSeries.Points.Add(new DataPoint(lx, ly));
-                lx += f;
+                if (Math.Abs(temp - t) <= 0)
+                    continue;
+                t = temp;
+                var ly = a*temp*temp + b*temp + c;
+                _QuadraticCurveFittingSeries.Points.Add(new DataPoint(temp, ly));
+                _logger.Info(string.Format("Temp:{0}; Value:{1}", temp, ly));
             }
             this.ThreadSafeInvoke(() =>
             {
