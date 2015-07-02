@@ -75,7 +75,7 @@ namespace MeterKnife.Instruments
             _FiguredData.StandardDeviation.SetRange(range);
         }
 
-        public override void SetMeter(int port, BaseMeter meter)
+        public override void SetMeter(CarePort port, BaseMeter meter)
         {
             base.SetMeter(port, meter);
             _Comm.Bind(port, _Handler);
@@ -127,7 +127,7 @@ namespace MeterKnife.Instruments
             base.OnFormClosing(e);
             StopProtocolRecevied();
             _Comm.Remove(_Port, _Handler);
-            Dictionary<int, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
+            Dictionary<CarePort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
             dic[_Port].Remove(_Meter.GpibAddress);
         }
 

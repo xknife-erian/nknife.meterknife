@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Interfaces;
+using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
 using NKnife.Events;
-using NKnife.Interface;
-using NKnife.Tunnel;
 using NKnife.Tunnel.Base;
 
 namespace MeterKnife.Common.Base
@@ -23,9 +24,28 @@ namespace MeterKnife.Common.Base
             get { return 100; }
         }
 
+        public string Description
+        {
+            get { return "Care通讯服务"; }
+        }
+
+        /// <summary>
+        ///     是连接Care的串口
+        /// </summary>
+        public List<CarePort> Cares { get; protected set; }
+
+        void ITunnelService<byte[]>.Bind(CarePort carePort, params BaseProtocolHandler<byte[]>[] handlers)
+        {
+            Bind(carePort, handlers.Cast<CareOneProtocolHandler>().ToArray());
+        }
+
+        public abstract void Destroy();
+        public abstract void Send(CarePort carePort, byte[] data);
+
         public bool StartService()
         {
-            return Initialize();
+            IsInitialized = Initialize();
+            return IsInitialized;
         }
 
         public bool CloseService()
@@ -41,38 +61,21 @@ namespace MeterKnife.Common.Base
             }
         }
 
-        public string Description
-        {
-            get { return "Care通讯服务"; }
-        }
-
-        /// <summary>
-        /// 是连接Care的串口
-        /// </summary>
-        public List<int> Cares { get; protected set; }
-
-        void ITunnelService<byte[]>.Bind(int port, params BaseProtocolHandler<byte[]>[] handlers)
-        {
-            Bind(port, handlers.Cast<CareOneProtocolHandler>().ToArray());
-        }
-
-        public abstract void Destroy();
-        public abstract bool Start(int port);
-        public abstract bool Stop(int port);
-        public abstract void Send(int port, byte[] data);
+        public abstract bool Start(CarePort carePort);
+        public abstract bool Stop(CarePort carePort);
         public abstract bool Initialize();
 
-        public event EventHandler<EventArgs<int>> SerialInitialized;
+        public event EventHandler<EventArgs<CarePort>> SerialInitialized;
 
-        protected virtual void OnSerialInitialized(EventArgs<int> e)
+        protected virtual void OnSerialInitialized(EventArgs<CarePort> e)
         {
-            EventHandler<EventArgs<int>> handler = SerialInitialized;
+            EventHandler<EventArgs<CarePort>> handler = SerialInitialized;
             if (handler != null)
                 handler(this, e);
         }
 
-        public abstract void Bind(int port, params CareOneProtocolHandler[] handlers);
+        public abstract void Bind(CarePort carePort, params CareOneProtocolHandler[] handlers);
 
-        public abstract void Remove(int port, CareOneProtocolHandler handler);
+        public abstract void Remove(CarePort carePort, CareOneProtocolHandler handler);
     }
 }

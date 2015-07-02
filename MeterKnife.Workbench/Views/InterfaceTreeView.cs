@@ -7,8 +7,10 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common;
 using MeterKnife.Common.Base;
+using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
+using MeterKnife.Common.Tunnels;
 using MeterKnife.Instruments;
 using MeterKnife.Workbench.Controls.Tree;
 using MeterKnife.Workbench.Dialogs;
@@ -42,7 +44,7 @@ namespace MeterKnife.Workbench.Views
             {
                 var meterView = DI.Get<DigitMultiMeterView>();
                 meterView.Port = e.Port;
-                meterView.CommunicationType = e.CommunicationType;
+                meterView.TunnelType = e.Port.TunnelType;
                 meterView.SetMeter(e.Port, e.Meter);
                 meterView.Text = e.Meter.AbbrName;
                 dic.Add(e.Meter, meterView);
@@ -77,10 +79,11 @@ namespace MeterKnife.Workbench.Views
                 int port = 0;
                 if (int.TryParse(com, out port) && port > 0)
                 {
-                    SerialNode node = !careComm.Cares.Contains(port) 
+                    CarePort carePort = CarePort.Build(TunnelType.Serial, port.ToString());
+                    SerialNode node = !careComm.Cares.Contains(carePort) 
                         ? new SerialNode {Text = serial} 
                         : new CareNode {Text = string.Format("Care [{0}]", serial)};
-                    node.Port = port;
+                    node.Port = carePort;
                     _MeterTree.ThreadSafeInvoke(() => _MeterTree.RootNode.Nodes.Add(node));
                 }
             }

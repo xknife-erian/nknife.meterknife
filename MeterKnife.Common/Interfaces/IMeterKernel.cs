@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MeterKnife.Common.Base;
+using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
 using NKnife.Events;
 using WeifenLuo.WinFormsUI.Docking;
@@ -16,7 +17,7 @@ namespace MeterKnife.Common.Interfaces
         /// <summary>
         /// 串口下的Gpib地址
         /// </summary>
-        Dictionary<int, List<int>> GpibDictionary { get; }
+        Dictionary<CarePort, List<int>> GpibDictionary { get; }
 
         /// <summary>
         /// 已存在的仪器面板集合

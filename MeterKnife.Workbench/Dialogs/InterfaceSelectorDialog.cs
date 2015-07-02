@@ -2,6 +2,8 @@
 using System.IO.Ports;
 using System.Net;
 using System.Windows.Forms;
+using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Tunnels;
 using NKnife.GUI.WinForm;
 using NKnife.Utility;
 
@@ -44,12 +46,13 @@ namespace MeterKnife.Workbench.Dialogs
 
         public bool IsSerial { get { return _SerialRadioButton.Checked; } }
 
-        public int Serial
+        public CarePort Serial
         {
             get
             {
                 var v = _SerialComboBox.Text.TrimStart(new char[] {'C', 'O', 'M'});
-                return int.Parse(v);
+                var c = int.Parse(v);
+                return CarePort.Build(TunnelType.Serial, c.ToString());
             }
         }
 

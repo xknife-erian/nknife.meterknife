@@ -23,10 +23,10 @@ namespace MeterKnife.Workbench.Dialogs
     {
         private static readonly ILog _logger = LogManager.GetLogger<CareParameterDialog>();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
-        private readonly int _Port;
+        private readonly CarePort _Port;
         private readonly CareConfigHandler _Handler = new CareConfigHandler();
 
-        public CareParameterDialog(int port)
+        public CareParameterDialog(CarePort port)
         {
             _Port = port;
             InitializeComponent();

@@ -32,7 +32,7 @@ namespace MeterKnife.Lite
             }
         }
 
-        public override void SetMeter(int port, BaseMeter meter)
+        public override void SetMeter(CarePort port, BaseMeter meter)
         {
             base.SetMeter(port, meter);
             if (!IsFairy)

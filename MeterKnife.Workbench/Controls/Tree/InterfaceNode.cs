@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
+using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Workbench.Dialogs;
 using NKnife.IoC;
@@ -34,11 +35,11 @@ namespace MeterKnife.Workbench.Controls.Tree
             };
         }
 
-        public int Port { get; set; }
+        public CarePort Port { get; set; }
 
         private void AddMeterMenuOnClick(object sender, EventArgs eventArgs)
         {
-            Dictionary<int, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
+            Dictionary<CarePort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
             List<int> gpibList;
             if (!dic.TryGetValue(Port, out gpibList))
             {

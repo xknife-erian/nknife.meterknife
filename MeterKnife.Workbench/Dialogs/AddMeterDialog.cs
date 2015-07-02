@@ -90,7 +90,7 @@ namespace MeterKnife.Workbench.Dialogs
         }
 
         public List<int> GpibList { get; set; }
-        public int Port { get; set; }
+        public CarePort Port { get; set; }
         public int GpibAddress { get { return (int) _NumberBox.Value; } }
         public BaseMeter Meter { get; set; }
 

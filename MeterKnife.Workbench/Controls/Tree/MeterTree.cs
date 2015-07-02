@@ -7,8 +7,10 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Properties;
+using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
 using NKnife.Events;
+using NKnife.Tunnel;
 
 namespace MeterKnife.Workbench.Controls.Tree
 {
@@ -84,13 +86,12 @@ namespace MeterKnife.Workbench.Controls.Tree
                 //µ±×ó¼üË«»÷ÒÇÆ÷½Úµã
                 var node = SelectedNode as MeterNode;
                 var interfaceNode = (InterfaceNode) node.Parent;
-                var commType = CommunicationType.Serial;
                 if (interfaceNode is LanNode)
                 {
-                    commType = CommunicationType.Socket;
+                    interfaceNode.Port.TunnelType = TunnelType.Socket;
                 }
                 _logger.Trace("×ó¼üË«»÷ÒÇÆ÷½Úµã");
-                OnSelectedMeter(new InterfaceNodeClickedEventArgs(node.Meter, interfaceNode.Port, commType));
+                OnSelectedMeter(new InterfaceNodeClickedEventArgs(node.Meter, interfaceNode.Port));
             }
         }
 
