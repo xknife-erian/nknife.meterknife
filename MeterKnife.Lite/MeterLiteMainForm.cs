@@ -98,7 +98,6 @@ namespace MeterKnife.Lite
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var meterView = DI.Get<MeterLiteView>();
-                meterView.TunnelType = _TunnelType;
                 meterView.SetMeter(dialog.Port, dialog.Meter);
                 meterView.Text = dialog.Meter.AbbrName;
                 meterView.Show(_DockPanel, DockState.Document);

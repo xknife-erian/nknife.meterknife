@@ -21,9 +21,11 @@ namespace MeterKnife.Instruments
             _Meter = meter;
         }
 
-        public CarePort Port { get; set; }
-
-        public TunnelType TunnelType { get; set; }
+        public CarePort Port
+        {
+            get { return _Port; }
+            set { _Port = value; }
+        }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
         {

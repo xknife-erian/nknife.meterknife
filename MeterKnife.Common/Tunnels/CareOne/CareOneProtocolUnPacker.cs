@@ -8,6 +8,7 @@ using MeterKnife.Common.DataModels;
 using NKnife.Converts;
 using NKnife.Protocol;
 using NKnife.Protocol.Generic;
+using NKnife.ShareResources;
 
 namespace MeterKnife.Common.Tunnels.CareOne
 {
@@ -18,7 +19,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
         /// <summary>
         /// 科学计数法正则
         /// </summary>
-        private static readonly Regex _scientificNotationRegex = new Regex(@"([+-]?)([^0]\d\.\d{1,})E([+-]?)(\d+)", RegexOptions.IgnoreCase);
+        private static readonly Regex _scientificNotationRegex = new Regex(RegexString.RegexStr_ScientificNotation, RegexOptions.IgnoreCase);
 
         public override void Execute(BytesProtocol protocol, byte[] data, byte[] command)
         {
@@ -44,6 +45,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
             {
                 talking.ScpiBytes = contentBytes;
                 talking.Scpi = ((int)contentBytes[0]).ToString();
+                return;
             }
 
             //+1.00355300E-01

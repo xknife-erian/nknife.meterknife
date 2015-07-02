@@ -44,7 +44,6 @@ namespace MeterKnife.Workbench.Views
             {
                 var meterView = DI.Get<DigitMultiMeterView>();
                 meterView.Port = e.Port;
-                meterView.TunnelType = e.Port.TunnelType;
                 meterView.SetMeter(e.Port, e.Meter);
                 meterView.Text = e.Meter.AbbrName;
                 dic.Add(e.Meter, meterView);

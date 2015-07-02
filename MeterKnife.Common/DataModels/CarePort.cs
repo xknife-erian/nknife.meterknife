@@ -57,7 +57,19 @@ namespace MeterKnife.Common.DataModels
                 TunnelType = tunnelType, 
                 Port = port
             };
+            carePort._SerialPort = int.Parse(port);
             return carePort;
+        }
+
+        public override string ToString()
+        {
+            switch (TunnelType)
+            {
+                case TunnelType.Socket:
+                case TunnelType.Serial:
+                default:
+                    return GetSerialPort().ToString();
+            }
         }
 
         public override bool Equals(object obj)
