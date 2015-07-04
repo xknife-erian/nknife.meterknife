@@ -18,6 +18,9 @@ using NKnife.Wrapper;
 using SerialKnife.Common;
 using SerialKnife.Generic.Filters;
 using SerialKnife.Interfaces;
+using SocketKnife.Generic;
+using SocketKnife.Generic.Filters;
+using SocketKnife.Interfaces;
 
 namespace MeterKnife.Kernel.Services
 {
@@ -28,7 +31,7 @@ namespace MeterKnife.Kernel.Services
 
         private readonly List<CarePort> _CarePortList = new List<CarePort>();
         private readonly Dictionary<CarePort, BytesProtocolFilter> _ProtocolFilters = new Dictionary<CarePort, BytesProtocolFilter>();
-        private readonly Dictionary<CarePort, IDataConnector> _SerialConnector = new Dictionary<CarePort, IDataConnector>();
+        private readonly Dictionary<CarePort, IDataConnector> _ConnectorMap = new Dictionary<CarePort, IDataConnector>();
 
         public override bool Initialize()
         {
@@ -92,19 +95,42 @@ namespace MeterKnife.Kernel.Services
         public override void Bind(CarePort carePort, params CareOneProtocolHandler[] handlers)
         {
             BytesProtocolFilter filter = null;
-            switch (carePort.TunnelType)
+            if (!_ProtocolFilters.TryGetValue(carePort, out filter))
             {
-                case TunnelType.Socket:
-                case TunnelType.Serial:
-                default:
+                switch (carePort.TunnelType)
                 {
-                    if (!_ProtocolFilters.TryGetValue(carePort, out filter))
+                    case TunnelType.Tcpip:
                     {
-                        BuildSerialConnector(carePort);
-                        filter = _ProtocolFilters[carePort];
+                        BuildBytesConnector(carePort, new SocketBytesProtocolFilter());
+                        var dataConnector = _ConnectorMap[carePort] as ISocketClient;
+                        if (dataConnector != null)
+                        {
+                            dataConnector.Config = new SocketClientConfig();
+                            var ip = carePort.GetIpEndPoint();
+                            dataConnector.Configure(ip.Address, ip.Port);
+                            Start(carePort);
+                        }
+                        break;
                     }
-                    break;
+                    case TunnelType.Serial:
+                    default:
+                    {
+                        BuildBytesConnector(carePort, new SerialProtocolFilter());
+                        var dataConnector = _ConnectorMap[carePort] as ISerialConnector;
+                        if (dataConnector != null)
+                        {
+                            dataConnector.SerialConfig = new SerialConfig
+                            {
+                                BaudRate = 115200,
+                                ReadBufferSize = 258,
+                                ReadTimeout = 100*10
+                            };
+                            dataConnector.PortNumber = carePort.GetSerialPort(); //串口
+                        }
+                        break;
+                    }
                 }
+                filter = _ProtocolFilters[carePort];
             }
             foreach (CareOneProtocolHandler handler in handlers)
             {
@@ -125,10 +151,10 @@ namespace MeterKnife.Kernel.Services
             foreach (CarePort port in _CarePortList)
             {
                 IDataConnector connector;
-                if (_SerialConnector.TryGetValue(port, out connector))
+                if (_ConnectorMap.TryGetValue(port, out connector))
                 {
                     connector.Stop();
-                    _SerialConnector.Remove(port);
+                    _ConnectorMap.Remove(port);
                     _ProtocolFilters.Remove(port);
                 }
             }
@@ -138,7 +164,7 @@ namespace MeterKnife.Kernel.Services
         public override bool Start(CarePort carePort)
         {
             IDataConnector dataConnector;
-            if (_SerialConnector.TryGetValue(carePort, out dataConnector))
+            if (_ConnectorMap.TryGetValue(carePort, out dataConnector))
             {
                 try
                 {
@@ -158,7 +184,7 @@ namespace MeterKnife.Kernel.Services
         public override bool Stop(CarePort carePort)
         {
             IDataConnector connector;
-            if (_SerialConnector.TryGetValue(carePort, out connector))
+            if (_ConnectorMap.TryGetValue(carePort, out connector))
             {
                 connector.Stop();
                 _logger.Info("Tunnel服务停止成功");
@@ -169,14 +195,14 @@ namespace MeterKnife.Kernel.Services
         public override void Send(CarePort carePort, byte[] data)
         {
             IDataConnector connector;
-            if (_SerialConnector.TryGetValue(carePort, out connector))
+            if (_ConnectorMap.TryGetValue(carePort, out connector))
             {
                 connector.SendAll(data);
                 _logger.Trace(string.Format("To:{0}", data.ToHexString()));
             }
         }
 
-        protected virtual void BuildSerialConnector(CarePort carePort)
+        protected virtual void BuildBytesConnector(CarePort carePort, BytesProtocolFilter filter)
         {
             if (_CarePortList.Contains(carePort))
                 return;
@@ -184,7 +210,6 @@ namespace MeterKnife.Kernel.Services
 
             //启动串口数据管道
             var tunnel = DI.Get<ITunnel>();
-            var filter = new SerialProtocolFilter();
 
             var codec = DI.Get<BytesCodec>();
             codec.CodecName = FAMILY_NAME;
@@ -195,18 +220,12 @@ namespace MeterKnife.Kernel.Services
 
             tunnel.AddFilters(filter);
 
-            var dataConnector = DI.Get<ISerialConnector>();
-            dataConnector.SerialConfig = new SerialConfig
-            {
-                BaudRate = 115200,
-                ReadBufferSize = 258,
-                ReadTimeout = 100*10
-            };
-            dataConnector.PortNumber = carePort.GetSerialPort(); //串口
+            var dataConnector = DI.Get<IDataConnector>(carePort.TunnelType.ToString());
             _ProtocolFilters.Add(carePort, filter); //增加协议过滤器
-            _SerialConnector.Add(carePort, dataConnector);
+            _ConnectorMap.Add(carePort, dataConnector);
 
             tunnel.BindDataConnector(dataConnector); //dataConnector是数据流动的动力
         }
+
     }
 }

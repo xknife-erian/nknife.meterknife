@@ -61,7 +61,7 @@ namespace MeterKnife.Workbench.Dialogs
                     string value = _IpAddressControl.Text == "..."
                         ? "0.0.0.0"
                         : _IpAddressControl.Text;
-                    return CarePort.Build(TunnelType.Socket, value, _PortNumericUpDown.Text);
+                    return CarePort.Build(TunnelType.Tcpip, value, _PortNumericUpDown.Text);
                 }
             }
         }

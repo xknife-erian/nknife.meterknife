@@ -88,7 +88,7 @@ namespace MeterKnife.Workbench.Controls.Tree
                 var interfaceNode = (InterfaceNode) node.Parent;
                 if (interfaceNode is LanNode)
                 {
-                    interfaceNode.Port.TunnelType = TunnelType.Socket;
+                    interfaceNode.Port.TunnelType = TunnelType.Tcpip;
                 }
                 _logger.Trace("×ó¼üË«»÷ÒÇÆ÷½Úµã");
                 OnSelectedMeter(new InterfaceNodeClickedEventArgs(node.Meter, interfaceNode.Port));

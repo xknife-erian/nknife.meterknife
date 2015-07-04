@@ -3,6 +3,6 @@
     public enum TunnelType
     {
         Serial,
-        Socket
+        Tcpip
     }
 }

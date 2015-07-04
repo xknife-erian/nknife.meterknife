@@ -77,7 +77,7 @@ namespace MeterKnife.Common.DataModels
         {
             switch (TunnelType)
             {
-                case TunnelType.Socket:
+                case TunnelType.Tcpip:
                     return GetIpEndPoint().ToString();
                 case TunnelType.Serial:
                 default:
