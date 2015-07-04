@@ -19,13 +19,7 @@ namespace MeterKnife.Lite
         private readonly DockPanel _DockPanel = new DockPanel();
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
 
-        private CarePort _SerialPort;
-
-        private IPAddress _IpAddress;
-
-        private int _SocketPort;
-
-        private TunnelType _TunnelType;
+        private CarePort _CarePort;
 
         public MeterLiteMainForm()
         {
@@ -54,19 +48,10 @@ namespace MeterKnife.Lite
             var dialog = new InterfaceSelectorDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _SerialPort = dialog.Serial;
-                _IpAddress = dialog.IpAddress;
-                _SocketPort = dialog.Port;
-                if (dialog.IsSerial)
-                {
-                    _PortLabel.Text = string.Format("COM{0}", dialog.Serial);
-                    _TunnelType = TunnelType.Serial;
-                }
-                else
-                {
-                    _PortLabel.Text = string.Format("{0}:{1}", dialog.IpAddress, dialog.Port);
-                    _TunnelType = TunnelType.Socket;
-                }
+                _CarePort = dialog.CarePort;
+                _PortLabel.Text = dialog.IsSerial ? 
+                    string.Format("COM{0}", dialog.CarePort) :
+                    string.Format("IPAddress:{0}", dialog.CarePort);
                 AddMeterView();
             }
         }
@@ -85,15 +70,15 @@ namespace MeterKnife.Lite
         {
             Dictionary<CarePort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
             List<int> gpibList;
-            if (!dic.TryGetValue(_SerialPort, out gpibList))
+            if (!dic.TryGetValue(_CarePort, out gpibList))
             {
                 gpibList = new List<int>();
-                dic.Add(_SerialPort, gpibList);
+                dic.Add(_CarePort, gpibList);
             }
 
             var dialog = new AddMeterLiteDialog();
             dialog.GpibList.AddRange(gpibList);
-            dialog.Port = _SerialPort;
+            dialog.Port = _CarePort;
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -101,13 +86,13 @@ namespace MeterKnife.Lite
                 meterView.SetMeter(dialog.Port, dialog.Meter);
                 meterView.Text = dialog.Meter.AbbrName;
                 meterView.Show(_DockPanel, DockState.Document);
-                dic[_SerialPort].Add(dialog.GpibAddress);
+                dic[_CarePort].Add(dialog.GpibAddress);
             }
         }
 
         private void _CareOptionMenuItem_Click(object sender, EventArgs e)
         {
-            var dialog = new CareParameterDialog(_SerialPort);
+            var dialog = new CareParameterDialog(_CarePort);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
             }

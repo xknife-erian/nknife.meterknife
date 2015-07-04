@@ -18,7 +18,14 @@ namespace MeterKnife.Kernel
 
         public string DataPath { get; set; }
 
+        /// <summary>
+        /// 指定的端口下的已使用的GPIB地址,不同的端口下的地址可以重复,同一端口下的地址不允许重复
+        /// </summary>
         public Dictionary<CarePort, List<int>> GpibDictionary { get; private set; }
+
+        /// <summary>
+        /// 仪表面板
+        /// </summary>
         public Dictionary<BaseMeter, DockContent> MeterContents { get; private set; }
 
         public void CollectBeginning(int address, bool value)

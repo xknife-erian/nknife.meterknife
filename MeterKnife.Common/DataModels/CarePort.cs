@@ -10,25 +10,30 @@ namespace MeterKnife.Common.DataModels
 {
     public class CarePort
     {
+        protected CarePort()
+        {
+        }
+
         public TunnelType TunnelType { get; set; }
 
         public string Port { get; set; }
 
         private int _SerialPort = -1;
 
+        private IPEndPoint _IpEndPoint = null;
+
         public int GetSerialPort()
         {
             if (_SerialPort == -1)
             {
-                if (!int.TryParse(Port, out _SerialPort))
+                var port = Port.ToUpper().TrimStart(new char[] {'C', 'O', 'M'});
+                if (!int.TryParse(port, out _SerialPort))
                 {
                     _SerialPort = 0;
                 }
             }
             return _SerialPort;
         }
-
-        private IPEndPoint _IpEndPoint = null;
 
         public IPEndPoint GetIpEndPoint()
         {
@@ -50,14 +55,21 @@ namespace MeterKnife.Common.DataModels
             return _IpEndPoint;
         }
 
-        public static CarePort Build(TunnelType tunnelType, string port)
+        public static CarePort Build(TunnelType tunnelType, params string[] ports)
         {
-            var carePort = new CarePort
+            var carePort = new CarePort{TunnelType = tunnelType};
+            if (tunnelType == TunnelType.Serial)
             {
-                TunnelType = tunnelType, 
-                Port = port
-            };
-            carePort._SerialPort = int.Parse(port);
+                carePort.Port = ports[0];
+                carePort._SerialPort = int.Parse(ports[0]);
+            }
+            else
+            {
+                var ip = IPAddress.Parse(ports[0]);
+                var port = int.Parse(ports[1]);
+                var ipe = new IPEndPoint(ip, port);
+                carePort._IpEndPoint = ipe;
+            }
             return carePort;
         }
 
@@ -66,6 +78,7 @@ namespace MeterKnife.Common.DataModels
             switch (TunnelType)
             {
                 case TunnelType.Socket:
+                    return GetIpEndPoint().ToString();
                 case TunnelType.Serial:
                 default:
                     return GetSerialPort().ToString();

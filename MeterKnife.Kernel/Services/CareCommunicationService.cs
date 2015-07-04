@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using Common.Logging;
@@ -9,11 +8,11 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
-using NKnife.Converts;
 using NKnife.Events;
 using NKnife.IoC;
 using NKnife.Protocol.Generic;
 using NKnife.Tunnel;
+using NKnife.Tunnel.Filters;
 using NKnife.Tunnel.Generic;
 using NKnife.Wrapper;
 using SerialKnife.Common;
@@ -27,23 +26,35 @@ namespace MeterKnife.Kernel.Services
         private const string FAMILY_NAME = "careone";
         private static readonly ILog _logger = LogManager.GetLogger<CareCommunicationService>();
 
-        private readonly List<CarePort> _PortList = new List<CarePort>();
-        private readonly Dictionary<CarePort, SerialProtocolFilter> _ProtocolFilters = new Dictionary<CarePort, SerialProtocolFilter>();
+        private readonly List<CarePort> _CarePortList = new List<CarePort>();
+        private readonly Dictionary<CarePort, BytesProtocolFilter> _ProtocolFilters = new Dictionary<CarePort, BytesProtocolFilter>();
         private readonly Dictionary<CarePort, IDataConnector> _SerialConnector = new Dictionary<CarePort, IDataConnector>();
 
         public override bool Initialize()
         {
             Cares = new List<CarePort>();
+            SerialFinder();
+            IsInitialized = true;
+            return true;
+        }
+
+        /// <summary>
+        ///     在串口中寻找Care
+        /// </summary>
+        protected virtual void SerialFinder()
+        {
+            var resetEvent = new AutoResetEvent(true);
             StringCollection serialList = PcInterfaces.GetSerialList();
             foreach (string serial in serialList)
             {
+                resetEvent.Set();
                 string com = serial.ToUpper().TrimStart(new[] {'C', 'O', 'M'});
                 int port = 0;
-                if (!int.TryParse(com, out port)) 
+                if (!int.TryParse(com, out port))
                     continue;
-                if (port <= 0) 
+                if (port <= 0)
                     continue;
-                var carePort = CarePort.Build(TunnelType.Serial, port.ToString());
+                CarePort carePort = CarePort.Build(TunnelType.Serial, port.ToString());
 
                 bool onFindCare = true;
                 var handler = new CareConfigHandler();
@@ -53,6 +64,7 @@ namespace MeterKnife.Kernel.Services
                     {
                         if (e.Item.Scpi.ToLower().StartsWith("care"))
                         {
+                            resetEvent.Set();
                             OnSerialInitialized(new EventArgs<CarePort>(carePort));
                             Cares.Add(carePort);
                         }
@@ -65,45 +77,52 @@ namespace MeterKnife.Kernel.Services
 
                 _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
                 Send(carePort, CareTalking.CareGetter());
-                Thread.Sleep(20);
-
-                var time = DateTime.Now.ToString("yyyyMMddHHmmss");
-                var timebs = Encoding.ASCII.GetBytes(time);
-                _logger.Info(string.Format("Set Care Time:{0}", time));
-                Send(carePort, CareTalking.CareSetter(0xD9, timebs));
-                Thread.Sleep(200);
+                if (resetEvent.WaitOne(100))
+                {
+                    string time = DateTime.Now.ToString("yyyyMMddHHmmss");
+                    byte[] timebs = Encoding.ASCII.GetBytes(time);
+                    _logger.Info(string.Format("Set Care Time:{0}", time));
+                    Send(carePort, CareTalking.CareSetter(0xD9, timebs));
+                    Thread.Sleep(200);
+                }
                 Remove(carePort, handler);
             }
-            IsInitialized = true;
-            return true;
         }
 
         public override void Bind(CarePort carePort, params CareOneProtocolHandler[] handlers)
         {
-            SerialProtocolFilter filter = null;
+            BytesProtocolFilter filter = null;
             switch (carePort.TunnelType)
             {
                 case TunnelType.Socket:
                 case TunnelType.Serial:
                 default:
-                    filter = BuildSerialConnector(carePort);
+                {
+                    if (!_ProtocolFilters.TryGetValue(carePort, out filter))
+                    {
+                        BuildSerialConnector(carePort);
+                        filter = _ProtocolFilters[carePort];
+                    }
                     break;
+                }
             }
             foreach (CareOneProtocolHandler handler in handlers)
             {
-                filter.AddHandlers(handler);
+                if (filter != null)
+                    filter.AddHandlers(handler);
             }
         }
 
         public override void Remove(CarePort tunnelPort, CareOneProtocolHandler handler)
         {
-            SerialProtocolFilter filter = BuildSerialConnector(tunnelPort);
-            filter.RemoveHandler(handler);
+            BytesProtocolFilter filter;
+            if (_ProtocolFilters.TryGetValue(tunnelPort, out filter))
+                filter.RemoveHandler(handler);
         }
 
         public override void Destroy()
         {
-            foreach (CarePort port in _PortList)
+            foreach (CarePort port in _CarePortList)
             {
                 IDataConnector connector;
                 if (_SerialConnector.TryGetValue(port, out connector))
@@ -113,7 +132,7 @@ namespace MeterKnife.Kernel.Services
                     _ProtocolFilters.Remove(port);
                 }
             }
-            _PortList.Clear();
+            _CarePortList.Clear();
         }
 
         public override bool Start(CarePort carePort)
@@ -153,28 +172,28 @@ namespace MeterKnife.Kernel.Services
             if (_SerialConnector.TryGetValue(carePort, out connector))
             {
                 connector.SendAll(data);
+                _logger.Trace(string.Format("To:{0}", data.ToHexString()));
             }
-            _logger.Trace(string.Format("To:{0}", data.ToHexString()));
         }
 
-        private SerialProtocolFilter BuildSerialConnector(CarePort carePort)
+        protected virtual void BuildSerialConnector(CarePort carePort)
         {
-            if (_PortList.Contains(carePort))
-                return _ProtocolFilters[carePort];
-            _PortList.Add(carePort);
+            if (_CarePortList.Contains(carePort))
+                return;
+            _CarePortList.Add(carePort);
 
             //启动串口数据管道
             var tunnel = DI.Get<ITunnel>();
-            var serialProtocolFilter = new SerialProtocolFilter();
+            var filter = new SerialProtocolFilter();
 
             var codec = DI.Get<BytesCodec>();
             codec.CodecName = FAMILY_NAME;
             var family = DI.Get<BytesProtocolFamily>();
             family.FamilyName = FAMILY_NAME;
 
-            serialProtocolFilter.Bind(codec, family);
+            filter.Bind(codec, family);
 
-            tunnel.AddFilters(serialProtocolFilter);
+            tunnel.AddFilters(filter);
 
             var dataConnector = DI.Get<ISerialConnector>();
             dataConnector.SerialConfig = new SerialConfig
@@ -184,77 +203,10 @@ namespace MeterKnife.Kernel.Services
                 ReadTimeout = 100*10
             };
             dataConnector.PortNumber = carePort.GetSerialPort(); //串口
-            _ProtocolFilters.Add(carePort, serialProtocolFilter);//增加协议过滤器
+            _ProtocolFilters.Add(carePort, filter); //增加协议过滤器
             _SerialConnector.Add(carePort, dataConnector);
 
             tunnel.BindDataConnector(dataConnector); //dataConnector是数据流动的动力
-            return serialProtocolFilter;
         }
-
-        // #region Test Main
-//
-//        private static void Main(string[] args)
-//        {
-//            const int PORT = 4;
-//            Console.ResetColor();
-//            Console.WriteLine("**** START ****************************");
-//
-//            DI.Initialize();
-//
-//            _logger.Info("DI初始化结束....");
-//
-//            var server = new CareCommunicationService();
-//            server.Build(PORT, new TestProtocolHandler());
-//            server.Start(PORT);
-//
-//            Thread.Sleep(100);
-//
-//            const int COUNT = 5;
-//            Console.WriteLine("--{0}--------------", COUNT);
-//            var sw = new Stopwatch();
-//            sw.Start();
-//            for (int i = 0; i < COUNT; i++) //以询查指令进行测试
-//            {
-//                for (int j = 209; j < 221; j++)
-//                {
-//                    byte[] command = GetA0(UtilityConvert.ConvertTo<byte>(j));
-//                    server.Send(PORT, command);
-//                }
-//            }
-//            for (int i = 0; i < COUNT*10; i++)
-//            {
-//                byte[] command = GetRead(23);
-//                server.Send(PORT, command);
-//            }
-//            sw.Stop();
-//            Console.WriteLine();
-//            Console.ReadLine();
-//        }
-//
-//        private static byte[] GetRead(byte address)
-//        {
-//            return new byte[] {0x08, address, 0x09, 0xAA, 0x00, 0x52, 0x45, 0x41, 0x44, 0x3F, 0x0D, 0x0A};
-//        }
-//
-//        private static byte[] GetCareTest()
-//        {
-//            return new byte[] {0x08, 0x00, 0x02, 0xA0, 0xD1};
-//        }
-//
-//        private static byte[] GetA0(byte subCommand)
-//        {
-//            return new byte[] {0x08, 0x00, 0x02, 0xA0, subCommand};
-//        }
-//
-//        public class TestProtocolHandler : CareOneProtocolHandler
-//        {
-//            public override void Recevied(CareSaying protocol)
-//            {
-//                CareSaying saying = protocol;
-//                _logger.Info(string.Format("{0},Recevied:{1}", protocol.Command.ToHexString(), saying.Content));
-//            }
-//        }
-//
-//        #endregion
     }
 }

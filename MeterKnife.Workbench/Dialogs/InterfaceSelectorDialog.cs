@@ -46,30 +46,24 @@ namespace MeterKnife.Workbench.Dialogs
 
         public bool IsSerial { get { return _SerialRadioButton.Checked; } }
 
-        public CarePort Serial
+        public CarePort CarePort
         {
             get
             {
-                var v = _SerialComboBox.Text.TrimStart(new char[] {'C', 'O', 'M'});
-                var c = int.Parse(v);
-                return CarePort.Build(TunnelType.Serial, c.ToString());
+                if (IsSerial)
+                {
+                    var v = _SerialComboBox.Text.TrimStart(new[] {'C', 'O', 'M'});
+                    var c = int.Parse(v);
+                    return CarePort.Build(TunnelType.Serial, c.ToString());
+                }
+                else
+                {
+                    string value = _IpAddressControl.Text == "..."
+                        ? "0.0.0.0"
+                        : _IpAddressControl.Text;
+                    return CarePort.Build(TunnelType.Socket, value, _PortNumericUpDown.Text);
+                }
             }
-        }
-
-        public IPAddress IpAddress
-        {
-            get
-            {
-                string value = _IpAddressControl.Text == "..." 
-                    ? "0.0.0.0" 
-                    : _IpAddressControl.Text;
-                return IPAddress.Parse(value);
-            }
-        }
-
-        public int Port
-        {
-            get { return int.Parse(_PortNumericUpDown.Text); }
         }
 
         private void _AcceptButton_Click(object sender, EventArgs e)
@@ -87,6 +81,12 @@ namespace MeterKnife.Workbench.Dialogs
                 if (string.IsNullOrEmpty(_IpAddressControl.Text) || _IpAddressControl.Text == "...")
                 {
                     MessageBox.Show(this, "必须设置一个IP地址");
+                    return;
+                }
+                IPAddress temp;
+                if (!IPAddress.TryParse(_IpAddressControl.Text, out temp))
+                {
+                    MessageBox.Show(this, "必须设置一个正确的IP地址");
                     return;
                 }
                 if (string.IsNullOrEmpty(_PortNumericUpDown.Text))
