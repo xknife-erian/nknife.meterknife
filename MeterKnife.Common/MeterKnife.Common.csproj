@@ -122,6 +122,7 @@
     <Compile Include="Controls\Plots\StandardDeviationPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\Plots\StandardNormalDistributionPlot.cs" />
     <Compile Include="Controls\Plots\TemperatureDataPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>

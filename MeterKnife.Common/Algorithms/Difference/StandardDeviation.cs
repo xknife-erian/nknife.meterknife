@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Logging;
 using MeterKnife.Common.Base;
 
 namespace MeterKnife.Common.Algorithms.Difference
@@ -10,6 +11,8 @@ namespace MeterKnife.Common.Algorithms.Difference
     /// </summary>
     public class StandardDeviation : BaseDifferenceAlgorithm
     {
+        private static readonly ILog _logger = LogManager.GetLogger<StandardDeviation>();
+
         private uint _Count = 0;
         private List<double> _Values = new List<double>();
         private int _Range = 50;

@@ -207,6 +207,7 @@ namespace MeterKnife.Instruments
                 if (rs == DialogResult.No)
                 {
                     _FiguredData.Clear();
+                    PlotsClear();
                 }
             }
             StartCollect();
@@ -215,6 +216,10 @@ namespace MeterKnife.Instruments
         private void _StopStripButton_Click(object sender, EventArgs e)
         {
             StopCollect();
+
+            _TempFeaturesPlot.Update(_FiguredData);
+            _TempTrendPlot.Update(_FiguredData);
+            _SdPlot.Update(_FiguredData);
         }
 
         private void _SaveStripButton_Click(object sender, EventArgs e)
@@ -252,10 +257,17 @@ namespace MeterKnife.Instruments
 
         private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
         {
+            PlotsClear();
+        }
+
+        private void PlotsClear()
+        {
             _FiguredData.Clear();
             _DataPlot.Clear();
             _TempPlot.Clear();
+            _SdPlot.Clear();
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
+            this.ThreadSafeInvoke(() => _CollectDataList.Items.Clear());
         }
 
         private void _PhotoToolStripButton_Click(object sender, EventArgs e)

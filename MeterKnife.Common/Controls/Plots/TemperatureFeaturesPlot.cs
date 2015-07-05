@@ -50,17 +50,19 @@ namespace MeterKnife.Common.Controls.Plots
             _DataAxis.MinimumPadding = 0;
             _DataAxis.Maximum = 15;
             _DataAxis.Minimum = 5;
+            _DataAxis.MinorGridlineStyle = LineStyle.Dot;
             _DataAxis.Position = AxisPosition.Left;
             _PlotModel.Axes.Add(_DataAxis);
 
-            _TempAxis.MajorGridlineStyle = LineStyle.Solid;
             _TempAxis.MaximumPadding = 0;
             _TempAxis.MinimumPadding = 0;
             _TempAxis.MinorGridlineStyle = LineStyle.Dot;
             _TempAxis.Position = AxisPosition.Bottom;
             _PlotModel.Axes.Add(_TempAxis);
 
-            _DataSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
+            _DataSeries.MarkerFill = OxyColors.DarkRed;
+            _DataSeries.MarkerType = MarkerType.Diamond;
+            _DataSeries.MarkerSize = 2.5;
             _PlotModel.Series.Add(_DataSeries);
 
             _QuadraticCurveFittingSeries.MarkerType = MarkerType.Circle;

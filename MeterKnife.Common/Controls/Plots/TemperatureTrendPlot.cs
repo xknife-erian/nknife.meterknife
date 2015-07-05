@@ -67,8 +67,8 @@ namespace MeterKnife.Common.Controls.Plots
             _DataSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
 
             _TempSeries.YAxisKey = "temperature";
-            _TempSeries.Color = OxyColor.FromArgb(255, 86, 96, 225);
-            _TempSeries.MarkerFill = OxyColor.FromArgb(255, 86, 96, 225);
+            _TempSeries.Color = OxyColors.SlateBlue;
+            _TempSeries.MarkerFill = OxyColors.SlateBlue;
 
             _PlotModel.Series.Add(_DataSeries);
             _PlotModel.Series.Add(_TempSeries);
