@@ -201,8 +201,9 @@ namespace MeterKnife.Common.DataModels
             Ppvalue = String.Format(t, Math.Abs(Max.Output - Min.Output)); //峰峰值
             StandardDeviation.Input(value);
 
+            if (Math.Abs(_CurrentTemperature) <= 0 && _DataSet.Tables[1].Rows.Count == 0)
+                return;
             _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature, StandardDeviation.Output);
-
             //触发数据源发生变化
             OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
         }
