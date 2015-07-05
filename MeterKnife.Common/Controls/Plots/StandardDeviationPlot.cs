@@ -24,7 +24,7 @@ namespace MeterKnife.Common.Controls.Plots
                 var time = (DateTime) table.Rows[count]["datetime"];
 
                 var yzl = SelectValue(fd);
-                var value = double.Parse(yzl.ToString());
+                var value = double.Parse(yzl.ToString())*1000000;
                 if (Math.Abs(value) <= 0)
                     continue;
 
@@ -41,12 +41,21 @@ namespace MeterKnife.Common.Controls.Plots
         protected override void UpdateRange(FiguredData fd)
         {
             var table = fd.DataSet.Tables[1];
-            double max = table.AsEnumerable().Select(t => t.Field<double>(ValueHead)).Max();
-            double j = (Math.Abs(max))/4;
+            double max = table.AsEnumerable().Select(row => row.Field<double>(ValueHead)).Max()*1000000;
+            var list = new List<double>(table.Rows.Count);
+            foreach (DataRow row in table.Rows)
+            {
+                var v = row.Field<double>(ValueHead);
+                if (Math.Abs(v) > 0)
+                    list.Add(v);
+            }
+            list.Sort();
+            double min = list[0]*1000000;
+            double j = (Math.Abs(max - min))/4;
             if (Math.Abs(j) > 0)
             {
                 _LeftAxis.Maximum = max + j;
-                _LeftAxis.Minimum = max - j;
+                _LeftAxis.Minimum = min - j;
             }
         }
     }
