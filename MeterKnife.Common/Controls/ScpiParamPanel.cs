@@ -73,10 +73,10 @@ namespace MeterKnife.Common.Controls
                 _Panel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
 
                 var rootCmd = new ScpiCommand(isScpi);
-                rootCmd.Content = confEle.GetAttribute("content");
+                rootCmd.Description = confEle.GetAttribute("content");
                 rootCmd.Command = confEle.GetAttribute("command");
 
-                GetLabel(rootCmd.Content, index);
+                GetLabel(rootCmd.Description, index);
 
                 if (!confEle.HasChildNodes)
                     continue;
@@ -158,7 +158,7 @@ namespace MeterKnife.Common.Controls
         private void ShowSubCommandMenu(ScpiCommand command, Control control)
         {
             var menu = new ContextMenuStrip();
-            var menuItem = new ToolStripMenuItem(command.Content);
+            var menuItem = new ToolStripMenuItem(command.Description);
             Next(command, menuItem);
 
             menu.Items.Add(menuItem);
@@ -174,7 +174,7 @@ namespace MeterKnife.Common.Controls
         {
             if (command.Next != null)
             {
-                var menu = new ToolStripMenuItem(command.Content);
+                var menu = new ToolStripMenuItem(command.Description);
                 parentMenu.DropDownItems.Add(menu);
                 Next(command.Next, menu);
             }
@@ -183,7 +183,7 @@ namespace MeterKnife.Common.Controls
         private static ScpiCommand ParseGpibCommand(bool isScpi, XmlElement element, string rootCmd)
         {
             var cmd = new ScpiCommand(isScpi);
-            cmd.Content = element.GetAttribute("content");
+            cmd.Description = element.GetAttribute("content");
             if (element.LocalName == "command")
                 cmd.Command = string.Format("{0}:{1}", rootCmd, element.GetAttribute("command"));
             else if (element.LocalName == "param")

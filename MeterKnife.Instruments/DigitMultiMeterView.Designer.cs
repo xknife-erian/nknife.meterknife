@@ -32,10 +32,10 @@ namespace MeterKnife.Instruments
         {
             this._MainSplitContainer = new NKnife.GUI.WinForm.CollapsibleSplitContainer();
             this._LeftSplitContainer = new System.Windows.Forms.SplitContainer();
-            this._ParamsGroupBox = new System.Windows.Forms.GroupBox();
-            this._ParamsPanel = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
+            this._ParamsGroupBox = new System.Windows.Forms.GroupBox();
+            this._ParamsPanel = new System.Windows.Forms.Panel();
             this._MainTabControl = new System.Windows.Forms.TabControl();
             this._PlotPage = new System.Windows.Forms.TabPage();
             this._RealtimePlotSplitContainer = new System.Windows.Forms.SplitContainer();
@@ -74,8 +74,8 @@ namespace MeterKnife.Instruments
             this._LeftSplitContainer.Panel1.SuspendLayout();
             this._LeftSplitContainer.Panel2.SuspendLayout();
             this._LeftSplitContainer.SuspendLayout();
-            this._ParamsGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this._ParamsGroupBox.SuspendLayout();
             this._MainTabControl.SuspendLayout();
             this._PlotPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._RealtimePlotSplitContainer)).BeginInit();
@@ -131,33 +131,14 @@ namespace MeterKnife.Instruments
             // 
             // _LeftSplitContainer.Panel1
             // 
-            this._LeftSplitContainer.Panel1.Controls.Add(this._ParamsGroupBox);
+            this._LeftSplitContainer.Panel1.Controls.Add(this.groupBox2);
             // 
             // _LeftSplitContainer.Panel2
             // 
-            this._LeftSplitContainer.Panel2.Controls.Add(this.groupBox2);
+            this._LeftSplitContainer.Panel2.Controls.Add(this._ParamsGroupBox);
             this._LeftSplitContainer.Size = new System.Drawing.Size(250, 475);
-            this._LeftSplitContainer.SplitterDistance = 350;
+            this._LeftSplitContainer.SplitterDistance = 274;
             this._LeftSplitContainer.TabIndex = 0;
-            // 
-            // _ParamsGroupBox
-            // 
-            this._ParamsGroupBox.Controls.Add(this._ParamsPanel);
-            this._ParamsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ParamsGroupBox.Location = new System.Drawing.Point(0, 0);
-            this._ParamsGroupBox.Name = "_ParamsGroupBox";
-            this._ParamsGroupBox.Size = new System.Drawing.Size(250, 350);
-            this._ParamsGroupBox.TabIndex = 0;
-            this._ParamsGroupBox.TabStop = false;
-            this._ParamsGroupBox.Text = "参数";
-            // 
-            // _ParamsPanel
-            // 
-            this._ParamsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ParamsPanel.Location = new System.Drawing.Point(3, 17);
-            this._ParamsPanel.Name = "_ParamsPanel";
-            this._ParamsPanel.Size = new System.Drawing.Size(244, 330);
-            this._ParamsPanel.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -165,7 +146,7 @@ namespace MeterKnife.Instruments
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 121);
+            this.groupBox2.Size = new System.Drawing.Size(250, 274);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "实时分析";
@@ -176,9 +157,28 @@ namespace MeterKnife.Instruments
             this._FiguredDataPropertyGrid.HelpVisible = false;
             this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 17);
             this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
-            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 101);
+            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 254);
             this._FiguredDataPropertyGrid.TabIndex = 0;
             this._FiguredDataPropertyGrid.ToolbarVisible = false;
+            // 
+            // _ParamsGroupBox
+            // 
+            this._ParamsGroupBox.Controls.Add(this._ParamsPanel);
+            this._ParamsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ParamsGroupBox.Location = new System.Drawing.Point(0, 0);
+            this._ParamsGroupBox.Name = "_ParamsGroupBox";
+            this._ParamsGroupBox.Size = new System.Drawing.Size(250, 197);
+            this._ParamsGroupBox.TabIndex = 0;
+            this._ParamsGroupBox.TabStop = false;
+            this._ParamsGroupBox.Text = "参数";
+            // 
+            // _ParamsPanel
+            // 
+            this._ParamsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ParamsPanel.Location = new System.Drawing.Point(3, 17);
+            this._ParamsPanel.Name = "_ParamsPanel";
+            this._ParamsPanel.Size = new System.Drawing.Size(244, 177);
+            this._ParamsPanel.TabIndex = 0;
             // 
             // _MainTabControl
             // 
@@ -514,8 +514,8 @@ namespace MeterKnife.Instruments
             this._LeftSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._LeftSplitContainer)).EndInit();
             this._LeftSplitContainer.ResumeLayout(false);
-            this._ParamsGroupBox.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this._ParamsGroupBox.ResumeLayout(false);
             this._MainTabControl.ResumeLayout(false);
             this._PlotPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._RealtimePlotSplitContainer)).EndInit();

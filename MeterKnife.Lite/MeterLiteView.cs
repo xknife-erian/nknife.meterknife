@@ -12,7 +12,7 @@ namespace MeterKnife.Lite
 {
     internal class MeterLiteView : DigitMultiMeterView
     {
-        private readonly UserScpiCommandPanel _ScpiCommandPanel = new UserScpiCommandPanel();
+        private readonly CustomerScpiCommandPanel _ScpiCommandPanel = new CustomerScpiCommandPanel();
         /// <summary>
         /// 是否是精灵版
         /// </summary>
@@ -25,10 +25,12 @@ namespace MeterKnife.Lite
                 _PhotoToolStripButton.Visible = false;
                 _ZoomInToolStripButton.Visible = false;
                 _ZoomOutToolStripButton.Visible = false;
-                _ParamsGroupBox.Visible = false;
                 _SaveStripButton.Visible = false;
+
+                _ParamsGroupBox.Visible = false;
                 _ScpiCommandPanel.Dock = DockStyle.Fill;
-                _LeftSplitContainer.Panel1.Controls.Add(_ScpiCommandPanel);
+                _LeftSplitContainer.Panel2.Padding = new Padding(3, 2, 3, 2);
+                _LeftSplitContainer.Panel2.Controls.Add(_ScpiCommandPanel);
             }
         }
 
@@ -48,21 +50,14 @@ namespace MeterKnife.Lite
 
         protected override ScpiCommandList GetInitCommands()
         {
-            var commands = _ScpiCommandPanel.InitCommands;
-            var list = new ScpiCommandList();
-            foreach (var command in commands)
-            {
-                var sc = new ScpiCommand();
-                sc.Command = command;
-                list.AddLast(sc);
-            }
-            return list;
+            var commands = _ScpiCommandPanel.GetInitCommands();
+            return commands;
         }
 
-        protected override List<byte[]> GetCollectCommands()
+        protected override ScpiCommandList GetCollectCommands()
         {
-            var commands = _ScpiCommandPanel.CollectCommands;
-            return commands.Select(command => CareTalking.BuildCareTalking(_Meter.GpibAddress, command).Generate()).ToList();
+            var commands = _ScpiCommandPanel.GetCollectCommands();
+            return commands;
         }
 
     }

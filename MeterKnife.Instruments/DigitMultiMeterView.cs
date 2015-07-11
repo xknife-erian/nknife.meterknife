@@ -195,10 +195,10 @@ namespace MeterKnife.Instruments
             return new ScpiCommandList();
         }
 
-        protected virtual List<byte[]> GetCollectCommands()
+        protected virtual ScpiCommandList GetCollectCommands()
         {
             var list = new List<byte[]> {CareTalking.READ(_Meter.GpibAddress).Generate()};
-            return list;
+            return null;
         }
 
         private void _StartStripButton_Click(object sender, EventArgs e)

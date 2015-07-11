@@ -145,6 +145,12 @@
     <Compile Include="Controls\ScpiParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\CustomerScpiCommandPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomerScpiCommandPanel.Designer.cs">
+      <DependentUpon>CustomerScpiCommandPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserScpiCommandPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -154,6 +160,7 @@
     <Compile Include="DataModels\CareTalking.Protocols.cs" />
     <Compile Include="Algorithms\Max.cs" />
     <Compile Include="DataModels\CarePort.cs" />
+    <Compile Include="DataModels\ScpiCommandQueue.cs" />
     <Compile Include="EventParameters\CollectedEventArgs.cs" />
     <Compile Include="Base\BaseAlgorithm.cs" />
     <Compile Include="Interfaces\IElectronAlgorithm.cs" />
@@ -200,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ScpiParamPanel.resx">
       <DependentUpon>ScpiParamPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CustomerScpiCommandPanel.resx">
+      <DependentUpon>CustomerScpiCommandPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserScpiCommandPanel.resx">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
@@ -269,9 +279,13 @@
     <Content Include="Properties\contents\bar-button\start.png" />
     <Content Include="Properties\contents\bar-button\stop-unable.png" />
     <Content Include="Properties\contents\bar-button\stop.png" />
-    <Content Include="Properties\contents\base-toolstrip\arrow_triangle_down.png" />
-    <Content Include="Properties\contents\base-toolstrip\load.png" />
-    <Content Include="Properties\contents\base-toolstrip\save.png" />
+    <Content Include="Properties\contents\base-toolstrip\add.png" />
+    <Content Include="Properties\contents\base-toolstrip\delete.png" />
+    <Content Include="Properties\contents\base-toolstrip\down.png" />
+    <Content Include="Properties\contents\base-toolstrip\download.png" />
+    <Content Include="Properties\contents\base-toolstrip\edit.png" />
+    <Content Include="Properties\contents\base-toolstrip\up.png" />
+    <Content Include="Properties\contents\base-toolstrip\upload.png" />
     <Content Include="Properties\contents\main-icon.ico" />
     <Content Include="Properties\contents\main-logo.png" />
     <Content Include="Properties\contents\MeterKnife2015-Welcome.png" />
