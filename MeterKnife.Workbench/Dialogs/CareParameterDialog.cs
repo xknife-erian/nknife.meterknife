@@ -40,7 +40,7 @@ namespace MeterKnife.Workbench.Dialogs
             {
                 if (_UsartSwitchCheckBox.Checked)
                 {
-                    MessageBox.Show(this, "WIFI透传模式说明：\r\n\r\nWIFI透传模式生效后，USB连接将失效，指示灯将快速闪烁……\r\n退出透传模式时，请按住设备按键4秒以上，并重启本软件进行应用", "透传模式",
+                    MessageBox.Show(this, "WIFI透传模式说明：\r\n\r\nWIFI透传模式生效后，USB与仪器的连接将暂时失效，同时指示灯将快速闪烁……\r\n如果想退出透传模式时，请按住设备按键4秒以上，并重启本软件进行应用", "透传模式",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             };
@@ -287,12 +287,6 @@ namespace MeterKnife.Workbench.Dialogs
             config = CareTalking.CareSetter(0xDA, Encoding.ASCII.GetBytes(temp));
             _Comm.Send(_Port, config);
 
-            //串口数据互转
-            var usartSwitch = _UsartSwitchCheckBox.Checked;
-            var us = usartSwitch ? 0x01 : 0x00;
-            config = CareTalking.CareSetter(0xDF, (byte) us);
-            _Comm.Send(_Port, config); 
-
             //USB串口波特率
             var usart1 = Int32.Parse(_Usart1NumberBox.SelectedItem.ToString());
             var usbBaud = BitConverter.GetBytes(usart1).Reverse().ToArray();
@@ -304,6 +298,12 @@ namespace MeterKnife.Workbench.Dialogs
             var wifiBaud = BitConverter.GetBytes(usart2).Reverse().ToArray();
             config = CareTalking.CareSetter(0xDE, wifiBaud);
             _Comm.Send(_Port, config);
+
+            //串口数据互转
+            var usartSwitch = _UsartSwitchCheckBox.Checked;
+            var us = usartSwitch ? 0x01 : 0x00;
+            config = CareTalking.CareSetter(0xDF, (byte)us);
+            _Comm.Send(_Port, config); 
 
             var talking = CareTalking.CareReset(); //重启
             _Comm.Send(_Port, talking);

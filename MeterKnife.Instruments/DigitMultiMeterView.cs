@@ -54,6 +54,7 @@ namespace MeterKnife.Instruments
             _SdPanel.Controls.Add(_SdPlot);
 
             SetStripButtonState(false);
+            SetFiguredDataGrid();
             SetStandardDeviationRange();
             _MeterKernel.Collected += (s, e) =>
             {
@@ -62,10 +63,19 @@ namespace MeterKnife.Instruments
             };
 
             _StandardDeviationRangeComboBox.TextUpdate += (s, e) => SetStandardDeviationRange();
-            _FiguredData.ReceviedCollectData += _FiguredData_ReceviedCollectData;
+            _FiguredData.ReceviedCollectData += (sender, args) => this.ThreadSafeInvoke(() =>
+            {
+                _FiguredDataGridView.DataSource = null;
+                _FiguredDataGridView.DataSource = _FiguredData.DataSet.Tables[1];
+            });
         }
 
-        private void SetStandardDeviationRange()
+        protected void SetFiguredDataGrid()
+        {
+            _FiguredDataGridView.DataSource = _FiguredData.DataSet.Tables[1];
+        }
+
+        protected void SetStandardDeviationRange()
         {
             int range = 100;
             if (!int.TryParse(_StandardDeviationRangeComboBox.Text, out range))
@@ -191,13 +201,6 @@ namespace MeterKnife.Instruments
             return list;
         }
 
-        private void _FiguredData_ReceviedCollectData(object sender, CollectDataEventArgs e)
-        {
-            CollectData data = e.CollectData;
-            string item = string.Format("{0}\t{1}\t{2}", data.DateTime, data.Data, data.Temperature);
-            _CollectDataList.ThreadSafeInvoke(() => _CollectDataList.Items.Insert(0, item));
-        }
-
         private void _StartStripButton_Click(object sender, EventArgs e)
         {
             if (_FiguredData.HasData)
@@ -216,6 +219,10 @@ namespace MeterKnife.Instruments
         private void _StopStripButton_Click(object sender, EventArgs e)
         {
             StopCollect();
+
+            _TempFeaturesPlot.Clear();
+            _TempTrendPlot.Clear();
+            _SdPlot.Clear();
 
             _TempFeaturesPlot.Update(_FiguredData);
             _TempTrendPlot.Update(_FiguredData);
@@ -263,11 +270,14 @@ namespace MeterKnife.Instruments
         private void PlotsClear()
         {
             _FiguredData.Clear();
+
             _DataPlot.Clear();
             _TempPlot.Clear();
+            _TempFeaturesPlot.Clear();
+            _TempTrendPlot.Clear();
             _SdPlot.Clear();
+
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
-            this.ThreadSafeInvoke(() => _CollectDataList.Items.Clear());
         }
 
         private void _PhotoToolStripButton_Click(object sender, EventArgs e)
@@ -324,13 +334,6 @@ namespace MeterKnife.Instruments
             EventHandler<EventArgs<int>> handler = ExportRowCountChanged;
             if (handler != null)
                 handler(this, e);
-        }
-
-        private void toolStripButton1_Click_1(object sender, EventArgs e)
-        {
-            _TempFeaturesPlot.Update(_FiguredData);
-            _TempTrendPlot.Update(_FiguredData);
-            _SdPlot.Update(_FiguredData);
         }
     }
 }

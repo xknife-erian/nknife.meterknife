@@ -50,6 +50,7 @@ namespace MeterKnife.Common.Controls.Plots
 
             _Series.Color = GetColor();
             _Series.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
+            _Series.TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}";
             _PlotModel.Series.Add(_Series);
             return _PlotModel;
         }

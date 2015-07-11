@@ -67,9 +67,9 @@ namespace MeterKnife.Kernel.Services
                     {
                         if (e.Item.Scpi.ToLower().StartsWith("care"))
                         {
-                            resetEvent.Set();
                             OnSerialInitialized(new EventArgs<CarePort>(carePort));
                             Cares.Add(carePort);
+                            resetEvent.Set();
                         }
                     }
                     onFindCare = false;
@@ -101,7 +101,7 @@ namespace MeterKnife.Kernel.Services
                 {
                     case TunnelType.Tcpip:
                     {
-                        BuildBytesConnector(carePort, new SocketBytesProtocolFilter());
+                        BuildConnector(carePort, new SocketBytesProtocolFilter());
                         var dataConnector = _ConnectorMap[carePort] as ISocketClient;
                         if (dataConnector != null)
                         {
@@ -115,17 +115,18 @@ namespace MeterKnife.Kernel.Services
                     case TunnelType.Serial:
                     default:
                     {
-                        BuildBytesConnector(carePort, new SerialProtocolFilter());
+                        BuildConnector(carePort, new SerialProtocolFilter());
                         var dataConnector = _ConnectorMap[carePort] as ISerialConnector;
                         if (dataConnector != null)
                         {
+                            var serialport = carePort.GetSerialPort();
                             dataConnector.SerialConfig = new SerialConfig
                             {
-                                BaudRate = 115200,
+                                BaudRate = serialport[1],
                                 ReadBufferSize = 258,
                                 ReadTimeout = 100*10
                             };
-                            dataConnector.PortNumber = carePort.GetSerialPort(); //串口
+                            dataConnector.PortNumber = serialport[0]; //串口
                         }
                         break;
                     }
@@ -198,15 +199,19 @@ namespace MeterKnife.Kernel.Services
             if (_ConnectorMap.TryGetValue(carePort, out connector))
             {
                 connector.SendAll(data);
-                _logger.Trace(string.Format("To:{0}", data.ToHexString()));
+                _logger.Trace(string.Format("Send:{0}", data.ToHexString()));
             }
         }
 
-        protected virtual void BuildBytesConnector(CarePort carePort, BytesProtocolFilter filter)
+        protected virtual void BuildConnector(CarePort carePort, BytesProtocolFilter filter)
         {
             if (_CarePortList.Contains(carePort))
                 return;
             _CarePortList.Add(carePort);
+            var sb = new StringBuilder("PortList:");
+            foreach (var port in _CarePortList)
+                sb.Append(port).Append(';');
+            _logger.Info(sb);
 
             //启动串口数据管道
             var tunnel = DI.Get<ITunnel>();
@@ -225,7 +230,7 @@ namespace MeterKnife.Kernel.Services
             _ConnectorMap.Add(carePort, dataConnector);
 
             tunnel.BindDataConnector(dataConnector); //dataConnector是数据流动的动力
+            _logger.Info(string.Format("PortList:{0},Filters:{1},Connectors:{2}", _CarePortList.Count, _ProtocolFilters.Count, _ConnectorMap.Count));
         }
-
     }
 }

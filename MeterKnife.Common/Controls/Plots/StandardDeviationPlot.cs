@@ -43,6 +43,8 @@ namespace MeterKnife.Common.Controls.Plots
         protected override void UpdateRange(FiguredData fd)
         {
             DataTable table = fd.DataSet.Tables[1];
+            if (table.Rows.Count <= 0)
+                return;
             double max = table.AsEnumerable().Select(row => row.Field<double>(ValueHead)).Max()*1000000;
             double min = table.AsEnumerable().Select(row => row.Field<double>(ValueHead)).Min()*1000000;
             double offset = (Math.Abs(max - min))/4;

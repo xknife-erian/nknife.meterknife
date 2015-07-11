@@ -29,13 +29,22 @@
         private void InitializeComponent()
         {
             this._MainGroupBox = new System.Windows.Forms.GroupBox();
-            this._UsartGroupBox = new System.Windows.Forms.GroupBox();
+            this.singleLine1 = new NKnife.GUI.WinForm.SingleLine();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this._WifiGpibNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this._LANGpibNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this._USBGpibNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this._UsartSwitchCheckBox = new System.Windows.Forms.CheckBox();
+            this._UsartGroupBox = new System.Windows.Forms.GroupBox();
+            this._Usart2NumberBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this._Usart1NumberBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this._DhcpEnableRadioButton = new System.Windows.Forms.RadioButton();
             this._DhcpDisableRadioButton = new System.Windows.Forms.RadioButton();
-            this._USBGpibNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this._Dht11RadioButton = new System.Windows.Forms.RadioButton();
             this._18b20RadioButton = new System.Windows.Forms.RadioButton();
@@ -54,24 +63,15 @@
             this._ConfirmButton = new System.Windows.Forms.Button();
             this._CancelButton = new System.Windows.Forms.Button();
             this._RestoreDefaultButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.singleLine1 = new NKnife.GUI.WinForm.SingleLine();
-            this._Usart1NumberBox = new System.Windows.Forms.ComboBox();
-            this._Usart2NumberBox = new System.Windows.Forms.ComboBox();
-            this._LANGpibNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this._WifiGpibNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this._MainGroupBox.SuspendLayout();
-            this._UsartGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._WifiGpibNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._LANGpibNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._USBGpibNumericUpDown)).BeginInit();
+            this._UsartGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._TcpNumericUpDown)).BeginInit();
             this._DhcpGroupBox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._LANGpibNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._WifiGpibNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // _MainGroupBox
@@ -92,6 +92,133 @@
             this._MainGroupBox.TabIndex = 3;
             this._MainGroupBox.TabStop = false;
             // 
+            // singleLine1
+            // 
+            this.singleLine1.Location = new System.Drawing.Point(285, 20);
+            this.singleLine1.Name = "singleLine1";
+            this.singleLine1.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.singleLine1.Size = new System.Drawing.Size(1, 242);
+            this.singleLine1.TabIndex = 12;
+            this.singleLine1.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this._WifiGpibNumericUpDown);
+            this.groupBox1.Controls.Add(this._LANGpibNumericUpDown);
+            this.groupBox1.Controls.Add(this._USBGpibNumericUpDown);
+            this.groupBox1.Location = new System.Drawing.Point(315, 118);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(235, 116);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "指令透传时仪器GPIB地址";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(69, 81);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "WIFI:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(74, 54);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "LAN:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(74, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "USB:";
+            // 
+            // _WifiGpibNumericUpDown
+            // 
+            this._WifiGpibNumericUpDown.Location = new System.Drawing.Point(105, 79);
+            this._WifiGpibNumericUpDown.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this._WifiGpibNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this._WifiGpibNumericUpDown.Name = "_WifiGpibNumericUpDown";
+            this._WifiGpibNumericUpDown.Size = new System.Drawing.Size(65, 21);
+            this._WifiGpibNumericUpDown.TabIndex = 4;
+            this._WifiGpibNumericUpDown.Value = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            // 
+            // _LANGpibNumericUpDown
+            // 
+            this._LANGpibNumericUpDown.Location = new System.Drawing.Point(105, 52);
+            this._LANGpibNumericUpDown.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this._LANGpibNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this._LANGpibNumericUpDown.Name = "_LANGpibNumericUpDown";
+            this._LANGpibNumericUpDown.Size = new System.Drawing.Size(65, 21);
+            this._LANGpibNumericUpDown.TabIndex = 3;
+            this._LANGpibNumericUpDown.Value = new decimal(new int[] {
+            22,
+            0,
+            0,
+            0});
+            // 
+            // _USBGpibNumericUpDown
+            // 
+            this._USBGpibNumericUpDown.Location = new System.Drawing.Point(105, 26);
+            this._USBGpibNumericUpDown.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this._USBGpibNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this._USBGpibNumericUpDown.Name = "_USBGpibNumericUpDown";
+            this._USBGpibNumericUpDown.Size = new System.Drawing.Size(65, 21);
+            this._USBGpibNumericUpDown.TabIndex = 2;
+            this._USBGpibNumericUpDown.Value = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            // 
+            // _UsartSwitchCheckBox
+            // 
+            this._UsartSwitchCheckBox.AutoSize = true;
+            this._UsartSwitchCheckBox.Location = new System.Drawing.Point(315, 239);
+            this._UsartSwitchCheckBox.Name = "_UsartSwitchCheckBox";
+            this._UsartSwitchCheckBox.Size = new System.Drawing.Size(110, 17);
+            this._UsartSwitchCheckBox.TabIndex = 10;
+            this._UsartSwitchCheckBox.Text = "转WIFI透传模式";
+            this._UsartSwitchCheckBox.UseVisualStyleBackColor = true;
+            // 
             // _UsartGroupBox
             // 
             this._UsartGroupBox.Controls.Add(this._Usart2NumberBox);
@@ -105,15 +232,27 @@
             this._UsartGroupBox.TabStop = false;
             this._UsartGroupBox.Text = "串口设置";
             // 
-            // _UsartSwitchCheckBox
+            // _Usart2NumberBox
             // 
-            this._UsartSwitchCheckBox.AutoSize = true;
-            this._UsartSwitchCheckBox.Location = new System.Drawing.Point(315, 239);
-            this._UsartSwitchCheckBox.Name = "_UsartSwitchCheckBox";
-            this._UsartSwitchCheckBox.Size = new System.Drawing.Size(110, 17);
-            this._UsartSwitchCheckBox.TabIndex = 10;
-            this._UsartSwitchCheckBox.Text = "转WIFI透传模式";
-            this._UsartSwitchCheckBox.UseVisualStyleBackColor = true;
+            this._Usart2NumberBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._Usart2NumberBox.FormattingEnabled = true;
+            this._Usart2NumberBox.Items.AddRange(new object[] {
+            "4800",
+            "9600",
+            "14400",
+            "19200",
+            "38400",
+            "43000",
+            "56000",
+            "57600",
+            "76800",
+            "115200",
+            "128000",
+            "230400"});
+            this._Usart2NumberBox.Location = new System.Drawing.Point(129, 50);
+            this._Usart2NumberBox.Name = "_Usart2NumberBox";
+            this._Usart2NumberBox.Size = new System.Drawing.Size(87, 21);
+            this._Usart2NumberBox.TabIndex = 6;
             // 
             // label6
             // 
@@ -123,6 +262,28 @@
             this.label6.Size = new System.Drawing.Size(86, 13);
             this.label6.TabIndex = 7;
             this.label6.Text = "USB串口波特率";
+            // 
+            // _Usart1NumberBox
+            // 
+            this._Usart1NumberBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._Usart1NumberBox.FormattingEnabled = true;
+            this._Usart1NumberBox.Items.AddRange(new object[] {
+            "4800",
+            "9600",
+            "14400",
+            "19200",
+            "38400",
+            "43000",
+            "56000",
+            "57600",
+            "76800",
+            "115200",
+            "128000",
+            "230400"});
+            this._Usart1NumberBox.Location = new System.Drawing.Point(129, 23);
+            this._Usart1NumberBox.Name = "_Usart1NumberBox";
+            this._Usart1NumberBox.Size = new System.Drawing.Size(87, 21);
+            this._Usart1NumberBox.TabIndex = 5;
             // 
             // label7
             // 
@@ -154,28 +315,6 @@
             this._DhcpDisableRadioButton.TabStop = true;
             this._DhcpDisableRadioButton.Text = "不启用DHCP";
             this._DhcpDisableRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // _USBGpibNumericUpDown
-            // 
-            this._USBGpibNumericUpDown.Location = new System.Drawing.Point(105, 26);
-            this._USBGpibNumericUpDown.Maximum = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this._USBGpibNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this._USBGpibNumericUpDown.Name = "_USBGpibNumericUpDown";
-            this._USBGpibNumericUpDown.Size = new System.Drawing.Size(65, 21);
-            this._USBGpibNumericUpDown.TabIndex = 2;
-            this._USBGpibNumericUpDown.Value = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
             // 
             // groupBox2
             // 
@@ -390,143 +529,6 @@
             this._RestoreDefaultButton.UseVisualStyleBackColor = true;
             this._RestoreDefaultButton.Click += new System.EventHandler(this._RestoreDefaultButton_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this._WifiGpibNumericUpDown);
-            this.groupBox1.Controls.Add(this._LANGpibNumericUpDown);
-            this.groupBox1.Controls.Add(this._USBGpibNumericUpDown);
-            this.groupBox1.Location = new System.Drawing.Point(315, 118);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 116);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "指令透传时仪器GPIB地址";
-            // 
-            // singleLine1
-            // 
-            this.singleLine1.Location = new System.Drawing.Point(285, 20);
-            this.singleLine1.Name = "singleLine1";
-            this.singleLine1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.singleLine1.Size = new System.Drawing.Size(1, 242);
-            this.singleLine1.TabIndex = 12;
-            this.singleLine1.TabStop = false;
-            // 
-            // _Usart1NumberBox
-            // 
-            this._Usart1NumberBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._Usart1NumberBox.FormattingEnabled = true;
-            this._Usart1NumberBox.Items.AddRange(new object[] {
-            "4800",
-            "9600",
-            "14400",
-            "19200",
-            "38400",
-            "56000",
-            "57600",
-            "115200",
-            "128000",
-            "256000",
-            "512000"});
-            this._Usart1NumberBox.Location = new System.Drawing.Point(129, 23);
-            this._Usart1NumberBox.Name = "_Usart1NumberBox";
-            this._Usart1NumberBox.Size = new System.Drawing.Size(87, 21);
-            this._Usart1NumberBox.TabIndex = 5;
-            // 
-            // _Usart2NumberBox
-            // 
-            this._Usart2NumberBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._Usart2NumberBox.FormattingEnabled = true;
-            this._Usart2NumberBox.Items.AddRange(new object[] {
-            "4800",
-            "9600",
-            "14400",
-            "19200",
-            "38400",
-            "56000",
-            "57600",
-            "115200",
-            "128000",
-            "256000",
-            "512000"});
-            this._Usart2NumberBox.Location = new System.Drawing.Point(129, 50);
-            this._Usart2NumberBox.Name = "_Usart2NumberBox";
-            this._Usart2NumberBox.Size = new System.Drawing.Size(87, 21);
-            this._Usart2NumberBox.TabIndex = 6;
-            // 
-            // _LANGpibNumericUpDown
-            // 
-            this._LANGpibNumericUpDown.Location = new System.Drawing.Point(105, 52);
-            this._LANGpibNumericUpDown.Maximum = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this._LANGpibNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this._LANGpibNumericUpDown.Name = "_LANGpibNumericUpDown";
-            this._LANGpibNumericUpDown.Size = new System.Drawing.Size(65, 21);
-            this._LANGpibNumericUpDown.TabIndex = 3;
-            this._LANGpibNumericUpDown.Value = new decimal(new int[] {
-            22,
-            0,
-            0,
-            0});
-            // 
-            // _WifiGpibNumericUpDown
-            // 
-            this._WifiGpibNumericUpDown.Location = new System.Drawing.Point(105, 79);
-            this._WifiGpibNumericUpDown.Maximum = new decimal(new int[] {
-            32,
-            0,
-            0,
-            0});
-            this._WifiGpibNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this._WifiGpibNumericUpDown.Name = "_WifiGpibNumericUpDown";
-            this._WifiGpibNumericUpDown.Size = new System.Drawing.Size(65, 21);
-            this._WifiGpibNumericUpDown.TabIndex = 4;
-            this._WifiGpibNumericUpDown.Value = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(74, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "USB:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(74, 54);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 13);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "LAN:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(69, 81);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(35, 13);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "WIFI:";
-            // 
             // CareParameterDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -546,18 +548,18 @@
             this.Text = "Care参数设置";
             this._MainGroupBox.ResumeLayout(false);
             this._MainGroupBox.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._WifiGpibNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._LANGpibNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._USBGpibNumericUpDown)).EndInit();
             this._UsartGroupBox.ResumeLayout(false);
             this._UsartGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._USBGpibNumericUpDown)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._TcpNumericUpDown)).EndInit();
             this._DhcpGroupBox.ResumeLayout(false);
             this._DhcpGroupBox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._LANGpibNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._WifiGpibNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }

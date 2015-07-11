@@ -18,16 +18,21 @@ namespace MeterKnife.Workbench.Dialogs
             _SerialRadioButton.CheckedChanged += (s, e) =>
             {
                 _SerialComboBox.Enabled = _SerialRadioButton.Checked;
+                _PortNumberBox.Enabled = _SerialRadioButton.Checked;
+                _RefreshButton.Enabled = _SerialRadioButton.Checked;
                 _IpAddressControl.Enabled = !_SerialRadioButton.Checked;
                 _PortNumericUpDown.Enabled = !_SerialRadioButton.Checked;
             };
             _LanRadioButton.CheckedChanged += (s, e) =>
             {
                 _SerialComboBox.Enabled = !_LanRadioButton.Checked;
+                _PortNumberBox.Enabled = !_LanRadioButton.Checked;
+                _RefreshButton.Enabled = !_LanRadioButton.Checked;
                 _IpAddressControl.Enabled = _LanRadioButton.Checked;
                 _PortNumericUpDown.Enabled = _LanRadioButton.Checked;
             };
             _SerialRadioButton.Checked = true;
+            _PortNumberBox.SelectedItem = "115200";
         }
 
         private void FillSerialComonbox()
@@ -54,7 +59,7 @@ namespace MeterKnife.Workbench.Dialogs
                 {
                     var v = _SerialComboBox.Text.TrimStart(new[] {'C', 'O', 'M'});
                     var c = int.Parse(v);
-                    return CarePort.Build(TunnelType.Serial, c.ToString());
+                    return CarePort.Build(TunnelType.Serial, c.ToString(), _PortNumberBox.Text);
                 }
                 else
                 {

@@ -37,6 +37,7 @@
             this._RefreshButton = new System.Windows.Forms.Button();
             this._PortNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this._CloseButton = new System.Windows.Forms.Button();
+            this._PortNumberBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._PortNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             this._SerialComboBox.FormattingEnabled = true;
             this._SerialComboBox.Location = new System.Drawing.Point(70, 26);
             this._SerialComboBox.Name = "_SerialComboBox";
-            this._SerialComboBox.Size = new System.Drawing.Size(75, 21);
+            this._SerialComboBox.Size = new System.Drawing.Size(85, 21);
             this._SerialComboBox.TabIndex = 0;
             // 
             // _IpAddressControl
@@ -98,6 +99,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._PortNumberBox);
             this.groupBox1.Controls.Add(this._RefreshButton);
             this.groupBox1.Controls.Add(this._PortNumericUpDown);
             this.groupBox1.Controls.Add(this._SerialRadioButton);
@@ -112,7 +114,7 @@
             // 
             // _RefreshButton
             // 
-            this._RefreshButton.Location = new System.Drawing.Point(151, 25);
+            this._RefreshButton.Location = new System.Drawing.Point(226, 25);
             this._RefreshButton.Name = "_RefreshButton";
             this._RefreshButton.Size = new System.Drawing.Size(39, 23);
             this._RefreshButton.TabIndex = 1;
@@ -152,6 +154,28 @@
             this._CloseButton.UseVisualStyleBackColor = true;
             this._CloseButton.Click += new System.EventHandler(this._CloseButton_Click);
             // 
+            // _PortNumberBox
+            // 
+            this._PortNumberBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._PortNumberBox.FormattingEnabled = true;
+            this._PortNumberBox.Items.AddRange(new object[] {
+            "4800",
+            "9600",
+            "14400",
+            "19200",
+            "38400",
+            "43000",
+            "56000",
+            "57600",
+            "76800",
+            "115200",
+            "128000",
+            "230400"});
+            this._PortNumberBox.Location = new System.Drawing.Point(161, 26);
+            this._PortNumberBox.Name = "_PortNumberBox";
+            this._PortNumberBox.Size = new System.Drawing.Size(59, 21);
+            this._PortNumberBox.TabIndex = 6;
+            // 
             // InterfaceSelectorDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,5 +211,6 @@
         private System.Windows.Forms.NumericUpDown _PortNumericUpDown;
         private System.Windows.Forms.Button _RefreshButton;
         private System.Windows.Forms.Button _CloseButton;
+        private System.Windows.Forms.ComboBox _PortNumberBox;
     }
 }

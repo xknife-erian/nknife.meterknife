@@ -119,6 +119,9 @@ namespace MeterKnife.Common.Controls.Plots
                 temps.Add(x);
             }
 
+            if (temps.Count < 3)
+                return;
+
             var a = lsqr.aTerm();
             var b = lsqr.bTerm();
             var c = lsqr.cTerm();

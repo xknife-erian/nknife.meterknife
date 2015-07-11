@@ -10,27 +10,29 @@ namespace MeterKnife.Common.DataModels
 {
     public class CarePort
     {
+        private string _Id;
+        private string[] _Ports;
+
         protected CarePort()
         {
+            _Id = Guid.NewGuid().ToString();
         }
 
-        public TunnelType TunnelType { get; set; }
+        public TunnelType TunnelType { get;private set; }
 
-        public string Port { get; set; }
-
-        private int _SerialPort = -1;
+        private readonly int[] _SerialPort = {-1, 115200};
 
         private IPEndPoint _IpEndPoint = null;
 
-        public int GetSerialPort()
+        public int[] GetSerialPort()
         {
-            if (_SerialPort == -1)
+            if (_SerialPort[0] == -1)
             {
-                var port = Port.ToUpper().TrimStart(new char[] {'C', 'O', 'M'});
-                if (!int.TryParse(port, out _SerialPort))
-                {
-                    _SerialPort = 0;
-                }
+                var port = _Ports[0].ToUpper().TrimStart(new char[] {'C', 'O', 'M'});
+                if (!int.TryParse(port, out _SerialPort[0]))
+                    _SerialPort[0] = 0;
+                if (!int.TryParse(_Ports[1], out _SerialPort[1]))
+                    _SerialPort[1] = 115200;
             }
             return _SerialPort;
         }
@@ -39,29 +41,31 @@ namespace MeterKnife.Common.DataModels
         {
             if (_IpEndPoint == null)
             {
-                var ss = Port.Split(new char[] {':'});
-                if (ss.Length != 2)
-                {
-                    _IpEndPoint = new IPEndPoint(new IPAddress(new byte[] {0x00, 0x00, 0x00, 0x00}), 5025);
-                    return _IpEndPoint;
-                }
                 IPAddress ip;
-                if (!IPAddress.TryParse(ss[0], out ip))
-                {
+                if (!IPAddress.TryParse(_Ports[0], out ip))
                     ip = new IPAddress(new byte[] {0x00, 0x00, 0x00, 0x00});
-                }
-                _IpEndPoint = new IPEndPoint(ip, int.Parse(ss[1]));
+                int port = 0;
+                if (!int.TryParse(_Ports[1], out port))
+                    port = 5025;
+                _IpEndPoint = new IPEndPoint(ip, port);
             }
             return _IpEndPoint;
         }
 
         public static CarePort Build(TunnelType tunnelType, params string[] ports)
         {
-            var carePort = new CarePort{TunnelType = tunnelType};
+            var carePort = new CarePort
+            {
+                TunnelType = tunnelType, 
+                _Ports = ports
+            };
             if (tunnelType == TunnelType.Serial)
             {
-                carePort.Port = ports[0];
-                carePort._SerialPort = int.Parse(ports[0]);
+                if (!int.TryParse(ports[0], out carePort._SerialPort[0]))
+                    carePort._SerialPort[0] = 0;
+                if (ports.Length == 1 || !int.TryParse(ports[1], out carePort._SerialPort[1]))
+                    carePort._SerialPort[1] = 115200;
+                carePort._Id = string.Format("{0}:{1}", carePort._SerialPort[0], carePort._SerialPort[1]);
             }
             else
             {
@@ -69,6 +73,7 @@ namespace MeterKnife.Common.DataModels
                 var port = int.Parse(ports[1]);
                 var ipe = new IPEndPoint(ip, port);
                 carePort._IpEndPoint = ipe;
+                carePort._Id = ipe.ToString();
             }
             return carePort;
         }
@@ -81,7 +86,13 @@ namespace MeterKnife.Common.DataModels
                     return GetIpEndPoint().ToString();
                 case TunnelType.Serial:
                 default:
-                    return GetSerialPort().ToString();
+                {
+                    var ports = GetSerialPort();
+                    var sb = new StringBuilder();
+                    foreach (var port in ports)
+                        sb.Append(port).Append(':');
+                    return sb.ToString();
+                }
             }
         }
 
@@ -89,19 +100,19 @@ namespace MeterKnife.Common.DataModels
         {
             if (obj == null) return false;
             if (!(obj is CarePort)) return false;
-            return Equals((CarePort) obj);
+            return (Equals(((CarePort) obj)));
         }
 
         protected bool Equals(CarePort other)
         {
-            return TunnelType == other.TunnelType && string.Equals(Port, other.Port);
+            return _Id.Equals(other._Id) && TunnelType == other.TunnelType;
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                return ((int) TunnelType*397) ^ (Port != null ? Port.GetHashCode() : 0);
+                return (_Id.GetHashCode()*397) ^ (int) TunnelType;
             }
         }
     }
