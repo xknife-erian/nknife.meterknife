@@ -1,9 +1,10 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using MeterKnife.Common.Interfaces;
 using NKnife.IoC;
 using ScpiKnife;
 
-namespace MeterKnife.Common.Controls
+namespace MeterKnife.Common.Scpi
 {
     public partial class CustomerScpiCommandPanel : UserControl
     {
@@ -54,42 +55,42 @@ namespace MeterKnife.Common.Controls
             _ToolStrip.Enabled = !state;
         }
 
-        private void _LoadButton_Click(object sender, System.EventArgs e)
+        private void _LoadButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void _SaveButton_Click(object sender, System.EventArgs e)
+        private void _SaveButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void _AddInitButton_Click(object sender, System.EventArgs e)
+        private void _AddInitButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void _AddCollectButton_Click(object sender, System.EventArgs e)
+        private void _AddCollectButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void _DeleteButton_Click(object sender, System.EventArgs e)
+        private void _DeleteButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void _EditButton_Click(object sender, System.EventArgs e)
+        private void _EditButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void _DownButton_Click(object sender, System.EventArgs e)
+        private void _DownButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void _UpButton_Click(object sender, System.EventArgs e)
+        private void _UpButton_Click(object sender, EventArgs e)
         {
 
         }

@@ -1,4 +1,6 @@
-﻿namespace MeterKnife.DemoApplication.Dialogs
+﻿using MeterKnife.Common.Scpi;
+
+namespace MeterKnife.DemoApplication.Dialogs
 {
     partial class CustomScpiGroupDialog
     {
@@ -32,7 +34,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.customerScpiCommandPanel1 = new MeterKnife.Common.Controls.CustomerScpiCommandPanel();
+            this.customerScpiCommandPanel1 = new CustomerScpiCommandPanel();
             ((System.ComponentModel.ISupportInitialize)(this.collapsibleSplitContainer1)).BeginInit();
             this.collapsibleSplitContainer1.Panel1.SuspendLayout();
             this.collapsibleSplitContainer1.SuspendLayout();
@@ -129,7 +131,7 @@
 
         private NKnife.GUI.WinForm.CollapsibleSplitContainer collapsibleSplitContainer1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private Common.Controls.CustomerScpiCommandPanel customerScpiCommandPanel1;
+        private CustomerScpiCommandPanel customerScpiCommandPanel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button button1;
 

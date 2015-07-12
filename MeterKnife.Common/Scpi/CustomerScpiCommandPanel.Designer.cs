@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Common.Controls
+﻿namespace MeterKnife.Common.Scpi
 {
     partial class CustomerScpiCommandPanel
     {
