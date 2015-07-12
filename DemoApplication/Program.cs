@@ -17,13 +17,6 @@ namespace DemoApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var list = new List<byte[]>();
-            list.Add(new byte[] { 0x01 });
-            list.Add(new byte[] { 0x02,0x03 });
-
-            Console.WriteLine(list.Contains(new byte[] { 0x01 }));
-            Console.WriteLine(list.Contains(new byte[] { 0x02, 0x03 }));
-
             Application.Run(new Form1());
         }
     }

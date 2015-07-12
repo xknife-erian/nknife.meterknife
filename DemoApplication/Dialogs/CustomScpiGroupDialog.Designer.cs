@@ -46,7 +46,7 @@
             // collapsibleSplitContainer1.Panel1
             // 
             this.collapsibleSplitContainer1.Panel1.Controls.Add(this.groupBox1);
-            this.collapsibleSplitContainer1.Size = new System.Drawing.Size(624, 442);
+            this.collapsibleSplitContainer1.Size = new System.Drawing.Size(784, 562);
             this.collapsibleSplitContainer1.SplitterDistance = 250;
             this.collapsibleSplitContainer1.SplitterWidth = 22;
             this.collapsibleSplitContainer1.TabIndex = 0;
@@ -57,7 +57,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 442);
+            this.groupBox1.Size = new System.Drawing.Size(250, 562);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数";
@@ -68,14 +68,14 @@
             this.customerScpiCommandPanel1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.customerScpiCommandPanel1.Location = new System.Drawing.Point(3, 17);
             this.customerScpiCommandPanel1.Name = "customerScpiCommandPanel1";
-            this.customerScpiCommandPanel1.Size = new System.Drawing.Size(244, 422);
+            this.customerScpiCommandPanel1.Size = new System.Drawing.Size(244, 542);
             this.customerScpiCommandPanel1.TabIndex = 0;
             // 
             // CustomScpiGroupDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 442);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.collapsibleSplitContainer1);
             this.Name = "CustomScpiGroupDialog";
             this.Text = "CustomScpiGroupDialog";

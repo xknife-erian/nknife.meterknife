@@ -7,6 +7,7 @@ using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
 using NKnife.Events;
 using NKnife.Tunnel.Base;
+using ScpiKnife;
 
 namespace MeterKnife.Common.Base
 {
