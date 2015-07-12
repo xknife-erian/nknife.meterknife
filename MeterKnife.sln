@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Common", "MeterKnife.Common\MeterKnife.Common.csproj", "{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NKnife", "NKnife", "{2F108EA0-F2A3-461B-A9F4-7B8CAE6F1E38}"
+	ProjectSection(SolutionItems) = preProject
+		..\nknife\NKnife.Scpi\ScpiCommandQueue.cs = ..\nknife\NKnife.Scpi\ScpiCommandQueue.cs
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife", "..\nknife\NKnife\NKnife.csproj", "{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}"
 EndProject

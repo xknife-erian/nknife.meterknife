@@ -15,7 +15,7 @@ namespace MeterKnife.Common.Base
         protected BaseCareCommunicationService()
         {
             IsInitialized = false;
-            ScpiCommandQueue = new ScpiCommandQueue();
+            ScpiCommandQueue = new ScpiQueue();
         }
 
         public bool IsInitialized { get; protected set; }
@@ -40,7 +40,7 @@ namespace MeterKnife.Common.Base
             Bind(carePort, handlers.Cast<CareOneProtocolHandler>().ToArray());
         }
 
-        public ScpiCommandQueue ScpiCommandQueue { get; set; }
+        public ScpiQueue ScpiCommandQueue { get; set; }
 
         public abstract void Destroy();
         public abstract void Send(CarePort carePort, byte[] data);

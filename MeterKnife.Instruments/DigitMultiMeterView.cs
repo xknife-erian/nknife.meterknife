@@ -174,13 +174,13 @@ namespace MeterKnife.Instruments
                 Thread.Sleep((int) i);
             }
 
-            List<byte[]> reads = GetCollectCommands();
+            ScpiCommandList reads = GetCollectCommands();
             byte[] temp = CareTalking.TEMP().Generate();
             while (_OnCollect)
             {
                 foreach (var read in reads)
                 {
-                    _Comm.Send(Port, read);
+                    //_Comm.Send(Port, read);
                     Thread.Sleep(interval);
                 }
                 _Comm.Send(Port, temp);
