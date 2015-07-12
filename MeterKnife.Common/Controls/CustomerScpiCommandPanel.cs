@@ -1,20 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using MeterKnife.Common.Interfaces;
+using NKnife.IoC;
 using ScpiKnife;
 
 namespace MeterKnife.Common.Controls
 {
     public partial class CustomerScpiCommandPanel : UserControl
     {
+        public int GpibAddress { get; set; }
+
         public CustomerScpiCommandPanel()
         {
+            GpibAddress = 23;//测试使用
             InitializeComponent();
+            var kernel = DI.Get<IMeterKernel>();
+            kernel.Collected += (s, e) =>
+            {
+                if (e.GpibAddress == GpibAddress)
+                    SetToolStripState(e.IsCollected);
+            };
         }
 
         public ScpiCommandList GetCollectCommands()
@@ -27,7 +31,7 @@ namespace MeterKnife.Common.Controls
             return GetCommands("INIT");
         }
 
-        private ScpiCommandList GetCommands(string groupName)
+        protected virtual ScpiCommandList GetCommands(string groupName)
         {
             var commands = new ScpiCommandList();
             foreach (ListViewItem item in _ListView.Items)
@@ -42,6 +46,52 @@ namespace MeterKnife.Common.Controls
                 }
             }
             return commands;
+        }
+
+        protected void SetToolStripState(bool state)
+        {
+            _ListView.Enabled = !state;
+            _ToolStrip.Enabled = !state;
+        }
+
+        private void _LoadButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void _SaveButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void _AddInitButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void _AddCollectButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void _DeleteButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void _EditButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void _DownButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void _UpButton_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

@@ -145,17 +145,17 @@
     <Compile Include="Controls\ScpiParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CustomerScpiCommandPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\CustomerScpiCommandPanel.Designer.cs">
-      <DependentUpon>CustomerScpiCommandPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\UserScpiCommandPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomerScpiCommandPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomerScpiCommandPanel.Designer.cs">
+      <DependentUpon>CustomerScpiCommandPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModels\CareTalking.Protocols.cs" />
     <Compile Include="Algorithms\Max.cs" />
@@ -207,11 +207,11 @@
     <EmbeddedResource Include="Controls\ScpiParamPanel.resx">
       <DependentUpon>ScpiParamPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CustomerScpiCommandPanel.resx">
-      <DependentUpon>CustomerScpiCommandPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserScpiCommandPanel.resx">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CustomerScpiCommandPanel.resx">
+      <DependentUpon>CustomerScpiCommandPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

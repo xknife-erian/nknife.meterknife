@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using MeterKnife.DemoApplication;
+using NKnife.IoC;
 
-namespace DemoApplication
+namespace MeterKnife.DemoApplication
 {
     static class Program
     {
@@ -17,6 +15,7 @@ namespace DemoApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            DI.Initialize();
             Application.Run(new Form1());
         }
     }
