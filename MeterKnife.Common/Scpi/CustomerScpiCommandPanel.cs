@@ -8,6 +8,8 @@ namespace MeterKnife.Common.Scpi
 {
     public partial class CustomerScpiCommandPanel : UserControl
     {
+        public bool IsModified { get; private set; }
+
         public int GpibAddress { get; set; }
 
         public CustomerScpiCommandPanel()
@@ -20,6 +22,11 @@ namespace MeterKnife.Common.Scpi
                 if (e.GpibAddress == GpibAddress)
                     SetToolStripState(e.IsCollected);
             };
+            _SaveButton.Enabled = false;
+            _DeleteButton.Enabled = false;
+            _EditButton.Enabled = false;
+            _UpButton.Enabled = false;
+            _DownButton.Enabled = false;
         }
 
         public ScpiCommandList GetCollectCommands()
@@ -57,7 +64,10 @@ namespace MeterKnife.Common.Scpi
 
         private void _LoadButton_Click(object sender, EventArgs e)
         {
-
+            var dialog = new MeterScpiGroupTreeDialog();
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+            }
         }
 
         private void _SaveButton_Click(object sender, EventArgs e)
@@ -67,32 +77,44 @@ namespace MeterKnife.Common.Scpi
 
         private void _AddInitButton_Click(object sender, EventArgs e)
         {
-
+            var dialog = new ScpiCommandEditorDialog();
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                IsModified = true;
+            }
         }
 
         private void _AddCollectButton_Click(object sender, EventArgs e)
         {
-
+            var dialog = new ScpiCommandEditorDialog();
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                IsModified = true;
+            }
         }
 
         private void _DeleteButton_Click(object sender, EventArgs e)
         {
-
+            IsModified = true;
         }
 
         private void _EditButton_Click(object sender, EventArgs e)
         {
-
+            var dialog = new ScpiCommandEditorDialog();
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                IsModified = true;
+            }
         }
 
         private void _DownButton_Click(object sender, EventArgs e)
         {
-
+            IsModified = true;
         }
 
         private void _UpButton_Click(object sender, EventArgs e)
         {
-
+            IsModified = true;
         }
     }
 }

@@ -28,20 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("初始指令集", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("采集指令集", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("初始指令集", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("采集指令集", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "INIT?",
             "1000"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "READ?",
             "2000"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            "",
+            "CONF:VOLT 10V",
+            "2000"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            "",
+            "TRIG?",
+            "200"}, -1);
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
             this._LoadButton = new System.Windows.Forms.ToolStripButton();
             this._SaveButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this._AddInitButton = new System.Windows.Forms.ToolStripMenuItem();
+            this._AddCollectButton = new System.Windows.Forms.ToolStripMenuItem();
             this._DeleteButton = new System.Windows.Forms.ToolStripButton();
             this._EditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -51,9 +62,6 @@
             this._NumHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._CommandHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._TimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this._AddInitButton = new System.Windows.Forms.ToolStripMenuItem();
-            this._AddCollectButton = new System.Windows.Forms.ToolStripMenuItem();
             this._ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,6 +106,32 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._AddInitButton,
+            this._AddCollectButton});
+            this.toolStripSplitButton1.Image = global::MeterKnife.Common.Properties.Resources.add;
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(29, 22);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // _AddInitButton
+            // 
+            this._AddInitButton.Name = "_AddInitButton";
+            this._AddInitButton.Size = new System.Drawing.Size(124, 22);
+            this._AddInitButton.Text = "初始指令";
+            this._AddInitButton.Click += new System.EventHandler(this._AddInitButton_Click);
+            // 
+            // _AddCollectButton
+            // 
+            this._AddCollectButton.Name = "_AddCollectButton";
+            this._AddCollectButton.Size = new System.Drawing.Size(124, 22);
+            this._AddCollectButton.Text = "采集指令";
+            this._AddCollectButton.Click += new System.EventHandler(this._AddCollectButton_Click);
             // 
             // _DeleteButton
             // 
@@ -152,23 +186,35 @@
             this._CommandHeader,
             this._TimeHeader});
             this._ListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewGroup17.Header = "初始指令集";
-            listViewGroup17.Name = "INIT";
-            listViewGroup18.Header = "采集指令集";
-            listViewGroup18.Name = "COLLECT";
+            this._ListView.FullRowSelect = true;
+            this._ListView.GridLines = true;
+            listViewGroup1.Header = "初始指令集";
+            listViewGroup1.Name = "INIT";
+            listViewGroup2.Header = "采集指令集";
+            listViewGroup2.Name = "COLLECT";
             this._ListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup17,
-            listViewGroup18});
-            listViewItem17.Checked = true;
-            listViewItem17.Group = listViewGroup17;
-            listViewItem17.StateImageIndex = 1;
-            listViewItem18.Checked = true;
-            listViewItem18.Group = listViewGroup18;
-            listViewItem18.StateImageIndex = 1;
+            listViewGroup1,
+            listViewGroup2});
+            this._ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            listViewItem1.Checked = true;
+            listViewItem1.Group = listViewGroup1;
+            listViewItem1.StateImageIndex = 1;
+            listViewItem2.Checked = true;
+            listViewItem2.Group = listViewGroup2;
+            listViewItem2.StateImageIndex = 1;
+            listViewItem3.Checked = true;
+            listViewItem3.Group = listViewGroup1;
+            listViewItem3.StateImageIndex = 1;
+            listViewItem4.Checked = true;
+            listViewItem4.Group = listViewGroup1;
+            listViewItem4.StateImageIndex = 1;
             this._ListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem17,
-            listViewItem18});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4});
             this._ListView.Location = new System.Drawing.Point(0, 25);
+            this._ListView.MultiSelect = false;
             this._ListView.Name = "_ListView";
             this._ListView.Size = new System.Drawing.Size(251, 246);
             this._ListView.TabIndex = 1;
@@ -188,32 +234,6 @@
             // _TimeHeader
             // 
             this._TimeHeader.Text = "时长";
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._AddInitButton,
-            this._AddCollectButton});
-            this.toolStripSplitButton1.Image = global::MeterKnife.Common.Properties.Resources.add;
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
-            // 
-            // _AddInitButton
-            // 
-            this._AddInitButton.Name = "_AddInitButton";
-            this._AddInitButton.Size = new System.Drawing.Size(152, 22);
-            this._AddInitButton.Text = "初始指令";
-            this._AddInitButton.Click += new System.EventHandler(this._AddInitButton_Click);
-            // 
-            // _AddCollectButton
-            // 
-            this._AddCollectButton.Name = "_AddCollectButton";
-            this._AddCollectButton.Size = new System.Drawing.Size(152, 22);
-            this._AddCollectButton.Text = "采集指令";
-            this._AddCollectButton.Click += new System.EventHandler(this._AddCollectButton_Click);
             // 
             // CustomerScpiCommandPanel
             // 
