@@ -14,7 +14,7 @@ namespace MeterKnife.Common.Scpi
 
         public CustomerScpiCommandPanel()
         {
-            GpibAddress = 23;//测试使用
+            GpibAddress = 23; //测试使用
             InitializeComponent();
             var kernel = DI.Get<IMeterKernel>();
             kernel.Collected += (s, e) =>
@@ -27,6 +27,16 @@ namespace MeterKnife.Common.Scpi
             _EditButton.Enabled = false;
             _UpButton.Enabled = false;
             _DownButton.Enabled = false;
+            _ListView.LostFocus += (s, e) => _ListView.SelectedIndices.Clear();
+            _ListView.SelectedIndexChanged += (s, e) =>
+            {
+                var b = _ListView.SelectedIndices.Count > 0;
+                _DeleteButton.Enabled = b;
+                _EditButton.Enabled = b;
+                _UpButton.Enabled = b && _ListView.SelectedIndices[0] > 0;
+                _DownButton.Enabled = b && _ListView.SelectedIndices[0] < _ListView.Items.Count - 1;
+                //TODO:分组后上下真是麻烦
+            };
         }
 
         public ScpiCommandList GetCollectCommands()
@@ -109,6 +119,7 @@ namespace MeterKnife.Common.Scpi
 
         private void _DownButton_Click(object sender, EventArgs e)
         {
+
             IsModified = true;
         }
 

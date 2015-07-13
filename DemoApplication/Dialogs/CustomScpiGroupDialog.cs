@@ -14,13 +14,12 @@ namespace MeterKnife.DemoApplication.Dialogs
 {
     public partial class CustomScpiGroupDialog : SimpleForm
     {
-        private readonly IMeterKernel _Kernel;
+        private readonly IMeterKernel _Kernel = DI.Get<IMeterKernel>();
         private bool _IsCollect = false;
 
         public CustomScpiGroupDialog()
         {
             InitializeComponent();
-            _Kernel = DI.Get<IMeterKernel>();
         }
 
         private void button1_Click(object sender, EventArgs e)
