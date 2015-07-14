@@ -187,6 +187,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scpi\MeterInfoParser.cs" />
     <Compile Include="Tunnels\CareConfigHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneCodec.cs" />
@@ -260,6 +261,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
+    <None Include="MeterInfo\HP34401A.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Properties\contents\bar-button\20150314104053895.png" />
     <Content Include="Properties\contents\bar-button\20150314104116114.png" />
     <Content Include="Properties\contents\bar-button\20150314104157509.png" />
