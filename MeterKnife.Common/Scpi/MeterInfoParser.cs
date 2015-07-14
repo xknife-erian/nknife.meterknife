@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -8,15 +9,12 @@ using NKnife.Interface;
 
 namespace MeterKnife.Common.Scpi
 {
-    public class MeterInfoParser : IParser<XmlDocument, IMeter>
+    public class MeterInfoParser : IParser<FileInfo[], IMeter[]>
     {
-        protected XmlDocument _SourceXmlDocument;
-
-        public IMeter Parse(XmlDocument source)
+        public IMeter[] Parse(FileInfo[] fileInfos)
         {
-            if(source==null)
-                throw new ArgumentNullException("source");
-            _SourceXmlDocument = source;
+            if (fileInfos == null)
+                throw new ArgumentNullException("fileInfos");
 
             return null;
         }
