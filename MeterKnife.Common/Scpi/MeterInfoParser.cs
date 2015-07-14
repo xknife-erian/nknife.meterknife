@@ -17,6 +17,8 @@ namespace MeterKnife.Common.Scpi
             if(source==null)
                 throw new ArgumentNullException("source");
             _SourceXmlDocument = source;
+
+            return null;
         }
     }
 }
