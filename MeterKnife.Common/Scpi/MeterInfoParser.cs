@@ -9,14 +9,15 @@ using NKnife.Interface;
 
 namespace MeterKnife.Common.Scpi
 {
-    public class MeterInfoParser : IParser<FileInfo[], IMeter[]>
+    public class MeterInfoParser : IParser<FileInfo, IMeter>
     {
-        public IMeter[] Parse(FileInfo[] fileInfos)
+        public bool TryParse(FileInfo fileInfos, out IMeter meter)
         {
             if (fileInfos == null)
                 throw new ArgumentNullException("fileInfos");
 
-            return null;
+            meter = null;
+            return true;
         }
     }
 }

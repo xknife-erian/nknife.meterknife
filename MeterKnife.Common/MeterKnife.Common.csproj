@@ -279,13 +279,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
-    <None Include="MeterInfos\HP34401A.xml">
+    <None Include="MeterInfos\Agilent34401A.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="MeterInfos\AdvantestR6871E.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="MeterInfos\Keithley2000.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="MeterInfos\HP3457A.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="MeterInfos\Solartron7081.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="MeterInfos\AdvantestR6551.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="Properties\contents\bar-button\20150314104053895.png" />
