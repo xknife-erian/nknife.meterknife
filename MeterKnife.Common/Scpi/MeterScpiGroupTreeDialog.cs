@@ -17,6 +17,14 @@ namespace MeterKnife.Common.Scpi
         public MeterScpiGroupTreeDialog()
         {
             InitializeComponent();
+            _ConfirmButton.Enabled = false;
+            _Tree.AfterSelect += (s, e) =>
+            {
+                if (_Tree.SelectedNode is SubjectTreeNode)
+                    _ConfirmButton.Enabled = true;
+                else
+                    _ConfirmButton.Enabled = false;
+            };
         }
 
         public ScpiSubject ScpiSubject
@@ -49,7 +57,8 @@ namespace MeterKnife.Common.Scpi
                 var treeNode = new TreeNode(string.Format("{0}{1}", parser.Brand, parser.Name));
                 foreach (var subject in list)
                 {
-                    var subNode = new TreeNode(subject.Description);
+                    var subNode = new SubjectTreeNode();
+                    subNode.Text = subject.Description;
                     subNode.Tag = subject;
                     treeNode.Nodes.Add(subNode);
                 }
@@ -68,6 +77,10 @@ namespace MeterKnife.Common.Scpi
         {
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        public class SubjectTreeNode : TreeNode
+        {
         }
     }
 }
