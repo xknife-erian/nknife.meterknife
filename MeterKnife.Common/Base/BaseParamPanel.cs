@@ -13,7 +13,7 @@ namespace MeterKnife.Common.Base
             Dock = DockStyle.Fill;
         }
 
-        public virtual ScpiCommandList ScpiCommands { get; protected set; }
+        public virtual ScpiGroup ScpiCommands { get; protected set; }
 
         /*
             _Panel.ColumnCount = 2;

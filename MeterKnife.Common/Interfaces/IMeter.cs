@@ -16,7 +16,6 @@ namespace MeterKnife.Common.Interfaces
         string Name { get; set; }
         string AbbrName { get; }
         int GpibAddress { get; set; }
-        GpibLanguage Language { get; set; }
-        ScpiCommandList GetScpiCommands();
+
     }
 }

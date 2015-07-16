@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
@@ -14,27 +15,11 @@ namespace MeterKnife.Common.Base
         public int GpibAddress { get; set; }
         public string Brand { get; set; }
         public string Name { get; set; }
-        public GpibLanguage Language { get; set; }
+
+        /// <summary>
+        /// 缩写名称
+        /// </summary>
         public string AbbrName { get { return MeterUtil.SimplifyName(Name).Second; } }
-
-        public ScpiCommandList GetScpiCommands()
-        {
-            return ParamPanel.ScpiCommands;
-        }
-
-        public abstract BaseParamPanel ParamPanel { get; }
-
-        protected XmlDocument _TempDocument;
-        protected XmlElement GetTempElement()
-        {
-            if (_TempDocument == null)
-            {
-                var xml = GlobalResources.DemoMeterParamElement;
-                _TempDocument = new XmlDocument();
-                _TempDocument.LoadXml(xml);
-            }
-            return _TempDocument.DocumentElement;
-        }
 
         public override bool Equals(object obj)
         {
@@ -46,7 +31,7 @@ namespace MeterKnife.Common.Base
 
         protected bool Equals(BaseMeter other)
         {
-            return GpibAddress == other.GpibAddress && string.Equals(Brand, other.Brand) && string.Equals(Name, other.Name) && Language == other.Language;
+            return GpibAddress == other.GpibAddress && string.Equals(Brand, other.Brand) && string.Equals(Name, other.Name);
         }
 
         public override int GetHashCode()
@@ -56,7 +41,6 @@ namespace MeterKnife.Common.Base
                 int hashCode = GpibAddress;
                 hashCode = (hashCode * 397) ^ (Brand != null ? Brand.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Name != null ? Name.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (int)Language;
                 return hashCode;
             }
         }

@@ -5,6 +5,7 @@ using System.Text;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Instruments.Common;
+using MeterKnife.Instruments.Specified;
 using MeterKnife.Instruments.Specified.Agilent;
 using MeterKnife.Instruments.Specified.Keithley;
 using Ninject.Activation;
@@ -16,9 +17,8 @@ namespace MeterKnife.Instruments.IoC
     {
         public override void Load()
         {
-            Bind<BaseMeter>().To<ScpiMeter>().When(Request);
-            Bind<BaseMeter>().To<Ag34401A>().Named("34401A");
-            Bind<BaseMeter>().To<K2000>().Named("K2000");
+            Bind<BaseMeter>().To<DigitalMultimeter>().Named("DigitalMultimeter".ToLower());
+            Bind<BaseMeter>().To<DcPowerSupply>().Named("DcPowerSupply".ToLower());
         }
 
         private bool Request(IRequest request)

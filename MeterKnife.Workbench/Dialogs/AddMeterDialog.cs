@@ -77,7 +77,6 @@ namespace MeterKnife.Workbench.Dialogs
                 Meter = DI.Get<BaseMeter>();
                 Meter.Brand = _MeterBrandComboBox.Text;
                 Meter.GpibAddress = address;
-                Meter.Language = Language;
                 Meter.Name = string.Format("{0}", _MeterTypeComboBox.Text);
             }
             if (Meter == null)
@@ -114,7 +113,6 @@ namespace MeterKnife.Workbench.Dialogs
                 Meter.Name = string.IsNullOrEmpty(idnName) ? "Unknown Meter" : idnName;
             }
             Meter.GpibAddress = (int)_NumberBox.Value;
-            Meter.Language = Language;
 
             var handler = (CareConfigHandler)sender;
             handler.CareConfigging -= OnCareConfigging;

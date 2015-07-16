@@ -161,7 +161,7 @@ namespace MeterKnife.Instruments
                 string i = _IntervalTextBox.Text;
                 int.TryParse(i, out interval);
             });
-            ScpiCommandList cmdlist = GetInitCommands();
+            ScpiGroup cmdlist = GetInitCommands();
             foreach (ScpiCommand cmd in cmdlist)
             {
                 if (cmd == null)
@@ -174,7 +174,7 @@ namespace MeterKnife.Instruments
                 Thread.Sleep((int) i);
             }
 
-            ScpiCommandList reads = GetCollectCommands();
+            ScpiGroup reads = GetCollectCommands();
             byte[] temp = CareTalking.TEMP().Generate();
             while (_OnCollect)
             {
@@ -188,14 +188,14 @@ namespace MeterKnife.Instruments
             }
         }
 
-        protected virtual ScpiCommandList GetInitCommands()
+        protected virtual ScpiGroup GetInitCommands()
         {
             if (_Panel != null && _Panel.ScpiCommands != null)
                 return _Panel.ScpiCommands;
-            return new ScpiCommandList();
+            return new ScpiGroup();
         }
 
-        protected virtual ScpiCommandList GetCollectCommands()
+        protected virtual ScpiGroup GetCollectCommands()
         {
             var list = new List<byte[]> {CareTalking.READ(_Meter.GpibAddress).Generate()};
             return null;

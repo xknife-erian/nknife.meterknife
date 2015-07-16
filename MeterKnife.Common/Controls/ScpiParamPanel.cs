@@ -13,7 +13,7 @@ namespace MeterKnife.Common.Controls
     {
         private static readonly ILog _logger = LogManager.GetLogger<ScpiParamPanel>();
         protected readonly List<ComboBox> _ComboBoxList = new List<ComboBox>();
-        protected ScpiCommandList _Commandlist;
+        protected ScpiGroup _Commandlist;
 
         public ScpiParamPanel(XmlElement element)
         {
@@ -21,7 +21,7 @@ namespace MeterKnife.Common.Controls
             ParseElement(element);
         }
 
-        public override ScpiCommandList ScpiCommands
+        public override ScpiGroup ScpiCommands
         {
             get
             {
@@ -42,9 +42,9 @@ namespace MeterKnife.Common.Controls
             }
         }
 
-        protected static ScpiCommandList GetGpibCommandList()
+        protected static ScpiGroup GetGpibCommandList()
         {
-            var cmdlist = new ScpiCommandList();
+            var cmdlist = new ScpiGroup();
             cmdlist.AddLast(new ScpiCommand {Command = "*CLS", Interval = 50});
             cmdlist.AddLast(new ScpiCommand { Command = "*CLS", Interval = 50 });
             cmdlist.AddLast(new ScpiCommand { Command = "*RST", Interval = 200 });

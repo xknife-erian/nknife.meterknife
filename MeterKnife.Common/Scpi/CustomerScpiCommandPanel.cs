@@ -39,19 +39,19 @@ namespace MeterKnife.Common.Scpi
             };
         }
 
-        public ScpiCommandList GetCollectCommands()
+        public ScpiGroup GetCollectCommands()
         {
             return GetCommands("COLLECT");
         }
 
-        public ScpiCommandList GetInitCommands()
+        public ScpiGroup GetInitCommands()
         {
             return GetCommands("INIT");
         }
 
-        protected virtual ScpiCommandList GetCommands(string groupName)
+        protected virtual ScpiGroup GetCommands(string groupName)
         {
-            var commands = new ScpiCommandList();
+            var commands = new ScpiGroup();
             foreach (ListViewItem item in _ListView.Items)
             {
                 if (item.Checked && item.Group.Name == groupName)

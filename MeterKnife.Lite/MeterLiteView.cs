@@ -40,7 +40,7 @@ namespace MeterKnife.Lite
             base.SetMeter(port, meter);
             if (!IsFairy)
             {
-                _Panel = meter.ParamPanel;
+                //TODO:_Panel = meter.ParamPanel;
                 _ParamsPanel.Controls.Add(_Panel);
             }
             if (!_Comm.IsInitialized)
@@ -49,13 +49,13 @@ namespace MeterKnife.Lite
             }
         }
 
-        protected override ScpiCommandList GetInitCommands()
+        protected override ScpiGroup GetInitCommands()
         {
             var commands = _ScpiCommandPanel.GetInitCommands();
             return commands;
         }
 
-        protected override ScpiCommandList GetCollectCommands()
+        protected override ScpiGroup GetCollectCommands()
         {
             var commands = _ScpiCommandPanel.GetCollectCommands();
             return commands;

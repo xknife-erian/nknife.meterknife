@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <meter>
-  <meterinfo version="1.0" brand="" name="">
+  <meterinfo version="1.0" brand="" name="" type="DigitalMultimeter">
   </meterinfo>
-  <scpigroup>
+  <scpigroups>
     <subject description="电压测量">
       <group way="init">
         <scpi duration="200">
@@ -49,5 +49,5 @@
         </scpi>
       </group>
     </subject>
-  </scpigroup>
+  </scpigroups>
 </meter>
