@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <meter>
-  <meterinfo version="1.0" brand="" name="">
+  <meterinfo version="1.0" brand="Advantest" name="R6551" type="DigitalMultimeter">
   </meterinfo>
-  <scpigroup>
+  <scpigroups>
     <subject description="电压测量">
       <group way="init">
         <scpi duration="200">
           <![CDATA[INIT?]]>
         </scpi>
         <scpi duration="200" hex="true">
-          <![CDATA[]]>
+          <![CDATA[ABCDEFG?]]>
+        </scpi>
+        <scpi duration="200" hex="true">
+          <![CDATA[XYZ?]]>
         </scpi>
       </group>
       <group way="collect">
@@ -49,5 +52,5 @@
         </scpi>
       </group>
     </subject>
-  </scpigroup>
+  </scpigroups>
 </meter>

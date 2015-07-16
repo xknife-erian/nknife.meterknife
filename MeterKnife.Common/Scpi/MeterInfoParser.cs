@@ -14,6 +14,10 @@ namespace MeterKnife.Common.Scpi
 {
     public class MeterInfoParser : IParser<FileInfo, List<ScpiSubject>>
     {
+        public string Brand { get; private set; }
+
+        public string Name { get; private set; }
+
         public bool TryParse(FileInfo fileInfo, out List<ScpiSubject> scpiSubjectList)
         {
             if (fileInfo == null)
@@ -26,7 +30,18 @@ namespace MeterKnife.Common.Scpi
             }
             var xmldoc = new XmlDocument();
             xmldoc.Load(fileInfo.FullName);
-            var scpigroups = xmldoc.SelectSingleNode("scpigroups") as XmlElement;
+
+            var meterinfoElement = xmldoc.SelectSingleNode("//meterinfo") as XmlElement;
+            if (meterinfoElement == null)
+            {
+                scpiSubjectList = null;
+                return false;
+            }
+            Brand = meterinfoElement.GetAttribute("brand");
+            Name = meterinfoElement.GetAttribute("name");
+
+            var node = xmldoc.SelectSingleNode("//scpigroups");
+            var scpigroups = node as XmlElement;
             if (scpigroups == null)
             {
                 scpiSubjectList = null;
@@ -39,46 +54,38 @@ namespace MeterKnife.Common.Scpi
                 if (!(subjectNode is XmlElement))
                     continue;
                 var scpiSubject = new ScpiSubject();
-
                 var ele = subjectNode as XmlElement;
-                var initGroupElement = ele.GetElementByName("init");
+                scpiSubject.Description = ele.GetAttribute("description");
+
+                var initGroupElement = ele.SelectSingleNode("//group[@way='init']") as XmlElement;
                 scpiSubject.Preload = new ScpiGroup();
-                foreach (XmlElement scpiElement in initGroupElement.ChildNodes)
+                if (initGroupElement != null)
                 {
-                    var scpiCommand = ScpiCommand.Parse(scpiElement);
-                    if (scpiCommand == null)
-                        continue;
-                    scpiSubject.Preload.AddLast(scpiCommand);
+                    foreach (XmlElement scpiElement in initGroupElement.ChildNodes)
+                    {
+                        var scpiCommand = ScpiCommand.Parse(scpiElement);
+                        if (scpiCommand == null)
+                            continue;
+                        scpiSubject.Preload.AddLast(scpiCommand);
+                    }
                 }
 
-                var collectGroupElement = ele.GetElementByName("collect");
+                var collectGroupElement = ele.SelectSingleNode("//group[@way='collect']") as XmlElement;
                 scpiSubject.Collect = new ScpiGroup();
-                foreach (XmlElement scpiElement in collectGroupElement.ChildNodes)
+                if (collectGroupElement != null)
                 {
-                    var scpiCommand = ScpiCommand.Parse(scpiElement);
-                    if (scpiCommand == null)
-                        continue;
-                    scpiSubject.Collect.AddLast(scpiCommand);
+                    foreach (XmlElement scpiElement in collectGroupElement.ChildNodes)
+                    {
+                        var scpiCommand = ScpiCommand.Parse(scpiElement);
+                        if (scpiCommand == null)
+                            continue;
+                        scpiSubject.Collect.AddLast(scpiCommand);
+                    }
                 }
                 scpiSubjectList.Add(scpiSubject);
             }
 
             return true;
         }
-
-        /*{
-            var meterinfoElement = xmldoc.SelectSingleNode("\\meterinfo") as XmlElement;
-            if (meterinfoElement == null)
-            {
-                scpiSubjects = null;
-                return false;
-            }
-            var type = meterinfoElement.GetAttribute("type").ToLower();
-            var brand = meterinfoElement.GetAttribute("brand");
-            var name = meterinfoElement.GetAttribute("name");
-            meter = DI.Get<BaseMeter>(type);
-            meter.Brand = brand;
-            meter.Name = name;
-        }*/
     }
 }

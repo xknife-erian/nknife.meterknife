@@ -77,6 +77,40 @@ namespace MeterKnife.Common.Scpi
             var dialog = new MeterScpiGroupTreeDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
+                _ListView.Items.Clear();
+                var subject = dialog.ScpiSubject;
+                foreach (var command in subject.Preload)
+                {
+                    var listitem = new ListViewItem();
+                    listitem.Checked = true;
+                    listitem.Group = _InitGroup;
+
+                    var subitem = new ListViewItem.ListViewSubItem();
+                    subitem.Text = command.Command;
+                    listitem.SubItems.Add(subitem);
+
+                    subitem = new ListViewItem.ListViewSubItem();
+                    subitem.Text = command.Interval.ToString();
+                    listitem.SubItems.Add(subitem);
+
+                    _ListView.Items.Add(listitem);
+                }
+                foreach (var command in subject.Collect)
+                {
+                    var listitem = new ListViewItem();
+                    listitem.Checked = true;
+                    listitem.Group = _CollectGroup;
+
+                    var subitem = new ListViewItem.ListViewSubItem();
+                    subitem.Text = command.Command;
+                    listitem.SubItems.Add(subitem);
+
+                    subitem = new ListViewItem.ListViewSubItem();
+                    subitem.Text = command.Interval.ToString();
+                    listitem.SubItems.Add(subitem);
+
+                    _ListView.Items.Add(listitem);
+                }
             }
         }
 
@@ -119,7 +153,6 @@ namespace MeterKnife.Common.Scpi
 
         private void _DownButton_Click(object sender, EventArgs e)
         {
-
             IsModified = true;
         }
 

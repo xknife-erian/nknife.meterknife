@@ -1,4 +1,6 @@
-﻿namespace MeterKnife.Common.Scpi
+﻿using System.Windows.Forms;
+
+namespace MeterKnife.Common.Scpi
 {
     partial class CustomerScpiCommandPanel
     {
@@ -28,8 +30,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("初始指令集", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("采集指令集", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "INIT?",
@@ -188,25 +188,25 @@
             this._ListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ListView.FullRowSelect = true;
             this._ListView.GridLines = true;
-            listViewGroup1.Header = "初始指令集";
-            listViewGroup1.Name = "INIT";
-            listViewGroup2.Header = "采集指令集";
-            listViewGroup2.Name = "COLLECT";
+            _InitGroup.Header = "初始指令集";
+            _InitGroup.Name = "INIT";
+            _CollectGroup.Header = "采集指令集";
+            _CollectGroup.Name = "COLLECT";
             this._ListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            _InitGroup,
+            _CollectGroup});
             this._ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             listViewItem1.Checked = true;
-            listViewItem1.Group = listViewGroup1;
+            listViewItem1.Group = _InitGroup;
             listViewItem1.StateImageIndex = 1;
             listViewItem2.Checked = true;
-            listViewItem2.Group = listViewGroup2;
+            listViewItem2.Group = _CollectGroup;
             listViewItem2.StateImageIndex = 1;
             listViewItem3.Checked = true;
-            listViewItem3.Group = listViewGroup1;
+            listViewItem3.Group = _InitGroup;
             listViewItem3.StateImageIndex = 1;
             listViewItem4.Checked = true;
-            listViewItem4.Group = listViewGroup1;
+            listViewItem4.Group = _InitGroup;
             listViewItem4.StateImageIndex = 1;
             this._ListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
@@ -233,7 +233,7 @@
             // 
             // _TimeHeader
             // 
-            this._TimeHeader.Text = "时长";
+            this._TimeHeader.Text = "时长(ms)";
             // 
             // CustomerScpiCommandPanel
             // 
@@ -253,21 +253,24 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip _ToolStrip;
-        private System.Windows.Forms.ListView _ListView;
-        private System.Windows.Forms.ColumnHeader _NumHeader;
-        private System.Windows.Forms.ColumnHeader _CommandHeader;
-        private System.Windows.Forms.ColumnHeader _TimeHeader;
-        private System.Windows.Forms.ToolStripButton _LoadButton;
-        private System.Windows.Forms.ToolStripButton _SaveButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton _DeleteButton;
-        private System.Windows.Forms.ToolStripButton _EditButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton _DownButton;
-        private System.Windows.Forms.ToolStripButton _UpButton;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton1;
-        private System.Windows.Forms.ToolStripMenuItem _AddInitButton;
-        private System.Windows.Forms.ToolStripMenuItem _AddCollectButton;
+        private ToolStrip _ToolStrip;
+        private ListView _ListView;
+        private ColumnHeader _NumHeader;
+        private ColumnHeader _CommandHeader;
+        private ColumnHeader _TimeHeader;
+        private ToolStripButton _LoadButton;
+        private ToolStripButton _SaveButton;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton _DeleteButton;
+        private ToolStripButton _EditButton;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripButton _DownButton;
+        private ToolStripButton _UpButton;
+        private ToolStripDropDownButton toolStripSplitButton1;
+        private ToolStripMenuItem _AddInitButton;
+        private ToolStripMenuItem _AddCollectButton;
+
+        ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
+        ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
     }
 }
