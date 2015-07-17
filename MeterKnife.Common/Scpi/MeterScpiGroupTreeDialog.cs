@@ -36,6 +36,10 @@ namespace MeterKnife.Common.Scpi
             }
         }
 
+        public string CurrentMeter { get; private set; }
+
+        public string CurrentDescription { get; private set; }
+
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
@@ -54,7 +58,8 @@ namespace MeterKnife.Common.Scpi
             List<ScpiSubject> list;
             if (parser.TryParse(file, out list))
             {
-                var treeNode = new TreeNode(string.Format("{0}{1}", parser.Brand, parser.Name));
+                var meter = string.Format("{0}{1}", parser.Brand, parser.Name);
+                var treeNode = new TreeNode(meter);
                 foreach (var subject in list)
                 {
                     var subNode = new SubjectTreeNode();
@@ -75,6 +80,8 @@ namespace MeterKnife.Common.Scpi
 
         private void _ConfirmButton_Click(object sender, EventArgs e)
         {
+            CurrentDescription = _Tree.SelectedNode.Text;
+            CurrentMeter = _Tree.SelectedNode.Parent.Text;
             DialogResult = DialogResult.OK;
             Close();
         }

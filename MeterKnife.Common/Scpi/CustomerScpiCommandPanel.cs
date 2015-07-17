@@ -8,6 +8,9 @@ namespace MeterKnife.Common.Scpi
 {
     public partial class CustomerScpiCommandPanel : UserControl
     {
+        readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
+        readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
+
         public bool IsModified { get; private set; }
 
         public int GpibAddress { get; set; }
@@ -27,6 +30,12 @@ namespace MeterKnife.Common.Scpi
             _EditButton.Enabled = false;
             _UpButton.Enabled = false;
             _DownButton.Enabled = false;
+            _InitGroup.Header = "初始指令集";
+            _InitGroup.Name = "INIT";
+            _CollectGroup.Header = "采集指令集";
+            _CollectGroup.Name = "COLLECT";
+
+            _ListView.Groups.AddRange(new[] {_InitGroup,_CollectGroup});
             _ListView.LostFocus += (s, e) => _ListView.SelectedIndices.Clear();
             _ListView.SelectedIndexChanged += (s, e) =>
             {
@@ -78,6 +87,7 @@ namespace MeterKnife.Common.Scpi
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 _ListView.Items.Clear();
+                _StripLabel.Text = string.Format("{0} - {1}", dialog.CurrentMeter, dialog.CurrentDescription);
                 var subject = dialog.ScpiSubject;
                 foreach (var command in subject.Preload)
                 {

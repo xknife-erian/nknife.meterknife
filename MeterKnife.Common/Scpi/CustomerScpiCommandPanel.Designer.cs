@@ -30,22 +30,6 @@ namespace MeterKnife.Common.Scpi
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            "INIT?",
-            "1000"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            "READ?",
-            "2000"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            "CONF:VOLT 10V",
-            "2000"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            "TRIG?",
-            "200"}, -1);
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
             this._LoadButton = new System.Windows.Forms.ToolStripButton();
             this._SaveButton = new System.Windows.Forms.ToolStripButton();
@@ -62,7 +46,10 @@ namespace MeterKnife.Common.Scpi
             this._NumHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._CommandHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._TimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._StatusStrip = new System.Windows.Forms.StatusStrip();
+            this._StripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._ToolStrip.SuspendLayout();
+            this._StatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _ToolStrip
@@ -188,35 +175,11 @@ namespace MeterKnife.Common.Scpi
             this._ListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ListView.FullRowSelect = true;
             this._ListView.GridLines = true;
-            _InitGroup.Header = "初始指令集";
-            _InitGroup.Name = "INIT";
-            _CollectGroup.Header = "采集指令集";
-            _CollectGroup.Name = "COLLECT";
-            this._ListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            _InitGroup,
-            _CollectGroup});
             this._ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            listViewItem1.Checked = true;
-            listViewItem1.Group = _InitGroup;
-            listViewItem1.StateImageIndex = 1;
-            listViewItem2.Checked = true;
-            listViewItem2.Group = _CollectGroup;
-            listViewItem2.StateImageIndex = 1;
-            listViewItem3.Checked = true;
-            listViewItem3.Group = _InitGroup;
-            listViewItem3.StateImageIndex = 1;
-            listViewItem4.Checked = true;
-            listViewItem4.Group = _InitGroup;
-            listViewItem4.StateImageIndex = 1;
-            this._ListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4});
             this._ListView.Location = new System.Drawing.Point(0, 25);
             this._ListView.MultiSelect = false;
             this._ListView.Name = "_ListView";
-            this._ListView.Size = new System.Drawing.Size(251, 246);
+            this._ListView.Size = new System.Drawing.Size(251, 224);
             this._ListView.TabIndex = 1;
             this._ListView.UseCompatibleStateImageBehavior = false;
             this._ListView.View = System.Windows.Forms.View.Details;
@@ -235,17 +198,34 @@ namespace MeterKnife.Common.Scpi
             // 
             this._TimeHeader.Text = "时长(ms)";
             // 
+            // _StatusStrip
+            // 
+            this._StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._StripLabel});
+            this._StatusStrip.Location = new System.Drawing.Point(0, 249);
+            this._StatusStrip.Name = "_StatusStrip";
+            this._StatusStrip.Size = new System.Drawing.Size(251, 22);
+            this._StatusStrip.TabIndex = 2;
+            // 
+            // _StripLabel
+            // 
+            this._StripLabel.Name = "_StripLabel";
+            this._StripLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // CustomerScpiCommandPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._ListView);
+            this.Controls.Add(this._StatusStrip);
             this.Controls.Add(this._ToolStrip);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.Name = "CustomerScpiCommandPanel";
             this.Size = new System.Drawing.Size(251, 271);
             this._ToolStrip.ResumeLayout(false);
             this._ToolStrip.PerformLayout();
+            this._StatusStrip.ResumeLayout(false);
+            this._StatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,8 +249,8 @@ namespace MeterKnife.Common.Scpi
         private ToolStripDropDownButton toolStripSplitButton1;
         private ToolStripMenuItem _AddInitButton;
         private ToolStripMenuItem _AddCollectButton;
+        private StatusStrip _StatusStrip;
+        private ToolStripStatusLabel _StripLabel;
 
-        ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
-        ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
     }
 }
