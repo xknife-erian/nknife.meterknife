@@ -132,6 +132,7 @@ namespace MeterKnife.Common.Scpi
         private void _AddInitButton_Click(object sender, EventArgs e)
         {
             var dialog = new ScpiCommandEditorDialog();
+            dialog.Category = ScpiCommandGroupCategory.Init;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
@@ -141,6 +142,7 @@ namespace MeterKnife.Common.Scpi
         private void _AddCollectButton_Click(object sender, EventArgs e)
         {
             var dialog = new ScpiCommandEditorDialog();
+            dialog.Category = ScpiCommandGroupCategory.Collect;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;

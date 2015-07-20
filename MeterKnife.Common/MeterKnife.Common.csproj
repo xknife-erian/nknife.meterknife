@@ -200,6 +200,7 @@
     <Compile Include="Scpi\ScpiCommandEditorDialog.Designer.cs">
       <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scpi\ScpiCommandGroupCategory.cs" />
     <Compile Include="Tunnels\CareConfigHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneCodec.cs" />
