@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using NKnife.Converts;
 using NKnife.GUI.WinForm;
+using NKnife.Utility;
 
 namespace MeterKnife.Common.Scpi
 {
@@ -14,13 +16,18 @@ namespace MeterKnife.Common.Scpi
     {
         public ScpiCommandGroupCategory Category { get; set; }
 
+        public string Command { get { return _CommandTextBox.Text; } }
+        public int Range { get { return (int)_RangeNumericUpDown.Value; } }
+        public bool IsHex { get { return _HexEnableCheckBox.Checked; } }
+
         public ScpiCommandEditorDialog()
         {
             InitializeComponent();
-            _HexEnableCheckBox.CheckStateChanged += (s, e) =>
+            _CommandTextBox.TextChanged += (s, e) =>
             {
-                
+                _ConfirmButton.Enabled = !_CommandTextBox.IsEmptyText();
             };
+            _ConfirmButton.Enabled = false;
         }
 
         private void _ConfirmButton_Click(object sender, EventArgs e)
@@ -33,15 +40,19 @@ namespace MeterKnife.Common.Scpi
             DialogResult = DialogResult.Cancel;
         }
 
-        private void _AddEnterFlagButton_Click(object sender, EventArgs e)
+        private void _HexEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            _CommandTextBox.Text = _CommandTextBox.Text.Insert(0, "\r\n");
-            _CommandTextBox.Focus();
-        }
-
-        private void _InsertTailBrButton_Click(object sender, EventArgs e)
-        {
-            _CommandTextBox.AppendText("\r\n");
+            if (_HexEnableCheckBox.Checked)
+            {
+                var t = _CommandTextBox.Text;
+                _CommandTextBox.Text = Encoding.ASCII.GetBytes(t).ToHexString();
+            }
+            else
+            {
+                var t = _CommandTextBox.Text;
+                var bs = UtilityConvert.HexToBytes(t);
+                _CommandTextBox.Text = Encoding.ASCII.GetString(bs);
+            }
             _CommandTextBox.Focus();
         }
     }

@@ -81,6 +81,35 @@ namespace MeterKnife.Common.Scpi
             _ToolStrip.Enabled = !state;
         }
 
+        protected void AddListItem(ScpiCommandGroupCategory category, string command, long range)
+        {
+            var listitem = new ListViewItem();
+            listitem.Checked = true;
+            switch (category)
+            {
+                case ScpiCommandGroupCategory.Init:
+                    {
+                        listitem.Group = _InitGroup;
+                        break;
+                    }
+                case ScpiCommandGroupCategory.Collect:
+                    {
+                        listitem.Group = _CollectGroup;
+                        break;
+                    }
+            }
+
+            var subitem = new ListViewItem.ListViewSubItem();
+            subitem.Text = command;
+            listitem.SubItems.Add(subitem);
+
+            subitem = new ListViewItem.ListViewSubItem();
+            subitem.Text = range.ToString();
+            listitem.SubItems.Add(subitem);
+
+            _ListView.Items.Add(listitem);
+        }
+
         private void _LoadButton_Click(object sender, EventArgs e)
         {
             var dialog = new MeterScpiGroupTreeDialog();
@@ -91,35 +120,11 @@ namespace MeterKnife.Common.Scpi
                 var subject = dialog.ScpiSubject;
                 foreach (var command in subject.Preload)
                 {
-                    var listitem = new ListViewItem();
-                    listitem.Checked = true;
-                    listitem.Group = _InitGroup;
-
-                    var subitem = new ListViewItem.ListViewSubItem();
-                    subitem.Text = command.Command;
-                    listitem.SubItems.Add(subitem);
-
-                    subitem = new ListViewItem.ListViewSubItem();
-                    subitem.Text = command.Interval.ToString();
-                    listitem.SubItems.Add(subitem);
-
-                    _ListView.Items.Add(listitem);
+                    AddListItem(ScpiCommandGroupCategory.Init, command.Command, command.Interval);
                 }
                 foreach (var command in subject.Collect)
                 {
-                    var listitem = new ListViewItem();
-                    listitem.Checked = true;
-                    listitem.Group = _CollectGroup;
-
-                    var subitem = new ListViewItem.ListViewSubItem();
-                    subitem.Text = command.Command;
-                    listitem.SubItems.Add(subitem);
-
-                    subitem = new ListViewItem.ListViewSubItem();
-                    subitem.Text = command.Interval.ToString();
-                    listitem.SubItems.Add(subitem);
-
-                    _ListView.Items.Add(listitem);
+                    AddListItem(ScpiCommandGroupCategory.Collect, command.Command, command.Interval);
                 }
             }
         }
@@ -136,6 +141,7 @@ namespace MeterKnife.Common.Scpi
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
+                AddListItem(ScpiCommandGroupCategory.Init, dialog.Command, dialog.Range);
             }
         }
 
@@ -146,7 +152,9 @@ namespace MeterKnife.Common.Scpi
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
+                AddListItem(ScpiCommandGroupCategory.Collect, dialog.Command, dialog.Range);
             }
+
         }
 
         private void _DeleteButton_Click(object sender, EventArgs e)

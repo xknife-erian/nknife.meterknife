@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this._InsertTailBrButton = new System.Windows.Forms.Button();
-            this._InsertHeadBrButton = new System.Windows.Forms.Button();
+            this._BrLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this._RangeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this._CommandTextBox = new System.Windows.Forms.TextBox();
+            this._RangeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this._HexEnableCheckBox = new System.Windows.Forms.CheckBox();
@@ -48,58 +47,58 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this._InsertTailBrButton);
-            this.groupBox1.Controls.Add(this._InsertHeadBrButton);
+            this.groupBox1.Controls.Add(this._BrLabel);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this._RangeNumericUpDown);
             this.groupBox1.Controls.Add(this._CommandTextBox);
+            this.groupBox1.Controls.Add(this._RangeNumericUpDown);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this._HexEnableCheckBox);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(390, 207);
+            this.groupBox1.Size = new System.Drawing.Size(390, 172);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "指令";
             // 
-            // _InsertTailBrButton
+            // _BrLabel
             // 
-            this._InsertTailBrButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._InsertTailBrButton.Location = new System.Drawing.Point(161, 142);
-            this._InsertTailBrButton.Name = "_InsertTailBrButton";
-            this._InsertTailBrButton.Size = new System.Drawing.Size(102, 23);
-            this._InsertTailBrButton.TabIndex = 8;
-            this._InsertTailBrButton.Text = "尾部增加新行符";
-            this._InsertTailBrButton.UseVisualStyleBackColor = true;
-            this._InsertTailBrButton.Click += new System.EventHandler(this._InsertTailBrButton_Click);
-            // 
-            // _InsertHeadBrButton
-            // 
-            this._InsertHeadBrButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._InsertHeadBrButton.Location = new System.Drawing.Point(57, 142);
-            this._InsertHeadBrButton.Name = "_InsertHeadBrButton";
-            this._InsertHeadBrButton.Size = new System.Drawing.Size(102, 23);
-            this._InsertHeadBrButton.TabIndex = 7;
-            this._InsertHeadBrButton.Text = "头部插入新行符";
-            this._InsertHeadBrButton.UseVisualStyleBackColor = true;
-            this._InsertHeadBrButton.Click += new System.EventHandler(this._AddEnterFlagButton_Click);
+            this._BrLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._BrLabel.AutoSize = true;
+            this._BrLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this._BrLabel.Location = new System.Drawing.Point(264, 110);
+            this._BrLabel.Name = "_BrLabel";
+            this._BrLabel.Size = new System.Drawing.Size(106, 13);
+            this._BrLabel.TabIndex = 7;
+            this._BrLabel.Text = "Ctrl+Enter添加新行";
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.5F);
-            this.label3.Location = new System.Drawing.Point(134, 175);
+            this.label3.Location = new System.Drawing.Point(134, 140);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 16);
             this.label3.TabIndex = 6;
             this.label3.Text = "ms";
             // 
+            // _CommandTextBox
+            // 
+            this._CommandTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._CommandTextBox.Location = new System.Drawing.Point(57, 31);
+            this._CommandTextBox.Multiline = true;
+            this._CommandTextBox.Name = "_CommandTextBox";
+            this._CommandTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._CommandTextBox.Size = new System.Drawing.Size(309, 73);
+            this._CommandTextBox.TabIndex = 0;
+            // 
             // _RangeNumericUpDown
             // 
             this._RangeNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._RangeNumericUpDown.Location = new System.Drawing.Point(57, 174);
+            this._RangeNumericUpDown.Location = new System.Drawing.Point(57, 139);
             this._RangeNumericUpDown.Maximum = new decimal(new int[] {
             7200000,
             0,
@@ -119,23 +118,11 @@
             0,
             0});
             // 
-            // _CommandTextBox
-            // 
-            this._CommandTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._CommandTextBox.Location = new System.Drawing.Point(57, 31);
-            this._CommandTextBox.Multiline = true;
-            this._CommandTextBox.Name = "_CommandTextBox";
-            this._CommandTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._CommandTextBox.Size = new System.Drawing.Size(310, 105);
-            this._CommandTextBox.TabIndex = 0;
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 176);
+            this.label2.Location = new System.Drawing.Point(23, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
@@ -152,19 +139,20 @@
             // 
             // _HexEnableCheckBox
             // 
-            this._HexEnableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._HexEnableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._HexEnableCheckBox.AutoSize = true;
-            this._HexEnableCheckBox.Location = new System.Drawing.Point(311, 145);
+            this._HexEnableCheckBox.Location = new System.Drawing.Point(57, 110);
             this._HexEnableCheckBox.Name = "_HexEnableCheckBox";
             this._HexEnableCheckBox.Size = new System.Drawing.Size(62, 17);
             this._HexEnableCheckBox.TabIndex = 1;
             this._HexEnableCheckBox.Text = "16进制";
             this._HexEnableCheckBox.UseVisualStyleBackColor = true;
+            this._HexEnableCheckBox.CheckedChanged += new System.EventHandler(this._HexEnableCheckBox_CheckedChanged);
             // 
             // _ConfirmButton
             // 
             this._ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._ConfirmButton.Location = new System.Drawing.Point(247, 225);
+            this._ConfirmButton.Location = new System.Drawing.Point(247, 190);
             this._ConfirmButton.Name = "_ConfirmButton";
             this._ConfirmButton.Size = new System.Drawing.Size(75, 28);
             this._ConfirmButton.TabIndex = 1;
@@ -176,7 +164,7 @@
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(328, 225);
+            this._CancelButton.Location = new System.Drawing.Point(328, 190);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(75, 28);
             this._CancelButton.TabIndex = 2;
@@ -190,7 +178,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(415, 266);
+            this.ClientSize = new System.Drawing.Size(415, 231);
             this.Controls.Add(this._CancelButton);
             this.Controls.Add(this._ConfirmButton);
             this.Controls.Add(this.groupBox1);
@@ -219,7 +207,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button _ConfirmButton;
         private System.Windows.Forms.Button _CancelButton;
-        private System.Windows.Forms.Button _InsertHeadBrButton;
-        private System.Windows.Forms.Button _InsertTailBrButton;
+        private System.Windows.Forms.Label _BrLabel;
     }
 }
