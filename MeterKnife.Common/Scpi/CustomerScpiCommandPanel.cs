@@ -9,11 +9,25 @@ namespace MeterKnife.Common.Scpi
 {
     public partial class CustomerScpiCommandPanel : UserControl
     {
-        private ILog _logger = LogManager.GetLogger<CustomerScpiCommandPanel>();
-        readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
-        readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
+        private static readonly ILog _logger = LogManager.GetLogger<CustomerScpiCommandPanel>();
 
-        public bool IsModified { get; private set; }
+        private readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
+        private readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
+
+        private bool _IsModified = false;
+
+        public bool IsModified
+        {
+            get
+            {
+                return _IsModified;
+            }
+            private set
+            {
+                _IsModified = value;
+                _SaveButton.Enabled = value;
+            }
+        }
 
         public int GpibAddress { get; set; }
 
@@ -112,6 +126,7 @@ namespace MeterKnife.Common.Scpi
             subitem = new ListViewItem.ListViewSubItem {Text = range.ToString()};
             listitem.SubItems.Add(subitem);
             _ListView.Items.Add(listitem);
+            IsModified = true;
         }
 
         private void _LoadButton_Click(object sender, EventArgs e)
