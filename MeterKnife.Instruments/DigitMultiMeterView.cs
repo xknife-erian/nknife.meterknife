@@ -161,16 +161,16 @@ namespace MeterKnife.Instruments
                 string i = _IntervalTextBox.Text;
                 int.TryParse(i, out interval);
             });
-            ScpiGroup cmdlist = GetInitCommands();
-            foreach (ScpiCommand cmd in cmdlist)
+            ScpiGroup inits = GetInitCommands();
+            foreach (ScpiCommand initcmd in inits)
             {
-                if (cmd == null)
+                if (initcmd == null)
                     continue;
-                byte[] cmdBytes = CareTalking.BuildCareTalking(_Meter.GpibAddress, cmd.Command, false).Generate();
+                byte[] cmdBytes = CareTalking.BuildCareTalking(_Meter.GpibAddress, initcmd.Command, false).Generate();
                 _Comm.Send(Port, cmdBytes);
                 long i = interval;
-                if (cmd.Interval > 0)
-                    i = cmd.Interval;
+                if (initcmd.Interval > 0)
+                    i = initcmd.Interval;
                 Thread.Sleep((int) i);
             }
 
@@ -178,13 +178,19 @@ namespace MeterKnife.Instruments
             byte[] temp = CareTalking.TEMP().Generate();
             while (_OnCollect)
             {
-                foreach (var read in reads)
+                foreach (ScpiCommand readcmd in reads)
                 {
-                    //_Comm.Send(Port, read);
-                    Thread.Sleep(interval);
+                    if (readcmd == null)
+                        continue;
+                    byte[] cmdBytes = CareTalking.BuildCareTalking(_Meter.GpibAddress, readcmd.Command).Generate();
+                    _Comm.Send(Port, cmdBytes);
+                    long i = interval;
+                    if (readcmd.Interval > 0)
+                        i = readcmd.Interval;
+                    Thread.Sleep((int)i);
+                    _Comm.Send(Port, temp);
+                    Thread.Sleep(300);
                 }
-                _Comm.Send(Port, temp);
-                Thread.Sleep(300);
             }
         }
 

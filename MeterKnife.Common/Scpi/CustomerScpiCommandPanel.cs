@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common.Logging;
 using MeterKnife.Common.Interfaces;
 using NKnife.IoC;
 using ScpiKnife;
@@ -8,6 +9,7 @@ namespace MeterKnife.Common.Scpi
 {
     public partial class CustomerScpiCommandPanel : UserControl
     {
+        private ILog _logger = LogManager.GetLogger<CustomerScpiCommandPanel>();
         readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
         readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
 
@@ -19,6 +21,9 @@ namespace MeterKnife.Common.Scpi
         {
             GpibAddress = 23; //测试使用
             InitializeComponent();
+            _ListView.Groups.AddRange(new[] {_InitGroup, _CollectGroup});
+            _ListView.LostFocus += (s, e) => _ListView.SelectedIndices.Clear();
+
             var kernel = DI.Get<IMeterKernel>();
             kernel.Collected += (s, e) =>
             {
@@ -35,8 +40,6 @@ namespace MeterKnife.Common.Scpi
             _CollectGroup.Header = "采集指令集";
             _CollectGroup.Name = "COLLECT";
 
-            _ListView.Groups.AddRange(new[] {_InitGroup,_CollectGroup});
-            _ListView.LostFocus += (s, e) => _ListView.SelectedIndices.Clear();
             _ListView.SelectedIndexChanged += (s, e) =>
             {
                 var b = _ListView.SelectedIndices.Count > 0;
@@ -61,17 +64,28 @@ namespace MeterKnife.Common.Scpi
         protected virtual ScpiGroup GetCommands(string groupName)
         {
             var commands = new ScpiGroup();
-            foreach (ListViewItem item in _ListView.Items)
+            this.ThreadSafeInvoke(() =>
             {
-                if (item.Checked && item.Group.Name == groupName)
+                foreach (ListViewItem item in _ListView.Items)
                 {
-                    commands.AddLast(new ScpiCommand()
+                    if (item.Checked && item.Group.Name == groupName)
                     {
-                        Command = item.SubItems[0].Text,
-                        Interval = int.Parse(item.SubItems[1].Text)
-                    });
+                        ScpiCommand sc = null;
+                        try
+                        {
+                            sc = new ScpiCommand();
+                            sc.Command = item.SubItems[1].Text;
+                            sc.Interval = int.Parse(item.SubItems[2].Text);
+                        }
+                        catch (Exception e)
+                        {
+                            _logger.Warn("解析ListItem的内容为Command时异常." + e.Message, e);
+                            continue;
+                        }
+                        commands.AddLast(sc);
+                    }
                 }
-            }
+            });
             return commands;
         }
 
@@ -83,30 +97,20 @@ namespace MeterKnife.Common.Scpi
 
         protected void AddListItem(ScpiCommandGroupCategory category, string command, long range)
         {
-            var listitem = new ListViewItem();
-            listitem.Checked = true;
+            var listitem = new ListViewItem {Checked = true};
             switch (category)
             {
                 case ScpiCommandGroupCategory.Init:
-                    {
-                        listitem.Group = _InitGroup;
-                        break;
-                    }
+                    listitem.Group = _InitGroup;
+                    break;
                 case ScpiCommandGroupCategory.Collect:
-                    {
-                        listitem.Group = _CollectGroup;
-                        break;
-                    }
+                    listitem.Group = _CollectGroup;
+                    break;
             }
-
-            var subitem = new ListViewItem.ListViewSubItem();
-            subitem.Text = command;
+            var subitem = new ListViewItem.ListViewSubItem {Text = command};
             listitem.SubItems.Add(subitem);
-
-            subitem = new ListViewItem.ListViewSubItem();
-            subitem.Text = range.ToString();
+            subitem = new ListViewItem.ListViewSubItem {Text = range.ToString()};
             listitem.SubItems.Add(subitem);
-
             _ListView.Items.Add(listitem);
         }
 
