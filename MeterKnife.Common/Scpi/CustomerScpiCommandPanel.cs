@@ -166,6 +166,7 @@ namespace MeterKnife.Common.Scpi
                     AddListItem(ScpiCommandGroupCategory.Collect, command);
                 }
             }
+            IsModified = false;
         }
 
         private void _SaveButton_Click(object sender, EventArgs e)
