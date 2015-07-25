@@ -76,7 +76,7 @@ namespace MeterKnife.Common.Scpi
             this._LoadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._LoadButton.Name = "_LoadButton";
             this._LoadButton.Size = new System.Drawing.Size(23, 22);
-            this._LoadButton.Text = "toolStripButton1";
+            this._LoadButton.Text = "载入指令集";
             this._LoadButton.Click += new System.EventHandler(this._LoadButton_Click);
             // 
             // _SaveButton
@@ -86,7 +86,7 @@ namespace MeterKnife.Common.Scpi
             this._SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SaveButton.Name = "_SaveButton";
             this._SaveButton.Size = new System.Drawing.Size(23, 22);
-            this._SaveButton.Text = "toolStripButton2";
+            this._SaveButton.Text = "保存指令集";
             this._SaveButton.Click += new System.EventHandler(this._SaveButton_Click);
             // 
             // toolStripSeparator1
@@ -104,19 +104,19 @@ namespace MeterKnife.Common.Scpi
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
             this.toolStripSplitButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Text = "新建指令";
             // 
             // _AddInitButton
             // 
             this._AddInitButton.Name = "_AddInitButton";
-            this._AddInitButton.Size = new System.Drawing.Size(124, 22);
+            this._AddInitButton.Size = new System.Drawing.Size(152, 22);
             this._AddInitButton.Text = "初始指令";
             this._AddInitButton.Click += new System.EventHandler(this._AddInitButton_Click);
             // 
             // _AddCollectButton
             // 
             this._AddCollectButton.Name = "_AddCollectButton";
-            this._AddCollectButton.Size = new System.Drawing.Size(124, 22);
+            this._AddCollectButton.Size = new System.Drawing.Size(152, 22);
             this._AddCollectButton.Text = "采集指令";
             this._AddCollectButton.Click += new System.EventHandler(this._AddCollectButton_Click);
             // 
@@ -127,7 +127,7 @@ namespace MeterKnife.Common.Scpi
             this._DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._DeleteButton.Name = "_DeleteButton";
             this._DeleteButton.Size = new System.Drawing.Size(23, 22);
-            this._DeleteButton.Text = "toolStripButton3";
+            this._DeleteButton.Text = "删除指令";
             this._DeleteButton.Click += new System.EventHandler(this._DeleteButton_Click);
             // 
             // _EditButton
@@ -137,7 +137,7 @@ namespace MeterKnife.Common.Scpi
             this._EditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._EditButton.Name = "_EditButton";
             this._EditButton.Size = new System.Drawing.Size(23, 22);
-            this._EditButton.Text = "toolStripButton4";
+            this._EditButton.Text = "编辑指令";
             this._EditButton.Click += new System.EventHandler(this._EditButton_Click);
             // 
             // toolStripSeparator2
@@ -152,7 +152,7 @@ namespace MeterKnife.Common.Scpi
             this._DownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._DownButton.Name = "_DownButton";
             this._DownButton.Size = new System.Drawing.Size(23, 22);
-            this._DownButton.Text = "toolStripButton5";
+            this._DownButton.Text = "将指令下移";
             this._DownButton.Click += new System.EventHandler(this._DownButton_Click);
             // 
             // _UpButton
@@ -162,7 +162,7 @@ namespace MeterKnife.Common.Scpi
             this._UpButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._UpButton.Name = "_UpButton";
             this._UpButton.Size = new System.Drawing.Size(23, 22);
-            this._UpButton.Text = "toolStripButton6";
+            this._UpButton.Text = "将指令上移";
             this._UpButton.Click += new System.EventHandler(this._UpButton_Click);
             // 
             // _ListView

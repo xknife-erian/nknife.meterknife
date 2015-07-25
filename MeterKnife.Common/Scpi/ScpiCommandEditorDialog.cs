@@ -45,7 +45,7 @@ namespace MeterKnife.Common.Scpi
             InitializeComponent();
             _CommandTextBox.TextChanged += (s, e) =>
             {
-                _ConfirmButton.Enabled = !_CommandTextBox.IsEmptyText();
+                _ConfirmButton.Enabled = _CommandTextBox.Text.Length > 0;
             };
             _ConfirmButton.Enabled = false;
         }

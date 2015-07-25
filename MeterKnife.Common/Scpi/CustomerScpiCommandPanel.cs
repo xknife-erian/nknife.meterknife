@@ -114,19 +114,7 @@ namespace MeterKnife.Common.Scpi
                 {
                     if (item.Checked && item.Group.Name == groupName)
                     {
-                        ScpiCommand sc = null;
-                        try
-                        {
-                            sc = new ScpiCommand();
-                            sc.Command = item.SubItems[1].Text;
-                            sc.Interval = int.Parse(item.SubItems[2].Text);
-                        }
-                        catch (Exception e)
-                        {
-                            _logger.Warn("解析ListItem的内容为Command时异常." + e.Message, e);
-                            continue;
-                        }
-                        commands.AddLast(sc);
+                        commands.AddLast((ScpiCommand) (item.Tag));
                     }
                 }
             });
