@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Interfaces;
@@ -46,11 +50,38 @@ namespace MeterKnife.Common.Scpi
                 bool b = indices.Count > 0;
                 _DeleteButton.Enabled = b;
                 _EditButton.Enabled = b;
-                _UpButton.Enabled = b && indices[0] > 0;
-                _DownButton.Enabled = b && indices[0] < _ListView.Items.Count - 1;
-                //TODO:分组后上下真是麻烦
+
+                if (b)
+                {
+                    var item = _ListView.SelectedItems[0];
+                    List<ListViewItem> group = null;
+                    switch (item.Group.Name)
+                    {
+                        case "INIT":
+                            group = GetInitGroup();
+                            break;
+                        case "COLLECT":
+                            group = GetCollectGroup();
+                            break;
+                    }
+                    if (group != null)
+                    {
+                        _UpButton.Enabled = group.IndexOf(item) > 0;
+                        _DownButton.Enabled = group.IndexOf(item) < group.Count - 1;
+                    }
+                }
             };
         }
+
+        private List<ListViewItem> GetInitGroup()
+        {
+            return _ListView.Items.Cast<ListViewItem>().Where(viewItem => viewItem.Group.Name == "INIT").ToList();
+        }
+        private List<ListViewItem> GetCollectGroup()
+        {
+            return _ListView.Items.Cast<ListViewItem>().Where(viewItem => viewItem.Group.Name == "COLLECT").ToList();
+        }
+
 
         public bool IsModified
         {
