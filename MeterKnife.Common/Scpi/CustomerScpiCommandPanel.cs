@@ -11,30 +11,16 @@ namespace MeterKnife.Common.Scpi
     {
         private static readonly ILog _logger = LogManager.GetLogger<CustomerScpiCommandPanel>();
 
-        private readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
         private readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
+        private readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
 
-        private bool _IsModified = false;
-
-        public bool IsModified
-        {
-            get
-            {
-                return _IsModified;
-            }
-            private set
-            {
-                _IsModified = value;
-                _SaveButton.Enabled = value;
-            }
-        }
-
-        public int GpibAddress { get; set; }
+        private bool _IsModified;
 
         public CustomerScpiCommandPanel()
         {
             GpibAddress = 23; //测试使用
             InitializeComponent();
+            _ListView.ShowItemToolTips = true;
             _ListView.Groups.AddRange(new[] {_InitGroup, _CollectGroup});
             _ListView.LostFocus += (s, e) => _ListView.SelectedIndices.Clear();
 
@@ -56,14 +42,27 @@ namespace MeterKnife.Common.Scpi
 
             _ListView.SelectedIndexChanged += (s, e) =>
             {
-                var b = _ListView.SelectedIndices.Count > 0;
+                ListView.SelectedIndexCollection indices = _ListView.SelectedIndices;
+                bool b = indices.Count > 0;
                 _DeleteButton.Enabled = b;
                 _EditButton.Enabled = b;
-                _UpButton.Enabled = b && _ListView.SelectedIndices[0] > 0;
-                _DownButton.Enabled = b && _ListView.SelectedIndices[0] < _ListView.Items.Count - 1;
+                _UpButton.Enabled = b && indices[0] > 0;
+                _DownButton.Enabled = b && indices[0] < _ListView.Items.Count - 1;
                 //TODO:分组后上下真是麻烦
             };
         }
+
+        public bool IsModified
+        {
+            get { return _IsModified; }
+            private set
+            {
+                _IsModified = value;
+                _SaveButton.Enabled = value;
+            }
+        }
+
+        public int GpibAddress { get; set; }
 
         public ScpiGroup GetCollectCommands()
         {
@@ -109,7 +108,7 @@ namespace MeterKnife.Common.Scpi
             _ToolStrip.Enabled = !state;
         }
 
-        protected void AddListItem(ScpiCommandGroupCategory category, string command, long range)
+        protected void AddListItem(ScpiCommandGroupCategory category, ScpiCommand command)
         {
             var listitem = new ListViewItem {Checked = true};
             switch (category)
@@ -121,10 +120,12 @@ namespace MeterKnife.Common.Scpi
                     listitem.Group = _CollectGroup;
                     break;
             }
-            var subitem = new ListViewItem.ListViewSubItem {Text = command};
+            var subitem = new ListViewItem.ListViewSubItem {Text = command.Command};
             listitem.SubItems.Add(subitem);
-            subitem = new ListViewItem.ListViewSubItem {Text = range.ToString()};
+            subitem = new ListViewItem.ListViewSubItem { Text = command.Interval.ToString() };
             listitem.SubItems.Add(subitem);
+            listitem.Tag = command;
+            listitem.ToolTipText = command.ToString();
             _ListView.Items.Add(listitem);
             IsModified = true;
         }
@@ -136,21 +137,20 @@ namespace MeterKnife.Common.Scpi
             {
                 _ListView.Items.Clear();
                 _StripLabel.Text = string.Format("{0} - {1}", dialog.CurrentMeter, dialog.CurrentDescription);
-                var subject = dialog.ScpiSubject;
-                foreach (var command in subject.Preload)
+                ScpiSubject subject = dialog.ScpiSubject;
+                foreach (ScpiCommand command in subject.Preload)
                 {
-                    AddListItem(ScpiCommandGroupCategory.Init, command.Command, command.Interval);
+                    AddListItem(ScpiCommandGroupCategory.Init, command);
                 }
-                foreach (var command in subject.Collect)
+                foreach (ScpiCommand command in subject.Collect)
                 {
-                    AddListItem(ScpiCommandGroupCategory.Collect, command.Command, command.Interval);
+                    AddListItem(ScpiCommandGroupCategory.Collect, command);
                 }
             }
         }
 
         private void _SaveButton_Click(object sender, EventArgs e)
         {
-
         }
 
         private void _AddInitButton_Click(object sender, EventArgs e)
@@ -160,7 +160,14 @@ namespace MeterKnife.Common.Scpi
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
-                AddListItem(ScpiCommandGroupCategory.Init, dialog.Command, dialog.Range);
+                var command = new ScpiCommand
+                {
+                    Command = dialog.Command,
+                    Interval = dialog.Interval,
+                    IsHex = dialog.IsHex,
+                    IsReturn = false
+                };
+                AddListItem(ScpiCommandGroupCategory.Collect, command);
             }
         }
 
@@ -171,22 +178,48 @@ namespace MeterKnife.Common.Scpi
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
-                AddListItem(ScpiCommandGroupCategory.Collect, dialog.Command, dialog.Range);
+                var command = new ScpiCommand
+                {
+                    Command = dialog.Command, 
+                    Interval = dialog.Interval, 
+                    IsHex = dialog.IsHex,
+                    IsReturn = true
+                };
+                AddListItem(ScpiCommandGroupCategory.Collect, command);
             }
-
         }
 
         private void _DeleteButton_Click(object sender, EventArgs e)
         {
+            int i = _ListView.SelectedIndices[0];
+            string cmd = _ListView.Items[i].SubItems[1].Text;
+            var ds = MessageBox.Show(this, string.Format("确认删除指令[{0}]么？", cmd), "删除", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (ds == DialogResult.Yes)
+            {
+                _ListView.Items.RemoveAt(i);
+            }
             IsModified = true;
         }
 
         private void _EditButton_Click(object sender, EventArgs e)
         {
+            int i = _ListView.SelectedIndices[0];
+            var item = _ListView.Items[i];
+            var command = (ScpiCommand) item.Tag;
             var dialog = new ScpiCommandEditorDialog();
+            dialog.Command = command.Command;
+            dialog.Interval = (int) command.Interval;
+            dialog.IsHex = command.IsHex;
+
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
+                item.SubItems[1].Text = dialog.Command;
+                command.Command = dialog.Command;
+                item.SubItems[2].Text = dialog.Interval.ToString();
+                command.Interval = dialog.Interval;
+                command.IsHex = dialog.IsHex;
+                item.ToolTipText = command.ToString();
             }
         }
 

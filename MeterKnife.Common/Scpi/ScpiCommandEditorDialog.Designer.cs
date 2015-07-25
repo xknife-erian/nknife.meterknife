@@ -32,14 +32,14 @@
             this._BrLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this._CommandTextBox = new System.Windows.Forms.TextBox();
-            this._RangeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this._IntervalNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this._HexEnableCheckBox = new System.Windows.Forms.CheckBox();
             this._ConfirmButton = new System.Windows.Forms.Button();
             this._CancelButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._RangeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._IntervalNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -50,7 +50,7 @@
             this.groupBox1.Controls.Add(this._BrLabel);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this._CommandTextBox);
-            this.groupBox1.Controls.Add(this._RangeNumericUpDown);
+            this.groupBox1.Controls.Add(this._IntervalNumericUpDown);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this._HexEnableCheckBox);
@@ -97,22 +97,22 @@
             // 
             // _RangeNumericUpDown
             // 
-            this._RangeNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._RangeNumericUpDown.Location = new System.Drawing.Point(57, 139);
-            this._RangeNumericUpDown.Maximum = new decimal(new int[] {
+            this._IntervalNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._IntervalNumericUpDown.Location = new System.Drawing.Point(57, 139);
+            this._IntervalNumericUpDown.Maximum = new decimal(new int[] {
             7200000,
             0,
             0,
             0});
-            this._RangeNumericUpDown.Minimum = new decimal(new int[] {
+            this._IntervalNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this._RangeNumericUpDown.Name = "_RangeNumericUpDown";
-            this._RangeNumericUpDown.Size = new System.Drawing.Size(77, 21);
-            this._RangeNumericUpDown.TabIndex = 3;
-            this._RangeNumericUpDown.Value = new decimal(new int[] {
+            this._IntervalNumericUpDown.Name = "_RangeNumericUpDown";
+            this._IntervalNumericUpDown.Size = new System.Drawing.Size(77, 21);
+            this._IntervalNumericUpDown.TabIndex = 3;
+            this._IntervalNumericUpDown.Value = new decimal(new int[] {
             200,
             0,
             0,
@@ -191,7 +191,7 @@
             this.Text = "指令编辑器";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._RangeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._IntervalNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -200,7 +200,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown _RangeNumericUpDown;
+        private System.Windows.Forms.NumericUpDown _IntervalNumericUpDown;
         private System.Windows.Forms.CheckBox _HexEnableCheckBox;
         private System.Windows.Forms.TextBox _CommandTextBox;
         private System.Windows.Forms.Label label2;

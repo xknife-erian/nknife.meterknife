@@ -16,9 +16,29 @@ namespace MeterKnife.Common.Scpi
     {
         public ScpiCommandGroupCategory Category { get; set; }
 
-        public string Command { get { return _CommandTextBox.Text; } }
-        public int Range { get { return (int)_RangeNumericUpDown.Value; } }
-        public bool IsHex { get { return _HexEnableCheckBox.Checked; } }
+        public string Command
+        {
+            get { return _CommandTextBox.Text; }
+            set { _CommandTextBox.Text = value; }
+        }
+
+        public int Interval
+        {
+            get { return (int) _IntervalNumericUpDown.Value; }
+            set
+            {
+                if (value < _IntervalNumericUpDown.Minimum || value > _IntervalNumericUpDown.Maximum)
+                    _IntervalNumericUpDown.Value = 200;
+                else
+                    _IntervalNumericUpDown.Value = value;
+            }
+        }
+
+        public bool IsHex
+        {
+            get { return _HexEnableCheckBox.Checked; }
+            set { _HexEnableCheckBox.Checked = value; }
+        }
 
         public ScpiCommandEditorDialog()
         {
