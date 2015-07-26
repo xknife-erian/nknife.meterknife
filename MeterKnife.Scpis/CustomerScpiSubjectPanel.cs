@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Common.Logging;
 using MeterKnife.Common.Interfaces;
 using NKnife.IoC;
 using ScpiKnife;
@@ -10,6 +11,8 @@ namespace MeterKnife.Scpis
 {
     public partial class CustomerScpiSubjectPanel : UserControl
     {
+        private static readonly ILog _logger = LogManager.GetLogger<CustomerScpiSubjectPanel>();
+
         private readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
         private readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
 
@@ -74,13 +77,17 @@ namespace MeterKnife.Scpis
 
         private List<ListViewItem> GetInitGroup()
         {
-            return _ListView.Items.Cast<ListViewItem>().Where(vi => vi.Group.Name == "INIT").ToList();
-        }
-        private List<ListViewItem> GetCollectGroup()
-        {
-            return _ListView.Items.Cast<ListViewItem>().Where(vi => vi.Group.Name == "COLLECT").ToList();
+            var list = _ListView.Items.Cast<ListViewItem>().Where(vi => vi.Group.Name == "INIT").ToList();
+            foreach (var listViewItem in list)
+                _logger.Fatal(listViewItem.SubItems[1]);
+            return list;
         }
 
+        private List<ListViewItem> GetCollectGroup()
+        {
+            var list = _ListView.Items.Cast<ListViewItem>().Where(vi => vi.Group.Name == "COLLECT").ToList();
+            return list;
+        }
 
         public bool IsModified
         {
@@ -241,6 +248,7 @@ namespace MeterKnife.Scpis
                 IsModified = true;
             }
             item.Selected = true;
+            _ListView.Focus();
         }
 
         private void _DownButton_Click(object sender, EventArgs e)
@@ -254,7 +262,8 @@ namespace MeterKnife.Scpis
             _ListView.Items.Insert(i + 1, item);
             item.Group = group;
             _ListView.EndUpdate();
-            _ListView.Update();
+            _ListView.Refresh();
+            _ListView.Focus();
             item.Selected = true;
             IsModified = true;
         }
