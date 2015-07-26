@@ -149,7 +149,7 @@ namespace MeterKnife.Common.Scpi
             IsModified = true;
         }
 
-        private void _LoadButton_Click(object sender, EventArgs e)
+        private void _OpenButton_Click(object sender, EventArgs e)
         {
             var dialog = new MeterScpiGroupTreeDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
@@ -252,5 +252,16 @@ namespace MeterKnife.Common.Scpi
         {
             IsModified = true;
         }
+
+        private void _ImportButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _ExportButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

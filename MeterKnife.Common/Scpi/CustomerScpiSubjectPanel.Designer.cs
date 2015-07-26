@@ -31,17 +31,18 @@ namespace MeterKnife.Common.Scpi
         private void InitializeComponent()
         {
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
-            this._LoadButton = new System.Windows.Forms.ToolStripButton();
+            this._OpenButton = new System.Windows.Forms.ToolStripButton();
             this._SaveButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this._AddInitButton = new System.Windows.Forms.ToolStripMenuItem();
             this._AddCollectButton = new System.Windows.Forms.ToolStripMenuItem();
             this._DeleteButton = new System.Windows.Forms.ToolStripButton();
             this._EditButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._DownButton = new System.Windows.Forms.ToolStripButton();
             this._UpButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._ImportButton = new System.Windows.Forms.ToolStripButton();
+            this._ExportButton = new System.Windows.Forms.ToolStripButton();
             this._ListView = new System.Windows.Forms.ListView();
             this._NumHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._CommandHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,44 +56,40 @@ namespace MeterKnife.Common.Scpi
             // _ToolStrip
             // 
             this._ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._LoadButton,
+            this._OpenButton,
             this._SaveButton,
-            this.toolStripSeparator1,
             this.toolStripSplitButton1,
             this._DeleteButton,
             this._EditButton,
-            this.toolStripSeparator2,
             this._DownButton,
-            this._UpButton});
+            this._UpButton,
+            this.toolStripSeparator1,
+            this._ImportButton,
+            this._ExportButton});
             this._ToolStrip.Location = new System.Drawing.Point(0, 0);
             this._ToolStrip.Name = "_ToolStrip";
             this._ToolStrip.Size = new System.Drawing.Size(251, 25);
             this._ToolStrip.TabIndex = 0;
             // 
-            // _LoadButton
+            // _OpenButton
             // 
-            this._LoadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._LoadButton.Image = global::MeterKnife.Common.Properties.Resources.download;
-            this._LoadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._LoadButton.Name = "_LoadButton";
-            this._LoadButton.Size = new System.Drawing.Size(23, 22);
-            this._LoadButton.Text = "载入指令集";
-            this._LoadButton.Click += new System.EventHandler(this._LoadButton_Click);
+            this._OpenButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._OpenButton.Image = global::MeterKnife.Common.Properties.Resources.open;
+            this._OpenButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._OpenButton.Name = "_OpenButton";
+            this._OpenButton.Size = new System.Drawing.Size(23, 22);
+            this._OpenButton.Text = "载入指令集";
+            this._OpenButton.Click += new System.EventHandler(this._OpenButton_Click);
             // 
             // _SaveButton
             // 
             this._SaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._SaveButton.Image = global::MeterKnife.Common.Properties.Resources.upload;
+            this._SaveButton.Image = global::MeterKnife.Common.Properties.Resources.save;
             this._SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SaveButton.Name = "_SaveButton";
             this._SaveButton.Size = new System.Drawing.Size(23, 22);
             this._SaveButton.Text = "保存指令集";
             this._SaveButton.Click += new System.EventHandler(this._SaveButton_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripSplitButton1
             // 
@@ -109,14 +106,14 @@ namespace MeterKnife.Common.Scpi
             // _AddInitButton
             // 
             this._AddInitButton.Name = "_AddInitButton";
-            this._AddInitButton.Size = new System.Drawing.Size(152, 22);
+            this._AddInitButton.Size = new System.Drawing.Size(124, 22);
             this._AddInitButton.Text = "初始指令";
             this._AddInitButton.Click += new System.EventHandler(this._AddInitButton_Click);
             // 
             // _AddCollectButton
             // 
             this._AddCollectButton.Name = "_AddCollectButton";
-            this._AddCollectButton.Size = new System.Drawing.Size(152, 22);
+            this._AddCollectButton.Size = new System.Drawing.Size(124, 22);
             this._AddCollectButton.Text = "采集指令";
             this._AddCollectButton.Click += new System.EventHandler(this._AddCollectButton_Click);
             // 
@@ -140,11 +137,6 @@ namespace MeterKnife.Common.Scpi
             this._EditButton.Text = "编辑指令";
             this._EditButton.Click += new System.EventHandler(this._EditButton_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // _DownButton
             // 
             this._DownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -164,6 +156,31 @@ namespace MeterKnife.Common.Scpi
             this._UpButton.Size = new System.Drawing.Size(23, 22);
             this._UpButton.Text = "将指令上移";
             this._UpButton.Click += new System.EventHandler(this._UpButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // _ImportButton
+            // 
+            this._ImportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ImportButton.Image = global::MeterKnife.Common.Properties.Resources.import;
+            this._ImportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ImportButton.Name = "_ImportButton";
+            this._ImportButton.Size = new System.Drawing.Size(23, 22);
+            this._ImportButton.Text = "导入指令集";
+            this._ImportButton.Click += new System.EventHandler(this._ImportButton_Click);
+            // 
+            // _ExportButton
+            // 
+            this._ExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ExportButton.Image = global::MeterKnife.Common.Properties.Resources.export;
+            this._ExportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._ExportButton.Name = "_ExportButton";
+            this._ExportButton.Size = new System.Drawing.Size(23, 22);
+            this._ExportButton.Text = "导出指令集";
+            this._ExportButton.Click += new System.EventHandler(this._ExportButton_Click);
             // 
             // _ListView
             // 
@@ -212,7 +229,7 @@ namespace MeterKnife.Common.Scpi
             this._StripLabel.Name = "_StripLabel";
             this._StripLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // CustomerScpiCommandPanel
+            // CustomerScpiSubjectPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -220,7 +237,7 @@ namespace MeterKnife.Common.Scpi
             this.Controls.Add(this._StatusStrip);
             this.Controls.Add(this._ToolStrip);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.Name = "CustomerScpiCommandPanel";
+            this.Name = "CustomerScpiSubjectPanel";
             this.Size = new System.Drawing.Size(251, 271);
             this._ToolStrip.ResumeLayout(false);
             this._ToolStrip.PerformLayout();
@@ -238,12 +255,10 @@ namespace MeterKnife.Common.Scpi
         private ColumnHeader _NumHeader;
         private ColumnHeader _CommandHeader;
         private ColumnHeader _TimeHeader;
-        private ToolStripButton _LoadButton;
+        private ToolStripButton _ImportButton;
         private ToolStripButton _SaveButton;
-        private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton _DeleteButton;
         private ToolStripButton _EditButton;
-        private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton _DownButton;
         private ToolStripButton _UpButton;
         private ToolStripDropDownButton toolStripSplitButton1;
@@ -251,6 +266,9 @@ namespace MeterKnife.Common.Scpi
         private ToolStripMenuItem _AddCollectButton;
         private StatusStrip _StatusStrip;
         private ToolStripStatusLabel _StripLabel;
+        private ToolStripButton _OpenButton;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton _ExportButton;
 
     }
 }
