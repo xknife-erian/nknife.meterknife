@@ -65,11 +65,9 @@ namespace MeterKnife.Workbench.Dialogs
                 _CommService.Bind(Port, handler);
                 handler.CareConfigging += OnCareConfigging;
 
-                var careTalking = CareTalking.IDN(address);
-                _logger.Debug(string.Format("Send:{0}", careTalking.Scpi));
-                var data = careTalking.Generate();
-                _logger.Trace(data.ToHexString());
-                _CommService.Send(Port, data); //08 17 07 AA 00 2A 49 44 4E 3F
+                var idn = CommandUtil.IDN(address);
+                _logger.Debug(string.Format("Send:{0}", idn.GenerateProtocol(0)));
+                _CommService.Send(Port, 0, idn); //08 17 07 AA 00 2A 49 44 4E 3F
                 _AutoResetEvent.WaitOne(5000);
             }
             else //当手动选择仪器类型时

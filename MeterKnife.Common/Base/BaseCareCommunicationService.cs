@@ -42,9 +42,12 @@ namespace MeterKnife.Common.Base
         }
 
         public ScpiQueue ScpiCommandQueue { get; set; }
-
+        /// <summary>
+        /// 销毁服务
+        /// </summary>
         public abstract void Destroy();
-        public abstract void Send(CarePort carePort, byte[] data);
+        public abstract void Send(CarePort carePort, short gpib, ScpiCommand command);
+        public abstract void Send(CarePort carePort, short gpib, CommandQueue.CareItem careItem);
 
         public bool StartService()
         {
@@ -71,11 +74,11 @@ namespace MeterKnife.Common.Base
 
         public event EventHandler<EventArgs<CarePort>> SerialInitialized;
 
-        protected virtual void OnSerialInitialized(EventArgs<CarePort> e)
+        public virtual void OnSerialInitialized(CarePort carePort)
         {
             EventHandler<EventArgs<CarePort>> handler = SerialInitialized;
             if (handler != null)
-                handler(this, e);
+                handler(this, new EventArgs<CarePort>(carePort));
         }
 
         public abstract void Bind(CarePort carePort, params CareOneProtocolHandler[] handlers);

@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Text;
 using MeterKnife.Common.Tunnels;
-using NKnife.Utility;
 
 namespace MeterKnife.Common.DataModels
 {
     public class CarePort
     {
+        private readonly int[] _SerialPort = {-1, 115200};
         private string _Id;
+        private IPEndPoint _IpEndPoint;
         private string[] _Ports;
 
         protected CarePort()
@@ -18,17 +17,13 @@ namespace MeterKnife.Common.DataModels
             _Id = Guid.NewGuid().ToString();
         }
 
-        public TunnelType TunnelType { get;private set; }
-
-        private readonly int[] _SerialPort = {-1, 115200};
-
-        private IPEndPoint _IpEndPoint = null;
+        public TunnelType TunnelType { get; private set; }
 
         public int[] GetSerialPort()
         {
             if (_SerialPort[0] == -1)
             {
-                var port = _Ports[0].ToUpper().TrimStart(new char[] {'C', 'O', 'M'});
+                string port = _Ports[0].ToUpper().TrimStart(new[] {'C', 'O', 'M'});
                 if (!int.TryParse(port, out _SerialPort[0]))
                     _SerialPort[0] = 0;
                 if (!int.TryParse(_Ports[1], out _SerialPort[1]))
@@ -56,7 +51,7 @@ namespace MeterKnife.Common.DataModels
         {
             var carePort = new CarePort
             {
-                TunnelType = tunnelType, 
+                TunnelType = tunnelType,
                 _Ports = ports
             };
             if (tunnelType == TunnelType.Serial)
@@ -69,8 +64,8 @@ namespace MeterKnife.Common.DataModels
             }
             else
             {
-                var ip = IPAddress.Parse(ports[0]);
-                var port = int.Parse(ports[1]);
+                IPAddress ip = IPAddress.Parse(ports[0]);
+                int port = int.Parse(ports[1]);
                 var ipe = new IPEndPoint(ip, port);
                 carePort._IpEndPoint = ipe;
                 carePort._Id = ipe.ToString();
@@ -87,9 +82,9 @@ namespace MeterKnife.Common.DataModels
                 case TunnelType.Serial:
                 default:
                 {
-                    var ports = GetSerialPort();
+                    int[] ports = GetSerialPort();
                     var sb = new StringBuilder();
-                    foreach (var port in ports)
+                    foreach (int port in ports)
                         sb.Append(port).Append(':');
                     return sb.ToString();
                 }

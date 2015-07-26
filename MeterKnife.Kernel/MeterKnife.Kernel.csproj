@@ -64,11 +64,16 @@
     <Compile Include="MeterKernel.cs" />
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
     <Compile Include="Services\CareCommunicationService.cs" />
+    <Compile Include="Services\CareService.cs" />
     <Compile Include="Services\CareTemperatureService.cs" />
     <Compile Include="Services\DataPathService.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436E22B8-84A4-49E6-9810-E72FAD37313F}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\nknife\NKnife.Serial\NKnife.Serial.csproj">
       <Project>{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}</Project>
       <Name>NKnife.Serial</Name>

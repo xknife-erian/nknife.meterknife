@@ -159,24 +159,17 @@ namespace MeterKnife.Instruments
             {
                 if (initcmd == null)
                     continue;
-                byte[] cmdBytes = CareTalking.BuildCareTalking(_Meter.GpibAddress, initcmd.Command, false).Generate();
-                _Comm.Send(Port, cmdBytes);
-                Thread.Sleep((int) initcmd.Interval);
+                _Comm.Send(Port, (short)_Meter.GpibAddress, initcmd);
             }
 
             ScpiGroup reads = GetCollectCommands();
-            byte[] temp = CareTalking.TEMP().Generate();
             while (_OnCollect)
             {
                 foreach (ScpiCommand readcmd in reads)
                 {
                     if (readcmd == null)
                         continue;
-                    byte[] cmdBytes = CareTalking.BuildCareTalking(_Meter.GpibAddress, readcmd.Command).Generate();
-                    _Comm.Send(Port, cmdBytes);
-                    Thread.Sleep((int) readcmd.Interval);
-                    _Comm.Send(Port, temp);
-                    Thread.Sleep(300);
+                    _Comm.Send(Port, (short)_Meter.GpibAddress, readcmd);
                 }
             }
         }
@@ -190,9 +183,9 @@ namespace MeterKnife.Instruments
 
         protected virtual ScpiGroup GetCollectCommands()
         {
-            var list = new List<byte[]> {CareTalking.READ(_Meter.GpibAddress).Generate()};
-            return null;
+            throw new NotImplementedException();
         }
+
 
         private void _StartStripButton_Click(object sender, EventArgs e)
         {

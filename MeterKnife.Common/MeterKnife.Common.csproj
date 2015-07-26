@@ -153,7 +153,6 @@
     <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\CareTalking.Protocols.cs" />
     <Compile Include="Algorithms\Max.cs" />
     <Compile Include="DataModels\CarePort.cs" />
     <Compile Include="EventParameters\CollectedEventArgs.cs" />
@@ -186,8 +185,10 @@
     <Compile Include="Tunnels\CareOne\CareOneProtocolCommandParser.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolPacker.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolUnPacker.cs" />
+    <Compile Include="Tunnels\CommandQueue.cs" />
     <Compile Include="Tunnels\TunnelType.cs" />
     <Compile Include="Tunnels\ScpiProtocolHandler.cs" />
+    <Compile Include="Util\CommandUtil.cs" />
     <Compile Include="Util\MeterUtil.cs" />
     <EmbeddedResource Include="Base\BaseParamPanel.resx">
       <DependentUpon>BaseParamPanel.cs</DependentUpon>
