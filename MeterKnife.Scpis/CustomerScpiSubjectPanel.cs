@@ -58,27 +58,27 @@ namespace MeterKnife.Scpis
                 switch (item.Group.Name)
                 {
                     case "INIT":
-                        @group = GetInitGroup();
+                        group = GetInitGroup();
                         break;
                     case "COLLECT":
-                        @group = GetCollectGroup();
+                        group = GetCollectGroup();
                         break;
                 }
-                if (@group != null)
+                if (group != null)
                 {
-                    _UpButton.Enabled = @group.IndexOf(item) > 0;
-                    _DownButton.Enabled = @group.IndexOf(item) < @group.Count - 1;
+                    _UpButton.Enabled = group.IndexOf(item) > 0;
+                    _DownButton.Enabled = group.IndexOf(item) < group.Count - 1;
                 }
             }
         }
 
         private List<ListViewItem> GetInitGroup()
         {
-            return _ListView.Items.Cast<ListViewItem>().Where(viewItem => viewItem.Group.Name == "INIT").ToList();
+            return _ListView.Items.Cast<ListViewItem>().Where(vi => vi.Group.Name == "INIT").ToList();
         }
         private List<ListViewItem> GetCollectGroup()
         {
-            return _ListView.Items.Cast<ListViewItem>().Where(viewItem => viewItem.Group.Name == "COLLECT").ToList();
+            return _ListView.Items.Cast<ListViewItem>().Where(vi => vi.Group.Name == "COLLECT").ToList();
         }
 
 
@@ -112,9 +112,7 @@ namespace MeterKnife.Scpis
                 foreach (ListViewItem item in _ListView.Items)
                 {
                     if (item.Checked && item.Group.Name == groupName)
-                    {
                         commands.AddLast((ScpiCommand) (item.Tag));
-                    }
                 }
             });
             return commands;
@@ -186,7 +184,7 @@ namespace MeterKnife.Scpis
                     IsHex = dialog.IsHex,
                     IsReturn = false
                 };
-                AddListItem(ScpiCommandGroupCategory.Collect, command);
+                AddListItem(ScpiCommandGroupCategory.Init, command);
             }
         }
 
@@ -225,10 +223,12 @@ namespace MeterKnife.Scpis
             int i = _ListView.SelectedIndices[0];
             var item = _ListView.Items[i];
             var command = (ScpiCommand) item.Tag;
-            var dialog = new ScpiCommandEditorDialog();
-            dialog.Command = command.Command;
-            dialog.Interval = (int) command.Interval;
-            dialog.IsHex = command.IsHex;
+            var dialog = new ScpiCommandEditorDialog
+            {
+                Command = command.Command, 
+                Interval = (int) command.Interval, 
+                IsHex = command.IsHex
+            };
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -249,12 +249,12 @@ namespace MeterKnife.Scpis
             var item = _ListView.Items[i];
             var group = item.Group;
 
-            //_ListView.BeginUpdate();
-            //_ListView.SelectedIndices.Clear();
+            _ListView.BeginUpdate();
             _ListView.Items.RemoveAt(i);
+            _ListView.Items.Insert(i + 1, item);
             item.Group = group;
-            _ListView.Items.Insert(i, item);
-            //_ListView.EndUpdate();
+            _ListView.EndUpdate();
+            _ListView.Update();
             item.Selected = true;
             IsModified = true;
         }
