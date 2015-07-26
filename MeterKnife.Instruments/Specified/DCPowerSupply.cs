@@ -6,6 +6,9 @@ using MeterKnife.Common.Base;
 
 namespace MeterKnife.Instruments.Specified
 {
+    /// <summary>
+    /// 仪器：直流电源
+    /// </summary>
     public class DcPowerSupply : BaseMeter
     {
     }

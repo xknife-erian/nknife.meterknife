@@ -151,11 +151,11 @@
     <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scpi\CustomerScpiCommandPanel.cs">
+    <Compile Include="Scpi\CustomerScpiSubjectPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Scpi\CustomerScpiCommandPanel.Designer.cs">
-      <DependentUpon>CustomerScpiCommandPanel.cs</DependentUpon>
+    <Compile Include="Scpi\CustomerScpiSubjectPanel.Designer.cs">
+      <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModels\CareTalking.Protocols.cs" />
     <Compile Include="Algorithms\Max.cs" />
@@ -224,8 +224,8 @@
     <EmbeddedResource Include="Controls\UserScpiCommandPanel.resx">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scpi\CustomerScpiCommandPanel.resx">
-      <DependentUpon>CustomerScpiCommandPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Scpi\CustomerScpiSubjectPanel.resx">
+      <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -280,22 +280,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
-    <None Include="MeterInfos\Agilent34401A.xml">
+    <None Include="Scpi\Specified\Agilent34401A.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MeterInfos\AdvantestR6871E.xml">
+    <None Include="Scpi\Specified\AdvantestR6871E.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MeterInfos\Keithley2000.xml">
+    <None Include="Scpi\Specified\Keithley2000.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MeterInfos\HP3457A.xml">
+    <None Include="Scpi\Specified\HP3457A.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MeterInfos\Solartron7081.xml">
+    <None Include="Scpi\Specified\Solartron7081.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MeterInfos\AdvantestR6551.xml">
+    <None Include="Scpi\Specified\AdvantestR6551.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="Properties\contents\bar-button\20150314104053895.png" />

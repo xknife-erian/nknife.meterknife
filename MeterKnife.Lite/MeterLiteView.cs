@@ -13,7 +13,7 @@ namespace MeterKnife.Lite
 {
     internal class MeterLiteView : DigitMultiMeterView
     {
-        private readonly CustomerScpiCommandPanel _ScpiCommandPanel = new CustomerScpiCommandPanel();
+        private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
         /// <summary>
         /// 是否是精灵版
         /// </summary>

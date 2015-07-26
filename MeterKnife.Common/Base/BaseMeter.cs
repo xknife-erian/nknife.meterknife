@@ -12,12 +12,28 @@ namespace MeterKnife.Common.Base
 {
     public abstract class BaseMeter : IMeter
     {
+        /// <summary>
+        /// 仪器当前GPIB地址
+        /// </summary>
         public int GpibAddress { get; set; }
+
+        /// <summary>
+        /// 仪器工作主题集合
+        /// </summary>
+        public ScpiSubjectCollection ScpiSubjects { get; set; }
+
+        /// <summary>
+        /// 品牌
+        /// </summary>
         public string Brand { get; set; }
+
+        /// <summary>
+        /// 仪器名称
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 缩写名称
+        /// 仪器常用简称
         /// </summary>
         public string AbbrName { get { return MeterUtil.SimplifyName(Name).Second; } }
 
@@ -31,7 +47,9 @@ namespace MeterKnife.Common.Base
 
         protected bool Equals(BaseMeter other)
         {
-            return GpibAddress == other.GpibAddress && string.Equals(Brand, other.Brand) && string.Equals(Name, other.Name);
+            return GpibAddress == other.GpibAddress 
+                && string.Equals(Brand, other.Brand) 
+                && string.Equals(Name, other.Name);
         }
 
         public override int GetHashCode()

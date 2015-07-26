@@ -11,16 +11,16 @@ using ScpiKnife;
 
 namespace MeterKnife.Common.Scpi
 {
-    public partial class CustomerScpiCommandPanel : UserControl
+    public partial class CustomerScpiSubjectPanel : UserControl
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CustomerScpiCommandPanel>();
+        private static readonly ILog _logger = LogManager.GetLogger<CustomerScpiSubjectPanel>();
 
         private readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
         private readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
 
         private bool _IsModified;
 
-        public CustomerScpiCommandPanel()
+        public CustomerScpiSubjectPanel()
         {
             GpibAddress = 23; //测试使用
             InitializeComponent();

@@ -43,9 +43,9 @@ namespace MeterKnife.Common.Scpi
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            var path = Path.Combine(Application.StartupPath, "MeterInfos");
+            var path = Path.Combine(Application.StartupPath, "Scpi");
             var dir = new DirectoryInfo(path);
-            var files = dir.GetFiles();
+            var files = dir.GetFiles("*.xml", SearchOption.AllDirectories);
             foreach (var file in files)
             {
                 ParseMeterFile(file);
@@ -55,7 +55,7 @@ namespace MeterKnife.Common.Scpi
         private void ParseMeterFile(FileInfo file)
         {
             var parser = new MeterInfoParser();
-            List<ScpiSubject> list;
+            ScpiSubjectCollection list;
             if (parser.TryParse(file, out list))
             {
                 var meter = string.Format("{0}{1}", parser.Brand, parser.Name);

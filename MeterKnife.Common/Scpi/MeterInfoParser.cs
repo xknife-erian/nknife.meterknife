@@ -12,13 +12,13 @@ using ScpiKnife;
 
 namespace MeterKnife.Common.Scpi
 {
-    public class MeterInfoParser : IParser<FileInfo, List<ScpiSubject>>
+    public class MeterInfoParser : IParser<FileInfo, ScpiSubjectCollection>
     {
         public string Brand { get; private set; }
 
         public string Name { get; private set; }
 
-        public bool TryParse(FileInfo fileInfo, out List<ScpiSubject> scpiSubjectList)
+        public bool TryParse(FileInfo fileInfo, out ScpiSubjectCollection scpiSubjectList)
         {
             if (fileInfo == null)
                 throw new ArgumentNullException("fileInfo");
@@ -47,7 +47,7 @@ namespace MeterKnife.Common.Scpi
                 scpiSubjectList = null;
                 return false;
             }
-            scpiSubjectList = new List<ScpiSubject>();
+            scpiSubjectList = new ScpiSubjectCollection();
 
             foreach (var subjectNode in scpigroups.ChildNodes)
             {

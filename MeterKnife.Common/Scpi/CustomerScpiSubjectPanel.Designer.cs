@@ -2,7 +2,7 @@
 
 namespace MeterKnife.Common.Scpi
 {
-    partial class CustomerScpiCommandPanel
+    partial class CustomerScpiSubjectPanel
     {
         /// <summary> 
         /// 必需的设计器变量。

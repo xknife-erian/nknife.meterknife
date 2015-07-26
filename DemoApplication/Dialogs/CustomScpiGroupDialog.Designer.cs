@@ -34,7 +34,7 @@ namespace MeterKnife.DemoApplication.Dialogs
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.customerScpiCommandPanel1 = new CustomerScpiCommandPanel();
+            this.customerScpiCommandPanel1 = new CustomerScpiSubjectPanel();
             ((System.ComponentModel.ISupportInitialize)(this.collapsibleSplitContainer1)).BeginInit();
             this.collapsibleSplitContainer1.Panel1.SuspendLayout();
             this.collapsibleSplitContainer1.SuspendLayout();
@@ -131,7 +131,7 @@ namespace MeterKnife.DemoApplication.Dialogs
 
         private NKnife.GUI.WinForm.CollapsibleSplitContainer collapsibleSplitContainer1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private CustomerScpiCommandPanel customerScpiCommandPanel1;
+        private CustomerScpiSubjectPanel customerScpiCommandPanel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button button1;
 
