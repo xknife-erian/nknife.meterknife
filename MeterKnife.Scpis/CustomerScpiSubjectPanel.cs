@@ -9,6 +9,7 @@ using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {
+    //TODO:上下移,保存,导入,导出未完成
     public partial class CustomerScpiSubjectPanel : UserControl
     {
         private static readonly ILog _logger = LogManager.GetLogger<CustomerScpiSubjectPanel>();

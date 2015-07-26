@@ -61,9 +61,6 @@ namespace MeterKnife.Instruments
             this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this._IntervalTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this._StandardDeviationRangeComboBox = new System.Windows.Forms.ToolStripComboBox();
             ((System.ComponentModel.ISupportInitialize)(this._MainSplitContainer)).BeginInit();
@@ -352,9 +349,6 @@ namespace MeterKnife.Instruments
             this._ZoomOutToolStripButton,
             this.toolStripSeparator3,
             this.toolStripLabel2,
-            this.toolStripLabel3,
-            this._IntervalTextBox,
-            this.toolStripSeparator5,
             this.toolStripLabel1,
             this._StandardDeviationRangeComboBox});
             this._PlotToolStrip.Location = new System.Drawing.Point(0, 2);
@@ -458,23 +452,6 @@ namespace MeterKnife.Instruments
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(0, 22);
             // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(57, 22);
-            this.toolStripLabel3.Text = "间隔(ms)";
-            // 
-            // _IntervalTextBox
-            // 
-            this._IntervalTextBox.Name = "_IntervalTextBox";
-            this._IntervalTextBox.Size = new System.Drawing.Size(50, 25);
-            this._IntervalTextBox.Text = "500";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
@@ -562,9 +539,6 @@ namespace MeterKnife.Instruments
         protected System.Windows.Forms.Panel _ParamsPanel;
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         protected System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        protected System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        protected System.Windows.Forms.ToolStripTextBox _IntervalTextBox;
-        protected System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.TabPage _FeaturesPage;
         private System.Windows.Forms.ToolStripButton _ClearDataToolStripButton;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;

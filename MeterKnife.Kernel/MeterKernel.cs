@@ -14,7 +14,7 @@ namespace MeterKnife.Kernel
 {
     public class MeterKernel : IMeterKernel
     {
-        private bool _OnCollected;
+        protected bool _OnCollected;
 
         public string DataPath { get; set; }
 
@@ -39,7 +39,8 @@ namespace MeterKnife.Kernel
         protected virtual void OnCollectedEvent(CollectedEventArgs e)
         {
             EventHandler<CollectedEventArgs> handler = Collected;
-            if (handler != null) handler(this, e);
+            if (handler != null) 
+                handler(this, e);
         }
 
         public MeterKernel()

@@ -113,7 +113,6 @@ namespace MeterKnife.Instruments
                 _FeaturesPage.Parent = _MainTabControl;
 
             _StopStripButton.Enabled = isCollected;
-            _IntervalTextBox.ReadOnly = isCollected;
         }
 
         protected virtual void StartCollect()
@@ -155,12 +154,6 @@ namespace MeterKnife.Instruments
 
         private void SendRead(object obj)
         {
-            int interval = 1000;
-            this.ThreadSafeInvoke(() =>
-            {
-                string i = _IntervalTextBox.Text;
-                int.TryParse(i, out interval);
-            });
             ScpiGroup inits = GetInitCommands();
             foreach (ScpiCommand initcmd in inits)
             {
@@ -168,10 +161,7 @@ namespace MeterKnife.Instruments
                     continue;
                 byte[] cmdBytes = CareTalking.BuildCareTalking(_Meter.GpibAddress, initcmd.Command, false).Generate();
                 _Comm.Send(Port, cmdBytes);
-                long i = interval;
-                if (initcmd.Interval > 0)
-                    i = initcmd.Interval;
-                Thread.Sleep((int) i);
+                Thread.Sleep((int) initcmd.Interval);
             }
 
             ScpiGroup reads = GetCollectCommands();
@@ -184,10 +174,7 @@ namespace MeterKnife.Instruments
                         continue;
                     byte[] cmdBytes = CareTalking.BuildCareTalking(_Meter.GpibAddress, readcmd.Command).Generate();
                     _Comm.Send(Port, cmdBytes);
-                    long i = interval;
-                    if (readcmd.Interval > 0)
-                        i = readcmd.Interval;
-                    Thread.Sleep((int)i);
+                    Thread.Sleep((int) readcmd.Interval);
                     _Comm.Send(Port, temp);
                     Thread.Sleep(300);
                 }
