@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Common.Scpi
+﻿namespace MeterKnife.Scpis
 {
     partial class MeterScpiGroupTreeDialog
     {

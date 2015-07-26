@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common.Interfaces;
 using NKnife.IoC;
 using ScpiKnife;
 
-namespace MeterKnife.Common.Scpi
+namespace MeterKnife.Scpis
 {
     public partial class CustomerScpiSubjectPanel : UserControl
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CustomerScpiSubjectPanel>();
-
         private readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
         private readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
 

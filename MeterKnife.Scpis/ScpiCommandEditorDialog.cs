@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using NKnife.Converts;
 using NKnife.GUI.WinForm;
-using NKnife.Utility;
 
-namespace MeterKnife.Common.Scpi
+namespace MeterKnife.Scpis
 {
     public partial class ScpiCommandEditorDialog : SimpleForm
     {

@@ -109,6 +109,10 @@
       <Project>{E70DC5A1-2900-4A24-937A-28C86100E077}</Project>
       <Name>MeterKnife.Instruments</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Scpis\MeterKnife.Scpis.csproj">
+      <Project>{bc6ef4b5-6803-4216-896b-58abb72f4ace}</Project>
+      <Name>MeterKnife.Scpis</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />

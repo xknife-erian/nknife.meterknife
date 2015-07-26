@@ -74,7 +74,7 @@ namespace MeterKnife.Workbench.Dialogs
             }
             else //当手动选择仪器类型时
             {
-                Meter = DI.Get<BaseMeter>();
+                Meter = DI.Get<BaseMeter>("DigitalMultimeter".ToLower());
                 Meter.Brand = _MeterBrandComboBox.Text;
                 Meter.GpibAddress = address;
                 Meter.Name = string.Format("{0}", _MeterTypeComboBox.Text);

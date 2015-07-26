@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using NKnife.GUI.WinForm;
 using ScpiKnife;
 
-namespace MeterKnife.Common.Scpi
+namespace MeterKnife.Scpis
 {
     public partial class MeterScpiGroupTreeDialog : SimpleForm
     {
@@ -43,7 +37,7 @@ namespace MeterKnife.Common.Scpi
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            var path = Path.Combine(Application.StartupPath, "Scpi");
+            var path = Path.Combine(Application.StartupPath, "Scpis");
             var dir = new DirectoryInfo(path);
             var files = dir.GetFiles("*.xml", SearchOption.AllDirectories);
             foreach (var file in files)

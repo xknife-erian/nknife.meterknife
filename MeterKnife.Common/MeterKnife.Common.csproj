@@ -151,17 +151,6 @@
     <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Scpi\CustomerScpiSubjectPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Scpi\CustomerScpiSubjectPanel.Designer.cs">
-      <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataModels\CareTalking.Protocols.cs" />
     <Compile Include="Algorithms\Max.cs" />
     <Compile Include="DataModels\CarePort.cs" />
@@ -187,20 +176,6 @@
     <Compile Include="LstSquQuadRegr.cs" />
     <Compile Include="MeterKnifeUserData.cs" />
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
-    <Compile Include="Scpi\MeterInfoParser.cs" />
-    <Compile Include="Scpi\MeterScpiGroupTreeDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Scpi\MeterScpiGroupTreeDialog.Designer.cs">
-      <DependentUpon>MeterScpiGroupTreeDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Scpi\ScpiCommandEditorDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Scpi\ScpiCommandEditorDialog.Designer.cs">
-      <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Scpi\ScpiCommandGroupCategory.cs" />
     <Compile Include="Tunnels\CareConfigHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolHandler.cs" />
     <Compile Include="Tunnels\CareOne\CareOneCodec.cs" />
@@ -224,13 +199,6 @@
     <EmbeddedResource Include="Controls\UserScpiCommandPanel.resx">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scpi\CustomerScpiSubjectPanel.resx">
-      <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
@@ -241,12 +209,6 @@
       <DependentUpon>GlobalResources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Scpi\MeterScpiGroupTreeDialog.resx">
-      <DependentUpon>MeterScpiGroupTreeDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scpi\ScpiCommandEditorDialog.resx">
-      <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\contents\MeterKnife2015-Welcome.psd" />
@@ -280,24 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
-    <None Include="Scpi\Specified\Agilent34401A.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Scpi\Specified\AdvantestR6871E.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Scpi\Specified\Keithley2000.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Scpi\Specified\HP3457A.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Scpi\Specified\Solartron7081.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Scpi\Specified\AdvantestR6551.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="Properties\contents\bar-button\20150314104053895.png" />
     <Content Include="Properties\contents\bar-button\20150314104116114.png" />
     <Content Include="Properties\contents\bar-button\20150314104157509.png" />
@@ -316,15 +260,6 @@
     <Content Include="Properties\contents\bar-button\start.png" />
     <Content Include="Properties\contents\bar-button\stop-unable.png" />
     <Content Include="Properties\contents\bar-button\stop.png" />
-    <Content Include="Properties\contents\base-toolstrip\add.png" />
-    <Content Include="Properties\contents\base-toolstrip\delete.png" />
-    <Content Include="Properties\contents\base-toolstrip\down.png" />
-    <Content Include="Properties\contents\base-toolstrip\export.png" />
-    <Content Include="Properties\contents\base-toolstrip\import.png" />
-    <Content Include="Properties\contents\base-toolstrip\edit.png" />
-    <Content Include="Properties\contents\base-toolstrip\open.png" />
-    <Content Include="Properties\contents\base-toolstrip\up.png" />
-    <Content Include="Properties\contents\base-toolstrip\save.png" />
     <Content Include="Properties\contents\main-icon.ico" />
     <Content Include="Properties\contents\main-logo.png" />
     <Content Include="Properties\contents\MeterKnife2015-Welcome.png" />

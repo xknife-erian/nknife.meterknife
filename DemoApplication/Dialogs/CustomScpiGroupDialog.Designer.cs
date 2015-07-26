@@ -1,4 +1,4 @@
-﻿using MeterKnife.Common.Scpi;
+﻿using MeterKnife.Scpis;
 
 namespace MeterKnife.DemoApplication.Dialogs
 {

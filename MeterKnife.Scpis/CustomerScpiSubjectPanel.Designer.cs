@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
+using MeterKnife.Scpis.Properties;
 
-namespace MeterKnife.Common.Scpi
+namespace MeterKnife.Scpis
 {
     partial class CustomerScpiSubjectPanel
     {
@@ -74,7 +75,7 @@ namespace MeterKnife.Common.Scpi
             // _OpenButton
             // 
             this._OpenButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._OpenButton.Image = global::MeterKnife.Common.Properties.Resources.open;
+            this._OpenButton.Image = Resources.open;
             this._OpenButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._OpenButton.Name = "_OpenButton";
             this._OpenButton.Size = new System.Drawing.Size(23, 22);
@@ -84,7 +85,7 @@ namespace MeterKnife.Common.Scpi
             // _SaveButton
             // 
             this._SaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._SaveButton.Image = global::MeterKnife.Common.Properties.Resources.save;
+            this._SaveButton.Image = Resources.save;
             this._SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SaveButton.Name = "_SaveButton";
             this._SaveButton.Size = new System.Drawing.Size(23, 22);
@@ -97,7 +98,7 @@ namespace MeterKnife.Common.Scpi
             this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._AddInitButton,
             this._AddCollectButton});
-            this.toolStripSplitButton1.Image = global::MeterKnife.Common.Properties.Resources.add;
+            this.toolStripSplitButton1.Image = Resources.add;
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
             this.toolStripSplitButton1.Size = new System.Drawing.Size(29, 22);
@@ -120,7 +121,7 @@ namespace MeterKnife.Common.Scpi
             // _DeleteButton
             // 
             this._DeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DeleteButton.Image = global::MeterKnife.Common.Properties.Resources.delete;
+            this._DeleteButton.Image = Resources.delete;
             this._DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._DeleteButton.Name = "_DeleteButton";
             this._DeleteButton.Size = new System.Drawing.Size(23, 22);
@@ -130,7 +131,7 @@ namespace MeterKnife.Common.Scpi
             // _EditButton
             // 
             this._EditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._EditButton.Image = global::MeterKnife.Common.Properties.Resources.edit;
+            this._EditButton.Image = Resources.edit;
             this._EditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._EditButton.Name = "_EditButton";
             this._EditButton.Size = new System.Drawing.Size(23, 22);
@@ -140,7 +141,7 @@ namespace MeterKnife.Common.Scpi
             // _DownButton
             // 
             this._DownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DownButton.Image = global::MeterKnife.Common.Properties.Resources.down;
+            this._DownButton.Image = Resources.down;
             this._DownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._DownButton.Name = "_DownButton";
             this._DownButton.Size = new System.Drawing.Size(23, 22);
@@ -150,7 +151,7 @@ namespace MeterKnife.Common.Scpi
             // _UpButton
             // 
             this._UpButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._UpButton.Image = global::MeterKnife.Common.Properties.Resources.up;
+            this._UpButton.Image = Resources.up;
             this._UpButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._UpButton.Name = "_UpButton";
             this._UpButton.Size = new System.Drawing.Size(23, 22);
@@ -165,7 +166,7 @@ namespace MeterKnife.Common.Scpi
             // _ImportButton
             // 
             this._ImportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ImportButton.Image = global::MeterKnife.Common.Properties.Resources.import;
+            this._ImportButton.Image = Resources.import;
             this._ImportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ImportButton.Name = "_ImportButton";
             this._ImportButton.Size = new System.Drawing.Size(23, 22);
@@ -175,7 +176,7 @@ namespace MeterKnife.Common.Scpi
             // _ExportButton
             // 
             this._ExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ExportButton.Image = global::MeterKnife.Common.Properties.Resources.export;
+            this._ExportButton.Image = Resources.export;
             this._ExportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ExportButton.Name = "_ExportButton";
             this._ExportButton.Size = new System.Drawing.Size(23, 22);

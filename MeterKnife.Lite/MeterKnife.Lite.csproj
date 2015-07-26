@@ -149,6 +149,10 @@
       <Project>{8c1d8987-383a-4e9c-b59c-3c3313fdec3b}</Project>
       <Name>MeterKnife.Kernel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Scpis\MeterKnife.Scpis.csproj">
+      <Project>{BC6EF4B5-6803-4216-896B-58ABB72F4ACE}</Project>
+      <Name>MeterKnife.Scpis</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Workbench\MeterKnife.Workbench.csproj">
       <Project>{9edecd14-77fe-419c-9323-c00bdb6a07ac}</Project>
       <Name>MeterKnife.Workbench</Name>

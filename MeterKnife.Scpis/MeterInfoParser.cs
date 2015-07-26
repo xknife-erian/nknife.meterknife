@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Xml;
-using MeterKnife.Common.Base;
-using MeterKnife.Common.Interfaces;
 using NKnife.Interface;
-using NKnife.IoC;
 using ScpiKnife;
 
-namespace MeterKnife.Common.Scpi
+namespace MeterKnife.Scpis
 {
     public class MeterInfoParser : IParser<FileInfo, ScpiSubjectCollection>
     {

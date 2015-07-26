@@ -11,6 +11,8 @@
     <AssemblyName>MeterKnife.Scpis</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,10 +46,113 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerScpiSubjectPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomerScpiSubjectPanel.Designer.cs">
+      <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MeterInfoParser.cs" />
+    <Compile Include="MeterScpiGroupTreeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MeterScpiGroupTreeDialog.Designer.cs">
+      <DependentUpon>MeterScpiGroupTreeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ScpiCommandEditorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScpiCommandEditorDialog.Designer.cs">
+      <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScpiCommandGroupCategory.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Scpis\Specified\AdvantestR6551.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scpis\Specified\AdvantestR6871E.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scpis\Specified\Agilent34401A.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scpis\Specified\HP3457A.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scpis\Specified\Keithley2000.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scpis\Specified\Solartron7081.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomerScpiSubjectPanel.resx">
+      <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeterScpiGroupTreeDialog.resx">
+      <DependentUpon>MeterScpiGroupTreeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScpiCommandEditorDialog.resx">
+      <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436E22B8-84A4-49E6-9810-E72FAD37313F}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\nknife\NKnife\NKnife.csproj">
+      <Project>{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}</Project>
+      <Name>NKnife</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
+      <Project>{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}</Project>
+      <Name>MeterKnife.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\base-toolstrip\add.png" />
+    <Content Include="Properties\base-toolstrip\delete.png" />
+    <Content Include="Properties\base-toolstrip\down.png" />
+    <Content Include="Properties\base-toolstrip\edit.png" />
+    <Content Include="Properties\base-toolstrip\export.png" />
+    <Content Include="Properties\base-toolstrip\import.png" />
+    <Content Include="Properties\base-toolstrip\open.png" />
+    <Content Include="Properties\base-toolstrip\save.png" />
+    <Content Include="Properties\base-toolstrip\up.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。启用“NuGet 程序包还原”可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
