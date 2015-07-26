@@ -44,33 +44,37 @@ namespace MeterKnife.Common.Scpi
             _CollectGroup.Header = "采集指令集";
             _CollectGroup.Name = "COLLECT";
 
-            _ListView.SelectedIndexChanged += (s, e) =>
-            {
-                ListView.SelectedIndexCollection indices = _ListView.SelectedIndices;
-                bool b = indices.Count > 0;
-                _DeleteButton.Enabled = b;
-                _EditButton.Enabled = b;
+            _ListView.SelectedIndexChanged += OnListViewOnSelectedIndexChanged;
+        }
 
-                if (b)
+        private void OnListViewOnSelectedIndexChanged(object s, EventArgs e)
+        {
+            ListView.SelectedIndexCollection indices = _ListView.SelectedIndices;
+            bool b = indices.Count > 0;
+            _DeleteButton.Enabled = b;
+            _EditButton.Enabled = b;
+
+            if (b)
+            {
+                var item = _ListView.SelectedItems[0];
+                if (item.Group == null)
+                    return;
+                List<ListViewItem> group = null;
+                switch (item.Group.Name)
                 {
-                    var item = _ListView.SelectedItems[0];
-                    List<ListViewItem> group = null;
-                    switch (item.Group.Name)
-                    {
-                        case "INIT":
-                            group = GetInitGroup();
-                            break;
-                        case "COLLECT":
-                            group = GetCollectGroup();
-                            break;
-                    }
-                    if (group != null)
-                    {
-                        _UpButton.Enabled = group.IndexOf(item) > 0;
-                        _DownButton.Enabled = group.IndexOf(item) < group.Count - 1;
-                    }
+                    case "INIT":
+                        @group = GetInitGroup();
+                        break;
+                    case "COLLECT":
+                        @group = GetCollectGroup();
+                        break;
                 }
-            };
+                if (@group != null)
+                {
+                    _UpButton.Enabled = @group.IndexOf(item) > 0;
+                    _DownButton.Enabled = @group.IndexOf(item) < @group.Count - 1;
+                }
+            }
         }
 
         private List<ListViewItem> GetInitGroup()
@@ -233,18 +237,30 @@ namespace MeterKnife.Common.Scpi
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                IsModified = true;
                 item.SubItems[1].Text = dialog.Command;
                 command.Command = dialog.Command;
                 item.SubItems[2].Text = dialog.Interval.ToString();
                 command.Interval = dialog.Interval;
                 command.IsHex = dialog.IsHex;
                 item.ToolTipText = command.ToString();
+                IsModified = true;
             }
+            item.Selected = true;
         }
 
         private void _DownButton_Click(object sender, EventArgs e)
         {
+            int i = _ListView.SelectedIndices[0];
+            var item = _ListView.Items[i];
+            var group = item.Group;
+
+            //_ListView.BeginUpdate();
+            //_ListView.SelectedIndices.Clear();
+            _ListView.Items.RemoveAt(i);
+            item.Group = group;
+            _ListView.Items.Insert(i, item);
+            //_ListView.EndUpdate();
+            item.Selected = true;
             IsModified = true;
         }
 
