@@ -1,5 +1,6 @@
 ﻿using MeterKnife.Common.Tunnels;
 using NKnife.Base;
+using NKnife.Utility;
 using ScpiKnife;
 
 namespace MeterKnife.Common.Util
@@ -35,6 +36,14 @@ namespace MeterKnife.Common.Util
         public static ScpiCommand FETC(int gpib)
         {
             return BuildScpiCommand("FETC?");
+        }
+
+        public static byte[] GenerateProtocol(CommandQueue.CareItem item)
+        {
+            var head = new byte[] { 0x08, 0x00, 0x02, item.Heads.First, item.Heads.Second };
+            var newbs = UtilityCollection.MergerArray(head, item.Content);
+            newbs[2] = (byte)(newbs.Length - 3);
+            return newbs;
         }
 
         /// <summary>
@@ -82,10 +91,6 @@ namespace MeterKnife.Common.Util
                 Content = content
             };
             return item;
-//            var head = new byte[] { 0x08, 0x00, 0x02, 0xB0, subcommand };
-//            var newbs = UtilityCollection.MergerArray(head, content);
-//            newbs[2] = (byte)(newbs.Length - 3);
-//            return newbs;
         }
 
         /// <summary>

@@ -220,7 +220,7 @@ namespace MeterKnife.Kernel.Services
         protected static void SendCommand(IDataConnector dataConnector, CommandQueue queue)
         {
             var cmd = queue.Dequeue();
-            var data = cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
+            var data = cmd.IsCare ? CommandUtil.GenerateProtocol(cmd) : cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
             if (data.Length != 0)
             {
                 dataConnector.SendAll(data);

@@ -47,22 +47,31 @@ namespace MeterKnife.Common.Tunnels
             /// 是否是Care的专属协议
             /// </summary>
             public bool IsCare { get; set; }
+
             /// <summary>
             /// 仪器的SCPI指令
             /// </summary>
             public ScpiCommand ScpiCommand { get; set; }
+
             /// <summary>
             /// 命令指向的仪器GPIB地址
             /// </summary>
             public short GpibAddress { get; set; }
+
             /// <summary>
             /// 当是Care的专属协议时的主命令字与子命令字
             /// </summary>
             public Pair<byte,byte> Heads { get; set; }
+
             /// <summary>
             /// 当是Care的专属协议时的协议主体内容
             /// </summary>
             public byte[] Content { get; set; }
+
+            /// <summary>
+            /// 当是Care的专属协议时的等候周期
+            /// </summary>
+            public int Interval { get; set; }
         }
 
     }
