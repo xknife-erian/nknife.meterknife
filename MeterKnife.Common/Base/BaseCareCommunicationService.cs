@@ -5,7 +5,9 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
+using MeterKnife.Common.Util;
 using NKnife.Events;
+using NKnife.Tunnel;
 using NKnife.Tunnel.Base;
 using ScpiKnife;
 

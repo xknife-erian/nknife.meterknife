@@ -161,7 +161,7 @@ namespace MeterKnife.Instruments
                     continue;
                 _Comm.Send(Port, (short)_Meter.GpibAddress, initcmd);
             }
-
+            //TODO:等待放在哪里更好呢？
             ScpiGroup reads = GetCollectCommands();
             while (_OnCollect)
             {
@@ -185,7 +185,6 @@ namespace MeterKnife.Instruments
         {
             throw new NotImplementedException();
         }
-
 
         private void _StartStripButton_Click(object sender, EventArgs e)
         {
