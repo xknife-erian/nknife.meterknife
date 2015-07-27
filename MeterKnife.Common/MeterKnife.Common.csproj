@@ -185,6 +185,7 @@
     <Compile Include="Tunnels\CareOne\CareOneProtocolCommandParser.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolPacker.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolUnPacker.cs" />
+    <Compile Include="Tunnels\CareTemperatureHandler.cs" />
     <Compile Include="Tunnels\CommandQueue.cs" />
     <Compile Include="Tunnels\TunnelType.cs" />
     <Compile Include="Tunnels\ScpiProtocolHandler.cs" />

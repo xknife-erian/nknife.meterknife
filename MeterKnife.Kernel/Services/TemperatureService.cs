@@ -14,7 +14,7 @@ using NKnife.IoC;
 
 namespace MeterKnife.Kernel.Services
 {
-    public class CareTemperatureService 
+    public class TemperatureService 
     {
         private static readonly ILog _logger = LogManager.GetLogger<DataPathService>();
         public double[] TemperatureValues { get; set; }
