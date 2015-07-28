@@ -94,6 +94,7 @@ namespace MeterKnife.Instruments
         public override void SetMeter(CarePort port, BaseMeter meter)
         {
             base.SetMeter(port, meter);
+            _ScpiCommandPanel.GpibAddress = meter.GpibAddress;
             _Comm.Bind(port, _Handler);
             _FiguredData.Meter = _Meter;
             _FiguredDataPropertyGrid.SelectedObject = _FiguredData;

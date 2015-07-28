@@ -10,7 +10,7 @@ namespace MeterKnife.Common.DataModels
         private readonly int[] _SerialPort = {-1, 115200};
         private string _Id;
         private IPEndPoint _IpEndPoint;
-        private string[] _Ports;
+        private string[] _SerialPortInfo;
 
         protected CarePort()
         {
@@ -19,14 +19,18 @@ namespace MeterKnife.Common.DataModels
 
         public TunnelType TunnelType { get; private set; }
 
-        public int[] GetSerialPort()
+        /// <summary>
+        /// 获取串口信息
+        /// </summary>
+        /// <returns>一般由2个值构成，第1个值是串口，第2个值是该串口的波特率</returns>
+        public int[] GetSerialPortInfo()
         {
             if (_SerialPort[0] == -1)
             {
-                string port = _Ports[0].ToUpper().TrimStart(new[] {'C', 'O', 'M'});
+                string port = _SerialPortInfo[0].ToUpper().TrimStart(new[] {'C', 'O', 'M'});
                 if (!int.TryParse(port, out _SerialPort[0]))
                     _SerialPort[0] = 0;
-                if (!int.TryParse(_Ports[1], out _SerialPort[1]))
+                if (!int.TryParse(_SerialPortInfo[1], out _SerialPort[1]))
                     _SerialPort[1] = 115200;
             }
             return _SerialPort;
@@ -37,10 +41,10 @@ namespace MeterKnife.Common.DataModels
             if (_IpEndPoint == null)
             {
                 IPAddress ip;
-                if (!IPAddress.TryParse(_Ports[0], out ip))
+                if (!IPAddress.TryParse(_SerialPortInfo[0], out ip))
                     ip = new IPAddress(new byte[] {0x00, 0x00, 0x00, 0x00});
                 int port = 0;
-                if (!int.TryParse(_Ports[1], out port))
+                if (!int.TryParse(_SerialPortInfo[1], out port))
                     port = 5025;
                 _IpEndPoint = new IPEndPoint(ip, port);
             }
@@ -52,7 +56,7 @@ namespace MeterKnife.Common.DataModels
             var carePort = new CarePort
             {
                 TunnelType = tunnelType,
-                _Ports = ports
+                _SerialPortInfo = ports
             };
             if (tunnelType == TunnelType.Serial)
             {
@@ -82,11 +86,11 @@ namespace MeterKnife.Common.DataModels
                 case TunnelType.Serial:
                 default:
                 {
-                    int[] ports = GetSerialPort();
+                    int[] ports = GetSerialPortInfo();
                     var sb = new StringBuilder();
                     foreach (int port in ports)
                         sb.Append(port).Append(':');
-                    return sb.ToString();
+                    return sb.ToString().TrimEnd(':');
                 }
             }
         }

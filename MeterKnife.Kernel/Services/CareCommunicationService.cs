@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
 using MeterKnife.Common.Util;
@@ -16,6 +17,7 @@ using NKnife.Protocol.Generic;
 using NKnife.Tunnel;
 using NKnife.Tunnel.Filters;
 using NKnife.Tunnel.Generic;
+using NKnife.Utility;
 using ScpiKnife;
 using SerialKnife.Common;
 using SerialKnife.Generic.Filters;
@@ -36,12 +38,22 @@ namespace MeterKnife.Kernel.Services
         private readonly Dictionary<CarePort, BytesProtocolFilter> _Filters = new Dictionary<CarePort, BytesProtocolFilter>();
         private readonly Dictionary<CarePort, bool> _IsTaskContinueds = new Dictionary<CarePort, bool>();
         private readonly Dictionary<CarePort, CommandQueue> _Queues = new Dictionary<CarePort, CommandQueue>();
+        private readonly Dictionary<string, bool> _GpibLoops = new Dictionary<string, bool>();
 
         public override bool Initialize()
         {
             Cares = new List<CarePort>();
             var careService = new CareService();
             careService.SerialFinder(this);
+            DI.Get<IMeterKernel>().Collected += (s, e) =>
+            {
+                //指定端口的指定GPIB地址停止采集指令循环
+                var key = GetGpibKey(e.CarePort, e.GpibAddress);
+                if (_GpibLoops.ContainsKey(key))
+                    _GpibLoops[key] = e.IsCollected;
+                else
+                    _GpibLoops.Add(key, e.IsCollected);
+            };
             IsInitialized = true;
             return true;
         }
@@ -73,7 +85,7 @@ namespace MeterKnife.Kernel.Services
                         var dataConnector = _Connectors[carePort] as ISerialConnector;
                         if (dataConnector != null)
                         {
-                            int[] serialport = carePort.GetSerialPort();
+                            int[] serialport = carePort.GetSerialPortInfo();
                             dataConnector.SerialConfig = new SerialConfig
                             {
                                 BaudRate = serialport[1],
@@ -189,13 +201,24 @@ namespace MeterKnife.Kernel.Services
 
         public override void Send(CarePort carePort, bool isLooping, params CommandQueue.CareItem[] careItems)
         {
+            if (UtilityCollection.IsNullOrEmpty(careItems))
+                return;
+            bool gpibLoop = isLooping;
+            int gpib = careItems[0].GpibAddress;
+            var key = GetGpibKey(carePort, gpib);
+            _GpibLoops[key] = gpibLoop;
             Task.Factory.StartNew(() =>
             {
                 do
                 {
                     LoopEnqueueCommand(carePort, careItems);
-                } while (isLooping && true);
+                } while (isLooping && _GpibLoops[key]);
             });
+        }
+
+        private static string GetGpibKey(CarePort carePort, int gpib)
+        {
+            return string.Format("{0}--{1}", carePort, gpib);
         }
 
         private void LoopEnqueueCommand(CarePort carePort, params CommandQueue.CareItem[] careItems)
@@ -228,10 +251,7 @@ namespace MeterKnife.Kernel.Services
         {
             var cmd = queue.Dequeue();
             if (cmd == null)
-            {
-                _logger.Warn("从队列中取出CommandQueue.CareItem为空...");
                 return;
-            }
             byte[] data = cmd.IsCare ? CommandUtil.GenerateProtocol(cmd) : cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
             _logger.Trace(string.Format("SendCommand:{0}", data.ToHexString()));
             if (data.Length != 0)

@@ -22,7 +22,6 @@ namespace MeterKnife.Scpis
 
         public CustomerScpiSubjectPanel()
         {
-            GpibAddress = 23; //测试使用
             InitializeComponent();
             _ListView.ShowItemToolTips = true;
             _ListView.Groups.AddRange(new[] {_InitGroup, _CollectGroup});
