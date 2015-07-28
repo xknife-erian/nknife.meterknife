@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Logging;
-using MeterKnife.Common;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
@@ -14,32 +10,54 @@ using NKnife.IoC;
 
 namespace MeterKnife.Kernel.Services
 {
-    public class TemperatureService 
+    public class TemperatureService : ITemperatureService
     {
         private static readonly ILog _logger = LogManager.GetLogger<DataPathService>();
-        public double[] TemperatureValues { get; set; }
 
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
-        private bool _IsStart = true;
+        private readonly Dictionary<CarePort, bool> _PortStartMap = new Dictionary<CarePort, bool>();
 
-        public bool StartService(CarePort carePort)
+        public TemperatureService()
         {
-            _IsStart = true;
+            TemperatureValues = new double[1];
+        }
+
+        public int Interval
+        {
+            get { return 5000; }
+        }
+
+        public double[] TemperatureValues { get; private set; }
+
+        public bool StartCollect(CarePort carePort)
+        {
+            var isStart = true;
+            if (!_PortStartMap.TryGetValue(carePort, out isStart))
+            {
+                isStart = true;
+                _PortStartMap.Add(carePort, true);
+                if (_PortStartMap.Count > 1)//如果采集值的数量（多路温度采集）大于1时
+                {
+                    var v = TemperatureValues[0];
+                    TemperatureValues = new double[_PortStartMap.Count];
+                    TemperatureValues[0] = v;
+                }
+            }
             var task = new Task(() =>
             {
-                while (_IsStart)
+                while (isStart)
                 {
                     _Comm.Send(carePort, 0, CommandUtil.TEMP());
-                    Thread.Sleep(1000*5);
+                    Thread.Sleep(Interval);
                 }
             });
             task.Start();
             return true;
         }
 
-        public bool CloseService()
+        public bool CloseCollect(CarePort carePort)
         {
-            _IsStart = false;
+            _PortStartMap[carePort] = false;
             return true;
         }
     }

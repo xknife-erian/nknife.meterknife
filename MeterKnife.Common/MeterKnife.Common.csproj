@@ -171,6 +171,7 @@
     <Compile Include="Interfaces\IMeterKernel.cs" />
     <Compile Include="Interfaces\IMeter.cs" />
     <Compile Include="Interfaces\IMeterParameters.cs" />
+    <Compile Include="Interfaces\ITemperatureService.cs" />
     <Compile Include="Interfaces\ITunnelService.cs" />
     <Compile Include="IoC\Moduels.cs" />
     <Compile Include="IoC\TunnelModules.cs" />

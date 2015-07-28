@@ -17,6 +17,7 @@ namespace MeterKnife.Common.DataModels
     public class FiguredData : ICollectSource
     {
         private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
+        protected readonly ITemperatureService _TempService = DI.Get<ITemperatureService>();
 
         #region 分析内容
 
@@ -187,7 +188,7 @@ namespace MeterKnife.Common.DataModels
             Ppvalue = 0.ToString();
         }
 
-        public void Add(double value)
+        public virtual void Add(double value)
         {
             string s = value.ToString();
             int n = s.Length - s.IndexOf('.') - 1;
@@ -201,14 +202,13 @@ namespace MeterKnife.Common.DataModels
             Ppvalue = String.Format(t, Math.Abs(Max.Output - Min.Output)); //峰峰值
             StandardDeviation.Input(value);
 
-            if (Math.Abs(_CurrentTemperature) <= 0 && _DataSet.Tables[1].Rows.Count == 0)
-                return;
+            AddTemperature(_TempService.TemperatureValues[0]);
             _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature, StandardDeviation.Output);
             //触发数据源发生变化
             OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
         }
 
-        public void AddTemperature(double value)
+        protected virtual void AddTemperature(double value)
         {
             _CurrentTemperature = value;
             TemperatureArithmeticMean.Input(value);

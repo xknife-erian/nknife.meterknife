@@ -78,12 +78,18 @@ namespace MeterKnife.Common.Controls.Plots
                     _LeftAxis.Minimum = min - j;
                 }
             }
+            else if(Math.Abs(max) <= 0 && Math.Abs(min) <= 0)
+            {
+                _LeftAxis.Maximum = max + 0.5;
+                _LeftAxis.Minimum = min - 0.5;
+            }
         }
 
         protected object SelectValue(FiguredData fd)
         {
             var table = fd.DataSet.Tables[1];
             var count = fd.DataSet.Tables[1].Rows.Count - 1;
+            if (count < 0) return 0;
             return table.Rows[count][ValueHead];
         }
 

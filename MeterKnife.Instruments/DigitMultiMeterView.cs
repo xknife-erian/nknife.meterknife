@@ -160,6 +160,7 @@ namespace MeterKnife.Instruments
                 if (initcmd == null)
                     continue;
                 _Comm.Send(Port, (short)_Meter.GpibAddress, initcmd);
+                Thread.Sleep((int) initcmd.Interval);
             }
             //TODO:等待放在哪里更好呢？
             ScpiGroup reads = GetCollectCommands();
@@ -170,6 +171,7 @@ namespace MeterKnife.Instruments
                     if (readcmd == null)
                         continue;
                     _Comm.Send(Port, (short)_Meter.GpibAddress, readcmd);
+                    Thread.Sleep(1000);
                 }
             }
         }
@@ -280,29 +282,19 @@ namespace MeterKnife.Instruments
         private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
         {
             CareTalking talking = e.Item;
-
-            if (talking.MainCommand == 0xAE)
+            if ((talking.GpibAddress != _Meter.GpibAddress) || (talking.Scpi.Length < 6))
+                return;
+            string data = talking.Scpi; //.Substring(1, saying.Content.Length - 6);
+            _logger.Info(data);
+            double yzl = 0;
+            if (double.TryParse(data, out yzl))
             {
-                string data = talking.Scpi;
-                double yzl = 0;
-                if (double.TryParse(data, out yzl))
+                _FiguredData.Add(yzl);
+                this.ThreadSafeInvoke(() =>
                 {
-                    _FiguredData.AddTemperature(yzl);
-                    this.ThreadSafeInvoke(() => _TempPlot.Update(_FiguredData));
-                }
-            }
-            else
-            {
-                if ((talking.GpibAddress != _Meter.GpibAddress) || (talking.Scpi.Length < 6))
-                    return;
-                string data = talking.Scpi; //.Substring(1, saying.Content.Length - 6);
-                _logger.Info(data);
-                double yzl = 0;
-                if (double.TryParse(data, out yzl))
-                {
-                    _FiguredData.Add(yzl);
-                    this.ThreadSafeInvoke(() => _DataPlot.Update(_FiguredData));
-                }
+                    _DataPlot.Update(_FiguredData);
+                    _TempPlot.Update(_FiguredData);
+                });
             }
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
