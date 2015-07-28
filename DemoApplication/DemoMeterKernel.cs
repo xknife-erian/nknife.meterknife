@@ -15,9 +15,10 @@ namespace MeterKnife.DemoApplication
         public string DataPath { get; set; }
         public Dictionary<CarePort, List<int>> GpibDictionary { get; private set; }
         public Dictionary<BaseMeter, DockContent> MeterContents { get; private set; }
-        public void CollectBeginning(int address, bool isCollected)
+
+        public void UpdateCollectState(CarePort carePort, int address, bool isCollected)
         {
-            OnCollected(new CollectedEventArgs(address, isCollected));
+            OnCollected(new CollectedEventArgs(carePort, address, isCollected));
         }
 
         public event EventHandler<CollectedEventArgs> Collected;
