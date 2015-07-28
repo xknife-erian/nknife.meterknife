@@ -38,7 +38,7 @@ namespace MeterKnife.Workbench.Dialogs
 
         protected virtual void OnAcceptButtonClick(object s, EventArgs e)
         {
-            var address = (int) _NumberBox.Value;
+            var address = (short)_NumberBox.Value;
             if (GpibList.Contains(address))
             {
                 MessageBox.Show(this, "请重新输入GPIB地址，该地址已有仪器占用。", "重复的GPIB地址", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -67,7 +67,12 @@ namespace MeterKnife.Workbench.Dialogs
 
                 var idn = CommandUtil.IDN(address);
                 _logger.Debug(string.Format("Send:{0}", idn.GenerateProtocol(0)));
-                _CommService.Send(Port, 0, idn); //08 17 07 AA 00 2A 49 44 4E 3F
+                var careItem = new CommandQueue.CareItem
+                {
+                    ScpiCommand = idn,
+                    GpibAddress = address
+                };
+                _CommService.Send(Port, false, careItem); //08 17 07 AA 00 2A 49 44 4E 3F
                 _AutoResetEvent.WaitOne(5000);
             }
             else //当手动选择仪器类型时

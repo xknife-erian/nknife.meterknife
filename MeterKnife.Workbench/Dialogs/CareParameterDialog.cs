@@ -73,7 +73,7 @@ namespace MeterKnife.Workbench.Dialogs
                 if (i == 0xD8)
                     continue;
                 var data = CommandUtil.CareGetter((byte) i);
-                _Comm.Send(_Port, 0, data);
+                _Comm.Send(_Port, false, data);
                 Thread.Sleep(20);
             }
         }
@@ -249,23 +249,23 @@ namespace MeterKnife.Workbench.Dialogs
             var dhcpDisable = _DhcpDisableRadioButton.Checked;
             var dhcp = dhcpDisable ? 0x00 : 0x01;
             var config = CommandUtil.CareSetter(0xD3, (byte) dhcp);
-            _Comm.Send(_Port, 0, config); //是否启用DHCP
+            _Comm.Send(_Port, false, config); //是否启用DHCP
 
             //如果不启用DHCP，将需要设置IP地址等……
             if (dhcpDisable)
             {
                 config = CommandUtil.CareSetter(0xD4, _IpAddressControl.GetAddressBytes());
-                _Comm.Send(_Port, 0, config);
+                _Comm.Send(_Port, false, config);
                 config = CommandUtil.CareSetter(0xD5, _GatwayAddressControl.GetAddressBytes());
-                _Comm.Send(_Port, 0, config);
+                _Comm.Send(_Port, false, config);
                 config = CommandUtil.CareSetter(0xD6, _MaskAddressControl.GetAddressBytes());
-                _Comm.Send(_Port, 0, config);
+                _Comm.Send(_Port, false, config);
             }
 
             //TCP的端口
             var tcpPort = BitConverter.GetBytes((Int16) _TcpNumericUpDown.Value).Reverse().ToArray();
             config = CommandUtil.CareSetter(0xD7, tcpPort);
-            _Comm.Send(_Port, 0, config);
+            _Comm.Send(_Port, false, config);
 
             //默认的GPIB地址
             var defaultGpibAddress = new byte[]
@@ -275,7 +275,7 @@ namespace MeterKnife.Workbench.Dialogs
                 (byte) _LANGpibNumericUpDown.Value,
             };
             config = CommandUtil.CareSetter(0xDB, defaultGpibAddress);
-            _Comm.Send(_Port, 0, config);
+            _Comm.Send(_Port, false, config);
 
             //温度传感器设置
             string temp = "DS18B20";
@@ -286,28 +286,28 @@ namespace MeterKnife.Workbench.Dialogs
             else if (_Dht22RadioButton.Checked)
                 temp = "DHT22";
             config = CommandUtil.CareSetter(0xDA, Encoding.ASCII.GetBytes(temp));
-            _Comm.Send(_Port, 0, config);
+            _Comm.Send(_Port, false, config);
 
             //USB串口波特率
             var usart1 = Int32.Parse(_Usart1NumberBox.SelectedItem.ToString());
             var usbBaud = BitConverter.GetBytes(usart1).Reverse().ToArray();
             config = CommandUtil.CareSetter(0xDD, usbBaud);
-            _Comm.Send(_Port, 0, config);
+            _Comm.Send(_Port, false, config);
 
             //WIFI串口波特率
             var usart2 = Int32.Parse(_Usart2NumberBox.SelectedItem.ToString());
             var wifiBaud = BitConverter.GetBytes(usart2).Reverse().ToArray();
             config = CommandUtil.CareSetter(0xDE, wifiBaud);
-            _Comm.Send(_Port, 0, config);
+            _Comm.Send(_Port, false, config);
 
             //串口数据互转
             var usartSwitch = _UsartSwitchCheckBox.Checked;
             var us = usartSwitch ? 0x01 : 0x00;
             config = CommandUtil.CareSetter(0xDF, (byte) us);
-            _Comm.Send(_Port, 0, config);
+            _Comm.Send(_Port, false, config);
 
             var talking = CommandUtil.CareReset(); //重启
-            _Comm.Send(_Port, 0, talking);
+            _Comm.Send(_Port, false, talking);
             Thread.Sleep(300);
 
             MessageBox.Show(this, "Care参数配置完成。", "Care参数", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -333,11 +333,11 @@ namespace MeterKnife.Workbench.Dialogs
         private void DefaultSetting()
         {
             var talking = CommandUtil.CareRestoreDefault(); //恢复默认
-            _Comm.Send(_Port, 0, talking);
+            _Comm.Send(_Port, false, talking);
             Thread.Sleep(80);
 
             talking = CommandUtil.CareReset(); //重启
-            _Comm.Send(_Port, 0, talking);
+            _Comm.Send(_Port, false, talking);
             Thread.Sleep(100);
             QueryCareParameter(); //再次查询当前值
 

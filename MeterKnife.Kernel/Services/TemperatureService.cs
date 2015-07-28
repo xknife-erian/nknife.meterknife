@@ -34,24 +34,15 @@ namespace MeterKnife.Kernel.Services
             var isStart = true;
             if (!_PortStartMap.TryGetValue(carePort, out isStart))
             {
-                isStart = true;
                 _PortStartMap.Add(carePort, true);
-                if (_PortStartMap.Count > 1)//如果采集值的数量（多路温度采集）大于1时
+                if (_PortStartMap.Count > 1) //如果采集值的数量（多路温度采集）大于1时
                 {
                     var v = TemperatureValues[0];
                     TemperatureValues = new double[_PortStartMap.Count];
                     TemperatureValues[0] = v;
                 }
             }
-            var task = new Task(() =>
-            {
-                while (isStart)
-                {
-                    _Comm.Send(carePort, 0, CommandUtil.TEMP());
-                    Thread.Sleep(Interval);
-                }
-            });
-            task.Start();
+            _Comm.Send(carePort, true, CommandUtil.TEMP());
             return true;
         }
 

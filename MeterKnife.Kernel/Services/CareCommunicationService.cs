@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Common.Logging;
 using MeterKnife.Common.Base;
@@ -185,24 +187,32 @@ namespace MeterKnife.Kernel.Services
             return true;
         }
 
-        public override void Send(CarePort carePort, short gpib, ScpiCommand scpiCommand)
+        public override void Send(CarePort carePort, bool isLooping, params CommandQueue.CareItem[] careItems)
         {
-            var careItem = new CommandQueue.CareItem
+            Task.Factory.StartNew(() =>
             {
-                ScpiCommand = scpiCommand, 
-                GpibAddress = gpib
-            };
-            Send(carePort, gpib, careItem);
+                do
+                {
+                    LoopEnqueueCommand(carePort, careItems);
+                } while (isLooping && true);
+            });
         }
 
-        public override void Send(CarePort carePort, short gpib, CommandQueue.CareItem careItem)
+        private void LoopEnqueueCommand(CarePort carePort, params CommandQueue.CareItem[] careItems)
         {
-            _Queues[carePort].Enqueue(careItem);
+            foreach (var careItem in careItems)
+            {
+                _Queues[carePort].Enqueue(careItem);
+                if (careItem.IsCare)
+                    Thread.Sleep(careItem.Interval);
+                else
+                    Thread.Sleep((int) careItem.ScpiCommand.Interval);
+            }
         }
 
         protected virtual void StartQueueTask(CarePort carePort, IDataConnector dataConnector, CommandQueue queue)
         {
-            var task = new Task(() =>
+            Task.Factory.StartNew(() =>
             {
                 while (_IsTaskContinueds[carePort])
                 {
@@ -212,7 +222,6 @@ namespace MeterKnife.Kernel.Services
                 }
                 _logger.Info(string.Format("退出{0}命令队列循环", carePort));
             });
-            task.Start();
         }
 
         protected static void SendCommand(IDataConnector dataConnector, CommandQueue queue)

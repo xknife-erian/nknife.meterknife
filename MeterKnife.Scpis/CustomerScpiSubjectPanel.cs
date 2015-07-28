@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Interfaces;
+using MeterKnife.Common.Tunnels;
 using NKnife.IoC;
 using ScpiKnife;
 
@@ -102,28 +103,37 @@ namespace MeterKnife.Scpis
 
         public int GpibAddress { get; set; }
 
-        public ScpiGroup GetCollectCommands()
+        public CommandQueue.CareItem[] GetCollectCommands()
         {
             return GetCommands("COLLECT");
         }
 
-        public ScpiGroup GetInitCommands()
+        public CommandQueue.CareItem[] GetInitCommands()
         {
             return GetCommands("INIT");
         }
 
-        protected virtual ScpiGroup GetCommands(string groupName)
+        protected virtual CommandQueue.CareItem[] GetCommands(string groupName)
         {
-            var commands = new ScpiGroup();
+            var commands = new List<CommandQueue.CareItem>();
             this.ThreadSafeInvoke(() =>
             {
                 foreach (ListViewItem item in _ListView.Items)
                 {
                     if (item.Checked && item.Group.Name == groupName)
-                        commands.AddLast((ScpiCommand) (item.Tag));
+                    {
+                        var cmd = (ScpiCommand) (item.Tag);
+                        var ci = new CommandQueue.CareItem
+                        {
+                            IsCare = false, 
+                            GpibAddress = (short) GpibAddress, 
+                            ScpiCommand = cmd
+                        };
+                        commands.Add(ci);
+                    }
                 }
             });
-            return commands;
+            return commands.ToArray();
         }
 
         protected void SetToolStripState(bool state)

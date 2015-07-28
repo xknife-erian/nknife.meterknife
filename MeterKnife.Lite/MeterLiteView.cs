@@ -27,39 +27,16 @@ namespace MeterKnife.Lite
                 _ZoomInToolStripButton.Visible = false;
                 _ZoomOutToolStripButton.Visible = false;
                 _SaveStripButton.Visible = false;
-
-                _ParamsGroupBox.Visible = false;
-                _ScpiCommandPanel.Dock = DockStyle.Fill;
-                _LeftSplitContainer.Panel2.Padding = new Padding(3, 2, 3, 2);
-                _LeftSplitContainer.Panel2.Controls.Add(_ScpiCommandPanel);
             }
         }
 
         public override void SetMeter(CarePort port, BaseMeter meter)
         {
             base.SetMeter(port, meter);
-            if (!IsFairy)
-            {
-                //TODO:_Panel = meter.ParamPanel;
-                _ParamsPanel.Controls.Add(_Panel);
-            }
             if (!_Comm.IsInitialized)
             {
                 _Comm.Start(port);
             }
         }
-
-        protected override ScpiGroup GetInitCommands()
-        {
-            var commands = _ScpiCommandPanel.GetInitCommands();
-            return commands;
-        }
-
-        protected override ScpiGroup GetCollectCommands()
-        {
-            var commands = _ScpiCommandPanel.GetCollectCommands();
-            return commands;
-        }
-
     }
 }

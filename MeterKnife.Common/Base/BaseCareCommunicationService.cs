@@ -48,8 +48,14 @@ namespace MeterKnife.Common.Base
         /// 销毁服务
         /// </summary>
         public abstract void Destroy();
-        public abstract void Send(CarePort carePort, short gpib, ScpiCommand command);
-        public abstract void Send(CarePort carePort, short gpib, CommandQueue.CareItem careItem);
+
+        /// <summary>
+        ///     向指定端口发送care协议
+        /// </summary>
+        /// <param name="carePort">指定端口</param>
+        /// <param name="careItems">即将发送的协议内容组</param>
+        /// <param name="isLooping">是否需要循环发送本协议</param>
+        public abstract void Send(CarePort carePort, bool isLooping, params CommandQueue.CareItem[] careItems);
 
         public bool StartService()
         {

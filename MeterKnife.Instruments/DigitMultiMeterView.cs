@@ -13,6 +13,7 @@ using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Instruments.Dialog;
+using MeterKnife.Scpis;
 using NKnife.Events;
 using NKnife.IoC;
 using NKnife.Utility;
@@ -29,6 +30,7 @@ namespace MeterKnife.Instruments
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
 
         protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
+        private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
 
         private readonly FiguredData _FiguredData = new FiguredData();
         private readonly ScpiProtocolHandler _Handler = new ScpiProtocolHandler();
@@ -36,7 +38,6 @@ namespace MeterKnife.Instruments
         private bool _IsDispose;
 
         private bool _OnCollect; //是否正在采集
-        protected BaseParamPanel _Panel;
 
         protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
         protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
@@ -47,6 +48,11 @@ namespace MeterKnife.Instruments
         public DigitMultiMeterView()
         {
             InitializeComponent();
+
+            _ScpiCommandPanel.Dock = DockStyle.Fill;
+            _LeftSplitContainer.Panel2.Padding = new Padding(3, 2, 3, 2);
+            _LeftSplitContainer.Panel2.Controls.Add(_ScpiCommandPanel);
+
             _RealtimePlotSplitContainer.Panel1.Controls.Add(_DataPlot);
             _RealtimePlotSplitContainer.Panel2.Controls.Add(_TempPlot);
             _TempFeaturesPanel.Controls.Add(_TempFeaturesPlot);
@@ -150,36 +156,20 @@ namespace MeterKnife.Instruments
 
         private void SendRead(object obj)
         {
-            ScpiGroup inits = GetInitCommands();
-            foreach (ScpiCommand initcmd in inits)
-            {
-                if (initcmd == null)
-                    continue;
-                _Comm.Send(Port, (short)_Meter.GpibAddress, initcmd);
-                Thread.Sleep((int) initcmd.Interval);
-            }
-            //TODO:等待放在哪里更好呢？
-            ScpiGroup reads = GetCollectCommands();
-            while (_OnCollect)
-            {
-                foreach (ScpiCommand readcmd in reads)
-                {
-                    if (readcmd == null)
-                        continue;
-                    _Comm.Send(Port, (short)_Meter.GpibAddress, readcmd);
-                    Thread.Sleep(1000);
-                }
-            }
+            _Comm.Send(Port, false, GetInitCommands());
+            _Comm.Send(Port, true, GetCollectCommands());
         }
 
-        protected virtual ScpiGroup GetInitCommands()
+        protected virtual CommandQueue.CareItem[] GetInitCommands()
         {
-            throw new NotImplementedException();
+            var commands = _ScpiCommandPanel.GetInitCommands();
+            return commands;
         }
 
-        protected virtual ScpiGroup GetCollectCommands()
+        protected virtual CommandQueue.CareItem[] GetCollectCommands()
         {
-            throw new NotImplementedException();
+            var commands = _ScpiCommandPanel.GetCollectCommands();
+            return commands;
         }
 
         private void _StartStripButton_Click(object sender, EventArgs e)
