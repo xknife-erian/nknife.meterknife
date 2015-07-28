@@ -28,10 +28,13 @@ namespace MeterKnife.Kernel
         /// </summary>
         public Dictionary<BaseMeter, DockContent> MeterContents { get; private set; }
 
-        public void CollectBeginning(int address, bool value)
+        /// <summary>
+        /// 更新采集状态
+        /// </summary>
+        public void UpdateCollectState(CarePort carePort, int address, bool value)
         {
             _OnCollected = value;
-            OnCollectedEvent(new CollectedEventArgs(address, value));
+            OnCollectedEvent(new CollectedEventArgs(carePort, address, value));
         }
 
         public event EventHandler<CollectedEventArgs> Collected;

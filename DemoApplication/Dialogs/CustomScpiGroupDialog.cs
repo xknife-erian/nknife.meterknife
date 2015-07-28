@@ -25,7 +25,7 @@ namespace MeterKnife.DemoApplication.Dialogs
         private void button1_Click(object sender, EventArgs e)
         {
             _IsCollect = !_IsCollect;
-            _Kernel.CollectBeginning(23, _IsCollect);
+            _Kernel.UpdateCollectState(23, _IsCollect);
         }
     }
 }

@@ -13,18 +13,18 @@ namespace MeterKnife.Instruments
     public class MeterView : DockContent
     {
         protected BaseMeter _Meter;
-        protected CarePort _Port;
+        protected CarePort _CarePort;
 
         public virtual void SetMeter(CarePort port, BaseMeter meter)
         {
-            _Port = port;
+            _CarePort = port;
             _Meter = meter;
         }
 
         public CarePort Port
         {
-            get { return _Port; }
-            set { _Port = value; }
+            get { return _CarePort; }
+            set { _CarePort = value; }
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)

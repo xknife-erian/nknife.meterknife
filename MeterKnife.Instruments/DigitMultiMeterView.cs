@@ -107,11 +107,7 @@ namespace MeterKnife.Instruments
             _ZoomInToolStripButton.Enabled = !isCollected;
             _ZoomOutToolStripButton.Enabled = !isCollected;
 
-            if (isCollected)
-                _FeaturesPage.Parent = null;
-            else
-                _FeaturesPage.Parent = _MainTabControl;
-
+            _FeaturesPage.Parent = isCollected ? null : _MainTabControl;
             _StopStripButton.Enabled = isCollected;
         }
 
@@ -119,7 +115,7 @@ namespace MeterKnife.Instruments
         {
             _Handler.ProtocolRecevied += OnProtocolRecevied;
             _OnCollect = true;
-            _MeterKernel.CollectBeginning(_Meter.GpibAddress, true);
+            _MeterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true);
 
             var thread = new Thread(SendRead);
             thread.Start();
@@ -135,9 +131,9 @@ namespace MeterKnife.Instruments
             _IsDispose = true;
             base.OnFormClosing(e);
             StopProtocolRecevied();
-            _Comm.Remove(_Port, _Handler);
+            _Comm.Remove(_CarePort, _Handler);
             Dictionary<CarePort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
-            dic[_Port].Remove(_Meter.GpibAddress);
+            dic[_CarePort].Remove(_Meter.GpibAddress);
         }
 
         private void StopProtocolRecevied()
@@ -147,7 +143,7 @@ namespace MeterKnife.Instruments
             var kernel = DI.Get<IMeterKernel>();
             if (kernel != null && _Meter != null)
             {
-                kernel.CollectBeginning(_Meter.GpibAddress, false);
+                kernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false);
             }
             _Handler.ProtocolRecevied -= OnProtocolRecevied;
         }
@@ -178,9 +174,7 @@ namespace MeterKnife.Instruments
 
         protected virtual ScpiGroup GetInitCommands()
         {
-            if (_Panel != null && _Panel.ScpiCommands != null)
-                return _Panel.ScpiCommands;
-            return new ScpiGroup();
+            throw new NotImplementedException();
         }
 
         protected virtual ScpiGroup GetCollectCommands()
@@ -284,7 +278,7 @@ namespace MeterKnife.Instruments
             CareTalking talking = e.Item;
             if ((talking.GpibAddress != _Meter.GpibAddress) || (talking.Scpi.Length < 6))
                 return;
-            string data = talking.Scpi; //.Substring(1, saying.Content.Length - 6);
+            string data = talking.Scpi;
             _logger.Info(data);
             double yzl = 0;
             if (double.TryParse(data, out yzl))

@@ -25,9 +25,9 @@ namespace MeterKnife.Common.Interfaces
         Dictionary<BaseMeter, DockContent> MeterContents { get; }
 
         /// <summary>
-        /// 正在采集数据,当正在采集数据,一些功能将被禁用
+        /// 更新采集状态
         /// </summary>
-        void CollectBeginning(int address, bool isCollected);
+        void UpdateCollectState(CarePort carePort, int address, bool isCollected);
 
         /// <summary>
         /// 当应用程序的采集状态发生改变时
