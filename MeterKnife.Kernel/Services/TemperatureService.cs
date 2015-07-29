@@ -42,7 +42,7 @@ namespace MeterKnife.Kernel.Services
                     TemperatureValues[0] = v;
                 }
             }
-            _Comm.Send(carePort, true, CommandUtil.TEMP());
+            _Comm.SendLoopCommands(carePort, GetType().Name, CommandUtil.TEMP());
             return true;
         }
 

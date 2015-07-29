@@ -15,7 +15,10 @@ namespace MeterKnife.Kernel.Common
         {
             Dictionary<string, CommandQueue.CareItem[]> items;
             if (!TryGetValue(carePort, out items))
+            {
                 items = new Dictionary<string, CommandQueue.CareItem[]>();
+                Add(carePort, items);
+            }
             items.Add(key, careItems);
         }
 

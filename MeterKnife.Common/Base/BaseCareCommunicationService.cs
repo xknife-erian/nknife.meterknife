@@ -50,12 +50,19 @@ namespace MeterKnife.Common.Base
         public abstract void Destroy();
 
         /// <summary>
-        ///     向指定端口发送care协议
+        ///     向指定端口发送Scpi命令组
         /// </summary>
         /// <param name="carePort">指定端口</param>
-        /// <param name="careItems">即将发送的协议内容组</param>
-        /// <param name="isLooping">是否需要循环发送本协议</param>
-        public abstract void Send(CarePort carePort, bool isLooping, params CommandQueue.CareItem[] careItems);
+        /// <param name="careItems">即将发送的命令组</param>
+        public abstract void SendCommands(CarePort carePort, params CommandQueue.CareItem[] careItems);
+
+        /// <summary>
+        ///     向指定端口发送将要循环使用的Scpi命令组
+        /// </summary>
+        /// <param name="carePort">指定端口</param>
+        /// <param name="commandArrayKey">命令组的Key</param>
+        /// <param name="careItems">即将发送的命令组</param>
+        public abstract void SendLoopCommands(CarePort carePort, string commandArrayKey, params CommandQueue.CareItem[] careItems);
 
         public bool StartService()
         {

@@ -72,7 +72,7 @@ namespace MeterKnife.Workbench.Dialogs
                     ScpiCommand = idn,
                     GpibAddress = address
                 };
-                _CommService.Send(Port, false, careItem); //08 17 07 AA 00 2A 49 44 4E 3F
+                _CommService.SendCommands(Port, careItem); //08 17 07 AA 00 2A 49 44 4E 3F
                 _AutoResetEvent.WaitOne(5000);
             }
             else //当手动选择仪器类型时

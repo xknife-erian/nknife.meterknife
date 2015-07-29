@@ -53,13 +53,13 @@ namespace MeterKnife.Kernel.Services
                 careComm.Start(carePort);
 
                 _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
-                careComm.Send(carePort, false, CommandUtil.CareGetter());
+                careComm.SendCommands(carePort, CommandUtil.CareGetter());
                 if (resetEvent.WaitOne(100))
                 {
                     string time = DateTime.Now.ToString("yyyyMMddHHmmss");
                     byte[] timebs = Encoding.ASCII.GetBytes(time);
                     _logger.Info(string.Format("Set Care Time:{0}", time));
-                    careComm.Send(carePort, false, CommandUtil.CareSetter(0xD9, timebs));
+                    careComm.SendCommands(carePort, CommandUtil.CareSetter(0xD9, timebs));
                     Thread.Sleep(200);
                 }
                 careComm.Remove(carePort, handler);

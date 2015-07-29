@@ -37,6 +37,13 @@ namespace MeterKnife.Common.Tunnels
         /// </summary>
         public class CareItem
         {
+            public static CareItem NullCommand()
+            {
+                var ci = new CareItem();
+                ci.GpibAddress = -1;
+                return ci;
+            }
+
             public CareItem()
             {
                 IsCare = false;

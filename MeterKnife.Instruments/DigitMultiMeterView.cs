@@ -155,8 +155,8 @@ namespace MeterKnife.Instruments
 
         private void SendRead(object obj)
         {
-            _Comm.Send(Port, false, GetInitCommands());
-            _Comm.Send(Port, true, GetCollectCommands());
+            _Comm.SendCommands(Port, GetInitCommands());
+            _Comm.SendLoopCommands(Port, _ScpiGroupId, GetCollectCommands());
         }
 
         protected virtual CommandQueue.CareItem[] GetInitCommands()
