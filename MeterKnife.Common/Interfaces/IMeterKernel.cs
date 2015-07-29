@@ -27,7 +27,7 @@ namespace MeterKnife.Common.Interfaces
         /// <summary>
         /// 更新采集状态
         /// </summary>
-        void UpdateCollectState(CarePort carePort, int address, bool isCollected);
+        void UpdateCollectState(CarePort carePort, int address, bool isCollected, string scpiGroupKey);
 
         /// <summary>
         /// 当应用程序的采集状态发生改变时

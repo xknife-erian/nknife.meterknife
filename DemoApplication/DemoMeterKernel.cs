@@ -16,9 +16,9 @@ namespace MeterKnife.DemoApplication
         public Dictionary<CarePort, List<int>> GpibDictionary { get; private set; }
         public Dictionary<BaseMeter, DockContent> MeterContents { get; private set; }
 
-        public void UpdateCollectState(CarePort carePort, int address, bool isCollected)
+        public void UpdateCollectState(CarePort carePort, int address, bool isCollected, string key)
         {
-            OnCollected(new CollectedEventArgs(carePort, address, isCollected));
+            OnCollected(new CollectedEventArgs(carePort, address, isCollected, "key"));
         }
 
         public event EventHandler<CollectedEventArgs> Collected;
@@ -26,7 +26,7 @@ namespace MeterKnife.DemoApplication
         protected virtual void OnCollected(CollectedEventArgs e)
         {
             EventHandler<CollectedEventArgs> handler = Collected;
-            if (handler != null) 
+            if (handler != null)
                 handler(this, e);
         }
     }

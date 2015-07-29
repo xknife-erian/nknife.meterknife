@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,13 +10,13 @@ using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
 using MeterKnife.Common.Util;
+using MeterKnife.Kernel.Common;
 using NKnife.IoC;
 using NKnife.Protocol.Generic;
 using NKnife.Tunnel;
 using NKnife.Tunnel.Filters;
 using NKnife.Tunnel.Generic;
 using NKnife.Utility;
-using ScpiKnife;
 using SerialKnife.Common;
 using SerialKnife.Generic.Filters;
 using SerialKnife.Interfaces;
@@ -32,13 +30,15 @@ namespace MeterKnife.Kernel.Services
     {
         private const string FAMILY_NAME = "careone";
         private static readonly ILog _logger = LogManager.GetLogger<CareCommunicationService>();
-
         private readonly List<CarePort> _CarePortList = new List<CarePort>();
         private readonly Dictionary<CarePort, IDataConnector> _Connectors = new Dictionary<CarePort, IDataConnector>();
-        private readonly Dictionary<CarePort, BytesProtocolFilter> _Filters = new Dictionary<CarePort, BytesProtocolFilter>();
+
+        private readonly Dictionary<CarePort, BytesProtocolFilter> _Filters =
+            new Dictionary<CarePort, BytesProtocolFilter>();
+
         private readonly Dictionary<CarePort, bool> _IsTaskContinueds = new Dictionary<CarePort, bool>();
+        private readonly LoopCommandMap _LoopCommandMap = new LoopCommandMap();
         private readonly Dictionary<CarePort, CommandQueue> _Queues = new Dictionary<CarePort, CommandQueue>();
-        private readonly Dictionary<string, bool> _GpibLoops = new Dictionary<string, bool>();
 
         public override bool Initialize()
         {
@@ -47,12 +47,10 @@ namespace MeterKnife.Kernel.Services
             careService.SerialFinder(this);
             DI.Get<IMeterKernel>().Collected += (s, e) =>
             {
-                //指定端口的指定GPIB地址停止采集指令循环
-                var key = GetGpibKey(e.CarePort, e.GpibAddress);
-                if (_GpibLoops.ContainsKey(key))
-                    _GpibLoops[key] = e.IsCollected;
-                else
-                    _GpibLoops.Add(key, e.IsCollected);
+                var scmap = _LoopCommandMap[e.CarePort];
+                //根据指定端口的指令组的Key停止采集指令循环
+                if (scmap.ContainsKey(e.ScpiGroupKey))
+                    scmap.Remove(e.ScpiGroupKey);
             };
             IsInitialized = true;
             return true;
@@ -72,7 +70,7 @@ namespace MeterKnife.Kernel.Services
                         if (dataConnector != null)
                         {
                             dataConnector.Config = new SocketClientConfig();
-                            IPEndPoint ip = carePort.GetIpEndPoint();
+                            var ip = carePort.GetIpEndPoint();
                             dataConnector.Configure(ip.Address, ip.Port);
                             Start(carePort);
                         }
@@ -85,7 +83,7 @@ namespace MeterKnife.Kernel.Services
                         var dataConnector = _Connectors[carePort] as ISerialConnector;
                         if (dataConnector != null)
                         {
-                            int[] serialport = carePort.GetSerialPortInfo();
+                            var serialport = carePort.GetSerialPortInfo();
                             dataConnector.SerialConfig = new SerialConfig
                             {
                                 BaudRate = serialport[1],
@@ -99,7 +97,7 @@ namespace MeterKnife.Kernel.Services
                 }
                 filter = _Filters[carePort];
             }
-            foreach (CareOneProtocolHandler handler in handlers)
+            foreach (var handler in handlers)
             {
                 if (filter != null)
                     filter.AddHandlers(handler);
@@ -112,7 +110,7 @@ namespace MeterKnife.Kernel.Services
                 return;
             _CarePortList.Add(carePort);
             var sb = new StringBuilder("PortList:");
-            foreach (CarePort port in _CarePortList)
+            foreach (var port in _CarePortList)
                 sb.Append(port).Append(';');
             _logger.Info(sb);
 
@@ -135,11 +133,12 @@ namespace MeterKnife.Kernel.Services
             //建立针对端口的指令队列
             var queue = new CommandQueue();
             _Queues.Add(carePort, queue);
-            _IsTaskContinueds.Add(carePort, true);//队列循环监听
+            _IsTaskContinueds.Add(carePort, true); //队列循环监听
             StartQueueTask(carePort, dataConnector, queue);
 
             tunnel.BindDataConnector(dataConnector); //dataConnector是数据流动的动力
-            _logger.Info(string.Format("PortList:{0},Filters:{1},Connectors:{2}", _CarePortList.Count, _Filters.Count, _Connectors.Count));
+            _logger.Info(string.Format("PortList:{0},Filters:{1},Connectors:{2}", _CarePortList.Count, _Filters.Count,
+                _Connectors.Count));
         }
 
         public override void Remove(CarePort tunnelPort, CareOneProtocolHandler handler)
@@ -154,7 +153,7 @@ namespace MeterKnife.Kernel.Services
         /// </summary>
         public override void Destroy()
         {
-            foreach (CarePort port in _CarePortList)
+            foreach (var port in _CarePortList)
             {
                 IDataConnector connector;
                 if (_Connectors.TryGetValue(port, out connector))
@@ -203,16 +202,17 @@ namespace MeterKnife.Kernel.Services
         {
             if (UtilityCollection.IsNullOrEmpty(careItems))
                 return;
-            bool gpibLoop = isLooping;
-            int gpib = careItems[0].GpibAddress;
-            var key = GetGpibKey(carePort, gpib);
-            _GpibLoops[key] = gpibLoop;
+            var key = GetGpibKey(carePort, careItems[0].GpibAddress);
             Task.Factory.StartNew(() =>
             {
-                do
+                if (!isLooping)
                 {
-                    LoopEnqueueCommand(carePort, careItems);
-                } while (isLooping && _GpibLoops[key]);
+                    EnqueueCommand(carePort, careItems);
+                }
+                else
+                {
+                    _LoopCommandMap.Add(carePort, key, careItems);
+                }
             });
         }
 
@@ -221,15 +221,11 @@ namespace MeterKnife.Kernel.Services
             return string.Format("{0}--{1}", carePort, gpib);
         }
 
-        private void LoopEnqueueCommand(CarePort carePort, params CommandQueue.CareItem[] careItems)
+        private void EnqueueCommand(CarePort carePort, params CommandQueue.CareItem[] careItems)
         {
             foreach (var careItem in careItems)
             {
                 _Queues[carePort].Enqueue(careItem);
-                if (careItem.IsCare)
-                    Thread.Sleep(careItem.Interval);
-                else
-                    Thread.Sleep((int) careItem.ScpiCommand.Interval);
             }
         }
 
@@ -240,23 +236,43 @@ namespace MeterKnife.Kernel.Services
                 while (_IsTaskContinueds[carePort])
                 {
                     if (queue.Count <= 0)
+                    {
+                        //当队列中无指令时，监测是否有循环指令等待发送
+                        Dictionary<string, CommandQueue.CareItem[]> commandMap;
+                        if (_LoopCommandMap.TryGetValue(carePort, out commandMap))
+                        {
+                            foreach (var careItems in commandMap.Values)
+                            {
+                                foreach (var careItem in careItems)
+                                {
+                                    SendCommand(dataConnector, careItem);
+                                }
+                            }
+                        }
                         queue.AutoResetEvent.WaitOne();
-                    SendCommand(dataConnector, queue);
+                    }
+                    var cmd = queue.Dequeue();
+                    if (cmd == null)
+                        return;
+                    SendCommand(dataConnector, cmd);
                 }
                 _logger.Info(string.Format("退出{0}命令队列循环", carePort));
             });
         }
 
-        protected static void SendCommand(IDataConnector dataConnector, CommandQueue queue)
+        protected static void SendCommand(IDataConnector dataConnector, CommandQueue.CareItem cmd)
         {
-            var cmd = queue.Dequeue();
-            if (cmd == null)
-                return;
-            byte[] data = cmd.IsCare ? CommandUtil.GenerateProtocol(cmd) : cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
+            var data = cmd.IsCare
+                ? CommandUtil.GenerateProtocol(cmd)
+                : cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
             _logger.Trace(string.Format("SendCommand:{0}", data.ToHexString()));
             if (data.Length != 0)
             {
                 dataConnector.SendAll(data);
+                if (cmd.IsCare)
+                    Thread.Sleep(cmd.Interval);
+                else
+                    Thread.Sleep((int) cmd.ScpiCommand.Interval);
             }
         }
     }

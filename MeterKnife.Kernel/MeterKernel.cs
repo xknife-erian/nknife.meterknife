@@ -31,10 +31,10 @@ namespace MeterKnife.Kernel
         /// <summary>
         /// 更新采集状态
         /// </summary>
-        public void UpdateCollectState(CarePort carePort, int address, bool value)
+        public void UpdateCollectState(CarePort carePort, int address, bool value, string scpiGroupKey)
         {
             _OnCollected = value;
-            OnCollectedEvent(new CollectedEventArgs(carePort, address, value));
+            OnCollectedEvent(new CollectedEventArgs(carePort, address, value, scpiGroupKey));
         }
 
         public event EventHandler<CollectedEventArgs> Collected;

@@ -65,6 +65,7 @@
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
     <Compile Include="Services\CareCommunicationService.cs" />
     <Compile Include="Services\CareService.cs" />
+    <Compile Include="Common\LoopCommandMap.cs" />
     <Compile Include="Services\TemperatureService.cs" />
     <Compile Include="Services\DataPathService.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />

@@ -29,6 +29,8 @@ namespace MeterKnife.Instruments
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
 
+        private string _ScpiGroupId = Guid.NewGuid().ToString();
+
         protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
         private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
 
@@ -36,8 +38,6 @@ namespace MeterKnife.Instruments
         private readonly ScpiProtocolHandler _Handler = new ScpiProtocolHandler();
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
         private bool _IsDispose;
-
-        private bool _OnCollect; //是否正在采集
 
         protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
         protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
@@ -121,8 +121,7 @@ namespace MeterKnife.Instruments
         protected virtual void StartCollect()
         {
             _Handler.ProtocolRecevied += OnProtocolRecevied;
-            _OnCollect = true;
-            _MeterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true);
+            _MeterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true, _ScpiGroupId);
 
             var thread = new Thread(SendRead);
             thread.Start();
@@ -145,12 +144,11 @@ namespace MeterKnife.Instruments
 
         private void StopProtocolRecevied()
         {
-            _OnCollect = false;
             Thread.Sleep(50);
             var kernel = DI.Get<IMeterKernel>();
             if (kernel != null && _Meter != null)
             {
-                kernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false);
+                kernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false, _ScpiGroupId);
             }
             _Handler.ProtocolRecevied -= OnProtocolRecevied;
         }
