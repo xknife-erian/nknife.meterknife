@@ -241,8 +241,11 @@ namespace MeterKnife.Kernel.Services
                         Dictionary<string, CommandQueue.CareItem[]> commandMap;
                         if (_LoopCommandMap.TryGetValue(carePort, out commandMap))
                         {
+                            //一个端口可能有多个指令组，一般来讲是多台仪器（每仪器有一个GPIB地址）
+                            //每仪器对应一个指令组
                             foreach (var careItems in commandMap.Values)
                             {
+                                //一个指令组下的多条指令，指令的延迟在SendCommand函数中发生
                                 foreach (var careItem in careItems)
                                 {
                                     SendCommand(dataConnector, careItem);
