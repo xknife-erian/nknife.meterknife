@@ -15,6 +15,8 @@ namespace MeterKnife.Scpis
     {
         private static readonly ILog _logger = LogManager.GetLogger<CustomerScpiSubjectPanel>();
 
+        private readonly string _ScpiSubjectKey = Guid.NewGuid().ToString();
+
         private readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
         private readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
 
@@ -44,6 +46,11 @@ namespace MeterKnife.Scpis
             _CollectGroup.Name = "COLLECT";
 
             _ListView.SelectedIndexChanged += OnListViewOnSelectedIndexChanged;
+        }
+
+        public string ScpiSubjectKey
+        {
+            get { return _ScpiSubjectKey; }
         }
 
         private void OnListViewOnSelectedIndexChanged(object s, EventArgs e)
@@ -102,14 +109,14 @@ namespace MeterKnife.Scpis
 
         public int GpibAddress { get; set; }
 
-        public CommandQueue.CareItem[] GetCollectCommands()
+        public KeyValuePair<string, CommandQueue.CareItem[]> GetCollectCommands()
         {
-            return GetCommands("COLLECT");
+            return new KeyValuePair<string, CommandQueue.CareItem[]>(_ScpiSubjectKey, GetCommands("COLLECT"));
         }
 
-        public CommandQueue.CareItem[] GetInitCommands()
+        public KeyValuePair<string, CommandQueue.CareItem[]> GetInitCommands()
         {
-            return GetCommands("INIT");
+            return new KeyValuePair<string, CommandQueue.CareItem[]>(_ScpiSubjectKey, GetCommands("INIT"));
         }
 
         protected virtual CommandQueue.CareItem[] GetCommands(string groupName)

@@ -258,13 +258,14 @@ namespace MeterKnife.Kernel.Services
                                         SendCommand(dataConnector, careItem);
                                     }
                                 }
+                                //当WaitOne时进入了循环，虽然Queue里有了数据，但信号未接收到，需判断
                                 if (queue.Count > 0)
                                     break;
                             }
                         }
                         catch (Exception e)
                         {
-                            _logger.Warn(string.Format("执行循环指令时出现异常:{0}", e.Message), e);
+                            _logger.Debug(string.Format("集合循环停止:{0}", e.Message), e);
                         }
                         queue.AutoResetEvent.WaitOne();
                     }

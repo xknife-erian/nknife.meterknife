@@ -30,8 +30,6 @@ namespace MeterKnife.Instruments
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
 
-        private readonly string _ScpiGroupId = Guid.NewGuid().ToString();
-
         protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
         private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
 
@@ -122,7 +120,7 @@ namespace MeterKnife.Instruments
         protected virtual void StartCollect()
         {
             _Handler.ProtocolRecevied += OnProtocolRecevied;
-            _MeterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true, _ScpiGroupId);
+            _MeterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true, _ScpiCommandPanel.ScpiSubjectKey);
 
             var thread = new Thread(SendRead);
             thread.Start();
@@ -149,7 +147,7 @@ namespace MeterKnife.Instruments
             var kernel = DI.Get<IMeterKernel>();
             if (kernel != null && _Meter != null)
             {
-                kernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false, _ScpiGroupId);
+                kernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false, _ScpiCommandPanel.ScpiSubjectKey);
             }
             _Handler.ProtocolRecevied -= OnProtocolRecevied;
         }
@@ -157,16 +155,17 @@ namespace MeterKnife.Instruments
         private void SendRead(object obj)
         {
             _Comm.SendCommands(Port, GetInitCommands());
-            _Comm.SendLoopCommands(Port, _ScpiGroupId, GetCollectCommands());
+            var cmd = GetCollectCommands();
+            _Comm.SendLoopCommands(Port, cmd.Key, cmd.Value);
         }
 
         protected virtual CommandQueue.CareItem[] GetInitCommands()
         {
             var commands = _ScpiCommandPanel.GetInitCommands();
-            return commands;
+            return commands.Value;
         }
 
-        protected virtual CommandQueue.CareItem[] GetCollectCommands()
+        protected virtual KeyValuePair<string, CommandQueue.CareItem[]> GetCollectCommands()
         {
             var commands = _ScpiCommandPanel.GetCollectCommands();
             return commands;
