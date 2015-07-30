@@ -8,7 +8,25 @@ namespace MeterKnife.Scpis
 {
     public partial class ScpiCommandEditorDialog : SimpleForm
     {
-        public ScpiCommandGroupCategory Category { get; set; }
+        private ScpiCommandGroupCategory _Category;
+
+        public ScpiCommandGroupCategory Category
+        {
+            get { return _Category; }
+            set
+            {
+                _Category = value;
+                switch (value)
+                {
+                    case ScpiCommandGroupCategory.Collect:
+                        _IntervalNumericUpDown.Value = 400;
+                        break;
+                    case ScpiCommandGroupCategory.Init:
+                        _IntervalNumericUpDown.Value = 50;
+                        break;
+                }
+            }
+        }
 
         public string Command
         {
