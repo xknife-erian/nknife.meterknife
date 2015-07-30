@@ -8,6 +8,7 @@ using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using NKnife.Base;
 using NKnife.Events;
+using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Kernel
@@ -15,6 +16,7 @@ namespace MeterKnife.Kernel
     public class MeterKernel : IMeterKernel
     {
         protected bool _OnCollected;
+        private ITemperatureService _TemperatureService = DI.Get<ITemperatureService>();
 
         public string DataPath { get; set; }
 
@@ -34,6 +36,10 @@ namespace MeterKnife.Kernel
         public void UpdateCollectState(CarePort carePort, int address, bool value, string scpiGroupKey)
         {
             _OnCollected = value;
+            if (_OnCollected)
+                _TemperatureService.StartCollect(carePort);
+            else
+                _TemperatureService.CloseCollect(carePort);
             OnCollectedEvent(new CollectedEventArgs(carePort, address, value, scpiGroupKey));
         }
 

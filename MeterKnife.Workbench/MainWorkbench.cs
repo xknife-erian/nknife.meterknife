@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common;
+using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Properties;
 using MeterKnife.Workbench.Dialogs;
 using MeterKnife.Workbench.Views;
@@ -17,6 +18,7 @@ namespace MeterKnife.Workbench
     {
         private const string DOCK_PANEL_CONFIG = "dockpanel.config";
         private static readonly ILog _logger = LogManager.GetLogger<MainWorkbench>();
+
         private readonly DockContent _CommandConsoleView = new CommandConsoleView();
         private readonly DockContent _DataManagerView = new DataMangerView();
 

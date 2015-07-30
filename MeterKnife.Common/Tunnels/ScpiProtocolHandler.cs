@@ -15,7 +15,6 @@ namespace MeterKnife.Common.Tunnels
         {
             Commands.Add(new byte[] { 0xAA, 0x00 });
             Commands.Add(new byte[] { 0xAB, 0x00 });
-            Commands.Add(new byte[] { 0xAE, 0x00 });
             //---
             Commands.Add(new byte[] { 0xAA, 0x01 });
         }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Common.Logging;
 using MeterKnife.Common;
 using MeterKnife.Common.Base;
@@ -29,7 +30,7 @@ namespace MeterKnife.Instruments
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
 
-        private string _ScpiGroupId = Guid.NewGuid().ToString();
+        private readonly string _ScpiGroupId = Guid.NewGuid().ToString();
 
         protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
         private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
@@ -268,7 +269,7 @@ namespace MeterKnife.Instruments
             if ((talking.GpibAddress != _Meter.GpibAddress) || (talking.Scpi.Length < 6))
                 return;
             string data = talking.Scpi;
-            _logger.Info(data);
+            _logger.Debug(string.Format("Recevied:{0}", data));
             double yzl = 0;
             if (double.TryParse(data, out yzl))
             {

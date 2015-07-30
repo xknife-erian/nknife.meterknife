@@ -31,7 +31,6 @@ namespace MeterKnife.Common.Controls.Plots
 
                 DataPoint dataPoint = DateTimeAxis.CreateDataPoint(time, value);
                 _Series.Points.Add(dataPoint);
-                _logger.Trace(string.Format("{0} : {1}", time, value));
             }
             this.ThreadSafeInvoke(() =>
             {

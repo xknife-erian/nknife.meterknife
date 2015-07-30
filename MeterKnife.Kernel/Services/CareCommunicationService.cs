@@ -221,7 +221,6 @@ namespace MeterKnife.Kernel.Services
             {
                 _LoopCommandMap.Add(carePort, commandArrayKey, careItems);
                 EnqueueCommand(carePort, CommandQueue.CareItem.NullCommand());
-                _logger.Trace("增加循环指令");
             });
         }
 
@@ -239,58 +238,67 @@ namespace MeterKnife.Kernel.Services
             {
                 while (_IsTaskContinueds[carePort])
                 {
-                    try
+                    if (queue.Count <= 0)
                     {
-                        if (queue.Count <= 0)
+                        try
                         {
                             //当队列中无指令时，监测是否有循环指令等待发送
                             while (_LoopCommandMap.ContainsKey(carePort))
                             {
                                 Dictionary<string, CommandQueue.CareItem[]> commandMap = _LoopCommandMap[carePort];
+                                if (commandMap.Values.Count <= 0)
+                                    break;
                                 //一个端口可能有多个指令组，一般是多台仪器（每仪器有一个GPIB地址）
                                 //每仪器对应一个指令组
-                                foreach (var careItems in commandMap.Values)
+                                foreach (var careItemses in commandMap.Values)
                                 {
                                     //一个指令组下的多条指令，指令的延迟在SendCommand函数中发生
-                                    foreach (CommandQueue.CareItem careItem in careItems)
+                                    foreach (CommandQueue.CareItem careItem in careItemses)
                                     {
                                         SendCommand(dataConnector, careItem);
                                     }
                                 }
                             }
-                            queue.AutoResetEvent.WaitOne();
                         }
-                        CommandQueue.CareItem cmd = queue.Dequeue();
-                        if (cmd == null || cmd.GpibAddress < 0)
-                            continue;
-                        SendCommand(dataConnector, cmd);
+                        catch (Exception e)
+                        {
+                            _logger.Warn(string.Format("执行循环指令时出现异常:{0}", e.Message), e);
+                        }
+                        queue.AutoResetEvent.WaitOne();
                     }
-                    catch (Exception e)
-                    {
-                        _logger.Warn(string.Format("执行指令循环时出现异常:{0}", e.Message), e);
-                    }
+                    CommandQueue.CareItem cmd = queue.Dequeue();
+                    if (cmd == null || cmd.GpibAddress < 0)
+                        continue;
+                    SendCommand(dataConnector, cmd);
                 }
-                _logger.Info(string.Format("退出{0}命令队列循环", carePort));
+                _logger.Debug(string.Format("退出{0}命令队列循环", carePort));
             });
         }
 
         protected static void SendCommand(IDataConnector dataConnector, CommandQueue.CareItem cmd)
         {
-            byte[] data = cmd.IsCare
-                ? CommandUtil.GenerateProtocol(cmd)
-                : cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
-            _logger.Trace(string.Format("SendCommand:{0}", data.ToHexString()));
-            if (data.Length != 0)
+            try
             {
-                dataConnector.SendAll(data);
-                if (cmd.IsCare)
+                byte[] data = cmd.IsCare
+                    ? CommandUtil.GenerateProtocol(cmd)
+                    : cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
+                _logger.Trace(string.Format("SendCommand:{0}", data.ToHexString()));
+                if (data.Length != 0)
                 {
-                    Thread.Sleep(cmd.Interval);
+                    dataConnector.SendAll(data);
+                    if (cmd.IsCare)
+                    {
+                        Thread.Sleep(cmd.Interval);
+                    }
+                    else
+                    {
+                        Thread.Sleep((int)cmd.ScpiCommand.Interval);
+                    }
                 }
-                else
-                {
-                    Thread.Sleep((int) cmd.ScpiCommand.Interval);
-                }
+            }
+            catch (Exception e)
+            {
+                _logger.Warn(string.Format("向采集器发送指令(SendCommand)时出现异常:{0}", e.Message), e);
             }
         }
     }

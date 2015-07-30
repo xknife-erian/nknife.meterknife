@@ -39,14 +39,14 @@ namespace MeterKnife.Common.Tunnels
         {
             public static CareItem NullCommand()
             {
-                var ci = new CareItem();
-                ci.GpibAddress = -1;
+                var ci = new CareItem {GpibAddress = -1};
                 return ci;
             }
 
             public CareItem()
             {
                 IsCare = false;
+                Interval = 10;
                 GpibAddress = 0;
             }
 

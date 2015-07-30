@@ -56,6 +56,7 @@ namespace MeterKnife.Common.Util
             {
                 IsCare = true,
                 GpibAddress = 0,
+                Interval = 30,
                 Heads = Pair<byte, byte>.Build(0xAE, 0x00)
             };
             return item;
