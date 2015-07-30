@@ -276,6 +276,8 @@ namespace MeterKnife.Instruments
                 _FiguredData.Add(yzl);
                 this.ThreadSafeInvoke(() =>
                 {
+                    if (_FiguredData.Count <= 1)
+                        return;
                     _DataPlot.Update(_FiguredData);
                     _TempPlot.Update(_FiguredData);
                 });

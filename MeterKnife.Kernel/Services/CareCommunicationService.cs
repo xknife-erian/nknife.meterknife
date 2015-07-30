@@ -258,6 +258,8 @@ namespace MeterKnife.Kernel.Services
                                         SendCommand(dataConnector, careItem);
                                     }
                                 }
+                                if (queue.Count > 0)
+                                    break;
                             }
                         }
                         catch (Exception e)

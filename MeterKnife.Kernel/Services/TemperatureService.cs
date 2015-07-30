@@ -5,6 +5,7 @@ using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
+using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
 using NKnife.IoC;
 
@@ -15,6 +16,7 @@ namespace MeterKnife.Kernel.Services
         private static readonly ILog _logger = LogManager.GetLogger<DataPathService>();
 
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
+        private CareTemperatureHandler _TemperatureHandler = new CareTemperatureHandler();
         private readonly Dictionary<CarePort, bool> _PortStartMap = new Dictionary<CarePort, bool>();
 
         public TemperatureService()
@@ -44,7 +46,7 @@ namespace MeterKnife.Kernel.Services
                     TemperatureValues = new double[_PortStartMap.Count];
                     TemperatureValues[0] = v;
                 }
-
+                _Comm.Bind(carePort, _TemperatureHandler);
                 while (_PortStartMap[carePort])
                 {
                     _Comm.SendCommands(carePort, CommandUtil.TEMP());
@@ -56,6 +58,7 @@ namespace MeterKnife.Kernel.Services
 
         public bool CloseCollect(CarePort carePort)
         {
+            _Comm.Remove(carePort, _TemperatureHandler);
             _PortStartMap[carePort] = false;
             return true;
         }
