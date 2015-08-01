@@ -79,6 +79,18 @@ namespace MeterKnife.Common.Tunnels
             /// 当是Care的专属协议时的等候周期
             /// </summary>
             public int Interval { get; set; }
+
+            public CareItem Clone()
+            {
+                var careItem = new CareItem();
+                careItem.Content = Content;
+                careItem.GpibAddress = GpibAddress;
+                careItem.Heads = Heads;
+                careItem.Interval = Interval;
+                careItem.IsCare = IsCare;
+                careItem.ScpiCommand = ScpiCommand;
+                return careItem;
+            }
         }
 
     }

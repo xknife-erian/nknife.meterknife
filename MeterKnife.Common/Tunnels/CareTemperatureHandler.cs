@@ -27,15 +27,25 @@ namespace MeterKnife.Common.Tunnels
             double yzl = 0;
             if (double.TryParse(data, out yzl))
             {
-                if (_IsFirst)
-                {
-                    yzl -= 0.01;
-                    _IsFirst = false;
-                }
+//                switch (_Count)
+//                {
+//                    case 1:
+//                        yzl -= 0.01;
+//                        _Count++;
+//                        break;
+//                    case 2:
+//                        yzl += 0.02;
+//                        _Count++;
+//                        break;
+//                    case 3:
+//                        yzl -= 0.01;
+//                        _Count++;
+//                        break;
+//                }
                 tempService.TemperatureValues[0] = yzl;
             }
         }
 
-        private bool _IsFirst = true;
+        private short _Count = 1;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
@@ -11,9 +12,11 @@ namespace MeterKnife.Common.Controls.Plots
 {
     public abstract partial class DataPlot : UserControl
     {
+        protected LinearAxis _LeftAxis = new LinearAxis();
+        private double _Max;
+        private double _Min;
         protected PlotModel _PlotModel = new PlotModel();
         protected LineSeries _Series = new LineSeries();
-        protected LinearAxis _LeftAxis = new LinearAxis();
 
         protected DataPlot()
         {
@@ -30,6 +33,8 @@ namespace MeterKnife.Common.Controls.Plots
             };
             Controls.Add(plot);
         }
+
+        public abstract string ValueHead { get; }
 
         protected virtual PlotModel BuildPlotModel()
         {
@@ -62,14 +67,23 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected virtual void UpdateRange(FiguredData fd)
         {
-            var max = fd.Max.Output;
-            var min = fd.Min.Output;
+            double max = fd.Max.Output;
+            double min = fd.Min.Output;
             UpdateRange(max, min);
         }
 
         protected virtual void UpdateRange(double max, double min)
         {
-            if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
+            if (_Max == max && _Min == min && (_Max != 0 || _Min != 0 || max != 0 || min != 0))
+                return;
+            _Max = max;
+            _Min = min;
+            if (Math.Abs(max - min) <= 0)
+            {
+                _LeftAxis.Maximum = max + 0.01;
+                _LeftAxis.Minimum = min - 0.01;
+            }
+            else if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
             {
                 double j = (Math.Abs(max - min))/4;
                 if (Math.Abs(j) > 0)
@@ -78,29 +92,24 @@ namespace MeterKnife.Common.Controls.Plots
                     _LeftAxis.Minimum = min - j;
                 }
             }
-            else if(Math.Abs(max) <= 0 && Math.Abs(min) <= 0)
-            {
-                _LeftAxis.Maximum = max + 0.5;
-                _LeftAxis.Minimum = min - 0.5;
-            }
         }
 
         protected object SelectValue(FiguredData fd)
         {
-            var table = fd.DataSet.Tables[1];
-            var count = fd.DataSet.Tables[1].Rows.Count - 1;
+            DataTable table = fd.DataSet.Tables[1];
+            int count = fd.DataSet.Tables[1].Rows.Count - 1;
             if (count < 0) return 0;
             return table.Rows[count][ValueHead];
         }
 
         public virtual void Update(FiguredData fd)
         {
-            var yzl = SelectValue(fd);
-            var value = double.Parse(yzl.ToString());
+            object yzl = SelectValue(fd);
+            double value = double.Parse(yzl.ToString());
 
             _PlotModel.Title = value.ToString();
 
-            var dataPoint = DateTimeAxis.CreateDataPoint(DateTime.Now, value);
+            DataPoint dataPoint = DateTimeAxis.CreateDataPoint(DateTime.Now, value);
             _Series.Points.Add(dataPoint);
             this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
 
@@ -112,8 +121,5 @@ namespace MeterKnife.Common.Controls.Plots
             _Series.Points.Clear();
             this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
         }
-
-        public abstract string ValueHead { get; }
-
     }
 }

@@ -16,7 +16,7 @@ namespace MeterKnife.Kernel
     public class MeterKernel : IMeterKernel
     {
         protected bool _OnCollected;
-        private ITemperatureService _TemperatureService = DI.Get<ITemperatureService>();
+        private readonly ITemperatureService _TemperatureService = DI.Get<ITemperatureService>();
 
         public string DataPath { get; set; }
 

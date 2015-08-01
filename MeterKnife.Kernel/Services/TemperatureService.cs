@@ -16,7 +16,7 @@ namespace MeterKnife.Kernel.Services
         private static readonly ILog _logger = LogManager.GetLogger<DataPathService>();
 
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
-        private CareTemperatureHandler _TemperatureHandler = new CareTemperatureHandler();
+        private readonly CareTemperatureHandler _TemperatureHandler = new CareTemperatureHandler();
         private readonly Dictionary<CarePort, bool> _PortStartMap = new Dictionary<CarePort, bool>();
 
         public TemperatureService()
@@ -40,6 +40,7 @@ namespace MeterKnife.Kernel.Services
                 {
                     _PortStartMap.Add(carePort, true);
                 }
+                _PortStartMap[carePort] = true;
                 if (_PortStartMap.Count > 1) //如果采集值的数量（多路温度采集）大于1时
                 {
                     var v = TemperatureValues[0];
@@ -58,8 +59,8 @@ namespace MeterKnife.Kernel.Services
 
         public bool CloseCollect(CarePort carePort)
         {
-            _Comm.Remove(carePort, _TemperatureHandler);
             _PortStartMap[carePort] = false;
+            _Comm.Remove(carePort, _TemperatureHandler);
             return true;
         }
     }

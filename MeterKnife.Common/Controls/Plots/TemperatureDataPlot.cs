@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Common.Logging;
 using MeterKnife.Common.DataModels;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -10,6 +11,8 @@ namespace MeterKnife.Common.Controls.Plots
 {
     public class TemperatureDataPlot : DataPlot
     {
+        private static readonly ILog _logger = LogManager.GetLogger<TemperatureDataPlot>();
+
         public override string ValueHead
         {
             get { return "temperature"; }
@@ -24,6 +27,7 @@ namespace MeterKnife.Common.Controls.Plots
         {
             var max = fd.TemperatureMax.Output;
             var min = fd.TemperatureMin.Output;
+            //_logger.Trace(string.Format("TEMP:Max={0},Min={1}", max,min));
             UpdateRange(max, min);
         }
 

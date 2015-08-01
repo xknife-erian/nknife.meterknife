@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
@@ -50,10 +51,7 @@ namespace MeterKnife.Kernel.Services
             {
                 if (!e.IsCollected && _LoopCommandMap.ContainsKey(e.CarePort))
                 {
-                    Dictionary<string, CommandQueue.CareItem[]> scmap = _LoopCommandMap[e.CarePort];
-                    //根据指定端口的指令组的Key停止采集指令循环
-                    if (scmap.ContainsKey(e.ScpiGroupKey))
-                        scmap.Remove(e.ScpiGroupKey);
+                    _LoopCommandMap.Remove(e.CarePort, e.ScpiGroupKey);
                 }
             };
             IsInitialized = true;
@@ -243,14 +241,11 @@ namespace MeterKnife.Kernel.Services
                         try
                         {
                             //当队列中无指令时，监测是否有循环指令等待发送
-                            while (_LoopCommandMap.ContainsKey(carePort))
+                            while (_LoopCommandMap.HasCommand(carePort))
                             {
-                                Dictionary<string, CommandQueue.CareItem[]> commandMap = _LoopCommandMap[carePort];
-                                if (commandMap.Values.Count <= 0)
-                                    break;
                                 //一个端口可能有多个指令组，一般是多台仪器（每仪器有一个GPIB地址）
                                 //每仪器对应一个指令组
-                                foreach (var careItemses in commandMap.Values)
+                                foreach (var careItemses in _LoopCommandMap.GetCareItemses(carePort))
                                 {
                                     //一个指令组下的多条指令，指令的延迟在SendCommand函数中发生
                                     foreach (CommandQueue.CareItem careItem in careItemses)
@@ -265,7 +260,7 @@ namespace MeterKnife.Kernel.Services
                         }
                         catch (Exception e)
                         {
-                            _logger.Debug(string.Format("集合循环停止:{0}", e.Message), e);
+                            _logger.Warn(string.Format("集合循环停止:{0}", e.Message), e);
                         }
                         queue.AutoResetEvent.WaitOne();
                     }
