@@ -31,7 +31,7 @@ namespace MeterKnife.Kernel.Services
                     continue;
                 if (port <= 0)
                     continue;
-                CarePort carePort = CarePort.Build(TunnelType.Serial, port.ToString());
+                CommPort carePort = CommPort.Build(TunnelType.Serial, port.ToString());
 
                 bool onFindCare = true;
                 var handler = new CareConfigHandler();

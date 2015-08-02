@@ -154,7 +154,8 @@
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Algorithms\Max.cs" />
-    <Compile Include="DataModels\CarePort.cs" />
+    <Compile Include="DataModels\CommPort.cs" />
+    <Compile Include="DataModels\CommPortCommandMap.cs" />
     <Compile Include="EventParameters\CollectedEventArgs.cs" />
     <Compile Include="Base\BaseAlgorithm.cs" />
     <Compile Include="Interfaces\IElectronAlgorithm.cs" />
@@ -187,7 +188,6 @@
     <Compile Include="Tunnels\CareOne\CareOneProtocolPacker.cs" />
     <Compile Include="Tunnels\CareOne\CareOneProtocolUnPacker.cs" />
     <Compile Include="Tunnels\CareTemperatureHandler.cs" />
-    <Compile Include="Tunnels\CommandQueue.cs" />
     <Compile Include="Tunnels\TunnelType.cs" />
     <Compile Include="Tunnels\ScpiProtocolHandler.cs" />
     <Compile Include="Util\CommandUtil.cs" />

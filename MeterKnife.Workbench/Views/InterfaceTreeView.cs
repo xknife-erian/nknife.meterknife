@@ -78,7 +78,7 @@ namespace MeterKnife.Workbench.Views
                 int port = 0;
                 if (int.TryParse(com, out port) && port > 0)
                 {
-                    CarePort carePort = CarePort.Build(TunnelType.Serial, port.ToString());
+                    CommPort carePort = CommPort.Build(TunnelType.Serial, port.ToString());
                     SerialNode node = !careComm.Cares.Contains(carePort) 
                         ? new SerialNode {Text = serial} 
                         : new CareNode {Text = string.Format("Care [{0}]", serial)};

@@ -109,19 +109,19 @@ namespace MeterKnife.Scpis
 
         public int GpibAddress { get; set; }
 
-        public KeyValuePair<string, CommandQueue.CareItem[]> GetCollectCommands()
+        public KeyValuePair<string, ScpiCommandQueue.Item[]> GetCollectCommands()
         {
-            return new KeyValuePair<string, CommandQueue.CareItem[]>(_ScpiSubjectKey, GetCommands("COLLECT"));
+            return new KeyValuePair<string, ScpiCommandQueue.Item[]>(_ScpiSubjectKey, GetCommands("COLLECT"));
         }
 
-        public KeyValuePair<string, CommandQueue.CareItem[]> GetInitCommands()
+        public KeyValuePair<string, ScpiCommandQueue.Item[]> GetInitCommands()
         {
-            return new KeyValuePair<string, CommandQueue.CareItem[]>(_ScpiSubjectKey, GetCommands("INIT"));
+            return new KeyValuePair<string, ScpiCommandQueue.Item[]>(_ScpiSubjectKey, GetCommands("INIT"));
         }
 
-        protected virtual CommandQueue.CareItem[] GetCommands(string groupName)
+        protected virtual ScpiCommandQueue.Item[] GetCommands(string groupName)
         {
-            var commands = new List<CommandQueue.CareItem>();
+            var commands = new List<ScpiCommandQueue.Item>();
             this.ThreadSafeInvoke(() =>
             {
                 foreach (ListViewItem item in _ListView.Items)
@@ -129,7 +129,7 @@ namespace MeterKnife.Scpis
                     if (item.Checked && item.Group.Name == groupName)
                     {
                         var cmd = (ScpiCommand) (item.Tag);
-                        var ci = new CommandQueue.CareItem
+                        var ci = new ScpiCommandQueue.Item
                         {
                             IsCare = false, 
                             GpibAddress = (short) GpibAddress, 

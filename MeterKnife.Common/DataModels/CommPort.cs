@@ -5,14 +5,14 @@ using MeterKnife.Common.Tunnels;
 
 namespace MeterKnife.Common.DataModels
 {
-    public class CarePort
+    public class CommPort
     {
         private readonly int[] _SerialPort = {-1, 115200};
         private string _Id;
         private IPEndPoint _IpEndPoint;
         private string[] _SerialPortInfo;
 
-        protected CarePort()
+        protected CommPort()
         {
             _Id = Guid.NewGuid().ToString();
         }
@@ -51,9 +51,9 @@ namespace MeterKnife.Common.DataModels
             return _IpEndPoint;
         }
 
-        public static CarePort Build(TunnelType tunnelType, params string[] ports)
+        public static CommPort Build(TunnelType tunnelType, params string[] ports)
         {
-            var carePort = new CarePort
+            var carePort = new CommPort
             {
                 TunnelType = tunnelType,
                 _SerialPortInfo = ports
@@ -98,11 +98,11 @@ namespace MeterKnife.Common.DataModels
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
-            if (!(obj is CarePort)) return false;
-            return (Equals(((CarePort) obj)));
+            if (!(obj is CommPort)) return false;
+            return (Equals(((CommPort) obj)));
         }
 
-        protected bool Equals(CarePort other)
+        protected bool Equals(CommPort other)
         {
             return _Id.Equals(other._Id) && TunnelType == other.TunnelType;
         }

@@ -17,7 +17,7 @@ namespace MeterKnife.Common.Interfaces
         /// <summary>
         /// 串口下的Gpib地址
         /// </summary>
-        Dictionary<CarePort, List<int>> GpibDictionary { get; }
+        Dictionary<CommPort, List<int>> GpibDictionary { get; }
 
         /// <summary>
         /// 已存在的仪器面板集合
@@ -27,7 +27,7 @@ namespace MeterKnife.Common.Interfaces
         /// <summary>
         /// 更新采集状态
         /// </summary>
-        void UpdateCollectState(CarePort carePort, int address, bool isCollected, string scpiGroupKey);
+        void UpdateCollectState(CommPort carePort, int address, bool isCollected, string scpiGroupKey);
 
         /// <summary>
         /// 当应用程序的采集状态发生改变时

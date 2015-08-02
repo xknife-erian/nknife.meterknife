@@ -23,7 +23,7 @@ namespace MeterKnife.Kernel
         /// <summary>
         /// 指定的端口下的已使用的GPIB地址,不同的端口下的地址可以重复,同一端口下的地址不允许重复
         /// </summary>
-        public Dictionary<CarePort, List<int>> GpibDictionary { get; private set; }
+        public Dictionary<CommPort, List<int>> GpibDictionary { get; private set; }
 
         /// <summary>
         /// 仪表面板
@@ -33,7 +33,7 @@ namespace MeterKnife.Kernel
         /// <summary>
         /// 更新采集状态
         /// </summary>
-        public void UpdateCollectState(CarePort carePort, int address, bool value, string scpiGroupKey)
+        public void UpdateCollectState(CommPort carePort, int address, bool value, string scpiGroupKey)
         {
             _OnCollected = value;
             if (_OnCollected)
@@ -54,7 +54,7 @@ namespace MeterKnife.Kernel
 
         public MeterKernel()
         {
-            GpibDictionary = new Dictionary<CarePort, List<int>>();
+            GpibDictionary = new Dictionary<CommPort, List<int>>();
             MeterContents = new Dictionary<BaseMeter, DockContent>();
         }
     }

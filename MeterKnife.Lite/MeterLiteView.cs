@@ -30,7 +30,7 @@ namespace MeterKnife.Lite
             }
         }
 
-        public override void SetMeter(CarePort port, BaseMeter meter)
+        public override void SetMeter(CommPort port, BaseMeter meter)
         {
             base.SetMeter(port, meter);
             if (!_Comm.IsInitialized)

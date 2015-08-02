@@ -7,7 +7,7 @@ namespace MeterKnife.Common.Interfaces
     {
         int Interval { get; }
         double[] TemperatureValues { get; }
-        bool StartCollect(CarePort carePort);
-        bool CloseCollect(CarePort carePort);
+        bool StartCollect(CommPort carePort);
+        bool CloseCollect(CommPort carePort);
     }
 }

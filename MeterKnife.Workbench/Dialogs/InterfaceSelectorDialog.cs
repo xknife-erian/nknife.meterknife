@@ -51,7 +51,7 @@ namespace MeterKnife.Workbench.Dialogs
 
         public bool IsSerial { get { return _SerialRadioButton.Checked; } }
 
-        public CarePort CarePort
+        public CommPort CarePort
         {
             get
             {
@@ -59,14 +59,14 @@ namespace MeterKnife.Workbench.Dialogs
                 {
                     var v = _SerialComboBox.Text.TrimStart(new[] {'C', 'O', 'M'});
                     var c = int.Parse(v);
-                    return CarePort.Build(TunnelType.Serial, c.ToString(), _PortNumberBox.Text);
+                    return CommPort.Build(TunnelType.Serial, c.ToString(), _PortNumberBox.Text);
                 }
                 else
                 {
                     string value = _IpAddressControl.Text == "..."
                         ? "0.0.0.0"
                         : _IpAddressControl.Text;
-                    return CarePort.Build(TunnelType.Tcpip, value, _PortNumericUpDown.Text);
+                    return CommPort.Build(TunnelType.Tcpip, value, _PortNumericUpDown.Text);
                 }
             }
         }

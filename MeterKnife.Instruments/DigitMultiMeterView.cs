@@ -90,7 +90,7 @@ namespace MeterKnife.Instruments
             _FiguredData.StandardDeviation.SetRange(range);
         }
 
-        public override void SetMeter(CarePort port, BaseMeter meter)
+        public override void SetMeter(CommPort port, BaseMeter meter)
         {
             base.SetMeter(port, meter);
             _ScpiCommandPanel.GpibAddress = meter.GpibAddress;
@@ -137,7 +137,7 @@ namespace MeterKnife.Instruments
             base.OnFormClosing(e);
             StopProtocolRecevied();
             _Comm.Remove(_CarePort, _Handler);
-            Dictionary<CarePort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
+            Dictionary<CommPort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
             dic[_CarePort].Remove(_Meter.GpibAddress);
         }
 
@@ -159,13 +159,13 @@ namespace MeterKnife.Instruments
             _Comm.SendLoopCommands(Port, cmd.Key, cmd.Value);
         }
 
-        protected virtual CommandQueue.CareItem[] GetInitCommands()
+        protected virtual ScpiCommandQueue.Item[] GetInitCommands()
         {
             var commands = _ScpiCommandPanel.GetInitCommands();
             return commands.Value;
         }
 
-        protected virtual KeyValuePair<string, CommandQueue.CareItem[]> GetCollectCommands()
+        protected virtual KeyValuePair<string, ScpiCommandQueue.Item[]> GetCollectCommands()
         {
             var commands = _ScpiCommandPanel.GetCollectCommands();
             return commands;

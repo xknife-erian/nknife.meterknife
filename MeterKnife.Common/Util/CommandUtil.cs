@@ -38,7 +38,7 @@ namespace MeterKnife.Common.Util
             return BuildScpiCommand("FETC?");
         }
 
-        public static byte[] GenerateProtocol(CommandQueue.CareItem item)
+        public static byte[] GenerateProtocol(ScpiCommandQueue.Item item)
         {
             var head = new byte[] { 0x08, 0x00, 0x02, item.Heads.First, item.Heads.Second };
             var newbs = UtilityCollection.MergerArray(head, item.Content);
@@ -50,9 +50,9 @@ namespace MeterKnife.Common.Util
         ///     查询温度
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public static CommandQueue.CareItem TEMP()
+        public static ScpiCommandQueue.Item TEMP()
         {
-            var item = new CommandQueue.CareItem
+            var item = new ScpiCommandQueue.Item
             {
                 IsCare = true,
                 GpibAddress = 0,
@@ -66,9 +66,9 @@ namespace MeterKnife.Common.Util
         ///     查询Care的参数
         /// </summary>
         /// <param name="subcommand">子命令</param>
-        public static CommandQueue.CareItem CareGetter(byte subcommand = 0xD1)
+        public static ScpiCommandQueue.Item CareGetter(byte subcommand = 0xD1)
         {
-            var item = new CommandQueue.CareItem
+            var item = new ScpiCommandQueue.Item
             {
                 IsCare = true,
                 GpibAddress = 0,
@@ -82,9 +82,9 @@ namespace MeterKnife.Common.Util
         /// </summary>
         /// <param name="subcommand">子命令</param>
         /// <param name="content">设置的参数内容</param>
-        public static CommandQueue.CareItem CareSetter(byte subcommand, params byte[] content)
+        public static ScpiCommandQueue.Item CareSetter(byte subcommand, params byte[] content)
         {
-            var item = new CommandQueue.CareItem
+            var item = new ScpiCommandQueue.Item
             {
                 IsCare = true,
                 GpibAddress = 0,
@@ -97,9 +97,9 @@ namespace MeterKnife.Common.Util
         /// <summary>
         ///     重新启动Care
         /// </summary>
-        public static CommandQueue.CareItem CareReset()
+        public static ScpiCommandQueue.Item CareReset()
         {
-            var item = new CommandQueue.CareItem
+            var item = new ScpiCommandQueue.Item
             {
                 IsCare = true,
                 GpibAddress = 0,
@@ -111,9 +111,9 @@ namespace MeterKnife.Common.Util
         /// <summary>
         ///     恢复Care的默认参数
         /// </summary>
-        public static CommandQueue.CareItem CareRestoreDefault()
+        public static ScpiCommandQueue.Item CareRestoreDefault()
         {
-            var item = new CommandQueue.CareItem
+            var item = new ScpiCommandQueue.Item
             {
                 IsCare = true,
                 GpibAddress = 0,

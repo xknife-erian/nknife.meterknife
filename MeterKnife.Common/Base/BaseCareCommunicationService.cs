@@ -18,7 +18,7 @@ namespace MeterKnife.Common.Base
         protected BaseCareCommunicationService()
         {
             IsInitialized = false;
-            ScpiCommandQueue = new ScpiQueue();
+            //ScpiCommandQueue = new ScpiQueue();
         }
 
         public bool IsInitialized { get; protected set; }
@@ -36,14 +36,14 @@ namespace MeterKnife.Common.Base
         /// <summary>
         ///     是连接Care的串口
         /// </summary>
-        public List<CarePort> Cares { get; protected set; }
+        public List<CommPort> Cares { get; protected set; }
 
-        void ITunnelService<byte[]>.Bind(CarePort carePort, params BaseProtocolHandler<byte[]>[] handlers)
+        void ITunnelService<byte[]>.Bind(CommPort carePort, params BaseProtocolHandler<byte[]>[] handlers)
         {
             Bind(carePort, handlers.Cast<CareOneProtocolHandler>().ToArray());
         }
 
-        public ScpiQueue ScpiCommandQueue { get; set; }
+        //public ScpiQueue ScpiCommandQueue { get; set; }
         /// <summary>
         /// 销毁服务
         /// </summary>
@@ -54,7 +54,7 @@ namespace MeterKnife.Common.Base
         /// </summary>
         /// <param name="carePort">指定端口</param>
         /// <param name="careItems">即将发送的命令组</param>
-        public abstract void SendCommands(CarePort carePort, params CommandQueue.CareItem[] careItems);
+        public abstract void SendCommands(CommPort carePort, params ScpiCommandQueue.Item[] careItems);
 
         /// <summary>
         ///     向指定端口发送将要循环使用的Scpi命令组
@@ -62,7 +62,7 @@ namespace MeterKnife.Common.Base
         /// <param name="carePort">指定端口</param>
         /// <param name="commandArrayKey">命令组的Key</param>
         /// <param name="careItems">即将发送的命令组</param>
-        public abstract void SendLoopCommands(CarePort carePort, string commandArrayKey, params CommandQueue.CareItem[] careItems);
+        public abstract void SendLoopCommands(CommPort carePort, string commandArrayKey, params ScpiCommandQueue.Item[] careItems);
 
         public bool StartService()
         {
@@ -83,21 +83,21 @@ namespace MeterKnife.Common.Base
             }
         }
 
-        public abstract bool Start(CarePort carePort);
-        public abstract bool Stop(CarePort carePort);
+        public abstract bool Start(CommPort carePort);
+        public abstract bool Stop(CommPort carePort);
         public abstract bool Initialize();
 
-        public event EventHandler<EventArgs<CarePort>> SerialInitialized;
+        public event EventHandler<EventArgs<CommPort>> SerialInitialized;
 
-        public virtual void OnSerialInitialized(CarePort carePort)
+        public virtual void OnSerialInitialized(CommPort carePort)
         {
-            EventHandler<EventArgs<CarePort>> handler = SerialInitialized;
+            EventHandler<EventArgs<CommPort>> handler = SerialInitialized;
             if (handler != null)
-                handler(this, new EventArgs<CarePort>(carePort));
+                handler(this, new EventArgs<CommPort>(carePort));
         }
 
-        public abstract void Bind(CarePort carePort, params CareOneProtocolHandler[] handlers);
+        public abstract void Bind(CommPort carePort, params CareOneProtocolHandler[] handlers);
 
-        public abstract void Remove(CarePort carePort, CareOneProtocolHandler handler);
+        public abstract void Remove(CommPort carePort, CareOneProtocolHandler handler);
     }
 }

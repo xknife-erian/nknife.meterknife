@@ -35,11 +35,11 @@ namespace MeterKnife.Workbench.Controls.Tree
             };
         }
 
-        public CarePort Port { get; set; }
+        public CommPort Port { get; set; }
 
         private void AddMeterMenuOnClick(object sender, EventArgs eventArgs)
         {
-            Dictionary<CarePort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
+            Dictionary<CommPort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
             List<int> gpibList;
             if (!dic.TryGetValue(Port, out gpibList))
             {

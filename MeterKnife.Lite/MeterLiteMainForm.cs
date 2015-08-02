@@ -19,7 +19,7 @@ namespace MeterKnife.Lite
         private readonly DockPanel _DockPanel = new DockPanel();
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
 
-        private CarePort _CarePort;
+        private CommPort _CarePort;
 
         public MeterLiteMainForm()
         {
@@ -68,7 +68,7 @@ namespace MeterKnife.Lite
 
         private void AddMeterView()
         {
-            Dictionary<CarePort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
+            Dictionary<CommPort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
             List<int> gpibList;
             if (!dic.TryGetValue(_CarePort, out gpibList))
             {

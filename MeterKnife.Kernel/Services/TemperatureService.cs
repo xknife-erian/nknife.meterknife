@@ -17,7 +17,7 @@ namespace MeterKnife.Kernel.Services
 
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
         private readonly CareTemperatureHandler _TemperatureHandler = new CareTemperatureHandler();
-        private readonly Dictionary<CarePort, bool> _PortStartMap = new Dictionary<CarePort, bool>();
+        private readonly Dictionary<CommPort, bool> _PortStartMap = new Dictionary<CommPort, bool>();
 
         public TemperatureService()
         {
@@ -31,7 +31,7 @@ namespace MeterKnife.Kernel.Services
 
         public double[] TemperatureValues { get; private set; }
 
-        public bool StartCollect(CarePort carePort)
+        public bool StartCollect(CommPort carePort)
         {
             Task.Factory.StartNew(() =>
             {
@@ -57,7 +57,7 @@ namespace MeterKnife.Kernel.Services
             return true;
         }
 
-        public bool CloseCollect(CarePort carePort)
+        public bool CloseCollect(CommPort carePort)
         {
             _PortStartMap[carePort] = false;
             _Comm.Remove(carePort, _TemperatureHandler);

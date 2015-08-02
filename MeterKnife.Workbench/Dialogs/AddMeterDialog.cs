@@ -15,6 +15,7 @@ using MeterKnife.Common.Util;
 using MeterKnife.Workbench.Controls.Tree;
 using NKnife.Events;
 using NKnife.IoC;
+using ScpiKnife;
 
 namespace MeterKnife.Workbench.Dialogs
 {
@@ -67,7 +68,7 @@ namespace MeterKnife.Workbench.Dialogs
 
                 var idn = CommandUtil.IDN(address);
                 _logger.Debug(string.Format("Send:{0}", idn.GenerateProtocol(0)));
-                var careItem = new CommandQueue.CareItem
+                var careItem = new ScpiCommandQueue.Item
                 {
                     ScpiCommand = idn,
                     GpibAddress = address
@@ -92,7 +93,7 @@ namespace MeterKnife.Workbench.Dialogs
         }
 
         public List<int> GpibList { get; set; }
-        public CarePort Port { get; set; }
+        public CommPort Port { get; set; }
         public int GpibAddress { get { return (int) _NumberBox.Value; } }
         public BaseMeter Meter { get; set; }
 

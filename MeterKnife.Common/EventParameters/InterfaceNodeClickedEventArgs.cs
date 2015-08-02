@@ -14,9 +14,9 @@ namespace MeterKnife.Common.EventParameters
     public class InterfaceNodeClickedEventArgs : EventArgs
     {
         public BaseMeter Meter { get;  private set; }
-        public CarePort Port { get; private set; }
+        public CommPort Port { get; private set; }
 
-        public InterfaceNodeClickedEventArgs(BaseMeter meter, CarePort port)
+        public InterfaceNodeClickedEventArgs(BaseMeter meter, CommPort port)
         {
             Meter = meter;
             Port = port;

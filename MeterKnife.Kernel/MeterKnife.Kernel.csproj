@@ -65,7 +65,6 @@
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
     <Compile Include="Services\CareCommunicationService.cs" />
     <Compile Include="Services\CareService.cs" />
-    <Compile Include="Common\LoopCommandMap.cs" />
     <Compile Include="Services\TemperatureService.cs" />
     <Compile Include="Services\DataPathService.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
@@ -97,6 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

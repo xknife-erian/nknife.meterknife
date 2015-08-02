@@ -13,10 +13,10 @@ namespace MeterKnife.DemoApplication
     public class DemoMeterKernel : IMeterKernel
     {
         public string DataPath { get; set; }
-        public Dictionary<CarePort, List<int>> GpibDictionary { get; private set; }
+        public Dictionary<CommPort, List<int>> GpibDictionary { get; private set; }
         public Dictionary<BaseMeter, DockContent> MeterContents { get; private set; }
 
-        public void UpdateCollectState(CarePort carePort, int address, bool isCollected, string key)
+        public void UpdateCollectState(CommPort carePort, int address, bool isCollected, string key)
         {
             OnCollected(new CollectedEventArgs(carePort, address, isCollected, "key"));
         }
