@@ -30,11 +30,9 @@ namespace MeterKnife.Kernel.Common
 
         public CommandQueue.CareItem[] this[CarePort carePort, string key]
         {
-            get
-            {
-                return this[carePort][key];
-            }
+            get { return this[carePort][key]; }
         }
+
         private readonly object _Lock = new object();
 
         public bool HasCommand(CarePort carePort)
@@ -63,28 +61,25 @@ namespace MeterKnife.Kernel.Common
         public IEnumerable<IEnumerable<CommandQueue.CareItem>> GetCareItemses(CarePort carePort)
         {
             var items = new List<List<CommandQueue.CareItem>>();
-            lock (_Lock)
+            try
             {
-                try
+                var values = this[carePort].Values;
+                foreach (CommandQueue.CareItem[] careItems in values)
                 {
-                    var values = this[carePort].Values;
-                    foreach (CommandQueue.CareItem[] careItems in values)
+                    if (UtilityCollection.IsNullOrEmpty(careItems))
+                        continue;
+                    var its = new List<CommandQueue.CareItem>();
+                    foreach (var careItem in careItems)
                     {
-                        if (UtilityCollection.IsNullOrEmpty(careItems))
-                            continue;
-                        var its = new List<CommandQueue.CareItem>();
-                        foreach (var careItem in careItems)
-                        {
-                            its.Add(careItem.Clone());
-                        }
-                        if (its.Count > 0)
-                            items.Add(its);
+                        its.Add(careItem.Clone());
                     }
+                    if (its.Count > 0)
+                        items.Add(its);
                 }
-                catch (Exception e)
-                {
-                    _logger.Warn(string.Format("Clone集合异常:{0}", e.Message), e);
-                }
+            }
+            catch (Exception e)
+            {
+                _logger.Warn(string.Format("Clone集合异常:{0}", e.Message), e);
             }
             return items;
         }
