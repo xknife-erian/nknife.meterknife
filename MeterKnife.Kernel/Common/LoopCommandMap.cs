@@ -83,7 +83,7 @@ namespace MeterKnife.Kernel.Common
                 }
                 catch (Exception e)
                 {
-                    _logger.Trace(string.Format("Clone集合异常", e.Message), e);
+                    _logger.Warn(string.Format("Clone集合异常:{0}", e.Message), e);
                 }
             }
             return items;
