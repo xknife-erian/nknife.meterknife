@@ -242,9 +242,10 @@ namespace MeterKnife.Kernel.Services
                         {
                             try
                             {
+                                var itemMapValues = _LoopCommandMap.GetItemses(commPort);
                                 //一个端口可能有多个指令组，一般是多台仪器（每仪器有一个GPIB地址）
                                 //每仪器对应一个指令组
-                                foreach (var careItemses in _LoopCommandMap.GetCareItemses(commPort))
+                                foreach (var careItemses in itemMapValues)
                                 {
                                     //一个指令组下的多条指令，指令的延迟在SendCommand函数中发生
                                     foreach (ScpiCommandQueue.Item careItem in careItemses)
@@ -252,16 +253,16 @@ namespace MeterKnife.Kernel.Services
                                         SendCommand(dataConnector, careItem);
                                     }
                                 }
-
-                                //当WaitOne时进入了循环，虽然Queue里有了数据，但信号未接收到，需判断
-                                if (queue.Count > 0)
-                                    break;
                             }
                             catch (Exception e)
                             {
                                 _logger.Warn(string.Format("集合循环停止:{0}", e.Message), e);
                                 break;
                             }
+
+                            //当WaitOne时进入了循环，虽然Queue里有了数据，但信号未接收到，需判断
+                            if (queue.Count > 0)
+                                break;
                         }
                         queue.AutoResetEvent.WaitOne();
                     }

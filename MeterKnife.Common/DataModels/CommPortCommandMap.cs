@@ -104,56 +104,58 @@ namespace MeterKnife.Common.DataModels
 
         #endregion
 
-        private List<List<ScpiCommandQueue.Item>> _Items = new List<List<ScpiCommandQueue.Item>>();
+        private List<List<ScpiCommandQueue.Item>> _CloneItems = new List<List<ScpiCommandQueue.Item>>();
 
-        public ScpiCommandQueue.Item[] this[CommPort carePort, string key]
+        public ScpiCommandQueue.Item[] this[CommPort commPort, string key]
         {
-            get { return _Map[carePort][key]; }
+            get { return _Map[commPort][key]; }
         }
 
-        public void Add(CommPort carePort, string key, ScpiCommandQueue.Item[] careItemses)
+        public void Add(CommPort commPort, string key, ScpiCommandQueue.Item[] careItemses)
         {
             ScpiCommandQueueMap queueMap;
-            if (!_Map.TryGetValue(carePort, out queueMap))
+            if (!_Map.TryGetValue(commPort, out queueMap))
             {
                 queueMap = new ScpiCommandQueueMap();
-                _Map.Add(carePort, queueMap);
+                _Map.Add(commPort, queueMap);
             }
             queueMap.Add(key, careItemses);
         }
 
-        public bool HasCommand(CommPort carePort)
+        public bool HasCommand(CommPort commPort)
         {
             bool hasCommand = false;
             lock (_Lock)
             {
-                hasCommand = _Map.ContainsKey(carePort) && _Map[carePort].Values.Count > 0;
+                hasCommand = _Map.ContainsKey(commPort) && _Map[commPort].Values.Count > 0;
             }
             return hasCommand;
         }
 
-        public void Remove(CommPort carePort, string scpiGroupKey)
+        public void Remove(CommPort commPort, string scpiGroupKey)
         {
             lock (_Lock)
             {
-                ScpiCommandQueueMap scmap = _Map[carePort];
+                ScpiCommandQueueMap scmap = null;
+                if (!_Map.TryGetValue(commPort, out scmap))
+                    return;
                 //根据指定端口的指令组的Key停止采集指令循环
                 if (scmap.ContainsKey(scpiGroupKey))
                 {
                     scmap.Remove(scpiGroupKey);
-                    _Items.Clear();
+                    _CloneItems.Clear();
                 }
             }
         }
 
-        public IEnumerable<IEnumerable<ScpiCommandQueue.Item>> GetCareItemses(CommPort carePort)
+        public IEnumerable<IEnumerable<ScpiCommandQueue.Item>> GetItemses(CommPort commPort)
         {
-            if (_Items == null || _Items.Count <= 0)
+            if (_CloneItems == null || _CloneItems.Count <= 0)
             {
-                _Items = new List<List<ScpiCommandQueue.Item>>();
+                _CloneItems = new List<List<ScpiCommandQueue.Item>>();
                 try
                 {
-                    ICollection<ScpiCommandQueue.Item[]> values = _Map[carePort].Values;
+                    ICollection<ScpiCommandQueue.Item[]> values = _Map[commPort].Values;
                     foreach (var careItems in values)
                     {
                         if (UtilityCollection.IsNullOrEmpty(careItems))
@@ -164,7 +166,7 @@ namespace MeterKnife.Common.DataModels
                             its.Add(careItem.Clone());
                         }
                         if (its.Count > 0)
-                            _Items.Add(its);
+                            _CloneItems.Add(its);
                     }
                 }
                 catch (Exception e)
@@ -172,7 +174,7 @@ namespace MeterKnife.Common.DataModels
                     _logger.Warn(string.Format("Clone集合异常:{0}", e.Message), e);
                 }
             }
-            return _Items;
+            return _CloneItems;
         }
     }
 }
