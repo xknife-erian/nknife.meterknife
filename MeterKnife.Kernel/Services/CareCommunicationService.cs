@@ -192,6 +192,8 @@ namespace MeterKnife.Kernel.Services
 
         public override bool Stop(CommPort commPort)
         {
+            _IsTaskContinueds[commPort] = false;
+            Thread.Sleep(200);
             IDataConnector connector;
             if (_Connectors.TryGetValue(commPort, out connector))
             {
@@ -240,17 +242,21 @@ namespace MeterKnife.Kernel.Services
                         //当队列中无指令时，监测是否有循环指令等待发送
                         while (_LoopCommandMap.HasCommand(commPort))
                         {
+                            var keys = _LoopCommandMap.GetScpiGroupKeys(commPort);
                             try
                             {
-                                var itemMapValues = _LoopCommandMap.GetItemses(commPort);
-                                //一个端口可能有多个指令组，一般是多台仪器（每仪器有一个GPIB地址）
-                                //每仪器对应一个指令组
-                                foreach (var careItemses in itemMapValues)
+                                foreach (var key in keys)
                                 {
+                                    //一个端口可能有多个指令组，一般是多台仪器（每仪器有一个GPIB地址）
+                                    //每仪器对应一个指令组
                                     //一个指令组下的多条指令，指令的延迟在SendCommand函数中发生
-                                    foreach (ScpiCommandQueue.Item careItem in careItemses)
+                                    if (_LoopCommandMap.ContainsKey(commPort, key))
                                     {
-                                        SendCommand(dataConnector, careItem);
+                                        var items = _LoopCommandMap[commPort, key];
+                                        foreach (var careItem in items)
+                                        {
+                                            SendCommand(dataConnector, careItem);
+                                        }
                                     }
                                 }
                             }
@@ -259,7 +265,6 @@ namespace MeterKnife.Kernel.Services
                                 _logger.Warn(string.Format("集合循环停止:{0}", e.Message), e);
                                 break;
                             }
-
                             //当WaitOne时进入了循环，虽然Queue里有了数据，但信号未接收到，需判断
                             if (queue.Count > 0)
                                 break;

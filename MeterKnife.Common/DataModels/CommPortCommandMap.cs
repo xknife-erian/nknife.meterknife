@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Common.Logging;
 using NKnife.Utility;
 using ScpiKnife;
@@ -175,6 +176,16 @@ namespace MeterKnife.Common.DataModels
                 }
             }
             return _CloneItems;
+        }
+
+        public string[] GetScpiGroupKeys(CommPort commPort)
+        {
+            return _Map[commPort].Select(pair => pair.Key).ToArray();
+        }
+
+        public bool ContainsKey(CommPort commPort, string key)
+        {
+            return _Map.ContainsKey(commPort) && _Map[commPort].ContainsKey(key);
         }
     }
 }
