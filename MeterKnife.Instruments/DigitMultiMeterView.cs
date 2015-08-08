@@ -67,7 +67,7 @@ namespace MeterKnife.Instruments
                     SetStripButtonState(e.IsCollected);
             };
 
-            _StandardDeviationRangeComboBox.TextUpdate += (s, e) => SetStandardDeviationRange();
+            _StandardDeviationRangeComboBox.TextChanged += (s, e) => SetStandardDeviationRange();
             _FiguredData.ReceviedCollectData += (sender, args) => this.ThreadSafeInvoke(() =>
             {
                 _FiguredDataGridView.DataSource = null;
@@ -87,6 +87,8 @@ namespace MeterKnife.Instruments
             {
                 _logger.Warn(string.Format("{0}解析错误", _StandardDeviationRangeComboBox.Text));
             }
+            if (range < 10)
+                return;
             _FiguredData.StandardDeviation.SetRange(range);
         }
 
@@ -108,6 +110,7 @@ namespace MeterKnife.Instruments
             _ExportStripButton.Enabled = !isCollected;
             _SaveStripButton.Enabled = !isCollected;
             _ClearDataToolStripButton.Enabled = !isCollected;
+            _StandardDeviationRangeComboBox.Enabled = !isCollected;
 
             _PhotoToolStripButton.Enabled = !isCollected;
             _ZoomInToolStripButton.Enabled = !isCollected;

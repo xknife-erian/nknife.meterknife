@@ -6,42 +6,60 @@
   <scpigroups>
     <subject description="电压测量">
       <group way="init">
+        <scpi interval="50">
+          <![CDATA[*CLS]]>
+        </scpi>
         <scpi interval="200">
-          <![CDATA[CLS?]]>
+          <![CDATA[CONF:VOLT:DC]]>
         </scpi>
       </group>
       <group way="collect">
-        <scpi interval="200">
+        <scpi interval="400" return="true">
           <![CDATA[READ?]]>
         </scpi>
       </group>
     </subject>
     <subject description="电流测量">
       <group way="init">
-        <scpi interval="200">
-          <![CDATA[INIT?]]>
+        <scpi interval="50">
+          <![CDATA[*CLS]]>
         </scpi>
-        <scpi interval="200" hex="true">
-          <![CDATA[]]>
+        <scpi interval="200">
+          <![CDATA[CONF:CURR:DC]]>
         </scpi>
       </group>
       <group way="collect">
-        <scpi interval="200">
+        <scpi interval="400" return="true">
           <![CDATA[READ?]]>
         </scpi>
       </group>
     </subject>
     <subject description="电阻测量">
       <group way="init">
-        <scpi interval="200">
-          <![CDATA[INIT?]]>
+        <scpi interval="50">
+          <![CDATA[*CLS]]>
         </scpi>
-        <scpi interval="200" hex="true">
-          <![CDATA[]]>
+        <scpi interval="200">
+          <![CDATA[CONF:RES]]>
         </scpi>
       </group>
       <group way="collect">
+        <scpi interval="400" return="true">
+          <![CDATA[READ?]]>
+        </scpi>
+      </group>
+    </subject>
+    <subject description="四线电阻测量">
+      <group way="init">
+        <scpi interval="50">
+          <![CDATA[*CLS]]>
+        </scpi>
         <scpi interval="200">
+          <![CDATA[CONF:FRES]]>
+        </scpi>
+      </group>
+      <group way="collect">
+        <scpi interval="400" return="true">
           <![CDATA[READ?]]>
         </scpi>
       </group>

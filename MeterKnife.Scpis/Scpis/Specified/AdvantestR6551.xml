@@ -7,7 +7,7 @@
     <subject description="电压测量">
       <group way="init">
         <scpi interval="200">
-          <![CDATA[INIT?]]>
+          <![CDATA[111?]]>
         </scpi>
         <scpi interval="200" hex="true">
           <![CDATA[ABCDEFG?]]>
@@ -25,7 +25,7 @@
     <subject description="电流测量">
       <group way="init">
         <scpi interval="200">
-          <![CDATA[INIT?]]>
+          <![CDATA[222?]]>
         </scpi>
         <scpi interval="200" hex="true">
           <![CDATA[]]>

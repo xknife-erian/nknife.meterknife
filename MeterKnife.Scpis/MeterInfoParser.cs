@@ -51,7 +51,7 @@ namespace MeterKnife.Scpis
                 var ele = subjectNode as XmlElement;
                 scpiSubject.Description = ele.GetAttribute("description");
 
-                var initGroupElement = ele.SelectSingleNode("//group[@way='init']") as XmlElement;
+                var initGroupElement = ele.SelectSingleNode("group[@way='init']") as XmlElement;
                 scpiSubject.Preload = new ScpiGroup();
                 if (initGroupElement != null)
                 {
@@ -64,7 +64,7 @@ namespace MeterKnife.Scpis
                     }
                 }
 
-                var collectGroupElement = ele.SelectSingleNode("//group[@way='collect']") as XmlElement;
+                var collectGroupElement = ele.SelectSingleNode("group[@way='collect']") as XmlElement;
                 scpiSubject.Collect = new ScpiGroup();
                 if (collectGroupElement != null)
                 {
