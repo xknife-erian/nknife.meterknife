@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common.Logging;
+using MathNet.Numerics.Statistics;
 using MeterKnife.Common.Base;
 
 namespace MeterKnife.Common.Algorithms.Difference
@@ -11,15 +12,18 @@ namespace MeterKnife.Common.Algorithms.Difference
     /// </summary>
     public class StandardDeviation : BaseDifferenceAlgorithm
     {
-        private static readonly ILog _logger = LogManager.GetLogger<StandardDeviation>();
-
-        private uint _Count = 0;
         private List<double> _Values = new List<double>();
         private int _Range = 50;
+        private string _RangeFormate = "f8";
 
-        public StandardDeviation()
+        public override ushort DecimalDigit
         {
-            DecimalDigit = 5;
+            get { return _DecimalDigit; }
+            set
+            {
+                _DecimalDigit = value;
+                _RangeFormate = string.Format("f{0}", value);
+            }
         }
 
         public void SetRange(int range)
@@ -38,28 +42,24 @@ namespace MeterKnife.Common.Algorithms.Difference
 
         public override void Clear()
         {
-            _Count = 0;
             _Values = new List<double>(_Range);
             base.Clear();
         }
 
         public override void Input(double src)
         {
-            _Count++;
-            if (_Count <= 1)
-                return;
             if (_Values.Count >= _Range)
                 _Values.RemoveAt(0);
             _Values.Add(src);
-            double avg = ValueOfComparison.Output;
-            double sum = _Values.Select(value => value - avg).Select(v => v*v).Sum();
-            Output = (Math.Sqrt(sum/_Values.Count))/ValueOfComparison.Output;
+            Output = ArrayStatistics.StandardDeviation(_Values.ToArray());
         }
 
         public override string ToString()
         {
-            var op = Output*1000000;
-            return string.Format("{0}ppm", Math.Round(op, DecimalDigit));
+            if (Output == 0 || Output == double.NaN || Output == double.MaxValue || Output == double.MinValue)
+                return "0";
+            var o = Output*1000000;
+            return string.Format("{0}ppm", o.ToString(_RangeFormate));
         }
 
     }
