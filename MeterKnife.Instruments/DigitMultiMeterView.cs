@@ -42,7 +42,7 @@ namespace MeterKnife.Instruments
         protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
         protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
         protected TemperatureTrendPlot _TempTrendPlot = new TemperatureTrendPlot();
-        protected StandardDeviationPlot _SdPlot = new StandardDeviationPlot();
+        protected StandardNormalDistributionPlot _SdPlot = new StandardNormalDistributionPlot();
 
         public DigitMultiMeterView()
         {
