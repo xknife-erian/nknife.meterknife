@@ -16,6 +16,8 @@ namespace MeterKnife.Common.DataModels
 {
     public class FiguredData : ICollectSource
     {
+        public const string STANDARD_DEVIATION = "standard_deviation";
+
         protected readonly ITemperatureService _TempService = DI.Get<ITemperatureService>();
         protected double _CurrentTemperature;
         protected DataSet _DataSet = new DataSet();
