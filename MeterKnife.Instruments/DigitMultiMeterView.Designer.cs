@@ -126,7 +126,7 @@ namespace MeterKnife.Instruments
             // 
             this._LeftSplitContainer.Panel1.Controls.Add(this.groupBox2);
             this._LeftSplitContainer.Size = new System.Drawing.Size(250, 518);
-            this._LeftSplitContainer.SplitterDistance = 460;
+            this._LeftSplitContainer.SplitterDistance = 405;
             this._LeftSplitContainer.TabIndex = 0;
             // 
             // groupBox2
@@ -135,7 +135,7 @@ namespace MeterKnife.Instruments
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 460);
+            this.groupBox2.Size = new System.Drawing.Size(250, 405);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "统计分析";
@@ -146,7 +146,7 @@ namespace MeterKnife.Instruments
             this._FiguredDataPropertyGrid.HelpVisible = false;
             this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 17);
             this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
-            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 440);
+            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 385);
             this._FiguredDataPropertyGrid.TabIndex = 0;
             this._FiguredDataPropertyGrid.ToolbarVisible = false;
             // 
@@ -428,8 +428,8 @@ namespace MeterKnife.Instruments
             // _SampleRangeLabel
             // 
             this._SampleRangeLabel.Name = "_SampleRangeLabel";
-            this._SampleRangeLabel.Size = new System.Drawing.Size(59, 22);
-            this._SampleRangeLabel.Text = "样本范围:";
+            this._SampleRangeLabel.Size = new System.Drawing.Size(71, 22);
+            this._SampleRangeLabel.Text = "统计取样数:";
             // 
             // _SampleRangeComboBox
             // 

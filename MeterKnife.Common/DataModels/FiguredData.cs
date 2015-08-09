@@ -39,13 +39,23 @@ namespace MeterKnife.Common.DataModels
         [Category("数据"), DisplayName("最大值")]
         public string Maximum
         {
-            get { return _RunningStatistics.Maximum.ToString(_DecimalDigit); }
+            get
+            {
+                if (_RunningStatistics.Maximum.Equals(double.NaN))
+                    return "0";
+                return _RunningStatistics.Maximum.ToString(_DecimalDigit);
+            }
         }
 
         [Category("数据"), DisplayName("最小值")]
         public string Minimum
         {
-            get { return _RunningStatistics.Minimum.ToString(_DecimalDigit); }
+            get
+            {
+                if (_RunningStatistics.Minimum.Equals(double.NaN))
+                    return "0";
+                return _RunningStatistics.Minimum.ToString(_DecimalDigit);
+            }
         }
 
         [Category("数据"), DisplayName("峰峰值")]
@@ -54,8 +64,44 @@ namespace MeterKnife.Common.DataModels
         [Category("数据"), DisplayName("算术平均值")]
         public string Mean
         {
-            get { return _RunningStatistics.Mean.ToString(_DecimalDigit); }
+            get
+            {
+                if (_RunningStatistics.Mean.Equals(double.NaN))
+                    return "0";
+                return _RunningStatistics.Mean.ToString(_DecimalDigit);
+            }
         }
+
+        /*** 偏度就是样本偏斜度的估计值,峰度约等于样本峰值减去3。
+         * 因此,若一组观察数据的偏度、峰度都接近于0,则可以认为这组数据是来自正态分布总体。
+         * 若其偏度为正,则表示与标准正态分布相比,其峰度偏向较小数值方;
+         * 偏度为负,则表示与标准正态分布相比,其峰偏向较大数值方;
+         * 若其峰度为正,则表示与标准正态分布相比,其分布相对尖锐;
+         * 峰度为负,则表示与标准正态分布相比,其分布相对平坦。
+         */
+
+        [Category("数据"), DisplayName("峰度")]
+        public string PopulationKurtosis
+        {
+            get
+            {
+                if (_RunningStatistics.PopulationKurtosis.Equals(double.NaN))
+                    return "0";
+                return _RunningStatistics.PopulationKurtosis.ToString(_DecimalDigit);
+            }
+        }
+
+        [Category("数据"), DisplayName("偏度")]
+        public string PopulationSkewness
+        {
+            get
+            {
+                if (_RunningStatistics.PopulationSkewness.Equals(double.NaN))
+                    return "0";
+                return _RunningStatistics.PopulationSkewness.ToString(_DecimalDigit);
+            }
+        }
+
 
         #endregion
 
@@ -63,9 +109,6 @@ namespace MeterKnife.Common.DataModels
 
         [Category("样本"), DisplayName("标准差")]
         public string SampleStandardDeviation { get; private set; }
-
-        [Category("样本"), DisplayName("方差")]
-        public string SampleVariance { get; private set; }
 
         [Category("样本"), DisplayName("算术平均值")]
         public string SampleMean { get; private set; }
@@ -91,41 +134,11 @@ namespace MeterKnife.Common.DataModels
         [Category("样本"), DisplayName("低四分位")]
         public string SampleLowerQuartile { get; private set; }
 
-        [Category("样本"), DisplayName("偏度")]
-        public string SampleSkewness { get; private set; }
-
         [Category("样本"), DisplayName("峰度")]
         public string SampleKurtosis { get; private set; }
 
-        #endregion
-
-        #region 总体
-
-        [Category("总体"), DisplayName("方差")]
-        public string PopulationVariance
-        {
-            get { return GetPpmValue(_RunningStatistics.Variance); }
-        }
-
-        /*** 偏度就是样本偏斜度的估计值,峰度约等于样本峰值减去3。
-         * 因此,若一组观察数据的偏度、峰度都接近于0,则可以认为这组数据是来自正态分布总体。
-         * 若其偏度为正,则表示与标准正态分布相比,其峰度偏向较小数值方;
-         * 偏度为负,则表示与标准正态分布相比,其峰偏向较大数值方;
-         * 若其峰度为正,则表示与标准正态分布相比,其分布相对尖锐;
-         * 峰度为负,则表示与标准正态分布相比,其分布相对平坦。
-         */
-
-        [Category("总体"), DisplayName("峰度")]
-        public string PopulationKurtosis
-        {
-            get { return _RunningStatistics.PopulationKurtosis.ToString(_DecimalDigit); }
-        }
-
-        [Category("总体"), DisplayName("偏度")]
-        public string PopulationSkewness
-        {
-            get { return _RunningStatistics.PopulationSkewness.ToString(_DecimalDigit); }
-        }
+        [Category("样本"), DisplayName("偏度")]
+        public string SampleSkewness { get; private set; }
 
         #endregion
 
@@ -134,19 +147,34 @@ namespace MeterKnife.Common.DataModels
         [Category("温度"), DisplayName("最大值")]
         public string TemperatureMaximum
         {
-            get { return _TemperatureRunningStatistics.Maximum.ToString("f2"); }
+            get
+            {
+                if (_TemperatureRunningStatistics.Maximum.Equals(double.NaN))
+                    return "0";
+                return _TemperatureRunningStatistics.Maximum.ToString("f2");
+            }
         }
 
         [Category("温度"), DisplayName("最小值")]
         public string TemperatureMinimum
         {
-            get { return _TemperatureRunningStatistics.Minimum.ToString("f2"); }
+            get
+            {
+                if (_TemperatureRunningStatistics.Minimum.Equals(double.NaN))
+                    return "0";
+                return _TemperatureRunningStatistics.Minimum.ToString("f2");
+            }
         }
 
         [Category("温度"), DisplayName("算术平均值")]
         public string TemperatureMean
         {
-            get { return _TemperatureRunningStatistics.Mean.ToString("f3"); }
+            get
+            {
+                if (_TemperatureRunningStatistics.Mean.Equals(double.NaN))
+                    return "0";
+                return _TemperatureRunningStatistics.Mean.ToString("f3");
+            }
         }
 
         #endregion
@@ -296,7 +324,6 @@ namespace MeterKnife.Common.DataModels
             SampleMean = ArrayStatistics.Mean(array).ToString(_DecimalDigit);
             var sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
             SampleStandardDeviation = GetPpmValue(sampleStandardDeviation);
-            SampleVariance = GetPpmValue(ArrayStatistics.PopulationVariance(array));
             SampleRootMeanSquareValue = ArrayStatistics.RootMeanSquare(array).ToString(_DecimalDigit);
 
             Array.Sort(array);
