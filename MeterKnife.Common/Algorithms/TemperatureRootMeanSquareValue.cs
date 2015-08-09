@@ -5,9 +5,12 @@ using System.Text;
 
 namespace MeterKnife.Common.Algorithms
 {
-    public class TemperatureArithmeticMean : ArithmeticMean
+    /// <summary>
+    /// 温度均方根值
+    /// </summary>
+    public class TemperatureRootMeanSquareValue : RootMeanSquareValue
     {
-        public TemperatureArithmeticMean()
+        public TemperatureRootMeanSquareValue()
         {
             DecimalDigit = 3;
         }

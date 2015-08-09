@@ -67,8 +67,8 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected virtual void UpdateRange(FiguredData fd)
         {
-            double max = fd.Max.Output;
-            double min = fd.Min.Output;
+            double max = fd.ExtremePoint.Item1;
+            double min = fd.ExtremePoint.Item2;
             UpdateRange(max, min);
         }
 

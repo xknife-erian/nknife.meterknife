@@ -92,15 +92,10 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Algorithms\Difference\AllanVariance.cs" />
-    <Compile Include="Algorithms\ArithmeticMean.cs" />
-    <Compile Include="Algorithms\Min.cs" />
-    <Compile Include="Algorithms\RootMeanSquare.cs" />
+    <Compile Include="Algorithms\RootMeanSquareValue.cs" />
     <Compile Include="Algorithms\Difference\RootMeanSquareDeviation.cs" />
-    <Compile Include="Algorithms\Difference\StandardDeviation.cs" />
-    <Compile Include="Algorithms\TemperatureArithmeticMean.cs" />
-    <Compile Include="Algorithms\TemperatureMax.cs" />
-    <Compile Include="Algorithms\TemperatureMin.cs" />
-    <Compile Include="Algorithms\TemperatureRootMeanSquare.cs" />
+    <Compile Include="Algorithms\Difference\SampleStandardDeviation.cs" />
+    <Compile Include="Algorithms\TemperatureRootMeanSquareValue.cs" />
     <Compile Include="Base\BaseMeter.cs" />
     <Compile Include="Base\BaseParamPanel.cs">
       <SubType>UserControl</SubType>
@@ -153,7 +148,6 @@
     <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Algorithms\Max.cs" />
     <Compile Include="DataModels\CommPort.cs" />
     <Compile Include="DataModels\CommPortCommandMap.cs" />
     <Compile Include="EventParameters\CollectedEventArgs.cs" />

@@ -8,9 +8,9 @@ using MeterKnife.Common.Interfaces;
 namespace MeterKnife.Common.Algorithms
 {
     /// <summary>
-    /// 均方根
+    /// 均方根值也称作为效值，它的计算方法是先平方、再平均、然后开方。
     /// </summary>
-    public class RootMeanSquare : BaseAlgorithm
+    public class RootMeanSquareValue : BaseAlgorithm
     {
         private double _RmsData;
         private uint _Count;

@@ -25,10 +25,7 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected override void UpdateRange(FiguredData fd)
         {
-            var max = fd.TemperatureMax.Output;
-            var min = fd.TemperatureMin.Output;
-            //_logger.Trace(string.Format("TEMP:Max={0},Min={1}", max,min));
-            UpdateRange(max, min);
+            UpdateRange(fd.TemperatureExtremePoint.Item1, fd.TemperatureExtremePoint.Item2);
         }
 
         public override void Update(FiguredData fd)

@@ -47,7 +47,7 @@ namespace MeterKnife.Instruments
         public DigitMultiMeterView()
         {
             InitializeComponent();
-
+            _FiguredDataPropertyGrid.PropertySort = PropertySort.Categorized;
             _ScpiCommandPanel.Dock = DockStyle.Fill;
             _LeftSplitContainer.Panel2.Padding = new Padding(3, 2, 3, 2);
             _LeftSplitContainer.Panel2.Controls.Add(_ScpiCommandPanel);
@@ -67,7 +67,7 @@ namespace MeterKnife.Instruments
                     SetStripButtonState(e.IsCollected);
             };
 
-            _StandardDeviationRangeComboBox.TextChanged += (s, e) => SetStandardDeviationRange();
+            _SampleRangeComboBox.TextChanged += (s, e) => SetStandardDeviationRange();
             _FiguredData.ReceviedCollectData += (sender, args) => this.ThreadSafeInvoke(() =>
             {
                 _FiguredDataGridView.DataSource = null;
@@ -83,13 +83,13 @@ namespace MeterKnife.Instruments
         protected void SetStandardDeviationRange()
         {
             int range = 100;
-            if (!int.TryParse(_StandardDeviationRangeComboBox.Text, out range))
+            if (!int.TryParse(_SampleRangeComboBox.Text, out range))
             {
-                _logger.Warn(string.Format("{0}解析错误", _StandardDeviationRangeComboBox.Text));
+                _logger.Warn(string.Format("{0}解析错误", _SampleRangeComboBox.Text));
             }
             if (range < 10)
                 return;
-            _FiguredData.StandardDeviation.SetRange(range);
+            _FiguredData.SetRange(range);
         }
 
         public override void SetMeter(CommPort port, BaseMeter meter)
@@ -110,7 +110,7 @@ namespace MeterKnife.Instruments
             _ExportStripButton.Enabled = !isCollected;
             _SaveStripButton.Enabled = !isCollected;
             _ClearDataToolStripButton.Enabled = !isCollected;
-            _StandardDeviationRangeComboBox.Enabled = !isCollected;
+            _SampleRangeComboBox.Enabled = !isCollected;
 
             _PhotoToolStripButton.Enabled = !isCollected;
             _ZoomInToolStripButton.Enabled = !isCollected;
@@ -224,7 +224,7 @@ namespace MeterKnife.Instruments
                 string full = Path.Combine(dir, name);
                 var progressDialog = new ExportProgressDialog();
                 ExportRowCountChanged += (s, ex) => progressDialog.SetCurrentCount(ex.Item);
-                progressDialog.SetTotalCount(_FiguredData.Count);
+                progressDialog.SetTotalCount(uint.Parse(_FiguredData.Count));
                 progressDialog.SetPath(full);
                 progressDialog.Show(this);
                 progressDialog.Shown += (s, args) =>
@@ -278,7 +278,7 @@ namespace MeterKnife.Instruments
                 _FiguredData.Add(yzl);
                 this.ThreadSafeInvoke(() =>
                 {
-                    if (_FiguredData.Count <= 1)
+                    if (uint.Parse(_FiguredData.Count) <= 1)
                         return;
                     _DataPlot.Update(_FiguredData);
                     _TempPlot.Update(_FiguredData);

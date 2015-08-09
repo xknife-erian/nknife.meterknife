@@ -77,8 +77,8 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected virtual void UpdateRange(FiguredData fd)
         {
-            var max = fd.Max.Output;
-            var min = fd.Min.Output;
+            var max = fd.ExtremePoint.Item1;
+            var min = fd.ExtremePoint.Item2;
             if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
             {
                 double j = (Math.Abs(max - min))/4;
@@ -88,8 +88,8 @@ namespace MeterKnife.Common.Controls.Plots
                     _LeftAxis.Minimum = min - j;
                 }
             }
-            max = fd.TemperatureMax.Output;
-            min = fd.TemperatureMin.Output;
+            max = fd.TemperatureExtremePoint.Item1;
+            min = fd.TemperatureExtremePoint.Item2;
             if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
             {
                 double j = (Math.Abs(max - min)) / 4;

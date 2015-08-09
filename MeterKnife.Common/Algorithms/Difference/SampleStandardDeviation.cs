@@ -8,9 +8,9 @@ using MeterKnife.Common.Base;
 namespace MeterKnife.Common.Algorithms.Difference
 {
     /// <summary>
-    /// 标准差
+    /// 样本标准差
     /// </summary>
-    public class StandardDeviation : BaseDifferenceAlgorithm
+    public class SampleStandardDeviation : BaseDifferenceAlgorithm
     {
         private List<double> _Values = new List<double>();
         private int _Range = 50;

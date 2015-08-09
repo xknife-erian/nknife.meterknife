@@ -76,26 +76,32 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected virtual void UpdateRange(FiguredData fd)
         {
-            var max = fd.Max.Output;
-            var min = fd.Min.Output;
-            if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
+            if (fd.ExtremePoint != null)
             {
-                double j = (Math.Abs(max - min)) / 4;
-                if (Math.Abs(j) > 0)
+                var max = fd.ExtremePoint.Item1;
+                var min = fd.ExtremePoint.Item2;
+                if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
                 {
-                    _DataAxis.Maximum = max + j;
-                    _DataAxis.Minimum = min - j;
+                    double j = (Math.Abs(max - min))/4;
+                    if (Math.Abs(j) > 0)
+                    {
+                        _DataAxis.Maximum = max + j;
+                        _DataAxis.Minimum = min - j;
+                    }
                 }
             }
-            max = fd.TemperatureMax.Output;
-            min = fd.TemperatureMin.Output;
-            if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
+            if (fd.TemperatureExtremePoint != null)
             {
-                double j = (Math.Abs(max - min)) / 4;
-                if (Math.Abs(j) > 0)
+                var max = fd.TemperatureExtremePoint.Item1;
+                var min = fd.TemperatureExtremePoint.Item2;
+                if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
                 {
-                    _TempAxis.Maximum = max + j;
-                    _TempAxis.Minimum = min - j;
+                    double j = (Math.Abs(max - min))/4;
+                    if (Math.Abs(j) > 0)
+                    {
+                        _TempAxis.Maximum = max + j;
+                        _TempAxis.Minimum = min - j;
+                    }
                 }
             }
         }
