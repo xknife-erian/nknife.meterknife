@@ -56,7 +56,7 @@ namespace MeterKnife.Common.Algorithms.Difference
 
         public override string ToString()
         {
-            if (Output == 0 || Output == double.NaN || Output == double.MaxValue || Output == double.MinValue)
+            if (Output.Equals(0) || Output.Equals(double.NaN) || Output.Equals(double.MaxValue) || Output.Equals(double.MinValue))
                 return "0";
             var o = Output*1000000;
             return string.Format("{0}ppm", o.ToString(_RangeFormate));
