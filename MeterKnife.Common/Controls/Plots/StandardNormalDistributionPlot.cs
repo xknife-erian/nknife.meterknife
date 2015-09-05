@@ -15,7 +15,7 @@ namespace MeterKnife.Common.Controls.Plots
 {
     public sealed class StandardNormalDistributionPlot : UserControl
     {
-        private PlotModel _PlotModel = new PlotModel();
+        private readonly PlotModel _PlotModel = new PlotModel();
 
         public StandardNormalDistributionPlot()
         {

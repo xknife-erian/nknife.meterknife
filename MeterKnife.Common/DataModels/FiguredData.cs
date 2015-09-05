@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
-using System.Runtime.InteropServices;
 using MathNet.Numerics.Statistics;
-using MeterKnife.Common.Algorithms;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using NKnife.IoC;
@@ -16,6 +14,9 @@ namespace MeterKnife.Common.DataModels
 {
     public class FiguredData : ICollectSource
     {
+        public const string DATETIME = "datetime";
+        public const string VALUE = "value";
+        public const string TEMPERATURE = "temperature";
         public const string STANDARD_DEVIATION = "standard_deviation";
 
         protected readonly ITemperatureService _TempService = DI.Get<ITemperatureService>();
@@ -103,7 +104,6 @@ namespace MeterKnife.Common.DataModels
                 return _RunningStatistics.PopulationSkewness.ToString(_DecimalDigit);
             }
         }
-
 
         #endregion
 
@@ -290,6 +290,9 @@ namespace MeterKnife.Common.DataModels
             _DataSet.Tables[1].Rows.Clear();
             _DataSet.AcceptChanges();
             _CurrentTemperature = 0;
+            _RunningStatistics = new RunningStatistics();
+            _TemperatureRunningStatistics = new RunningStatistics();
+            _Values.Clear();
         }
 
         public void SetRange(int range)
@@ -311,7 +314,7 @@ namespace MeterKnife.Common.DataModels
             string s = value.ToString();
             int n = s.Length - s.IndexOf('.') - 1;
             _DecimalDigit = string.Format("f{0}", n);
-            _PpmDecimalDigit = string.Format("f{0}", ((uint)(n/2))+1);
+            _PpmDecimalDigit = string.Format("f{0}", ((uint) (n/2)) + 1);
 
             _RunningStatistics.Push(value);
 
@@ -324,7 +327,7 @@ namespace MeterKnife.Common.DataModels
 
             double[] array = _Values.ToArray();
             SampleMean = ArrayStatistics.Mean(array).ToString(_DecimalDigit);
-            var sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
+            double sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
             SampleStandardDeviation = GetPpmValue(sampleStandardDeviation);
             SampleRootMeanSquareValue = ArrayStatistics.RootMeanSquare(array).ToString(_DecimalDigit);
 
@@ -348,7 +351,7 @@ namespace MeterKnife.Common.DataModels
 
         protected string GetPpmValue(double value)
         {
-            var d = value*1000000;
+            double d = value*1000000;
             return string.Format("{0} ppm", d.ToString(_PpmDecimalDigit));
         }
 

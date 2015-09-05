@@ -275,6 +275,8 @@ namespace MeterKnife.Instruments
             double yzl = 0;
             if (double.TryParse(data, out yzl))
             {
+                if (yzl > 999)
+                    yzl /= 1000;
                 _FiguredData.Add(yzl);
                 this.ThreadSafeInvoke(() =>
                 {
