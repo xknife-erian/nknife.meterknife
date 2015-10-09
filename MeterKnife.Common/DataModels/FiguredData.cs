@@ -109,7 +109,7 @@ namespace MeterKnife.Common.DataModels
 
         #region 样本
 
-        [Category("样本"), DisplayName("标准差")]
+        [Category("样本"), DisplayName("相对标准差")]
         public string SampleStandardDeviation { get; private set; }
 
         [Category("样本"), DisplayName("算术平均值")]
@@ -127,12 +127,15 @@ namespace MeterKnife.Common.DataModels
          * 与方差、标准差一样，表示统计资料中各变量分散情形，但四分差更多为一种稳健统计（robust statistic）。
          */
 
+        [Browsable(false)]
         [Category("样本"), DisplayName("四分位距")]
         public string SampleInterquartileRangeInplace { get; private set; }
 
+        [Browsable(false)]
         [Category("样本"), DisplayName("高四分位")]
         public string SampleUpperQuartile { get; private set; }
 
+        [Browsable(false)]
         [Category("样本"), DisplayName("低四分位")]
         public string SampleLowerQuartile { get; private set; }
 

@@ -211,7 +211,11 @@ namespace MeterKnife.Instruments
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var dir = dialog.SelectedPath;
-                var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
+                DateTime start;
+                if (_FiguredData.DataSet.Tables[1].Rows.Count > 0)
+                    start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
+                else
+                    start = DateTime.Now;
                 var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), _Meter.Name, "xls");
                 var full = Path.Combine(dir, name);
 
@@ -264,8 +268,8 @@ namespace MeterKnife.Instruments
             double yzl = 0;
             if (double.TryParse(data, out yzl))
             {
-                if (yzl > 999)
-                    yzl /= 1000;
+//                if (yzl > 999)
+//                    yzl /= 1000;
                 _FiguredData.Add(yzl);
                 this.ThreadSafeInvoke(() =>
                 {

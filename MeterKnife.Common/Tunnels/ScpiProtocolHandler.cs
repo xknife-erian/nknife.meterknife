@@ -22,7 +22,9 @@ namespace MeterKnife.Common.Tunnels
         public override void Recevied(CareTalking protocol)
         {
             if (!string.IsNullOrEmpty(protocol.Scpi))
+            {
                 OnProtocolRecevied(new EventArgs<CareTalking>(protocol));
+            }
         }
 
         public event EventHandler<EventArgs<CareTalking>> ProtocolRecevied;
@@ -31,7 +33,9 @@ namespace MeterKnife.Common.Tunnels
         {
             EventHandler<EventArgs<CareTalking>> handler = ProtocolRecevied;
             if (handler != null)
+            {
                 handler(this, e);
+            }
         }
 
     }
