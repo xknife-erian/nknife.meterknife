@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using Common.Logging;
@@ -21,10 +22,12 @@ namespace MeterKnife.Scpis
         private readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
 
         private bool _IsModified;
+        private ScpiSubject _CurrentScpiSubject;
 
         public CustomerScpiSubjectPanel()
         {
             InitializeComponent();
+
             _ListView.ShowItemToolTips = true;
             _ListView.Groups.AddRange(new[] {_InitGroup, _CollectGroup});
             _ListView.LostFocus += (s, e) => _ListView.SelectedIndices.Clear();
@@ -177,12 +180,12 @@ namespace MeterKnife.Scpis
             {
                 _ListView.Items.Clear();
                 _StripLabel.Text = string.Format("{0} - {1}", dialog.CurrentMeter, dialog.CurrentDescription);
-                ScpiSubject subject = dialog.ScpiSubject;
-                foreach (ScpiCommand command in subject.Preload)
+                _CurrentScpiSubject = dialog.ScpiSubject;
+                foreach (ScpiCommand command in _CurrentScpiSubject.Preload)
                 {
                     AddListItem(ScpiCommandGroupCategory.Init, command);
                 }
-                foreach (ScpiCommand command in subject.Collect)
+                foreach (ScpiCommand command in _CurrentScpiSubject.Collect)
                 {
                     AddListItem(ScpiCommandGroupCategory.Collect, command);
                 }
@@ -192,6 +195,12 @@ namespace MeterKnife.Scpis
 
         private void _SaveButton_Click(object sender, EventArgs e)
         {
+            foreach (ListViewItem viewItem in _ListView.Items)
+            {
+                
+            }
+            Debug.Assert(_CurrentScpiSubject.XmlElement.OwnerDocument != null, "_CurrentScpiSubject.XmlElement.OwnerDocument != null");
+            _CurrentScpiSubject.XmlElement.OwnerDocument.Save(_CurrentScpiSubject.OwnerCollection.File.FullName);
         }
 
         private void _AddInitButton_Click(object sender, EventArgs e)

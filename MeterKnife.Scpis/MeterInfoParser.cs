@@ -8,18 +8,15 @@ namespace MeterKnife.Scpis
 {
     public class MeterInfoParser : IParser<FileInfo, ScpiSubjectCollection>
     {
-        public string Brand { get; private set; }
 
-        public string Name { get; private set; }
-
-        public bool TryParse(FileInfo fileInfo, out ScpiSubjectCollection scpiSubjectList)
+        public bool TryParse(FileInfo fileInfo, out ScpiSubjectCollection collection)
         {
             if (fileInfo == null)
                 throw new ArgumentNullException("fileInfo");
 
             if (!fileInfo.Exists)
             {
-                scpiSubjectList = null;
+                collection = null;
                 return false;
             }
             var xmldoc = new XmlDocument();
@@ -28,27 +25,31 @@ namespace MeterKnife.Scpis
             var meterinfoElement = xmldoc.SelectSingleNode("//meterinfo") as XmlElement;
             if (meterinfoElement == null)
             {
-                scpiSubjectList = null;
+                collection = null;
                 return false;
             }
-            Brand = meterinfoElement.GetAttribute("brand");
-            Name = meterinfoElement.GetAttribute("name");
+            collection = new ScpiSubjectCollection
+            {
+                Brand = meterinfoElement.GetAttribute("brand"),
+                Name = meterinfoElement.GetAttribute("name"),
+                File = fileInfo
+            };
 
             var node = xmldoc.SelectSingleNode("//scpigroups");
             var scpigroups = node as XmlElement;
             if (scpigroups == null)
             {
-                scpiSubjectList = null;
                 return false;
             }
-            scpiSubjectList = new ScpiSubjectCollection();
 
             foreach (var subjectNode in scpigroups.ChildNodes)
             {
                 if (!(subjectNode is XmlElement))
                     continue;
                 var scpiSubject = new ScpiSubject();
+                scpiSubject.OwnerCollection = collection;
                 var ele = subjectNode as XmlElement;
+                scpiSubject.XmlElement = ele;
                 scpiSubject.Description = ele.GetAttribute("description");
 
                 var initGroupElement = ele.SelectSingleNode("group[@way='init']") as XmlElement;
@@ -76,7 +77,7 @@ namespace MeterKnife.Scpis
                         scpiSubject.Collect.AddLast(scpiCommand);
                     }
                 }
-                scpiSubjectList.Add(scpiSubject);
+                collection.Add(scpiSubject);
             }
 
             return true;

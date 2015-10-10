@@ -52,13 +52,15 @@ namespace MeterKnife.Scpis
             ScpiSubjectCollection list;
             if (parser.TryParse(file, out list))
             {
-                var meter = string.Format("{0}{1}", parser.Brand, parser.Name);
+                var meter = string.Format("{0}{1}", list.Brand, list.Name);
                 var treeNode = new TreeNode(meter);
                 foreach (var subject in list)
                 {
-                    var subNode = new SubjectTreeNode();
-                    subNode.Text = subject.Description;
-                    subNode.Tag = subject;
+                    var subNode = new SubjectTreeNode
+                    {
+                        Text = subject.Description,
+                        Tag = subject
+                    };
                     treeNode.Nodes.Add(subNode);
                 }
                 _Tree.Nodes.Add(treeNode);

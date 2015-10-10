@@ -217,5 +217,18 @@ namespace MeterKnife.Common.Controls
             _Panel.Controls.Add(cbxPanel, 1, index);
             return cbx;
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ScpiParamPanel
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "ScpiParamPanel";
+            this.Size = new System.Drawing.Size(803, 559);
+            this.ResumeLayout(false);
+
+        }
     }
 }
