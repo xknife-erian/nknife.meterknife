@@ -129,7 +129,9 @@
     <Compile Include="Controls\Plots\StandardDeviationPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\Plots\StandardNormalDistributionPlot.cs" />
+    <Compile Include="Controls\Plots\StandardNormalDistributionPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\Plots\TemperatureDataPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +176,7 @@
     <Compile Include="Interfaces\IMeterParameters.cs" />
     <Compile Include="Interfaces\ITemperatureService.cs" />
     <Compile Include="Interfaces\ITunnelService.cs" />
+    <Compile Include="Enums\MeterRange.cs" />
     <Compile Include="IoC\Moduels.cs" />
     <Compile Include="IoC\TunnelModules.cs" />
     <Compile Include="LstSquQuadRegr.cs" />
@@ -191,6 +194,7 @@
     <Compile Include="Tunnels\TunnelType.cs" />
     <Compile Include="Tunnels\ScpiProtocolHandler.cs" />
     <Compile Include="Util\CommandUtil.cs" />
+    <Compile Include="Util\MeterRangeCalculator.cs" />
     <Compile Include="Util\MeterUtil.cs" />
     <EmbeddedResource Include="Base\BaseParamPanel.resx">
       <DependentUpon>BaseParamPanel.cs</DependentUpon>

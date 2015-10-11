@@ -36,8 +36,13 @@ namespace MeterKnife.Instruments
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this._SampleRangeLabel = new System.Windows.Forms.ToolStripLabel();
+            this._SampleRangeComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this._MeterRangeDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.autoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.x0001ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x001ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x01ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,9 +55,6 @@ namespace MeterKnife.Instruments
             this.x1MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x10MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x100MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this._SampleRangeLabel = new System.Windows.Forms.ToolStripLabel();
-            this._SampleRangeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this._MainTabControl = new System.Windows.Forms.TabControl();
             this._PlotPage = new System.Windows.Forms.TabPage();
             this._RealtimePlotSplitContainer = new System.Windows.Forms.SplitContainer();
@@ -144,7 +146,7 @@ namespace MeterKnife.Instruments
             // 
             this._LeftSplitContainer.Panel1.Controls.Add(this.groupBox2);
             this._LeftSplitContainer.Size = new System.Drawing.Size(250, 518);
-            this._LeftSplitContainer.SplitterDistance = 405;
+            this._LeftSplitContainer.SplitterDistance = 395;
             this._LeftSplitContainer.TabIndex = 0;
             // 
             // groupBox2
@@ -154,7 +156,7 @@ namespace MeterKnife.Instruments
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 405);
+            this.groupBox2.Size = new System.Drawing.Size(250, 395);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "统计分析";
@@ -165,7 +167,7 @@ namespace MeterKnife.Instruments
             this._FiguredDataPropertyGrid.HelpVisible = false;
             this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 47);
             this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
-            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 355);
+            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 345);
             this._FiguredDataPropertyGrid.TabIndex = 0;
             this._FiguredDataPropertyGrid.ToolbarVisible = false;
             // 
@@ -173,121 +175,15 @@ namespace MeterKnife.Instruments
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.toolStripDropDownButton1,
-            this.toolStripSeparator4,
             this._SampleRangeLabel,
-            this._SampleRangeComboBox});
+            this._SampleRangeComboBox,
+            this.toolStripSeparator4,
+            this.toolStripLabel1,
+            this._MeterRangeDropDownButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 17);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(244, 30);
             this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(35, 27);
-            this.toolStripLabel1.Text = "档位:";
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.x0001ToolStripMenuItem,
-            this.x001ToolStripMenuItem,
-            this.x01ToolStripMenuItem,
-            this.x1ToolStripMenuItem,
-            this.x10ToolStripMenuItem,
-            this.x100ToolStripMenuItem,
-            this.x1KToolStripMenuItem,
-            this.x10KToolStripMenuItem,
-            this.x100KToolStripMenuItem,
-            this.x1MToolStripMenuItem,
-            this.x10MToolStripMenuItem,
-            this.x100MToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(39, 27);
-            this.toolStripDropDownButton1.Text = "X1";
-            // 
-            // x0001ToolStripMenuItem
-            // 
-            this.x0001ToolStripMenuItem.Name = "x0001ToolStripMenuItem";
-            this.x0001ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x0001ToolStripMenuItem.Text = "X0.001";
-            // 
-            // x001ToolStripMenuItem
-            // 
-            this.x001ToolStripMenuItem.Name = "x001ToolStripMenuItem";
-            this.x001ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x001ToolStripMenuItem.Text = "X0.01";
-            // 
-            // x01ToolStripMenuItem
-            // 
-            this.x01ToolStripMenuItem.Name = "x01ToolStripMenuItem";
-            this.x01ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x01ToolStripMenuItem.Text = "X0.1";
-            // 
-            // x1ToolStripMenuItem
-            // 
-            this.x1ToolStripMenuItem.Name = "x1ToolStripMenuItem";
-            this.x1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x1ToolStripMenuItem.Text = "X1";
-            // 
-            // x10ToolStripMenuItem
-            // 
-            this.x10ToolStripMenuItem.Name = "x10ToolStripMenuItem";
-            this.x10ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x10ToolStripMenuItem.Text = "X10";
-            // 
-            // x100ToolStripMenuItem
-            // 
-            this.x100ToolStripMenuItem.Name = "x100ToolStripMenuItem";
-            this.x100ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x100ToolStripMenuItem.Text = "X100";
-            // 
-            // x1KToolStripMenuItem
-            // 
-            this.x1KToolStripMenuItem.Name = "x1KToolStripMenuItem";
-            this.x1KToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x1KToolStripMenuItem.Text = "X1K";
-            // 
-            // x10KToolStripMenuItem
-            // 
-            this.x10KToolStripMenuItem.Name = "x10KToolStripMenuItem";
-            this.x10KToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x10KToolStripMenuItem.Text = "X10K";
-            // 
-            // x100KToolStripMenuItem
-            // 
-            this.x100KToolStripMenuItem.Name = "x100KToolStripMenuItem";
-            this.x100KToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x100KToolStripMenuItem.Text = "X100K";
-            // 
-            // x1MToolStripMenuItem
-            // 
-            this.x1MToolStripMenuItem.Name = "x1MToolStripMenuItem";
-            this.x1MToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x1MToolStripMenuItem.Text = "X1M";
-            // 
-            // x10MToolStripMenuItem
-            // 
-            this.x10MToolStripMenuItem.Name = "x10MToolStripMenuItem";
-            this.x10MToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x10MToolStripMenuItem.Text = "X10M";
-            // 
-            // x100MToolStripMenuItem
-            // 
-            this.x100MToolStripMenuItem.Name = "x100MToolStripMenuItem";
-            this.x100MToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.x100MToolStripMenuItem.Text = "X100M";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 30);
             // 
             // _SampleRangeLabel
             // 
@@ -309,6 +205,124 @@ namespace MeterKnife.Instruments
             this._SampleRangeComboBox.Name = "_SampleRangeComboBox";
             this._SampleRangeComboBox.Size = new System.Drawing.Size(75, 25);
             this._SampleRangeComboBox.Text = "100";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 30);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(35, 27);
+            this.toolStripLabel1.Text = "量程:";
+            // 
+            // _MeterRangeDropDownButton
+            // 
+            this._MeterRangeDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._MeterRangeDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autoToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.x0001ToolStripMenuItem,
+            this.x001ToolStripMenuItem,
+            this.x01ToolStripMenuItem,
+            this.x1ToolStripMenuItem,
+            this.x10ToolStripMenuItem,
+            this.x100ToolStripMenuItem,
+            this.x1KToolStripMenuItem,
+            this.x10KToolStripMenuItem,
+            this.x100KToolStripMenuItem,
+            this.x1MToolStripMenuItem,
+            this.x10MToolStripMenuItem,
+            this.x100MToolStripMenuItem});
+            this._MeterRangeDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("_MeterRangeDropDownButton.Image")));
+            this._MeterRangeDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._MeterRangeDropDownButton.Name = "_MeterRangeDropDownButton";
+            this._MeterRangeDropDownButton.Size = new System.Drawing.Size(48, 27);
+            this._MeterRangeDropDownButton.Text = "Auto";
+            // 
+            // autoToolStripMenuItem
+            // 
+            this.autoToolStripMenuItem.Name = "autoToolStripMenuItem";
+            this.autoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.autoToolStripMenuItem.Text = "Auto";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // x0001ToolStripMenuItem
+            // 
+            this.x0001ToolStripMenuItem.Name = "x0001ToolStripMenuItem";
+            this.x0001ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x0001ToolStripMenuItem.Text = "0.001";
+            // 
+            // x001ToolStripMenuItem
+            // 
+            this.x001ToolStripMenuItem.Name = "x001ToolStripMenuItem";
+            this.x001ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x001ToolStripMenuItem.Text = "0.01";
+            // 
+            // x01ToolStripMenuItem
+            // 
+            this.x01ToolStripMenuItem.Name = "x01ToolStripMenuItem";
+            this.x01ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x01ToolStripMenuItem.Text = "0.1";
+            // 
+            // x1ToolStripMenuItem
+            // 
+            this.x1ToolStripMenuItem.Name = "x1ToolStripMenuItem";
+            this.x1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x1ToolStripMenuItem.Text = "1";
+            // 
+            // x10ToolStripMenuItem
+            // 
+            this.x10ToolStripMenuItem.Name = "x10ToolStripMenuItem";
+            this.x10ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x10ToolStripMenuItem.Text = "10";
+            // 
+            // x100ToolStripMenuItem
+            // 
+            this.x100ToolStripMenuItem.Name = "x100ToolStripMenuItem";
+            this.x100ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x100ToolStripMenuItem.Text = "100";
+            // 
+            // x1KToolStripMenuItem
+            // 
+            this.x1KToolStripMenuItem.Name = "x1KToolStripMenuItem";
+            this.x1KToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x1KToolStripMenuItem.Text = "1K";
+            // 
+            // x10KToolStripMenuItem
+            // 
+            this.x10KToolStripMenuItem.Name = "x10KToolStripMenuItem";
+            this.x10KToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x10KToolStripMenuItem.Text = "10K";
+            // 
+            // x100KToolStripMenuItem
+            // 
+            this.x100KToolStripMenuItem.Name = "x100KToolStripMenuItem";
+            this.x100KToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x100KToolStripMenuItem.Text = "100K";
+            // 
+            // x1MToolStripMenuItem
+            // 
+            this.x1MToolStripMenuItem.Name = "x1MToolStripMenuItem";
+            this.x1MToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x1MToolStripMenuItem.Text = "1M";
+            // 
+            // x10MToolStripMenuItem
+            // 
+            this.x10MToolStripMenuItem.Name = "x10MToolStripMenuItem";
+            this.x10MToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x10MToolStripMenuItem.Text = "10M";
+            // 
+            // x100MToolStripMenuItem
+            // 
+            this.x100MToolStripMenuItem.Name = "x100MToolStripMenuItem";
+            this.x100MToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.x100MToolStripMenuItem.Text = "100M";
             // 
             // _MainTabControl
             // 
@@ -661,7 +675,11 @@ namespace MeterKnife.Instruments
         private System.Windows.Forms.DataGridView _FiguredDataGridView;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripSplitButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripLabel _SampleRangeLabel;
+        private System.Windows.Forms.ToolStripComboBox _SampleRangeComboBox;
+        private System.Windows.Forms.ToolStripDropDownButton _MeterRangeDropDownButton;
+        private System.Windows.Forms.ToolStripMenuItem autoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x0001ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x001ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x01ToolStripMenuItem;
@@ -674,8 +692,6 @@ namespace MeterKnife.Instruments
         private System.Windows.Forms.ToolStripMenuItem x1MToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x10MToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x100MToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripLabel _SampleRangeLabel;
-        private System.Windows.Forms.ToolStripComboBox _SampleRangeComboBox;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

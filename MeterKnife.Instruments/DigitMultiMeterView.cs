@@ -9,6 +9,7 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.Controls.Dialogs;
 using MeterKnife.Common.Controls.Plots;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Enums;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Scpis;
@@ -22,6 +23,7 @@ namespace MeterKnife.Instruments
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
 
+        private bool _IsDispose;
         protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
         private readonly FiguredData _FiguredData = new FiguredData();
@@ -30,7 +32,6 @@ namespace MeterKnife.Instruments
         private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
 
         protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
-        private bool _IsDispose;
         protected StandardNormalDistributionPlot _SdPlot = new StandardNormalDistributionPlot();
         protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
         protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
@@ -53,6 +54,7 @@ namespace MeterKnife.Instruments
             SetStripButtonState(false);
             SetFiguredDataGrid();
             SetStandardDeviationRange();
+            RangeDropDownButtonClick();
             _MeterKernel.Collected += (s, e) =>
             {
                 if (e.GpibAddress == _Meter.GpibAddress)
@@ -65,6 +67,62 @@ namespace MeterKnife.Instruments
                 _FiguredDataGridView.DataSource = null;
                 _FiguredDataGridView.DataSource = _FiguredData.DataSet.Tables[1];
             });
+        }
+
+        private void RangeDropDownButtonClick()
+        {
+            autoToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "Auto"; _FiguredData.MeterRange = MeterRange.AUTO;
+            };
+            x0001ToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "0.001"; _FiguredData.MeterRange = MeterRange.X0001;
+            };
+            x001ToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "0.01"; _FiguredData.MeterRange = MeterRange.X001;
+            };
+            x01ToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "0.1"; _FiguredData.MeterRange = MeterRange.X01;
+            };
+            x1ToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "1"; _FiguredData.MeterRange = MeterRange.X1;
+            };
+            x10ToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "10"; _FiguredData.MeterRange = MeterRange.X10;
+            };
+            x100ToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "100"; _FiguredData.MeterRange = MeterRange.X100;
+            };
+            x1KToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "1K"; _FiguredData.MeterRange = MeterRange.X1K;
+            };
+            x10KToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "10K"; _FiguredData.MeterRange = MeterRange.X10K;
+            };
+            x100KToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "100K"; _FiguredData.MeterRange = MeterRange.X100K;
+            };
+            x1MToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "1M"; _FiguredData.MeterRange = MeterRange.X1M;
+            };
+            x10MToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "10M"; _FiguredData.MeterRange = MeterRange.X10M;
+            };
+            x100MToolStripMenuItem.Click += (s, e) =>
+            {
+                _MeterRangeDropDownButton.Text = "100M"; _FiguredData.MeterRange = MeterRange.X100M;
+            };
         }
 
         protected void SetFiguredDataGrid()
@@ -103,6 +161,7 @@ namespace MeterKnife.Instruments
             _SaveStripButton.Enabled = !isCollected;
             _ClearDataToolStripButton.Enabled = !isCollected;
             _SampleRangeComboBox.Enabled = !isCollected;
+            _MeterRangeDropDownButton.Enabled = !isCollected;
 
             _PhotoToolStripButton.Enabled = !isCollected;
             _ZoomInToolStripButton.Enabled = !isCollected;
@@ -268,8 +327,6 @@ namespace MeterKnife.Instruments
             double yzl = 0;
             if (double.TryParse(data, out yzl))
             {
-//                if (yzl > 999)
-//                    yzl /= 1000;
                 _FiguredData.Add(yzl);
                 this.ThreadSafeInvoke(() =>
                 {

@@ -108,12 +108,16 @@ namespace MeterKnife.Common.Controls.Dialogs
                 var flag = i;
                 this.ThreadSafeInvoke(() => _ProgressBar.Value = flag + 1);
             }
+
             sheet1.AutoSizeColumn(0);
             this.ThreadSafeInvoke(() => _ProgressBar.Value = _ProgressBar.Value + 10);
+
             sheet1.AutoSizeColumn(1);
             this.ThreadSafeInvoke(() => _ProgressBar.Value = _ProgressBar.Value + 10);
+
             sheet1.AutoSizeColumn(2);
             this.ThreadSafeInvoke(() => _ProgressBar.Value = _ProgressBar.Value + 10);
+
             using (var file = new FileStream(_FileFullPath, FileMode.Create))
             {
                 book.Write(file);

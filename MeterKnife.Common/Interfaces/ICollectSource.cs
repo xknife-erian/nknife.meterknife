@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using MeterKnife.Common.Enums;
 using MeterKnife.Common.EventParameters;
 
 namespace MeterKnife.Common.Interfaces
@@ -12,6 +13,8 @@ namespace MeterKnife.Common.Interfaces
         IMeter Meter { get; set; }
 
         DataSet DataSet { get; }
+
+        MeterRange MeterRange { get; set; }
 
         bool HasData { get; }
 

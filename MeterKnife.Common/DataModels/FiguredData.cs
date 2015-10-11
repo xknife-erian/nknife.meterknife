@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.IO;
 using MathNet.Numerics.Statistics;
+using MeterKnife.Common.Enums;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
+using MeterKnife.Common.Util;
 using NKnife.IoC;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
@@ -171,6 +173,9 @@ namespace MeterKnife.Common.DataModels
             }
         }
 
+        [Category("温度"), DisplayName("峰峰值")]
+        public string TemperaturePpvalue { get; private set; }
+
         [Category("温度"), DisplayName("算术平均值")]
         public string TemperatureMean
         {
@@ -198,6 +203,9 @@ namespace MeterKnife.Common.DataModels
 
         public FiguredData()
         {
+            MeterRange = MeterRange.AUTO;
+            Clear();
+
             var baseTable = new DataTable("BaseInfomation");
             baseTable.Columns.Add(new DataColumn("Key", typeof (string)));
             baseTable.Columns.Add(new DataColumn("Value", typeof (string)));
@@ -228,6 +236,9 @@ namespace MeterKnife.Common.DataModels
         }
 
         [Browsable(false)]
+        public MeterRange MeterRange { get; set; }
+
+        [Browsable(false)]
         public bool HasData
         {
             get { return _DataSet.Tables[1].Rows.Count > 0; }
@@ -235,11 +246,28 @@ namespace MeterKnife.Common.DataModels
 
         public void Clear()
         {
-            _DataSet.Tables[1].Rows.Clear();
-            _DataSet.AcceptChanges();
+            if (_DataSet.Tables.Count > 1)
+            {
+                _DataSet.Tables[1].Rows.Clear();
+                _DataSet.AcceptChanges();
+            }
             _CurrentTemperature = 0;
             _RunningStatistics = new RunningStatistics();
             _TemperatureRunningStatistics = new RunningStatistics();
+
+            Ppvalue = "0";
+            TemperaturePpvalue = "0";
+
+            SampleInterquartileRangeInplace = "0";
+            SampleKurtosis = "0";
+            SampleLowerQuartile = "0";
+            SampleMean = "0";
+            SampleMedianInplace = "0";
+            SampleRootMeanSquareValue = "0";
+            SampleSkewness = "0";
+            SampleStandardDeviation = "0";
+            SampleUpperQuartile = "0";
+
             _Values.Clear();
         }
 
@@ -259,16 +287,17 @@ namespace MeterKnife.Common.DataModels
 
         public virtual void Add(double value)
         {
-            string s = value.ToString();
+            double v = MeterRangeCalculator.Run(MeterRange, value);
+            string s = v.ToString();
             int n = s.Length - s.IndexOf('.') - 1;
             _DecimalDigit = string.Format("f{0}", n);
             _PpmDecimalDigit = string.Format("f{0}", ((uint) (n/2)) + 1);
 
-            _RunningStatistics.Push(value);
+            _RunningStatistics.Push(v);
 
             if (_Values.Count >= _SampleRange)
                 _Values.RemoveAt(0);
-            _Values.Add(value);
+            _Values.Add(v);
             var ds = new DescriptiveStatistics(_Values);
             SampleKurtosis = ds.Kurtosis.ToString(_DecimalDigit);
             SampleSkewness = ds.Skewness.ToString(_DecimalDigit);
@@ -285,16 +314,17 @@ namespace MeterKnife.Common.DataModels
             SampleLowerQuartile = SortedArrayStatistics.LowerQuartile(array).ToString(_DecimalDigit);
             SampleUpperQuartile = SortedArrayStatistics.UpperQuartile(array).ToString(_DecimalDigit);
 
-            Ppvalue = GetPpmValue(Math.Abs(_RunningStatistics.Maximum - _RunningStatistics.Minimum)); //峰峰值
+            Ppvalue = Math.Abs(_RunningStatistics.Maximum - _RunningStatistics.Minimum).ToString("f4"); //峰峰值
+            TemperaturePpvalue = Math.Abs(_TemperatureRunningStatistics.Maximum - _TemperatureRunningStatistics.Minimum).ToString("f3"); //峰峰值
 
             UpdateTemperature();
 
             ExtremePoint = new Tuple<double, double>(_RunningStatistics.Maximum, _RunningStatistics.Minimum);
             TemperatureExtremePoint = new Tuple<double, double>(_TemperatureRunningStatistics.Maximum, _TemperatureRunningStatistics.Minimum);
 
-            _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature, sampleStandardDeviation);
+            _DataSet.Tables[1].Rows.Add(DateTime.Now, v, _CurrentTemperature, sampleStandardDeviation);
             //触发数据源发生变化
-            OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
+            OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, v, _CurrentTemperature)));
         }
 
         protected string GetPpmValue(double value)
