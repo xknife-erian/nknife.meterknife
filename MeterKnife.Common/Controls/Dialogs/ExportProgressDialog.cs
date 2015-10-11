@@ -63,7 +63,7 @@ namespace MeterKnife.Common.Controls.Dialogs
             var book = new HSSFWorkbook();
 
             var sheet1 = book.CreateSheet("测量数据");
-
+            
             var dateStyle = book.CreateCellStyle();
             dateStyle.Alignment = HorizontalAlignment.Left;
             var format = book.CreateDataFormat();
@@ -110,13 +110,25 @@ namespace MeterKnife.Common.Controls.Dialogs
             }
 
             sheet1.AutoSizeColumn(0);
-            this.ThreadSafeInvoke(() => _ProgressBar.Value = _ProgressBar.Value + 10);
+            this.ThreadSafeInvoke(() =>
+            {
+                Text = "导出数据结束，整理表格列1...";
+                _ProgressBar.Value = _ProgressBar.Value + 10;
+            });
 
             sheet1.AutoSizeColumn(1);
-            this.ThreadSafeInvoke(() => _ProgressBar.Value = _ProgressBar.Value + 10);
+            this.ThreadSafeInvoke(() =>
+            {
+                Text = "导出数据结束，整理表格列2...";
+                _ProgressBar.Value = _ProgressBar.Value + 10;
+            });
 
             sheet1.AutoSizeColumn(2);
-            this.ThreadSafeInvoke(() => _ProgressBar.Value = _ProgressBar.Value + 10);
+            this.ThreadSafeInvoke(() =>
+            {
+                Text = "导出数据结束，整理表格列3...";
+                _ProgressBar.Value = _ProgressBar.Value + 10;
+            });
 
             using (var file = new FileStream(_FileFullPath, FileMode.Create))
             {
@@ -128,6 +140,7 @@ namespace MeterKnife.Common.Controls.Dialogs
             this.ThreadSafeInvoke(() =>
             {
                 _GroupBox.Text = string.Format("{0},导出已完成", _GroupBox.Text);
+                Text = "导出全部完成，可关闭。";
                 _ConfirmButton.Enabled = true;
                 _ConfirmButton.Focus();
                 Cursor = Cursors.Default;

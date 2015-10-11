@@ -2,7 +2,7 @@ namespace MeterKnife.Common.Enums
 {
     public enum MeterRange
     {
-        AUTO,
+        None,
         X0001,
         X001,
         X01,

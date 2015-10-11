@@ -15,8 +15,8 @@ namespace MeterKnife.Common.Util
         {
             switch (meterRange)
             {
-                case MeterRange.AUTO:
-                    return RunAuto(sourceValue);
+                case MeterRange.None:
+                    return sourceValue;
                 case MeterRange.X0001:
                 case MeterRange.X001:
                 case MeterRange.X01:

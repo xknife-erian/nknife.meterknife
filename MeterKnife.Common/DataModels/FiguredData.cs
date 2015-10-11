@@ -203,7 +203,7 @@ namespace MeterKnife.Common.DataModels
 
         public FiguredData()
         {
-            MeterRange = MeterRange.AUTO;
+            MeterRange = MeterRange.None;
             Clear();
 
             var baseTable = new DataTable("BaseInfomation");
@@ -303,9 +303,10 @@ namespace MeterKnife.Common.DataModels
             SampleSkewness = ds.Skewness.ToString(_DecimalDigit);
 
             double[] array = _Values.ToArray();
-            SampleMean = ArrayStatistics.Mean(array).ToString(_DecimalDigit);
+            var mean = ArrayStatistics.Mean(array);
+            SampleMean = mean.ToString(_DecimalDigit);
             double sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
-            SampleStandardDeviation = GetPpmValue(sampleStandardDeviation);
+            SampleStandardDeviation = GetPpmValue(sampleStandardDeviation / mean);
             SampleRootMeanSquareValue = ArrayStatistics.RootMeanSquare(array).ToString(_DecimalDigit);
 
             Array.Sort(array);
@@ -314,7 +315,7 @@ namespace MeterKnife.Common.DataModels
             SampleLowerQuartile = SortedArrayStatistics.LowerQuartile(array).ToString(_DecimalDigit);
             SampleUpperQuartile = SortedArrayStatistics.UpperQuartile(array).ToString(_DecimalDigit);
 
-            Ppvalue = Math.Abs(_RunningStatistics.Maximum - _RunningStatistics.Minimum).ToString("f4"); //峰峰值
+            Ppvalue = Math.Abs(_RunningStatistics.Maximum - _RunningStatistics.Minimum).ToString(_DecimalDigit); //峰峰值
             TemperaturePpvalue = Math.Abs(_TemperatureRunningStatistics.Maximum - _TemperatureRunningStatistics.Minimum).ToString("f3"); //峰峰值
 
             UpdateTemperature();

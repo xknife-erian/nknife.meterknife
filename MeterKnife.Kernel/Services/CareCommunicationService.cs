@@ -287,7 +287,9 @@ namespace MeterKnife.Kernel.Services
                 byte[] data = cmd.IsCare
                     ? CommandUtil.GenerateProtocol(cmd)
                     : cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
+
                 _logger.Trace(string.Format("SendCommand:{0}", data.ToHexString()));
+
                 if (data.Length != 0)
                 {
                     dataConnector.SendAll(data);

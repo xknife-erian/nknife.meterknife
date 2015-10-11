@@ -238,14 +238,14 @@ namespace MeterKnife.Instruments
             this._MeterRangeDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("_MeterRangeDropDownButton.Image")));
             this._MeterRangeDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._MeterRangeDropDownButton.Name = "_MeterRangeDropDownButton";
-            this._MeterRangeDropDownButton.Size = new System.Drawing.Size(48, 27);
-            this._MeterRangeDropDownButton.Text = "Auto";
+            this._MeterRangeDropDownButton.Size = new System.Drawing.Size(45, 27);
+            this._MeterRangeDropDownButton.Text = "默认";
             // 
             // autoToolStripMenuItem
             // 
             this.autoToolStripMenuItem.Name = "autoToolStripMenuItem";
             this.autoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.autoToolStripMenuItem.Text = "Auto";
+            this.autoToolStripMenuItem.Text = "默认";
             // 
             // toolStripSeparator2
             // 

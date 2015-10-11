@@ -73,7 +73,7 @@ namespace MeterKnife.Instruments
         {
             autoToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "Auto"; _FiguredData.MeterRange = MeterRange.AUTO;
+                _MeterRangeDropDownButton.Text = "默认"; _FiguredData.MeterRange = MeterRange.None;
             };
             x0001ToolStripMenuItem.Click += (s, e) =>
             {
