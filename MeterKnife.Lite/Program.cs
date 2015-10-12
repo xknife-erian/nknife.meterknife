@@ -40,7 +40,7 @@ namespace MeterKnife.Lite
 
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Common.Properties.Settings.Default.CultureInfoName);
 
-            MeterLiteView.IsFairy = true;
+            MeterLiteView.IsLite = true;
 
             MeterKnifeEnvironment.Workbench = new MeterLiteMainForm();
             Application.Run(new MeterKnifeEnvironment());

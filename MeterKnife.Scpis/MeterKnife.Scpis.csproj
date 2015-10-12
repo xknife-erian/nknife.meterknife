@@ -153,6 +153,9 @@
     <Content Include="Properties\base-toolstrip\open.png" />
     <Content Include="Properties\base-toolstrip\save.png" />
     <Content Include="Properties\base-toolstrip\up.png" />
+    <None Include="Scpis\Specified\AdvantestR6581.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

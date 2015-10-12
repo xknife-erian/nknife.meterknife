@@ -22,8 +22,6 @@ namespace MeterKnife.Instruments
     public partial class DigitMultiMeterView : MeterView
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
-
-        private bool _IsDispose;
         protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
         private readonly FiguredData _FiguredData = new FiguredData();
@@ -31,7 +29,11 @@ namespace MeterKnife.Instruments
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
         private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
 
+        private bool _IsDispose;
+        private bool _IsSave = true;
+
         protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
+
         protected StandardNormalDistributionPlot _SdPlot = new StandardNormalDistributionPlot();
         protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
         protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
@@ -54,7 +56,7 @@ namespace MeterKnife.Instruments
             SetStripButtonState(false);
             SetFiguredDataGrid();
             SetStandardDeviationRange();
-            RangeDropDownButtonClick();
+            SetRangeDropDownButtonState();
             _MeterKernel.Collected += (s, e) =>
             {
                 if (e.GpibAddress == _Meter.GpibAddress)
@@ -69,59 +71,102 @@ namespace MeterKnife.Instruments
             });
         }
 
-        private void RangeDropDownButtonClick()
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (!_IsSave)
+            {
+                var sr = MessageBox.Show(this, "有数据未保存，是否仍然关闭？", "未保存", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (sr == DialogResult.No)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+            _IsDispose = true;
+            base.OnFormClosing(e);
+
+            StopProtocolRecevied();
+            _Comm.Remove(_CarePort, _Handler);
+            var dic = DI.Get<IMeterKernel>().GpibDictionary;
+            dic[_CarePort].Remove(_Meter.GpibAddress);
+        }
+
+        public override void SetMeter(CommPort port, BaseMeter meter)
+        {
+            base.SetMeter(port, meter);
+            _ScpiCommandPanel.GpibAddress = meter.GpibAddress;
+            _Comm.Bind(port, _Handler);
+            _FiguredData.Meter = _Meter;
+            _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
+            _logger.Info("面板初始化仪器完成..");
+        }
+        
+        protected void SetRangeDropDownButtonState()
         {
             autoToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "默认"; _FiguredData.MeterRange = MeterRange.None;
+                _MeterRangeDropDownButton.Text = autoToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.None;
             };
             x0001ToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "0.001"; _FiguredData.MeterRange = MeterRange.X0001;
+                _MeterRangeDropDownButton.Text = x0001ToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X0001;
             };
             x001ToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "0.01"; _FiguredData.MeterRange = MeterRange.X001;
+                _MeterRangeDropDownButton.Text = x001ToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X001;
             };
             x01ToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "0.1"; _FiguredData.MeterRange = MeterRange.X01;
+                _MeterRangeDropDownButton.Text = x01ToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X01;
             };
             x1ToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "1"; _FiguredData.MeterRange = MeterRange.X1;
+                _MeterRangeDropDownButton.Text = x1ToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X1;
             };
             x10ToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "10"; _FiguredData.MeterRange = MeterRange.X10;
+                _MeterRangeDropDownButton.Text = x10ToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X10;
             };
             x100ToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "100"; _FiguredData.MeterRange = MeterRange.X100;
+                _MeterRangeDropDownButton.Text = x100ToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X100;
             };
             x1KToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "1K"; _FiguredData.MeterRange = MeterRange.X1K;
+                _MeterRangeDropDownButton.Text = x1KToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X1K;
             };
             x10KToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "10K"; _FiguredData.MeterRange = MeterRange.X10K;
+                _MeterRangeDropDownButton.Text = x10KToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X10K;
             };
             x100KToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "100K"; _FiguredData.MeterRange = MeterRange.X100K;
+                _MeterRangeDropDownButton.Text = x100KToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X100K;
             };
             x1MToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "1M"; _FiguredData.MeterRange = MeterRange.X1M;
+                _MeterRangeDropDownButton.Text = x1MToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X1M;
             };
             x10MToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "10M"; _FiguredData.MeterRange = MeterRange.X10M;
+                _MeterRangeDropDownButton.Text = x10MToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X10M;
             };
             x100MToolStripMenuItem.Click += (s, e) =>
             {
-                _MeterRangeDropDownButton.Text = "100M"; _FiguredData.MeterRange = MeterRange.X100M;
+                _MeterRangeDropDownButton.Text = x100MToolStripMenuItem.Text;
+                _FiguredData.MeterRange = MeterRange.X100M;
             };
         }
 
@@ -140,16 +185,6 @@ namespace MeterKnife.Instruments
             if (range < 10)
                 return;
             _FiguredData.SetRange(range);
-        }
-
-        public override void SetMeter(CommPort port, BaseMeter meter)
-        {
-            base.SetMeter(port, meter);
-            _ScpiCommandPanel.GpibAddress = meter.GpibAddress;
-            _Comm.Bind(port, _Handler);
-            _FiguredData.Meter = _Meter;
-            _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
-            _logger.Info("面板初始化仪器完成..");
         }
 
         protected void SetStripButtonState(bool isCollected)
@@ -171,48 +206,6 @@ namespace MeterKnife.Instruments
             _StopStripButton.Enabled = isCollected;
         }
 
-        protected virtual void StartCollect()
-        {
-            _Handler.ProtocolRecevied += OnProtocolRecevied;
-            _MeterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true, _ScpiCommandPanel.ScpiSubjectKey);
-
-            var thread = new Thread(SendRead);
-            thread.Start();
-        }
-
-        protected virtual void StopCollect()
-        {
-            StopProtocolRecevied();
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            _IsDispose = true;
-            base.OnFormClosing(e);
-            StopProtocolRecevied();
-            _Comm.Remove(_CarePort, _Handler);
-            var dic = DI.Get<IMeterKernel>().GpibDictionary;
-            dic[_CarePort].Remove(_Meter.GpibAddress);
-        }
-
-        private void StopProtocolRecevied()
-        {
-            Thread.Sleep(50);
-            var kernel = DI.Get<IMeterKernel>();
-            if (kernel != null && _Meter != null)
-            {
-                kernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false, _ScpiCommandPanel.ScpiSubjectKey);
-            }
-            _Handler.ProtocolRecevied -= OnProtocolRecevied;
-        }
-
-        private void SendRead(object obj)
-        {
-            _Comm.SendCommands(Port, GetInitCommands());
-            var cmd = GetCollectCommands();
-            _Comm.SendLoopCommands(Port, cmd.Key, cmd.Value);
-        }
-
         protected virtual ScpiCommandQueue.Item[] GetInitCommands()
         {
             var commands = _ScpiCommandPanel.GetInitCommands();
@@ -225,6 +218,21 @@ namespace MeterKnife.Instruments
             return commands;
         }
 
+        private void PlotsClear()
+        {
+            _FiguredData.Clear();
+
+            _DataPlot.Clear();
+            _TempPlot.Clear();
+            _TempFeaturesPlot.Clear();
+            _TempTrendPlot.Clear();
+            _SdPlot.Clear();
+
+            this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
+        }
+
+        #region 按键响应
+        
         private void _StartStripButton_Click(object sender, EventArgs e)
         {
             if (_FiguredData.HasData)
@@ -237,6 +245,7 @@ namespace MeterKnife.Instruments
                     PlotsClear();
                 }
             }
+            _IsSave = false;
             StartCollect();
         }
 
@@ -257,10 +266,12 @@ namespace MeterKnife.Instruments
         {
             var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
             var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), _Meter.Name, "s3db");
-            var full = Path.Combine(DI.Get<MeterKnifeUserData>().GetValue(MeterKnifeUserData.DATA_PATH, string.Empty), name);
+            var full = Path.Combine(DI.Get<MeterKnifeUserData>().GetValue(MeterKnifeUserData.DATA_PATH, string.Empty),
+                name);
             if (_FiguredData.Save(full))
             {
                 MessageBox.Show(string.Format("数据文件已保存:\r\n{0}", full));
+                _IsSave = true;
             }
         }
 
@@ -284,25 +295,13 @@ namespace MeterKnife.Instruments
                 Cursor = Cursors.WaitCursor;
                 progressDialog.ShowDialog(this);
                 Cursor = Cursors.Default;
+                _IsSave = true;
             }
         }
 
         private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
         {
             PlotsClear();
-        }
-
-        private void PlotsClear()
-        {
-            _FiguredData.Clear();
-
-            _DataPlot.Clear();
-            _TempPlot.Clear();
-            _TempFeaturesPlot.Clear();
-            _TempTrendPlot.Clear();
-            _SdPlot.Clear();
-
-            this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
 
         private void _PhotoToolStripButton_Click(object sender, EventArgs e)
@@ -315,6 +314,42 @@ namespace MeterKnife.Instruments
 
         private void _ZoomOutToolStripButton_Click(object sender, EventArgs e)
         {
+        }
+
+        #endregion
+
+        #region 通讯相关
+
+        protected virtual void StartCollect()
+        {
+            _Handler.ProtocolRecevied += OnProtocolRecevied;
+            _MeterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true, _ScpiCommandPanel.ScpiSubjectKey);
+
+            var thread = new Thread(SendRead);
+            thread.Start();
+        }
+
+        protected virtual void StopCollect()
+        {
+            StopProtocolRecevied();
+        }
+
+        private void StopProtocolRecevied()
+        {
+            Thread.Sleep(50);
+            var kernel = DI.Get<IMeterKernel>();
+            if (kernel != null && _Meter != null)
+            {
+                kernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false, _ScpiCommandPanel.ScpiSubjectKey);
+            }
+            _Handler.ProtocolRecevied -= OnProtocolRecevied;
+        }
+
+        private void SendRead(object obj)
+        {
+            _Comm.SendCommands(Port, GetInitCommands());
+            var cmd = GetCollectCommands();
+            _Comm.SendLoopCommands(Port, cmd.Key, cmd.Value);
         }
 
         private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
@@ -338,5 +373,8 @@ namespace MeterKnife.Instruments
             }
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
+
+        #endregion
+
     }
 }

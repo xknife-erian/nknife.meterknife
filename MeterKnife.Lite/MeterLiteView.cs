@@ -11,17 +11,19 @@ using ScpiKnife;
 
 namespace MeterKnife.Lite
 {
+    /// <summary>
+    /// Lite版简化的万用表界面
+    /// </summary>
     internal class MeterLiteView : DigitMultiMeterView
     {
-        private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
         /// <summary>
         /// 是否是精灵版
         /// </summary>
-        public static bool IsFairy { get; set; }
+        public static bool IsLite { get; set; }
 
         public MeterLiteView()
         {
-            if (IsFairy)
+            if (IsLite)
             {
                 _PhotoToolStripButton.Visible = false;
                 _ZoomInToolStripButton.Visible = false;
