@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net;
 using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
+using MeterKnife.Instruments;
 using MeterKnife.Workbench.Dialogs;
 using NKnife.IoC;
 using NKnife.NLog3.Controls;
@@ -54,6 +56,24 @@ namespace MeterKnife.Lite
                     string.Format("IPAddress:{0}", dialog.CarePort);
                 AddMeterView();
             }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            foreach (var dockContent in _DockPanel.Documents)
+            {
+                var collectView = dockContent as MeterView;
+                if (collectView != null && !collectView.IsSaved)
+                {
+                    var sr = MessageBox.Show(this, "有数据未保存，是否仍然关闭？", "未保存", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (sr == DialogResult.No)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+            }
+            base.OnClosing(e);
         }
 
         private void _ExitMenuItem_Click(object sender, EventArgs e)

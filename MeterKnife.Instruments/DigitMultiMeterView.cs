@@ -30,7 +30,6 @@ namespace MeterKnife.Instruments
         private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
 
         private bool _IsDispose;
-        private bool _IsSave = true;
 
         protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
 
@@ -73,7 +72,7 @@ namespace MeterKnife.Instruments
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (!_IsSave)
+            if (!_IsSaved)
             {
                 var sr = MessageBox.Show(this, "有数据未保存，是否仍然关闭？", "未保存", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (sr == DialogResult.No)
@@ -245,7 +244,7 @@ namespace MeterKnife.Instruments
                     PlotsClear();
                 }
             }
-            _IsSave = false;
+            _IsSaved = false;
             StartCollect();
         }
 
@@ -271,7 +270,7 @@ namespace MeterKnife.Instruments
             if (_FiguredData.Save(full))
             {
                 MessageBox.Show(string.Format("数据文件已保存:\r\n{0}", full));
-                _IsSave = true;
+                _IsSaved = true;
             }
         }
 
@@ -295,7 +294,7 @@ namespace MeterKnife.Instruments
                 Cursor = Cursors.WaitCursor;
                 progressDialog.ShowDialog(this);
                 Cursor = Cursors.Default;
-                _IsSave = true;
+                _IsSaved = true;
             }
         }
 

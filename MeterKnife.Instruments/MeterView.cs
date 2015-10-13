@@ -14,6 +14,7 @@ namespace MeterKnife.Instruments
     {
         protected BaseMeter _Meter;
         protected CommPort _CarePort;
+        protected bool _IsSaved = true;
 
         public virtual void SetMeter(CommPort port, BaseMeter meter)
         {
@@ -26,6 +27,8 @@ namespace MeterKnife.Instruments
             get { return _CarePort; }
             set { _CarePort = value; }
         }
+
+        public bool IsSaved { get { return _IsSaved; } }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
