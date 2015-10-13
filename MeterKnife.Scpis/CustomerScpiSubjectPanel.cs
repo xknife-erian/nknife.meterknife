@@ -195,12 +195,7 @@ namespace MeterKnife.Scpis
 
         private void _SaveButton_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem viewItem in _ListView.Items)
-            {
-                
-            }
-            Debug.Assert(_CurrentScpiSubject.XmlElement.OwnerDocument != null, "_CurrentScpiSubject.XmlElement.OwnerDocument != null");
-            _CurrentScpiSubject.XmlElement.OwnerDocument.Save(_CurrentScpiSubject.OwnerCollection.File.FullName);
+            _CurrentScpiSubject.OwnerCollection.Save();
         }
 
         private void _AddInitButton_Click(object sender, EventArgs e)

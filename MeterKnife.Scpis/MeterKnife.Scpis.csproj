@@ -60,7 +60,6 @@
     <Compile Include="CustomerScpiSubjectPanel.Designer.cs">
       <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="MeterInfoParser.cs" />
     <Compile Include="MeterScpiGroupTreeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +79,7 @@
       <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="ScpiCommandGroupCategory.cs" />
+    <Compile Include="ScpisXmlFile.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>

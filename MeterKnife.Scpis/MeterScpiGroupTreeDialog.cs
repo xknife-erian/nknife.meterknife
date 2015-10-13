@@ -48,9 +48,8 @@ namespace MeterKnife.Scpis
 
         private void ParseMeterFile(FileInfo file)
         {
-            var parser = new MeterInfoParser();
-            ScpiSubjectCollection list;
-            if (parser.TryParse(file, out list))
+            ScpiSubjectCollection list = new ScpiSubjectCollection();
+            if (list.TryParse(file))
             {
                 var meter = string.Format("{0}{1}", list.Brand, list.Name);
                 var treeNode = new TreeNode(meter);
