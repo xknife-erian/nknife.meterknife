@@ -65,12 +65,15 @@ namespace MeterKnife.Lite
                 var collectView = dockContent as MeterView;
                 if (collectView != null && !collectView.IsSaved)
                 {
-                    var sr = MessageBox.Show(this, "有数据未保存，是否仍然关闭？", "未保存", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var sr = MessageBox.Show(this, string.Format("{0}有数据未保存，是否仍然关闭？", collectView.Text),
+                        string.Format("{0}未保存", collectView.Text),
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (sr == DialogResult.No)
                     {
                         e.Cancel = true;
                         return;
                     }
+                    collectView.IsSaved = true;
                 }
             }
             base.OnClosing(e);

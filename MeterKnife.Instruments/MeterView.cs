@@ -28,7 +28,11 @@ namespace MeterKnife.Instruments
             set { _CarePort = value; }
         }
 
-        public bool IsSaved { get { return _IsSaved; } }
+        public bool IsSaved
+        {
+            get { return _IsSaved; } 
+            set { _IsSaved = value; }
+        }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
