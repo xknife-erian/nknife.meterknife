@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<meter>
-  <meterinfo version="1.0" brand="Advantest" name="R6551" type="DigitalMultimeter">
-  </meterinfo>
+<instrument>
+  <information version="1.0" brand="Advantest" name="R6551" type="DigitalMultimeter">
+  </information>
   <scpigroups>
     <subject description="电压测量">
       <group way="init">
@@ -53,4 +53,4 @@
       </group>
     </subject>
   </scpigroups>
-</meter>
+</instrument>

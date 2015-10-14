@@ -3,6 +3,7 @@ using System.Text;
 using System.Windows.Forms;
 using NKnife.Converts;
 using NKnife.GUI.WinForm;
+using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {
@@ -21,7 +22,7 @@ namespace MeterKnife.Scpis
                     case ScpiCommandGroupCategory.Collect:
                         _IntervalNumericUpDown.Value = 400;
                         break;
-                    case ScpiCommandGroupCategory.Init:
+                    case ScpiCommandGroupCategory.Initializtion:
                         _IntervalNumericUpDown.Value = 50;
                         break;
                 }

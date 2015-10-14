@@ -48,12 +48,13 @@ namespace MeterKnife.Scpis
 
         private void ParseMeterFile(FileInfo file)
         {
-            ScpiSubjectCollection list = new ScpiSubjectCollection();
-            if (list.TryParse(file))
+            ScpiSubjectCollection collection = new ScpiSubjectCollection();
+            collection.BuildScpiFile(file.FullName);
+            if (collection.TryParse(null))
             {
-                var meter = string.Format("{0}{1}", list.Brand, list.Name);
+                var meter = string.Format("{0}{1}", collection.Brand, collection.Name);
                 var treeNode = new TreeNode(meter);
-                foreach (var subject in list)
+                foreach (var subject in collection)
                 {
                     var subNode = new SubjectTreeNode
                     {

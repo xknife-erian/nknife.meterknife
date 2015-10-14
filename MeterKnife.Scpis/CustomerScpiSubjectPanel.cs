@@ -11,7 +11,7 @@ using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {
-    //TODO:上下移,保存,导入,导出未完成
+    //TODO:上下移,导入,导出未完成
     public partial class CustomerScpiSubjectPanel : UserControl
     {
         private static readonly ILog _logger = LogManager.GetLogger<CustomerScpiSubjectPanel>();
@@ -48,15 +48,19 @@ namespace MeterKnife.Scpis
             _CollectGroup.Header = "采集指令集";
             _CollectGroup.Name = "COLLECT";
 
-            _ListView.SelectedIndexChanged += OnListViewOnSelectedIndexChanged;
+            _ListView.SelectedIndexChanged += _ListView_SelectedIndexChanged;
+            _ListView.ItemChecked += _ListView_ItemChecked;
         }
 
-        public string ScpiSubjectKey
+        private void _ListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            get { return _ScpiSubjectKey; }
+            var scpiCommand = (ScpiCommand)e.Item.Tag;
+            if (scpiCommand.Selected != e.Item.Checked)
+                IsModified = true;
+            scpiCommand.Selected = e.Item.Checked;
         }
 
-        private void OnListViewOnSelectedIndexChanged(object s, EventArgs e)
+        private void _ListView_SelectedIndexChanged(object s, EventArgs e)
         {
             ListView.SelectedIndexCollection indices = _ListView.SelectedIndices;
             bool b = indices.Count > 0;
@@ -84,6 +88,11 @@ namespace MeterKnife.Scpis
                     _DownButton.Enabled = group.IndexOf(item) < group.Count - 1;
                 }
             }
+        }
+
+        public string ScpiSubjectKey
+        {
+            get { return _ScpiSubjectKey; }
         }
 
         private List<ListViewItem> GetInitGroup()
@@ -156,7 +165,7 @@ namespace MeterKnife.Scpis
             var listitem = new ListViewItem {Checked = true};
             switch (category)
             {
-                case ScpiCommandGroupCategory.Init:
+                case ScpiCommandGroupCategory.Initializtion:
                     listitem.Group = _InitGroup;
                     break;
                 case ScpiCommandGroupCategory.Collect:
@@ -166,6 +175,7 @@ namespace MeterKnife.Scpis
             var subitem = new ListViewItem.ListViewSubItem {Text = command.Command};
             listitem.SubItems.Add(subitem);
             subitem = new ListViewItem.ListViewSubItem { Text = command.Interval.ToString() };
+            listitem.Checked = command.Selected;
             listitem.SubItems.Add(subitem);
             listitem.Tag = command;
             listitem.ToolTipText = command.ToString();
@@ -183,7 +193,7 @@ namespace MeterKnife.Scpis
                 _CurrentScpiSubject = dialog.ScpiSubject;
                 foreach (ScpiCommand command in _CurrentScpiSubject.Preload)
                 {
-                    AddListItem(ScpiCommandGroupCategory.Init, command);
+                    AddListItem(ScpiCommandGroupCategory.Initializtion, command);
                 }
                 foreach (ScpiCommand command in _CurrentScpiSubject.Collect)
                 {
@@ -195,13 +205,19 @@ namespace MeterKnife.Scpis
 
         private void _SaveButton_Click(object sender, EventArgs e)
         {
-            _CurrentScpiSubject.OwnerCollection.Save();
+            if (_CurrentScpiSubject.OwnerCollection.Save())
+            {
+                var brand = _CurrentScpiSubject.OwnerCollection.Brand;
+                var name = _CurrentScpiSubject.OwnerCollection.Name;
+                var content = string.Format("{0}{1}: “{2}”SCPI指令集保存成功", brand, name, _CurrentScpiSubject.Description);
+                MessageBox.Show(this, content, "保存", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void _AddInitButton_Click(object sender, EventArgs e)
         {
             var dialog = new ScpiCommandEditorDialog();
-            dialog.Category = ScpiCommandGroupCategory.Init;
+            dialog.Category = ScpiCommandGroupCategory.Initializtion;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
@@ -212,7 +228,7 @@ namespace MeterKnife.Scpis
                     IsHex = dialog.IsHex,
                     IsReturn = false
                 };
-                AddListItem(ScpiCommandGroupCategory.Init, command);
+                AddListItem(ScpiCommandGroupCategory.Initializtion, command);
             }
         }
 
