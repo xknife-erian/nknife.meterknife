@@ -2,13 +2,14 @@
 using System.IO;
 using System.Windows.Forms;
 using NKnife.GUI.WinForm;
+using NKnife.IoC;
 using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {
-    public partial class MeterScpiGroupTreeDialog : SimpleForm
+    public partial class InstrumentScpiGroupTreeDialog : SimpleForm
     {
-        public MeterScpiGroupTreeDialog()
+        public InstrumentScpiGroupTreeDialog()
         {
             InitializeComponent();
             _ConfirmButton.Enabled = false;
@@ -37,8 +38,7 @@ namespace MeterKnife.Scpis
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            var path = Path.Combine(Application.StartupPath, "Scpis");
-            var dir = new DirectoryInfo(path);
+            var dir = new DirectoryInfo(ScpiUtil.ScpisPath);
             var files = dir.GetFiles("*.xml", SearchOption.AllDirectories);
             foreach (var file in files)
             {

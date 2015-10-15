@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Scpis
 {
-    partial class MeterScpiGroupTreeDialog
+    partial class InstrumentScpiGroupTreeDialog
     {
         /// <summary>
         /// Required designer variable.

@@ -1,4 +1,6 @@
-﻿using Common.Logging;
+﻿using System.IO;
+using System.Windows.Forms;
+using Common.Logging;
 using MeterKnife.Common;
 using MeterKnife.Common.Interfaces;
 using NKnife.Configuring.Interfaces;
@@ -25,8 +27,16 @@ namespace MeterKnife.Kernel.Services
             return true;
         }
 
-        public int Order { get { return 999; } }
+        public int Order
+        {
+            get { return 999; }
+        }
 
-        public string Description { get { return "数据路径检查器"; } }
+        public string Description
+        {
+            get { return "数据路径检查器"; }
+        }
+
+
     }
 }

@@ -289,9 +289,9 @@ namespace MeterKnife.Common.DataModels
         {
             double v = MeterRangeCalculator.Run(MeterRange, value);
             string s = v.ToString();
-            int n = s.Length - s.IndexOf('.') - 1;
+            int n = s.Length - s.IndexOf('.');
             _DecimalDigit = string.Format("f{0}", n);
-            _PpmDecimalDigit = string.Format("f{0}", ((uint) (n/2)) + 1);
+            _PpmDecimalDigit = string.Format("f{0}", ((uint) (n/2)) + 2);
 
             _RunningStatistics.Push(v);
 

@@ -9,6 +9,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: InternalsVisibleTo("MeterKnife.UnitTests")]
 
-[assembly: AssemblyVersion("0.10.1.1010")]
-[assembly: AssemblyFileVersion("0.10.1.1010")]
+[assembly: AssemblyVersion("0.10.5.1015")]
+[assembly: AssemblyFileVersion("0.10.5.1015")]
 //2015/03/11 09:37:16

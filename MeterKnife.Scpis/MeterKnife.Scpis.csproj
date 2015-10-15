@@ -60,11 +60,17 @@
     <Compile Include="CustomerScpiSubjectPanel.Designer.cs">
       <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="MeterScpiGroupTreeDialog.cs">
+    <Compile Include="InstrumentScpiGroupTreeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MeterScpiGroupTreeDialog.Designer.cs">
-      <DependentUpon>MeterScpiGroupTreeDialog.cs</DependentUpon>
+    <Compile Include="InstrumentScpiGroupTreeDialog.Designer.cs">
+      <DependentUpon>InstrumentScpiGroupTreeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewInstrumentInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewInstrumentInfoDialog.Designer.cs">
+      <DependentUpon>NewInstrumentInfoDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -78,6 +84,13 @@
     <Compile Include="ScpiCommandEditorDialog.Designer.cs">
       <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScpiGroupInfomationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScpiGroupInfomationDialog.Designer.cs">
+      <DependentUpon>ScpiGroupInfomationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScpiUtil.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -115,8 +128,11 @@
     <EmbeddedResource Include="CustomerScpiSubjectPanel.resx">
       <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MeterScpiGroupTreeDialog.resx">
-      <DependentUpon>MeterScpiGroupTreeDialog.cs</DependentUpon>
+    <EmbeddedResource Include="InstrumentScpiGroupTreeDialog.resx">
+      <DependentUpon>InstrumentScpiGroupTreeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewInstrumentInfoDialog.resx">
+      <DependentUpon>NewInstrumentInfoDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScpiCommandEditorDialog.resx">
       <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScpiGroupInfomationDialog.resx">
+      <DependentUpon>ScpiGroupInfomationDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
