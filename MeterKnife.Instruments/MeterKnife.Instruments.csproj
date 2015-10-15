@@ -73,6 +73,18 @@
     <Compile Include="Dialog\ExportFileSelectorDialog.Designer.cs">
       <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="DigitMultiMeterViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DigitMultiMeterViewForm.Designer.cs">
+      <DependentUpon>DigitMultiMeterViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockViews\ScpisPanelView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockViews\ScpisPanelView.Designer.cs">
+      <DependentUpon>ScpisPanelView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MeterView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\ExportFileSelectorDialog.resx">
       <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigitMultiMeterViewForm.resx">
+      <DependentUpon>DigitMultiMeterViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -105,9 +105,10 @@ namespace MeterKnife.Lite
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                var meterView = DI.Get<MeterLiteView>();
-                meterView.SetMeter(dialog.Port, dialog.Meter);
-                meterView.Text = dialog.Meter.AbbrName;
+                var meterView = new DigitMultiMeterViewForm();
+//                var meterView = DI.Get<MeterLiteView>();
+//                meterView.SetMeter(dialog.Port, dialog.Meter);
+//                meterView.Text = dialog.Meter.AbbrName;
                 meterView.Show(_DockPanel, DockState.Document);
                 dic[_CarePort].Add(dialog.GpibAddress);
             }
