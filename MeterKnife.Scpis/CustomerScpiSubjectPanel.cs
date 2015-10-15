@@ -300,11 +300,23 @@ namespace MeterKnife.Scpis
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                item.SubItems[1].Text = dialog.Command;
                 command.Command = dialog.Command;
-                item.SubItems[2].Text = dialog.Interval.ToString();
                 command.Interval = dialog.Interval;
                 command.IsHex = dialog.IsHex;
+
+                var group = item.Group;
+                switch (group.Name)
+                {
+                    case "INIT":
+                        command.IsReturn = false;
+                        break;
+                    case "COLLECT":
+                        command.IsReturn = true;
+                        break;
+                }
+
+                item.SubItems[1].Text = dialog.Command;
+                item.SubItems[2].Text = dialog.Interval.ToString();
                 item.ToolTipText = command.ToString();
                 IsModified = true;
             }

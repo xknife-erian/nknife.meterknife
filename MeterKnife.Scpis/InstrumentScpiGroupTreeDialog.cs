@@ -65,7 +65,10 @@ namespace MeterKnife.Scpis
                 }
                 _Tree.Nodes.Add(treeNode);
             }
-            _Tree.Nodes[0].Expand();
+            if (_Tree.Nodes.Count > 0)
+            {
+                _Tree.Nodes[0].Expand();
+            }
         }
 
         private void _CancelButton_Click(object sender, EventArgs e)
