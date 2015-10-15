@@ -38,18 +38,18 @@ namespace MeterKnife.Common.Controls
                 if (comboBox.SelectedItem == null)
                     continue;
                 var cmd = (ScpiCommand)(comboBox.SelectedItem);
-                _Commandlist.AddLast(cmd);
+                _Commandlist.Add(cmd);
             }
         }
 
         protected static ScpiGroup GetGpibCommandList()
         {
             var cmdlist = new ScpiGroup();
-            cmdlist.AddLast(new ScpiCommand {Command = "*CLS", Interval = 50});
-            cmdlist.AddLast(new ScpiCommand { Command = "*CLS", Interval = 50 });
-            cmdlist.AddLast(new ScpiCommand { Command = "*RST", Interval = 200 });
-            cmdlist.AddLast(new ScpiCommand { Command = "*CLS", Interval = 50 });
-            cmdlist.AddLast(new ScpiCommand { Command = "INIT", Interval = 50 });
+            cmdlist.Add(new ScpiCommand {Command = "*CLS", Interval = 50});
+            cmdlist.Add(new ScpiCommand { Command = "*CLS", Interval = 50 });
+            cmdlist.Add(new ScpiCommand { Command = "*RST", Interval = 200 });
+            cmdlist.Add(new ScpiCommand { Command = "*CLS", Interval = 50 });
+            cmdlist.Add(new ScpiCommand { Command = "INIT", Interval = 50 });
             return cmdlist;
         }
 

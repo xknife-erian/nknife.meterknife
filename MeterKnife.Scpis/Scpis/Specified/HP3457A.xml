@@ -10,7 +10,7 @@
           <![CDATA[INIT?]]>
         </scpi>
         <scpi interval="200" hex="true">
-          <![CDATA[]]>
+          <![CDATA[ABCD?]]>
         </scpi>
       </group>
       <group way="collect">
