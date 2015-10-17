@@ -58,7 +58,7 @@ namespace MeterKnife.Scpis
                 {
                     var subNode = new SubjectTreeNode
                     {
-                        Text = subject.Description,
+                        Text = subject.Name,
                         Tag = subject
                     };
                     treeNode.Nodes.Add(subNode);

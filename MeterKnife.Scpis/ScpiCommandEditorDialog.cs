@@ -53,6 +53,12 @@ namespace MeterKnife.Scpis
             set { _HexEnableCheckBox.Checked = value; }
         }
 
+        public bool IsReturn
+        {
+            get { return _IsReturnCheckBox.Checked; }
+            set { _IsReturnCheckBox.Checked = value; }
+        }
+
         public ScpiCommandEditorDialog()
         {
             InitializeComponent();

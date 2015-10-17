@@ -167,12 +167,21 @@ namespace MeterKnife.Scpis
 
         private void _SaveButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_CurrentScpiSubject.Description))
+            if(string.IsNullOrEmpty(_CurrentScpiSubject.Name))
             {
-                var dialog = new ScpiGroupInfomationDialog();
+                var collection = new ScpiSubjectCollection();
+                var dialog = new NewInstrumentInfoDialog();
+                dialog.ScpiSubjectCollection = collection;
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    _CurrentScpiSubject.Description = dialog.GroupText;
+                    collection.Brand = dialog.InstBrand;
+                    collection.Name = dialog.InstName;
+                    collection.Description = dialog.InstDescription;
+                    var fileName = string.Format("{0}{1}.xml", collection.Brand, collection.Name);
+                    collection.BuildScpiFile(Path.Combine(ScpiUtil.ScpisPath, fileName));
+                    _CurrentScpiSubject.OwnerCollection = collection;
+                    _CurrentScpiSubject.Name = dialog.GroupName;
+                    collection.Add(_CurrentScpiSubject);
                 }
                 else
                 {
@@ -185,15 +194,16 @@ namespace MeterKnife.Scpis
             {
                 var brand = _CurrentScpiSubject.OwnerCollection.Brand;
                 var name = _CurrentScpiSubject.OwnerCollection.Name;
-                var content = string.Format("{0}{1}: “{2}”SCPI指令集保存成功", brand, name, _CurrentScpiSubject.Description);
+                var content = string.Format("{0}{1}: “{2}”SCPI指令集保存成功", brand, name, _CurrentScpiSubject.Name);
                 MessageBox.Show(this, content, "保存", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void _AddInitButton_Click(object sender, EventArgs e)
         {
-            if (CheckCurrentScpiSubject())
-                return;
+            if (_CurrentScpiSubject == null)
+                _CurrentScpiSubject = new ScpiSubject();
+
             var dialog = new ScpiCommandEditorDialog();
             dialog.Category = ScpiCommandGroupCategory.Initializtion;
             if (dialog.ShowDialog(this) == DialogResult.OK)
@@ -212,8 +222,8 @@ namespace MeterKnife.Scpis
 
         private void _AddCollectButton_Click(object sender, EventArgs e)
         {
-            if (CheckCurrentScpiSubject())
-                return;
+            if(_CurrentScpiSubject == null)
+                _CurrentScpiSubject = new ScpiSubject();
 
             var dialog = new ScpiCommandEditorDialog();
             dialog.Category = ScpiCommandGroupCategory.Collect;
@@ -229,32 +239,6 @@ namespace MeterKnife.Scpis
                 };
                 AddListItem(ScpiCommandGroupCategory.Collect, command);
             }
-        }
-
-        private bool CheckCurrentScpiSubject()
-        {
-            if (_CurrentScpiSubject == null)
-            {
-                var collection = new ScpiSubjectCollection();
-                var newInstDialog = new NewInstrumentInfoDialog();
-                newInstDialog.ScpiSubjectCollection = collection;
-                if (newInstDialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    collection.Brand = newInstDialog.InstBrand;
-                    collection.Name = newInstDialog.InstName;
-                    collection.Description = newInstDialog.InstDescription;
-                    var fileName = string.Format("{0}{1}.xml", collection.Brand, collection.Name);
-                    collection.BuildScpiFile(Path.Combine(ScpiUtil.ScpisPath, fileName));
-                    _CurrentScpiSubject = new ScpiSubject();
-                    _CurrentScpiSubject.OwnerCollection = collection;
-                    collection.Add(_CurrentScpiSubject);
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         private void _DeleteButton_Click(object sender, EventArgs e)

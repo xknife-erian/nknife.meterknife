@@ -84,12 +84,6 @@
     <Compile Include="ScpiCommandEditorDialog.Designer.cs">
       <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="ScpiGroupInfomationDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ScpiGroupInfomationDialog.Designer.cs">
-      <DependentUpon>ScpiGroupInfomationDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="ScpiMangerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,9 +140,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScpiCommandEditorDialog.resx">
       <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ScpiGroupInfomationDialog.resx">
-      <DependentUpon>ScpiGroupInfomationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScpiMangerForm.resx">
       <DependentUpon>ScpiMangerForm.cs</DependentUpon>

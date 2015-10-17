@@ -29,6 +29,11 @@ namespace MeterKnife.Scpis
             get { return _DescriptionTextBox.Text; }
         }
 
+        public string GroupName
+        {
+            get { return _GroupNameTextBox.Text; }
+        }
+
         private void _CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -45,6 +50,11 @@ namespace MeterKnife.Scpis
             if (string.IsNullOrEmpty(_NameComboBox.Text))
             {
                 MessageBox.Show(this, "请输入仪器的型号", "填写型号", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (string.IsNullOrEmpty(_GroupNameTextBox.Text))
+            {
+                MessageBox.Show(this, "请为当前的指令集命名", "指令集命名", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             DialogResult = DialogResult.OK;
