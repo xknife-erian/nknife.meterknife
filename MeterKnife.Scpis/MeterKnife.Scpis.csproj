@@ -90,6 +90,12 @@
     <Compile Include="ScpiGroupInfomationDialog.Designer.cs">
       <DependentUpon>ScpiGroupInfomationDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScpiMangerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScpiMangerForm.Designer.cs">
+      <DependentUpon>ScpiMangerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScpiUtil.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScpiGroupInfomationDialog.resx">
       <DependentUpon>ScpiGroupInfomationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScpiMangerForm.resx">
+      <DependentUpon>ScpiMangerForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
