@@ -1,6 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
+using MeterKnife.Scpis.ScpiTree;
 using NKnife.GUI.WinForm;
 using NKnife.IoC;
 using ScpiKnife;
@@ -12,10 +12,11 @@ namespace MeterKnife.Scpis
         public InstrumentScpiGroupTreeDialog()
         {
             InitializeComponent();
+
             _ConfirmButton.Enabled = false;
             _Tree.AfterSelect += (s, e) =>
             {
-                if (_Tree.SelectedNode is SubjectTreeNode)
+                if (_Tree.SelectedNode is SubjectGroupTreeNode)
                     _ConfirmButton.Enabled = true;
                 else
                     _ConfirmButton.Enabled = false;
@@ -38,25 +39,19 @@ namespace MeterKnife.Scpis
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            var dir = new DirectoryInfo(ScpiUtil.ScpisPath);
-            var files = dir.GetFiles("*.xml", SearchOption.AllDirectories);
-            foreach (var file in files)
-            {
-                ParseMeterFile(file);
-            }
+            UpdateTreeNodes();
         }
 
-        private void ParseMeterFile(FileInfo file)
+        private void UpdateTreeNodes()
         {
-            ScpiSubjectCollection collection = new ScpiSubjectCollection();
-            collection.BuildScpiFile(file.FullName);
-            if (collection.TryParse(null))
+            var collections = DI.Get<IScpiInfoGetter>().GetScpiSubjectCollections();
+            foreach (var collection in collections)
             {
                 var meter = string.Format("{0}{1}", collection.Brand, collection.Name);
-                var treeNode = new TreeNode(meter);
+                var treeNode = new SubjectCollectionTreeNode(meter);
                 foreach (var subject in collection)
                 {
-                    var subNode = new SubjectTreeNode
+                    var subNode = new SubjectGroupTreeNode
                     {
                         Text = subject.Name,
                         Tag = subject
@@ -83,10 +78,6 @@ namespace MeterKnife.Scpis
             CurrentMeter = _Tree.SelectedNode.Parent.Text;
             DialogResult = DialogResult.OK;
             Close();
-        }
-
-        public class SubjectTreeNode : TreeNode
-        {
         }
     }
 }

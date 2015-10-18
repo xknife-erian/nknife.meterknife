@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._IsReturnCheckBox = new System.Windows.Forms.CheckBox();
             this._BrLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this._CommandTextBox = new System.Windows.Forms.TextBox();
@@ -38,7 +39,6 @@
             this._HexEnableCheckBox = new System.Windows.Forms.CheckBox();
             this._ConfirmButton = new System.Windows.Forms.Button();
             this._CancelButton = new System.Windows.Forms.Button();
-            this._IsReturnCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._IntervalNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -63,12 +63,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "指令";
             // 
+            // _IsReturnCheckBox
+            // 
+            this._IsReturnCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._IsReturnCheckBox.AutoSize = true;
+            this._IsReturnCheckBox.Location = new System.Drawing.Point(57, 132);
+            this._IsReturnCheckBox.Name = "_IsReturnCheckBox";
+            this._IsReturnCheckBox.Size = new System.Drawing.Size(122, 17);
+            this._IsReturnCheckBox.TabIndex = 8;
+            this._IsReturnCheckBox.Text = "等待仪器返回数据";
+            this._IsReturnCheckBox.UseVisualStyleBackColor = true;
+            // 
             // _BrLabel
             // 
             this._BrLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._BrLabel.AutoSize = true;
             this._BrLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this._BrLabel.Location = new System.Drawing.Point(260, 114);
+            this._BrLabel.Location = new System.Drawing.Point(260, 112);
             this._BrLabel.Name = "_BrLabel";
             this._BrLabel.Size = new System.Drawing.Size(106, 13);
             this._BrLabel.TabIndex = 7;
@@ -143,7 +154,7 @@
             // 
             this._HexEnableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._HexEnableCheckBox.AutoSize = true;
-            this._HexEnableCheckBox.Location = new System.Drawing.Point(57, 113);
+            this._HexEnableCheckBox.Location = new System.Drawing.Point(57, 111);
             this._HexEnableCheckBox.Name = "_HexEnableCheckBox";
             this._HexEnableCheckBox.Size = new System.Drawing.Size(62, 17);
             this._HexEnableCheckBox.TabIndex = 1;
@@ -173,17 +184,6 @@
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
             this._CancelButton.Click += new System.EventHandler(this._CancelButton_Click);
-            // 
-            // _IsReturnCheckBox
-            // 
-            this._IsReturnCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._IsReturnCheckBox.AutoSize = true;
-            this._IsReturnCheckBox.Location = new System.Drawing.Point(57, 132);
-            this._IsReturnCheckBox.Name = "_IsReturnCheckBox";
-            this._IsReturnCheckBox.Size = new System.Drawing.Size(134, 17);
-            this._IsReturnCheckBox.TabIndex = 8;
-            this._IsReturnCheckBox.Text = "本命令仪器有返回值";
-            this._IsReturnCheckBox.UseVisualStyleBackColor = true;
             // 
             // ScpiCommandEditorDialog
             // 

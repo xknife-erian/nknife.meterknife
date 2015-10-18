@@ -21,9 +21,11 @@ namespace MeterKnife.Scpis
                 {
                     case ScpiCommandGroupCategory.Collect:
                         _IntervalNumericUpDown.Value = 400;
+                        _IsReturnCheckBox.Checked = true;
                         break;
                     case ScpiCommandGroupCategory.Initializtion:
                         _IntervalNumericUpDown.Value = 50;
+                        _IsReturnCheckBox.Checked = false;
                         break;
                 }
             }
