@@ -114,8 +114,11 @@ namespace MeterKnife.Scpis
             var dialog = new InstrumentScpiGroupTreeDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _StripLabel.Text = string.Format("{0} - {1}", dialog.CurrentMeter, dialog.CurrentDescription);
-                _CurrentScpiSubject = dialog.ScpiSubject;
+                if (dialog.CurrentIsSubject)
+                {
+                    _CurrentScpiSubject = dialog.SelectedScpiSubject;
+                }
+                _StripLabel.Text = dialog.CurrentMeter;
                 UpdateListView();
             }
             IsModified = false;
@@ -125,13 +128,16 @@ namespace MeterKnife.Scpis
         {
             _ListView.BeginUpdate();
             _ListView.Items.Clear();
-            foreach (var command in _CurrentScpiSubject.Initializtion)
+            if (_CurrentScpiSubject != null)
             {
-                AddListItem(ScpiCommandGroupCategory.Initializtion, command);
-            }
-            foreach (var command in _CurrentScpiSubject.Collect)
-            {
-                AddListItem(ScpiCommandGroupCategory.Collect, command);
+                foreach (var command in _CurrentScpiSubject.Initializtion)
+                {
+                    AddListItem(ScpiCommandGroupCategory.Initializtion, command);
+                }
+                foreach (var command in _CurrentScpiSubject.Collect)
+                {
+                    AddListItem(ScpiCommandGroupCategory.Collect, command);
+                }
             }
             _ListView.EndUpdate();
             _ListView.Refresh();

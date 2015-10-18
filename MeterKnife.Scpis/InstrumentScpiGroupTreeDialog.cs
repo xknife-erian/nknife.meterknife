@@ -17,29 +17,26 @@ namespace MeterKnife.Scpis
 
             _DeleteInstrumentToolStripButton.Enabled = false;
             _EditInstrumentToolStripButton.Enabled = false;
-            _NewScpiSubjectToolStripButton.Enabled = false;
 
             _ConfirmButton.Enabled = false;
 
             _Tree.AfterSelect += (s, e) =>
             {
-                _ConfirmButton.Enabled = _Tree.SelectedNode is SubjectGroupTreeNode;
+                _ConfirmButton.Enabled = (_Tree.SelectedNode != null);
                 if (_Tree.SelectedNode is SubjectCollectionTreeNode)
                 {
                     _DeleteInstrumentToolStripButton.Enabled = true;
                     _EditInstrumentToolStripButton.Enabled = true;
-                    _NewScpiSubjectToolStripButton.Enabled = true;
                 }
                 else
                 {
                     _DeleteInstrumentToolStripButton.Enabled = false;
                     _EditInstrumentToolStripButton.Enabled = false;
-                    _NewScpiSubjectToolStripButton.Enabled = false;
                 }
             };
         }
 
-        public ScpiSubject ScpiSubject
+        public ScpiSubject SelectedScpiSubject
         {
             get
             {
@@ -48,9 +45,9 @@ namespace MeterKnife.Scpis
             }
         }
 
-        public string CurrentMeter { get; private set; }
+        public bool CurrentIsSubject { get; private set; }
 
-        public string CurrentDescription { get; private set; }
+        public string CurrentMeter { get; private set; }
 
         protected override void OnShown(EventArgs e)
         {
@@ -90,8 +87,20 @@ namespace MeterKnife.Scpis
 
         private void _ConfirmButton_Click(object sender, EventArgs e)
         {
-            CurrentDescription = _Tree.SelectedNode.Text;
-            CurrentMeter = _Tree.SelectedNode.Parent.Text;
+            var treeNode = _Tree.SelectedNode;
+            ScpiSubjectCollection collection = null;
+            var node = treeNode as SubjectCollectionTreeNode;
+            if (node != null)
+            {
+                CurrentIsSubject = true;
+                collection = node.GetScpiSubjectCollection();
+            }
+            else
+            {
+                CurrentIsSubject = false;
+                collection = ((SubjectCollectionTreeNode) treeNode.Parent).GetScpiSubjectCollection();
+            }
+            CurrentMeter = string.Format("{0}{1} {2}", collection.Brand, collection.Name, collection.Description);
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -143,7 +152,7 @@ namespace MeterKnife.Scpis
             }
         }
 
-        private void _NewInstrumentToolStripButton_Click(object sender, EventArgs e)
+        private void _NewToolStripButton_Click(object sender, EventArgs e)
         {
             var dialog = new InstrumentInfoDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
@@ -159,11 +168,6 @@ namespace MeterKnife.Scpis
                 collection.Save();
                 UpdateTreeNodes();
             }
-        }
-
-        private void _NewScpiSubjectToolStripButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
