@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Scpis
 {
-    partial class NewInstrumentInfoDialog
+    partial class InstrumentInfoDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -37,11 +37,7 @@
             this._BrandComboBox = new System.Windows.Forms.ComboBox();
             this._CancelButton = new System.Windows.Forms.Button();
             this._ConfirmButton = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this._GroupNameTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -57,7 +53,7 @@
             this.groupBox1.Controls.Add(this._BrandComboBox);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(414, 145);
+            this.groupBox1.Size = new System.Drawing.Size(414, 148);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "仪器基本信息";
@@ -118,7 +114,7 @@
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(332, 233);
+            this._CancelButton.Location = new System.Drawing.Point(332, 164);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(94, 28);
             this._CancelButton.TabIndex = 3;
@@ -129,7 +125,7 @@
             // _ConfirmButton
             // 
             this._ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._ConfirmButton.Location = new System.Drawing.Point(232, 233);
+            this._ConfirmButton.Location = new System.Drawing.Point(232, 164);
             this._ConfirmButton.Name = "_ConfirmButton";
             this._ConfirmButton.Size = new System.Drawing.Size(94, 28);
             this._ConfirmButton.TabIndex = 2;
@@ -137,56 +133,26 @@
             this._ConfirmButton.UseVisualStyleBackColor = true;
             this._ConfirmButton.Click += new System.EventHandler(this._ConfirmButton_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this._GroupNameTextBox);
-            this.groupBox2.Location = new System.Drawing.Point(12, 164);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(414, 63);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "指令集功能";
-            // 
-            // _GroupNameTextBox
-            // 
-            this._GroupNameTextBox.Location = new System.Drawing.Point(68, 23);
-            this._GroupNameTextBox.Name = "_GroupNameTextBox";
-            this._GroupNameTextBox.Size = new System.Drawing.Size(314, 21);
-            this._GroupNameTextBox.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(30, 26);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "命名:";
-            // 
-            // NewInstrumentInfoDialog
+            // InstrumentInfoDialog
             // 
             this.AcceptButton = this._ConfirmButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(438, 273);
+            this.ClientSize = new System.Drawing.Size(438, 201);
             this.ControlBox = false;
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this._ConfirmButton);
             this.Controls.Add(this._CancelButton);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "NewInstrumentInfoDialog";
+            this.Name = "InstrumentInfoDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "新仪器信息";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -202,8 +168,5 @@
         private System.Windows.Forms.ComboBox _BrandComboBox;
         private System.Windows.Forms.Button _CancelButton;
         private System.Windows.Forms.Button _ConfirmButton;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox _GroupNameTextBox;
     }
 }

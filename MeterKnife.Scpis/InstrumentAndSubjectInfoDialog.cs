@@ -5,9 +5,9 @@ using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {
-    public partial class NewInstrumentInfoDialog : SimpleForm
+    public partial class InstrumentAndSubjectInfoDialog : SimpleForm
     {
-        public NewInstrumentInfoDialog()
+        public InstrumentAndSubjectInfoDialog()
         {
             InitializeComponent();
         }

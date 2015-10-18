@@ -143,7 +143,7 @@ namespace MeterKnife.Scpis
             if(string.IsNullOrEmpty(_CurrentScpiSubject.Name))
             {
                 var collection = new ScpiSubjectCollection();
-                var dialog = new NewInstrumentInfoDialog();
+                var dialog = new InstrumentAndSubjectInfoDialog();
                 dialog.ScpiSubjectCollection = collection;
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
