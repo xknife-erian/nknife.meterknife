@@ -114,6 +114,7 @@ namespace MeterKnife.Scpis
             var dialog = new InstrumentScpiGroupTreeDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
+                _CurrentScpiSubject = null;
                 if (dialog.CurrentIsSubject)
                 {
                     _CurrentScpiSubject = dialog.SelectedScpiSubject;

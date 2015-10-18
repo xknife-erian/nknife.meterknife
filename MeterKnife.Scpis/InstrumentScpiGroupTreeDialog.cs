@@ -92,12 +92,12 @@ namespace MeterKnife.Scpis
             var node = treeNode as SubjectCollectionTreeNode;
             if (node != null)
             {
-                CurrentIsSubject = true;
+                CurrentIsSubject = false;
                 collection = node.GetScpiSubjectCollection();
             }
             else
             {
-                CurrentIsSubject = false;
+                CurrentIsSubject = true;
                 collection = ((SubjectCollectionTreeNode) treeNode.Parent).GetScpiSubjectCollection();
             }
             CurrentMeter = string.Format("{0}{1} {2}", collection.Brand, collection.Name, collection.Description);
