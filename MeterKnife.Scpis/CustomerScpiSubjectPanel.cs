@@ -147,11 +147,10 @@ namespace MeterKnife.Scpis
 
         private void _SaveButton_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(_CurrentScpiSubject.Name))
+            if (string.IsNullOrEmpty(_CurrentScpiSubject.Name))
             {
                 var collection = new ScpiSubjectCollection();
-                var dialog = new InstrumentAndSubjectInfoDialog();
-                dialog.ScpiSubjectCollection = collection;
+                var dialog = new InstrumentAndSubjectInfoDialog {ScpiSubjectCollection = collection};
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
                     collection.Brand = dialog.InstBrand;
@@ -202,7 +201,7 @@ namespace MeterKnife.Scpis
 
         private void _AddCollectButton_Click(object sender, EventArgs e)
         {
-            if(_CurrentScpiSubject == null)
+            if (_CurrentScpiSubject == null)
                 _CurrentScpiSubject = new ScpiSubject();
 
             var dialog = new ScpiCommandEditorDialog();
@@ -223,7 +222,7 @@ namespace MeterKnife.Scpis
 
         protected void AddListItem(ScpiCommandGroupCategory category, ScpiCommand command)
         {
-            var listitem = new ListViewItem { Checked = true };
+            var listitem = new ListViewItem {Checked = true};
             switch (category)
             {
                 case ScpiCommandGroupCategory.Initializtion:
@@ -237,9 +236,9 @@ namespace MeterKnife.Scpis
                         _CurrentScpiSubject.Collect.Add(command);
                     break;
             }
-            var subitem = new ListViewItem.ListViewSubItem { Text = command.Command };
+            var subitem = new ListViewItem.ListViewSubItem {Text = command.Command};
             listitem.SubItems.Add(subitem);
-            subitem = new ListViewItem.ListViewSubItem { Text = command.Interval.ToString() };
+            subitem = new ListViewItem.ListViewSubItem {Text = command.Interval.ToString()};
             listitem.Checked = command.Selected;
             listitem.SubItems.Add(subitem);
             listitem.Tag = command;

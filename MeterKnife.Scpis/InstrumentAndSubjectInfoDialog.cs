@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using NKnife.GUI.WinForm;
+using NKnife.IoC;
 using ScpiKnife;
 
 namespace MeterKnife.Scpis
@@ -10,6 +11,12 @@ namespace MeterKnife.Scpis
         public InstrumentAndSubjectInfoDialog()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            var list = DI.Get<IScpiInfoGetter>().GetMeterInfoList();
         }
 
         public ScpiSubjectCollection ScpiSubjectCollection { get; set; }

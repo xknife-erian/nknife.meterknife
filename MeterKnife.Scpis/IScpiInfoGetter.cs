@@ -9,5 +9,6 @@ namespace MeterKnife.Scpis
     public interface IScpiInfoGetter
     {
         IEnumerable<ScpiSubjectCollection> GetScpiSubjectCollections();
+        IEnumerable<Tuple<string, string, string>> GetMeterInfoList();
     }
 }
