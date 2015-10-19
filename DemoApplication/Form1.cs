@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
 using MeterKnife.Common.Interfaces;
+using MeterKnife.DemoApplication.Properties;
 using MeterKnife.Scpis;
 using NKnife.IoC;
 
@@ -13,6 +14,7 @@ namespace MeterKnife.DemoApplication
         public Form1()
         {
             InitializeComponent();
+            Icon = Resources.demo;
             _Kernel = DI.Get<IMeterKernel>();
             _CustomScpiGroupMenuItem.PerformClick();
         }

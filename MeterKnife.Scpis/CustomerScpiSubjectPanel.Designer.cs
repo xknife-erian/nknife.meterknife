@@ -32,9 +32,15 @@ namespace MeterKnife.Scpis
         private void InitializeComponent()
         {
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
+            this._ListView = new System.Windows.Forms.ListView();
+            this._NumHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._CommandHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._TimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._StatusStrip = new System.Windows.Forms.StatusStrip();
+            this._StripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._OpenButton = new System.Windows.Forms.ToolStripButton();
             this._SaveButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this._AddButton = new System.Windows.Forms.ToolStripDropDownButton();
             this._AddInitButton = new System.Windows.Forms.ToolStripMenuItem();
             this._AddCollectButton = new System.Windows.Forms.ToolStripMenuItem();
             this._DeleteButton = new System.Windows.Forms.ToolStripButton();
@@ -42,14 +48,7 @@ namespace MeterKnife.Scpis
             this._DownButton = new System.Windows.Forms.ToolStripButton();
             this._UpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this._ImportButton = new System.Windows.Forms.ToolStripButton();
-            this._ExportButton = new System.Windows.Forms.ToolStripButton();
-            this._ListView = new System.Windows.Forms.ListView();
-            this._NumHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._CommandHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._TimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._StatusStrip = new System.Windows.Forms.StatusStrip();
-            this._StripLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._ToolStrip.SuspendLayout();
             this._StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -59,129 +58,17 @@ namespace MeterKnife.Scpis
             this._ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._OpenButton,
             this._SaveButton,
-            this.toolStripSplitButton1,
+            this.toolStripSeparator2,
+            this._AddButton,
             this._DeleteButton,
             this._EditButton,
-            this._DownButton,
-            this._UpButton,
             this.toolStripSeparator1,
-            this._ImportButton,
-            this._ExportButton});
+            this._DownButton,
+            this._UpButton});
             this._ToolStrip.Location = new System.Drawing.Point(0, 0);
             this._ToolStrip.Name = "_ToolStrip";
             this._ToolStrip.Size = new System.Drawing.Size(251, 25);
             this._ToolStrip.TabIndex = 0;
-            // 
-            // _OpenButton
-            // 
-            this._OpenButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._OpenButton.Image = Resources.open;
-            this._OpenButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._OpenButton.Name = "_OpenButton";
-            this._OpenButton.Size = new System.Drawing.Size(23, 22);
-            this._OpenButton.Text = "载入指令集";
-            this._OpenButton.Click += new System.EventHandler(this._OpenButton_Click);
-            // 
-            // _SaveButton
-            // 
-            this._SaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._SaveButton.Image = Resources.save;
-            this._SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._SaveButton.Name = "_SaveButton";
-            this._SaveButton.Size = new System.Drawing.Size(23, 22);
-            this._SaveButton.Text = "保存指令集";
-            this._SaveButton.Click += new System.EventHandler(this._SaveButton_Click);
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._AddInitButton,
-            this._AddCollectButton});
-            this.toolStripSplitButton1.Image = Resources.add;
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripSplitButton1.Text = "新建指令";
-            // 
-            // _AddInitButton
-            // 
-            this._AddInitButton.Name = "_AddInitButton";
-            this._AddInitButton.Size = new System.Drawing.Size(124, 22);
-            this._AddInitButton.Text = "初始指令";
-            this._AddInitButton.Click += new System.EventHandler(this._AddInitButton_Click);
-            // 
-            // _AddCollectButton
-            // 
-            this._AddCollectButton.Name = "_AddCollectButton";
-            this._AddCollectButton.Size = new System.Drawing.Size(124, 22);
-            this._AddCollectButton.Text = "采集指令";
-            this._AddCollectButton.Click += new System.EventHandler(this._AddCollectButton_Click);
-            // 
-            // _DeleteButton
-            // 
-            this._DeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DeleteButton.Image = Resources.delete;
-            this._DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._DeleteButton.Name = "_DeleteButton";
-            this._DeleteButton.Size = new System.Drawing.Size(23, 22);
-            this._DeleteButton.Text = "删除指令";
-            this._DeleteButton.Click += new System.EventHandler(this._DeleteButton_Click);
-            // 
-            // _EditButton
-            // 
-            this._EditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._EditButton.Image = Resources.edit;
-            this._EditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._EditButton.Name = "_EditButton";
-            this._EditButton.Size = new System.Drawing.Size(23, 22);
-            this._EditButton.Text = "编辑指令";
-            this._EditButton.Click += new System.EventHandler(this._EditButton_Click);
-            // 
-            // _DownButton
-            // 
-            this._DownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DownButton.Image = Resources.down;
-            this._DownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._DownButton.Name = "_DownButton";
-            this._DownButton.Size = new System.Drawing.Size(23, 22);
-            this._DownButton.Text = "将指令下移";
-            this._DownButton.Click += new System.EventHandler(this._DownButton_Click);
-            // 
-            // _UpButton
-            // 
-            this._UpButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._UpButton.Image = Resources.up;
-            this._UpButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._UpButton.Name = "_UpButton";
-            this._UpButton.Size = new System.Drawing.Size(23, 22);
-            this._UpButton.Text = "将指令上移";
-            this._UpButton.Click += new System.EventHandler(this._UpButton_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // _ImportButton
-            // 
-            this._ImportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ImportButton.Image = Resources.import;
-            this._ImportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ImportButton.Name = "_ImportButton";
-            this._ImportButton.Size = new System.Drawing.Size(23, 22);
-            this._ImportButton.Text = "导入指令集";
-            this._ImportButton.Click += new System.EventHandler(this._ImportButton_Click);
-            // 
-            // _ExportButton
-            // 
-            this._ExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ExportButton.Image = Resources.export;
-            this._ExportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._ExportButton.Name = "_ExportButton";
-            this._ExportButton.Size = new System.Drawing.Size(23, 22);
-            this._ExportButton.Text = "导出指令集";
-            this._ExportButton.Click += new System.EventHandler(this._ExportButton_Click);
             // 
             // _ListView
             // 
@@ -230,6 +117,102 @@ namespace MeterKnife.Scpis
             this._StripLabel.Name = "_StripLabel";
             this._StripLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // _OpenButton
+            // 
+            this._OpenButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._OpenButton.Image = global::MeterKnife.Scpis.Properties.Resources.open;
+            this._OpenButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._OpenButton.Name = "_OpenButton";
+            this._OpenButton.Size = new System.Drawing.Size(23, 22);
+            this._OpenButton.Text = "载入仪器功能主题";
+            this._OpenButton.Click += new System.EventHandler(this._OpenButton_Click);
+            // 
+            // _SaveButton
+            // 
+            this._SaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._SaveButton.Image = global::MeterKnife.Scpis.Properties.Resources.save;
+            this._SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._SaveButton.Name = "_SaveButton";
+            this._SaveButton.Size = new System.Drawing.Size(23, 22);
+            this._SaveButton.Text = "保存指令集";
+            this._SaveButton.Click += new System.EventHandler(this._SaveButton_Click);
+            // 
+            // _AddButton
+            // 
+            this._AddButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._AddButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._AddInitButton,
+            this._AddCollectButton});
+            this._AddButton.Image = global::MeterKnife.Scpis.Properties.Resources.add;
+            this._AddButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._AddButton.Name = "_AddButton";
+            this._AddButton.Size = new System.Drawing.Size(29, 22);
+            this._AddButton.Text = "新建指令";
+            // 
+            // _AddInitButton
+            // 
+            this._AddInitButton.Name = "_AddInitButton";
+            this._AddInitButton.Size = new System.Drawing.Size(152, 22);
+            this._AddInitButton.Text = "初始指令";
+            this._AddInitButton.Click += new System.EventHandler(this._AddInitButton_Click);
+            // 
+            // _AddCollectButton
+            // 
+            this._AddCollectButton.Name = "_AddCollectButton";
+            this._AddCollectButton.Size = new System.Drawing.Size(152, 22);
+            this._AddCollectButton.Text = "采集指令";
+            this._AddCollectButton.Click += new System.EventHandler(this._AddCollectButton_Click);
+            // 
+            // _DeleteButton
+            // 
+            this._DeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._DeleteButton.Image = global::MeterKnife.Scpis.Properties.Resources.delete;
+            this._DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteButton.Name = "_DeleteButton";
+            this._DeleteButton.Size = new System.Drawing.Size(23, 22);
+            this._DeleteButton.Text = "删除指令";
+            this._DeleteButton.Click += new System.EventHandler(this._DeleteButton_Click);
+            // 
+            // _EditButton
+            // 
+            this._EditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._EditButton.Image = global::MeterKnife.Scpis.Properties.Resources.edit;
+            this._EditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._EditButton.Name = "_EditButton";
+            this._EditButton.Size = new System.Drawing.Size(23, 22);
+            this._EditButton.Text = "编辑指令";
+            this._EditButton.Click += new System.EventHandler(this._EditButton_Click);
+            // 
+            // _DownButton
+            // 
+            this._DownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._DownButton.Image = global::MeterKnife.Scpis.Properties.Resources.down;
+            this._DownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DownButton.Name = "_DownButton";
+            this._DownButton.Size = new System.Drawing.Size(23, 22);
+            this._DownButton.Text = "将指令下移";
+            this._DownButton.Click += new System.EventHandler(this._DownButton_Click);
+            // 
+            // _UpButton
+            // 
+            this._UpButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._UpButton.Image = global::MeterKnife.Scpis.Properties.Resources.up;
+            this._UpButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._UpButton.Name = "_UpButton";
+            this._UpButton.Size = new System.Drawing.Size(23, 22);
+            this._UpButton.Text = "将指令上移";
+            this._UpButton.Click += new System.EventHandler(this._UpButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // CustomerScpiSubjectPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,20 +239,19 @@ namespace MeterKnife.Scpis
         private ColumnHeader _NumHeader;
         private ColumnHeader _CommandHeader;
         private ColumnHeader _TimeHeader;
-        private ToolStripButton _ImportButton;
         private ToolStripButton _SaveButton;
         private ToolStripButton _DeleteButton;
         private ToolStripButton _EditButton;
         private ToolStripButton _DownButton;
         private ToolStripButton _UpButton;
-        private ToolStripDropDownButton toolStripSplitButton1;
+        private ToolStripDropDownButton _AddButton;
         private ToolStripMenuItem _AddInitButton;
         private ToolStripMenuItem _AddCollectButton;
         private StatusStrip _StatusStrip;
         private ToolStripStatusLabel _StripLabel;
         private ToolStripButton _OpenButton;
+        private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton _ExportButton;
 
     }
 }

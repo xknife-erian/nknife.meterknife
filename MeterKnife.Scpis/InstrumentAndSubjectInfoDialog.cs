@@ -108,7 +108,7 @@ namespace MeterKnife.Scpis
             }
             if (string.IsNullOrEmpty(_GroupNameTextBox.Text))
             {
-                MessageBox.Show(this, "请为当前的指令集命名", "指令集命名", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(this, "请为当前的功能主题命名", "功能主题命名", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             DialogResult = DialogResult.OK;

@@ -15,21 +15,30 @@ namespace MeterKnife.Scpis
         {
             InitializeComponent();
 
+            _NewSubjectToolStripButton.Enabled = false;
             _DeleteInstrumentToolStripButton.Enabled = false;
+            _DeleteSubjectToolStripButton.Enabled = false;
             _EditInstrumentToolStripButton.Enabled = false;
+            _EditSubjectToolStripButton.Enabled = false;
 
             _ConfirmButton.Enabled = false;
 
             _Tree.AfterSelect += (s, e) =>
             {
-                _ConfirmButton.Enabled = (_Tree.SelectedNode != null);
+                _ConfirmButton.Enabled = (_Tree.SelectedNode is SubjectGroupTreeNode);
                 if (_Tree.SelectedNode is SubjectCollectionTreeNode)
                 {
+                    _NewSubjectToolStripButton.Enabled = true;
                     _DeleteInstrumentToolStripButton.Enabled = true;
                     _EditInstrumentToolStripButton.Enabled = true;
+                    _DeleteSubjectToolStripButton.Enabled = false;
+                    _EditSubjectToolStripButton.Enabled = false;
                 }
                 else
                 {
+                    _NewSubjectToolStripButton.Enabled = false;
+                    _DeleteSubjectToolStripButton.Enabled = true;
+                    _EditSubjectToolStripButton.Enabled = true;
                     _DeleteInstrumentToolStripButton.Enabled = false;
                     _EditInstrumentToolStripButton.Enabled = false;
                 }
@@ -74,7 +83,7 @@ namespace MeterKnife.Scpis
                 var treeNode = new SubjectCollectionTreeNode(collection);
                 foreach (var subject in collection)
                 {
-                    var subNode = new SubjectGroupTreeNode
+                    var subNode = new SubjectGroupTreeNode(subject)
                     {
                         Text = subject.Name,
                         Tag = subject
@@ -138,6 +147,7 @@ namespace MeterKnife.Scpis
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
+            _ConfirmButton.Enabled = _Tree.SelectedNode != null;
         }
 
         private void _EditInstrumentToolStripButton_Click(object sender, EventArgs e)
@@ -160,6 +170,7 @@ namespace MeterKnife.Scpis
                 collection.Save();
                 UpdateTreeNodes();
             }
+            _ConfirmButton.Enabled = _Tree.SelectedNode != null;
         }
 
         private void _NewToolStripButton_Click(object sender, EventArgs e)
@@ -178,6 +189,76 @@ namespace MeterKnife.Scpis
                 collection.Save();
                 UpdateTreeNodes();
             }
+            _ConfirmButton.Enabled = _Tree.SelectedNode != null;
+        }
+
+        private void _NewSubjectToolStripButton_Click(object sender, EventArgs e)
+        {
+            var dialog = new SubjectInfoDialog();
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                var node = _Tree.SelectedNode as SubjectCollectionTreeNode;
+                if (node != null)
+                {
+                    var collection = node.GetScpiSubjectCollection();
+                    var subject = new ScpiSubject();
+                    subject.OwnerCollection = collection;
+                    subject.Name = dialog.GroupName;
+                    collection.Add(subject);
+                    collection.Save();
+                    UpdateTreeNodes();
+                    _Tree.SelectedNode = node;
+                }
+            }
+            _ConfirmButton.Enabled = _Tree.SelectedNode != null;
+        }
+
+        private void _DeleteSubjectToolStripButton_Click(object sender, EventArgs e)
+        {
+            var tip = string.Format("功能主题 {1} 将要删除，您是否确认？\r\n({0})", _Tree.SelectedNode.Parent.Text, _Tree.SelectedNode.Text);
+            if (MessageBox.Show(this, tip, "删除", MessageBoxButtons.YesNo, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                var node = _Tree.SelectedNode as SubjectGroupTreeNode;
+                if (node != null)
+                {
+                    var subject = (ScpiSubject) node.Tag;
+                    subject.OwnerCollection.Remove(subject);
+                    subject.OwnerCollection.Save();
+                    UpdateTreeNodes();
+                }
+            }
+            _ConfirmButton.Enabled = _Tree.SelectedNode != null;
+        }
+
+        private void _EditSubjectToolStripButton_Click(object sender, EventArgs e)
+        {
+            var node = _Tree.SelectedNode as SubjectGroupTreeNode;
+            if (node != null)
+            {
+                var subject = (ScpiSubject) node.Tag;
+                var dialog = new SubjectInfoDialog();
+                dialog.GroupName = subject.Name;
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    subject.Name = dialog.GroupName;
+                    //subject.OwnerCollection.Add(subject);
+                    subject.OwnerCollection.Save();
+                    UpdateTreeNodes();
+                    _Tree.SelectedNode = node;
+                }
+            }
+            _ConfirmButton.Enabled = _Tree.SelectedNode != null;
+        }
+
+        private void _ExportButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _ImportButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

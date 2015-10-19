@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BC6EF4B5-6803-4216-896B-58ABB72F4ACE}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MeterKnife.Scpis</RootNamespace>
     <AssemblyName>MeterKnife.Scpis</AssemblyName>
@@ -30,6 +30,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Properties\scpi-manager.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
@@ -105,6 +111,12 @@
     </Compile>
     <Compile Include="ScpiTree\SubjectGroupTreeNode.cs" />
     <Compile Include="ScpiUtil.cs" />
+    <Compile Include="SubjectInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubjectInfoDialog.Designer.cs">
+      <DependentUpon>SubjectInfoDialog.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +173,9 @@
     <EmbeddedResource Include="ScpiMangerForm.resx">
       <DependentUpon>ScpiMangerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SubjectInfoDialog.resx">
+      <DependentUpon>SubjectInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
@@ -177,9 +192,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Properties\base-toolstrip\add-subject.png" />
     <Content Include="Properties\base-toolstrip\add.png" />
+    <Content Include="Properties\base-toolstrip\delete-subject.png" />
     <Content Include="Properties\base-toolstrip\delete.png" />
     <Content Include="Properties\base-toolstrip\down.png" />
+    <Content Include="Properties\base-toolstrip\edit-subject.png" />
     <Content Include="Properties\base-toolstrip\edit.png" />
     <Content Include="Properties\base-toolstrip\export.png" />
     <Content Include="Properties\base-toolstrip\import.png" />
@@ -189,6 +207,7 @@
     <Content Include="Properties\base-toolstrip\subject-collection.png" />
     <Content Include="Properties\base-toolstrip\subject-group.png" />
     <Content Include="Properties\base-toolstrip\up.png" />
+    <Content Include="Properties\scpi-manager.ico" />
     <None Include="Scpis\Specified\AdvantestR6581.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

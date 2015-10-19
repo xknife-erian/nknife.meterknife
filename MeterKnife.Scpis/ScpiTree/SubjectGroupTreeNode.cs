@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ScpiKnife;
 
 namespace MeterKnife.Scpis.ScpiTree
 {
     public class SubjectGroupTreeNode : TreeNode
     {
-        public SubjectGroupTreeNode()
-            : this("")
+        public SubjectGroupTreeNode(ScpiSubject scpiSubject)
+            : this(scpiSubject.Name)
         {
         }
 

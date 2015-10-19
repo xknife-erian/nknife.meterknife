@@ -135,7 +135,7 @@
             this.groupBox2.Size = new System.Drawing.Size(414, 63);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "指令集主题";
+            this.groupBox2.Text = "功能主题信息";
             // 
             // label4
             // 
@@ -144,7 +144,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "命名:";
+            this.label4.Text = "名称:";
             // 
             // _GroupNameTextBox
             // 

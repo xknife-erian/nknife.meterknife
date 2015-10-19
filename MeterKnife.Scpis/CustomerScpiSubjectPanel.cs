@@ -35,6 +35,7 @@ namespace MeterKnife.Scpis
                     SetToolStripState(e.IsCollected);
             };
             _SaveButton.Enabled = false;
+            _AddButton.Enabled = false;
             _DeleteButton.Enabled = false;
             _EditButton.Enabled = false;
             _UpButton.Enabled = false;
@@ -125,6 +126,7 @@ namespace MeterKnife.Scpis
                 {
                     _CurrentScpiSubjectCollection = dialog.SelectedScpiSubjectCollection;
                 }
+                _AddButton.Enabled = true;
                 _StripLabel.Text = dialog.CurrentMeter;
                 UpdateListView();
             }
@@ -377,16 +379,6 @@ namespace MeterKnife.Scpis
             UpdateListView();
             group.Items[n - 1].Selected = true;
             IsModified = true;
-        }
-
-        private void _ImportButton_Click(object sender, EventArgs e)
-        {
-            //TODO:导入,导出未完成
-        }
-
-        private void _ExportButton_Click(object sender, EventArgs e)
-        {
-            //TODO:导入,导出未完成
         }
 
         #region 获取指令
