@@ -25,7 +25,6 @@ namespace MeterKnife.Lite
         {
             if (IsLite)
             {
-                _PhotoToolStripButton.Visible = false;
                 _ZoomInToolStripButton.Visible = false;
                 _ZoomOutToolStripButton.Visible = false;
                 _SaveStripButton.Visible = false;
