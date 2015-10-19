@@ -23,7 +23,7 @@ namespace MeterKnife.Scpis
             return list;
         }
 
-        public IEnumerable<Tuple<string, string, string>> GetMeterInfoList()
+        public List<Tuple<string, string, string>> GetMeterInfoList()
         {
             var list = new List<Tuple<string, string, string>>();
             var files = _Directory.GetFiles("*.xml", SearchOption.AllDirectories);
@@ -31,7 +31,7 @@ namespace MeterKnife.Scpis
             {
                 var collection = new ScpiSubjectCollection();
                 collection.BuildScpiFile(file.FullName);
-                collection.TryParse(null, false);
+                collection.TryParse(null, false);//快速解析
                 list.Add(new Tuple<string, string, string>(collection.Brand, collection.Name, collection.Description));
             }
             return list;

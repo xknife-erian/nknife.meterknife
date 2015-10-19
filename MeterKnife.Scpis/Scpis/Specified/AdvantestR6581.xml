@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <instrument>
-  <information version="1.0" brand="Agilent" name="R6581" type="DigitalMultimeter">
+  <information version="1.0" brand="Advantest" name="R6581" description="-Advantest-R6581" type="DigitalMultimeter">
   </information>
   <scpigroups>
     <subject description="电压测量">

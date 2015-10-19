@@ -16,6 +16,7 @@ namespace MeterKnife.Scpis
 
         private readonly string _ScpiSubjectKey = Guid.NewGuid().ToString();
         private ScpiSubject _CurrentScpiSubject;
+        private ScpiSubjectCollection _CurrentScpiSubjectCollection;
 
         private bool _IsModified;
 
@@ -115,9 +116,14 @@ namespace MeterKnife.Scpis
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 _CurrentScpiSubject = null;
+                _CurrentScpiSubjectCollection = null;
                 if (dialog.CurrentIsSubject)
                 {
                     _CurrentScpiSubject = dialog.SelectedScpiSubject;
+                }
+                else
+                {
+                    _CurrentScpiSubjectCollection = dialog.SelectedScpiSubjectCollection;
                 }
                 _StripLabel.Text = dialog.CurrentMeter;
                 UpdateListView();
@@ -147,7 +153,7 @@ namespace MeterKnife.Scpis
 
         private void _SaveButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_CurrentScpiSubject.Name))
+            if (string.IsNullOrEmpty(_CurrentScpiSubject.Name) && _CurrentScpiSubjectCollection == null)
             {
                 var collection = new ScpiSubjectCollection();
                 var dialog = new InstrumentAndSubjectInfoDialog {ScpiSubjectCollection = collection};
@@ -169,7 +175,26 @@ namespace MeterKnife.Scpis
                     return;
                 }
             }
-            if (_CurrentScpiSubject.OwnerCollection.Save())
+            else if (_CurrentScpiSubjectCollection != null)
+            {
+                var dialog = new InstrumentAndSubjectInfoDialog
+                {
+                    ScpiSubjectCollection = _CurrentScpiSubjectCollection
+                };
+                dialog.Initialize(_CurrentScpiSubjectCollection.Brand, _CurrentScpiSubjectCollection.Name, _CurrentScpiSubjectCollection.Description);
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    _CurrentScpiSubjectCollection.Add(_CurrentScpiSubject);
+                    _CurrentScpiSubject.OwnerCollection = _CurrentScpiSubjectCollection;
+                }
+                else
+                {
+                    MessageBox.Show(this, "指令集集合的名称不能为空，未执行保存操作。", "未保存", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+            if (_CurrentScpiSubject.OwnerCollection != null && _CurrentScpiSubject.OwnerCollection.Save())
             {
                 var brand = _CurrentScpiSubject.OwnerCollection.Brand;
                 var name = _CurrentScpiSubject.OwnerCollection.Name;

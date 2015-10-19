@@ -167,7 +167,7 @@
     <Compile Include="DataModels\CareTalking.cs" />
     <Compile Include="DataModels\CollectData.cs" />
     <Compile Include="DataModels\FiguredData.cs" />
-    <Compile Include="DataModels\MeterCollection.cs" />
+    <Compile Include="DataModels\BrandCollection.cs" />
     <Compile Include="EventParameters\CollectDataEventArgs.cs" />
     <Compile Include="Base\BaseCareCommunicationService.cs" />
     <Compile Include="EventParameters\InterfaceNodeClickedEventArgs.cs" />

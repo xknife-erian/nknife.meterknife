@@ -44,6 +44,16 @@ namespace MeterKnife.Scpis
                 return (ScpiSubject) treeNode.Tag;
             }
         }
+        public ScpiSubjectCollection SelectedScpiSubjectCollection
+        {
+            get
+            {
+                var node = _Tree.SelectedNode as SubjectCollectionTreeNode;
+                if (node != null) 
+                    return node.GetScpiSubjectCollection();
+                return null;
+            }
+        }
 
         public bool CurrentIsSubject { get; private set; }
 

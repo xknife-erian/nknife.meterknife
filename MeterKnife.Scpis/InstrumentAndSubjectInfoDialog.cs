@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MeterKnife.Common.DataModels;
 using NKnife.GUI.WinForm;
 using NKnife.IoC;
 using ScpiKnife;
@@ -8,15 +9,22 @@ namespace MeterKnife.Scpis
 {
     public partial class InstrumentAndSubjectInfoDialog : SimpleForm
     {
+        private readonly BrandCollection _BrandCollection;
+
         public InstrumentAndSubjectInfoDialog()
         {
             InitializeComponent();
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
             var list = DI.Get<IScpiInfoGetter>().GetMeterInfoList();
+            _BrandCollection = new BrandCollection(list);
+
+            foreach (var brand in _BrandCollection.Brands)
+                _BrandComboBox.Items.Add(brand);
+
+            _BrandComboBox.SelectedIndex = 0;
+            UpdateNameAndDescription();
+
+            _BrandComboBox.SelectedIndexChanged += _BrandComboBox_SelectedIndexChanged;
+            _NameComboBox.SelectedIndexChanged += _NameComboBox_SelectedIndexChanged;
         }
 
         public ScpiSubjectCollection ScpiSubjectCollection { get; set; }
@@ -40,6 +48,45 @@ namespace MeterKnife.Scpis
         {
             get { return _GroupNameTextBox.Text; }
         }
+
+        public void Initialize(string brand, string name, string description)
+        {
+            var i = _BrandComboBox.Items.IndexOf(brand);
+            if (i >= 0)
+                _BrandComboBox.SelectedIndex = i;
+            i = _NameComboBox.Items.IndexOf(name);
+            if (i >= 0)
+                _NameComboBox.Text = name;
+        }
+
+        private void _BrandComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateNameAndDescription();
+        }
+
+        private void UpdateNameAndDescription()
+        {
+            _NameComboBox.Items.Clear();
+            var names = _BrandCollection.ByBrand(_BrandComboBox.SelectedItem.ToString());
+            if (names != null && names.Count > 0)
+            {
+                foreach (var name in names)
+                    _NameComboBox.Items.Add(name.Item2);
+                _NameComboBox.SelectedIndex = 0;
+                _DescriptionTextBox.Text = names[0].Item3;
+            }
+            _NameComboBox.Update();
+        }
+
+        private void _NameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var t = _BrandCollection.ByBrandAndName(_BrandComboBox.Text, _NameComboBox.Text);
+            if (t != null)
+                _DescriptionTextBox.Text = t.Item3;
+            else
+                _DescriptionTextBox.Clear();
+        }
+
 
         private void _CancelButton_Click(object sender, EventArgs e)
         {
