@@ -186,6 +186,7 @@ namespace MeterKnife.Scpis
                 {
                     _CurrentScpiSubjectCollection.Add(_CurrentScpiSubject);
                     _CurrentScpiSubject.OwnerCollection = _CurrentScpiSubjectCollection;
+                    _CurrentScpiSubject.Name = dialog.GroupName;
                 }
                 else
                 {
