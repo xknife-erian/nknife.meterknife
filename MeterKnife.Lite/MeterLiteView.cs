@@ -5,7 +5,6 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.Controls;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Instruments;
-using MeterKnife.Instruments.Common;
 using MeterKnife.Scpis;
 using ScpiKnife;
 
@@ -29,6 +28,8 @@ namespace MeterKnife.Lite
                 _ZoomOutToolStripButton.Visible = false;
                 _SaveStripButton.Visible = false;
                 _PrintStripButton.Visible = false;
+                _PhotoToolStripButton.Visible = false;
+                _FilterToolStripButton.Visible = false;
             }
         }
 

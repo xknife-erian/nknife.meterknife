@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.Interfaces;
-using MeterKnife.Instruments.Common;
 using MeterKnife.Instruments.Specified;
-using MeterKnife.Instruments.Specified.Agilent;
-using MeterKnife.Instruments.Specified.Keithley;
 using Ninject.Activation;
 using Ninject.Modules;
 

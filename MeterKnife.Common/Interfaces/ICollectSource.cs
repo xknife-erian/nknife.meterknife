@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Enums;
 using MeterKnife.Common.EventParameters;
 
@@ -19,6 +20,8 @@ namespace MeterKnife.Common.Interfaces
         bool HasData { get; }
 
         void Clear();
+
+        FiguredDataFilter Filter { get; set; }
 
         /// <summary>
         /// 导出到Excle文件

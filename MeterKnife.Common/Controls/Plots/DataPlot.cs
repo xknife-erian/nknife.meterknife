@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
 using OxyPlot;
@@ -29,6 +30,7 @@ namespace MeterKnife.Common.Controls.Plots
                 ZoomHorizontalCursor = Cursors.SizeWE,
                 ZoomRectangleCursor = Cursors.SizeNWSE,
                 ZoomVerticalCursor = Cursors.SizeNS,
+                // ReSharper disable once DoNotCallOverridableMethodsInConstructor
                 Model = BuildPlotModel()
             };
             Controls.Add(plot);
@@ -96,10 +98,8 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected object SelectValue(FiguredData fd)
         {
-            DataTable table = fd.DataSet.Tables[1];
-            int count = fd.DataSet.Tables[1].Rows.Count - 1;
-            if (count < 0) return 0;
-            return table.Rows[count][ValueHead];
+            var row = fd.DataSet.Tables[1].AsEnumerable().Last();
+            return row == null ? 0 : row[ValueHead];
         }
 
         public virtual void Update(FiguredData fd)

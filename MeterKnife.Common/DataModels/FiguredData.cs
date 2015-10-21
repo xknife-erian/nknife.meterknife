@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.IO;
+using System.Linq;
+using Common.Logging;
 using MathNet.Numerics.Statistics;
 using MeterKnife.Common.Enums;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Util;
 using NKnife.IoC;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
 
 namespace MeterKnife.Common.DataModels
 {
@@ -20,6 +19,7 @@ namespace MeterKnife.Common.DataModels
         public const string VALUE = "value";
         public const string TEMPERATURE = "temperature";
         public const string STANDARD_DEVIATION = "standard_deviation";
+        private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
 
         protected readonly ITemperatureService _TempService = DI.Get<ITemperatureService>();
         protected double _CurrentTemperature;
@@ -30,6 +30,193 @@ namespace MeterKnife.Common.DataModels
         protected int _SampleRange = 50;
         protected RunningStatistics _TemperatureRunningStatistics = new RunningStatistics();
         protected List<double> _Values = new List<double>();
+
+        public FiguredData()
+        {
+            MeterRange = MeterRange.None;
+            Filter = new FiguredDataFilter();
+            Clear();
+
+            var baseTable = new DataTable("BaseInfomation");
+            baseTable.Columns.Add(new DataColumn("Key", typeof (string)));
+            baseTable.Columns.Add(new DataColumn("Value", typeof (string)));
+            _DataSet.Tables.Add(baseTable);
+
+            var collectTable = new DataTable("CollectData");
+            collectTable.Columns.Add(new DataColumn("datetime", typeof (DateTime)));
+            collectTable.Columns.Add(new DataColumn("value", typeof (double)));
+            collectTable.Columns.Add(new DataColumn("temperature", typeof (double)));
+            collectTable.Columns.Add(new DataColumn("standard_deviation", typeof (double)));
+            collectTable.Columns.Add(new DataColumn("ppv", typeof (double)));
+            collectTable.Columns.Add(new DataColumn("abnormal", typeof (bool)));//是否是异常数据
+            _DataSet.Tables.Add(collectTable);
+        }
+
+        [Browsable(false)]
+        public IMeter Meter { get; set; }
+
+        public bool Save(string fileFullName)
+        {
+            return DI.Get<IMeterDataService>().Save(fileFullName, DataSet);
+        }
+
+        public event EventHandler<CollectDataEventArgs> ReceviedCollectData;
+
+        [Browsable(false)]
+        public DataSet DataSet
+        {
+            get { return _DataSet; }
+        }
+
+        [Browsable(false)]
+        public MeterRange MeterRange { get; set; }
+
+        [Browsable(false)]
+        public bool HasData
+        {
+            get { return _DataSet.Tables[1].Rows.Count > 0; }
+        }
+
+        public void Clear()
+        {
+            if (_DataSet.Tables.Count > 1)
+            {
+                _DataSet.Tables[1].Rows.Clear();
+                _DataSet.AcceptChanges();
+            }
+            _CurrentTemperature = 0;
+            _RunningStatistics = new RunningStatistics();
+            _TemperatureRunningStatistics = new RunningStatistics();
+
+            Ppvalue = "0";
+            TemperaturePpvalue = "0";
+
+            SampleInterquartileRangeInplace = "0";
+            SampleKurtosis = "0";
+            SampleLowerQuartile = "0";
+            SampleMean = "0";
+            SampleMedianInplace = "0";
+            SampleRootMeanSquareValue = "0";
+            SampleSkewness = "0";
+            SampleStandardDeviation = "0";
+            SampleUpperQuartile = "0";
+
+            _Values.Clear();
+        }
+
+        [Browsable(false)]
+        public FiguredDataFilter Filter { get; set; }
+
+        public void SetRange(int range)
+        {
+            if (range <= 0 || range >= int.MaxValue)
+                return;
+            _SampleRange = range;
+            if (_Values.Count > range)
+            {
+                while (_Values.Count > range)
+                {
+                    _Values.RemoveAt(0);
+                }
+            }
+        }
+
+        public virtual void Add(double value)
+        {
+            var v = MeterRangeCalculator.Run(MeterRange, value);
+            var s = v.ToString();
+            var n = s.Length - s.IndexOf('.');
+            _DecimalDigit = string.Format("f{0}", n);
+            _PpmDecimalDigit = string.Format("f{0}", ((uint) (n/2)) + 2);
+
+            double sampleStandardDeviation = 0;
+
+            bool inFilter = false;
+            if (Filter.Multiple != 0 && _DataSet.Tables[1].Rows.Count > 3)
+            {
+                var pre = (double) _DataSet.Tables[1].AsEnumerable().Last()["value"];
+                var cha = Math.Abs(v - pre);
+                var avg = GetPpvMean(_DataSet.Tables[1]);
+                if (cha/avg > Filter.Multiple)
+                {
+                    _logger.Info(string.Format("{0}在被过滤范围内", v));
+                    inFilter = true;
+                }
+            }
+
+            if (Filter.InStatistical)
+            {
+                _RunningStatistics.Push(v);
+
+                if (_Values.Count >= _SampleRange)
+                    _Values.RemoveAt(0);
+                _Values.Add(v);
+                var ds = new DescriptiveStatistics(_Values);
+                SampleKurtosis = ds.Kurtosis.ToString(_DecimalDigit);
+                SampleSkewness = ds.Skewness.ToString(_DecimalDigit);
+
+                var array = _Values.ToArray();
+                var mean = ArrayStatistics.Mean(array);
+                SampleMean = mean.ToString(_DecimalDigit);
+                sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
+                SampleStandardDeviation = GetPpmValue(sampleStandardDeviation/mean);
+                SampleRootMeanSquareValue = ArrayStatistics.RootMeanSquare(array).ToString(_DecimalDigit);
+
+                Array.Sort(array);
+                SampleInterquartileRangeInplace = GetPpmValue(SortedArrayStatistics.InterquartileRange(array));
+                SampleMedianInplace = SortedArrayStatistics.Median(array).ToString(_DecimalDigit);
+                SampleLowerQuartile = SortedArrayStatistics.LowerQuartile(array).ToString(_DecimalDigit);
+                SampleUpperQuartile = SortedArrayStatistics.UpperQuartile(array).ToString(_DecimalDigit);
+
+                Ppvalue = Math.Abs(_RunningStatistics.Maximum - _RunningStatistics.Minimum).ToString(_DecimalDigit); //峰峰值
+                TemperaturePpvalue = Math.Abs(_TemperatureRunningStatistics.Maximum - _TemperatureRunningStatistics.Minimum).ToString("f3"); //峰峰值
+
+                UpdateTemperature();
+
+                ExtremePoint = new Tuple<double, double>(_RunningStatistics.Maximum, _RunningStatistics.Minimum);
+                TemperatureExtremePoint = new Tuple<double, double>(_TemperatureRunningStatistics.Maximum, _TemperatureRunningStatistics.Minimum);
+            }
+            if (Filter.IsSave)
+            {
+                _DataSet.Tables[1].Rows.Add(DateTime.Now, v, _CurrentTemperature, sampleStandardDeviation, Ppvalue, inFilter);
+                //触发数据源发生变化
+                OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, v, _CurrentTemperature)));
+            }
+        }
+
+        private static double GetPpvMean(DataTable dataTable)
+        {
+            var act = new List<double>();
+            var list = dataTable.AsEnumerable().ToList();
+            var index = list.Count - 1;
+            var i = 0;
+            while (i < 50 && index - i > 0)
+            {
+                var n = (double) list[index - i]["ppv"];
+                act.Add(n);
+                i++;
+            }
+            return ArrayStatistics.Mean(act.ToArray());
+        }
+
+        protected string GetPpmValue(double value)
+        {
+            var d = value*1000000;
+            return string.Format("{0} ppm", d.ToString(_PpmDecimalDigit));
+        }
+
+        protected virtual void UpdateTemperature()
+        {
+            _CurrentTemperature = _TempService.TemperatureValues[0];
+            _TemperatureRunningStatistics.Push(_CurrentTemperature);
+        }
+
+        protected virtual void OnReceviedCollectData(CollectDataEventArgs e)
+        {
+            var handler = ReceviedCollectData;
+            if (handler != null)
+                handler(this, e);
+        }
 
         #region 数据集统计属性
 
@@ -63,7 +250,7 @@ namespace MeterKnife.Common.DataModels
             }
         }
 
-        [Category("数据"), DisplayName("峰峰值")]
+        [Category("数据"), DisplayName("峰-峰值")]
         public string Ppvalue { get; private set; }
 
         [Category("数据"), DisplayName("算术平均值")]
@@ -173,7 +360,7 @@ namespace MeterKnife.Common.DataModels
             }
         }
 
-        [Category("温度"), DisplayName("峰峰值")]
+        [Category("温度"), DisplayName("峰-峰值")]
         public string TemperaturePpvalue { get; private set; }
 
         [Category("温度"), DisplayName("算术平均值")]
@@ -200,151 +387,5 @@ namespace MeterKnife.Common.DataModels
         #endregion
 
         #endregion
-
-        public FiguredData()
-        {
-            MeterRange = MeterRange.None;
-            Clear();
-
-            var baseTable = new DataTable("BaseInfomation");
-            baseTable.Columns.Add(new DataColumn("Key", typeof (string)));
-            baseTable.Columns.Add(new DataColumn("Value", typeof (string)));
-            _DataSet.Tables.Add(baseTable);
-
-            var collectTable = new DataTable("CollectData");
-            collectTable.Columns.Add(new DataColumn("datetime", typeof (DateTime)));
-            collectTable.Columns.Add(new DataColumn("value", typeof (double)));
-            collectTable.Columns.Add(new DataColumn("temperature", typeof (double)));
-            collectTable.Columns.Add(new DataColumn("standard_deviation", typeof (double)));
-            _DataSet.Tables.Add(collectTable);
-        }
-
-        [Browsable(false)]
-        public IMeter Meter { get; set; }
-
-        public bool Save(string fileFullName)
-        {
-            return DI.Get<IMeterDataService>().Save(fileFullName, DataSet);
-        }
-
-        public event EventHandler<CollectDataEventArgs> ReceviedCollectData;
-
-        [Browsable(false)]
-        public DataSet DataSet
-        {
-            get { return _DataSet; }
-        }
-
-        [Browsable(false)]
-        public MeterRange MeterRange { get; set; }
-
-        [Browsable(false)]
-        public bool HasData
-        {
-            get { return _DataSet.Tables[1].Rows.Count > 0; }
-        }
-
-        public void Clear()
-        {
-            if (_DataSet.Tables.Count > 1)
-            {
-                _DataSet.Tables[1].Rows.Clear();
-                _DataSet.AcceptChanges();
-            }
-            _CurrentTemperature = 0;
-            _RunningStatistics = new RunningStatistics();
-            _TemperatureRunningStatistics = new RunningStatistics();
-
-            Ppvalue = "0";
-            TemperaturePpvalue = "0";
-
-            SampleInterquartileRangeInplace = "0";
-            SampleKurtosis = "0";
-            SampleLowerQuartile = "0";
-            SampleMean = "0";
-            SampleMedianInplace = "0";
-            SampleRootMeanSquareValue = "0";
-            SampleSkewness = "0";
-            SampleStandardDeviation = "0";
-            SampleUpperQuartile = "0";
-
-            _Values.Clear();
-        }
-
-        public void SetRange(int range)
-        {
-            if (range <= 0 || range >= int.MaxValue)
-                return;
-            _SampleRange = range;
-            if (_Values.Count > range)
-            {
-                while (_Values.Count > range)
-                {
-                    _Values.RemoveAt(0);
-                }
-            }
-        }
-
-        public virtual void Add(double value)
-        {
-            double v = MeterRangeCalculator.Run(MeterRange, value);
-            string s = v.ToString();
-            int n = s.Length - s.IndexOf('.');
-            _DecimalDigit = string.Format("f{0}", n);
-            _PpmDecimalDigit = string.Format("f{0}", ((uint) (n/2)) + 2);
-
-            _RunningStatistics.Push(v);
-
-            if (_Values.Count >= _SampleRange)
-                _Values.RemoveAt(0);
-            _Values.Add(v);
-            var ds = new DescriptiveStatistics(_Values);
-            SampleKurtosis = ds.Kurtosis.ToString(_DecimalDigit);
-            SampleSkewness = ds.Skewness.ToString(_DecimalDigit);
-
-            double[] array = _Values.ToArray();
-            var mean = ArrayStatistics.Mean(array);
-            SampleMean = mean.ToString(_DecimalDigit);
-            double sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
-            SampleStandardDeviation = GetPpmValue(sampleStandardDeviation / mean);
-            SampleRootMeanSquareValue = ArrayStatistics.RootMeanSquare(array).ToString(_DecimalDigit);
-
-            Array.Sort(array);
-            SampleInterquartileRangeInplace = GetPpmValue(SortedArrayStatistics.InterquartileRange(array));
-            SampleMedianInplace = SortedArrayStatistics.Median(array).ToString(_DecimalDigit);
-            SampleLowerQuartile = SortedArrayStatistics.LowerQuartile(array).ToString(_DecimalDigit);
-            SampleUpperQuartile = SortedArrayStatistics.UpperQuartile(array).ToString(_DecimalDigit);
-
-            Ppvalue = Math.Abs(_RunningStatistics.Maximum - _RunningStatistics.Minimum).ToString(_DecimalDigit); //峰峰值
-            TemperaturePpvalue = Math.Abs(_TemperatureRunningStatistics.Maximum - _TemperatureRunningStatistics.Minimum).ToString("f3"); //峰峰值
-
-            UpdateTemperature();
-
-            ExtremePoint = new Tuple<double, double>(_RunningStatistics.Maximum, _RunningStatistics.Minimum);
-            TemperatureExtremePoint = new Tuple<double, double>(_TemperatureRunningStatistics.Maximum, _TemperatureRunningStatistics.Minimum);
-
-            _DataSet.Tables[1].Rows.Add(DateTime.Now, v, _CurrentTemperature, sampleStandardDeviation);
-            //触发数据源发生变化
-            OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, v, _CurrentTemperature)));
-        }
-
-        protected string GetPpmValue(double value)
-        {
-            double d = value*1000000;
-            return string.Format("{0} ppm", d.ToString(_PpmDecimalDigit));
-        }
-
-        protected virtual void UpdateTemperature()
-        {
-            _CurrentTemperature = _TempService.TemperatureValues[0];
-            _TemperatureRunningStatistics.Push(_CurrentTemperature);
-        }
-
-        protected virtual void OnReceviedCollectData(CollectDataEventArgs e)
-        {
-            EventHandler<CollectDataEventArgs> handler = ReceviedCollectData;
-            if (handler != null)
-                handler(this, e);
-        }
     }
 }

@@ -29,9 +29,9 @@ namespace MeterKnife.Instruments
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
         private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
 
-        private bool _IsDispose;
-
         protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
+
+        private bool _IsDispose;
 
         protected StandardNormalDistributionPlot _SdPlot = new StandardNormalDistributionPlot();
         protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
@@ -99,7 +99,7 @@ namespace MeterKnife.Instruments
             _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
             _logger.Info("面板初始化仪器完成..");
         }
-        
+
         protected void SetRangeDropDownButtonState()
         {
             autoToolStripMenuItem.Click += (s, e) =>
@@ -231,7 +231,7 @@ namespace MeterKnife.Instruments
         }
 
         #region 按键响应
-        
+
         private void _StartStripButton_Click(object sender, EventArgs e)
         {
             if (_FiguredData.HasData)
@@ -301,6 +301,11 @@ namespace MeterKnife.Instruments
         private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
         {
             PlotsClear();
+        }
+
+        private void _FilterToolStripButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void _PhotoToolStripButton_Click(object sender, EventArgs e)
@@ -374,6 +379,5 @@ namespace MeterKnife.Instruments
         }
 
         #endregion
-
     }
 }
