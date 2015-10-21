@@ -28,6 +28,7 @@ namespace MeterKnife.Lite
                 _ZoomInToolStripButton.Visible = false;
                 _ZoomOutToolStripButton.Visible = false;
                 _SaveStripButton.Visible = false;
+                _PrintStripButton.Visible = false;
             }
         }
 

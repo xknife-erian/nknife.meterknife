@@ -34,6 +34,7 @@ namespace MeterKnife.Scpis
             this._CancelButton = new System.Windows.Forms.Button();
             this._ConfirmButton = new System.Windows.Forms.Button();
             this._Panel = new System.Windows.Forms.Panel();
+            this._Tree = new MeterKnife.Scpis.ScpiTree.SubjectFileTree();
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
             this._NewInstrumentToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._NewSubjectToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -46,7 +47,6 @@ namespace MeterKnife.Scpis
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._ExportButton = new System.Windows.Forms.ToolStripButton();
             this._ImportButton = new System.Windows.Forms.ToolStripButton();
-            this._Tree = new MeterKnife.Scpis.ScpiTree.SubjectFileTree();
             this._Panel.SuspendLayout();
             this._ToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +86,19 @@ namespace MeterKnife.Scpis
             this._Panel.Padding = new System.Windows.Forms.Padding(5);
             this._Panel.Size = new System.Drawing.Size(312, 346);
             this._Panel.TabIndex = 3;
+            // 
+            // _Tree
+            // 
+            this._Tree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._Tree.FullRowSelect = true;
+            this._Tree.ImageIndex = 0;
+            this._Tree.ItemHeight = 22;
+            this._Tree.Location = new System.Drawing.Point(5, 30);
+            this._Tree.Name = "_Tree";
+            this._Tree.SelectedImageIndex = 0;
+            this._Tree.ShowLines = false;
+            this._Tree.Size = new System.Drawing.Size(302, 311);
+            this._Tree.TabIndex = 0;
             // 
             // _ToolStrip
             // 
@@ -185,6 +198,7 @@ namespace MeterKnife.Scpis
             // _ExportButton
             // 
             this._ExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ExportButton.Enabled = false;
             this._ExportButton.Image = global::MeterKnife.Scpis.Properties.Resources.export;
             this._ExportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ExportButton.Name = "_ExportButton";
@@ -195,25 +209,13 @@ namespace MeterKnife.Scpis
             // _ImportButton
             // 
             this._ImportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ImportButton.Enabled = false;
             this._ImportButton.Image = global::MeterKnife.Scpis.Properties.Resources.import;
             this._ImportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ImportButton.Name = "_ImportButton";
             this._ImportButton.Size = new System.Drawing.Size(23, 22);
             this._ImportButton.Text = "导入";
             this._ImportButton.Click += new System.EventHandler(this._ImportButton_Click);
-            // 
-            // _Tree
-            // 
-            this._Tree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._Tree.FullRowSelect = true;
-            this._Tree.ImageIndex = 0;
-            this._Tree.ItemHeight = 22;
-            this._Tree.Location = new System.Drawing.Point(5, 30);
-            this._Tree.Name = "_Tree";
-            this._Tree.SelectedImageIndex = 0;
-            this._Tree.ShowLines = false;
-            this._Tree.Size = new System.Drawing.Size(302, 311);
-            this._Tree.TabIndex = 0;
             // 
             // InstrumentScpiGroupTreeDialog
             // 

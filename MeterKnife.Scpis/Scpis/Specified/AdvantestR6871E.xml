@@ -1,52 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<instrument>
-  <information version="1.0" brand="Advantest" name="R6871E">
+<instrument version="1.0">
+  <information version="1.0" brand="Advantest" name="R6871E" description="">
   </information>
   <scpigroups>
-    <subject description="电压测量">
+    <subject description="电阻2线测量">
       <group way="init">
-        <scpi interval="200">
-          <![CDATA[INIT?]]>
-        </scpi>
-        <scpi interval="200" hex="true">
-          <![CDATA[]]>
-        </scpi>
+        <scpi interval="600" hex="False" return="False"><![CDATA[F3]]></scpi>
       </group>
       <group way="collect">
-        <scpi interval="200">
-          <![CDATA[READ?]]>
-        </scpi>
+        <scpi interval="500" hex="False" return="True"><![CDATA[E]]></scpi>
       </group>
     </subject>
-    <subject description="电流测量">
+    <subject description="电阻4线测量">
       <group way="init">
-        <scpi interval="200">
-          <![CDATA[INIT?]]>
-        </scpi>
-        <scpi interval="200" hex="true">
-          <![CDATA[]]>
-        </scpi>
+        <scpi interval="600" hex="False" return="False"><![CDATA[F4]]></scpi>
       </group>
       <group way="collect">
-        <scpi interval="200">
-          <![CDATA[READ?]]>
-        </scpi>
+        <scpi interval="500" hex="False" return="True"><![CDATA[E]]></scpi>
       </group>
     </subject>
-    <subject description="电阻测量">
+    <subject description="交流电流测量">
       <group way="init">
-        <scpi interval="200">
-          <![CDATA[INIT?]]>
-        </scpi>
-        <scpi interval="200" hex="true">
-          <![CDATA[]]>
-        </scpi>
+        <scpi interval="600" hex="False" return="False"><![CDATA[F6]]></scpi>
       </group>
       <group way="collect">
-        <scpi interval="200">
-          <![CDATA[READ?]]>
-        </scpi>
+        <scpi interval="500" hex="False" return="True"><![CDATA[E]]></scpi>
+      </group>
+    </subject>
+    <subject description="交流电压测量">
+      <group way="init">
+        <scpi interval="600" hex="False" return="False"><![CDATA[F2]]></scpi>
+      </group>
+      <group way="collect">
+        <scpi interval="500" hex="False" return="True"><![CDATA[E]]></scpi>
+      </group>
+    </subject>
+    <subject description="直流电流测量">
+      <group way="init">
+        <scpi interval="600" hex="False" return="False"><![CDATA[F5]]></scpi>
+      </group>
+      <group way="collect">
+        <scpi interval="500" hex="False" return="True"><![CDATA[E]]></scpi>
+      </group>
+    </subject>
+    <subject description="直流电压测量">
+      <group way="init">
+        <scpi interval="600" hex="False" return="False"><![CDATA[F1]]></scpi>
+      </group>
+      <group way="collect">
+        <scpi interval="500" hex="False" return="True"><![CDATA[E]]></scpi>
       </group>
     </subject>
   </scpigroups>
