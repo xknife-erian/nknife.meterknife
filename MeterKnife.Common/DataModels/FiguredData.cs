@@ -121,7 +121,7 @@ namespace MeterKnife.Common.DataModels
             }
         }
 
-        public virtual void Add(double value)
+        public virtual bool Add(double value)
         {
             var v = MeterRangeCalculator.Run(MeterRange, value);
             var s = v.ToString();
@@ -144,7 +144,7 @@ namespace MeterKnife.Common.DataModels
                 }
             }
 
-            if (Filter.InStatistical)
+            if (!inFilter || Filter.InStatistical)
             {
                 _RunningStatistics.Push(v);
 
@@ -176,12 +176,21 @@ namespace MeterKnife.Common.DataModels
                 ExtremePoint = new Tuple<double, double>(_RunningStatistics.Maximum, _RunningStatistics.Minimum);
                 TemperatureExtremePoint = new Tuple<double, double>(_TemperatureRunningStatistics.Maximum, _TemperatureRunningStatistics.Minimum);
             }
-            if (Filter.IsSave)
+            else
+            {
+                _logger.Debug(string.Format("{0}未参与统计", v));
+            }
+            if (!inFilter || Filter.IsSave)
             {
                 _DataSet.Tables[1].Rows.Add(DateTime.Now, v, _CurrentTemperature, sampleStandardDeviation, Ppvalue, inFilter);
                 //触发数据源发生变化
                 OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, v, _CurrentTemperature)));
             }
+            else
+            {
+                _logger.Debug(string.Format("{0}不保存", v));
+            }
+            return !inFilter;
         }
 
         private static double GetPpvMean(DataTable dataTable)

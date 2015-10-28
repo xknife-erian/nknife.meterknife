@@ -12,6 +12,7 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Enums;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
+using MeterKnife.Instruments.Dialog;
 using MeterKnife.Scpis;
 using NKnife.Events;
 using NKnife.IoC;
@@ -305,7 +306,13 @@ namespace MeterKnife.Instruments
 
         private void _FilterToolStripButton_Click(object sender, EventArgs e)
         {
-
+            var dialog = new FilterSettingDialog();
+            dialog.SetFilter(_FiguredData.Filter);
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                _FiguredData.Filter.Update(dialog.FiguredDataFilter);
+                _logger.Debug(string.Format("过滤参数：倍数{0},统计{1},保存{2}", dialog.FiguredDataFilter.Multiple, dialog.FiguredDataFilter.InStatistical, dialog.FiguredDataFilter.IsSave));
+            }
         }
 
         private void _PhotoToolStripButton_Click(object sender, EventArgs e)
@@ -366,14 +373,16 @@ namespace MeterKnife.Instruments
             double yzl = 0;
             if (double.TryParse(data, out yzl))
             {
-                _FiguredData.Add(yzl);
-                this.ThreadSafeInvoke(() =>
+                if (_FiguredData.Add(yzl))
                 {
-                    if (uint.Parse(_FiguredData.Count) <= 1)
-                        return;
-                    _DataPlot.Update(_FiguredData);
-                    _TempPlot.Update(_FiguredData);
-                });
+                    this.ThreadSafeInvoke(() =>
+                    {
+                        if (uint.Parse(_FiguredData.Count) <= 1)
+                            return;
+                        _DataPlot.Update(_FiguredData);
+                        _TempPlot.Update(_FiguredData);
+                    });
+                }
             }
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
