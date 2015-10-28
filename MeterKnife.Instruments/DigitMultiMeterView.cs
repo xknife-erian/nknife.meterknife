@@ -34,7 +34,8 @@ namespace MeterKnife.Instruments
 
         private bool _IsDispose;
 
-        protected StandardNormalDistributionPlot _SdPlot = new StandardNormalDistributionPlot();
+        //protected StandardNormalDistributionPlot _SdPlot = new StandardNormalDistributionPlot();
+        protected StandardDeviationPlot _SdPlot = new StandardDeviationPlot();
         protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
         protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
         protected TemperatureTrendPlot _TempTrendPlot = new TemperatureTrendPlot();
