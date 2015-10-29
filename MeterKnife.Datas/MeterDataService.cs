@@ -14,6 +14,7 @@ namespace MeterKnife.Datas
     public class MeterDataService : IMeterDataService
     {
         private static readonly ILog _logger = LogManager.GetLogger<MeterDataService>();
+
         public bool Save(string fileFullName, DataSet dataSet)
         {
             string connectionString = string.Format("Data Source={0};Version=3", fileFullName);

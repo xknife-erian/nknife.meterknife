@@ -48,10 +48,12 @@ namespace MeterKnife.Common.DataModels
             collectTable.Columns.Add(new DataColumn("temperature", typeof (double)));
             collectTable.Columns.Add(new DataColumn("standard_deviation", typeof (double)));
             collectTable.Columns.Add(new DataColumn("ppv", typeof (double)));
-            collectTable.Columns.Add(new DataColumn("abnormal", typeof (bool)));//是否是异常数据
+            collectTable.Columns.Add(new DataColumn("abnormal", typeof (bool))); //是否是异常数据
             _DataSet.Tables.Add(collectTable);
         }
 
+        #region implementing interface ICollectSource
+        
         [Browsable(false)]
         public IMeter Meter { get; set; }
 
@@ -107,20 +109,6 @@ namespace MeterKnife.Common.DataModels
         [Browsable(false)]
         public FiguredDataFilter Filter { get; set; }
 
-        public void SetRange(int range)
-        {
-            if (range <= 0 || range >= int.MaxValue)
-                return;
-            _SampleRange = range;
-            if (_Values.Count > range)
-            {
-                while (_Values.Count > range)
-                {
-                    _Values.RemoveAt(0);
-                }
-            }
-        }
-
         public virtual bool Add(double value)
         {
             var v = MeterRangeCalculator.Run(MeterRange, value);
@@ -131,7 +119,7 @@ namespace MeterKnife.Common.DataModels
 
             double sampleStandardDeviation = 0;
 
-            bool inFilter = false;
+            var inFilter = false;
             if (Filter.Multiple != 0 && _DataSet.Tables[1].Rows.Count > 3)
             {
                 var pre = (double) _DataSet.Tables[1].AsEnumerable().Last()["value"];
@@ -191,6 +179,22 @@ namespace MeterKnife.Common.DataModels
                 _logger.Debug(string.Format("{0}不保存", v));
             }
             return !inFilter;
+        }
+
+        #endregion
+
+        public void SetRange(int range)
+        {
+            if (range <= 0 || range >= int.MaxValue)
+                return;
+            _SampleRange = range;
+            if (_Values.Count > range)
+            {
+                while (_Values.Count > range)
+                {
+                    _Values.RemoveAt(0);
+                }
+            }
         }
 
         private static double GetPpvMean(DataTable dataTable)

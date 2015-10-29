@@ -30,6 +30,8 @@ namespace MeterKnife.Common.Interfaces
         /// <returns></returns>
         bool Save(string fileFullName);
 
+        bool Add(double value);
+
         /// <summary>
         /// 当收到仪器采集数据时
         /// </summary>
