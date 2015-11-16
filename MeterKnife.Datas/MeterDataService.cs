@@ -21,9 +21,6 @@ namespace MeterKnife.Datas
             var conn = new SQLiteConnection(connectionString);
             conn.Open();
 
-            var db = Database.OpenConnection(connectionString);
-            db.UseSharedConnection(conn);
-
             using (var cmd = new SQLiteCommand())
             {
                 cmd.Connection = conn;
@@ -35,7 +32,7 @@ namespace MeterKnife.Datas
                 tb.Columns.Add(new SqliteColumn("property_value"));
 
                 helper.CreateTable(tb);
-                _logger.Debug("Table:meter is created!");
+                _logger.Info("Table:meter is created!");
 
                 tb = new SqliteTable("collectdata");
 
@@ -44,11 +41,11 @@ namespace MeterKnife.Datas
                 tb.Columns.Add(new SqliteColumn("value", SqliteColumnType.Decimal));
 
                 helper.CreateTable(tb);
-                _logger.Debug("Table:collect_data is created!");
+                _logger.Info("Table:collect_data is created!");
             }
 
-            db.StopUsingSharedConnection();
-            conn.Close();
+            var db = Database.OpenConnection(connectionString);
+            db.UseSharedConnection(conn);
 
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
@@ -58,6 +55,10 @@ namespace MeterKnife.Datas
             {
                 db.collectdata.Insert(datetime: row[0], temperature: row[2], value: row[1]);
             }
+
+            db.StopUsingSharedConnection();
+            conn.Close();
+
             return true;
         }
     }

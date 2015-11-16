@@ -3,12 +3,11 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("xknife.net")]
-[assembly: AssemblyCopyright("Copyright © xknife.net 2015")]
+[assembly: AssemblyCopyright("Copyright © xknife.net 2016")]
 [assembly: AssemblyProduct("MeterKnife 2015.")]
 [assembly: AssemblyDescription("本软件是开源软件。本软件可广泛应用于电子行业的仪器的计算机控制，软件能够进行高性能的测试/检查系统。可用于万用表，电源，频率计，示波器等仪器，您可以很容易地利用它建立自动检查与测试系统。这能够使您将传统的目视检查处理过程转换到基于计算机的自动化测试。")]
 [assembly: ComVisible(false)]
 [assembly: InternalsVisibleTo("MeterKnife.UnitTests")]
 
-[assembly: AssemblyVersion("0.11.2.1113")]
-[assembly: AssemblyFileVersion("0.11.2.1113")]
-//2015/03/11 09:37:16
+[assembly: AssemblyVersion("0.12.1.1116")]
+[assembly: AssemblyFileVersion("0.12.1.1116")]

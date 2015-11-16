@@ -341,7 +341,7 @@ namespace System.Data.SQLite
         {
             StringBuilder sb = new Text.StringBuilder();
             sb.Append("create table if not exists `");
-            sb.Append(table.TableName);
+            sb.Append(table._TableName);
             sb.AppendLine("`(");
 
             bool firstRecord = true;
@@ -479,15 +479,15 @@ namespace System.Data.SQLite
 
         public void UpdateTableStructure(string targetTable, SqliteTable newStructure)
         {
-            newStructure.TableName = targetTable + "_temp";
+            newStructure._TableName = targetTable + "_temp";
 
             CreateTable(newStructure);
 
-            CopyAllData(targetTable, newStructure.TableName);
+            CopyAllData(targetTable, newStructure._TableName);
 
             DropTable(targetTable);
 
-            RenameTable(newStructure.TableName, targetTable);
+            RenameTable(newStructure._TableName, targetTable);
         }
 
         public void AttachDatabase(string database, string alias)

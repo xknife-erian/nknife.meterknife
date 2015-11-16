@@ -68,10 +68,12 @@ namespace System.Data.SQLite
         /// <returns>SQLiteParameter</returns>
         public static SQLiteParameter CreateParameter(string parameterName, DbType parameterType, object parameterValue)
         {
-            var parameter = new SQLiteParameter();
-            parameter.DbType = parameterType;
-            parameter.ParameterName = parameterName;
-            parameter.Value = parameterValue;
+            var parameter = new SQLiteParameter
+            {
+                DbType = parameterType,
+                ParameterName = parameterName,
+                Value = parameterValue
+            };
             return parameter;
         }
 
@@ -221,7 +223,8 @@ namespace System.Data.SQLite
             if (insertCommand == null) throw new ArgumentNullException("insertCommand");
             if (deleteCommand == null) throw new ArgumentNullException("deleteCommand");
             if (updateCommand == null) throw new ArgumentNullException("updateCommand");
-            if (tableName == null || tableName.Length == 0) throw new ArgumentNullException("tableName");
+            if (string.IsNullOrEmpty(tableName)) 
+                throw new ArgumentNullException("tableName");
 
             // Create a SQLiteDataAdapter, and dispose of it after we are done
             using (var dataAdapter = new SQLiteDataAdapter())
@@ -632,22 +635,15 @@ namespace System.Data.SQLite
                 if (commandParameters[i].Direction != ParameterDirection.ReturnValue)
                 {
                     // If the current array value derives from IDataParameter, then assign its Value property
-                    if (parameterValues[k] is IDataParameter)
+                    var value = parameterValues[k] as IDataParameter;
+                    if (value != null)
                     {
-                        IDataParameter paramInstance;
-                        paramInstance = (IDataParameter) parameterValues[k];
+                        var paramInstance = value;
                         if (paramInstance.Direction == ParameterDirection.ReturnValue)
                         {
                             paramInstance = (IDataParameter) parameterValues[++k];
                         }
-                        if (paramInstance.Value == null)
-                        {
-                            commandParameters[i].Value = DBNull.Value;
-                        }
-                        else
-                        {
-                            commandParameters[i].Value = paramInstance.Value;
-                        }
+                        commandParameters[i].Value = paramInstance.Value ?? DBNull.Value;
                     }
                     else if (parameterValues[k] == null)
                     {
