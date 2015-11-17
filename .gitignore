@@ -150,3 +150,7 @@ $RECYCLE.BIN/
 # Mac crap
 .DS_Store
 /packages
+/MeterKnife.App.Lite/x86/SQLite.Interop.dll
+/MeterKnife.App.Professional/x86/SQLite.Interop.dll
+/DemoApplication/x64/SQLite.Interop.dll
+/DemoApplication/x86/SQLite.Interop.dll
