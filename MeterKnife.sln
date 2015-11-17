@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Starter", "MeterKnife.Starter\MeterKnife.Starter.csproj", "{3789A4E3-CEFB-415E-8149-CE4F617012D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.App.Professional", "MeterKnife.App.Professional\MeterKnife.App.Professional.csproj", "{3789A4E3-CEFB-415E-8149-CE4F617012D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Workbench", "MeterKnife.Workbench\MeterKnife.Workbench.csproj", "{9EDECD14-77FE-419C-9323-C00BDB6A07AC}"
 EndProject
@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Scpi", "..\nknife\NK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Socket", "..\nknife\NKnife.Socket\NKnife.Socket.csproj", "{F3299AC1-2D25-4B91-A4D9-F9C1AB6F0825}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Lite", "MeterKnife.Lite\MeterKnife.Lite.csproj", "{9F9EC449-1BF5-4BA1-994D-FFEFC09B1528}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.App.Lite", "MeterKnife.App.Lite\MeterKnife.App.Lite.csproj", "{9F9EC449-1BF5-4BA1-994D-FFEFC09B1528}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.UnitTests", "MeterKnife.UnitTests\MeterKnife.UnitTests.csproj", "{E7531172-7F03-4DEE-ABB9-CF85E9DF501C}"
 EndProject

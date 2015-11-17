@@ -89,7 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MeterKnife.Starter\Properties\AssemblyInfo.cs">
+    <Compile Include="..\MeterKnife.App.Professional\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Algorithms\Difference\AllanVariance.cs" />
