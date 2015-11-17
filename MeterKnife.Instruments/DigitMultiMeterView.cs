@@ -242,7 +242,6 @@ namespace MeterKnife.Instruments
                     "数据采集", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (rs == DialogResult.No)
                 {
-                    _FiguredData.Clear();
                     PlotsClear();
                 }
             }
@@ -266,7 +265,7 @@ namespace MeterKnife.Instruments
         private void _SaveStripButton_Click(object sender, EventArgs e)
         {
             var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
-            var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), _Meter.Name, "s3db");
+            var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), _Meter.Name, "db3");
             var full = Path.Combine(DI.Get<MeterKnifeUserData>().GetValue(MeterKnifeUserData.DATA_PATH, string.Empty),
                 name);
             if (_FiguredData.Save(full))
@@ -302,7 +301,13 @@ namespace MeterKnife.Instruments
 
         private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
         {
-            PlotsClear();
+            var rs = MessageBox.Show(this, "是否清除已采集的数据?\r\n点击“否”将清空已采集的数据。",
+                "清除", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (rs == DialogResult.No)
+            {
+                PlotsClear();
+            }
+            _IsSaved = false;
         }
 
         private void _FilterToolStripButton_Click(object sender, EventArgs e)

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -40,13 +39,13 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._NewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工具TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._OptionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.面板ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CustomScpiGroupMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.数据库测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel2.SuspendLayout();
             this._SplitContainer.SuspendLayout();
@@ -155,31 +154,22 @@
             // 文件FToolStripMenuItem
             // 
             this.文件FToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._NewMenuItem,
+            this.数据库测试ToolStripMenuItem,
             this.toolStripSeparator3,
             this._ExitMenuItem});
             this.文件FToolStripMenuItem.Name = "文件FToolStripMenuItem";
             this.文件FToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
             this.文件FToolStripMenuItem.Text = "文件(&F)";
             // 
-            // _NewMenuItem
-            // 
-            this._NewMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("_NewMenuItem.Image")));
-            this._NewMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._NewMenuItem.Name = "_NewMenuItem";
-            this._NewMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this._NewMenuItem.Size = new System.Drawing.Size(165, 22);
-            this._NewMenuItem.Text = "新建(&N)";
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // _ExitMenuItem
             // 
             this._ExitMenuItem.Name = "_ExitMenuItem";
-            this._ExitMenuItem.Size = new System.Drawing.Size(165, 22);
+            this._ExitMenuItem.Size = new System.Drawing.Size(152, 22);
             this._ExitMenuItem.Text = "退出(&X)";
             // 
             // 工具TToolStripMenuItem
@@ -193,7 +183,7 @@
             // _OptionMenuItem
             // 
             this._OptionMenuItem.Name = "_OptionMenuItem";
-            this._OptionMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._OptionMenuItem.Size = new System.Drawing.Size(118, 22);
             this._OptionMenuItem.Text = "选项(&O)";
             // 
             // 面板ToolStripMenuItem
@@ -210,6 +200,13 @@
             this._CustomScpiGroupMenuItem.Size = new System.Drawing.Size(172, 22);
             this._CustomScpiGroupMenuItem.Text = "自定义Scpi指令集";
             this._CustomScpiGroupMenuItem.Click += new System.EventHandler(this._CustomScpiGroupMenuItem_Click);
+            // 
+            // 数据库测试ToolStripMenuItem
+            // 
+            this.数据库测试ToolStripMenuItem.Name = "数据库测试ToolStripMenuItem";
+            this.数据库测试ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.数据库测试ToolStripMenuItem.Text = "数据库测试";
+            this.数据库测试ToolStripMenuItem.Click += new System.EventHandler(this.数据库测试ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -252,13 +249,13 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 文件FToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _NewMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem _ExitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 工具TToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _OptionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 面板ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _CustomScpiGroupMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 数据库测试ToolStripMenuItem;
     }
 }
 
