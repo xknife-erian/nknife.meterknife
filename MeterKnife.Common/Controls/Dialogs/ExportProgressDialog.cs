@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -6,6 +7,7 @@ using Common.Logging;
 using MeterKnife.Common.DataModels;
 using NKnife.GUI.WinForm;
 using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
 using HorizontalAlignment = NPOI.SS.UserModel.HorizontalAlignment;
 
 namespace MeterKnife.Common.Controls.Dialogs
@@ -60,91 +62,123 @@ namespace MeterKnife.Common.Controls.Dialogs
                 Cursor = Cursors.WaitCursor;
                 _ProgressBar.Focus();
             });
-            var book = new HSSFWorkbook();
 
-            var sheet1 = book.CreateSheet("测量数据");
-            
+            HSSFWorkbook book;
+
+            var success = BuildWorkbook(figuredData.DataSet, out book);
+
+            if (success)
+            {
+                foreach (var sheet in book)
+                {
+                    ((ISheet) sheet).AutoSizeColumn(0);
+                }
+                this.ThreadSafeInvoke(() =>
+                {
+                    Text = "导出数据结束，整理表格列1...";
+                    _ProgressBar.Value = _ProgressBar.Value + 10;
+                });
+                foreach (var sheet in book)
+                {
+                    ((ISheet) sheet).AutoSizeColumn(1);
+                }
+                this.ThreadSafeInvoke(() =>
+                {
+                    Text = "导出数据结束，整理表格列2...";
+                    _ProgressBar.Value = _ProgressBar.Value + 10;
+                });
+                foreach (var sheet in book)
+                {
+                    ((ISheet) sheet).AutoSizeColumn(2);
+                }
+                this.ThreadSafeInvoke(() =>
+                {
+                    Text = "导出数据结束，整理表格列3...";
+                    _ProgressBar.Value = _ProgressBar.Value + 10;
+                });
+
+                using (var file = new FileStream(_FileFullPath, FileMode.Create))
+                {
+                    book.Write(file);
+                    file.Flush();
+                    file.Close();
+                }
+                this.ThreadSafeInvoke(() => _ProgressBar.Value = _ProgressBar.Value + 10);
+                this.ThreadSafeInvoke(() =>
+                {
+                    _GroupBox.Text = string.Format("{0},导出已完成", _GroupBox.Text);
+                    Text = "导出全部完成，可关闭。";
+                    _ConfirmButton.Enabled = true;
+                    _ConfirmButton.Focus();
+                    Cursor = Cursors.Default;
+                });
+            }
+        }
+
+        protected virtual Action GetInnerAction(int i)
+        {
+            return delegate { this.ThreadSafeInvoke(() => _ProgressBar.Value = (i + 1)); };
+        }
+
+        protected bool BuildWorkbook(DataSet dataSet, out HSSFWorkbook book)
+        {
+            book = new HSSFWorkbook();
+
             var dateStyle = book.CreateCellStyle();
             dateStyle.Alignment = HorizontalAlignment.Left;
             var format = book.CreateDataFormat();
             dateStyle.DataFormat = format.GetFormat("yyyy/m/d HH:MM:ss");
 
-            var tableRows = figuredData.DataSet.Tables[1].Rows;
-            for (var i = 0; i < tableRows.Count; i++)
+            var sheet = book.CreateSheet("测量数据");
+
+            try
             {
-                var row = sheet1.CreateRow(i);
-                var array = tableRows[i].ItemArray;
-                for (var j = 0; j < array.Length; j++)
+                var tableRows = dataSet.Tables[1].Rows;
+                for (var i = 0; i < tableRows.Count; i++)
                 {
-                    try
+                    var row = sheet.CreateRow(i);
+                    var array = tableRows[i].ItemArray;
+                    for (var j = 0; j < array.Length; j++)
                     {
-                        if (array[j] is DateTime)
+                        try
                         {
-                            var datetime = (DateTime) array[j];
-                            var cell = row.CreateCell(j);
-                            cell.CellStyle = dateStyle;
-                            cell.SetCellValue(datetime);
+                            if (array[j] is DateTime)
+                            {
+                                var datetime = (DateTime) array[j];
+                                var cell = row.CreateCell(j);
+                                cell.CellStyle = dateStyle;
+                                cell.SetCellValue(datetime);
+                            }
+                            else if (array[j] is double)
+                            {
+                                var d = (double) array[j];
+                                row.CreateCell(j).SetCellValue(d);
+                            }
+                            else if (array[j] is int)
+                            {
+                                var d = (int) array[j];
+                                row.CreateCell(j).SetCellValue(d);
+                            }
+                            else
+                            {
+                                row.CreateCell(j).SetCellValue(array[j].ToString());
+                            }
                         }
-                        else if (array[j] is double)
+                        catch (Exception e)
                         {
-                            var d = (double) array[j];
-                            row.CreateCell(j).SetCellValue(d);
-                        }
-                        else if (array[j] is int)
-                        {
-                            var d = (int) array[j];
-                            row.CreateCell(j).SetCellValue(d);
-                        }
-                        else
-                        {
-                            row.CreateCell(j).SetCellValue(array[j].ToString());
+                            _logger.Warn(string.Format("导出数据有异常:{0}/{1} -->{2}", i, j, e.Message));
                         }
                     }
-                    catch (Exception e)
-                    {
-                        _logger.Warn(string.Format("导出数据有异常:{0}-{1} -->{2}", i, j, e.Message));
-                    }
+                    var flag = i;
+                    GetInnerAction(flag).Invoke();
                 }
-                var flag = i;
-                this.ThreadSafeInvoke(() => _ProgressBar.Value = flag + 1);
+                return true;
             }
-
-            sheet1.AutoSizeColumn(0);
-            this.ThreadSafeInvoke(() =>
+            catch (Exception e)
             {
-                Text = "导出数据结束，整理表格列1...";
-                _ProgressBar.Value = _ProgressBar.Value + 10;
-            });
-
-            sheet1.AutoSizeColumn(1);
-            this.ThreadSafeInvoke(() =>
-            {
-                Text = "导出数据结束，整理表格列2...";
-                _ProgressBar.Value = _ProgressBar.Value + 10;
-            });
-
-            sheet1.AutoSizeColumn(2);
-            this.ThreadSafeInvoke(() =>
-            {
-                Text = "导出数据结束，整理表格列3...";
-                _ProgressBar.Value = _ProgressBar.Value + 10;
-            });
-
-            using (var file = new FileStream(_FileFullPath, FileMode.Create))
-            {
-                book.Write(file);
-                file.Flush();
-                file.Close();
+                _logger.Error(string.Format("导出到Excle出现异常:{0}", e.Message), e);
+                return false;
             }
-            this.ThreadSafeInvoke(() => _ProgressBar.Value = _ProgressBar.Value + 10);
-            this.ThreadSafeInvoke(() =>
-            {
-                _GroupBox.Text = string.Format("{0},导出已完成", _GroupBox.Text);
-                Text = "导出全部完成，可关闭。";
-                _ConfirmButton.Enabled = true;
-                _ConfirmButton.Focus();
-                Cursor = Cursors.Default;
-            });
         }
     }
 }

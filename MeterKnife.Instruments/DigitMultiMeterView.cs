@@ -301,9 +301,9 @@ namespace MeterKnife.Instruments
 
         private void _ClearDataToolStripButton_Click(object sender, EventArgs e)
         {
-            var rs = MessageBox.Show(this, "是否清除已采集的数据?\r\n点击“否”将清空已采集的数据。",
-                "清除", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            if (rs == DialogResult.No)
+            var rs = MessageBox.Show(this, "是否清除已采集的数据?\r\n点击“是”将清空已采集的数据，\r\n点击“否”取消操作",
+                "清除", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (rs == DialogResult.Yes)
             {
                 PlotsClear();
             }
