@@ -5,9 +5,11 @@ using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Util;
 using NKnife.GUI.WinForm;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 using HorizontalAlignment = NPOI.SS.UserModel.HorizontalAlignment;
 
 namespace MeterKnife.Common.Controls.Dialogs
@@ -63,9 +65,9 @@ namespace MeterKnife.Common.Controls.Dialogs
                 _ProgressBar.Focus();
             });
 
-            HSSFWorkbook book;
+            XSSFWorkbook book;
 
-            var success = BuildWorkbook(figuredData.DataSet, out book);
+            var success = Excle.BuildWorkbook(figuredData.DataSet, GetUiAction(), out book);
 
             if (success)
             {
@@ -100,7 +102,6 @@ namespace MeterKnife.Common.Controls.Dialogs
                 using (var file = new FileStream(_FileFullPath, FileMode.Create))
                 {
                     book.Write(file);
-                    file.Flush();
                     file.Close();
                 }
                 this.ThreadSafeInvoke(() => _ProgressBar.Value = _ProgressBar.Value + 10);
@@ -115,70 +116,11 @@ namespace MeterKnife.Common.Controls.Dialogs
             }
         }
 
-        protected virtual Action GetInnerAction(int i)
+        protected virtual Action<int> GetUiAction()
         {
-            return delegate { this.ThreadSafeInvoke(() => _ProgressBar.Value = (i + 1)); };
+            return n => { this.ThreadSafeInvoke(() => _ProgressBar.Value = (n + 1)); };
         }
 
-        protected bool BuildWorkbook(DataSet dataSet, out HSSFWorkbook book)
-        {
-            book = new HSSFWorkbook();
 
-            var dateStyle = book.CreateCellStyle();
-            dateStyle.Alignment = HorizontalAlignment.Left;
-            var format = book.CreateDataFormat();
-            dateStyle.DataFormat = format.GetFormat("yyyy/m/d HH:MM:ss");
-
-            var sheet = book.CreateSheet("测量数据");
-
-            try
-            {
-                var tableRows = dataSet.Tables[1].Rows;
-                for (var i = 0; i < tableRows.Count; i++)
-                {
-                    var row = sheet.CreateRow(i);
-                    var array = tableRows[i].ItemArray;
-                    for (var j = 0; j < array.Length; j++)
-                    {
-                        try
-                        {
-                            if (array[j] is DateTime)
-                            {
-                                var datetime = (DateTime) array[j];
-                                var cell = row.CreateCell(j);
-                                cell.CellStyle = dateStyle;
-                                cell.SetCellValue(datetime);
-                            }
-                            else if (array[j] is double)
-                            {
-                                var d = (double) array[j];
-                                row.CreateCell(j).SetCellValue(d);
-                            }
-                            else if (array[j] is int)
-                            {
-                                var d = (int) array[j];
-                                row.CreateCell(j).SetCellValue(d);
-                            }
-                            else
-                            {
-                                row.CreateCell(j).SetCellValue(array[j].ToString());
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            _logger.Warn(string.Format("导出数据有异常:{0}/{1} -->{2}", i, j, e.Message));
-                        }
-                    }
-                    var flag = i;
-                    GetInnerAction(flag).Invoke();
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
-                _logger.Error(string.Format("导出到Excle出现异常:{0}", e.Message), e);
-                return false;
-            }
-        }
     }
 }

@@ -82,7 +82,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ExportProgressUnitTest.cs" />
+    <Compile Include="ExcleUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
