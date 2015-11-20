@@ -211,6 +211,9 @@
     <Content Include="Properties\base-toolstrip\subject-group.png" />
     <Content Include="Properties\base-toolstrip\up.png" />
     <Content Include="Properties\scpi-manager.ico" />
+    <None Include="Scpis\Specified\HP3458A.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Scpis\Specified\AdvantestR6581.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
