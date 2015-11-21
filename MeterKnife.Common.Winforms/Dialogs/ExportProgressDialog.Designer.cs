@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Common.Controls.Dialogs
+﻿namespace MerterKnife.Common.Winforms.Dialogs
 {
     partial class ExportProgressDialog
     {

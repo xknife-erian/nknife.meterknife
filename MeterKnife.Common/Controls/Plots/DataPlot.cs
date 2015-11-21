@@ -40,6 +40,8 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected virtual PlotModel BuildPlotModel()
         {
+            _LeftAxis.MajorGridlineStyle = LineStyle.Solid;
+            _LeftAxis.MinorGridlineStyle = LineStyle.Dot;
             _LeftAxis.MaximumPadding = 0;
             _LeftAxis.MinimumPadding = 0;
             _LeftAxis.Maximum = 15;
@@ -49,9 +51,9 @@ namespace MeterKnife.Common.Controls.Plots
 
             var timeAxis = new DateTimeAxis(); //时间刻度
             timeAxis.MajorGridlineStyle = LineStyle.Solid;
+            timeAxis.MinorGridlineStyle = LineStyle.Dot;
             timeAxis.MaximumPadding = 0;
             timeAxis.MinimumPadding = 0;
-            timeAxis.MinorGridlineStyle = LineStyle.Dot;
             timeAxis.Position = AxisPosition.Bottom;
             _PlotModel.Axes.Add(timeAxis);
 

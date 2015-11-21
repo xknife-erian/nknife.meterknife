@@ -31,9 +31,15 @@ namespace MeterKnife.Common.Util
             var dataTimeFormat = book.CreateDataFormat();
             dataTimeStyle.DataFormat = dataTimeFormat.GetFormat("yyyy/m/d HH:MM:ss");
 
-            var numberStyle = book.CreateCellStyle();
-            numberStyle.SetFont(font);
-            numberStyle.Alignment = HorizontalAlignment.Left;
+            var baseNumberStyle = book.CreateCellStyle();
+            baseNumberStyle.SetFont(font);
+            baseNumberStyle.Alignment = HorizontalAlignment.Left;
+
+            var doubleStyle = book.CreateCellStyle();
+            doubleStyle.SetFont(font);
+            doubleStyle.Alignment = HorizontalAlignment.Left;
+            var numberFormat = book.CreateDataFormat();
+            doubleStyle.DataFormat = numberFormat.GetFormat("0.000000000000");
 
             var cnStyle = book.CreateCellStyle();
             cnStyle.SetFont(cnFont);
@@ -60,6 +66,9 @@ namespace MeterKnife.Common.Util
                     cell = row.CreateCell(2);
                     cell.CellStyle = cnStyle;
                     cell.SetCellValue("温度");
+                    cell = row.CreateCell(3);
+                    cell.CellStyle = cnStyle;
+                    cell.SetCellValue("标准差");
                 }
                 for (var i = 0; i < tableRows.Count; i++)
                 {
@@ -69,7 +78,7 @@ namespace MeterKnife.Common.Util
                     var array = tableRows[i].ItemArray;
                     for (var j = 0; j < array.Length; j++)
                     {
-                        if (j > 2)
+                        if (j > 3)
                             continue;
                         try
                         {
@@ -84,14 +93,14 @@ namespace MeterKnife.Common.Util
                             {
                                 var d = (double) array[j];
                                 var cell = row.CreateCell(j);
-                                cell.CellStyle = numberStyle;
+                                cell.CellStyle = baseNumberStyle;
                                 cell.SetCellValue(d);
                             }
                             else if (array[j] is int)
                             {
                                 var d = (int) array[j];
                                 var cell = row.CreateCell(j);
-                                cell.CellStyle = numberStyle;
+                                cell.CellStyle = baseNumberStyle;
                                 cell.SetCellValue(d);
                             }
                         }

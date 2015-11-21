@@ -111,34 +111,34 @@ namespace MeterKnife.Common.DataModels
 
         public virtual bool Add(double value)
         {
-            var v = MeterRangeCalculator.Run(MeterRange, value);
-            var s = v.ToString("F12").TrimEnd('0');
+            //var v = MeterRangeCalculator.Run(MeterRange, value);
+            var s = value.ToString("F12").TrimEnd('0');
             var n = s.Length - s.IndexOf('.');
             _DecimalDigit = string.Format("f{0}", n);
             _PpmDecimalDigit = string.Format("f{0}", ((uint) (n/2)) + 2);
 
-            double sampleStandardDeviation = 0;
+            double relativeSampleStandardDeviation = 0;//相对标准方差
 
             var inFilter = false;
             if (Filter.Multiple != 0 && _DataSet.Tables[1].Rows.Count > 3)
             {
                 var pre = (double) _DataSet.Tables[1].AsEnumerable().Last()["value"];
-                var cha = Math.Abs(v - pre);
+                var cha = Math.Abs(value - pre);
                 var avg = GetPpvMean(_DataSet.Tables[1]);
                 if (cha/avg > Filter.Multiple)
                 {
-                    _logger.Info(string.Format("{0}在被过滤范围内", v));
+                    _logger.Info(string.Format("{0}在被过滤范围内", value));
                     inFilter = true;
                 }
             }
 
             if (!inFilter || Filter.InStatistical)
             {
-                _RunningStatistics.Push(v);
+                _RunningStatistics.Push(value);
 
                 if (_Values.Count >= _SampleRange)
                     _Values.RemoveAt(0);
-                _Values.Add(v);
+                _Values.Add(value);
                 var ds = new DescriptiveStatistics(_Values);
                 SampleKurtosis = ds.Kurtosis.ToString(_DecimalDigit).TrimEnd('0');
                 SampleSkewness = ds.Skewness.ToString(_DecimalDigit).TrimEnd('0');
@@ -146,8 +146,9 @@ namespace MeterKnife.Common.DataModels
                 var array = _Values.ToArray();
                 var mean = ArrayStatistics.Mean(array);
                 SampleMean = mean.ToString(_DecimalDigit).TrimEnd('0');
-                sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
-                SampleStandardDeviation = GetPpmValue(sampleStandardDeviation / mean).TrimEnd('0');
+                var sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
+                relativeSampleStandardDeviation = sampleStandardDeviation / GetRelativeValue(MeterRange, mean);
+                SampleStandardDeviation = GetPpmValue(relativeSampleStandardDeviation).TrimEnd('0');
                 SampleRootMeanSquareValue = ArrayStatistics.RootMeanSquare(array).ToString(_DecimalDigit).TrimEnd('0');
 
                 Array.Sort(array);
@@ -166,19 +167,53 @@ namespace MeterKnife.Common.DataModels
             }
             else
             {
-                _logger.Debug(string.Format("{0}未参与统计", v));
+                _logger.Debug(string.Format("{0}未参与统计", value));
             }
             if (!inFilter || Filter.IsSave)
             {
-                _DataSet.Tables[1].Rows.Add(DateTime.Now, v, _CurrentTemperature, sampleStandardDeviation, Ppvalue, inFilter);
+                _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature, relativeSampleStandardDeviation, Ppvalue, inFilter);
                 //触发数据源发生变化
-                OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, v, _CurrentTemperature)));
+                OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
             }
             else
             {
-                _logger.Debug(string.Format("{0}不保存", v));
+                _logger.Debug(string.Format("{0}不保存", value));
             }
             return !inFilter;
+        }
+
+        private static double GetRelativeValue(MeterRange meterRange, double mean)
+        {
+            switch (meterRange)
+            {
+                case MeterRange.None:
+                    return mean;
+                case MeterRange.X0001:
+                    return 0.001;
+                case MeterRange.X001:
+                    return 0.01;
+                case MeterRange.X01:
+                    return 0.1;
+                case MeterRange.X1:
+                    return 1;
+                case MeterRange.X10:
+                    return 10;
+                case MeterRange.X100:
+                    return 100;
+                case MeterRange.X1K:
+                    return 1000;
+                case MeterRange.X10K:
+                    return 10000;
+                case MeterRange.X100K:
+                    return 100000;
+                case MeterRange.X1M:
+                    return 1000000;
+                case MeterRange.X10M:
+                    return 10000000;
+                case MeterRange.X100M:
+                    return 100000000;
+            }
+            return mean;
         }
 
         #endregion

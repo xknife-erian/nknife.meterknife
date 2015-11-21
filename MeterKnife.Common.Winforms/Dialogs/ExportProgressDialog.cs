@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -7,12 +6,10 @@ using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Util;
 using NKnife.GUI.WinForm;
-using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using HorizontalAlignment = NPOI.SS.UserModel.HorizontalAlignment;
 
-namespace MeterKnife.Common.Controls.Dialogs
+namespace MerterKnife.Common.Winforms.Dialogs
 {
     public partial class ExportProgressDialog : SimpleForm
     {
@@ -48,7 +45,7 @@ namespace MeterKnife.Common.Controls.Dialogs
             _FiguredData = figuredData;
             _GroupBox.Text = string.Format("数据量:{0}", _FiguredData.Count);
             _ProgressBar.Minimum = 0;
-            _ProgressBar.Maximum = int.Parse(_FiguredData.Count) + 4*10;
+            _ProgressBar.Maximum = int.Parse(_FiguredData.Count) + 5*10;
             _ProgressBar.Step = 1;
         }
 
@@ -77,7 +74,7 @@ namespace MeterKnife.Common.Controls.Dialogs
                 }
                 this.ThreadSafeInvoke(() =>
                 {
-                    Text = "导出数据结束，整理表格列1...";
+                    Text = "导出数据结束，整理表格列： 第1列...";
                     _ProgressBar.Value = _ProgressBar.Value + 10;
                 });
                 foreach (var sheet in book)
@@ -86,7 +83,7 @@ namespace MeterKnife.Common.Controls.Dialogs
                 }
                 this.ThreadSafeInvoke(() =>
                 {
-                    Text = "导出数据结束，整理表格列2...";
+                    Text = "导出数据结束，整理表格列： 第2列...";
                     _ProgressBar.Value = _ProgressBar.Value + 10;
                 });
                 foreach (var sheet in book)
@@ -95,7 +92,16 @@ namespace MeterKnife.Common.Controls.Dialogs
                 }
                 this.ThreadSafeInvoke(() =>
                 {
-                    Text = "导出数据结束，整理表格列3...";
+                    Text = "导出数据结束，整理表格列： 第3列...";
+                    _ProgressBar.Value = _ProgressBar.Value + 10;
+                });
+                foreach (var sheet in book)
+                {
+                    ((ISheet)sheet).AutoSizeColumn(3);
+                }
+                this.ThreadSafeInvoke(() =>
+                {
+                    Text = "导出数据结束，整理表格列： 第4列...";
                     _ProgressBar.Value = _ProgressBar.Value + 10;
                 });
 
