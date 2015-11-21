@@ -23,7 +23,7 @@ namespace MeterKnife.App.Lite
                 _PrintStripButton.Visible = false;
                 _PhotoToolStripButton.Visible = false;
                 //_FilterToolStripButton.Visible = false;
-                //_SaveStripButton.Visible = false;
+                _SaveStripButton.Visible = false;
             }
         }
 

@@ -35,10 +35,7 @@ namespace MeterKnife.Instruments
             this._LeftSplitContainer = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this._FiguredDataPropertyGrid = new System.Windows.Forms.PropertyGrid();
-            this._FiguredDataPanelToolStrip = new System.Windows.Forms.ToolStrip();
-            this._SampleRangeLabel = new System.Windows.Forms.ToolStripLabel();
-            this._SampleRangeComboBox = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this._MeterRangeDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.autoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +52,10 @@ namespace MeterKnife.Instruments
             this.x1MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x10MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x100MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._FiguredDataPanelToolStrip = new System.Windows.Forms.ToolStrip();
+            this._SampleRangeLabel = new System.Windows.Forms.ToolStripLabel();
+            this._SampleRangeComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this._MainTabControl = new System.Windows.Forms.TabControl();
             this._PlotPage = new System.Windows.Forms.TabPage();
             this._RealtimePlotSplitContainer = new System.Windows.Forms.SplitContainer();
@@ -92,6 +93,7 @@ namespace MeterKnife.Instruments
             this._LeftSplitContainer.Panel1.SuspendLayout();
             this._LeftSplitContainer.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this._FiguredDataPanelToolStrip.SuspendLayout();
             this._MainTabControl.SuspendLayout();
             this._PlotPage.SuspendLayout();
@@ -150,17 +152,18 @@ namespace MeterKnife.Instruments
             // 
             this._LeftSplitContainer.Panel1.Controls.Add(this.groupBox2);
             this._LeftSplitContainer.Size = new System.Drawing.Size(250, 518);
-            this._LeftSplitContainer.SplitterDistance = 395;
+            this._LeftSplitContainer.SplitterDistance = 424;
             this._LeftSplitContainer.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this._FiguredDataPropertyGrid);
+            this.groupBox2.Controls.Add(this.toolStrip1);
             this.groupBox2.Controls.Add(this._FiguredDataPanelToolStrip);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 395);
+            this.groupBox2.Size = new System.Drawing.Size(250, 424);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "统计分析";
@@ -169,57 +172,29 @@ namespace MeterKnife.Instruments
             // 
             this._FiguredDataPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this._FiguredDataPropertyGrid.HelpVisible = false;
-            this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 47);
+            this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(3, 72);
             this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
-            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 345);
+            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(244, 349);
             this._FiguredDataPropertyGrid.TabIndex = 0;
             this._FiguredDataPropertyGrid.ToolbarVisible = false;
             // 
-            // _FiguredDataPanelToolStrip
+            // toolStrip1
             // 
-            this._FiguredDataPanelToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this._FiguredDataPanelToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._SampleRangeLabel,
-            this._SampleRangeComboBox,
-            this.toolStripSeparator4,
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this._MeterRangeDropDownButton});
-            this._FiguredDataPanelToolStrip.Location = new System.Drawing.Point(3, 17);
-            this._FiguredDataPanelToolStrip.Name = "_FiguredDataPanelToolStrip";
-            this._FiguredDataPanelToolStrip.Size = new System.Drawing.Size(244, 30);
-            this._FiguredDataPanelToolStrip.TabIndex = 1;
-            // 
-            // _SampleRangeLabel
-            // 
-            this._SampleRangeLabel.Name = "_SampleRangeLabel";
-            this._SampleRangeLabel.Size = new System.Drawing.Size(35, 27);
-            this._SampleRangeLabel.Text = "取样:";
-            // 
-            // _SampleRangeComboBox
-            // 
-            this._SampleRangeComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this._SampleRangeComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this._SampleRangeComboBox.Items.AddRange(new object[] {
-            "50",
-            "100",
-            "200",
-            "500",
-            "1000"});
-            this._SampleRangeComboBox.Margin = new System.Windows.Forms.Padding(1, 3, 1, 2);
-            this._SampleRangeComboBox.Name = "_SampleRangeComboBox";
-            this._SampleRangeComboBox.Size = new System.Drawing.Size(75, 25);
-            this._SampleRangeComboBox.Text = "100";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 30);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 47);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(244, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(35, 27);
-            this.toolStripLabel1.Text = "量程:";
+            this.toolStripLabel1.Size = new System.Drawing.Size(107, 22);
+            this.toolStripLabel1.Text = "标准方差相对基数:";
             // 
             // _MeterRangeDropDownButton
             // 
@@ -242,7 +217,7 @@ namespace MeterKnife.Instruments
             this._MeterRangeDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("_MeterRangeDropDownButton.Image")));
             this._MeterRangeDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._MeterRangeDropDownButton.Name = "_MeterRangeDropDownButton";
-            this._MeterRangeDropDownButton.Size = new System.Drawing.Size(45, 27);
+            this._MeterRangeDropDownButton.Size = new System.Drawing.Size(45, 22);
             this._MeterRangeDropDownButton.Text = "默认";
             // 
             // autoToolStripMenuItem
@@ -327,6 +302,44 @@ namespace MeterKnife.Instruments
             this.x100MToolStripMenuItem.Name = "x100MToolStripMenuItem";
             this.x100MToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.x100MToolStripMenuItem.Text = "100M";
+            // 
+            // _FiguredDataPanelToolStrip
+            // 
+            this._FiguredDataPanelToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this._FiguredDataPanelToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._SampleRangeLabel,
+            this._SampleRangeComboBox,
+            this.toolStripSeparator4});
+            this._FiguredDataPanelToolStrip.Location = new System.Drawing.Point(3, 17);
+            this._FiguredDataPanelToolStrip.Name = "_FiguredDataPanelToolStrip";
+            this._FiguredDataPanelToolStrip.Size = new System.Drawing.Size(244, 30);
+            this._FiguredDataPanelToolStrip.TabIndex = 1;
+            // 
+            // _SampleRangeLabel
+            // 
+            this._SampleRangeLabel.Name = "_SampleRangeLabel";
+            this._SampleRangeLabel.Size = new System.Drawing.Size(35, 27);
+            this._SampleRangeLabel.Text = "取样:";
+            // 
+            // _SampleRangeComboBox
+            // 
+            this._SampleRangeComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this._SampleRangeComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this._SampleRangeComboBox.Items.AddRange(new object[] {
+            "50",
+            "100",
+            "200",
+            "500",
+            "1000"});
+            this._SampleRangeComboBox.Margin = new System.Windows.Forms.Padding(1, 3, 1, 2);
+            this._SampleRangeComboBox.Name = "_SampleRangeComboBox";
+            this._SampleRangeComboBox.Size = new System.Drawing.Size(75, 25);
+            this._SampleRangeComboBox.Text = "100";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 30);
             // 
             // _MainTabControl
             // 
@@ -673,6 +686,8 @@ namespace MeterKnife.Instruments
             this._LeftSplitContainer.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this._FiguredDataPanelToolStrip.ResumeLayout(false);
             this._FiguredDataPanelToolStrip.PerformLayout();
             this._MainTabControl.ResumeLayout(false);
@@ -728,12 +743,20 @@ namespace MeterKnife.Instruments
         private System.Windows.Forms.Panel _TempTrendPanel;
         private System.Windows.Forms.DataGridView _FiguredDataGridView;
         private System.Windows.Forms.ToolStrip _FiguredDataPanelToolStrip;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripLabel _SampleRangeLabel;
         private System.Windows.Forms.ToolStripComboBox _SampleRangeComboBox;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        protected System.Windows.Forms.ToolStripButton _PrintStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        protected System.Windows.Forms.ToolStripButton _FilterToolStripButton;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripDropDownButton _MeterRangeDropDownButton;
         private System.Windows.Forms.ToolStripMenuItem autoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem x0001ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x001ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x01ToolStripMenuItem;
@@ -746,12 +769,5 @@ namespace MeterKnife.Instruments
         private System.Windows.Forms.ToolStripMenuItem x1MToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x10MToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x100MToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-        protected System.Windows.Forms.ToolStripButton _PrintStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        protected System.Windows.Forms.ToolStripButton _FilterToolStripButton;
     }
 }

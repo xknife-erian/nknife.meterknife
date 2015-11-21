@@ -112,12 +112,6 @@
     <Compile Include="Base\_\DMMZeroSet.cs" />
     <Compile Include="Base\_\GpibLanguage.cs" />
     <Compile Include="Base\_\MultiMeterParameters.cs" />
-    <Compile Include="Controls\Dialogs\ExportProgressDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\Dialogs\ExportProgressDialog.Designer.cs">
-      <DependentUpon>ExportProgressDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Plots\DataPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,9 +195,6 @@
     <Compile Include="Util\MeterUtil.cs" />
     <EmbeddedResource Include="Base\BaseParamPanel.resx">
       <DependentUpon>BaseParamPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Dialogs\ExportProgressDialog.resx">
-      <DependentUpon>ExportProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Plots\DataPlot.resx">
       <DependentUpon>DataPlot.cs</DependentUpon>

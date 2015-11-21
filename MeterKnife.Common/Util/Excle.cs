@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using Common.Logging;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
@@ -16,10 +17,27 @@ namespace MeterKnife.Common.Util
         {
             book = new XSSFWorkbook();
 
-            var dateStyle = book.CreateCellStyle();
-            dateStyle.Alignment = HorizontalAlignment.Left;
-            var format = book.CreateDataFormat();
-            dateStyle.DataFormat = format.GetFormat("yyyy/m/d HH:MM:ss");
+            var font = (XSSFFont)book.CreateFont();
+            font.FontName = "Arial";
+            font.FontHeightInPoints = 9;
+
+            var cnFont = (XSSFFont)book.CreateFont();
+            font.FontName = "微软雅黑";
+            font.FontHeightInPoints = 9;
+
+            var dataTimeStyle = book.CreateCellStyle();
+            dataTimeStyle.SetFont(font);
+            dataTimeStyle.Alignment = HorizontalAlignment.Left;
+            var dataTimeFormat = book.CreateDataFormat();
+            dataTimeStyle.DataFormat = dataTimeFormat.GetFormat("yyyy/m/d HH:MM:ss");
+
+            var numberStyle = book.CreateCellStyle();
+            numberStyle.SetFont(font);
+            numberStyle.Alignment = HorizontalAlignment.Left;
+
+            var cnStyle = book.CreateCellStyle();
+            cnStyle.SetFont(cnFont);
+            cnStyle.Alignment = HorizontalAlignment.Left;
 
             try
             {
@@ -31,37 +49,50 @@ namespace MeterKnife.Common.Util
                 for (var i = 0; i < n + 1; i++)
                 {
                     sheets[i] = book.CreateSheet(string.Format("测量数据{0}", i + 1));
+                    var row = sheets[i].CreateRow(0);
+
+                    var cell = row.CreateCell(0);
+                    cell.CellStyle = cnStyle;
+                    cell.SetCellValue("时间");
+                    cell = row.CreateCell(1);
+                    cell.CellStyle = cnStyle;
+                    cell.SetCellValue("值");
+                    cell = row.CreateCell(2);
+                    cell.CellStyle = cnStyle;
+                    cell.SetCellValue("温度");
                 }
                 for (var i = 0; i < tableRows.Count; i++)
                 {
                     var k = i/SINGLE_SHEET_ROWS;
                     var sheet = sheets[k];
-                    var row = sheet.CreateRow(i);
+                    var row = sheet.CreateRow(i + 1);
                     var array = tableRows[i].ItemArray;
                     for (var j = 0; j < array.Length; j++)
                     {
+                        if (j > 2)
+                            continue;
                         try
                         {
                             if (array[j] is DateTime)
                             {
                                 var datetime = (DateTime) array[j];
                                 var cell = row.CreateCell(j);
-                                cell.CellStyle = dateStyle;
+                                cell.CellStyle = dataTimeStyle;
                                 cell.SetCellValue(datetime);
                             }
                             else if (array[j] is double)
                             {
                                 var d = (double) array[j];
-                                row.CreateCell(j).SetCellValue(d);
+                                var cell = row.CreateCell(j);
+                                cell.CellStyle = numberStyle;
+                                cell.SetCellValue(d);
                             }
                             else if (array[j] is int)
                             {
                                 var d = (int) array[j];
-                                row.CreateCell(j).SetCellValue(d);
-                            }
-                            else
-                            {
-                                row.CreateCell(j).SetCellValue(array[j].ToString());
+                                var cell = row.CreateCell(j);
+                                cell.CellStyle = numberStyle;
+                                cell.SetCellValue(d);
                             }
                         }
                         catch (Exception e)
