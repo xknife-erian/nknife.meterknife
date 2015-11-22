@@ -58,7 +58,10 @@ namespace MeterKnife.Common.Controls.Plots
             _PlotModel.Axes.Add(timeAxis);
 
             _Series.Color = GetColor();
-            _Series.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
+            _Series.MarkerFill = OxyColor.FromArgb(255,24,45,6);//(255, 78, 154, 6);
+            _Series.MarkerStroke = OxyColors.ForestGreen;
+            _Series.StrokeThickness = GetThickness();
+
             _Series.TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}";
             _PlotModel.Series.Add(_Series);
             return _PlotModel;
@@ -67,6 +70,11 @@ namespace MeterKnife.Common.Controls.Plots
         protected virtual OxyColor GetColor()
         {
             return OxyColor.FromArgb(255, 78, 154, 6);
+        }
+
+        protected virtual double GetThickness()
+        {
+            return 2;
         }
 
         protected virtual void UpdateRange(FiguredData fd)

@@ -4,10 +4,14 @@ using System.Linq;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
 using OxyPlot;
+using OxyPlot.Annotations;
 using OxyPlot.Axes;
 
 namespace MeterKnife.Common.Controls.Plots
 {
+    /// <summary>
+    /// 标准方差趋势图
+    /// </summary>
     public class StandardDeviationPlot : DataPlot
     {
         private static readonly ILog _logger = LogManager.GetLogger<StandardDeviationPlot>();
@@ -24,13 +28,15 @@ namespace MeterKnife.Common.Controls.Plots
             for (int i = 0; i < count; i++)
             {
                 var time = (DateTime) table.Rows[i]["datetime"];
-                var yzl = (double) table.Rows[i]["standard_deviation"];
-                double value = double.Parse(yzl.ToString())*1000000;
-                if (Math.Abs(value) <= 0)
-                    continue;
-
-                DataPoint dataPoint = DateTimeAxis.CreateDataPoint(time, value);
-                _Series.Points.Add(dataPoint);
+                var standardDeviation = (double)table.Rows[i]["standard_deviation"];
+                double value = 0;
+                if (double.TryParse(standardDeviation.ToString(), out standardDeviation))
+                {
+                    if (Math.Abs(value) <= 0)
+                        continue;
+                    DataPoint dataPoint = DateTimeAxis.CreateDataPoint(time, value);
+                    _Series.Points.Add(dataPoint);
+                }
             }
             this.ThreadSafeInvoke(() =>
             {

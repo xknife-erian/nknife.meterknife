@@ -13,5 +13,7 @@ namespace MeterKnife.Common.Controls.Plots
         {
             get { return "value"; }
         }
+
+
     }
 }

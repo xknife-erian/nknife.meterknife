@@ -175,7 +175,6 @@
     <Compile Include="Enums\MeterRange.cs" />
     <Compile Include="IoC\Moduels.cs" />
     <Compile Include="IoC\TunnelModules.cs" />
-    <Compile Include="LstSquQuadRegr.cs" />
     <Compile Include="MeterKnifeUserData.cs" />
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
     <Compile Include="Tunnels\CareConfigHandler.cs" />

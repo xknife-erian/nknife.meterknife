@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
+using System.Drawing;
 using System.Windows.Forms;
 using Common.Logging;
+using MathNet.Numerics;
 using MeterKnife.Common.DataModels;
-using NPOI.HSSF.Record.Chart;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
-using MarkerType = OxyPlot.MarkerType;
 
 namespace MeterKnife.Common.Controls.Plots
 {
@@ -21,11 +17,11 @@ namespace MeterKnife.Common.Controls.Plots
     {
         private static readonly ILog _logger = LogManager.GetLogger<TemperatureFeaturesPlot>();
 
-        protected PlotModel _PlotModel = new PlotModel();
-        protected ScatterSeries _DataSeries = new ScatterSeries();
-        protected LineSeries _QuadraticCurveFittingSeries = new LineSeries();
-
         protected LinearAxis _DataAxis = new LinearAxis();
+        protected ScatterSeries _DataSeries = new ScatterSeries();
+
+        protected PlotModel _PlotModel = new PlotModel();
+        protected LineSeries _QuadraticCurveFittingSeries = new LineSeries();
         protected LinearAxis _TempAxis = new LinearAxis();
 
         public TemperatureFeaturesPlot()
@@ -82,7 +78,7 @@ namespace MeterKnife.Common.Controls.Plots
                 var min = fd.ExtremePoint.Item2;
                 if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
                 {
-                    double j = (Math.Abs(max - min))/4;
+                    var j = (Math.Abs(max - min))/4;
                     if (Math.Abs(j) > 0)
                     {
                         _DataAxis.Maximum = max + j;
@@ -96,7 +92,7 @@ namespace MeterKnife.Common.Controls.Plots
                 var min = fd.TemperatureExtremePoint.Item2;
                 if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
                 {
-                    double j = (Math.Abs(max - min))/4;
+                    var j = (Math.Abs(max - min))/4;
                     if (Math.Abs(j) > 0)
                     {
                         _TempAxis.Maximum = max + j;
@@ -112,7 +108,8 @@ namespace MeterKnife.Common.Controls.Plots
             UpdateRange(fd);
 
             var temps = new List<double>();
-            var lsqr = new LstSquQuadRegr();
+            var xarray = new List<double>();
+            var yarray = new List<double>();
             foreach (DataRow row in fd.DataSet.Tables[1].Rows)
             {
                 var x = (double) row[2]; //温度
@@ -121,19 +118,30 @@ namespace MeterKnife.Common.Controls.Plots
                     continue;
                 var point = new ScatterPoint(x, y);
                 _DataSeries.Points.Add(point);
-                lsqr.AddPoints(x, y);
+                xarray.Add(x);
+                yarray.Add(y);
                 temps.Add(x);
             }
 
             if (temps.Count < 3)
                 return;
 
-            var a = lsqr.aTerm();
-            var b = lsqr.bTerm();
-            var c = lsqr.cTerm();
+            var v = Fit.Polynomial(xarray.ToArray(), yarray.ToArray(), 2);
+            var a = v[2];
+            var b = v[1];
+            var c = v[0];
+
+            var aa = a >= 0 ? "" : "-";
+            var ab = b >= 0 ? "+" : "-";
+            var bc = c >= 0 ? "+" : "-";
+            var hs = string.Format("Y ={3} {0} X^2 {4} {1} X {5} {2}", Math.Abs(a).ToString("0.0000").TrimEnd('0'), Math.Abs(b).ToString("0.0000").TrimEnd('0'), Math.Abs(c).ToString("0.00000").TrimEnd('0'),aa, ab, bc);
+
+            _logger.Info(a);
+            _logger.Info(b);
+            _logger.Info(c);
+            _logger.Info(hs);
 
             temps.Sort();
-            _logger.Info(string.Format("y={0} x*x + {1} x + {2}", a, b, c));
             double t = 0;
             foreach (var temp in temps)
             {
@@ -142,8 +150,9 @@ namespace MeterKnife.Common.Controls.Plots
                 t = temp;
                 var ly = a*temp*temp + b*temp + c;
                 _QuadraticCurveFittingSeries.Points.Add(new DataPoint(temp, ly));
-                _logger.Info(string.Format("Temp:{0}; Value:{1}", temp, ly));
+                _logger.Trace(string.Format("Temp:{0}; Value:{1}", temp, ly));
             }
+            _QuadraticCurveFittingSeries.Title = hs;
             this.ThreadSafeInvoke(() =>
             {
                 _DataSeries.PlotModel.InvalidatePlot(true);

@@ -13,6 +13,9 @@ using OxyPlot.WindowsForms;
 
 namespace MeterKnife.Common.Controls.Plots
 {
+    /// <summary>
+    /// 标准正态分布
+    /// </summary>
     public sealed class StandardNormalDistributionPlot : UserControl
     {
         private readonly PlotModel _PlotModel = new PlotModel();
