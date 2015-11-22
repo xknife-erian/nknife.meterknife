@@ -40,10 +40,13 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected virtual PlotModel BuildPlotModel()
         {
+            _PlotModel.PlotAreaBackground = OxyColor.FromArgb(255, 245, 255, 245);
+
             _LeftAxis.MajorGridlineStyle = LineStyle.Solid;
             _LeftAxis.MinorGridlineStyle = LineStyle.Dot;
             _LeftAxis.MaximumPadding = 0;
             _LeftAxis.MinimumPadding = 0;
+            _LeftAxis.Angle = 45;
             _LeftAxis.Maximum = 15;
             _LeftAxis.Minimum = 5;
             _LeftAxis.Position = AxisPosition.Left;
@@ -97,7 +100,7 @@ namespace MeterKnife.Common.Controls.Plots
             }
             else if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
             {
-                double j = (Math.Abs(max - min))/4;
+                double j = (Math.Abs(max - min))/6;
                 if (Math.Abs(j) > 0)
                 {
                     _LeftAxis.Maximum = max + j;

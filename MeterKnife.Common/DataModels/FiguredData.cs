@@ -147,7 +147,7 @@ namespace MeterKnife.Common.DataModels
                 var mean = ArrayStatistics.Mean(array);
                 SampleMean = mean.ToString(_DecimalDigit).TrimEnd('0');
                 var sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
-                relativeSampleStandardDeviation = sampleStandardDeviation / GetRelativeValue(MeterRange, mean);
+                relativeSampleStandardDeviation = sampleStandardDeviation / GetRelativeValue(mean);
                 SampleStandardDeviation = GetPpmValue(relativeSampleStandardDeviation).TrimEnd('0');
                 SampleRootMeanSquareValue = ArrayStatistics.RootMeanSquare(array).ToString(_DecimalDigit).TrimEnd('0');
 
@@ -182,9 +182,9 @@ namespace MeterKnife.Common.DataModels
             return !inFilter;
         }
 
-        private static double GetRelativeValue(MeterRange meterRange, double mean)
+        public double GetRelativeValue(double mean)
         {
-            switch (meterRange)
+            switch (MeterRange)
             {
                 case MeterRange.None:
                     return mean;
