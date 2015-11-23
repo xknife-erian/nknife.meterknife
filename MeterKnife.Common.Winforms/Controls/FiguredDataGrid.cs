@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MerterKnife.Common.Winforms
+namespace MerterKnife.Common.Winforms.Controls
 {
-    public partial class UserControl1: UserControl
+    public partial class FiguredDataGrid : UserControl
     {
-        public UserControl1()
+        public FiguredDataGrid()
         {
             InitializeComponent();
         }

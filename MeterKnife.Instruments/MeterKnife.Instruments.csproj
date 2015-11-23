@@ -67,24 +67,10 @@
     <Compile Include="..\MeterKnife.App.Professional\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Dialog\ExportFileSelectorDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialog\ExportFileSelectorDialog.Designer.cs">
-      <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialog\FilterSettingDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialog\FilterSettingDialog.Designer.cs">
-      <DependentUpon>FilterSettingDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="MeterView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
-    <Compile Include="Specified\DCPowerSupply.cs" />
-    <Compile Include="Specified\DigitalMultimeter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,12 +84,11 @@
     </Compile>
     <Compile Include="IoC\MeterModule.cs" />
     <Compile Include="IoC\Modules.cs" />
+    <Compile Include="Specified\DcPowerSupply.cs" />
+    <Compile Include="Specified\DigitalMultimeter.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Specified\Ag34401AParam.xml">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="license.txt" />
     <Content Include="Properties\content\ToolstripButton\clear.png" />
     <Content Include="Properties\content\ToolstripButton\export.png" />
@@ -120,14 +105,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dialog\FilterSettingDialog.resx">
-      <DependentUpon>FilterSettingDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DigitMultiMeterView.resx">
       <DependentUpon>DigitMultiMeterView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\ExportFileSelectorDialog.resx">
-      <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -156,12 +135,7 @@
       <Name>MeterKnife.Scpis</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Specified\Advantest\" />
-    <Folder Include="Specified\Agilent\" />
-    <Folder Include="Specified\Fluke\" />
-    <Folder Include="Specified\Keithley\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,7 +12,6 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Enums;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
-using MeterKnife.Instruments.Dialog;
 using MeterKnife.Scpis;
 using NKnife.Events;
 using NKnife.IoC;

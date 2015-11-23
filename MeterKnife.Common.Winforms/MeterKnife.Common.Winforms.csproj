@@ -42,6 +42,9 @@
       <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.dll</HintPath>
     </Reference>
@@ -65,20 +68,89 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dialogs\ExportProgressDialog.cs" />
+    <Compile Include="Controls\FiguredDataGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FiguredDataGrid.Designer.cs">
+      <DependentUpon>FiguredDataGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Tree\CareNode.cs" />
+    <Compile Include="Controls\Tree\InterfaceNode.cs" />
+    <Compile Include="Controls\Tree\LanNode.cs" />
+    <Compile Include="Controls\Tree\MeterNode.cs" />
+    <Compile Include="Controls\Tree\MeterTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Tree\PCNode.cs" />
+    <Compile Include="Controls\Tree\SerialNode.cs" />
+    <Compile Include="Dialogs\AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AddMeterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddMeterDialog.Designer.cs">
+      <DependentUpon>AddMeterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CareParameterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CareParameterDialog.Designer.cs">
+      <DependentUpon>CareParameterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CommandBuildDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CommandBuildDialog.Designer.cs">
+      <DependentUpon>CommandBuildDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DataPathSetterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DataPathSetterDialog.Designer.cs">
+      <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExportFileSelectorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ExportFileSelectorDialog.Designer.cs">
+      <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExportProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\ExportProgressDialog.Designer.cs">
       <DependentUpon>ExportProgressDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Dialogs\FilterSettingDialog.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="Dialogs\FilterSettingDialog.Designer.cs">
+      <DependentUpon>FilterSettingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\InterfaceSelectorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\InterfaceSelectorDialog.Designer.cs">
+      <DependentUpon>InterfaceSelectorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OfflineCollectParameterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\OfflineCollectParameterDialog.Designer.cs">
+      <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436E22B8-84A4-49E6-9810-E72FAD37313F}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\nknife\NKnife\NKnife.csproj">
       <Project>{266fcf12-d8f4-402c-bd7e-fc1df5f6a0bf}</Project>
       <Name>NKnife</Name>
@@ -89,8 +161,38 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\FiguredDataGrid.resx">
+      <DependentUpon>FiguredDataGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddMeterDialog.resx">
+      <DependentUpon>AddMeterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CareParameterDialog.resx">
+      <DependentUpon>CareParameterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CommandBuildDialog.resx">
+      <DependentUpon>CommandBuildDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DataPathSetterDialog.resx">
+      <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportFileSelectorDialog.resx">
+      <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ExportProgressDialog.resx">
       <DependentUpon>ExportProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FilterSettingDialog.resx">
+      <DependentUpon>FilterSettingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\InterfaceSelectorDialog.resx">
+      <DependentUpon>InterfaceSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\OfflineCollectParameterDialog.resx">
+      <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Instruments.Dialog
+﻿namespace MerterKnife.Common.Winforms.Dialogs
 {
     partial class FilterSettingDialog
     {

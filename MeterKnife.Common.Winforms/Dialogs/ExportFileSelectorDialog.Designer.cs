@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Instruments
+﻿namespace MerterKnife.Common.Winforms.Dialogs
 {
     partial class ExportFileSelectorDialog
     {

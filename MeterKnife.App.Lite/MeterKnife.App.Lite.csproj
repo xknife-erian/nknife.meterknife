@@ -154,6 +154,10 @@
       <Project>{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}</Project>
       <Name>NKnife</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Common.Winforms\MeterKnife.Common.Winforms.csproj">
+      <Project>{9F425D32-AEDC-489D-A7EE-140CCABD412B}</Project>
+      <Name>MeterKnife.Common.Winforms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
       <Project>{572ecf0c-1b6d-4a7c-81f0-ee1326ef47d9}</Project>
       <Name>MeterKnife.Common</Name>

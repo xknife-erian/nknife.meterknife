@@ -1,4 +1,6 @@
-﻿namespace MeterKnife.Workbench.Dialogs
+﻿using MeterKnife.Common.Properties;
+
+namespace MeterKnife.Workbench.Dialogs
 {
     partial class AboutDialog
     {
@@ -66,7 +68,7 @@
             // 
             // logoPictureBox
             // 
-            this.logoPictureBox.Image = global::MeterKnife.Workbench.Properties.Resources.main_logo;
+            this.logoPictureBox.Image = GlobalResources.main_logo;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
