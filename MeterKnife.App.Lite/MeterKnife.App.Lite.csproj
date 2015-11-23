@@ -76,35 +76,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MeterKnife.App.Professional\FileCleaner.cs">
-      <Link>Ref\FileCleaner.cs</Link>
-    </Compile>
-    <Compile Include="..\MeterKnife.App.Professional\MeterKnifeEnvironment.cs">
-      <Link>Ref\MeterKnifeEnvironment.cs</Link>
-    </Compile>
     <Compile Include="..\MeterKnife.App.Professional\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\MeterKnife.App.Professional\SplashForm.cs">
-      <Link>Ref\SplashForm.cs</Link>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddMeterLiteDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="FileCleaner.cs" />
+    <Compile Include="MeterKnifeEnvironment.cs" />
     <Compile Include="MeterLiteMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MeterLiteMainForm.Designer.cs">
       <DependentUpon>MeterLiteMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MeterLiteView.cs">
+    <Compile Include="DigitMultiMeterLiteView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
-    <EmbeddedResource Include="..\MeterKnife.App.Professional\SplashForm.resx">
-      <Link>Ref\SplashForm.resx</Link>
-    </EmbeddedResource>
+    <Compile Include="SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="MeterLiteMainForm.resx">
       <DependentUpon>MeterLiteMainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +108,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SplashForm.resx">
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

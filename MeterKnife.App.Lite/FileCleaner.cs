@@ -3,9 +3,9 @@ using System.IO;
 using System.Windows.Forms;
 using NKnife.GUI.WinForm;
 
-namespace MeterKnife.App.Professional
+namespace MeterKnife.App.Lite
 {
-    class FileCleaner
+    public class FileCleaner
     {
         public static void Run()
         {

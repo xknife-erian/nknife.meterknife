@@ -39,7 +39,7 @@ namespace MeterKnife.App.Lite
 
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Common.Properties.Settings.Default.CultureInfoName);
 
-            MeterLiteView.IsLite = true;
+            DigitMultiMeterLiteView.IsLite = true;
 
             MeterKnifeEnvironment.Workbench = new MeterLiteMainForm();
             Application.Run(new MeterKnifeEnvironment());

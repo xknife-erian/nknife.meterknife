@@ -2,10 +2,9 @@
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
-using MeterKnife.Common.Winforms.Dialogs;
 using NKnife.IoC;
 
-namespace MeterKnife.App.Lite
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public class AddMeterLiteDialog : AddMeterDialog
     {

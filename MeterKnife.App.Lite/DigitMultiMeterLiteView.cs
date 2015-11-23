@@ -7,14 +7,14 @@ namespace MeterKnife.App.Lite
     /// <summary>
     /// Lite版简化的万用表界面
     /// </summary>
-    internal class MeterLiteView : DigitMultiMeterView
+    internal class DigitMultiMeterLiteView : DigitMultiMeterView
     {
         /// <summary>
         /// 是否是精灵版
         /// </summary>
         public static bool IsLite { get; set; }
 
-        public MeterLiteView()
+        public DigitMultiMeterLiteView()
         {
             if (IsLite)
             {

@@ -124,6 +124,9 @@
     <Compile Include="Dialogs\AddMeterDialog.Designer.cs">
       <DependentUpon>AddMeterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AddMeterLiteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\CareParameterDialog.cs">
       <SubType>Form</SubType>
     </Compile>

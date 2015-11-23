@@ -34,13 +34,11 @@ namespace MeterKnife.App.Professional
             DI.Initialize();
             var logger = LogManager.GetLogger<Program>();
 
-            FileCleaner.Run();
-
             //自动更新
             if (!ApplicationUpdate(args, logger))
             {
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(Common.Properties.Settings.Default.CultureInfoName);
-                Application.Run(new MeterKnifeEnvironment());
+                Application.Run(new Form());
             }
 #if !DEBUG
                 mutex.ReleaseMutex();
