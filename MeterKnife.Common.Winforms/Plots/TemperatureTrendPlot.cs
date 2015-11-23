@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
+using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
 using OxyPlot;
@@ -12,7 +8,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 
-namespace MeterKnife.Common.Controls.Plots
+namespace MerterKnife.Common.Winforms.Plots
 {
     public partial class TemperatureTrendPlot : UserControl
     {
@@ -130,18 +126,18 @@ namespace MeterKnife.Common.Controls.Plots
                 point = DateTimeAxis.CreateDataPoint(time, right); //new ScatterPoint(x, y);
                 _TempSeries.Points.Add(point);
             }
-            this.ThreadSafeInvoke(() =>
+            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() =>
             {
                 _DataSeries.PlotModel.InvalidatePlot(true);
                 _TempSeries.PlotModel.InvalidatePlot(true);
-            });
+            }));
         }
 
         public virtual void Clear()
         {
             _DataSeries.Points.Clear();
             _TempSeries.Points.Clear();
-            this.ThreadSafeInvoke(() => _DataSeries.PlotModel.InvalidatePlot(true));
+            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() => _DataSeries.PlotModel.InvalidatePlot(true)));
         }
     }
 }

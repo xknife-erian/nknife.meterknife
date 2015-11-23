@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 
-namespace MeterKnife.Common.Controls.Plots
+namespace MerterKnife.Common.Winforms.Plots
 {
-    partial class TemperatureFeaturesPlot
+    partial class DataPlot
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -30,11 +30,20 @@ namespace MeterKnife.Common.Controls.Plots
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.SuspendLayout();
+            // 
+            // FiguredDataPlot
+            // 
             this.Dock = DockStyle.Fill;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "FiguredDataPlot";
+            this.Size = new System.Drawing.Size(274, 204);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
     }
 }

@@ -11,7 +11,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 
-namespace MeterKnife.Common.Controls.Plots
+namespace MerterKnife.Common.Winforms.Plots
 {
     public partial class TemperatureFeaturesPlot : UserControl
     {
@@ -141,11 +141,11 @@ namespace MeterKnife.Common.Controls.Plots
             var aa = a >= 0 ? "" : "-";
             var ab = b >= 0 ? "+" : "-";
             var bc = c >= 0 ? "+" : "-";
-            var hs = string.Format("Y ={3} {0} X^2 {4} {1} X {5} {2}", Math.Abs(a).ToString("0.0000").TrimEnd('0'), Math.Abs(b).ToString("0.0000").TrimEnd('0'), Math.Abs(c).ToString("0.00000").TrimEnd('0'),aa, ab, bc);
+            var hs = string.Format("Y ={3} {0} X^2 {4} {1} X {5} {2}", Math.Abs((double) a).ToString("0.0000").TrimEnd('0'), Math.Abs((double) b).ToString("0.0000").TrimEnd('0'), Math.Abs((double) c).ToString("0.00000").TrimEnd('0'),aa, ab, bc);
 
-            _logger.Info(a);
-            _logger.Info(b);
-            _logger.Info(c);
+            _logger.Info((object) a);
+            _logger.Info((object) b);
+            _logger.Info((object) c);
             _logger.Info(hs);
 
             temps.Sort();
@@ -160,18 +160,18 @@ namespace MeterKnife.Common.Controls.Plots
                 _logger.Trace(string.Format("Temp:{0}; Value:{1}", temp, ly));
             }
             _QuadraticCurveFittingSeries.Title = hs;
-            this.ThreadSafeInvoke(() =>
+            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() =>
             {
                 _DataSeries.PlotModel.InvalidatePlot(true);
                 _QuadraticCurveFittingSeries.PlotModel.InvalidatePlot(true);
-            });
+            }));
         }
 
         public virtual void Clear()
         {
             _DataSeries.Points.Clear();
             _QuadraticCurveFittingSeries.Points.Clear();
-            this.ThreadSafeInvoke(() => _DataSeries.PlotModel.InvalidatePlot(true));
+            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() => _DataSeries.PlotModel.InvalidatePlot(true)));
         }
     }
 }

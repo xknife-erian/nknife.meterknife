@@ -9,7 +9,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 
-namespace MeterKnife.Common.Controls.Plots
+namespace MerterKnife.Common.Winforms.Plots
 {
     public abstract partial class DataPlot : UserControl
     {
@@ -134,7 +134,7 @@ namespace MeterKnife.Common.Controls.Plots
 
             DataPoint dataPoint = DateTimeAxis.CreateDataPoint(DateTime.Now, value);
             _Series.Points.Add(dataPoint);
-            this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
+            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() => _Series.PlotModel.InvalidatePlot(true)));
 
             UpdateRange(fd);
         }
@@ -142,7 +142,7 @@ namespace MeterKnife.Common.Controls.Plots
         public virtual void Clear()
         {
             _Series.Points.Clear();
-            this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
+            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() => _Series.PlotModel.InvalidatePlot(true)));
         }
     }
 }

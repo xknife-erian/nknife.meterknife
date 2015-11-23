@@ -42,6 +42,10 @@
       <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MathNet.Numerics.3.8.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
     </Reference>
@@ -57,8 +61,17 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot, Version=2014.1.546.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.WindowsForms, Version=2014.1.546.0, Culture=neutral, PublicKeyToken=245eacd6b5d2d338, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\OxyPlot.WindowsForms.2014.1.546\lib\net40\OxyPlot.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,12 +81,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\BaseParamPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseParamPanel.Designer.cs">
+      <DependentUpon>BaseParamPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FiguredDataGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\FiguredDataGrid.Designer.cs">
       <DependentUpon>FiguredDataGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ScpiParamPanel.cs" />
+    <Compile Include="Controls\Tree\BaseTreeNode.cs" />
     <Compile Include="Controls\Tree\CareNode.cs" />
     <Compile Include="Controls\Tree\InterfaceNode.cs" />
     <Compile Include="Controls\Tree\LanNode.cs" />
@@ -83,6 +104,12 @@
     </Compile>
     <Compile Include="Controls\Tree\PCNode.cs" />
     <Compile Include="Controls\Tree\SerialNode.cs" />
+    <Compile Include="Controls\UserScpiCommandPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
+      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +170,33 @@
     <Compile Include="Dialogs\OfflineCollectParameterDialog.Designer.cs">
       <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Plots\DataPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\DataPlot.Designer.cs">
+      <DependentUpon>DataPlot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plots\FiguredDataPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\StandardDeviationPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\TemperatureDataPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\TemperatureFeaturesPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\TemperatureFeaturesPlot.Designer.cs">
+      <DependentUpon>TemperatureFeaturesPlot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plots\TemperatureTrendPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\TemperatureTrendPlot.Designer.cs">
+      <DependentUpon>TemperatureTrendPlot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
@@ -161,8 +215,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\BaseParamPanel.resx">
+      <DependentUpon>BaseParamPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FiguredDataGrid.resx">
       <DependentUpon>FiguredDataGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScpiParamPanel.resx">
+      <DependentUpon>ScpiParamPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserScpiCommandPanel.resx">
+      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
@@ -193,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\OfflineCollectParameterDialog.resx">
       <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plots\DataPlot.resx">
+      <DependentUpon>DataPlot.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

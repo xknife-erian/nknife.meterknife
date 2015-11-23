@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Common.Controls
+﻿namespace MerterKnife.Common.Winforms.Controls
 {
     partial class UserScpiCommandPanel
     {

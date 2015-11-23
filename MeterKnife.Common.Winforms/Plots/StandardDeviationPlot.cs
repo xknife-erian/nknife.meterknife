@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 using Common.Logging;
 using MathNet.Numerics.Statistics;
 using MeterKnife.Common.DataModels;
@@ -9,7 +10,7 @@ using OxyPlot;
 using OxyPlot.Annotations;
 using OxyPlot.Axes;
 
-namespace MeterKnife.Common.Controls.Plots
+namespace MerterKnife.Common.Winforms.Plots
 {
     /// <summary>
     /// 标准方差趋势图
@@ -59,7 +60,7 @@ namespace MeterKnife.Common.Controls.Plots
             lineRms.Y = rms;
             lineRms.Color = OxyColors.OrangeRed;
             lineRms.ClipByXAxis = false;
-            lineRms.Text = string.Format("Root Mean Square: {0}ppm", rms.ToString("0.00000").TrimEnd('0'));
+            lineRms.Text = string.Format((string) "Root Mean Square: {0}ppm", (object) rms.ToString("0.00000").TrimEnd('0'));
             _PlotModel.Annotations.Add(lineRms);
 
             var lineMax = new LineAnnotation();
@@ -67,7 +68,7 @@ namespace MeterKnife.Common.Controls.Plots
             lineMax.Y = max;
             lineMax.Color = OxyColors.BlueViolet;
             lineMax.ClipByXAxis = false;
-            lineMax.Text = string.Format("Maximum: {0}ppm", max.ToString("0.00000").TrimEnd('0'));
+            lineMax.Text = string.Format((string) "Maximum: {0}ppm", (object) max.ToString("0.00000").TrimEnd('0'));
             _PlotModel.Annotations.Add(lineMax);
 
             var lineMin = new LineAnnotation();
@@ -75,7 +76,7 @@ namespace MeterKnife.Common.Controls.Plots
             lineMin.Y = min;
             lineMin.Color = OxyColors.BlueViolet;
             lineMin.ClipByXAxis = false;
-            lineMin.Text = string.Format("Minimum: {0}ppm", min.ToString("0.00000").TrimEnd('0'));
+            lineMin.Text = string.Format((string) "Minimum: {0}ppm", (object) min.ToString("0.00000").TrimEnd('0'));
             _PlotModel.Annotations.Add(lineMin);
 
             this.ThreadSafeInvoke(() =>

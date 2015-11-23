@@ -5,11 +5,10 @@ using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
 using MerterKnife.Common.Winforms.Dialogs;
+using MerterKnife.Common.Winforms.Plots;
 using MeterKnife.Common;
 using MeterKnife.Common.Base;
-using MeterKnife.Common.Controls.Plots;
 using MeterKnife.Common.DataModels;
-using MeterKnife.Common.Enums;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Scpis;
@@ -33,7 +32,6 @@ namespace MeterKnife.Instruments
 
         private bool _IsDispose;
 
-        //protected StandardNormalDistributionPlot _SdPlot = new StandardNormalDistributionPlot();
         protected StandardDeviationPlot _SdPlot = new StandardDeviationPlot();
         protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
         protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
@@ -42,7 +40,7 @@ namespace MeterKnife.Instruments
         public DigitMultiMeterView()
         {
             InitializeComponent();
-            _FiguredDataPropertyGrid.PropertySort = PropertySort.Categorized;
+
             _ScpiCommandPanel.Dock = DockStyle.Fill;
             _LeftSplitContainer.Panel2.Padding = new Padding(3, 2, 3, 2);
             _LeftSplitContainer.Panel2.Controls.Add(_ScpiCommandPanel);
@@ -55,15 +53,12 @@ namespace MeterKnife.Instruments
 
             SetStripButtonState(false);
             SetFiguredDataGrid();
-            SetStandardDeviationRange();
-            SetRangeDropDownButtonState();
             _MeterKernel.Collected += (s, e) =>
             {
                 if (e.GpibAddress == _Meter.GpibAddress)
                     SetStripButtonState(e.IsCollected);
             };
 
-            _SampleRangeComboBox.TextChanged += (s, e) => SetStandardDeviationRange();
             _FiguredData.ReceviedCollectData += (sender, args) => this.ThreadSafeInvoke(() =>
             {
                 _FiguredDataGridView.DataSource = null;
@@ -97,94 +92,13 @@ namespace MeterKnife.Instruments
             _ScpiCommandPanel.GpibAddress = meter.GpibAddress;
             _Comm.Bind(port, _Handler);
             _FiguredData.Meter = _Meter;
-            _FiguredDataPropertyGrid.SelectedObject = _FiguredData;
+            _FiguredDataPropertyGrid.BindFigureData(_FiguredData);
             _logger.Info("面板初始化仪器完成..");
-        }
-
-        protected void SetRangeDropDownButtonState()
-        {
-            autoToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = autoToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.None;
-            };
-            x0001ToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x0001ToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X0001;
-            };
-            x001ToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x001ToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X001;
-            };
-            x01ToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x01ToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X01;
-            };
-            x1ToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x1ToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X1;
-            };
-            x10ToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x10ToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X10;
-            };
-            x100ToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x100ToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X100;
-            };
-            x1KToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x1KToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X1K;
-            };
-            x10KToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x10KToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X10K;
-            };
-            x100KToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x100KToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X100K;
-            };
-            x1MToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x1MToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X1M;
-            };
-            x10MToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x10MToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X10M;
-            };
-            x100MToolStripMenuItem.Click += (s, e) =>
-            {
-                _MeterRangeDropDownButton.Text = x100MToolStripMenuItem.Text;
-                _FiguredData.MeterRange = MeterRange.X100M;
-            };
         }
 
         protected void SetFiguredDataGrid()
         {
             _FiguredDataGridView.DataSource = _FiguredData.DataSet.Tables[1];
-        }
-
-        protected void SetStandardDeviationRange()
-        {
-            var range = 100;
-            if (!int.TryParse(_SampleRangeComboBox.Text, out range))
-            {
-                _logger.Warn(string.Format("{0}解析错误", _SampleRangeComboBox.Text));
-            }
-            if (range < 10)
-                return;
-            _FiguredData.SetRange(range);
         }
 
         protected void SetStripButtonState(bool isCollected)
@@ -195,8 +109,6 @@ namespace MeterKnife.Instruments
             _ExportStripButton.Enabled = !isCollected;
             _SaveStripButton.Enabled = !isCollected;
             _ClearDataToolStripButton.Enabled = !isCollected;
-            _SampleRangeComboBox.Enabled = !isCollected;
-            _MeterRangeDropDownButton.Enabled = !isCollected;
 
             _PhotoToolStripButton.Enabled = !isCollected;
             _ZoomInToolStripButton.Enabled = !isCollected;

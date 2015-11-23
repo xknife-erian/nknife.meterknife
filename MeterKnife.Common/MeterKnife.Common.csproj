@@ -67,22 +67,15 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
-    <Reference Include="OxyPlot">
-      <HintPath>..\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
-    </Reference>
-    <Reference Include="OxyPlot.WindowsForms">
-      <HintPath>..\packages\OxyPlot.WindowsForms.2014.1.546\lib\net40\OxyPlot.WindowsForms.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking">
       <HintPath>..\packages\DockPanelSuite.2.9.0.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
@@ -98,13 +91,6 @@
     <Compile Include="Algorithms\Difference\SampleStandardDeviation.cs" />
     <Compile Include="Algorithms\TemperatureRootMeanSquareValue.cs" />
     <Compile Include="Base\BaseMeter.cs" />
-    <Compile Include="Base\BaseParamPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Base\BaseParamPanel.Designer.cs">
-      <DependentUpon>BaseParamPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Base\BaseTreeNode.cs" />
     <Compile Include="Base\BaseDifferenceAlgorithm.cs" />
     <Compile Include="Base\_\DMMMeasure.cs" />
     <Compile Include="Base\_\DMMRange.cs" />
@@ -112,45 +98,6 @@
     <Compile Include="Base\_\DMMZeroSet.cs" />
     <Compile Include="Base\_\GpibLanguage.cs" />
     <Compile Include="Base\_\MultiMeterParameters.cs" />
-    <Compile Include="Controls\Plots\DataPlot.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Plots\DataPlot.Designer.cs">
-      <DependentUpon>DataPlot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Plots\FiguredDataPlot.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Plots\StandardDeviationPlot.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Plots\StandardNormalDistributionPlot.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Plots\TemperatureDataPlot.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Plots\TemperatureFeaturesPlot.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Plots\TemperatureFeaturesPlot.Designer.cs">
-      <DependentUpon>TemperatureFeaturesPlot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Plots\TemperatureTrendPlot.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Plots\TemperatureTrendPlot.Designer.cs">
-      <DependentUpon>TemperatureTrendPlot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ScpiParamPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UserScpiCommandPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
-      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataModels\CommPort.cs" />
     <Compile Include="DataModels\CommPortCommandMap.cs" />
     <Compile Include="DataModels\FiguredDataFilter.cs" />
@@ -192,18 +139,6 @@
     <Compile Include="Util\Excle.cs" />
     <Compile Include="Util\MeterRangeCalculator.cs" />
     <Compile Include="Util\MeterUtil.cs" />
-    <EmbeddedResource Include="Base\BaseParamPanel.resx">
-      <DependentUpon>BaseParamPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Plots\DataPlot.resx">
-      <DependentUpon>DataPlot.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ScpiParamPanel.resx">
-      <DependentUpon>ScpiParamPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UserScpiCommandPanel.resx">
-      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\GlobalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>

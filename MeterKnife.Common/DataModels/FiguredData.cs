@@ -346,7 +346,7 @@ namespace MeterKnife.Common.DataModels
 
         #region 样本
 
-        [Category("样本"), DisplayName("标准方差")]
+        [Category("样本"), DisplayName("相对标准差")]
         public string SampleStandardDeviation { get; private set; }
 
         [Category("样本"), DisplayName("算术平均值")]

@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Common.Base
+﻿namespace MerterKnife.Common.Winforms.Controls
 {
     partial class BaseParamPanel
     {

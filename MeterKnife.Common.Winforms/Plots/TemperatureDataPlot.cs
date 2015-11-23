@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using Common.Logging;
 using MeterKnife.Common.DataModels;
 using OxyPlot;
 using OxyPlot.Axes;
 
-namespace MeterKnife.Common.Controls.Plots
+namespace MerterKnife.Common.Winforms.Plots
 {
     public class TemperatureDataPlot : DataPlot
     {

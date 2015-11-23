@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace MeterKnife.Common.Controls.Plots
+namespace MerterKnife.Common.Winforms.Plots
 {
     partial class TemperatureTrendPlot
     {
