@@ -3,7 +3,7 @@ using MeterKnife.Common.DataModels;
 using OxyPlot;
 using OxyPlot.Axes;
 
-namespace MerterKnife.Common.Winforms.Plots
+namespace MeterKnife.Common.Winforms.Plots
 {
     public class TemperatureDataPlot : DataPlot
     {

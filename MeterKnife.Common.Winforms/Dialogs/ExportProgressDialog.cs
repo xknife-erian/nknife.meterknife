@@ -9,7 +9,7 @@ using NKnife.GUI.WinForm;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
-namespace MerterKnife.Common.Winforms.Dialogs
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class ExportProgressDialog : SimpleForm
     {

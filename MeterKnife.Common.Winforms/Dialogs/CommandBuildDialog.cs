@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using NKnife.GUI.WinForm;
 
-namespace MeterKnife.Workbench.Dialogs
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class CommandBuildDialog : SimpleForm
     {

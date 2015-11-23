@@ -1,5 +1,5 @@
 ﻿
-using MeterKnife.Workbench.Controls.Tree;
+using MeterKnife.Common.Winforms.Controls.Tree;
 
 namespace MeterKnife.Workbench.Views
 {
@@ -33,7 +33,7 @@ namespace MeterKnife.Workbench.Views
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfaceTreeView));
-            this._MeterTree = new MeterKnife.Workbench.Controls.Tree.MeterTree();
+            this._MeterTree = new MeterTree();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();

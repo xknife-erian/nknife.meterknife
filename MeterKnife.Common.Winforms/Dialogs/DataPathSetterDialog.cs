@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using NKnife.GUI.WinForm;
 
-namespace MeterKnife.Workbench.Dialogs
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class DataPathSetterDialog : SimpleForm
     {

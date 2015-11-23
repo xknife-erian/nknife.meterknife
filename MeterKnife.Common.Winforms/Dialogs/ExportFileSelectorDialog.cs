@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using NKnife.GUI.WinForm;
 
-namespace MerterKnife.Common.Winforms.Dialogs
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class ExportFileSelectorDialog : SimpleForm
     {

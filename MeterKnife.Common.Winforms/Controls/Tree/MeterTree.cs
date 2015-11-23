@@ -2,18 +2,11 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Common.Logging;
-using MerterKnife.Common.Winforms.Controls.Tree;
-using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
-using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Properties;
-using MeterKnife.Common.Tunnels;
-using MeterKnife.Common.Util;
-using NKnife.Events;
-using NKnife.Tunnel;
 
-namespace MeterKnife.Workbench.Controls.Tree
+namespace MeterKnife.Common.Winforms.Controls.Tree
 {
     public sealed class MeterTree : TreeView
     {

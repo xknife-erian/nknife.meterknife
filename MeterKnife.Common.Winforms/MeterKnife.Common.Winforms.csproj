@@ -7,8 +7,8 @@
     <ProjectGuid>{9F425D32-AEDC-489D-A7EE-140CCABD412B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MerterKnife.Common.Winforms</RootNamespace>
-    <AssemblyName>MerterKnife.Common.Winforms</AssemblyName>
+    <RootNamespace>MeterKnife.Common.Winforms</RootNamespace>
+    <AssemblyName>MeterKnife.Common.Winforms</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -93,7 +93,9 @@
     <Compile Include="Controls\FiguredDataGrid.Designer.cs">
       <DependentUpon>FiguredDataGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ScpiParamPanel.cs" />
+    <Compile Include="Controls\ScpiParamPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\Tree\BaseTreeNode.cs" />
     <Compile Include="Controls\Tree\CareNode.cs" />
     <Compile Include="Controls\Tree\InterfaceNode.cs" />

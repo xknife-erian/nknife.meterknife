@@ -1,4 +1,4 @@
-﻿namespace MerterKnife.Common.Winforms.Controls
+﻿namespace MeterKnife.Common.Winforms.Controls
 {
     partial class FiguredDataGrid
     {

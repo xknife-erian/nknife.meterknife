@@ -7,7 +7,7 @@ using MeterKnife.Common.Tunnels;
 using NKnife.GUI.WinForm;
 using NKnife.Utility;
 
-namespace MeterKnife.Workbench.Dialogs
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class InterfaceSelectorDialog : SimpleForm
     {

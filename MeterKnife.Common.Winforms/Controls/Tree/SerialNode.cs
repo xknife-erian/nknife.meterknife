@@ -1,6 +1,6 @@
 ﻿using MeterKnife.Common.DataModels;
 
-namespace MeterKnife.Workbench.Controls.Tree
+namespace MeterKnife.Common.Winforms.Controls.Tree
 {
     public class SerialNode : InterfaceNode
     {

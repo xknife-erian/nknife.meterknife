@@ -32,7 +32,7 @@ namespace MeterKnife.Instruments
         {
             this._MainSplitContainer = new NKnife.GUI.WinForm.CollapsibleSplitContainer();
             this._LeftSplitContainer = new System.Windows.Forms.SplitContainer();
-            this._FiguredDataPropertyGrid = new MerterKnife.Common.Winforms.Controls.FiguredDataGrid();
+            this._FiguredDataPropertyGrid = new MeterKnife.Common.Winforms.Controls.FiguredDataGrid();
             this._MainTabControl = new System.Windows.Forms.TabControl();
             this._PlotPage = new System.Windows.Forms.TabPage();
             this._RealtimePlotSplitContainer = new System.Windows.Forms.SplitContainer();
@@ -536,6 +536,6 @@ namespace MeterKnife.Instruments
         protected System.Windows.Forms.ToolStripButton _PrintStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         protected System.Windows.Forms.ToolStripButton _FilterToolStripButton;
-        private MerterKnife.Common.Winforms.Controls.FiguredDataGrid _FiguredDataPropertyGrid;
+        private MeterKnife.Common.Winforms.Controls.FiguredDataGrid _FiguredDataPropertyGrid;
     }
 }

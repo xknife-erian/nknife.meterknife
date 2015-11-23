@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using NKnife.Interface;
 using NKnife.IoC;
 
-namespace MeterKnife.Workbench.Dialogs
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public sealed partial class AboutDialog : Form
     {

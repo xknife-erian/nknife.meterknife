@@ -1,4 +1,4 @@
-﻿namespace MerterKnife.Common.Winforms.Plots
+﻿namespace MeterKnife.Common.Winforms.Plots
 {
     public class FiguredDataPlot : DataPlot
     {

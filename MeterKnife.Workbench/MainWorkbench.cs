@@ -5,7 +5,7 @@ using Common.Logging;
 using MeterKnife.Common;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Properties;
-using MeterKnife.Workbench.Dialogs;
+using MeterKnife.Common.Winforms.Dialogs;
 using MeterKnife.Workbench.Views;
 using NKnife.Interface;
 using NKnife.IoC;

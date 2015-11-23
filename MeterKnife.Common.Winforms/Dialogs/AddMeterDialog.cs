@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
@@ -12,12 +7,11 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
-using MeterKnife.Workbench.Controls.Tree;
 using NKnife.Events;
 using NKnife.IoC;
 using ScpiKnife;
 
-namespace MeterKnife.Workbench.Dialogs
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class AddMeterDialog : Form
     {

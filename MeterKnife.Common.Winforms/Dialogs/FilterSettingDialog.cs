@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
 using NKnife.GUI.WinForm;
 
-namespace MerterKnife.Common.Winforms.Dialogs
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class FilterSettingDialog : SimpleForm
     {

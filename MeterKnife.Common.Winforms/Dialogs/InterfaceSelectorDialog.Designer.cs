@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Workbench.Dialogs
+﻿namespace MeterKnife.Common.Winforms.Dialogs
 {
     partial class InterfaceSelectorDialog
     {

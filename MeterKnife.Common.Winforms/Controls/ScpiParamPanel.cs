@@ -7,7 +7,7 @@ using Common.Logging;
 using MeterKnife.Common.Base;
 using ScpiKnife;
 
-namespace MerterKnife.Common.Winforms.Controls
+namespace MeterKnife.Common.Winforms.Controls
 {
     public class ScpiParamPanel : BaseParamPanel
     {

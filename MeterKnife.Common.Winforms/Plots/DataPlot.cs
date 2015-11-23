@@ -9,7 +9,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 
-namespace MerterKnife.Common.Winforms.Plots
+namespace MeterKnife.Common.Winforms.Plots
 {
     public abstract partial class DataPlot : UserControl
     {

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -18,7 +13,7 @@ using NKnife.Events;
 using NKnife.GUI.WinForm;
 using NKnife.IoC;
 
-namespace MeterKnife.Workbench.Dialogs
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class CareParameterDialog : SimpleForm
     {

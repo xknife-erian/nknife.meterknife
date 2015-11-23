@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using Common.Logging;
-using MerterKnife.Common.Winforms.Controls.Tree;
-using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
-using MeterKnife.Workbench.Dialogs;
+using MeterKnife.Common.Winforms.Dialogs;
 using NKnife.IoC;
 
-namespace MeterKnife.Workbench.Controls.Tree
+namespace MeterKnife.Common.Winforms.Controls.Tree
 {
     public abstract class InterfaceNode : BaseTreeNode
     {

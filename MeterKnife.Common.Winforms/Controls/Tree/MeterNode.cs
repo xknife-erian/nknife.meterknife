@@ -1,9 +1,7 @@
-using MerterKnife.Common.Winforms.Controls.Tree;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
-using MeterKnife.Common.Interfaces;
 
-namespace MeterKnife.Workbench.Controls.Tree
+namespace MeterKnife.Common.Winforms.Controls.Tree
 {
     public class MeterNode : BaseTreeNode
     {

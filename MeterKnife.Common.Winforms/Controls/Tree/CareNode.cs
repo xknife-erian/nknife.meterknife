@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
-using MeterKnife.Workbench.Dialogs;
+using MeterKnife.Common.Winforms.Dialogs;
 
-namespace MeterKnife.Workbench.Controls.Tree
+namespace MeterKnife.Common.Winforms.Controls.Tree
 {
     public class CareNode : SerialNode
     {

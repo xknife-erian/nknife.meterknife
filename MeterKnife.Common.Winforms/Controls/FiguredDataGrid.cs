@@ -10,7 +10,7 @@ using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Enums;
 
-namespace MerterKnife.Common.Winforms.Controls
+namespace MeterKnife.Common.Winforms.Controls
 {
     public partial class FiguredDataGrid : UserControl
     {

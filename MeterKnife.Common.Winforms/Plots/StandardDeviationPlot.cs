@@ -10,7 +10,7 @@ using OxyPlot;
 using OxyPlot.Annotations;
 using OxyPlot.Axes;
 
-namespace MerterKnife.Common.Winforms.Plots
+namespace MeterKnife.Common.Winforms.Plots
 {
     /// <summary>
     /// 标准方差趋势图

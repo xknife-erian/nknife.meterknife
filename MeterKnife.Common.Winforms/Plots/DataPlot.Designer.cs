@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace MerterKnife.Common.Winforms.Plots
+namespace MeterKnife.Common.Winforms.Plots
 {
     partial class DataPlot
     {

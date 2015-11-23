@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using ScpiKnife;
 
-namespace MerterKnife.Common.Winforms.Controls
+namespace MeterKnife.Common.Winforms.Controls
 {
     public partial class BaseParamPanel : UserControl
     {

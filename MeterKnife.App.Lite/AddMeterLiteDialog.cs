@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
-using MeterKnife.Workbench.Dialogs;
+using MeterKnife.Common.Winforms.Dialogs;
 using NKnife.IoC;
 
 namespace MeterKnife.App.Lite

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace MerterKnife.Common.Winforms.Controls
+namespace MeterKnife.Common.Winforms.Controls
 {
     public partial class UserScpiCommandPanel : UserControl
     {

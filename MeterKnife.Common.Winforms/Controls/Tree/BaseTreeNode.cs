@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace MerterKnife.Common.Winforms.Controls.Tree
+namespace MeterKnife.Common.Winforms.Controls.Tree
 {
     public abstract class BaseTreeNode : TreeNode
     {
