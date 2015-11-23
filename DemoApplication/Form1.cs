@@ -2,6 +2,7 @@
 using System.Data;
 using System.Threading;
 using System.Windows.Forms;
+using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Datas;
 using MeterKnife.DemoApplication.Properties;
@@ -33,7 +34,14 @@ namespace MeterKnife.DemoApplication
             var dataService = new MeterDataService();
             var filename = Guid.NewGuid().ToString("N");
             var dataset = new DataSet();
-            dataService.Save(string.Format("z:\\{0}.s3db", filename), dataset);
+            FiguredData.BuildDataset(dataset);
+            MessageBox.Show(dataService.Save(string.Format("z:\\{0}.s3db", filename), dataset) ? "保存成功" : "保存失败");
+        }
+
+        private void oxyPlot外观测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialog = new OxyPlotTestForm();
+            dialog.ShowDialog(this);
         }
     }
 }

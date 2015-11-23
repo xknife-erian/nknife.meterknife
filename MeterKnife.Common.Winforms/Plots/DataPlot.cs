@@ -18,10 +18,12 @@ namespace MeterKnife.Common.Winforms.Plots
         private double _Min;
         protected PlotModel _PlotModel = new PlotModel();
         protected LineSeries _Series = new LineSeries();
+        protected DateTimeAxis _TimeAxis = new DateTimeAxis();
 
         protected DataPlot()
         {
-            InitializeComponent();
+            // ReSharper disable once DoNotCallOverridableMethodsInConstructor
+            Dock = DockStyle.Fill;
             var plot = new PlotView
             {
                 Dock = DockStyle.Fill,
@@ -42,6 +44,8 @@ namespace MeterKnife.Common.Winforms.Plots
         {
             _PlotModel.PlotAreaBackground = GetAreaColor();
 
+            _LeftAxis.MajorGridlineColor = OxyColor.FromArgb(25, 0, 0, 90);
+            _LeftAxis.MinorGridlineColor = OxyColor.FromArgb(15, 0, 0, 90);
             _LeftAxis.MajorGridlineStyle = LineStyle.Solid;
             _LeftAxis.MinorGridlineStyle = LineStyle.Dot;
             _LeftAxis.MaximumPadding = 0;
@@ -52,13 +56,15 @@ namespace MeterKnife.Common.Winforms.Plots
             _LeftAxis.Position = AxisPosition.Left;
             _PlotModel.Axes.Add(_LeftAxis);
 
-            var timeAxis = new DateTimeAxis(); //时间刻度
-            timeAxis.MajorGridlineStyle = LineStyle.Solid;
-            timeAxis.MinorGridlineStyle = LineStyle.Dot;
-            timeAxis.MaximumPadding = 0;
-            timeAxis.MinimumPadding = 0;
-            timeAxis.Position = AxisPosition.Bottom;
-            _PlotModel.Axes.Add(timeAxis);
+            _TimeAxis.MajorGridlineColor = OxyColor.FromArgb(25, 0, 0, 90);
+            _TimeAxis.MinorGridlineColor = OxyColor.FromArgb(15, 0, 0, 90);
+            _TimeAxis.MajorGridlineStyle = LineStyle.Solid;
+            _TimeAxis.MinorGridlineStyle = LineStyle.Dot;
+            _TimeAxis.MaximumPadding = 0;
+            _TimeAxis.MinimumPadding = 0;
+            _TimeAxis.Position = AxisPosition.Bottom;
+            _TimeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
+            _PlotModel.Axes.Add(_TimeAxis);
 
             _Series.Color = GetMainSeriesColor();
             _Series.MarkerFill = OxyColor.FromArgb(255,24,45,6);//(255, 78, 154, 6);
@@ -134,15 +140,16 @@ namespace MeterKnife.Common.Winforms.Plots
 
             DataPoint dataPoint = DateTimeAxis.CreateDataPoint(DateTime.Now, value);
             _Series.Points.Add(dataPoint);
-            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() => _Series.PlotModel.InvalidatePlot(true)));
+            this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
 
             UpdateRange(fd);
         }
 
         public virtual void Clear()
         {
+            _PlotModel.Title = " ";
             _Series.Points.Clear();
-            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() => _Series.PlotModel.InvalidatePlot(true)));
+            this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
         }
     }
 }

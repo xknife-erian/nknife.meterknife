@@ -6,7 +6,5 @@
         {
             get { return "value"; }
         }
-
-
     }
 }

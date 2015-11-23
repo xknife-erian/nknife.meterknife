@@ -22,7 +22,7 @@ namespace MeterKnife.Common.Winforms.Controls
         {
             InitializeComponent();
             _FiguredDataPropertyGrid.PropertySort = PropertySort.Categorized;
-            _SampleRangeComboBox.TextChanged += (s, e) => SetStandardDeviationRange();
+            _SampleRangeDropMenu.TextChanged += (s, e) => SetStandardDeviationRange();
             SetRangeDropDownButtonState();
         }
 
@@ -30,7 +30,36 @@ namespace MeterKnife.Common.Winforms.Controls
         {
             _FiguredData = figuredData;
             _FiguredDataPropertyGrid.SelectedObject = figuredData;
+            SetSampleMenuClick();
             SetStandardDeviationRange();
+        }
+
+        private void SetSampleMenuClick()
+        {
+            _1000MenuItem.Click += OnSampleMenuItemOnClick;
+            _100MenuItem.Click += OnSampleMenuItemOnClick;
+            _2000MenuItem.Click += OnSampleMenuItemOnClick;
+            _200MenuItem.Click += OnSampleMenuItemOnClick;
+            _500MenuItem.Click += OnSampleMenuItemOnClick;
+            _50MenuItem.Click += OnSampleMenuItemOnClick;
+        }
+
+        private void OnSampleMenuItemOnClick(object s, EventArgs e)
+        {
+            SetSampleMenuChecked();
+            var menu = (ToolStripMenuItem) s;
+            menu.CheckState = CheckState.Checked;
+            _SampleRangeDropMenu.Text = menu.Text;
+        }
+
+        private void SetSampleMenuChecked()
+        {
+            _1000MenuItem.CheckState = CheckState.Unchecked;
+            _100MenuItem.CheckState = CheckState.Unchecked;
+            _2000MenuItem.CheckState = CheckState.Unchecked;
+            _200MenuItem.CheckState = CheckState.Unchecked;
+            _500MenuItem.CheckState = CheckState.Unchecked;
+            _50MenuItem.CheckState = CheckState.Unchecked;
         }
 
         public override void Refresh()
@@ -41,16 +70,16 @@ namespace MeterKnife.Common.Winforms.Controls
 
         protected void SetStripButtonState(bool isCollected)
         {
-            _SampleRangeComboBox.Enabled = !isCollected;
+            _SampleRangeDropMenu.Enabled = !isCollected;
             _MeterRangeDropDownButton.Enabled = !isCollected;
         }
 
         protected void SetStandardDeviationRange()
         {
             var range = 100;
-            if (!int.TryParse(_SampleRangeComboBox.Text, out range))
+            if (!int.TryParse(_SampleRangeDropMenu.Text, out range))
             {
-                _logger.Warn(string.Format("{0}解析错误", _SampleRangeComboBox.Text));
+                _logger.Warn(string.Format("{0}解析错误", _SampleRangeDropMenu.Text));
             }
             if (range < 10)
                 return;

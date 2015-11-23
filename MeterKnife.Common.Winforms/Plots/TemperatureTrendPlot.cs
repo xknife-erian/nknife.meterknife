@@ -10,6 +10,9 @@ using OxyPlot.WindowsForms;
 
 namespace MeterKnife.Common.Winforms.Plots
 {
+    /// <summary>
+    /// 温度趋势图: 温度曲线与数据曲线叠加
+    /// </summary>
     public partial class TemperatureTrendPlot : UserControl
     {
         protected PlotModel _PlotModel = new PlotModel();
@@ -17,6 +20,8 @@ namespace MeterKnife.Common.Winforms.Plots
         protected LineSeries _TempSeries = new LineSeries();
         protected LinearAxis _LeftAxis = new LinearAxis();
         protected LinearAxis _RightAxis = new LinearAxis();
+        protected DateTimeAxis _TimeAxis = new DateTimeAxis(); //时间刻度
+
 
         public TemperatureTrendPlot()
         {
@@ -38,6 +43,14 @@ namespace MeterKnife.Common.Winforms.Plots
         {
             _PlotModel.PlotAreaBackground = GetAreaColor();
 
+            _TimeAxis.MajorGridlineStyle = LineStyle.Solid;
+            _TimeAxis.MinorGridlineStyle = LineStyle.Dot;
+            _TimeAxis.MaximumPadding = 0;
+            _TimeAxis.MinimumPadding = 0;
+            _TimeAxis.Position = AxisPosition.Bottom;
+            _TimeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
+            _PlotModel.Axes.Add(_TimeAxis);
+
             _LeftAxis.MaximumPadding = 0;
             _LeftAxis.MinimumPadding = 0;
             _LeftAxis.Maximum = 15;
@@ -53,23 +66,17 @@ namespace MeterKnife.Common.Winforms.Plots
             _RightAxis.Position = AxisPosition.Right;
             _PlotModel.Axes.Add(_RightAxis);
 
-            var timeAxis = new DateTimeAxis(); //时间刻度
-            timeAxis.MajorGridlineStyle = LineStyle.Solid;
-            timeAxis.MaximumPadding = 0;
-            timeAxis.MinimumPadding = 0;
-            timeAxis.MinorGridlineStyle = LineStyle.Dot;
-            timeAxis.Position = AxisPosition.Bottom;
-            _PlotModel.Axes.Add(timeAxis);
-
             _DataSeries.Color = OxyColor.FromArgb(255, 78, 154, 6);
             _DataSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
+            _DataSeries.StrokeThickness = 2.6;
 
             _TempSeries.YAxisKey = "temperature";
             _TempSeries.Color = OxyColors.SlateBlue;
             _TempSeries.MarkerFill = OxyColors.SlateBlue;
+            _TempSeries.StrokeThickness = 1.3;
 
-            _PlotModel.Series.Add(_DataSeries);
             _PlotModel.Series.Add(_TempSeries);
+            _PlotModel.Series.Add(_DataSeries);
             return _PlotModel;
         }
 
@@ -126,18 +133,18 @@ namespace MeterKnife.Common.Winforms.Plots
                 point = DateTimeAxis.CreateDataPoint(time, right); //new ScatterPoint(x, y);
                 _TempSeries.Points.Add(point);
             }
-            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() =>
+            this.ThreadSafeInvoke(() =>
             {
                 _DataSeries.PlotModel.InvalidatePlot(true);
                 _TempSeries.PlotModel.InvalidatePlot(true);
-            }));
+            });
         }
 
         public virtual void Clear()
         {
             _DataSeries.Points.Clear();
             _TempSeries.Points.Clear();
-            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() => _DataSeries.PlotModel.InvalidatePlot(true)));
+            this.ThreadSafeInvoke(() => _DataSeries.PlotModel.InvalidatePlot(true));
         }
     }
 }

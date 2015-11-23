@@ -39,13 +39,12 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.数据库测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oxyPlot外观测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.工具TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._OptionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.面板ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CustomScpiGroupMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.数据库测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel2.SuspendLayout();
             this._SplitContainer.SuspendLayout();
@@ -143,7 +142,6 @@
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件FToolStripMenuItem,
-            this.工具TToolStripMenuItem,
             this.面板ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -155,36 +153,37 @@
             // 
             this.文件FToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.数据库测试ToolStripMenuItem,
+            this.oxyPlot外观测试ToolStripMenuItem,
             this.toolStripSeparator3,
             this._ExitMenuItem});
             this.文件FToolStripMenuItem.Name = "文件FToolStripMenuItem";
-            this.文件FToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
-            this.文件FToolStripMenuItem.Text = "文件(&F)";
+            this.文件FToolStripMenuItem.Size = new System.Drawing.Size(60, 21);
+            this.文件FToolStripMenuItem.Text = "基础(&B)";
+            // 
+            // 数据库测试ToolStripMenuItem
+            // 
+            this.数据库测试ToolStripMenuItem.Name = "数据库测试ToolStripMenuItem";
+            this.数据库测试ToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.数据库测试ToolStripMenuItem.Text = "数据库测试";
+            this.数据库测试ToolStripMenuItem.Click += new System.EventHandler(this.数据库测试ToolStripMenuItem_Click);
+            // 
+            // oxyPlot外观测试ToolStripMenuItem
+            // 
+            this.oxyPlot外观测试ToolStripMenuItem.Name = "oxyPlot外观测试ToolStripMenuItem";
+            this.oxyPlot外观测试ToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.oxyPlot外观测试ToolStripMenuItem.Text = "OxyPlot外观测试";
+            this.oxyPlot外观测试ToolStripMenuItem.Click += new System.EventHandler(this.oxyPlot外观测试ToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(165, 6);
             // 
             // _ExitMenuItem
             // 
             this._ExitMenuItem.Name = "_ExitMenuItem";
-            this._ExitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._ExitMenuItem.Size = new System.Drawing.Size(168, 22);
             this._ExitMenuItem.Text = "退出(&X)";
-            // 
-            // 工具TToolStripMenuItem
-            // 
-            this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._OptionMenuItem});
-            this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
-            this.工具TToolStripMenuItem.Size = new System.Drawing.Size(59, 21);
-            this.工具TToolStripMenuItem.Text = "工具(&T)";
-            // 
-            // _OptionMenuItem
-            // 
-            this._OptionMenuItem.Name = "_OptionMenuItem";
-            this._OptionMenuItem.Size = new System.Drawing.Size(118, 22);
-            this._OptionMenuItem.Text = "选项(&O)";
             // 
             // 面板ToolStripMenuItem
             // 
@@ -200,13 +199,6 @@
             this._CustomScpiGroupMenuItem.Size = new System.Drawing.Size(172, 22);
             this._CustomScpiGroupMenuItem.Text = "自定义Scpi指令集";
             this._CustomScpiGroupMenuItem.Click += new System.EventHandler(this._CustomScpiGroupMenuItem_Click);
-            // 
-            // 数据库测试ToolStripMenuItem
-            // 
-            this.数据库测试ToolStripMenuItem.Name = "数据库测试ToolStripMenuItem";
-            this.数据库测试ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.数据库测试ToolStripMenuItem.Text = "数据库测试";
-            this.数据库测试ToolStripMenuItem.Click += new System.EventHandler(this.数据库测试ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -251,11 +243,10 @@
         private System.Windows.Forms.ToolStripMenuItem 文件FToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem _ExitMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 工具TToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _OptionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 面板ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _CustomScpiGroupMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 数据库测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oxyPlot外观测试ToolStripMenuItem;
     }
 }
 

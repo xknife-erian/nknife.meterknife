@@ -49,13 +49,13 @@
             this.x100MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._SampleRangeLabel = new System.Windows.Forms.ToolStripLabel();
-            this._SampleRangeComboBox = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this._SampleRangeDropMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this._50MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._100MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._200MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._500MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._1000MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._2000MenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +76,7 @@
             this._MeterRangeDropDownButton,
             this.toolStripSeparator1,
             this._SampleRangeLabel,
-            this._SampleRangeComboBox});
+            this._SampleRangeDropMenu});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(291, 25);
@@ -207,57 +207,57 @@
             this._SampleRangeLabel.Size = new System.Drawing.Size(35, 22);
             this._SampleRangeLabel.Text = "取样:";
             // 
-            // _SampleRangeComboBox
+            // _SampleRangeDropMenu
             // 
-            this._SampleRangeComboBox.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this._SampleRangeComboBox.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem4,
-            this.toolStripMenuItem5,
-            this.toolStripMenuItem6,
-            this.toolStripMenuItem7});
-            this._SampleRangeComboBox.Image = ((System.Drawing.Image)(resources.GetObject("_SampleRangeComboBox.Image")));
-            this._SampleRangeComboBox.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._SampleRangeComboBox.Name = "_SampleRangeComboBox";
-            this._SampleRangeComboBox.Size = new System.Drawing.Size(42, 22);
-            this._SampleRangeComboBox.Text = "100";
+            this._SampleRangeDropMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._SampleRangeDropMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._50MenuItem,
+            this._100MenuItem,
+            this._200MenuItem,
+            this._500MenuItem,
+            this._1000MenuItem,
+            this._2000MenuItem});
+            this._SampleRangeDropMenu.Image = ((System.Drawing.Image)(resources.GetObject("_SampleRangeDropMenu.Image")));
+            this._SampleRangeDropMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._SampleRangeDropMenu.Name = "_SampleRangeDropMenu";
+            this._SampleRangeDropMenu.Size = new System.Drawing.Size(42, 22);
+            this._SampleRangeDropMenu.Text = "100";
             // 
-            // toolStripMenuItem2
+            // _50MenuItem
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(104, 22);
-            this.toolStripMenuItem2.Text = "50";
+            this._50MenuItem.Name = "_50MenuItem";
+            this._50MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._50MenuItem.Text = "50";
             // 
-            // toolStripMenuItem3
+            // _100MenuItem
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(104, 22);
-            this.toolStripMenuItem3.Text = "100";
+            this._100MenuItem.Name = "_100MenuItem";
+            this._100MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._100MenuItem.Text = "100";
             // 
-            // toolStripMenuItem4
+            // _200MenuItem
             // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(104, 22);
-            this.toolStripMenuItem4.Text = "200";
+            this._200MenuItem.Name = "_200MenuItem";
+            this._200MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._200MenuItem.Text = "200";
             // 
-            // toolStripMenuItem5
+            // _500MenuItem
             // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(104, 22);
-            this.toolStripMenuItem5.Text = "500";
+            this._500MenuItem.Name = "_500MenuItem";
+            this._500MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._500MenuItem.Text = "500";
             // 
-            // toolStripMenuItem6
+            // _1000MenuItem
             // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(104, 22);
-            this.toolStripMenuItem6.Text = "1000";
+            this._1000MenuItem.Name = "_1000MenuItem";
+            this._1000MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._1000MenuItem.Text = "1000";
             // 
-            // toolStripMenuItem7
+            // _2000MenuItem
             // 
-            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(104, 22);
-            this.toolStripMenuItem7.Text = "2000";
+            this._2000MenuItem.Name = "_2000MenuItem";
+            this._2000MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._2000MenuItem.Text = "2000";
             // 
             // FiguredDataGrid
             // 
@@ -296,12 +296,12 @@
         private System.Windows.Forms.ToolStripMenuItem x100MToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel _SampleRangeLabel;
-        private System.Windows.Forms.ToolStripDropDownButton _SampleRangeComboBox;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripDropDownButton _SampleRangeDropMenu;
+        private System.Windows.Forms.ToolStripMenuItem _50MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _100MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _200MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _500MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _1000MenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _2000MenuItem;
     }
 }

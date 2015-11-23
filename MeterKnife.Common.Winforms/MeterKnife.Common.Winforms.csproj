@@ -178,9 +178,6 @@
     <Compile Include="Plots\DataPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Plots\DataPlot.Designer.cs">
-      <DependentUpon>DataPlot.cs</DependentUpon>
-    </Compile>
     <Compile Include="Plots\FiguredDataPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -261,9 +258,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\OfflineCollectParameterDialog.resx">
       <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Plots\DataPlot.resx">
-      <DependentUpon>DataPlot.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

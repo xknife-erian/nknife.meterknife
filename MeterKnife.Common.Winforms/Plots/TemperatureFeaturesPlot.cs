@@ -133,20 +133,30 @@ namespace MeterKnife.Common.Winforms.Plots
             if (temps.Count < 3)
                 return;
 
-            var v = Fit.Polynomial(xarray.ToArray(), yarray.ToArray(), 2);
-            var a = v[2];
-            var b = v[1];
-            var c = v[0];
+            double a = 0, b=0, c = 0;
+            string polynomial = string.Empty;//多项式
 
-            var aa = a >= 0 ? "" : "-";
-            var ab = b >= 0 ? "+" : "-";
-            var bc = c >= 0 ? "+" : "-";
-            var hs = string.Format("Y ={3} {0} X^2 {4} {1} X {5} {2}", Math.Abs((double) a).ToString("0.0000").TrimEnd('0'), Math.Abs((double) b).ToString("0.0000").TrimEnd('0'), Math.Abs((double) c).ToString("0.00000").TrimEnd('0'),aa, ab, bc);
+            try
+            {
+                double[] v = Fit.Polynomial(xarray.ToArray(), yarray.ToArray(), 2);
+                a = v[2];
+                b = v[1];
+                c = v[0];
 
-            _logger.Info((object) a);
-            _logger.Info((object) b);
-            _logger.Info((object) c);
-            _logger.Info(hs);
+                var aa = a >= 0 ? "" : "-";
+                var ab = b >= 0 ? "+" : "-";
+                var bc = c >= 0 ? "+" : "-";
+                polynomial = string.Format("Y ={3} {0} X^2 {4} {1} X {5} {2}", 
+                    Math.Abs(a).ToString("0.0000").TrimEnd('0'),
+                    Math.Abs(b).ToString("0.0000").TrimEnd('0'), 
+                    Math.Abs(c).ToString("0.00000").TrimEnd('0'), aa, ab, bc);
+
+                _logger.Info(polynomial);
+            }
+            catch (Exception e)
+            {
+                _logger.Warn(e.Message);
+            }
 
             temps.Sort();
             double t = 0;
@@ -159,19 +169,20 @@ namespace MeterKnife.Common.Winforms.Plots
                 _QuadraticCurveFittingSeries.Points.Add(new DataPoint(temp, ly));
                 _logger.Trace(string.Format("Temp:{0}; Value:{1}", temp, ly));
             }
-            _QuadraticCurveFittingSeries.Title = hs;
-            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() =>
+            _QuadraticCurveFittingSeries.Title = polynomial;
+            this.ThreadSafeInvoke(() =>
             {
                 _DataSeries.PlotModel.InvalidatePlot(true);
                 _QuadraticCurveFittingSeries.PlotModel.InvalidatePlot(true);
-            }));
+            });
         }
 
         public virtual void Clear()
         {
             _DataSeries.Points.Clear();
+            _QuadraticCurveFittingSeries.Title = string.Empty;
             _QuadraticCurveFittingSeries.Points.Clear();
-            ControlExtension.ThreadSafeInvoke((UserControl) this, (ControlExtension.InvokeHandler) (() => _DataSeries.PlotModel.InvalidatePlot(true)));
+            this.ThreadSafeInvoke(() => _DataSeries.PlotModel.InvalidatePlot(true));
         }
     }
 }
