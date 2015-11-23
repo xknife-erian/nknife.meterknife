@@ -40,6 +40,8 @@ namespace MeterKnife.Common.Controls.Plots
 
         private PlotModel BuildPlotModel()
         {
+            _PlotModel.PlotAreaBackground = GetAreaColor();
+
             _LeftAxis.MaximumPadding = 0;
             _LeftAxis.MinimumPadding = 0;
             _LeftAxis.Maximum = 15;
@@ -73,6 +75,11 @@ namespace MeterKnife.Common.Controls.Plots
             _PlotModel.Series.Add(_DataSeries);
             _PlotModel.Series.Add(_TempSeries);
             return _PlotModel;
+        }
+
+        protected OxyColor GetAreaColor()
+        {
+            return OxyColor.FromArgb(255, 245, 255, 255);
         }
 
         protected virtual void UpdateRange(FiguredData fd)

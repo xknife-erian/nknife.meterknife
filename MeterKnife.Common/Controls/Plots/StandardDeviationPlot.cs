@@ -23,6 +23,12 @@ namespace MeterKnife.Common.Controls.Plots
             get { return "standard_deviation"; }
         }
 
+        protected override PlotModel BuildPlotModel()
+        {
+            _PlotModel.Title = "标准方差趋势图";
+            return base.BuildPlotModel();
+        }
+
         public override void Update(FiguredData fd)
         {
             DataTable table = fd.DataSet.Tables[1];
@@ -77,6 +83,11 @@ namespace MeterKnife.Common.Controls.Plots
                 UpdateRange(fd);
                 _Series.PlotModel.InvalidatePlot(true);
             });
+        }
+
+        protected override OxyColor GetAreaColor()
+        {
+            return OxyColor.FromArgb(255, 245, 245, 255);
         }
 
         public override void Clear()

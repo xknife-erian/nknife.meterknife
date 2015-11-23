@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
 using OxyPlot;
@@ -11,14 +12,17 @@ namespace MeterKnife.Common.Controls.Plots
 {
     public class TemperatureDataPlot : DataPlot
     {
-        private static readonly ILog _logger = LogManager.GetLogger<TemperatureDataPlot>();
-
         public override string ValueHead
         {
             get { return "temperature"; }
         }
 
-        protected override OxyColor GetColor()
+        protected override double GetLeftAxisAngle()
+        {
+            return 0;
+        }
+
+        protected override OxyColor GetMainSeriesColor()
         {
             return OxyColor.FromArgb(255, 86, 96, 225);
         }

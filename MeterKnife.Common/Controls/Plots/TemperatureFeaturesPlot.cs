@@ -42,6 +42,9 @@ namespace MeterKnife.Common.Controls.Plots
 
         private PlotModel BuildPlotModel()
         {
+            _PlotModel.PlotAreaBackground = GetAreaColor();
+            _PlotModel.Title = "温度特性图";
+
             _DataAxis.MaximumPadding = 0;
             _DataAxis.MinimumPadding = 0;
             _DataAxis.Maximum = 15;
@@ -100,6 +103,10 @@ namespace MeterKnife.Common.Controls.Plots
                     }
                 }
             }
+        }
+        protected OxyColor GetAreaColor()
+        {
+            return OxyColor.FromArgb(255, 255, 245, 245);
         }
 
         public virtual void Update(FiguredData fd)

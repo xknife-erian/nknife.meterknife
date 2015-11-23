@@ -40,13 +40,13 @@ namespace MeterKnife.Common.Controls.Plots
 
         protected virtual PlotModel BuildPlotModel()
         {
-            _PlotModel.PlotAreaBackground = OxyColor.FromArgb(255, 245, 255, 245);
+            _PlotModel.PlotAreaBackground = GetAreaColor();
 
             _LeftAxis.MajorGridlineStyle = LineStyle.Solid;
             _LeftAxis.MinorGridlineStyle = LineStyle.Dot;
             _LeftAxis.MaximumPadding = 0;
             _LeftAxis.MinimumPadding = 0;
-            _LeftAxis.Angle = 45;
+            _LeftAxis.Angle = GetLeftAxisAngle();
             _LeftAxis.Maximum = 15;
             _LeftAxis.Minimum = 5;
             _LeftAxis.Position = AxisPosition.Left;
@@ -60,7 +60,7 @@ namespace MeterKnife.Common.Controls.Plots
             timeAxis.Position = AxisPosition.Bottom;
             _PlotModel.Axes.Add(timeAxis);
 
-            _Series.Color = GetColor();
+            _Series.Color = GetMainSeriesColor();
             _Series.MarkerFill = OxyColor.FromArgb(255,24,45,6);//(255, 78, 154, 6);
             _Series.MarkerStroke = OxyColors.ForestGreen;
             _Series.StrokeThickness = GetThickness();
@@ -70,9 +70,19 @@ namespace MeterKnife.Common.Controls.Plots
             return _PlotModel;
         }
 
-        protected virtual OxyColor GetColor()
+        protected virtual double GetLeftAxisAngle()
+        {
+            return 45;
+        }
+
+        protected virtual OxyColor GetMainSeriesColor()
         {
             return OxyColor.FromArgb(255, 78, 154, 6);
+        }
+
+        protected virtual OxyColor GetAreaColor()
+        {
+            return OxyColor.FromArgb(255, 245, 255, 245);
         }
 
         protected virtual double GetThickness()
