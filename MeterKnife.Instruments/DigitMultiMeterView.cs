@@ -14,6 +14,7 @@ using MeterKnife.Common.Tunnels;
 using MeterKnife.Scpis;
 using NKnife.Events;
 using NKnife.IoC;
+using OxyPlot;
 using ScpiKnife;
 
 namespace MeterKnife.Instruments
@@ -21,6 +22,8 @@ namespace MeterKnife.Instruments
     public partial class DigitMultiMeterView : MeterView
     {
         private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
+        private bool _IsDispose;
+
         protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
 
         private readonly FiguredData _FiguredData = new FiguredData();
@@ -28,13 +31,10 @@ namespace MeterKnife.Instruments
         private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
         private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
 
-        protected FiguredDataPlot _DataPlot = new FiguredDataPlot();
-
-        private bool _IsDispose;
+        protected FiguredDataAndTemperaturePlot _MainPlot = new FiguredDataAndTemperaturePlot();
 
         protected StandardDeviationPlot _SdPlot = new StandardDeviationPlot();
         protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
-        protected TemperatureDataPlot _TempPlot = new TemperatureDataPlot();
         protected TemperatureTrendPlot _TempTrendPlot = new TemperatureTrendPlot();
 
         public DigitMultiMeterView()
@@ -45,8 +45,7 @@ namespace MeterKnife.Instruments
             _LeftSplitContainer.Panel2.Padding = new Padding(3, 2, 3, 2);
             _LeftSplitContainer.Panel2.Controls.Add(_ScpiCommandPanel);
 
-            _RealtimePlotSplitContainer.Panel1.Controls.Add(_DataPlot);
-            _RealtimePlotSplitContainer.Panel2.Controls.Add(_TempPlot);
+            _PlotPage.Controls.Add(_MainPlot);
             _TempFeaturesPanel.Controls.Add(_TempFeaturesPlot);
             _TempTrendPanel.Controls.Add(_TempTrendPlot);
             _SdPanel.Controls.Add(_SdPlot);
@@ -64,6 +63,10 @@ namespace MeterKnife.Instruments
                 _FiguredDataGridView.DataSource = null;
                 _FiguredDataGridView.DataSource = _FiguredData.DataSet.Tables[1];
             });
+
+            //TODO:未完成功能
+            _SaveStripButton.Visible = false;
+            _PrintStripButton.Visible = false;
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -93,6 +96,12 @@ namespace MeterKnife.Instruments
             _Comm.Bind(port, _Handler);
             _FiguredData.Meter = _Meter;
             _FiguredDataPropertyGrid.BindFigureData(_FiguredData);
+
+            if (!_Comm.IsInitialized)
+            {
+                _Comm.Start(port);
+            }
+
             _logger.Info("面板初始化仪器完成..");
         }
 
@@ -110,12 +119,9 @@ namespace MeterKnife.Instruments
             _SaveStripButton.Enabled = !isCollected;
             _ClearDataToolStripButton.Enabled = !isCollected;
 
-            _PhotoToolStripButton.Enabled = !isCollected;
-            _ZoomInToolStripButton.Enabled = !isCollected;
-            _ZoomOutToolStripButton.Enabled = !isCollected;
-
             _FeaturesPage.Parent = isCollected ? null : _MainTabControl;
             _StopStripButton.Enabled = isCollected;
+            _FiguredDataPropertyGrid.SetStripButtonState(isCollected);
         }
 
         protected virtual ScpiCommandQueue.Item[] GetInitCommands()
@@ -134,8 +140,7 @@ namespace MeterKnife.Instruments
         {
             _FiguredData.Clear();
 
-            _DataPlot.Clear();
-            _TempPlot.Clear();
+            _MainPlot.Clear();
             _TempFeaturesPlot.Clear();
             _TempTrendPlot.Clear();
             _SdPlot.Clear();
@@ -232,18 +237,6 @@ namespace MeterKnife.Instruments
             }
         }
 
-        private void _PhotoToolStripButton_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void _ZoomInToolStripButton_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void _ZoomOutToolStripButton_Click(object sender, EventArgs e)
-        {
-        }
-
         #endregion
 
         #region 通讯相关
@@ -296,8 +289,7 @@ namespace MeterKnife.Instruments
                     {
                         if (uint.Parse(_FiguredData.Count) <= 1)
                             return;
-                        _DataPlot.Update(_FiguredData);
-                        _TempPlot.Update(_FiguredData);
+                        _MainPlot.Update(_FiguredData);
                     });
                 }
             }

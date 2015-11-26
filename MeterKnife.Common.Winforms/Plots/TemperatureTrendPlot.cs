@@ -17,9 +17,9 @@ namespace MeterKnife.Common.Winforms.Plots
     {
         protected PlotModel _PlotModel = new PlotModel();
         protected LineSeries _DataSeries = new LineSeries();
+        protected LinearAxis _DataAxis = new LinearAxis();
         protected LineSeries _TempSeries = new LineSeries();
-        protected LinearAxis _LeftAxis = new LinearAxis();
-        protected LinearAxis _RightAxis = new LinearAxis();
+        protected LinearAxis _TempAxis = new LinearAxis();
         protected DateTimeAxis _TimeAxis = new DateTimeAxis(); //时间刻度
 
 
@@ -51,20 +51,20 @@ namespace MeterKnife.Common.Winforms.Plots
             _TimeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
             _PlotModel.Axes.Add(_TimeAxis);
 
-            _LeftAxis.MaximumPadding = 0;
-            _LeftAxis.MinimumPadding = 0;
-            _LeftAxis.Maximum = 15;
-            _LeftAxis.Minimum = 5;
-            _LeftAxis.Position = AxisPosition.Left;
-            _PlotModel.Axes.Add(_LeftAxis);
+            _DataAxis.MaximumPadding = 0;
+            _DataAxis.MinimumPadding = 0;
+            _DataAxis.Maximum = 15;
+            _DataAxis.Minimum = 5;
+            _DataAxis.Position = AxisPosition.Left;
+            _PlotModel.Axes.Add(_DataAxis);
 
-            _RightAxis.MaximumPadding = 0;
-            _RightAxis.MinimumPadding = 0;
-            _RightAxis.Maximum = 15;
-            _RightAxis.Minimum = 5;
-            _RightAxis.Key = "temperature";
-            _RightAxis.Position = AxisPosition.Right;
-            _PlotModel.Axes.Add(_RightAxis);
+            _TempAxis.MaximumPadding = 0;
+            _TempAxis.MinimumPadding = 0;
+            _TempAxis.Maximum = 15;
+            _TempAxis.Minimum = 5;
+            _TempAxis.Key = "temperature";
+            _TempAxis.Position = AxisPosition.Right;
+            _PlotModel.Axes.Add(_TempAxis);
 
             _DataSeries.Color = OxyColor.FromArgb(255, 78, 154, 6);
             _DataSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
@@ -96,8 +96,8 @@ namespace MeterKnife.Common.Winforms.Plots
                     double j = (Math.Abs(max - min))/4;
                     if (Math.Abs(j) > 0)
                     {
-                        _LeftAxis.Maximum = max + j;
-                        _LeftAxis.Minimum = min - j;
+                        _DataAxis.Maximum = max + j;
+                        _DataAxis.Minimum = min - j;
                     }
                 }
             }
@@ -110,8 +110,8 @@ namespace MeterKnife.Common.Winforms.Plots
                     double j = (Math.Abs(max - min))/4;
                     if (Math.Abs(j) > 0)
                     {
-                        _RightAxis.Maximum = max + j;
-                        _RightAxis.Minimum = min - j;
+                        _TempAxis.Maximum = max + j;
+                        _TempAxis.Minimum = min - j;
                     }
                 }
             }

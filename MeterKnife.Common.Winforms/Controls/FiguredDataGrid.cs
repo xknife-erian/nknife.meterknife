@@ -68,7 +68,7 @@ namespace MeterKnife.Common.Winforms.Controls
             base.Refresh();
         }
 
-        protected void SetStripButtonState(bool isCollected)
+        public void SetStripButtonState(bool isCollected)
         {
             _SampleRangeDropMenu.Enabled = !isCollected;
             _MeterRangeDropDownButton.Enabled = !isCollected;

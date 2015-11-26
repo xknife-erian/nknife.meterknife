@@ -11,7 +11,7 @@ using NKnife.IoC;
 
 namespace MeterKnife.Kernel.Services
 {
-    public class TemperatureService : ITemperatureService
+    public class CareTemperatureService : ITemperatureService
     {
         private static readonly ILog _logger = LogManager.GetLogger<DataPathService>();
 
@@ -19,7 +19,7 @@ namespace MeterKnife.Kernel.Services
         private readonly CareTemperatureHandler _TemperatureHandler = new CareTemperatureHandler();
         private readonly Dictionary<CommPort, bool> _PortStartMap = new Dictionary<CommPort, bool>();
 
-        public TemperatureService()
+        public CareTemperatureService()
         {
             TemperatureValues = new double[1];
         }
@@ -48,6 +48,7 @@ namespace MeterKnife.Kernel.Services
                     TemperatureValues[0] = v;
                 }
                 _Comm.Bind(carePort, _TemperatureHandler);
+                //初始化完成,进入采集循环
                 while (_PortStartMap[carePort])
                 {
                     _Comm.SendCommands(carePort, CommandUtil.TEMP());

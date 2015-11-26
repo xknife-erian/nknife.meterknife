@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Common.Logging;
 using MathNet.Numerics;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Util;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -22,6 +23,7 @@ namespace MeterKnife.Common.Winforms.Plots
 
         protected PlotModel _PlotModel = new PlotModel();
         protected LineSeries _QuadraticCurveFittingSeries = new LineSeries();
+        protected LineSeries _OnePolynomialSeries = new LineSeries();
         protected LinearAxis _TempAxis = new LinearAxis();
 
         public TemperatureFeaturesPlot()
@@ -59,16 +61,22 @@ namespace MeterKnife.Common.Winforms.Plots
             _TempAxis.Position = AxisPosition.Bottom;
             _PlotModel.Axes.Add(_TempAxis);
 
-            _DataSeries.MarkerFill = OxyColors.DarkRed;
+            _DataSeries.MarkerFill = OxyColor.FromArgb(255, 0, 120, 0);
             _DataSeries.MarkerType = MarkerType.Diamond;
             _DataSeries.MarkerSize = 2.5;
             _PlotModel.Series.Add(_DataSeries);
 
             _QuadraticCurveFittingSeries.MarkerType = MarkerType.Circle;
             _QuadraticCurveFittingSeries.Smooth = true;
-            _QuadraticCurveFittingSeries.Color = OxyColor.FromArgb(255, 255, 100, 100);
-            _QuadraticCurveFittingSeries.MarkerFill = OxyColor.FromArgb(255, 255, 100, 100);
+            _QuadraticCurveFittingSeries.Color = OxyColor.FromArgb(255, 255, 120, 0);
+            _QuadraticCurveFittingSeries.MarkerFill = OxyColor.FromArgb(255, 255, 120, 0);
             _PlotModel.Series.Add(_QuadraticCurveFittingSeries);
+
+            _OnePolynomialSeries.MarkerType = MarkerType.Circle;
+            _OnePolynomialSeries.Smooth = true;
+            _OnePolynomialSeries.Color = OxyColor.FromArgb(255, 160, 0, 160);
+            _OnePolynomialSeries.MarkerFill = OxyColor.FromArgb(255, 160, 0, 160);
+            _PlotModel.Series.Add(_OnePolynomialSeries);
 
             return _PlotModel;
         }
@@ -81,7 +89,7 @@ namespace MeterKnife.Common.Winforms.Plots
                 var min = fd.ExtremePoint.Item2;
                 if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
                 {
-                    var j = (Math.Abs(max - min))/4;
+                    var j = (Math.Abs(max - min))/6;
                     if (Math.Abs(j) > 0)
                     {
                         _DataAxis.Maximum = max + j;
@@ -95,7 +103,7 @@ namespace MeterKnife.Common.Winforms.Plots
                 var min = fd.TemperatureExtremePoint.Item2;
                 if (Math.Abs(max) > 0 && Math.Abs(min) > 0)
                 {
-                    var j = (Math.Abs(max - min))/4;
+                    var j = (Math.Abs(max - min))/6;
                     if (Math.Abs(j) > 0)
                     {
                         _TempAxis.Maximum = max + j;
@@ -133,24 +141,36 @@ namespace MeterKnife.Common.Winforms.Plots
             if (temps.Count < 3)
                 return;
 
-            double a = 0, b=0, c = 0;
+            //******一次多项式*********************************************************************
+
+            double m = 0, n = 0;
+            string polynomial1 = string.Empty;//多项式
+
+            try
+            {
+                double[] result;
+                polynomial1 = MathUtil.Polynomial1(xarray.ToArray(), yarray.ToArray(), out result);
+                m = result[1];
+                n = result[0];
+                _logger.Info(polynomial1);
+            }
+            catch (Exception e)
+            {
+                _logger.Warn(e.Message);
+            }
+
+            //******二次多项式*********************************************************************
+
+            double a = 0, b = 0, c = 0;
             string polynomial = string.Empty;//多项式
 
             try
             {
-                double[] v = Fit.Polynomial(xarray.ToArray(), yarray.ToArray(), 2);
-                a = v[2];
-                b = v[1];
-                c = v[0];
-
-                var aa = a >= 0 ? "" : "-";
-                var ab = b >= 0 ? "+" : "-";
-                var bc = c >= 0 ? "+" : "-";
-                polynomial = string.Format("Y ={3} {0} X^2 {4} {1} X {5} {2}", 
-                    Math.Abs(a).ToString("0.0000").TrimEnd('0'),
-                    Math.Abs(b).ToString("0.0000").TrimEnd('0'), 
-                    Math.Abs(c).ToString("0.00000").TrimEnd('0'), aa, ab, bc);
-
+                double[] result;
+                polynomial = MathUtil.Polynomial2(xarray.ToArray(), yarray.ToArray(), out result);
+                a = result[2];
+                b = result[1];
+                c = result[0];
                 _logger.Info(polynomial);
             }
             catch (Exception e)
@@ -165,15 +185,18 @@ namespace MeterKnife.Common.Winforms.Plots
                 if (Math.Abs(temp - t) <= 0)
                     continue;
                 t = temp;
-                var ly = a*temp*temp + b*temp + c;
-                _QuadraticCurveFittingSeries.Points.Add(new DataPoint(temp, ly));
-                _logger.Trace(string.Format("Temp:{0}; Value:{1}", temp, ly));
+                var two = a * temp * temp + b * temp + c;
+                _QuadraticCurveFittingSeries.Points.Add(new DataPoint(temp, two));
+                var one = m * temp + n;
+                _OnePolynomialSeries.Points.Add(new DataPoint(temp, one));
             }
             _QuadraticCurveFittingSeries.Title = polynomial;
+            _OnePolynomialSeries.Title = polynomial1;
             this.ThreadSafeInvoke(() =>
             {
                 _DataSeries.PlotModel.InvalidatePlot(true);
                 _QuadraticCurveFittingSeries.PlotModel.InvalidatePlot(true);
+                _OnePolynomialSeries.PlotModel.InvalidatePlot(true);
             });
         }
 
@@ -182,6 +205,8 @@ namespace MeterKnife.Common.Winforms.Plots
             _DataSeries.Points.Clear();
             _QuadraticCurveFittingSeries.Title = string.Empty;
             _QuadraticCurveFittingSeries.Points.Clear();
+            _OnePolynomialSeries.Title = string.Empty;
+            _OnePolynomialSeries.Points.Clear();
             this.ThreadSafeInvoke(() => _DataSeries.PlotModel.InvalidatePlot(true));
         }
     }

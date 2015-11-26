@@ -23,10 +23,9 @@ namespace MeterKnife.Common.Winforms.Plots
             get { return "standard_deviation"; }
         }
 
-        protected override PlotModel BuildPlotModel()
+        protected override string GetPlotTitle()
         {
-            _PlotModel.Title = "标准方差趋势图";
-            return base.BuildPlotModel();
+            return "离散系数趋势图";
         }
 
         public override void Update(FiguredData fd)
@@ -45,7 +44,7 @@ namespace MeterKnife.Common.Winforms.Plots
                         continue;
                     valueList.Add(value);
                     var dataPoint = DateTimeAxis.CreateDataPoint(time, value);
-                    _Series.Points.Add(dataPoint);
+                    _DataSeries.Points.Add(dataPoint);
                 }
             }
             var rs = new RunningStatistics();
@@ -56,39 +55,42 @@ namespace MeterKnife.Common.Winforms.Plots
             var rms = ArrayStatistics.RootMeanSquare(array);//标准差的均方根
             var sd = ArrayStatistics.PopulationStandardDeviation(array);
 
+            _DataPlotModel.Subtitle = sd.ToString("0.0000").TrimZero();
+
             var lineRms = new LineAnnotation();
+            lineRms.TextLinePosition = 0.12;
             lineRms.Type = LineAnnotationType.Horizontal;
             lineRms.Y = rms;
             lineRms.Color = OxyColors.OrangeRed;
             lineRms.ClipByXAxis = false;
-            lineRms.Text = string.Format("Root Mean Square: {0}ppm", rms.ToString("0.00000").TrimEnd('0'));
-            _PlotModel.Annotations.Add(lineRms);
+            lineRms.Text = string.Format("RMS: {0}ppm", rms.ToString("0.0000").TrimZero());
+            _DataPlotModel.Annotations.Add(lineRms);
 
             var lineMax = new LineAnnotation();
             lineMax.Type = LineAnnotationType.Horizontal;
             lineMax.Y = max;
             lineMax.Color = OxyColors.BlueViolet;
             lineMax.ClipByXAxis = false;
-            lineMax.Text = string.Format("Maximum: {0}ppm", max.ToString("0.00000").TrimEnd('0'));
-            _PlotModel.Annotations.Add(lineMax);
+            lineMax.Text = string.Format("MAX: {0}ppm", max.ToString("0.0000").TrimZero());
+            _DataPlotModel.Annotations.Add(lineMax);
 
             var lineMin = new LineAnnotation();
             lineMin.Type = LineAnnotationType.Horizontal;
             lineMin.Y = min;
             lineMin.Color = OxyColors.BlueViolet;
             lineMin.ClipByXAxis = false;
-            lineMin.Text = string.Format("Minimum: {0}ppm", min.ToString("0.00000").TrimEnd('0'));
-            _PlotModel.Annotations.Add(lineMin);
+            lineMin.Text = string.Format("MIN: {0}ppm", min.ToString("0.0000").TrimZero());
+            _DataPlotModel.Annotations.Add(lineMin);
 
-            var sdAnnotation = new TextAnnotation();
-            sdAnnotation.Text = string.Format("Standard Deviation: {0}ppm", sd.ToString("0.00000").TrimEnd('0'));
-            sdAnnotation.TextPosition = new DataPoint(20, 20);
-            //_PlotModel.Annotations.Add(sdAnnotation);
+//            var sdAnnotation = new TextAnnotation();
+//            sdAnnotation.Text = string.Format("{0}ppm", sd.ToString("0.0000").TrimZero());
+//            sdAnnotation.TextPosition = new DataPoint(20, 20);
+//            _DataPlotModel.Annotations.Add(sdAnnotation);
 
             this.ThreadSafeInvoke(() =>
             {
                 UpdateRange(fd);
-                _Series.PlotModel.InvalidatePlot(true);
+                _DataSeries.PlotModel.InvalidatePlot(true);
             });
         }
 
@@ -104,9 +106,9 @@ namespace MeterKnife.Common.Winforms.Plots
 
         public override void Clear()
         {
-            _PlotModel.Annotations.Clear();
-            _Series.Points.Clear();
-            this.ThreadSafeInvoke(() => _Series.PlotModel.InvalidatePlot(true));
+            _DataPlotModel.Annotations.Clear();
+            _DataSeries.Points.Clear();
+            this.ThreadSafeInvoke(() => _DataSeries.PlotModel.InvalidatePlot(true));
         }
 
         protected override void UpdateRange(FiguredData fd)
@@ -122,8 +124,8 @@ namespace MeterKnife.Common.Winforms.Plots
             _logger.Debug(string.Format("Max:{0}, Min:{1}, offset:{2}", max, min, offset));
             if (Math.Abs(offset) > 0)
             {
-                _LeftAxis.Maximum = max + offset;
-                _LeftAxis.Minimum = min - offset;
+                _DataAxis.Maximum = max + offset;
+                _DataAxis.Minimum = min - offset;
             }
         }
     }

@@ -86,8 +86,8 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(95, 22);
-            this.toolStripLabel1.Text = "标准差相对基数:";
+            this.toolStripLabel1.Size = new System.Drawing.Size(83, 22);
+            this.toolStripLabel1.Text = "离散系数均值:";
             // 
             // _MeterRangeDropDownButton
             // 
@@ -226,37 +226,37 @@
             // _50MenuItem
             // 
             this._50MenuItem.Name = "_50MenuItem";
-            this._50MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._50MenuItem.Size = new System.Drawing.Size(104, 22);
             this._50MenuItem.Text = "50";
             // 
             // _100MenuItem
             // 
             this._100MenuItem.Name = "_100MenuItem";
-            this._100MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._100MenuItem.Size = new System.Drawing.Size(104, 22);
             this._100MenuItem.Text = "100";
             // 
             // _200MenuItem
             // 
             this._200MenuItem.Name = "_200MenuItem";
-            this._200MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._200MenuItem.Size = new System.Drawing.Size(104, 22);
             this._200MenuItem.Text = "200";
             // 
             // _500MenuItem
             // 
             this._500MenuItem.Name = "_500MenuItem";
-            this._500MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._500MenuItem.Size = new System.Drawing.Size(104, 22);
             this._500MenuItem.Text = "500";
             // 
             // _1000MenuItem
             // 
             this._1000MenuItem.Name = "_1000MenuItem";
-            this._1000MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._1000MenuItem.Size = new System.Drawing.Size(104, 22);
             this._1000MenuItem.Text = "1000";
             // 
             // _2000MenuItem
             // 
             this._2000MenuItem.Name = "_2000MenuItem";
-            this._2000MenuItem.Size = new System.Drawing.Size(152, 22);
+            this._2000MenuItem.Size = new System.Drawing.Size(104, 22);
             this._2000MenuItem.Text = "2000";
             // 
             // FiguredDataGrid

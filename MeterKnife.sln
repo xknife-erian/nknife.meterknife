@@ -48,6 +48,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup-Lite", "Setup-Lite\Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Common.Winforms", "MeterKnife.Common.Winforms\MeterKnife.Common.Winforms.csproj", "{9F425D32-AEDC-489D-A7EE-140CCABD412B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.UnitTest", "..\nknife\UnitTests\NKnife.UnitTest\NKnife.UnitTest.csproj", "{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +122,10 @@ Global
 		{9F425D32-AEDC-489D-A7EE-140CCABD412B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F425D32-AEDC-489D-A7EE-140CCABD412B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F425D32-AEDC-489D-A7EE-140CCABD412B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,5 +138,6 @@ Global
 		{436E22B8-84A4-49E6-9810-E72FAD37313F} = {2F108EA0-F2A3-461B-A9F4-7B8CAE6F1E38}
 		{F3299AC1-2D25-4B91-A4D9-F9C1AB6F0825} = {2F108EA0-F2A3-461B-A9F4-7B8CAE6F1E38}
 		{E7531172-7F03-4DEE-ABB9-CF85E9DF501C} = {398F045F-835A-4056-9999-4FB3464ACF15}
+		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253} = {398F045F-835A-4056-9999-4FB3464ACF15}
 	EndGlobalSection
 EndGlobal

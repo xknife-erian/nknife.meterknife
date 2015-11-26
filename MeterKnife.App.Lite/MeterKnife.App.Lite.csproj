@@ -87,9 +87,6 @@
     <Compile Include="MeterLiteMainForm.Designer.cs">
       <DependentUpon>MeterLiteMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DigitMultiMeterLiteView.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="SplashForm.cs">
       <SubType>Form</SubType>

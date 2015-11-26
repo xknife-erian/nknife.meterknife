@@ -101,7 +101,7 @@ namespace MeterKnife.App.Lite
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                var meterView = DI.Get<DigitMultiMeterLiteView>();
+                var meterView = DI.Get<DigitMultiMeterView>();
                 meterView.SetMeter(dialog.Port, dialog.Meter);
                 meterView.Text = dialog.Meter.AbbrName;
                 meterView.Show(_DockPanel, DockState.Document);

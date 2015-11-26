@@ -166,7 +166,7 @@ namespace MeterKnife.Common.DataModels
         public virtual bool Add(double value)
         {
             //var v = MeterRangeCalculator.Run(MeterRange, value);
-            var s = value.ToString("F12").TrimEnd('0');
+            var s = value.ToString("F12").TrimZero();
             var n = s.Length - s.IndexOf('.');
             _DecimalDigit = string.Format("f{0}", n);
             _PpmDecimalDigit = string.Format("f{0}", ((uint) (n/2)) + 2);
@@ -194,25 +194,25 @@ namespace MeterKnife.Common.DataModels
                     _Values.RemoveAt(0);
                 _Values.Add(value);
                 var ds = new DescriptiveStatistics(_Values);
-                SampleKurtosis = ds.Kurtosis.ToString(_DecimalDigit).TrimEnd('0');
-                SampleSkewness = ds.Skewness.ToString(_DecimalDigit).TrimEnd('0');
+                SampleKurtosis = ds.Kurtosis.ToString(_DecimalDigit).TrimZero();
+                SampleSkewness = ds.Skewness.ToString(_DecimalDigit).TrimZero();
 
                 var array = _Values.ToArray();
                 var mean = ArrayStatistics.Mean(array);
-                SampleMean = mean.ToString(_DecimalDigit).TrimEnd('0');
+                SampleMean = mean.ToString(_DecimalDigit).TrimZero();
                 var sampleStandardDeviation = ArrayStatistics.PopulationStandardDeviation(array);
                 relativeSampleStandardDeviation = sampleStandardDeviation/GetRelativeValue(mean);
-                SampleStandardDeviation = GetPpmValue(relativeSampleStandardDeviation).TrimEnd('0');
-                SampleRootMeanSquareValue = ArrayStatistics.RootMeanSquare(array).ToString(_DecimalDigit).TrimEnd('0');
+                SampleStandardDeviation = GetPpmValue(relativeSampleStandardDeviation).TrimZero();
+                SampleRootMeanSquareValue = ArrayStatistics.RootMeanSquare(array).ToString(_DecimalDigit).TrimZero();
 
                 Array.Sort(array);
-                SampleInterquartileRangeInplace = GetPpmValue(SortedArrayStatistics.InterquartileRange(array)).TrimEnd('0');
-                SampleMedianInplace = SortedArrayStatistics.Median(array).ToString(_DecimalDigit).TrimEnd('0');
-                SampleLowerQuartile = SortedArrayStatistics.LowerQuartile(array).ToString(_DecimalDigit).TrimEnd('0');
-                SampleUpperQuartile = SortedArrayStatistics.UpperQuartile(array).ToString(_DecimalDigit).TrimEnd('0');
+                SampleInterquartileRangeInplace = GetPpmValue(SortedArrayStatistics.InterquartileRange(array)).TrimZero();
+                SampleMedianInplace = SortedArrayStatistics.Median(array).ToString(_DecimalDigit).TrimZero();
+                SampleLowerQuartile = SortedArrayStatistics.LowerQuartile(array).ToString(_DecimalDigit).TrimZero();
+                SampleUpperQuartile = SortedArrayStatistics.UpperQuartile(array).ToString(_DecimalDigit).TrimZero();
 
-                Ppvalue = Math.Abs(_RunningStatistics.Maximum - _RunningStatistics.Minimum).ToString(_DecimalDigit).TrimEnd('0'); //峰峰值
-                TemperaturePpvalue = Math.Abs(_TemperatureRunningStatistics.Maximum - _TemperatureRunningStatistics.Minimum).ToString("f3").TrimEnd('0'); //峰峰值
+                Ppvalue = Math.Abs(_RunningStatistics.Maximum - _RunningStatistics.Minimum).ToString(_DecimalDigit).TrimZero(); //峰峰值
+                TemperaturePpvalue = Math.Abs(_TemperatureRunningStatistics.Maximum - _TemperatureRunningStatistics.Minimum).ToString("f3").TrimZero(); //峰峰值
 
                 UpdateTemperature();
 
@@ -291,7 +291,7 @@ namespace MeterKnife.Common.DataModels
             {
                 if (_RunningStatistics.Maximum.Equals(double.NaN))
                     return "0";
-                return _RunningStatistics.Maximum.ToString(_DecimalDigit).TrimEnd('0');
+                return _RunningStatistics.Maximum.ToString(_DecimalDigit).TrimZero();
             }
         }
 
@@ -302,7 +302,7 @@ namespace MeterKnife.Common.DataModels
             {
                 if (_RunningStatistics.Minimum.Equals(double.NaN))
                     return "0";
-                return _RunningStatistics.Minimum.ToString(_DecimalDigit).TrimEnd('0');
+                return _RunningStatistics.Minimum.ToString(_DecimalDigit).TrimZero();
             }
         }
 
@@ -316,7 +316,7 @@ namespace MeterKnife.Common.DataModels
             {
                 if (_RunningStatistics.Mean.Equals(double.NaN))
                     return "0";
-                return _RunningStatistics.Mean.ToString(_DecimalDigit).TrimEnd('0');
+                return _RunningStatistics.Mean.ToString(_DecimalDigit).TrimZero();
             }
         }
 
@@ -335,7 +335,7 @@ namespace MeterKnife.Common.DataModels
             {
                 if (_RunningStatistics.PopulationKurtosis.Equals(double.NaN))
                     return "0";
-                return _RunningStatistics.PopulationKurtosis.ToString(_DecimalDigit).TrimEnd('0');
+                return _RunningStatistics.PopulationKurtosis.ToString(_DecimalDigit).TrimZero();
             }
         }
 
@@ -346,7 +346,7 @@ namespace MeterKnife.Common.DataModels
             {
                 if (_RunningStatistics.PopulationSkewness.Equals(double.NaN))
                     return "0";
-                return _RunningStatistics.PopulationSkewness.ToString(_DecimalDigit).TrimEnd('0');
+                return _RunningStatistics.PopulationSkewness.ToString(_DecimalDigit).TrimZero();
             }
         }
 
@@ -354,7 +354,7 @@ namespace MeterKnife.Common.DataModels
 
         #region 样本
 
-        [Category("样本"), DisplayName("相对标准差")]
+        [Category("样本"), DisplayName("离散系数")]
         public string SampleStandardDeviation { get; private set; }
 
         [Category("样本"), DisplayName("算术平均值")]
@@ -401,7 +401,7 @@ namespace MeterKnife.Common.DataModels
             {
                 if (_TemperatureRunningStatistics.Maximum.Equals(double.NaN))
                     return "0";
-                return _TemperatureRunningStatistics.Maximum.ToString("f2").TrimEnd('0');
+                return _TemperatureRunningStatistics.Maximum.ToString("f2").TrimZero();
             }
         }
 
@@ -412,7 +412,7 @@ namespace MeterKnife.Common.DataModels
             {
                 if (_TemperatureRunningStatistics.Minimum.Equals(double.NaN))
                     return "0";
-                return _TemperatureRunningStatistics.Minimum.ToString("f2").TrimEnd('0');
+                return _TemperatureRunningStatistics.Minimum.ToString("f2").TrimZero();
             }
         }
 
@@ -426,7 +426,7 @@ namespace MeterKnife.Common.DataModels
             {
                 if (_TemperatureRunningStatistics.Mean.Equals(double.NaN))
                     return "0";
-                return _TemperatureRunningStatistics.Mean.ToString("f3").TrimEnd('0');
+                return _TemperatureRunningStatistics.Mean.ToString("f3").TrimZero();
             }
         }
 

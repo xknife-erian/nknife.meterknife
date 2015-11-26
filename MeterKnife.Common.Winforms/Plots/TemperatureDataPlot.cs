@@ -32,11 +32,11 @@ namespace MeterKnife.Common.Winforms.Plots
             var yzl = SelectValue(fd);
             var value = double.Parse(yzl.ToString());
 
-            _PlotModel.Title = value.ToString();
+            _DataPlotModel.Title = value.ToString();
 
             var dataPoint = DateTimeAxis.CreateDataPoint(DateTime.Now, value);
-            _Series.Points.Add(dataPoint);
-            _Series.PlotModel.InvalidatePlot(true);
+            _DataSeries.Points.Add(dataPoint);
+            _DataSeries.PlotModel.InvalidatePlot(true);
 
             UpdateRange(fd);
         }

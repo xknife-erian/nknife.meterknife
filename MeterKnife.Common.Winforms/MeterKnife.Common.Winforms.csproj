@@ -178,6 +178,9 @@
     <Compile Include="Plots\DataPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Plots\FiguredDataAndTemperaturePlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Plots\FiguredDataPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>

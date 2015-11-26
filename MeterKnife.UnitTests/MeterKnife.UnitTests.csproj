@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="ExcleUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MathUtilTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -68,7 +68,7 @@ namespace MeterKnife.Common.Util
                     cell.SetCellValue("温度");
                     cell = row.CreateCell(3);
                     cell.CellStyle = cnStyle;
-                    cell.SetCellValue("标准差");
+                    cell.SetCellValue("离散系数");
                 }
                 for (var i = 0; i < tableRows.Count; i++)
                 {

@@ -71,11 +71,6 @@
             0,
             0,
             0});
-            this._NumberBox.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this._NumberBox.Name = "_NumberBox";
             this._NumberBox.Size = new System.Drawing.Size(144, 25);
             this._NumberBox.TabIndex = 0;

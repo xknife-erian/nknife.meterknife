@@ -137,6 +137,7 @@
     <Compile Include="Tunnels\ScpiProtocolHandler.cs" />
     <Compile Include="Util\CommandUtil.cs" />
     <Compile Include="Util\Excle.cs" />
+    <Compile Include="Util\MathUtil.cs" />
     <Compile Include="Util\MeterRangeCalculator.cs" />
     <Compile Include="Util\MeterUtil.cs" />
     <EmbeddedResource Include="Properties\GlobalResources.resx">

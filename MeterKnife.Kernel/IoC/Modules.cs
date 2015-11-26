@@ -15,7 +15,7 @@ namespace MeterKnife.Kernel.IoC
         {
             Bind<IMeterKernel>().To<MeterKernel>().InSingletonScope();
             Bind<BaseCareCommunicationService>().To<CareCommunicationService>().InSingletonScope();
-            Bind<ITemperatureService>().To<TemperatureService>().InSingletonScope();
+            Bind<ITemperatureService>().To<CareTemperatureService>().InSingletonScope();
         }
     }
 }
