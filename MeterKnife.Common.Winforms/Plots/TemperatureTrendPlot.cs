@@ -13,18 +13,18 @@ namespace MeterKnife.Common.Winforms.Plots
     /// <summary>
     /// 温度趋势图: 温度曲线与数据曲线叠加
     /// </summary>
-    public partial class TemperatureTrendPlot : UserControl
+    public sealed class TemperatureTrendPlot : UserControl
     {
-        protected PlotModel _PlotModel = new PlotModel();
-        protected LineSeries _DataSeries = new LineSeries();
-        protected LinearAxis _DataAxis = new LinearAxis();
-        protected LineSeries _TempSeries = new LineSeries();
-        protected LinearAxis _TempAxis = new LinearAxis();
-        protected DateTimeAxis _TimeAxis = new DateTimeAxis(); //时间刻度
+        readonly PlotModel _PlotModel = new PlotModel();
+        readonly LineSeries _DataSeries = new LineSeries();
+        readonly LinearAxis _DataAxis = new LinearAxis();
+        readonly LineSeries _TempSeries = new LineSeries();
+        readonly LinearAxis _TempAxis = new LinearAxis();
+        readonly DateTimeAxis _TimeAxis = new DateTimeAxis(); //时间刻度
 
         public TemperatureTrendPlot()
         {
-            InitializeComponent();
+            Dock = DockStyle.Fill;
             var plot = new PlotView
             {
                 Dock = DockStyle.Fill,
@@ -79,12 +79,12 @@ namespace MeterKnife.Common.Winforms.Plots
             return _PlotModel;
         }
 
-        protected OxyColor GetAreaColor()
+        private OxyColor GetAreaColor()
         {
             return OxyColor.FromArgb(255, 245, 255, 255);
         }
 
-        protected virtual void UpdateRange(FiguredData fd)
+        private void UpdateRange(FiguredData fd)
         {
             if (fd.ExtremePoint != null)
             {
@@ -116,7 +116,7 @@ namespace MeterKnife.Common.Winforms.Plots
             }
         }
 
-        public virtual void Update(FiguredData fd)
+        public void Update(FiguredData fd)
         {
             Clear();
             UpdateRange(fd);
@@ -139,7 +139,7 @@ namespace MeterKnife.Common.Winforms.Plots
             });
         }
 
-        public virtual void Clear()
+        public void Clear()
         {
             _DataSeries.Points.Clear();
             _TempSeries.Points.Clear();

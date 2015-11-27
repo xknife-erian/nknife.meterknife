@@ -84,7 +84,7 @@ namespace MeterKnife.Common.Winforms.Plots
             this.ThreadSafeInvoke(() =>
             {
                 UpdateRange(fd);
-                _DataSeries.PlotModel.InvalidatePlot(true);
+                _DataPlotModel.InvalidatePlot(true);
             });
         }
 
@@ -101,8 +101,9 @@ namespace MeterKnife.Common.Winforms.Plots
         public override void Clear()
         {
             _DataPlotModel.Annotations.Clear();
+            _DataPlotModel.Subtitle = string.Empty;
             _DataSeries.Points.Clear();
-            this.ThreadSafeInvoke(() => _DataSeries.PlotModel.InvalidatePlot(true));
+            this.ThreadSafeInvoke(() => _DataPlotModel.InvalidatePlot(true));
         }
 
         protected override void UpdateRange(FiguredData fd)

@@ -67,7 +67,7 @@
             this._NumberBox.Font = new System.Drawing.Font("Tahoma", 11F);
             this._NumberBox.Location = new System.Drawing.Point(109, 20);
             this._NumberBox.Maximum = new decimal(new int[] {
-            32,
+            31,
             0,
             0,
             0});

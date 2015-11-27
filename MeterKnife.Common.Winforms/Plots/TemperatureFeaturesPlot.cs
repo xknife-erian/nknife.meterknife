@@ -14,21 +14,21 @@ using OxyPlot.WindowsForms;
 
 namespace MeterKnife.Common.Winforms.Plots
 {
-    public partial class TemperatureFeaturesPlot : UserControl
+    public sealed class TemperatureFeaturesPlot : UserControl
     {
         private static readonly ILog _logger = LogManager.GetLogger<TemperatureFeaturesPlot>();
 
-        protected LinearAxis _DataAxis = new LinearAxis();
-        protected ScatterSeries _DataSeries = new ScatterSeries();
+        private readonly LinearAxis _DataAxis = new LinearAxis();
+        private readonly ScatterSeries _DataSeries = new ScatterSeries();
 
-        protected PlotModel _PlotModel = new PlotModel();
-        protected LineSeries _QuadraticCurveFittingSeries = new LineSeries();
-        protected LineSeries _OnePolynomialSeries = new LineSeries();
-        protected LinearAxis _TempAxis = new LinearAxis();
+        private readonly PlotModel _PlotModel = new PlotModel();
+        private readonly LineSeries _QuadraticCurveFittingSeries = new LineSeries();
+        private readonly LineSeries _OnePolynomialSeries = new LineSeries();
+        private readonly LinearAxis _TempAxis = new LinearAxis();
 
         public TemperatureFeaturesPlot()
         {
-            InitializeComponent();
+            Dock = DockStyle.Fill;
             var plot = new PlotView
             {
                 Dock = DockStyle.Fill,
@@ -61,6 +61,14 @@ namespace MeterKnife.Common.Winforms.Plots
             _TempAxis.Position = AxisPosition.Bottom;
             _PlotModel.Axes.Add(_TempAxis);
 
+            return _PlotModel;
+        }
+
+        private bool _IsFrist = false;
+        private void AddSeries()
+        {
+            if (_IsFrist)
+                return;
             _DataSeries.MarkerFill = OxyColor.FromArgb(255, 0, 120, 0);
             _DataSeries.MarkerType = MarkerType.Diamond;
             _DataSeries.MarkerSize = 2.5;
@@ -77,11 +85,10 @@ namespace MeterKnife.Common.Winforms.Plots
             _OnePolynomialSeries.Color = OxyColor.FromArgb(255, 160, 0, 160);
             _OnePolynomialSeries.MarkerFill = OxyColor.FromArgb(255, 160, 0, 160);
             _PlotModel.Series.Add(_OnePolynomialSeries);
-
-            return _PlotModel;
+            _IsFrist = true;
         }
 
-        protected virtual void UpdateRange(FiguredData fd)
+        private void UpdateRange(FiguredData fd)
         {
             if (fd.ExtremePoint != null)
             {
@@ -112,14 +119,15 @@ namespace MeterKnife.Common.Winforms.Plots
                 }
             }
         }
-        protected OxyColor GetAreaColor()
+
+        private OxyColor GetAreaColor()
         {
             return OxyColor.FromArgb(255, 255, 245, 245);
         }
 
-        public virtual void Update(FiguredData fd)
+        public void Update(FiguredData fd)
         {
-            Clear();
+            AddSeries();
             UpdateRange(fd);
 
             var temps = new List<double>();
@@ -144,15 +152,16 @@ namespace MeterKnife.Common.Winforms.Plots
             //******一次多项式*********************************************************************
 
             double m = 0, n = 0;
-            string polynomial1 = string.Empty;//多项式
+            // ReSharper disable once InconsistentNaming
+            string polynomial_1 = string.Empty;//多项式
 
             try
             {
                 double[] result;
-                polynomial1 = MathUtil.Polynomial1(xarray.ToArray(), yarray.ToArray(), out result);
+                polynomial_1 = MathUtil.Polynomial1(xarray.ToArray(), yarray.ToArray(), out result);
                 m = result[1];
                 n = result[0];
-                _logger.Info(polynomial1);
+                _logger.Info(polynomial_1);
             }
             catch (Exception e)
             {
@@ -162,16 +171,17 @@ namespace MeterKnife.Common.Winforms.Plots
             //******二次多项式*********************************************************************
 
             double a = 0, b = 0, c = 0;
-            string polynomial = string.Empty;//多项式
+            // ReSharper disable once InconsistentNaming
+            string polynomial_2 = string.Empty;//多项式
 
             try
             {
                 double[] result;
-                polynomial = MathUtil.Polynomial2(xarray.ToArray(), yarray.ToArray(), out result);
+                polynomial_2 = MathUtil.Polynomial2(xarray.ToArray(), yarray.ToArray(), out result);
                 a = result[2];
                 b = result[1];
                 c = result[0];
-                _logger.Info(polynomial);
+                _logger.Info(polynomial_2);
             }
             catch (Exception e)
             {
@@ -190,24 +200,27 @@ namespace MeterKnife.Common.Winforms.Plots
                 var one = m * temp + n;
                 _OnePolynomialSeries.Points.Add(new DataPoint(temp, one));
             }
-            _QuadraticCurveFittingSeries.Title = polynomial;
-            _OnePolynomialSeries.Title = polynomial1;
+            _PlotModel.Subtitle = polynomial_2;
+            _QuadraticCurveFittingSeries.Title = polynomial_2;
+            _OnePolynomialSeries.Title = polynomial_1;
             this.ThreadSafeInvoke(() =>
             {
-                _DataSeries.PlotModel.InvalidatePlot(true);
-                _QuadraticCurveFittingSeries.PlotModel.InvalidatePlot(true);
-                _OnePolynomialSeries.PlotModel.InvalidatePlot(true);
+                _PlotModel.InvalidatePlot(true);
             });
         }
 
-        public virtual void Clear()
+        public void Clear()
         {
+            _PlotModel.Subtitle = string.Empty;
             _DataSeries.Points.Clear();
             _QuadraticCurveFittingSeries.Title = string.Empty;
             _QuadraticCurveFittingSeries.Points.Clear();
             _OnePolynomialSeries.Title = string.Empty;
             _OnePolynomialSeries.Points.Clear();
-            this.ThreadSafeInvoke(() => _DataSeries.PlotModel.InvalidatePlot(true));
+            this.ThreadSafeInvoke(() =>
+            {
+                _PlotModel.InvalidatePlot(true);
+            });
         }
     }
 }
