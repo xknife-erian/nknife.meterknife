@@ -53,12 +53,11 @@ namespace MeterKnife.Common.Winforms.Plots
             var min = rs.Minimum;
             var array = valueList.ToArray();
             var rms = ArrayStatistics.RootMeanSquare(array);//标准差的均方根
-            var sd = ArrayStatistics.PopulationStandardDeviation(array);
+            var sd = ArrayStatistics.PopulationStandardDeviation(array);//标准差的标准差
 
             _DataPlotModel.Subtitle = sd.ToString("0.0000").TrimZero();
 
             var lineRms = new LineAnnotation();
-            lineRms.TextLinePosition = 0.12;
             lineRms.Type = LineAnnotationType.Horizontal;
             lineRms.Y = rms;
             lineRms.Color = OxyColors.OrangeRed;
@@ -81,11 +80,6 @@ namespace MeterKnife.Common.Winforms.Plots
             lineMin.ClipByXAxis = false;
             lineMin.Text = string.Format("MIN: {0}ppm", min.ToString("0.0000").TrimZero());
             _DataPlotModel.Annotations.Add(lineMin);
-
-//            var sdAnnotation = new TextAnnotation();
-//            sdAnnotation.Text = string.Format("{0}ppm", sd.ToString("0.0000").TrimZero());
-//            sdAnnotation.TextPosition = new DataPoint(20, 20);
-//            _DataPlotModel.Annotations.Add(sdAnnotation);
 
             this.ThreadSafeInvoke(() =>
             {

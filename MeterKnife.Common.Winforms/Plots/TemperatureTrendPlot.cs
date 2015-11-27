@@ -22,7 +22,6 @@ namespace MeterKnife.Common.Winforms.Plots
         protected LinearAxis _TempAxis = new LinearAxis();
         protected DateTimeAxis _TimeAxis = new DateTimeAxis(); //时间刻度
 
-
         public TemperatureTrendPlot()
         {
             InitializeComponent();
@@ -68,12 +67,12 @@ namespace MeterKnife.Common.Winforms.Plots
 
             _DataSeries.Color = OxyColor.FromArgb(255, 78, 154, 6);
             _DataSeries.MarkerFill = OxyColor.FromArgb(255, 78, 154, 6);
-            _DataSeries.StrokeThickness = 2.6;
+            _DataSeries.StrokeThickness = 2.7;
 
             _TempSeries.YAxisKey = "temperature";
-            _TempSeries.Color = OxyColors.SlateBlue;
-            _TempSeries.MarkerFill = OxyColors.SlateBlue;
-            _TempSeries.StrokeThickness = 1.3;
+            _TempSeries.Color = OxyColors.Red;
+            _TempSeries.MarkerFill = OxyColors.Red;
+            _TempSeries.StrokeThickness = 1.5;
 
             _PlotModel.Series.Add(_TempSeries);
             _PlotModel.Series.Add(_DataSeries);
