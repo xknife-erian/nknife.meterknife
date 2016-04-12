@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
+using MeterKnife.App.Professional;
 using MeterKnife.Common.Base;
 using MeterKnife.Kernel;
 using MeterKnife.Workbench;
@@ -12,7 +12,7 @@ using NKnife.Interface;
 using NKnife.IoC;
 using NKnife.Utility;
 
-namespace MeterKnife.App.Professional
+namespace MeterKnife.App.Lite
 {
     internal class MeterKnifeEnvironment : ApplicationContext
     {
@@ -20,16 +20,17 @@ namespace MeterKnife.App.Professional
 
         private static BaseCareCommunicationService _careComm;
 
-        /// <summary>所有启动项的集合，将在 Initialize() 函数中被初始化
+        /// <summary>
+        ///     所有启动项的集合，将在 Initialize() 函数中被初始化
         /// </summary>
         private static readonly List<IEnvironmentItem> _starterItems = new List<IEnvironmentItem>();
-
-        public static Form Workbench { get; set; }
 
         public MeterKnifeEnvironment()
         {
             Initialize();
         }
+
+        public static Form Workbench { get; set; }
 
         public void Initialize()
         {
@@ -71,31 +72,31 @@ namespace MeterKnife.App.Professional
         {
             _logger.Info("寻找启动时的应用程序服务项..");
 
-            Assembly asse = typeof (MeterKernel).Assembly;
+            var asse = typeof (MeterKernel).Assembly;
             foreach (var type in asse.GetTypes())
             {
-                if ((type.ContainsInterface(typeof(IEnvironmentItem)) && !type.IsAbstract))
+                if ((type.ContainsInterface(typeof (IEnvironmentItem)) && !type.IsAbstract))
                 {
                     try
                     {
-                        object obj = Activator.CreateInstance(type);
-                        _starterItems.Add((IEnvironmentItem)obj);
+                        var obj = Activator.CreateInstance(type);
+                        _starterItems.Add((IEnvironmentItem) obj);
                     }
                     catch (Exception e)
                     {
-                        _logger.Warn(string.Format("寻找启动时的应用程序服务项异常.{0}", e.Message), e);
+                        _logger.Warn(string.Format("寻找启动时的应用程序服务项异常.{0}", e));
                     }
                 }
             }
-            string info = string.Format("找到应用程序环境服务项{0}个。", _starterItems.Count);
+            var info = string.Format("找到应用程序环境服务项{0}个。", _starterItems.Count);
             _logger.Info(info);
             if (_starterItems.Count > 0)
             {
                 //按定义的顺序进行排序
-                _starterItems.Sort((a,b) => b.Order - a.Order);
+                _starterItems.Sort((a, b) => b.Order - a.Order);
                 _starterItems.TrimExcess();
                 //按顺序进行启动(初始化)
-                for (int i = 0; i < _starterItems.Count; i++)
+                for (var i = 0; i < _starterItems.Count; i++)
                 {
                     try
                     {
@@ -105,7 +106,7 @@ namespace MeterKnife.App.Professional
                     }
                     catch (Exception e)
                     {
-                        _logger.Warn(string.Format("应用程序服务项初始化异常.{0}", e.Message), e);
+                        _logger.Warn(string.Format("应用程序服务项初始化异常.{0}", e));
                     }
                 }
             }

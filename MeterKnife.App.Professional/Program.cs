@@ -11,7 +11,6 @@ namespace MeterKnife.App.Professional
     internal class Program
     {
         private const string UPDATER_OPTION_FILE_NAME = "UpdaterOption.xml";
-        public static AutoResetEvent AutoResetEvent { get; private set; }
 
         [STAThread]
         private static void Main(string[] args)
