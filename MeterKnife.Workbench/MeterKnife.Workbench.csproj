@@ -127,9 +127,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\nknife\NKnife.NLog3\NKnife.NLog3.csproj">
-      <Project>{3d1d08d2-46b0-4c33-a214-a5a76a998102}</Project>
-      <Name>NKnife.NLog3</Name>
+    <ProjectReference Include="..\..\nknife\NKnife.NLog4\NKnife.NLog4.csproj">
+      <Project>{24af3e97-0817-4cbb-a471-15a9fa4004c3}</Project>
+      <Name>NKnife.NLog4</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
       <Project>{436E22B8-84A4-49E6-9810-E72FAD37313F}</Project>

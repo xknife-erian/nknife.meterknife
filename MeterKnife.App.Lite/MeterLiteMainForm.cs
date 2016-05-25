@@ -7,7 +7,7 @@ using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Winforms.Dialogs;
 using MeterKnife.Instruments;
 using NKnife.IoC;
-using NKnife.NLog3.Controls;
+using NKnife.NLog.Controls;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.App.Lite

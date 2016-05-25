@@ -1,5 +1,4 @@
-﻿using NKnife.NLog3.Controls;
-
+﻿
 namespace MeterKnife.Workbench.Views
 {
     partial class LoggerView

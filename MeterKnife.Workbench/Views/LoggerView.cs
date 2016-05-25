@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using NKnife.NLog3.Controls;
+using NKnife.NLog.Controls;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Workbench.Views
