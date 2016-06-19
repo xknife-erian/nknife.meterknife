@@ -38,7 +38,7 @@
             this.resistanceControl3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resistanceControl3.Location = new System.Drawing.Point(294, 101);
             this.resistanceControl3.Name = "resistanceControl3";
-            this.resistanceControl3.Size = new System.Drawing.Size(137, 30);
+            this.resistanceControl3.Size = new System.Drawing.Size(112, 30);
             this.resistanceControl3.TabIndex = 2;
             // 
             // resistanceControl2
@@ -54,7 +54,7 @@
             this.resistanceControl1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resistanceControl1.Location = new System.Drawing.Point(75, 101);
             this.resistanceControl1.Name = "resistanceControl1";
-            this.resistanceControl1.Size = new System.Drawing.Size(137, 30);
+            this.resistanceControl1.Size = new System.Drawing.Size(167, 30);
             this.resistanceControl1.TabIndex = 0;
             // 
             // ResistanceCalculatorControl
