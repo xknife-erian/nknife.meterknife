@@ -7,9 +7,6 @@ namespace MeterKnife.Common.DataModels
     /// </summary>
     public class CollectData
     {
-        public const short VOLTAGE = 1;
-        public const short RESISTANCE = 2;
-        public const short CURRENT = 3;
         public static CollectData Build(DateTime dateTime, double data, double temperature)
         {
             return new CollectData(dateTime, data, temperature);
@@ -25,11 +22,6 @@ namespace MeterKnife.Common.DataModels
             Data = data;
             Temperature = temperature;
         }
-
-        /// <summary>
-        /// 数据类型（指采集的是电压，电阻等的分类）
-        /// </summary>
-        public short DataType { get; set; }
 
         /// <summary>
         /// 采集数据的时间
