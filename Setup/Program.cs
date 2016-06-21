@@ -1,7 +1,7 @@
 ﻿using System;
 using WixSharp;
 
-namespace Setup_Lite
+namespace MeterKnife.Setup
 {
     internal class Program
     {
