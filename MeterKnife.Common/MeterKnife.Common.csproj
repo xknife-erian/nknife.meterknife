@@ -92,12 +92,6 @@
     <Compile Include="Algorithms\TemperatureRootMeanSquareValue.cs" />
     <Compile Include="Base\BaseMeter.cs" />
     <Compile Include="Base\BaseDifferenceAlgorithm.cs" />
-    <Compile Include="Base\_\DMMMeasure.cs" />
-    <Compile Include="Base\_\DMMRange.cs" />
-    <Compile Include="Base\_\DMMRate.cs" />
-    <Compile Include="Base\_\DMMZeroSet.cs" />
-    <Compile Include="Base\_\GpibLanguage.cs" />
-    <Compile Include="Base\_\MultiMeterParameters.cs" />
     <Compile Include="DataModels\CommPort.cs" />
     <Compile Include="DataModels\CommPortCommandMap.cs" />
     <Compile Include="DataModels\FiguredDataFilter.cs" />
