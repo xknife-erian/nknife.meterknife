@@ -29,7 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 	ProjectSection(SolutionItems) = preProject
 		Documents\Care通讯协议说明.doc = Documents\Care通讯协议说明.doc
 		Documents\MK.xmind = Documents\MK.xmind
+		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup", "Setup\Setup.csproj", "{44555887-C439-470C-944D-8866EC3D7067}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +80,10 @@ Global
 		{A1690059-3805-49DD-B86E-3F56FABEADC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1690059-3805-49DD-B86E-3F56FABEADC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1690059-3805-49DD-B86E-3F56FABEADC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44555887-C439-470C-944D-8866EC3D7067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44555887-C439-470C-944D-8866EC3D7067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44555887-C439-470C-944D-8866EC3D7067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44555887-C439-470C-944D-8866EC3D7067}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
