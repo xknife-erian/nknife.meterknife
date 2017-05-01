@@ -34,12 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="ControlzEx, Version=2.2.0.4, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.2.2.0.4\lib\net40\ControlzEx.dll</HintPath>
@@ -57,7 +55,7 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="NKnife, Version=17.0.2.414, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.17.0.2.414\lib\net40\NKnife.dll</HintPath>
+      <HintPath>..\..\packages\NKnife.17.0.2.414\lib\net40\NKnife.dll</HintPath>
     </Reference>
     <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Core.2.0.0-unstable0956\lib\net40\OxyPlot.dll</HintPath>
@@ -179,6 +177,11 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\APP.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\MeterKnife.Plots\MeterKnife.Plots.csproj">
+      <Project>{9657610D-AF0B-4A6E-854C-196780733D9A}</Project>
+      <Name>MeterKnife.Plots</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

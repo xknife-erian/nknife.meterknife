@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using GalaSoft.MvvmLight;
 using Huaxin.MultiTemperature.App.ViewEntities;
+using MeterKnife.Plots;
 using NKnife.Utility;
 using OxyPlot;
 using OxyPlot.Series;
@@ -13,13 +14,7 @@ namespace Huaxin.MultiTemperature.App.Views
 {
     public class WorkbenchViewModel : ViewModelBase
     {
-        public WorkbenchViewModel()
-        {
-            this.Plot = new PlotModel {Title = "Example 1"};
-            this.Plot.Series.Add(new FunctionSeries(Math.Cos, 0, 10, 0.1, "cos(x)"));
-        }
-
-        public PlotModel Plot { get; private set; }
+        public SimpleLinePlot Plot { get; private set; } = new SimpleLinePlot("温度曲线");
 
         public ObservableCollection<MeterPoint> MeterPoints { get; set; } = new ObservableCollection<MeterPoint>();
 

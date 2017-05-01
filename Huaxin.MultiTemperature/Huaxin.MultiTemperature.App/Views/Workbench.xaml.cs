@@ -17,6 +17,7 @@ namespace Huaxin.MultiTemperature.App.Views
         {
             InitializeComponent();
             _ViewModel = (WorkbenchViewModel) DataContext;
+            PlotView.Model = _ViewModel.Plot.PlotModel;
 #if !DEBUG
             this.GoFullscreen();
 #endif

@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d"
-             Width="200" Height="30">
-    <StackPanel Width="200" Height="30" Background="Coral" Margin="0,3,0,0" Orientation="Horizontal">
-        <TextBlock Width="100" Padding="15,5,0,0" FontSize="16" TextAlignment="Center" Name="TitleBlock" />
-        <TextBlock Width="100" Padding="5,5,0,0" FontSize="16" Name="ValueBlock" />
+             Width="170" Height="30">
+    <StackPanel Width="170" Height="30" Margin="0,3,0,0" Orientation="Horizontal">
+        <TextBlock Width="80" Padding="15,5,0,0" FontSize="16" TextAlignment="Right" Name="TitleBlock" Foreground="Yellow" />
+        <TextBlock Width="90" Padding="5,5,0,0" FontSize="16" Name="ValueBlock" Foreground="White" />
     </StackPanel>
 </UserControl>
