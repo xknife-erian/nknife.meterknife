@@ -1,0 +1,67 @@
+﻿<Window x:Class="Huaxin.MultiTemperature.App.Views.Workbench"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:controlzex="urn:controlzex"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:uc="clr-namespace:Huaxin.MultiTemperature.App.Controls"
+        mc:Ignorable="d"
+        Title="Huaxin.MultiTemperature.App" Height="600" Width="800" Icon="/Resources/Icons/APP.ico"
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <Binding Path="Workbench" Source="{StaticResource Locator}" />
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Width="60" Height="50" FontSize="20" Name="NewProjectButton">新建</Button>
+            <Button Width="60" Height="50" FontSize="20">打开</Button>
+            <Button Width="60" Height="50" FontSize="20">修改</Button>
+            <Button Width="60" Height="50" FontSize="20">保存</Button>
+            <Button Width="60" Height="50" FontSize="20">生成</Button>
+            <Button Width="60" Height="50" FontSize="20">打印</Button>
+            <Button Width="60" Height="50" FontSize="20">开始</Button>
+            <Button Width="60" Height="50" FontSize="20">停止</Button>
+            <Button Width="60" Height="50" FontSize="20">设置</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel Width="200">
+                <uc:StatisticsLabel Title="测点位置" Value="12"></uc:StatisticsLabel>
+                <uc:StatisticsLabel Title="已测次数" Value="9"></uc:StatisticsLabel>
+                <uc:StatisticsLabel Title="温度值" Value="65.35℃"></uc:StatisticsLabel>
+                <uc:StatisticsLabel Title="计时时间" Value="08'35"></uc:StatisticsLabel>
+                <uc:StatisticsLabel Title="倒计时间" Value="08'35"></uc:StatisticsLabel>
+                <uc:StatisticsLabel Title="冷端温度" Value="15.35℃"></uc:StatisticsLabel>
+            </StackPanel>
+            <Grid Width="600">
+                <controlzex:TabControlEx>
+                    <TabItem Header="测量点" FontSize="20" Height="40" Padding="25,5,25,5">
+                        <WrapPanel Name="PointsPanel" />
+                    </TabItem>
+                    <TabItem Header="测量曲线" FontSize="20" Height="40" Padding="25,5,25,5">
+                        <oxy:PlotView Margin="0,0,25,0" Model="{Binding Plot}" />
+                    </TabItem>
+                    <TabItem Header="测量数据" FontSize="20" Height="40" Padding="25,5,25,5">
+                        <DataGrid />
+                    </TabItem>
+                </controlzex:TabControlEx>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Label>1.0.1.0422</Label>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Huaxin.MultiTemperature.App.Controls.MeterPointPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Huaxin.MultiTemperature.App.Controls"
+             mc:Ignorable="d" 
+             Width="110" Height="110" Margin="3,3,3,3">
+    <StackPanel Width="110" Height="110" Background="AliceBlue">
+        <TextBlock Height="40" TextAlignment="Center" FontWeight="Bold" FontSize="32"
+                   Padding="0,4,0,0" Name="PointLabel" />
+        <StackPanel Orientation="Horizontal" Background="Beige">
+            <TextBlock Width="70" Height="40" TextAlignment="Right" FontSize="22"
+                       Padding="0,8,0,0" Name="ComputeValueBlock" />
+            <TextBlock Width="40" Height="40" TextAlignment="Center" FontWeight="Bold"
+                       Padding="0,9,0,0" Text="℃" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="74" Height="30" TextAlignment="Center" FontSize="16"
+                       Padding="0,3,0,0" FontStyle="Italic" Name="MeterValueBlock"/>
+            <TextBlock Width="36" Height="30" FontSize="16" FontWeight="Bold" Padding="0,3,0,0">mV</TextBlock>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
