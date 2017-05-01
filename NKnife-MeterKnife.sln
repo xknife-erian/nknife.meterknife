@@ -25,6 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.App", "Huaxin.MultiTemperature\Huaxin.MultiTemperature.App\Huaxin.MultiTemperature.App.csproj", "{A1690059-3805-49DD-B86E-3F56FABEADC4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{00127327-0B2C-4032-B22F-D3C9CA24DB9E}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\MK.xmind = Documents\MK.xmind
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
