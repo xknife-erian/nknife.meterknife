@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA16056B-6BF8-464E-A05D-AB2914EB1E37}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MeterKnife.Scpis</RootNamespace>
+    <AssemblyName>MeterKnife.Scpis</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NKnife, Version=17.0.2.414, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.17.0.2.414\lib\net40\NKnife.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomerScpiSubjectPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomerScpiSubjectPanel.Designer.cs">
+      <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstrumentAndSubjectInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstrumentAndSubjectInfoDialog.Designer.cs">
+      <DependentUpon>InstrumentAndSubjectInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstrumentInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstrumentInfoDialog.Designer.cs">
+      <DependentUpon>InstrumentInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstrumentScpiGroupTreeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstrumentScpiGroupTreeDialog.Designer.cs">
+      <DependentUpon>InstrumentScpiGroupTreeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IoC\Modules.cs" />
+    <Compile Include="IScpiInfoGetter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="ScpiCommandEditorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScpiCommandEditorDialog.Designer.cs">
+      <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScpiInfoGetter.cs" />
+    <Compile Include="ScpiMangerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScpiMangerForm.Designer.cs">
+      <DependentUpon>ScpiMangerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScpiTree\SubjectCollectionTreeNode.cs" />
+    <Compile Include="ScpiTree\SubjectFileTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScpiTree\SubjectGroupTreeNode.cs" />
+    <Compile Include="ScpiUtil.cs" />
+    <Compile Include="SubjectInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubjectInfoDialog.Designer.cs">
+      <DependentUpon>SubjectInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\base-toolstrip\add-subject.png" />
+    <Content Include="Properties\base-toolstrip\add.png" />
+    <Content Include="Properties\base-toolstrip\delete-subject.png" />
+    <Content Include="Properties\base-toolstrip\delete.png" />
+    <Content Include="Properties\base-toolstrip\down.png" />
+    <Content Include="Properties\base-toolstrip\edit-subject.png" />
+    <Content Include="Properties\base-toolstrip\edit.png" />
+    <Content Include="Properties\base-toolstrip\export.png" />
+    <Content Include="Properties\base-toolstrip\import.png" />
+    <Content Include="Properties\base-toolstrip\move.png" />
+    <Content Include="Properties\base-toolstrip\open.png" />
+    <Content Include="Properties\base-toolstrip\save.png" />
+    <Content Include="Properties\base-toolstrip\subject-collection.png" />
+    <Content Include="Properties\base-toolstrip\subject-group.png" />
+    <Content Include="Properties\base-toolstrip\up.png" />
+    <Content Include="Properties\scpi-manager.ico" />
+    <Content Include="Scpis\Specified\AdvantestR6551.xml" />
+    <Content Include="Scpis\Specified\AdvantestR6581.xml" />
+    <Content Include="Scpis\Specified\AdvantestR6871E.xml" />
+    <Content Include="Scpis\Specified\Agilent34401A.xml" />
+    <Content Include="Scpis\Specified\HP3457A.xml" />
+    <Content Include="Scpis\Specified\HP3458A.xml" />
+    <Content Include="Scpis\Specified\Keithley2000.xml" />
+    <Content Include="Scpis\Specified\Solartron7081.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomerScpiSubjectPanel.resx">
+      <DependentUpon>CustomerScpiSubjectPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstrumentAndSubjectInfoDialog.resx">
+      <DependentUpon>InstrumentAndSubjectInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstrumentInfoDialog.resx">
+      <DependentUpon>InstrumentInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstrumentScpiGroupTreeDialog.resx">
+      <DependentUpon>InstrumentScpiGroupTreeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="ScpiCommandEditorDialog.resx">
+      <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScpiMangerForm.resx">
+      <DependentUpon>ScpiMangerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubjectInfoDialog.resx">
+      <DependentUpon>SubjectInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
+      <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
+      <Name>MeterKnife.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

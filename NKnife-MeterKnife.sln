@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Common", "MeterKnife.Common\MeterKnife.Common.csproj", "{8B62166A-BCB6-434D-91A8-62BCFC26D452}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Datas", "MeterKnife.Datas\MeterKnife.Datas.csproj", "{1AB7A059-32CD-405F-A3B2-2D19B430BFF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Kernel", "MeterKnife.Kernel\MeterKnife.Kernel.csproj", "{C0352137-C756-41DC-80F8-4B026546AD5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Unittests", "MeterKnife.Unittests\MeterKnife.Unittests.csproj", "{1E46D310-D713-4D2C-963A-538EE2B28A5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Scpis", "MeterKnife.Scpis\MeterKnife.Scpis.csproj", "{FA16056B-6BF8-464E-A05D-AB2914EB1E37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Reports", "MeterKnife.Reports\MeterKnife.Reports.csproj", "{068A0168-D030-4757-8E19-FF0460D30ACD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B62166A-BCB6-434D-91A8-62BCFC26D452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B62166A-BCB6-434D-91A8-62BCFC26D452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B62166A-BCB6-434D-91A8-62BCFC26D452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B62166A-BCB6-434D-91A8-62BCFC26D452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AB7A059-32CD-405F-A3B2-2D19B430BFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AB7A059-32CD-405F-A3B2-2D19B430BFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AB7A059-32CD-405F-A3B2-2D19B430BFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AB7A059-32CD-405F-A3B2-2D19B430BFF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0352137-C756-41DC-80F8-4B026546AD5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0352137-C756-41DC-80F8-4B026546AD5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0352137-C756-41DC-80F8-4B026546AD5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0352137-C756-41DC-80F8-4B026546AD5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E46D310-D713-4D2C-963A-538EE2B28A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E46D310-D713-4D2C-963A-538EE2B28A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E46D310-D713-4D2C-963A-538EE2B28A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E46D310-D713-4D2C-963A-538EE2B28A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA16056B-6BF8-464E-A05D-AB2914EB1E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA16056B-6BF8-464E-A05D-AB2914EB1E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA16056B-6BF8-464E-A05D-AB2914EB1E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA16056B-6BF8-464E-A05D-AB2914EB1E37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068A0168-D030-4757-8E19-FF0460D30ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068A0168-D030-4757-8E19-FF0460D30ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068A0168-D030-4757-8E19-FF0460D30ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068A0168-D030-4757-8E19-FF0460D30ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
