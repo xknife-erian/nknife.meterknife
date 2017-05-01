@@ -71,6 +71,7 @@
     <Compile Include="Interfaces\Datas\IRepository.cs" />
     <Compile Include="Models\BrandCollection.cs" />
     <Compile Include="Models\Device.cs" />
+    <Compile Include="Properties\AssemblyVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scpis\IScpiFileVersionProcessor.cs" />
     <Compile Include="Scpis\ScpiCommand.cs" />

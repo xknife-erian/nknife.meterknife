@@ -62,11 +62,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MeterKnife.Common\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
+    <Compile Include="..\MeterKnife.Common\Properties\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\OwnerAssemblyInfo.cs" />
+    <Compile Include="Script.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
