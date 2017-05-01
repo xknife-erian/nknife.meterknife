@@ -27,6 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.App
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{00127327-0B2C-4032-B22F-D3C9CA24DB9E}"
 	ProjectSection(SolutionItems) = preProject
+		Documents\Care通讯协议说明.doc = Documents\Care通讯协议说明.doc
 		Documents\MK.xmind = Documents\MK.xmind
 	EndProjectSection
 EndProject
