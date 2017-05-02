@@ -164,8 +164,8 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Margin="5,0" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/tools.png" Width="36"></Image>
-                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">工具箱</TextBlock>
+                        <Image Grid.Column="0" Margin="4,0" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/tools.png" Width="36"></Image>
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">配置与工具</TextBlock>
                     </Grid>
                 </Button>
             </Grid>
