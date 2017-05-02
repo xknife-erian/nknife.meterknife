@@ -5,6 +5,12 @@
              xmlns:ioC="clr-namespace:Huaxin.MultiTemperature.App.IoC"
              StartupUri="/Views/Workbench.xaml">
     <Application.Resources>
-        <ioC:ViewModelLocator x:Key="Locator"  />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Buttons.xaml" />
+                <ResourceDictionary Source="/Resources/TabControls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ioC:ViewModelLocator x:Key="Locator"  />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

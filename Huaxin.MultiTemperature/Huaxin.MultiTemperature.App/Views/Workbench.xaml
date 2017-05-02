@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:controlzex="urn:controlzex"
         xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:uc="clr-namespace:Huaxin.MultiTemperature.App.Controls"
         mc:Ignorable="d"
@@ -13,13 +11,6 @@
     <Window.DataContext>
         <Binding Path="Workbench" Source="{StaticResource Locator}" />
     </Window.DataContext>
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Button.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -29,51 +20,59 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel.Background>
                 <RadialGradientBrush>
-                    <GradientStop Color="#FF05058B" Offset="0"/>
-                    <GradientStop Color="#FF0E1E81" Offset="0.539"/>
-                    <GradientStop Color="#FF061366" Offset="0.993"/>
+                    <GradientStop Color="#FF05058B" Offset="0" />
+                    <GradientStop Color="#FF0E1E81" Offset="0.539" />
+                    <GradientStop Color="#FF061366" Offset="0.993" />
                 </RadialGradientBrush>
             </StackPanel.Background>
-            <Button Width="60" Height="50" FontSize="20" Margin="5,5,0,5" Name="NewProjectButton">新建</Button>
-            <Button Width="60" Height="50" FontSize="20" Margin="5,5,0,5">打开</Button>
-            <Button Width="60" Height="50" FontSize="20" Margin="5,5,0,5">修改</Button>
-            <Button Width="60" Height="50" FontSize="20" Margin="5,5,0,5">保存</Button>
-            <Button Width="60" Height="50" FontSize="20" Margin="5,5,0,5">生成</Button>
-            <Button Width="60" Height="50" FontSize="20" Margin="5,5,0,5">打印</Button>
-            <Button Width="60" Height="50" FontSize="20" Margin="5,5,0,5">开始</Button>
-            <Button Width="60" Height="50" FontSize="20" Margin="5,5,0,5">停止</Button>
-            <Button Width="60" Height="50" FontSize="20" Margin="5,5,0,5">设置</Button>
+            <Button Style="{DynamicResource GlassBorderButtonStyle}" Name="NewProjectButton">新建</Button>
+            <Button Style="{DynamicResource GlassBorderButtonStyle}">打开</Button>
+            <Button Style="{DynamicResource GlassBorderButtonStyle}">修改</Button>
+            <Button Style="{DynamicResource GlassBorderButtonStyle}">保存</Button>
+            <Button Style="{DynamicResource GlassBorderButtonStyle}">生成</Button>
+            <Button Style="{DynamicResource GlassBorderButtonStyle}">打印</Button>
+            <Button Style="{DynamicResource GlassBorderButtonStyle}">开始</Button>
+            <Button Style="{DynamicResource GlassBorderButtonStyle}">停止</Button>
+            <Button Style="{DynamicResource GlassBorderButtonStyle}">设置</Button>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-                            <StackPanel.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF061366" Offset="0"/>
-                        <GradientStop Color="#FF283799" Offset="1"/>
-                    </LinearGradientBrush>
-                </StackPanel.Background>
-            <StackPanel Width="170">
-                <uc:StatisticsLabel Title="测点位置" Value="12"></uc:StatisticsLabel>
-                <uc:StatisticsLabel Title="已测次数" Value="9"></uc:StatisticsLabel>
-                <uc:StatisticsLabel Title="温度值" Value="65.35℃"></uc:StatisticsLabel>
-                <uc:StatisticsLabel Title="计时时间" Value="08'35"></uc:StatisticsLabel>
-                <uc:StatisticsLabel Title="倒计时间" Value="08'35"></uc:StatisticsLabel>
-                <uc:StatisticsLabel Title="冷端温度" Value="15.35℃"></uc:StatisticsLabel>
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF061366" Offset="0" />
+                    <GradientStop Color="#FF283799" Offset="1" />
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <StackPanel Margin="0" Width="170">
+                <uc:StatisticsLabel Title="测点位置" Value="12" />
+                <uc:StatisticsLabel Title="已测次数" Value="9" />
+                <uc:StatisticsLabel Title="温度值" Value="65.35℃" />
+                <uc:StatisticsLabel Title="计时时间" Value="08'35" />
+                <uc:StatisticsLabel Title="倒计时间" Value="08'35" />
+                <uc:StatisticsLabel Title="冷端温度" Value="15.35℃" />
             </StackPanel>
-            <Grid Width="630">
-                <controlzex:TabControlEx Background="{x:Null}">
-                    <TabItem Header="测量点" FontSize="20" Height="40" Padding="25,5,25,5">
-                        <WrapPanel Name="PointsPanel" ScrollViewer.CanContentScroll="True"  />
-                    </TabItem>
-                    <TabItem Header="测量曲线" FontSize="20" Height="40" Padding="25,5,25,5">
-                        <oxy:PlotView Margin="0,0,25,0" Name="PlotView" />
-                    </TabItem>
-                    <TabItem Header="测量数据" FontSize="20" Height="40" Padding="25,5,25,5">
-                        <DataGrid />
-                    </TabItem>
-                </controlzex:TabControlEx>
-            </Grid>
+            <TabControl Style="{DynamicResource MainTabControlStyle2}" Margin="0" Width="617" Background="{x:Null}">
+                <TabItem Header="测量点">
+                    <ScrollViewer x:Name="PointsPanelScrollViewer" Margin="0" HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto">
+                        <WrapPanel Name="PointsPanel"
+                                       Width="{Binding ElementName=PointsPanelScrollViewer, Path=Width, Mode=OneWay}" />
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="测量曲线">
+                    <oxy:PlotView Margin="0,0,0,0" Name="PlotView" />
+                </TabItem>
+                <TabItem Header="测量数据">
+                    <DataGrid />
+                </TabItem>
+            </TabControl>
         </StackPanel>
         <StackPanel Grid.Row="2">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343333" Offset="1"/>
+                    <GradientStop Color="#FF787373"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
             <Label>1.0.1.0422</Label>
         </StackPanel>
     </Grid>
