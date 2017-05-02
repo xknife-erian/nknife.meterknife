@@ -181,7 +181,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Imags\tabItemHead.png" />
+    <Resource Include="Resources\Imags\totalcount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Imags\MainBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Imags\my.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Imags\history.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Imags\dataview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Imags\chart.png" />
+    <Resource Include="Resources\Imags\data.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Imags\tools.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

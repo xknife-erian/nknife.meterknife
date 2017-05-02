@@ -17,7 +17,7 @@ namespace Huaxin.MultiTemperature.App.Views
         {
             InitializeComponent();
             _ViewModel = (WorkbenchViewModel) DataContext;
-            PlotView.Model = _ViewModel.Plot.PlotModel;
+            //PlotView.Model = _ViewModel.Plot.PlotModel;
 #if !DEBUG
             this.GoFullscreen();
 #endif
@@ -31,11 +31,11 @@ namespace Huaxin.MultiTemperature.App.Views
             {
                 _ViewModel.BuildMeterPoints();
             };
-            NewProjectButton.Click += (s, e) =>
-            {
-                var dialog = new ProjectInfoDialog();
-                dialog.ShowDialog();
-            };
+//            NewProjectButton.Click += (s, e) =>
+//            {
+//                var dialog = new ProjectInfoDialog();
+//                dialog.ShowDialog();
+//            };
         }
 
         private void ViewModelChangedManager()
@@ -54,7 +54,7 @@ namespace Huaxin.MultiTemperature.App.Views
                                 ComputeValue = point.ComputeValue,
                                 MeterValue = point.MeterValue
                             };
-                            PointsPanel.Children.Add(panel);
+                            //PointsPanel.Children.Add(panel);
                             point.PropertyChanged += (o, item) =>
                             {
                                 switch (item.PropertyName)
@@ -79,16 +79,16 @@ namespace Huaxin.MultiTemperature.App.Views
                         {
                             MeterPointPanel rp = null;
                             bool has = false;
-                            foreach (MeterPointPanel panel in PointsPanel.Children)
-                            {
-                                if (panel.Point == point.Point)
-                                {
-                                    has = true;
-                                    rp = panel;
-                                    break;
-                                }
-                            }
-                            if (has) PointsPanel.Children.Remove(rp);
+//                            foreach (MeterPointPanel panel in PointsPanel.Children)
+//                            {
+//                                if (panel.Point == point.Point)
+//                                {
+//                                    has = true;
+//                                    rp = panel;
+//                                    break;
+//                                }
+//                            }
+//                            if (has) PointsPanel.Children.Remove(rp);
                         }
                         break;
                     }
