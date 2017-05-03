@@ -24,7 +24,7 @@
                 <RowDefinition Height="130"/>
             </Grid.RowDefinitions>
             <Canvas Grid.Row="0">
-                <Button Style="{StaticResource CornerButton}" Width="200" Height="65" Canvas.Left="528" Canvas.Top="162">
+                <Button Name="NewProjectButton" Style="{StaticResource CornerButton}" Width="200" Height="65" Canvas.Left="528" Canvas.Top="162">
                     <TextBlock Text="新 建 测 量" Foreground="Yellow" HorizontalAlignment="Center" Margin="0" FontSize="24">
                         <TextBlock.Effect>
                             <DropShadowEffect Color="DarkSlateGray" Direction="0" ShadowDepth="2" Opacity="5" />
@@ -41,30 +41,32 @@
                     <ColumnDefinition Width="3.5*"></ColumnDefinition>
                     <ColumnDefinition Width="3.5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
-                    <Image Height="70" Margin="0,10,0,10" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/totalcount.png"></Image>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                            <ColumnDefinition Width="5*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="147" TextAlignment="Right" Foreground="White" FontSize="18"></TextBlock>
-                        <TextBlock Grid.Column="1" Text="次标定与检测" Margin="5,3,0,0" Foreground="DarkGray" FontSize="15"></TextBlock>
-                    </Grid>
-                </StackPanel>
+                <Button Name="HomePanelToButton" BorderThickness="0" Grid.Column="0" Background="{x:Null}">
+                    <StackPanel>
+                        <Image Height="70" Margin="0,10,0,10" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/totalcount.png"></Image>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="147" TextAlignment="Right" Foreground="White" FontSize="18"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="次标定与检测" Margin="5,3,0,0" Foreground="DarkGray" FontSize="15"></TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </Button>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Margin="30,15,0,0" Grid.Column="0" Grid.Row="0" FontSize="35" Foreground="WhiteSmoke" Text="95" TextAlignment="Center"></TextBlock>
-                    <TextBlock Margin="30,0,0,15" Grid.Column="0" Grid.Row="1" FontSize="35" Foreground="WhiteSmoke" Text="40" TextAlignment="Center"></TextBlock>
-                    <TextBlock Margin="0,23,0,0" Grid.Column="1" Grid.Row="0" FontSize="25" Foreground="DarkGray" Text="份历史数据" TextAlignment="Left"></TextBlock>
-                    <TextBlock Margin="0,8" Grid.Column="1" Grid.Row="1" FontSize="25" Foreground="DarkGray" Text="个项目" TextAlignment="Left"></TextBlock>
+                    <StackPanel Name="HistoryPanelToButton" Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Margin="30,15,0,0" FontSize="35" Foreground="WhiteSmoke" Text="95" Width="70" TextAlignment="Center"></TextBlock>
+                        <TextBlock Margin="0,23,0,0" FontSize="25" Foreground="DarkGray" Text="份历史数据" TextAlignment="Left"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Name="ProjectPanelToButton" Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock Margin="30,0,0,15" FontSize="35" Foreground="WhiteSmoke" Text="40" Width="70" TextAlignment="Center"></TextBlock>
+                        <TextBlock Margin="0,8" FontSize="25" Foreground="DarkGray" Text="个项目" TextAlignment="Left"></TextBlock>
+                    </StackPanel>
                 </Grid>
                 <Grid Grid.Column="2">
                     <Grid.RowDefinitions>

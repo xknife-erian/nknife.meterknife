@@ -31,11 +31,17 @@ namespace Huaxin.MultiTemperature.App.Views
             {
                 _ViewModel.BuildMeterPoints();
             };
-//            NewProjectButton.Click += (s, e) =>
-//            {
-//                var dialog = new ProjectInfoDialog();
-//                dialog.ShowDialog();
-//            };
+            NewProjectButton.Click += (s, e) =>
+            {
+                var dialog = new ProjectInfoDialog();
+                dialog.ShowDialog();
+            };
+            HomePanelToButton.Click += (s, e) =>
+            {
+                var dialog = new ProjectInfoDialog();
+                dialog.ShowDialog();
+                NewProjectButton.Focus();
+            };
         }
 
         private void ViewModelChangedManager()
