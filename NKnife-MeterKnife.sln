@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Common", "MeterKnife.Common\MeterKnife.Common.csproj", "{8B62166A-BCB6-434D-91A8-62BCFC26D452}"
 EndProject
@@ -13,15 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Scpis", "MeterKn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Reports", "MeterKnife.Reports\MeterKnife.Reports.csproj", "{068A0168-D030-4757-8E19-FF0460D30ACD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Huaxin.MultiTemperature", "Huaxin.MultiTemperature", "{DCAE229D-0BF2-4249-9CAD-CF373BB6299F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Huaxin", "Huaxin", "{DCAE229D-0BF2-4249-9CAD-CF373BB6299F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.Unittests", "Huaxin.MultiTemperature\Huaxin.MultiTemperature.Unittests\Huaxin.MultiTemperature.Unittests.csproj", "{6C35A0F1-2584-4CD8-A1AC-BD8D8FB4DE92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.Unittests", "Huaxin\Huaxin.MultiTemperature.Unittests\Huaxin.MultiTemperature.Unittests.csproj", "{6C35A0F1-2584-4CD8-A1AC-BD8D8FB4DE92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.Common", "Huaxin.MultiTemperature\Huaxin.MultiTemperature.Common\Huaxin.MultiTemperature.Common.csproj", "{FFDE7FC1-B973-4584-8F36-4D2D12817D05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.Common", "Huaxin\Huaxin.MultiTemperature.Common\Huaxin.MultiTemperature.Common.csproj", "{FFDE7FC1-B973-4584-8F36-4D2D12817D05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.App.Demo", "Huaxin.MultiTemperature\Huaxin.MultiTemperature.App.Demo\Huaxin.MultiTemperature.App.Demo.csproj", "{C929E888-96E9-44F7-A9D8-F09A085EE2D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.App.Demo", "Huaxin\Huaxin.MultiTemperature.App.Demo\Huaxin.MultiTemperature.App.Demo.csproj", "{C929E888-96E9-44F7-A9D8-F09A085EE2D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.App", "Huaxin.MultiTemperature\Huaxin.MultiTemperature.App\Huaxin.MultiTemperature.App.csproj", "{A1690059-3805-49DD-B86E-3F56FABEADC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huaxin.MultiTemperature.App", "Huaxin\Huaxin.MultiTemperature.App\Huaxin.MultiTemperature.App.csproj", "{A1690059-3805-49DD-B86E-3F56FABEADC4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{00127327-0B2C-4032-B22F-D3C9CA24DB9E}"
 	ProjectSection(SolutionItems) = preProject
