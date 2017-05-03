@@ -7,8 +7,6 @@ using System.Threading;
 using Common.Logging;
 using GalaSoft.MvvmLight;
 using Huaxin.MultiTemperature.Common;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 using NKnife.Channels.Channels.EventParams;
 using NKnife.Channels.Channels.Serials;
 using NKnife.Channels.Interfaces.Channels;

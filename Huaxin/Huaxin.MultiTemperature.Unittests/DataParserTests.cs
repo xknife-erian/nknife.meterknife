@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -7,13 +6,14 @@ using System.Text;
 using System.Threading;
 using Huaxin.MultiTemperature.Common;
 using NKnife.Collections;
+using NUnit.Framework;
 
 namespace Huaxin.MultiTemperature.Tests
 {
-    [TestClass()]
+    [TestFixture()]
     public class DataParserTests
     {
-        [TestMethod()]
+        [Test()]
         public void DataArrivedTest1()
         {
             SyncQueue<byte> queue = new SyncQueue<byte>();
