@@ -11,17 +11,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Huaxin.MultiTemperature.App.ViewModels;
 
 namespace Huaxin.MultiTemperature.App.Views
 {
     /// <summary>
     /// PlotPage.xaml 的交互逻辑
     /// </summary>
-    public partial class PlotPage : UserControl
+    public partial class RealTimePlotViewPage
     {
-        public PlotPage()
+        private readonly RealTimePlotViewViewModel _ViewModel;
+
+        public RealTimePlotViewPage()
         {
             InitializeComponent();
+            _ViewModel = (RealTimePlotViewViewModel) DataContext;
+            MainPlotView.Model = _ViewModel.SimpleLinePlot.PlotModel;
         }
     }
 }

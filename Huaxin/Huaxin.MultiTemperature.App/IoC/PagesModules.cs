@@ -18,7 +18,7 @@ namespace Huaxin.MultiTemperature.App.IoC
             Bind<MeterPointPage>().ToSelf().InSingletonScope();
             Bind<MeterDatasPage>().ToSelf().InSingletonScope();
             Bind<OptionAndToolsPage>().ToSelf().InSingletonScope();
-            Bind<PlotPage>().ToSelf().InSingletonScope();
+            Bind<RealTimePlotViewPage>().ToSelf().InSingletonScope();
             Bind<ProjectAndDatasPage>().ToSelf().InSingletonScope();
         }
 

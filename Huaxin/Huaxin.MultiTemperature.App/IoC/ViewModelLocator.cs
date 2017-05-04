@@ -14,7 +14,9 @@ namespace Huaxin.MultiTemperature.App.IoC
         public ViewModelLocator()
         {
             Workbench = DI.Get<WorkbenchViewModel>();
+            RealTimePlotView = DI.Get<RealTimePlotViewViewModel>();
         }
         public WorkbenchViewModel Workbench { get; }
+        public RealTimePlotViewViewModel RealTimePlotView { get; private set; }
     }
 }

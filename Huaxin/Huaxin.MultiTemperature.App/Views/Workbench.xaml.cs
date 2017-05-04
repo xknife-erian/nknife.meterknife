@@ -59,8 +59,8 @@ namespace Huaxin.MultiTemperature.App.Views
                 case nameof(MeterDatasPage):
                     uie = DI.Get<MeterDatasPage>();
                     break;
-                case nameof(PlotPage):
-                    uie = DI.Get<PlotPage>();
+                case nameof(RealTimePlotViewPage):
+                    uie = DI.Get<RealTimePlotViewPage>();
                     break;
                 case nameof(OptionAndToolsPage):
                     uie = DI.Get<OptionAndToolsPage>();
@@ -82,7 +82,7 @@ namespace Huaxin.MultiTemperature.App.Views
             ProjectAndDatasButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(ProjectAndDatasPage); };
             MeterPointButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(MeterPointPage); };
             MeterDatasButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(MeterDatasPage); };
-            PlotButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(PlotPage); };
+            PlotButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(RealTimePlotViewPage); };
             OptionAndToolsButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(OptionAndToolsPage); };
         }
 
