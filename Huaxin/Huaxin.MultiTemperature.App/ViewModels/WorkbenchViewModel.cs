@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using Huaxin.MultiTemperature.App.ViewEntities;
+using Huaxin.MultiTemperature.App.Views;
 using MeterKnife.Plots;
 using NKnife.Utility;
 
@@ -11,6 +12,14 @@ namespace Huaxin.MultiTemperature.App.ViewModels
         public SimpleLinePlot Plot { get; private set; } = new SimpleLinePlot("温度曲线");
 
         public ObservableCollection<MeterPoint> MeterPoints { get; set; } = new ObservableCollection<MeterPoint>();
+
+        private string _CurrentPage = nameof(HomePage);
+
+        public string CurrentPage
+        {
+            get => _CurrentPage;
+            set { Set(() => CurrentPage, ref _CurrentPage, value); }
+        }
 
         public void BuildMeterPoints()
         {

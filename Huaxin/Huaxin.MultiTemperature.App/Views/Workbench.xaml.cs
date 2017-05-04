@@ -1,9 +1,13 @@
 ﻿using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Windows.Controls;
 using Huaxin.MultiTemperature.App.Controls;
 using Huaxin.MultiTemperature.App.Dialogs;
 using Huaxin.MultiTemperature.App.ViewEntities;
 using Huaxin.MultiTemperature.App.ViewModels;
+using Huaxin.MultiTemperature.App.Views.SubPages;
 using NKnife.IoC;
+using OxyPlot;
 
 namespace Huaxin.MultiTemperature.App.Views
 {
@@ -18,6 +22,7 @@ namespace Huaxin.MultiTemperature.App.Views
         {
             InitializeComponent();
             _ViewModel = (WorkbenchViewModel) DataContext;
+            _ViewModel.PropertyChanged += OnViewModelPropertyChanged;
 #if !DEBUG
             this.GoFullscreen();
 #endif
@@ -27,38 +32,58 @@ namespace Huaxin.MultiTemperature.App.Views
             PageContainer.Children.Add(DI.Get<HomePage>());
         }
 
+        private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(_ViewModel.CurrentPage):
+                    FillPageContainer(_ViewModel.CurrentPage);
+                    break;
+            }
+        }
+
+        private void FillPageContainer(string currentPage)
+        {
+            UserControl uie = null;
+            switch (currentPage)
+            {
+                case nameof(HomePage):
+                    uie = DI.Get<HomePage>();
+                    break;
+                case nameof(ProjectAndDatasPage):
+                    uie = DI.Get<ProjectAndDatasPage>();
+                    break;
+                case nameof(MeterPointPage):
+                    uie = DI.Get<MeterPointPage>();
+                    break;
+                case nameof(MeterDatasPage):
+                    uie = DI.Get<MeterDatasPage>();
+                    break;
+                case nameof(PlotPage):
+                    uie = DI.Get<PlotPage>();
+                    break;
+                case nameof(OptionAndToolsPage):
+                    uie = DI.Get<OptionAndToolsPage>();
+                    break;
+                case nameof(NewProjectPage):
+                    uie = DI.Get<NewProjectPage>();
+                    break;
+            }
+            if (uie != null)
+            {
+                PageContainer.Children.Clear();
+                PageContainer.Children.Add(uie);
+            }
+        }
+
         private void ButtonClickEventManager()
         {
-            HomeButton.Click += (s, e) =>
-            {
-                PageContainer.Children.Clear();
-                PageContainer.Children.Add(DI.Get<HomePage>());
-            };
-            ProjectAndDatasButton.Click += (s, e) =>
-            {
-                PageContainer.Children.Clear();
-                PageContainer.Children.Add(DI.Get<ProjectAndDatasPage>());
-            };
-            MeterPointButton.Click += (s, e) =>
-            {
-                PageContainer.Children.Clear();
-                PageContainer.Children.Add(DI.Get<MeterPointPage>());
-            };
-            MeterDatasButton.Click += (s, e) =>
-            {
-                PageContainer.Children.Clear();
-                PageContainer.Children.Add(DI.Get<MeterDatasPage>());
-            };
-            PlotButton.Click += (s, e) =>
-            {
-                PageContainer.Children.Clear();
-                PageContainer.Children.Add(DI.Get<PlotPage>());
-            };
-            OptionAndToolsButton.Click += (s, e) =>
-            {
-                PageContainer.Children.Clear();
-                PageContainer.Children.Add(DI.Get<OptionAndToolsPage>());
-            };
+            HomeButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(HomePage); };
+            ProjectAndDatasButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(ProjectAndDatasPage); };
+            MeterPointButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(MeterPointPage); };
+            MeterDatasButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(MeterDatasPage); };
+            PlotButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(PlotPage); };
+            OptionAndToolsButton.Click += (s, e) => { _ViewModel.CurrentPage = nameof(OptionAndToolsPage); };
         }
 
         private void ControlEventManager()

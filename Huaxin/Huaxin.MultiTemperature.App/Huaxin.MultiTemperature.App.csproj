@@ -91,6 +91,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commons\NegateConverter.cs" />
     <Compile Include="Controls\MeterPointPanel.xaml.cs">
       <DependentUpon>MeterPointPanel.xaml</DependentUpon>
     </Compile>
@@ -100,9 +101,11 @@
     <Compile Include="Dialogs\ProjectInfoDialog.xaml.cs">
       <DependentUpon>ProjectInfoDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IoC\Modules.cs" />
     <Compile Include="IoC\PagesModules.cs" />
     <Compile Include="IoC\ViewModelLocator.cs" />
     <Compile Include="IoC\ViewModelModules.cs" />
+    <Compile Include="Kernel.cs" />
     <Compile Include="ViewEntities\MeterPoint.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>

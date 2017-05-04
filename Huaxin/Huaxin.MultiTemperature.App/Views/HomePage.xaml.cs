@@ -11,6 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Huaxin.MultiTemperature.App.ViewModels;
+using Huaxin.MultiTemperature.App.Views.SubPages;
+using NKnife.IoC;
 
 namespace Huaxin.MultiTemperature.App.Views
 {
@@ -22,6 +25,7 @@ namespace Huaxin.MultiTemperature.App.Views
         public HomePage()
         {
             InitializeComponent();
+            NewProjectButton.Click += (s, e) => { DI.Get<WorkbenchViewModel>().CurrentPage = nameof(NewProjectPage); };
         }
     }
 }
