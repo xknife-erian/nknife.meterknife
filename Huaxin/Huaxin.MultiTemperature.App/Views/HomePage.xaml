@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="Huaxin.MultiTemperature.App.Views.HomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Huaxin.MultiTemperature.App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Huaxin.MultiTemperature.App;component/Resources/Imags/MainBackground.jpg" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="370" />
+            <RowDefinition Height="130" />
+        </Grid.RowDefinitions>
+        <Canvas Grid.Row="0">
+            <Button Name="NewProjectButton" Style="{StaticResource CornerButton}" Width="200" Height="65"
+                    Canvas.Left="528" Canvas.Top="162">
+                <TextBlock Text="新 建 测 量" Foreground="Yellow" HorizontalAlignment="Center" Margin="0" FontSize="24">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="DarkSlateGray" Direction="0" ShadowDepth="2" Opacity="5" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                <Button.Effect>
+                    <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="1" />
+                </Button.Effect>
+            </Button>
+        </Canvas>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="3.5*" />
+                <ColumnDefinition Width="3.5*" />
+            </Grid.ColumnDefinitions>
+            <Button Name="HomeButton" Grid.Column="0" Background="{x:Null}" BorderThickness="0,1,0,0">
+                <Grid Width="{Binding ActualWidth, ElementName=HomeButton}" 
+                      Height="{Binding ActualHeight, ElementName=HomeButton}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Image Height="70" Margin="0,10,0,10"
+                           Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/totalcount.png" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="147" TextAlignment="Right" Foreground="White" FontSize="18" />
+                        <TextBlock Grid.Column="1" Text="次标定与检测" Margin="5,3,0,0" Foreground="DarkGray" FontSize="15" />
+                    </Grid>
+                </Grid>
+            </Button>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Name="ProjectButton" Grid.Row="0" Background="{x:Null}">
+                    <Grid Width="{Binding ActualWidth, ElementName=ProjectButton}"
+                          Height="{Binding ActualHeight, ElementName=ProjectButton}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" FontSize="30" Foreground="WhiteSmoke" Text="95"
+                                   TextAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" FontSize="23" Foreground="DarkGray" Text="个项目"
+                                   TextAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+                <Button Name="HistoryButton" Grid.Row="1" Background="{x:Null}" BorderThickness="1,0">
+                    <Grid Width="{Binding ActualWidth, ElementName=HistoryButton}"
+                          Height="{Binding ActualHeight, ElementName=HistoryButton}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" FontSize="30" Foreground="WhiteSmoke" Text="289"
+                                   TextAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" FontSize="23" Foreground="DarkGray" Text="份历史数据"
+                                   TextAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="硬件版本:" TextAlignment="Right" Foreground="DarkGray"
+                               FontSize="12" Margin="3,0" />
+                    <TextBlock Grid.Column="1" Text="0.1.1.25" TextAlignment="Left" Foreground="DarkGray"
+                               FontSize="12" Margin="3,0" />
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="软件版本:" TextAlignment="Right" Foreground="DarkGray"
+                               FontSize="12" Margin="3,0" />
+                    <TextBlock Grid.Column="1" Text="1.3.0.512" TextAlignment="Left" Foreground="DarkGray"
+                               FontSize="12" Margin="3,0" />
+                </Grid>
+                <StackPanel Grid.Row="2" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+</UserControl>

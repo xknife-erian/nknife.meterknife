@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using Huaxin.MultiTemperature.App.ViewEntities;
 using MeterKnife.Plots;
 using NKnife.Utility;
-using OxyPlot;
-using OxyPlot.Series;
 
-namespace Huaxin.MultiTemperature.App.Views
+namespace Huaxin.MultiTemperature.App.ViewModels
 {
     public class WorkbenchViewModel : ViewModelBase
     {

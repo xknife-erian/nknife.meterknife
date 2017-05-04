@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Common", "MeterKnife.Common\MeterKnife.Common.csproj", "{8B62166A-BCB6-434D-91A8-62BCFC26D452}"
 EndProject
@@ -26,7 +26,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{00127327-0B2C-4032-B22F-D3C9CA24DB9E}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\Care通讯协议说明.doc = Documents\Care通讯协议说明.doc
-		Documents\MK.xmind = Documents\MK.xmind
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -37,6 +36,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plots", "MeterKnife.Plots\MeterKnife.Plots.csproj", "{9657610D-AF0B-4A6E-854C-196780733D9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Unittests", "Tests\MeterKnife.Unittests\MeterKnife.Unittests.csproj", "{42726C7B-5146-40F4-8876-2C4125C5173C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{5B62ADC4-036F-4683-929D-3A1B5E163034}"
+	ProjectSection(SolutionItems) = preProject
+		Huaxin\Documents\hx-report.pdf = Huaxin\Documents\hx-report.pdf
+		Huaxin\Documents\hx-巡检仪上位机需求说明.docx = Huaxin\Documents\hx-巡检仪上位机需求说明.docx
+		Huaxin\Documents\hx-巡检仪客户端软件策划.xmind = Huaxin\Documents\hx-巡检仪客户端软件策划.xmind
+		Huaxin\Documents\hx-巡检通讯协议.docx = Huaxin\Documents\hx-巡检通讯协议.docx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,5 +109,6 @@ Global
 		{C929E888-96E9-44F7-A9D8-F09A085EE2D5} = {DCAE229D-0BF2-4249-9CAD-CF373BB6299F}
 		{A1690059-3805-49DD-B86E-3F56FABEADC4} = {DCAE229D-0BF2-4249-9CAD-CF373BB6299F}
 		{42726C7B-5146-40F4-8876-2C4125C5173C} = {E3B3712D-75B6-4C9D-B82E-4613B3EB73A0}
+		{5B62ADC4-036F-4683-929D-3A1B5E163034} = {DCAE229D-0BF2-4249-9CAD-CF373BB6299F}
 	EndGlobalSection
 EndGlobal

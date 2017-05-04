@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Huaxin.MultiTemperature.App.ViewModels;
 using Huaxin.MultiTemperature.App.Views;
 using Ninject.Modules;
 

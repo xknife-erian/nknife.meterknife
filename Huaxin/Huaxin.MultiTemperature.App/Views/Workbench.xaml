@@ -10,167 +10,96 @@
     <Window.DataContext>
         <Binding Path="Workbench" Source="{StaticResource Locator}" />
     </Window.DataContext>
-    <Grid Name="MainGrid" Margin="0">
+    <Grid Margin="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="500"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="500" />
+            <RowDefinition Height="100" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.Background>
-                <ImageBrush ImageSource="/Huaxin.MultiTemperature.App;component/Resources/Imags/MainBackground.jpg"/>
-            </Grid.Background>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="370"/>
-                <RowDefinition Height="130"/>
-            </Grid.RowDefinitions>
-            <Canvas Grid.Row="0">
-                <Button Name="NewProjectButton" Style="{StaticResource CornerButton}" Width="200" Height="65" Canvas.Left="528" Canvas.Top="162">
-                    <TextBlock Text="新 建 测 量" Foreground="Yellow" HorizontalAlignment="Center" Margin="0" FontSize="24">
-                        <TextBlock.Effect>
-                            <DropShadowEffect Color="DarkSlateGray" Direction="0" ShadowDepth="2" Opacity="5" />
-                        </TextBlock.Effect>
-                    </TextBlock>
-                    <Button.Effect>
-                        <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="1" />
-                    </Button.Effect>
-                </Button>
-            </Canvas>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="3.5*"></ColumnDefinition>
-                    <ColumnDefinition Width="3.5*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Button Name="HomePanelToButton" BorderThickness="0" Grid.Column="0" Background="{x:Null}">
-                    <StackPanel>
-                        <Image Height="70" Margin="0,10,0,10" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/totalcount.png"></Image>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                <ColumnDefinition Width="5*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="147" TextAlignment="Right" Foreground="White" FontSize="18"></TextBlock>
-                            <TextBlock Grid.Column="1" Text="次标定与检测" Margin="5,3,0,0" Foreground="DarkGray" FontSize="15"></TextBlock>
-                        </Grid>
-                    </StackPanel>
-                </Button>
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Name="HistoryPanelToButton" Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Margin="30,15,0,0" FontSize="35" Foreground="WhiteSmoke" Text="95" Width="70" TextAlignment="Center"></TextBlock>
-                        <TextBlock Margin="0,23,0,0" FontSize="25" Foreground="DarkGray" Text="份历史数据" TextAlignment="Left"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Name="ProjectPanelToButton" Grid.Row="1" Orientation="Horizontal">
-                        <TextBlock Margin="30,0,0,15" FontSize="35" Foreground="WhiteSmoke" Text="40" Width="70" TextAlignment="Center"></TextBlock>
-                        <TextBlock Margin="0,8" FontSize="25" Foreground="DarkGray" Text="个项目" TextAlignment="Left"></TextBlock>
-                    </StackPanel>
-                </Grid>
-                <Grid Grid.Column="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5*"></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="硬件版本:" TextAlignment="Right" Foreground="DarkGray" FontSize="12" Margin="3,0"></TextBlock>
-                        <TextBlock Grid.Column="1" Text="0.1.1.25" TextAlignment="Left" Foreground="DarkGray" FontSize="12" Margin="3,0"></TextBlock>
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5*"></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="软件版本:" TextAlignment="Right" Foreground="DarkGray" FontSize="12" Margin="3,0"></TextBlock>
-                        <TextBlock Grid.Column="1" Text="1.3.0.512" TextAlignment="Left" Foreground="DarkGray" FontSize="12" Margin="3,0"></TextBlock>
-                    </Grid>
-                    <StackPanel Grid.Row="2"></StackPanel>
-                </Grid>
-            </Grid>
-        </Grid>
+        <Grid Name="PageContainer" Margin="0"></Grid>
         <Canvas x:Name="BottomStrip" Width="792" Grid.Row="1">
             <Canvas.Background>
                 <RadialGradientBrush>
-                    <GradientStop Color="#FFC5C3C3" Offset="1"/>
-                    <GradientStop Color="#FFD6D3D3"/>
+                    <GradientStop Color="#FFC5C3C3" Offset="1" />
+                    <GradientStop Color="#FFD6D3D3" />
                 </RadialGradientBrush>
             </Canvas.Background>
-            <Grid Width="{Binding Width, ElementName=BottomStrip}">
+            <Grid Width="{Binding ActualWidth, ElementName=BottomStrip}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Height="90">
+                <Button Name="HomeButton" Grid.Column="0" Height="90">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Margin="5,0" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/my.png" Width="36"></Image>
+                        <Image Grid.Column="0" Margin="5,0"
+                               Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/my.png" Width="36" />
                         <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">我的测量</TextBlock>
                     </Grid>
                 </Button>
-                <Button Grid.Column="1" Height="90">
+                <Button Name="ProjectAndDatasButton" Grid.Column="1" Height="90">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Margin="5,0" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/history.png" Width="36"></Image>
-                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">历史数据</TextBlock>
+                        <Image Grid.Column="0" Margin="5,0"
+                               Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/history.png" Width="36" />
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">项目与数据</TextBlock>
                     </Grid>
                 </Button>
-                <Button Grid.Column="2" Height="90">
+                <Button Name="MeterPointButton" Grid.Column="2" Height="90">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Margin="5,0" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/chart.png" Width="36"></Image>
-                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">测量曲线</TextBlock>
-                    </Grid>
-                </Button>
-                <Button Grid.Column="3" Height="90">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Margin="5,0" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/dataview.png" Width="36"></Image>
+                        <Image Grid.Column="0" Margin="5,0"
+                               Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/dataview.png" Width="36" />
                         <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">测量点观察</TextBlock>
                     </Grid>
                 </Button>
-                <Button Grid.Column="4" Height="90">
+                <Button Name="PlotButton" Grid.Column="3" Height="90">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Margin="5,0" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/data.png" Width="36"></Image>
+                        <Image Grid.Column="0" Margin="5,0"
+                               Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/chart.png" Width="36" />
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">测量曲线</TextBlock>
+                    </Grid>
+                </Button>
+                <Button Name="MeterDatasButton" Grid.Column="4" Height="90">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Margin="5,0"
+                               Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/data.png" Width="36" />
                         <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">测量数据</TextBlock>
                     </Grid>
                 </Button>
-                <Button Grid.Column="5" Height="90">
+                <Button Name="OptionAndToolsButton" Grid.Column="5" Height="90">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Margin="4,0" Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/tools.png" Width="36"></Image>
+                        <Image Grid.Column="0" Margin="4,0"
+                               Source="/Huaxin.MultiTemperature.App;component/Resources/Imags/tools.png" Width="36" />
                         <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">配置与工具</TextBlock>
                     </Grid>
                 </Button>
             </Grid>
         </Canvas>
     </Grid>
+
 </Window>

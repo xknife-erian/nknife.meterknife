@@ -2,6 +2,7 @@
 using Huaxin.MultiTemperature.App.Controls;
 using Huaxin.MultiTemperature.App.Dialogs;
 using Huaxin.MultiTemperature.App.ViewEntities;
+using Huaxin.MultiTemperature.App.ViewModels;
 using NKnife.IoC;
 
 namespace Huaxin.MultiTemperature.App.Views
@@ -17,12 +18,47 @@ namespace Huaxin.MultiTemperature.App.Views
         {
             InitializeComponent();
             _ViewModel = (WorkbenchViewModel) DataContext;
-            //PlotView.Model = _ViewModel.Plot.PlotModel;
 #if !DEBUG
             this.GoFullscreen();
 #endif
+            ButtonClickEventManager();
             ControlEventManager();
             ViewModelChangedManager();
+            PageContainer.Children.Add(DI.Get<HomePage>());
+        }
+
+        private void ButtonClickEventManager()
+        {
+            HomeButton.Click += (s, e) =>
+            {
+                PageContainer.Children.Clear();
+                PageContainer.Children.Add(DI.Get<HomePage>());
+            };
+            ProjectAndDatasButton.Click += (s, e) =>
+            {
+                PageContainer.Children.Clear();
+                PageContainer.Children.Add(DI.Get<ProjectAndDatasPage>());
+            };
+            MeterPointButton.Click += (s, e) =>
+            {
+                PageContainer.Children.Clear();
+                PageContainer.Children.Add(DI.Get<MeterPointPage>());
+            };
+            MeterDatasButton.Click += (s, e) =>
+            {
+                PageContainer.Children.Clear();
+                PageContainer.Children.Add(DI.Get<MeterDatasPage>());
+            };
+            PlotButton.Click += (s, e) =>
+            {
+                PageContainer.Children.Clear();
+                PageContainer.Children.Add(DI.Get<PlotPage>());
+            };
+            OptionAndToolsButton.Click += (s, e) =>
+            {
+                PageContainer.Children.Clear();
+                PageContainer.Children.Add(DI.Get<OptionAndToolsPage>());
+            };
         }
 
         private void ControlEventManager()
@@ -30,17 +66,6 @@ namespace Huaxin.MultiTemperature.App.Views
             Loaded += (s, e) =>
             {
                 _ViewModel.BuildMeterPoints();
-            };
-            NewProjectButton.Click += (s, e) =>
-            {
-                var dialog = new ProjectInfoDialog();
-                dialog.ShowDialog();
-            };
-            HomePanelToButton.Click += (s, e) =>
-            {
-                var dialog = new ProjectInfoDialog();
-                dialog.ShowDialog();
-                NewProjectButton.Focus();
             };
         }
 
