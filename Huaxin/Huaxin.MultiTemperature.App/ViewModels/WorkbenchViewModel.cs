@@ -17,7 +17,7 @@ namespace Huaxin.MultiTemperature.App.ViewModels
 
         public string CurrentPage
         {
-            get => _CurrentPage;
+            get { return _CurrentPage; }
             set { Set(() => CurrentPage, ref _CurrentPage, value); }
         }
 

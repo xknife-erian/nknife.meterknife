@@ -25,7 +25,7 @@ namespace Huaxin.MultiTemperature.App.Views
         public HomePage()
         {
             InitializeComponent();
-            NewProjectButton.Click += (s, e) => { DI.Get<WorkbenchViewModel>().CurrentPage = nameof(NewProjectPage); };
+            NewProjectButton.Click += (s, e) => { DI.Get<WorkbenchViewModel>().CurrentPage = nameof(ProjectAndMeterInfoPage); };
         }
     }
 }

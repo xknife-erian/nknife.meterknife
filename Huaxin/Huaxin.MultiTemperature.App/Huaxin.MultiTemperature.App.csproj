@@ -107,6 +107,7 @@
     <Compile Include="IoC\ViewModelModules.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="ViewEntities\MeterPoint.cs" />
+    <Compile Include="ViewModels\ProjectAndMeterInfoViewModel.cs" />
     <Compile Include="ViewModels\RealTimePlotViewViewModel.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -167,7 +168,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SubPages\NewProjectPage.xaml">
+    <Page Include="Views\SubPages\ProjectAndMeterInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,8 +181,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commons\FullScreenHelper.cs" />
-    <Compile Include="Views\SubPages\NewProjectPage.xaml.cs">
-      <DependentUpon>NewProjectPage.xaml</DependentUpon>
+    <Compile Include="Views\SubPages\ProjectAndMeterInfoPage.xaml.cs">
+      <DependentUpon>ProjectAndMeterInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Workbench.xaml.cs">
       <DependentUpon>Workbench.xaml</DependentUpon>

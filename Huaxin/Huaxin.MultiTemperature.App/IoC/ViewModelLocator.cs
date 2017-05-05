@@ -15,8 +15,10 @@ namespace Huaxin.MultiTemperature.App.IoC
         {
             Workbench = DI.Get<WorkbenchViewModel>();
             RealTimePlotView = DI.Get<RealTimePlotViewViewModel>();
+            ProjectAndMeterInfo = DI.Get<ProjectAndMeterInfoViewModel>();
         }
         public WorkbenchViewModel Workbench { get; }
         public RealTimePlotViewViewModel RealTimePlotView { get; private set; }
+        public ProjectAndMeterInfoViewModel ProjectAndMeterInfo { get; set; }
     }
 }

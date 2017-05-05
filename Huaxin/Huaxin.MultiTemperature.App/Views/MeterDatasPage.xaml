@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Huaxin.MultiTemperature.App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
-    <Grid Background="#FF8AFD94">
-            
+    <Grid>
+        <DataGrid></DataGrid> 
     </Grid>
 </UserControl>
