@@ -65,8 +65,8 @@ namespace Huaxin.MultiTemperature.App.Views
                 case nameof(OptionAndToolsPage):
                     uie = DI.Get<OptionAndToolsPage>();
                     break;
-                case nameof(ProjectAndMeterInfoPage):
-                    uie = DI.Get<ProjectAndMeterInfoPage>();
+                case nameof(CompanyAndMeterInfoPage):
+                    uie = DI.Get<CompanyAndMeterInfoPage>();
                     break;
             }
             if (uie != null)

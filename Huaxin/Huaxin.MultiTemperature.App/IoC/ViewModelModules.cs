@@ -17,7 +17,7 @@ namespace Huaxin.MultiTemperature.App.IoC
         {
             Bind<WorkbenchViewModel>().ToSelf().InSingletonScope();
             Bind<RealTimePlotViewViewModel>().ToSelf().InSingletonScope();
-            Bind<ProjectAndMeterInfoViewModel>().ToSelf().InSingletonScope();
+            Bind<CompanyAndMeterInfoViewModel>().ToSelf().InSingletonScope();
         }
 
         #endregion
