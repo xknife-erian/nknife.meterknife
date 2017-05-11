@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using NKnife.GUI.WinForm;
+using NKnife.ControlKnife;
 
 namespace MeterKnife.Scpis
 {

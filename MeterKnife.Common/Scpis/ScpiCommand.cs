@@ -2,6 +2,7 @@
 using System.Text;
 using System.Xml;
 using NKnife.Converts;
+using NKnife.XML;
 
 namespace MeterKnife.Scpis
 {

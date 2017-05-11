@@ -49,11 +49,14 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NKnife, Version=17.0.2.414, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.17.0.2.414\lib\net40\NKnife.dll</HintPath>
+    <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.Channels, Version=17.0.3.427, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.Channels.17.0.3.427\lib\net40\NKnife.Channels.dll</HintPath>
+    <Reference Include="NKnife.Channels, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.Channels.17.5.0.511\lib\net40\NKnife.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife.DataLite, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.DataLite.17.5.0.511\lib\net40\NKnife.DataLite.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -66,9 +69,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\CrudRepositoryBase.cs" />
-    <Compile Include="Base\PagingAndSortingRepositoryBase.cs" />
-    <Compile Include="Base\RepositoryBase.cs" />
     <Compile Include="Dpi\ExhibitListRepository.cs" />
     <Compile Include="Dpi\ExhibitRepository.cs" />
     <Compile Include="Entities\ExhibitInfomation.cs" />

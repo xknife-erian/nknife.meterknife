@@ -63,21 +63,17 @@
       <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NKnife, Version=17.0.2.414, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NKnife.17.0.2.414\lib\net40\NKnife.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.Channels, Version=17.0.3.427, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NKnife.Channels.17.0.3.427\lib\net40\NKnife.Channels.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NKnife.Channels, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.Channels.17.5.0.511\lib\net40\NKnife.Channels.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.NLog4, Version=17.0.2.414, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NKnife.NLog4.17.0.2.414\lib\net40\NKnife.NLog4.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NKnife.NLog4, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.NLog4.17.5.0.511\lib\net40\NKnife.NLog4.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NLog.4.4.8\lib\net40\NLog.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\NLog.4.4.9\lib\net40\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

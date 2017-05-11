@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Scpis.Properties;
 using NKnife;
-using NKnife.GUI.WinForm;
+using NKnife.ControlKnife;
 using NKnife.IoC;
 
 namespace MeterKnife.Scpis

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MeterKnife.Models;
-using NKnife.GUI.WinForm;
+using NKnife.ControlKnife;
 using NKnife.IoC;
 
 namespace MeterKnife.Scpis

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MeterKnife.Datas.Base;
 using MeterKnife.Datas.Entities;
+using NKnife.DataLite;
 
 namespace MeterKnife.Datas.Dpi
 {

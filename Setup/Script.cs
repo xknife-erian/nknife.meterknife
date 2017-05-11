@@ -9,8 +9,7 @@ namespace MeterKnife.Setup
         {
             var project = new Project("meterknife",
                 new Dir(@"%ProgramFiles%\xknife\meterknife",
-                    new File(@"Files\Docs\Manual.txt"),
-                    new File(@"Files\Bin\MyApp.exe")));
+                 new File(@"*.dll")));
             project.GUID = new Guid("6f330b47-2577-43ad-9095-1861ba25889b");
             Compiler.BuildMsi(project);
         }
