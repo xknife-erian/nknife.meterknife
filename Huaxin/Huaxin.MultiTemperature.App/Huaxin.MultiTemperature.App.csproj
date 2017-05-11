@@ -107,7 +107,8 @@
     <Compile Include="IoC\ViewModelModules.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="ViewEntities\MeterPoint.cs" />
-    <Compile Include="ViewModels\CompanyAndMeterInfoViewModel.cs" />
+    <Compile Include="ViewModels\ProjectAndDatasViewModel.cs" />
+    <Compile Include="ViewModels\SubPages\CompanyAndMeterInfoViewModel.cs" />
     <Compile Include="ViewModels\RealTimePlotViewViewModel.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>

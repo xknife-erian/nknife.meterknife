@@ -1,5 +1,6 @@
 ﻿using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using Huaxin.MultiTemperature.App.Controls;
 using Huaxin.MultiTemperature.App.Dialogs;

@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:Huaxin.MultiTemperature.App.Views"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding Path="ProjectAndDatas" Source="{StaticResource Locator}" />
+    </UserControl.DataContext>
     <Grid Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition />
