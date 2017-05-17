@@ -7,11 +7,7 @@ using NKnife.DataLite;
 
 namespace MeterKnife.Datas.Dpi
 {
-    public class ExhibitListRepository : PagingAndSortingRepositoryBase<ExhibitItem, int>
+    public class ExhibitListRepository : GlobalDataBaseRepositoryBase<ExhibitItem, int>
     {
-        public ExhibitListRepository(string repositoryPath) 
-            : base(repositoryPath)
-        {
-        }
     }
 }

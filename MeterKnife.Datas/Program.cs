@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
 using LiteDB;
@@ -10,6 +11,7 @@ using MeterKnife.Models;
 using NKnife.Channels.Channels.Base;
 using NKnife.Channels.Interfaces;
 using NKnife.Channels.Interfaces.Channels;
+using NKnife.DataLite;
 using NKnife.Utility;
 
 namespace MeterKnife.Datas
@@ -20,28 +22,17 @@ namespace MeterKnife.Datas
 
         public static void Main(string[] args)
         {
-            //获取临时目录路径  
-            var temp = Environment.GetEnvironmentVariable("TEMP");
-            DirectoryInfo info = new DirectoryInfo(temp);
-            //即是临时目录的路径字符串。
-            var path = info.FullName;
-            path = Path.Combine(path, @"~~Datas");
-            UtilityFile.DeleteDirectory(path);
-            UtilityFile.CreateDirectory(path);
-
-
             //新建采集数据列表数据库
-            var globaldb = Path.Combine(path, $"Global.mkdb");
-            ExhibitListRepository elr = new ExhibitListRepository(globaldb);
+            ExhibitListRepository elr = new ExhibitListRepository();
 
             //模拟
             var exhibitId = Guid.NewGuid().ToString("N").ToUpper();
             var exhibit = new DemoExhibit(exhibitId);
 
-            var erpath = Path.Combine(path, $"Exhibit-{exhibitId}.mkdb");
-            var er = new ExhibitRepository<double>(erpath);
+            var er = new ExhibitRepository<double>();
+
             Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff} === 生成数据...");
-            var answers = GetAnswer(exhibit, 10 * 10000);
+            var answers = GetAnswer(exhibit, 5 * 1000);
             Console.WriteLine();
             Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff} === 20路温度数据开始");
             int i = 0;
@@ -58,6 +49,16 @@ namespace MeterKnife.Datas
             }
             Console.WriteLine();
             Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff} === 20路温度数据完成");
+
+            var pageable = new Pageable<ExhibitData<double>>(1, 5, null, data => data.Id > 50 && data.Id < 70);
+            var list = er.FindMulti(pageable);
+
+            foreach (var exh in list.Content)
+            {
+                Console.WriteLine(exh);
+            }
+            Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff} === 查询20条温度分页数据完成");
+
             Console.ReadKey();
         }
 
