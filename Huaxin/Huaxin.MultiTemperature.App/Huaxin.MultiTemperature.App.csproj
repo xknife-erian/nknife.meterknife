@@ -106,13 +106,6 @@
     </Compile>
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="IoC\PagesModules.cs" />
-    <Compile Include="IoC\ViewModelLocator.cs" />
-    <Compile Include="IoC\ViewModelModules.cs" />
-    <Compile Include="Kernel.cs" />
-    <Compile Include="ViewEntities\MeterPoint.cs" />
-    <Compile Include="ViewModels\ProjectAndDatasViewModel.cs" />
-    <Compile Include="ViewModels\SubPages\CompanyAndMeterInfoViewModel.cs" />
-    <Compile Include="ViewModels\RealTimePlotViewViewModel.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -131,7 +124,6 @@
     <Compile Include="Views\ProjectAndDatasPage.xaml.cs">
       <DependentUpon>ProjectAndDatasPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\WorkbenchViewModel.cs" />
     <Page Include="Controls\MeterPointPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -172,7 +164,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SubPages\CompanyAndMeterInfoPage.xaml">
+    <Page Include="Views\CompanyAndMeterInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,7 +177,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commons\FullScreenHelper.cs" />
-    <Compile Include="Views\SubPages\CompanyAndMeterInfoPage.xaml.cs">
+    <Compile Include="Views\CompanyAndMeterInfoPage.xaml.cs">
       <DependentUpon>CompanyAndMeterInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Workbench.xaml.cs">
@@ -230,6 +222,10 @@
       <Project>{9657610D-AF0B-4A6E-854C-196780733D9A}</Project>
       <Name>MeterKnife.Plots</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Huaxin.MultiTemperature.ViewModels\Huaxin.MultiTemperature.ViewModels.csproj">
+      <Project>{deb58914-6f39-430f-a806-a4d1137a25d2}</Project>
+      <Name>Huaxin.MultiTemperature.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Imags\totalcount.png" />
@@ -253,5 +249,6 @@
   <ItemGroup>
     <Resource Include="Resources\Imags\tools.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

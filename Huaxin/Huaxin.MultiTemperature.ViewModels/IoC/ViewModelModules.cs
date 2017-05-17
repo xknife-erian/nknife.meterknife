@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Huaxin.MultiTemperature.App.ViewModels;
-using Huaxin.MultiTemperature.App.Views;
-using Ninject.Modules;
+﻿using Ninject.Modules;
+using NKnife.Interface;
+using NKnife.Wrapper;
 
-namespace Huaxin.MultiTemperature.App.IoC
+namespace Huaxin.MultiTemperature.ViewModels.IoC
 {
     public class ViewModelModules : NinjectModule
     {
@@ -16,10 +12,10 @@ namespace Huaxin.MultiTemperature.App.IoC
         public override void Load()
         {
             Bind<WorkbenchViewModel>().ToSelf().InSingletonScope();
-            Bind<RealTimePlotViewViewModel>().ToSelf().InSingletonScope();
-            Bind<ProjectAndDatasViewModel>().ToSelf().InSingletonScope();
 
             Bind<CompanyAndMeterInfoViewModel>().ToSelf().InSingletonScope();
+            Bind<RealTimePlotViewViewModel>().ToSelf().InSingletonScope();
+            Bind<ProjectAndDatasViewModel>().ToSelf().InSingletonScope();
         }
 
         #endregion

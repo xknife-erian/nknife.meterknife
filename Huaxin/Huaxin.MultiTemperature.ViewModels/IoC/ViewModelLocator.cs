@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Huaxin.MultiTemperature.App.ViewModels;
-using Huaxin.MultiTemperature.App.Views;
-using Ninject;
-using NKnife.IoC;
+﻿using NKnife.IoC;
 
-namespace Huaxin.MultiTemperature.App.IoC
+namespace Huaxin.MultiTemperature.ViewModels.IoC
 {
     public class ViewModelLocator
     {

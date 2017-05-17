@@ -4,9 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Huaxin.MultiTemperature.App.Controls;
 using Huaxin.MultiTemperature.App.Dialogs;
-using Huaxin.MultiTemperature.App.ViewEntities;
-using Huaxin.MultiTemperature.App.ViewModels;
-using Huaxin.MultiTemperature.App.Views.SubPages;
+using Huaxin.MultiTemperature.ViewModels;
+using Huaxin.MultiTemperature.ViewModels.Entities;
 using NKnife.IoC;
 using OxyPlot;
 

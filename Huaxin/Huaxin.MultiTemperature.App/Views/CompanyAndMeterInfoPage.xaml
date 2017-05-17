@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Huaxin.MultiTemperature.App.Views.SubPages"
              xmlns:commons="clr-namespace:Huaxin.MultiTemperature.App.Commons" 
-             x:Class="Huaxin.MultiTemperature.App.Views.SubPages.CompanyAndMeterInfoPage"
+             x:Class="Huaxin.MultiTemperature.App.Views.CompanyAndMeterInfoPage"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="800" Width="800" Height="500">
     <UserControl.DataContext>
@@ -38,8 +37,9 @@
                     <ColumnDefinition Width="0.7*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="委托单位" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
-                <ComboBox Grid.Row="0" Grid.Column="1" Margin="0,3" IsEnabled="{Binding IsChecked, ElementName=IsAutoFillCompanyInfo}"/>
-                <CheckBox Grid.Row="0" Grid.Column="2" x:Name="IsAutoFillCompanyInfo" IsChecked="True" HorizontalAlignment="Left" Margin="6,3" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" Margin="0,3" IsEnabled="{Binding IsChecked, ElementName=_IsAutoFillCompanyInfo_CheckBox}"
+                          Name="_Companies_ComboBox"/>
+                <CheckBox Grid.Row="0" Grid.Column="2" x:Name="_IsAutoFillCompanyInfo_CheckBox" IsChecked="True" HorizontalAlignment="Left" Margin="6,3" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="单位编号" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="联系人" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
@@ -49,13 +49,20 @@
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Email" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
                 <TextBlock Grid.Row="4" Grid.Column="2" Text="备注" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
 
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillCompanyInfo}"/>
-                <TextBox Grid.Row="1" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillCompanyInfo}"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillCompanyInfo}"/>
-                <TextBox Grid.Row="2" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillCompanyInfo}"/>
-                <TextBox Grid.Row="3" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillCompanyInfo}" Grid.ColumnSpan="3"/>
-                <TextBox Grid.Row="4" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillCompanyInfo}"/>
-                <TextBox Grid.Row="4" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillCompanyInfo}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="False"
+                         Name="_CompanyNumber_TextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillCompanyInfo_CheckBox}"
+                         Name="_CompanyCharger_TextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillCompanyInfo_CheckBox}"
+                         Name="_CompanyName_TextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillCompanyInfo_CheckBox}"
+                         Name="_CompanyTelephone_TextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillCompanyInfo_CheckBox}" Grid.ColumnSpan="3"
+                         Name="_CompanyAddress_TextBox"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillCompanyInfo_CheckBox}"
+                         Name="_CompanyEmail_TextBox"/>
+                <TextBox Grid.Row="4" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillCompanyInfo_CheckBox}"
+                         Name="_CompanyMemo_TextBox"/>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="1" Margin="50,5,55,20" Header="仪器信息">
@@ -76,8 +83,9 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="仪器" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
-                <ComboBox Grid.Row="0" Grid.Column="1" Margin="0,3" IsEnabled="{Binding IsChecked, ElementName=IsAutoFillMeterInfo}"/>
-                <CheckBox Grid.Row="0" Grid.Column="2" x:Name="IsAutoFillMeterInfo" IsChecked="True" HorizontalAlignment="Left" Margin="6,3" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" Margin="0,3" IsEnabled="{Binding IsChecked, ElementName=_IsAutoFillMeterInfo_CheckBox}"
+                          Name="_MeterInfos_ComboBox"/>
+                <CheckBox Grid.Row="0" Grid.Column="2" x:Name="_IsAutoFillMeterInfo_CheckBox" IsChecked="True" HorizontalAlignment="Left" Margin="6,3" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="仪器名称" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="型号规格" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
@@ -85,16 +93,21 @@
                 <TextBlock Grid.Row="2" Grid.Column="2" Text="出厂编号" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="校准流水号" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6,3"/>
 
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillMeterInfo}"/>
-                <TextBox Grid.Row="1" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillMeterInfo}"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillMeterInfo}"/>
-                <TextBox Grid.Row="2" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=IsAutoFillMeterInfo}"/>
-                <TextBox Grid.Row="3" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="False"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillMeterInfo_CheckBox}"
+                         Name="_MeterInfoName_TextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillMeterInfo_CheckBox}"
+                         Name="_MeterInfoModelNumber_TextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillMeterInfo_CheckBox}"
+                         Name="_MeterInfoManufacturer_TextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="3" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="{Binding IsChecked, Converter={StaticResource NegateConverter}, ElementName=_IsAutoFillMeterInfo_CheckBox}"
+                         Name="_MeterInfoNumber_TextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="0,3" VerticalContentAlignment="Center" IsEnabled="False"
+                         Name="_MeterageNumber_TextBox"/>
             </Grid>
         </GroupBox>
         <StackPanel Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button Width="80" Height="32" Content="重填" Margin="0,0,10,0" Name="ClearButton"></Button>
-            <Button Width="80" Height="32" Content="确定" Margin="10,0,0,0" Name="AcceptButton"></Button>
+            <Button Width="80" Height="32" Content="重填" Margin="0,0,10,0" Name="_Clear_Button"></Button>
+            <Button Width="80" Height="32" Content="确定" Margin="10,0,0,0" Name="_Accept_Button"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

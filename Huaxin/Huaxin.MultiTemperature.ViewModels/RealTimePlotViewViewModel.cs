@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using MeterKnife.Plots;
 
-namespace Huaxin.MultiTemperature.App.ViewModels
+namespace Huaxin.MultiTemperature.ViewModels
 {
     public class RealTimePlotViewViewModel : ViewModelBase
     {

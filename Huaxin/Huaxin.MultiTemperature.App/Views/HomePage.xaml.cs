@@ -11,8 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Huaxin.MultiTemperature.App.ViewModels;
-using Huaxin.MultiTemperature.App.Views.SubPages;
+using Huaxin.MultiTemperature.ViewModels;
 using NKnife.IoC;
 
 namespace Huaxin.MultiTemperature.App.Views

@@ -1,11 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
-using Huaxin.MultiTemperature.App.ViewEntities;
-using Huaxin.MultiTemperature.App.Views;
+using Huaxin.MultiTemperature.ViewModels.Entities;
 using MeterKnife.Plots;
 using NKnife.Utility;
 
-namespace Huaxin.MultiTemperature.App.ViewModels
+namespace Huaxin.MultiTemperature.ViewModels
 {
     public class WorkbenchViewModel : ViewModelBase
     {
@@ -13,7 +12,7 @@ namespace Huaxin.MultiTemperature.App.ViewModels
 
         public ObservableCollection<MeterPoint> MeterPoints { get; set; } = new ObservableCollection<MeterPoint>();
 
-        private string _CurrentPage = nameof(HomePage);
+        private string _CurrentPage = "HomePage";
 
         public string CurrentPage
         {

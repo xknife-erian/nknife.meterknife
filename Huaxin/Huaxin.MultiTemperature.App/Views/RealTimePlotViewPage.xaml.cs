@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Huaxin.MultiTemperature.App.ViewModels;
+using Huaxin.MultiTemperature.ViewModels;
 
 namespace Huaxin.MultiTemperature.App.Views
 {

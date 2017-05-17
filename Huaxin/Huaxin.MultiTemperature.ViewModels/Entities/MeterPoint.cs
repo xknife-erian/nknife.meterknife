@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 
-namespace Huaxin.MultiTemperature.App.ViewEntities
+namespace Huaxin.MultiTemperature.ViewModels.Entities
 {
     public class MeterPoint : ViewModelBase
     {
