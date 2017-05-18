@@ -65,6 +65,8 @@ namespace Huaxin.MultiTemperature.App.Views
             };
             _Clear_Button.Click += (s, e) =>
             {
+                _Companies_ComboBox.SelectedIndex = -1;
+                _MeterInfos_ComboBox.SelectedIndex = -1;
                 _ViewModel.Clear();
             };
             _Accept_Button.Click += (s, e) =>
@@ -101,19 +103,28 @@ namespace Huaxin.MultiTemperature.App.Views
                 _MeterInfos_ComboBox.Items.Clear();
                 foreach (var meterInfo in _ViewModel.CurrentCompany.MeterInfos)
                 {
-                    _MeterInfos_ComboBox.Items.Add(meterInfo);
+                    _MeterInfos_ComboBox.Items.Add(meterInfo.Name);
                 }
+                FillMeterInfo();
             }
         }
 
         private void FillMeterInfo()
         {
             if (_ViewModel.CurrentMeterInfo == null)
-                return;
-            _MeterInfoManufacturer_TextBox.Text = _ViewModel.CurrentMeterInfo.Manufacturer;
-            _MeterInfoModelNumber_TextBox.Text = _ViewModel.CurrentMeterInfo.ModelNumber;
-            _MeterInfoName_TextBox.Text = _ViewModel.CurrentMeterInfo.Name;
-            _MeterInfoNumber_TextBox.Text = _ViewModel.CurrentMeterInfo.Number;
+            {
+                _MeterInfoManufacturer_TextBox.Text = string.Empty;
+                _MeterInfoModelNumber_TextBox.Text = string.Empty;
+                _MeterInfoName_TextBox.Text = string.Empty;
+                _MeterInfoNumber_TextBox.Text = string.Empty;
+            }
+            else
+            {
+                _MeterInfoManufacturer_TextBox.Text = _ViewModel.CurrentMeterInfo.Manufacturer;
+                _MeterInfoModelNumber_TextBox.Text = _ViewModel.CurrentMeterInfo.ModelNumber;
+                _MeterInfoName_TextBox.Text = _ViewModel.CurrentMeterInfo.Name;
+                _MeterInfoNumber_TextBox.Text = _ViewModel.CurrentMeterInfo.Number;
+            }
         }
     }
 }

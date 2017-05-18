@@ -9,6 +9,8 @@ namespace Huaxin.MultiTemperature.ViewModels
 {
     public class CompanyAndMeterInfoViewModel : ViewModelBase
     {
+        private Kernel _Kernel = DI.Get<Kernel>();
+
         public CompanyAndMeterInfoViewModel()
         {
             MeterageNumber = DI.Get<IIdGenerator>().Generate();
@@ -39,7 +41,9 @@ namespace Huaxin.MultiTemperature.ViewModels
 
         public void Accept()
         {
-            throw new NotImplementedException();
+            _Kernel.WorkedCompany = CurrentCompany;
+            _Kernel.WorkedMeter = CurrentMeterInfo;
+            _Kernel.MeterageNumber = MeterageNumber;
         }
 
         public void LoadCompany()
@@ -48,6 +52,10 @@ namespace Huaxin.MultiTemperature.ViewModels
             {
                 var c = new Company();
                 c.Name = $"{i}{i}{i}{i}-company";
+                c.MeterInfos.Add(new MeterInfo() { Name = $"{i}{i}{i}{i}-meter" });
+                c.MeterInfos.Add(new MeterInfo() { Name = $"{i}{i}{i}{i}-meter" });
+                c.MeterInfos.Add(new MeterInfo() { Name = $"{i}{i}{i}{i}-meter" });
+                c.MeterInfos.Add(new MeterInfo() { Name = $"{i}{i}{i}{i}-meter" });
                 Companies.Add(c);
             }
         }
@@ -56,14 +64,12 @@ namespace Huaxin.MultiTemperature.ViewModels
 
         public void SetCurrentCompaniesSelectedIndex(int selectedIndex)
         {
-            if (selectedIndex >= 0)
-                CurrentCompany = Companies[selectedIndex];
+            CurrentCompany = selectedIndex >= 0 ? Companies[selectedIndex] : new Company();
         }
 
         public void SetCurrentMeterInfosSelectedIndex(int selectedIndex)
         {
-            if (selectedIndex >= 0)
-                CurrentMeterInfo = CurrentCompany.MeterInfos[selectedIndex];
+            CurrentMeterInfo = selectedIndex >= 0 ? CurrentCompany.MeterInfos[selectedIndex] : null;
         }
     }
 }

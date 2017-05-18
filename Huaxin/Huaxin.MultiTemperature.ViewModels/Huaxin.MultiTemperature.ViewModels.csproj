@@ -74,6 +74,7 @@
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="IoC\ViewModelLocator.cs" />
     <Compile Include="IoC\ViewModelModules.cs" />
+    <Compile Include="Kernel.cs" />
     <Compile Include="ProjectAndDatasViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTimePlotViewViewModel.cs" />

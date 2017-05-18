@@ -16,6 +16,7 @@ namespace Huaxin.MultiTemperature.ViewModels.IoC
         public override void Load()
         {
             Bind<IIdGenerator>().To<IdGenerator>().InSingletonScope();
+            Bind<Kernel>().To<Kernel>().InSingletonScope();
         }
 
         #endregion
