@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using LiteDB;
 using MeterKnife.Datas.Dpi;
 using MeterKnife.Datas.Entities;
-using MeterKnife.Interfaces;
 using MeterKnife.Models;
 using NKnife.Channels.Channels.Base;
 using NKnife.Channels.Interfaces;
