@@ -73,8 +73,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalibrationNumberGenerator.cs" />
-    <Compile Include="CompanyNumberGenerator.cs" />
     <Compile Include="DataParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
