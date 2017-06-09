@@ -69,12 +69,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Huaxin\Huaxin.MultiTemperature.App\Huaxin.MultiTemperature.App.csproj">
-      <Project>{a1690059-3805-49dd-b86e-3f56fabeadc4}</Project>
-      <Name>Huaxin.MultiTemperature.App</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
