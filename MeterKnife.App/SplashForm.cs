@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using Common.Logging;
+using MeterKnife.App.Properties;
 using NKnife.ControlKnife;
 
 namespace MeterKnife.App
@@ -14,7 +15,7 @@ namespace MeterKnife.App
 
         public SplashForm()
         {
-            Bitmap bitmap = null;//Resource.ChinaQ510_Welcome;
+            Bitmap bitmap = Resources.mk_welcome;
 
             SuspendLayout();
 
@@ -94,10 +95,7 @@ namespace MeterKnife.App
             PerformLayout();
         }
 
-        public string AssemblyVersion
-        {
-            get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
-        }
+        public string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         #region ISplashForm
 

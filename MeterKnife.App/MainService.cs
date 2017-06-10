@@ -23,9 +23,11 @@ namespace MeterKnife.App
 
         public void Load(string[] args)
         {
-            string assemblyname = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomainMainAssembly);
+            string assemblyFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomainMainAssembly);
+            if (!File.Exists(assemblyFile))
+                return;
             Splasher.Status = "准备加载服务工作域.";
-            Assembly assembly = Assembly.LoadFile(assemblyname);
+            Assembly assembly = Assembly.LoadFile(assemblyFile);
             _Service = assembly.CreateInstance(Loader);
             Splasher.Status = "域服务加载.";
 

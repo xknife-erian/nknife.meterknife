@@ -72,6 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MeterKnife.App\Properties\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="Dpi\DatabaseService.cs" />
     <Compile Include="Dpi\ExhibitListRepository.cs" />
     <Compile Include="Dpi\ExhibitRepository.cs" />
@@ -84,6 +87,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </None>
+    <None Include="Dockerfile" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

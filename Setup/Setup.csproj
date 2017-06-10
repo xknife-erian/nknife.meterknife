@@ -59,7 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MeterKnife.Common\Properties\AssemblyVersion.cs">
+    <Compile Include="..\MeterKnife.App\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Script.cs" />

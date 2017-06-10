@@ -26,12 +26,12 @@ namespace MeterKnife.Scpis
             _ListView.LostFocus += (s, e) => _ListView.SelectedIndices.Clear();
 
             //TODO:kernel
-            //            var kernel = DI.Get<IMeterKernel>();
-            //            kernel.Collected += (s, e) =>
-            //            {
-            //                if (e.GpibAddress == GpibAddress)
-            //                    SetToolStripState(e.IsCollected);
-            //            };
+            //var kernel = DI.Get<IMeterKernel>();
+            //kernel.Collected += (s, e) =>
+            //{
+            //    if (e.GpibAddress == GpibAddress)
+            //        SetToolStripState(e.IsCollected);
+            //};
             _SaveButton.Enabled = false;
             _AddButton.Enabled = false;
             _DeleteButton.Enabled = false;
