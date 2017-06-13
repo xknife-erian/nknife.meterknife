@@ -28,8 +28,6 @@ namespace MeterKnife.App
 
             AutoResetEvent = new AutoResetEvent(false);
 
-            var logger = LogManager.GetLogger<SplashForm>();
-
             //开启欢迎屏幕
             Splasher.Show(typeof(SplashForm));
 
@@ -49,20 +47,18 @@ namespace MeterKnife.App
             {
                 if (args.IsUpdateAvailable)
                 {
-                    var dialogResult =
-                        MessageBox.Show(
-                            $"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. Do you want to update the application now?",
-                            @"Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (dialogResult.Equals(DialogResult.Yes))
+                    var dr = MessageBox.Show($"有新版本{args.CurrentVersion}发布。正在使用的版本：{args.InstalledVersion}。\r\n是否下载新版本?",
+                        @"Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (dr.Equals(DialogResult.Yes))
                     {
                         try
                         {
                             //You can use Download Update dialog used by AutoUpdater.NET to download the update.
                             AutoUpdater.DownloadUpdate();
                         }
-                        catch (Exception exception)
+                        catch (Exception e)
                         {
-                            MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(e.Message, e.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
