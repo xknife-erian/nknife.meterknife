@@ -39,8 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
@@ -72,6 +71,12 @@
     <Compile Include="Interfaces\Datas\IPageable.cs" />
     <Compile Include="Interfaces\Datas\IPagingAndSortingRepository.cs" />
     <Compile Include="Interfaces\Datas\IRepository.cs" />
+    <Compile Include="Interfaces\Plugin\IPluginManager.cs" />
+    <Compile Include="Interfaces\Plugin\IDataExtender.cs" />
+    <Compile Include="Interfaces\Plugin\IEventExtender.cs" />
+    <Compile Include="Interfaces\Plugin\IFuctionExtender.cs" />
+    <Compile Include="Interfaces\Plugin\IPlugIn.cs" />
+    <Compile Include="Interfaces\Plugin\IExtenderProvider.cs" />
     <Compile Include="Models\BrandCollection.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +95,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

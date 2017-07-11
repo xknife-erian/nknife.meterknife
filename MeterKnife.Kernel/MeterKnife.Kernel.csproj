@@ -62,11 +62,19 @@
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="HabitedDatas.cs" />
+    <Compile Include="IoC\Modules.cs" />
+    <Compile Include="PluginManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Commons.csproj">
+      <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
+      <Name>MeterKnife.Commons</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

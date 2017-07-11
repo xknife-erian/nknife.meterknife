@@ -7,22 +7,19 @@ namespace MeterKnife.App
 {
     class MainService
     {
-        private static string Loader => "Pansoft.CQMS.Queue.Environments.EnvironmentDynamicLoader";
-
+        private static string Loader => $"{typeof(MainService).Namespace}.EnvironmentDynamicLoader";
         private static string LoaderMethod => "InvokeMethod";
-
         private static string UnLoaderMethod => "Unload";
 
-        private static string AppDomainFirst => "Pansoft.CQMS.Queue.Environments.Firster";
-
-        private static string AppDomainFirstMethod => "RunMainMethod";
-
-        private static string AppDomainMainAssembly => "Pansoft.CQMS.Queue.Environments.exe";
+        private static string AppDomainMainAssembly => $"{typeof(MainService).Namespace}.Loader.dll";
+        private static string AppDomainFirst => $"{typeof(MainService).Namespace}.Program";
+        private static string AppDomainFirstMethod => "Main";
 
         private object _Service;
 
         public void Load(string[] args)
         {
+            // 通过反射加载主程序启动点
             string assemblyFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomainMainAssembly);
             if (!File.Exists(assemblyFile))
                 return;

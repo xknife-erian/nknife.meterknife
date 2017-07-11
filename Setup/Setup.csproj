@@ -36,10 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BootstrapperCore, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
-      <HintPath>..\packages\WixSharp.bin.1.4.5.0\lib\BootstrapperCore.dll</HintPath>
+      <HintPath>..\packages\WixSharp.bin.1.4.6.2\lib\BootstrapperCore.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Deployment.WindowsInstaller, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
-      <HintPath>..\packages\WixSharp.bin.1.4.5.0\lib\Microsoft.Deployment.WindowsInstaller.dll</HintPath>
+      <HintPath>..\packages\WixSharp.bin.1.4.6.2\lib\Microsoft.Deployment.WindowsInstaller.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,14 +48,14 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WixSharp, Version=1.4.5.0, Culture=neutral, PublicKeyToken=3775edd25acc43c2, processorArchitecture=MSIL">
-      <HintPath>..\packages\WixSharp.bin.1.4.5.0\lib\WixSharp.dll</HintPath>
+    <Reference Include="WixSharp, Version=1.4.6.2, Culture=neutral, PublicKeyToken=3775edd25acc43c2, processorArchitecture=MSIL">
+      <HintPath>..\packages\WixSharp.bin.1.4.6.2\lib\WixSharp.dll</HintPath>
     </Reference>
-    <Reference Include="WixSharp.Msi, Version=1.4.5.0, Culture=neutral, PublicKeyToken=3775edd25acc43c2, processorArchitecture=MSIL">
-      <HintPath>..\packages\WixSharp.bin.1.4.5.0\lib\WixSharp.Msi.dll</HintPath>
+    <Reference Include="WixSharp.Msi, Version=1.4.6.2, Culture=neutral, PublicKeyToken=3775edd25acc43c2, processorArchitecture=MSIL">
+      <HintPath>..\packages\WixSharp.bin.1.4.6.2\lib\WixSharp.Msi.dll</HintPath>
     </Reference>
-    <Reference Include="WixSharp.UI, Version=1.4.5.0, Culture=neutral, PublicKeyToken=3775edd25acc43c2, processorArchitecture=MSIL">
-      <HintPath>..\packages\WixSharp.bin.1.4.5.0\lib\WixSharp.UI.dll</HintPath>
+    <Reference Include="WixSharp.UI, Version=1.4.6.2, Culture=neutral, PublicKeyToken=3775edd25acc43c2, processorArchitecture=MSIL">
+      <HintPath>..\packages\WixSharp.bin.1.4.6.2\lib\WixSharp.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

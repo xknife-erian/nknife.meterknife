@@ -9,12 +9,6 @@ namespace MeterKnife.App
     {
         public static void Run()
         {
-            ClearSingleFile("Pansoft.CQMS.Queue.DriverService");
-            ClearSingleFile("Pansoft.CQMS.Queue.CustomerVerifyService");
-            ClearSingleFile("Pansoft.CQMS.Queue.DoorService");
-            ClearSingleFile("Pansoft.CQMS.Queue.SOMSService");
-            ClearSingleFile("Pansoft.CQMS.Queue.UIService");
-            ClearSingleFile("Pansoft.CQMS.Queue.Plugin.TouchUI", CleanType.Dll);
         }
 
         private static void ClearSingleFile(string assemblyFileName, CleanType cleanType = CleanType.All)

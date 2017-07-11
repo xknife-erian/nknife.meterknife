@@ -102,8 +102,8 @@ namespace MeterKnife.App
                     SplashShow(commands[2]);
                     break;
                 }
-                case "app_loaded":
-                {
+                case "app_loaded"://描述应用加载完成的协议
+                    {
                     Splasher.Close();
                     break;
                 }

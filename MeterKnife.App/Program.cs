@@ -24,7 +24,7 @@ namespace MeterKnife.App
             AutoUpdater.RemindLaterTimeSpan = RemindLaterFormat.Days;
             AutoUpdater.RemindLaterAt = 2;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
-            AutoUpdater.Start("http://rbsoft.org/updates/AutoUpdaterTest.xml");
+            AutoUpdater.Start("http://127.0.0.1");//("http://rbsoft.org/updates/AutoUpdaterTest.xml");
 
             AutoResetEvent = new AutoResetEvent(false);
 
@@ -48,12 +48,11 @@ namespace MeterKnife.App
                 if (args.IsUpdateAvailable)
                 {
                     var dr = MessageBox.Show($"有新版本{args.CurrentVersion}发布。正在使用的版本：{args.InstalledVersion}。\r\n是否下载新版本?",
-                        @"Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        @"有可用更新", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (dr.Equals(DialogResult.Yes))
                     {
                         try
                         {
-                            //You can use Download Update dialog used by AutoUpdater.NET to download the update.
                             AutoUpdater.DownloadUpdate();
                         }
                         catch (Exception e)
@@ -64,13 +63,13 @@ namespace MeterKnife.App
                 }
                 else
                 {
-                    MessageBox.Show(@"There is no update available please try again later.", @"No update available",
+                    MessageBox.Show(@"没有可用的更新，请稍候重试。", @"没有可用更新",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show(@"There is a problem reaching update server please check your internet connection and try again later.", @"Update check failed",
+                MessageBox.Show(@"连接到远程更新服务器时发生异常，请检查互联网连接是否通畅。", @"检查更新失败",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
