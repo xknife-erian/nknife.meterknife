@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{974F3368-91FD-405B-88DE-3CDD84DC23C5}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>MeterKnife.App</RootNamespace>
     <AssemblyName>MeterKnife.App.Loader</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -46,6 +46,12 @@
     <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
     </Reference>
+    <Reference Include="NKnife.AutoUpdater, Version=1.4.1.611, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.AutoUpdater.1.4.1.611\lib\net40\NKnife.AutoUpdater.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife.ControlKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.ControlKnife.17.5.0.511\lib\net40\NKnife.ControlKnife.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,12 +64,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppDomainProxy.cs" />
-    <Compile Include="DomainSender.cs" />
-    <Compile Include="EnvironmentDynamicLoader.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Bootstrap.cs" />
+    <Compile Include="FileCleaner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EnvironmentKernel.cs" />
+    <Compile Include="EnvironmentCore.cs" />
+    <Compile Include="Properties\AssemblyVersion.cs" />
+    <Compile Include="SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -90,10 +98,26 @@
       <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
       <Name>MeterKnife.Commons</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Datas\MeterKnife.Datas.csproj">
+      <Project>{1ab7a059-32cd-405f-a3b2-2d19b430bff4}</Project>
+      <Name>MeterKnife.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Kernel\MeterKnife.Kernel.csproj">
+      <Project>{c0352137-c756-41dc-80f8-4b026546ad5b}</Project>
+      <Name>MeterKnife.Kernel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Views\MeterKnife.Views.csproj">
       <Project>{58446aa7-0041-46d1-a654-61660b9a00d5}</Project>
       <Name>MeterKnife.Views</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\mk-main.ico" />
+    <Content Include="Properties\mk-welcome.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

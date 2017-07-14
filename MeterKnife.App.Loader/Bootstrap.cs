@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Threading;
 using System.Windows.Forms;
 using AutoUpdaterDotNET;
@@ -8,16 +8,14 @@ using NKnife.IoC;
 
 namespace MeterKnife.App
 {
-    internal class Program
+    public class Bootstrap
     {
-        public static AutoResetEvent AutoResetEvent { get; private set; }
-        public static MainService MainService { get; private set; }
-
         [STAThread]
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            DI.Initialize();
 
             AutoUpdater.OpenDownloadPage = true;
             AutoUpdater.LetUserSelectRemindLater = true;
@@ -26,19 +24,13 @@ namespace MeterKnife.App
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
             AutoUpdater.Start("http://127.0.0.1");//("http://rbsoft.org/updates/AutoUpdaterTest.xml");
 
-            AutoResetEvent = new AutoResetEvent(false);
-
-            //å¼€å¯æ¬¢è¿å±å¹•
+            //¿ªÆô»¶Ó­ÆÁÄ»
             Splasher.Show(typeof(SplashForm));
 
             FileCleaner.Run();
 
-            var listenServiceThread = new Thread(RunListener) {IsBackground = true};
-            listenServiceThread.Start(args);
-
-            var mainServiceThread = new Thread(RunMainService) {IsBackground = true};
-            mainServiceThread.Start(args);
-            AutoResetEvent.WaitOne();
+            //¿ªÆôµ±Ç°³ÌĞò×÷ÓÃÓòÏÂµÄ ApplicationContext ÊµÀı
+            Application.Run(EnvironmentCore.Instance(args));
         }
 
         private static void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
@@ -47,8 +39,8 @@ namespace MeterKnife.App
             {
                 if (args.IsUpdateAvailable)
                 {
-                    var dr = MessageBox.Show($"æœ‰æ–°ç‰ˆæœ¬{args.CurrentVersion}å‘å¸ƒã€‚æ­£åœ¨ä½¿ç”¨çš„ç‰ˆæœ¬ï¼š{args.InstalledVersion}ã€‚\r\næ˜¯å¦ä¸‹è½½æ–°ç‰ˆæœ¬?",
-                        @"æœ‰å¯ç”¨æ›´æ–°", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    var dr = MessageBox.Show($"ÓĞĞÂ°æ±¾{args.CurrentVersion}·¢²¼¡£ÕıÔÚÊ¹ÓÃµÄ°æ±¾£º{args.InstalledVersion}¡£\r\nÊÇ·ñÏÂÔØĞÂ°æ±¾?",
+                        @"ÓĞ¿ÉÓÃ¸üĞÂ", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (dr.Equals(DialogResult.Yes))
                     {
                         try
@@ -63,27 +55,16 @@ namespace MeterKnife.App
                 }
                 else
                 {
-                    MessageBox.Show(@"æ²¡æœ‰å¯ç”¨çš„æ›´æ–°ï¼Œè¯·ç¨å€™é‡è¯•ã€‚", @"æ²¡æœ‰å¯ç”¨æ›´æ–°",
+                    MessageBox.Show(@"Ã»ÓĞ¿ÉÓÃµÄ¸üĞÂ£¬ÇëÉÔºòÖØÊÔ¡£", @"Ã»ÓĞ¿ÉÓÃ¸üĞÂ",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show(@"è¿æ¥åˆ°è¿œç¨‹æ›´æ–°æœåŠ¡å™¨æ—¶å‘ç”Ÿå¼‚å¸¸ï¼Œè¯·æ£€æŸ¥äº’è”ç½‘è¿æ¥æ˜¯å¦é€šç•…ã€‚", @"æ£€æŸ¥æ›´æ–°å¤±è´¥",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+//                MessageBox.Show(@"Á¬½Óµ½Ô¶³Ì¸üĞÂ·şÎñÆ÷Ê±·¢ÉúÒì³££¬Çë¼ì²é»¥ÁªÍøÁ¬½ÓÊÇ·ñÍ¨³©¡£", @"¼ì²é¸üĞÂÊ§°Ü",
+//                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private static void RunListener(object obj)
-        {
-            var listener = new Listener();
-            listener.Initialize();
-        }
-
-        private static void RunMainService(object obj)
-        {
-            MainService = new MainService();
-            MainService.Load((string[]) obj);
-        }
     }
 }

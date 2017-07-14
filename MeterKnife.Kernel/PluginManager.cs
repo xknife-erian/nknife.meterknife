@@ -12,7 +12,7 @@ namespace MeterKnife.Kernel
 
         public bool StartService()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool CloseService()
@@ -23,7 +23,7 @@ namespace MeterKnife.Kernel
         public int Order { get; } = 100;
         public string Description { get; } = "插件管理器";
 
-        public void RegistPlugIns(IExtenderProvider provider)
+        public void RegistPlugIns(params IPlugIn[] plugIn)
         {
         }
 
