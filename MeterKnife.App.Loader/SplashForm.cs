@@ -45,9 +45,9 @@ namespace MeterKnife.App
                 var reader = new AppSettingsReader();
                 projectName = reader.GetValue("projectName", typeof (string)).ToString();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                _logger.Warn("读取产品所属项目名称失败");
+                //_logger.Warn("读取产品所属项目名称失败");
             }
             if (!string.IsNullOrWhiteSpace(projectName))
             {
@@ -74,7 +74,7 @@ namespace MeterKnife.App
             _StatusInfoLabel.Location = new Point(30, Height - 40);
             _StatusInfoLabel.Size = new Size(180, 13);
             _StatusInfoLabel.TabIndex = 0;
-            _StatusInfoLabel.Text = "开始启动智能排队管理主控程序...";
+            _StatusInfoLabel.Text = "开始启动主控程序...";
             Controls.Add(_StatusInfoLabel);
 
             var updaterVersionLabel = new Label();

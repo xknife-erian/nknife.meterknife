@@ -24,9 +24,5 @@ namespace MeterKnife.Views.IoC
 
     public class MyAbout : About
     {
-        public MyAbout()
-        {
-            TargetAssembly = Assembly.GetCallingAssembly();
-        }
     }
 }

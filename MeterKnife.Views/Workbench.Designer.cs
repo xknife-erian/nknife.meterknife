@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Workbench));
             this._ToolStripContainer = new System.Windows.Forms.ToolStripContainer();
-            this._MenuStrip = new System.Windows.Forms.MenuStrip();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this._CenterToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this._MenuStrip = new System.Windows.Forms.MenuStrip();
             this._ToolStripContainer.BottomToolStripPanel.SuspendLayout();
             this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
             this._ToolStripContainer.SuspendLayout();
@@ -60,15 +61,6 @@
             // _ToolStripContainer.TopToolStripPanel
             // 
             this._ToolStripContainer.TopToolStripPanel.Controls.Add(this._MenuStrip);
-            // 
-            // _MenuStrip
-            // 
-            this._MenuStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this._MenuStrip.Location = new System.Drawing.Point(0, 0);
-            this._MenuStrip.Name = "_MenuStrip";
-            this._MenuStrip.Size = new System.Drawing.Size(784, 24);
-            this._MenuStrip.TabIndex = 0;
-            this._MenuStrip.Text = "menuStrip1";
             // 
             // _StatusStrip
             // 
@@ -100,6 +92,15 @@
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(45, 17);
             this.toolStripStatusLabel3.Text = "COM4";
             // 
+            // _MenuStrip
+            // 
+            this._MenuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this._MenuStrip.Name = "_MenuStrip";
+            this._MenuStrip.Size = new System.Drawing.Size(784, 24);
+            this._MenuStrip.TabIndex = 0;
+            this._MenuStrip.Text = "menuStrip1";
+            // 
             // Workbench
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -107,6 +108,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this._ToolStripContainer);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this._MenuStrip;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Workbench";

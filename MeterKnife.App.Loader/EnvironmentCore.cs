@@ -36,14 +36,16 @@ namespace MeterKnife.App
 
             _logger.Info("开始加载...");
 
-            Splasher.Status = ("开始加载引擎...");
+            Splasher.Status = "开始加载引擎...";
             LoadCoreService();
 
             var workbench = new Workbench();
             workbench.Shown += (s, e) =>
             {
-                Splasher.Status = ("主控台载入完成...");
+                Splasher.Status = "主控台载入完成...";
                 Splasher.Close();
+                workbench.Activate();
+                _logger.Info("主控台载入完成.");
             };
             workbench.Closed += (s, e) =>
             {
@@ -65,7 +67,7 @@ namespace MeterKnife.App
         /// </summary>
         private void LoadCoreService()
         {
-            Splasher.Status = ("加载核心服务及插件...");
+            Splasher.Status = "加载核心服务及插件...";
 
             //加载并注册插件
             //            ClientSender.SendSplashMessage("加载插件...");
@@ -75,7 +77,8 @@ namespace MeterKnife.App
             //                ClientSender.SendSplashMessage("注册插件...");
             //                _PluginManager.RegistPlugIns(DI.Get<IExtenderProvider>());
             //            }
-            Splasher.Status = ("加载核心服务及插件完成...");
+            Splasher.Status = "加载核心服务及插件完成...";
+            _logger.Info("加载核心服务及插件完成.");
         }
 
         /// <summary>
