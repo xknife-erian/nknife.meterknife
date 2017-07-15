@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MeterKnife.Interfaces.Plugin
+namespace MeterKnife.Interfaces.Plugins
 {
     /// <summary>
     ///     排队核心服务（领域模型）的基接口，描述取号程序的核心事件与事件函数
@@ -9,7 +9,7 @@ namespace MeterKnife.Interfaces.Plugin
     ///     方法没有分类，通常方法的调用会引起核心服务的对应动作，并随机激发响应的事件，
     ///     这是排队系统最核心的通讯机制
     /// </summary>
-    public interface IEventExtender
+    public interface IEventExtender : IExtender
     {
         #region 事件
 

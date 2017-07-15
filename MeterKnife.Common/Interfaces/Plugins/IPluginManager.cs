@@ -1,6 +1,6 @@
 ﻿using NKnife.Interface;
 
-namespace MeterKnife.Interfaces.Plugin
+namespace MeterKnife.Interfaces.Plugins
 {
     public interface IPluginManager : IEnvironmentItem
     {

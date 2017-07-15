@@ -86,10 +86,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".dockerignore">
-      <DependentUpon>Dockerfile</DependentUpon>
-    </None>
-    <None Include="Dockerfile" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

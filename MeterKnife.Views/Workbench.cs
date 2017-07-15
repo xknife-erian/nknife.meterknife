@@ -21,6 +21,9 @@ namespace MeterKnife.Views
         public Workbench()
         {
             InitializeComponent();
+            Text = "MeterKnife自动化测量测试平台";
+            Width = 1024;
+            Height = 768;
             InitializeDockPanel();
             ControlEventManager();
 #if !DEBUG
@@ -29,11 +32,6 @@ namespace MeterKnife.Views
             _About = DI.Get<IAbout>();
             var version =  _About.AssemblyVersion.ToString();
             Text = $"{Text} - {version}";
-        }
-
-        private void ControlEventManager()
-        {
-            
         }
 
         private void InitializeDockPanel()
@@ -49,6 +47,11 @@ namespace MeterKnife.Views
 #else
             loggerView.Show(_DockPanel, DockState.DockBottomAutoHide);
 #endif
+        }
+
+        private void ControlEventManager()
+        {
+
         }
     }
 }

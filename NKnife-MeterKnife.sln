@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.ViewModels", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.App.Loader", "MeterKnife.App.Loader\MeterKnife.App.Loader.csproj", "{974F3368-91FD-405B-88DE-3CDD84DC23C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Automatic", "MeterKnife.Automatic\MeterKnife.Automatic.csproj", "{BA4ECC95-BFE7-452D-8D3A-5553B065294D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -176,6 +178,18 @@ Global
 		{974F3368-91FD-405B-88DE-3CDD84DC23C5}.Release|x64.Build.0 = Release|Any CPU
 		{974F3368-91FD-405B-88DE-3CDD84DC23C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{974F3368-91FD-405B-88DE-3CDD84DC23C5}.Release|x86.Build.0 = Release|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Debug|x64.Build.0 = Debug|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Debug|x86.Build.0 = Debug|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Release|x64.ActiveCfg = Release|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Release|x64.Build.0 = Release|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,8 @@
-﻿namespace MeterKnife.Interfaces.Plugin
+﻿namespace MeterKnife.Interfaces.Plugins
 {
     /// <summary>取号程序的功能的提供器，实现一些类似重启应用程序的功能
     /// </summary>
-    public interface IFuctionExtender
+    public interface IFuctionExtender : IExtender
     {
         /// <summary>清除运行时数据-如当前等候队列，当前出号序号等
         /// </summary>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MeterKnife.Interfaces.Plugin;
+using MeterKnife.Interfaces.Plugins;
 using Ninject.Modules;
 
 namespace MeterKnife.Kernel.IoC
@@ -14,6 +14,7 @@ namespace MeterKnife.Kernel.IoC
         /// <summary>Loads the module into the kernel.</summary>
         public override void Load()
         {
+            Bind<HabitedDatas>().To<HabitedDatas>().InSingletonScope();
             Bind<IPluginManager>().To<PluginManager>().InSingletonScope();
         }
 

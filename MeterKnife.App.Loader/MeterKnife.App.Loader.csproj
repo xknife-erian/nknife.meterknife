@@ -7,7 +7,7 @@
     <ProjectGuid>{974F3368-91FD-405B-88DE-3CDD84DC23C5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MeterKnife.App</RootNamespace>
-    <AssemblyName>MeterKnife.App.Loader</AssemblyName>
+    <AssemblyName>MeterKnife</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

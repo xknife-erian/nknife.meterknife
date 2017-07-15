@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Views;
@@ -22,14 +23,10 @@ namespace MeterKnife.App
 
         #endregion
 
-        private bool _IsDomainUnload;
-
         private EnvironmentCore(string[] args)
         {
             // 注册应用程序事件
             Application.ApplicationExit += OnApplicationExit;
-            AppDomain.CurrentDomain.DomainUnload += CurrentDomainDomainUnload;
-            AppDomain.CurrentDomain.ProcessExit += CurrentDomainDomainUnload;
 
             _logger.Info($"==== {DateTime.Now.ToLongDateString()} ========================");
             _logger.Info($"==== {AppDomain.CurrentDomain.BaseDirectory} ====");
@@ -42,7 +39,8 @@ namespace MeterKnife.App
             var workbench = new Workbench();
             workbench.Shown += (s, e) =>
             {
-                Splasher.Status = "主控台载入完成...";
+                Splasher.Status = "主控台即将载入完成...";
+                Thread.Sleep(1500);
                 Splasher.Close();
                 workbench.Activate();
                 _logger.Info("主控台载入完成.");
@@ -56,29 +54,22 @@ namespace MeterKnife.App
             workbench.Refresh();
         }
 
-        private void CurrentDomainDomainUnload(object sender, EventArgs e)
-        {
-            _IsDomainUnload = true;
-            OnApplicationExit(sender, e);
-        }
-
         /// <summary>
         ///     加载核心服务及插件
         /// </summary>
         private void LoadCoreService()
         {
             Splasher.Status = "加载核心服务及插件...";
-
-            //加载并注册插件
-            //            ClientSender.SendSplashMessage("加载插件...");
-            //            _PluginManager = DI.Get<IPluginManager>();
-            //            if (_PluginManager.StartService())
-            //            {
-            //                ClientSender.SendSplashMessage("注册插件...");
-            //                _PluginManager.RegistPlugIns(DI.Get<IExtenderProvider>());
-            //            }
+            // 加载并注册插件
+            // ClientSender.SendSplashMessage("加载插件...");
+            // _PluginManager = DI.Get<IPluginManager>();
+            // if (_PluginManager.StartService())
+            // {
+            //     ClientSender.SendSplashMessage("注册插件...");
+            //     _PluginManager.RegistPlugIns(DI.Get<IExtenderProvider>());
+            // }
             Splasher.Status = "加载核心服务及插件完成...";
-            _logger.Info("加载核心服务及插件完成.");
+            _logger.Info("加载核心服务及插件完成,关闭欢迎界面.");
         }
 
         /// <summary>
@@ -106,6 +97,5 @@ namespace MeterKnife.App
                 _logger.Error("应用程序退出时异常", exception);
             }
         }
-
     }
 }
