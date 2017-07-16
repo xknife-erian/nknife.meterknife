@@ -5,7 +5,10 @@ namespace MeterKnife.Interfaces.Plugins
     /// </summary>
     public enum PluginStyle
     {
-        Data,Tool
+        Base,
+        Measure,
+        Data,
+        Tool,
     }
 
 }

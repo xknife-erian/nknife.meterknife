@@ -36,6 +36,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.App.Loader", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Automatic", "MeterKnife.Automatic\MeterKnife.Automatic.csproj", "{BA4ECC95-BFE7-452D-8D3A-5553B065294D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{030561A8-9253-499B-8C19-2E4320FFA8F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.NewMeasure", "MeterKnife.Plugins.NewMeasure\MeterKnife.Plugins.NewMeasure.csproj", "{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -190,11 +194,24 @@ Global
 		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Release|x64.Build.0 = Release|Any CPU
 		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Release|x86.ActiveCfg = Release|Any CPU
 		{BA4ECC95-BFE7-452D-8D3A-5553B065294D}.Release|x86.Build.0 = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x64.Build.0 = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x86.Build.0 = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x64.ActiveCfg = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x64.Build.0 = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x86.ActiveCfg = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{42726C7B-5146-40F4-8876-2C4125C5173C} = {E3B3712D-75B6-4C9D-B82E-4613B3EB73A0}
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
 	EndGlobalSection
 EndGlobal
