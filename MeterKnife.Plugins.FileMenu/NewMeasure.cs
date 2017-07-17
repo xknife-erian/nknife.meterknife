@@ -1,15 +1,34 @@
 ﻿using System;
 using System.Windows.Forms;
 using MeterKnife.Interfaces.Plugins;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Plugins.FileMenu
 {
     public class NewMeasure : IPlugIn
     {
         private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("新建测量(&N)");
+        private IPluginViewComponent _ViewComponent;
+        private IExtenderProvider _ExtenderProvider;
+
+        public NewMeasure()
+        {
+            _StripItem.Click += (s, e) =>
+            {
+                var form = new MeasureView();
+                foreach (var container in _ViewComponent.Containers)
+                {
+                    if (container is DockPanel)
+                    {
+                        var dockpanel = (DockPanel) container;
+                        form.Show(dockpanel, DockState.Document);
+                    }
+                }
+            };
+        }
 
         #region Implementation of IPlugIn
-
+            
         /// <summary>
         ///     描述本插件类型
         /// </summary>
@@ -26,12 +45,10 @@ namespace MeterKnife.Plugins.FileMenu
         /// <param name="component"></param>
         public void BindViewComponent(IPluginViewComponent component)
         {
+            _ViewComponent = component;
             foreach (ToolStripItemCollection collection in component.ToolStripItemCollections)
             {
                 collection.Add(_StripItem);
-            }
-            foreach (Control control in component.Containers)
-            {
             }
         }
 
@@ -41,6 +58,7 @@ namespace MeterKnife.Plugins.FileMenu
         /// <param name="provider">核心扩展供给器</param>
         public bool Register(ref IExtenderProvider provider)
         {
+            _ExtenderProvider = provider;
             return true;
         }
 

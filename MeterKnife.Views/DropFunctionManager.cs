@@ -6,6 +6,7 @@ using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Views.MenuItems;
 using MeterKnife.Views.Menus;
 using NKnife.IoC;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Views
 {
@@ -15,6 +16,7 @@ namespace MeterKnife.Views
         {
             var pv = new PluginViewComponent();
             pv.Add(DI.Get<FileMenuItem>().DropDownItems);
+            pv.Add(DI.Get<DockPanel>());
             Add(PluginStyle.FileMenu, pv);
 
             pv = new PluginViewComponent();

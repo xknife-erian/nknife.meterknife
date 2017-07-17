@@ -109,6 +109,7 @@
             this.Controls.Add(this._ToolStripContainer);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this._MenuStrip;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Workbench";
