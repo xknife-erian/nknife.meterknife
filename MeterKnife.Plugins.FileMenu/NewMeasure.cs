@@ -32,7 +32,6 @@ namespace MeterKnife.Plugins.FileMenu
             }
             foreach (Control control in component.Containers)
             {
-                
             }
         }
 
@@ -42,7 +41,7 @@ namespace MeterKnife.Plugins.FileMenu
         /// <param name="provider">核心扩展供给器</param>
         public bool Register(ref IExtenderProvider provider)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         /// <summary>

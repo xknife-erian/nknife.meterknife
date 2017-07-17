@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Logging;
 using MeterKnife.Interfaces.Plugins;
 using NKnife.Interface;
 using NKnife.IoC;
@@ -8,6 +9,9 @@ namespace MeterKnife.Kernel.Plugins
 {
     public class PluginsService : IPluginService
     {
+        private static readonly ILog _logger = LogManager.GetLogger<PluginsService>();
+
+        private readonly IDropFunctionManager _DropFunction = DI.Get<IDropFunctionManager>();
         public List<IPlugIn> Plugins { get; } = new List<IPlugIn>();
 
         public bool StartService()
@@ -20,6 +24,7 @@ namespace MeterKnife.Kernel.Plugins
             }
             catch (Exception e)
             {
+                _logger.Error($"注册插件异常：{e.Message}", e);
                 return false;
             }
         }
@@ -39,17 +44,15 @@ namespace MeterKnife.Kernel.Plugins
             var extenderProvider = DI.Get<IExtenderProvider>();
             foreach (IPlugIn plugIn in plugIns)
             {
-                switch (plugIn.PluginStyle)
+                try
                 {
-                    case PluginStyle.DataMenu:
-                        plugIn.BindViewComponent(null);
-                        break;
-                    case PluginStyle.ToolMenu:
-                        break;
-                    default:
-                        break;
+                    plugIn.BindViewComponent(_DropFunction[plugIn.PluginStyle]);
+                    plugIn.Register(ref extenderProvider);
                 }
-                plugIn.Register(ref extenderProvider);
+                catch (Exception e)
+                {
+                    _logger.Error($"注册插件异常：{e.Message}", e);
+                }
             }
         }
 

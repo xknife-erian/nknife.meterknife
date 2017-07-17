@@ -26,7 +26,7 @@ namespace MeterKnife.Kernel
             FindTypes();
 
             displayMessage("加载核心服务及插件...");
-
+            _pluginService.StartService();
 
             displayMessage("注册所有插件完成...");
 

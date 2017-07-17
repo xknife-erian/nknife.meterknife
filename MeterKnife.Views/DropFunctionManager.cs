@@ -2,24 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Views.MenuItems;
+using MeterKnife.Views.Menus;
 using NKnife.IoC;
 
 namespace MeterKnife.Views
 {
-    public class DropFunctionManager : Dictionary<PluginStyle, ToolStripItemCollection>, IDropFunctionManager
+    public class DropFunctionManager : Dictionary<PluginStyle, IPluginViewComponent>, IDropFunctionManager
     {
-
         public DropFunctionManager()
         {
-            Add(PluginStyle.FileMenu, DI.Get<FileMenuItem>().DropDownItems);
-            Add(PluginStyle.MeasureMenu, DI.Get<MeasureMenuItem>().DropDownItems);
-            Add(PluginStyle.DataMenu, DI.Get<DataMenuItem>().DropDownItems);
-            Add(PluginStyle.ToolMenu, DI.Get<ToolMenuItem>().DropDownItems);
-            Add(PluginStyle.ViewMenu, DI.Get<ViewMenuItem>().DropDownItems);
-            Add(PluginStyle.HelpMenu, DI.Get<HelpMenuItem>().DropDownItems);
+            var pv = new PluginViewComponent();
+            pv.Add(DI.Get<FileMenuItem>().DropDownItems);
+            Add(PluginStyle.FileMenu, pv);
+
+            pv = new PluginViewComponent();
+            pv.Add(DI.Get<MeasureMenuItem>().DropDownItems);
+            Add(PluginStyle.MeasureMenu, pv);
+
+            pv = new PluginViewComponent();
+            pv.Add(DI.Get<DataMenuItem>().DropDownItems);
+            Add(PluginStyle.DataMenu, pv);
+
+            pv = new PluginViewComponent();
+            pv.Add(DI.Get<ToolMenuItem>().DropDownItems);
+            Add(PluginStyle.ToolMenu, pv);
+
+            pv = new PluginViewComponent();
+            pv.Add(DI.Get<ViewMenuItem>().DropDownItems);
+            Add(PluginStyle.ViewMenu, pv);
+
+            pv = new PluginViewComponent();
+            pv.Add(DI.Get<HelpMenuItem>().DropDownItems);
+            Add(PluginStyle.HelpMenu, pv);
         }
     }
 }

@@ -82,7 +82,7 @@
     <Compile Include="Interfaces\Plugins\IEventExtender.cs" />
     <Compile Include="Interfaces\Plugins\IFuctionExtender.cs" />
     <Compile Include="Interfaces\Plugins\IPlugIn.cs" />
-    <Compile Include="Interfaces\Plugins\PluginViewComponent.cs" />
+    <Compile Include="Interfaces\Plugins\IPluginViewComponent.cs" />
     <Compile Include="Models\BrandCollection.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

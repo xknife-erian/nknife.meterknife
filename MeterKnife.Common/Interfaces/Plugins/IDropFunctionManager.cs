@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace MeterKnife.Interfaces.Plugins
 {
-    public interface IDropFunctionManager : IDictionary<PluginStyle, ToolStripItemCollection>
+    public interface IDropFunctionManager : IDictionary<PluginStyle, IPluginViewComponent>
     {
     }
 }

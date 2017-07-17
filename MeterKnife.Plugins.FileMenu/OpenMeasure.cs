@@ -1,15 +1,22 @@
 ﻿using System;
+using System.Windows.Forms;
 using MeterKnife.Interfaces.Plugins;
 
 namespace MeterKnife.Plugins.FileMenu
 {
     public class OpenMeasure : IPlugIn
     {
+        private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("打开测量(&O)");
+
         public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
         public PluginDetail Detail { get; }
+
         public void BindViewComponent(IPluginViewComponent component)
         {
-            throw new NotImplementedException();
+            foreach (ToolStripItemCollection collection in component.ToolStripItemCollections)
+            {
+                collection.Add(_StripItem);
+            }
         }
 
         /// <summary>
@@ -18,7 +25,7 @@ namespace MeterKnife.Plugins.FileMenu
         /// <param name="provider">核心扩展供给器</param>
         public bool Register(ref IExtenderProvider provider)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         /// <summary>

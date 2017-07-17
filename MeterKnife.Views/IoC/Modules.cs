@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Views.MenuItems;
+using MeterKnife.Views.Menus;
 using Ninject.Modules;
 using NKnife.Interface;
 using NKnife.Wrapper;
@@ -19,6 +20,7 @@ namespace MeterKnife.Views.IoC
         public override void Load()
         {
             Bind<IAbout>().To<MyAbout>().InSingletonScope();
+
             Bind<IDropFunctionManager>().To<DropFunctionManager>().InSingletonScope();
 
             Bind<FileMenuItem>().ToSelf().InSingletonScope();

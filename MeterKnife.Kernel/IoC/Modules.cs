@@ -16,6 +16,8 @@ namespace MeterKnife.Kernel.IoC
         public override void Load()
         {
             Bind<HabitedDatas>().To<HabitedDatas>().InSingletonScope();
+
+            Bind<IExtenderProvider>().To<ExtenderProvider>();
             Bind<IPluginService>().To<PluginsService>().InSingletonScope();
         }
 

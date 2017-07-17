@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace MeterKnife.Views.MenuItems
+namespace MeterKnife.Views.Menus
 {
     public sealed class HelpMenuItem : ToolStripMenuItem
     {
