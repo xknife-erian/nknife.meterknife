@@ -64,7 +64,9 @@
     <Compile Include="ExtenderProvider.cs" />
     <Compile Include="HabitedDatas.cs" />
     <Compile Include="IoC\Modules.cs" />
+    <Compile Include="Kernels.cs" />
     <Compile Include="PluginManager.cs" />
+    <Compile Include="PluginsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,19 +11,6 @@ namespace MeterKnife.Kernel
     {
         #region Implementation of IEnvironmentItem
 
-        public bool StartService()
-        {
-            return true;
-        }
-
-        public bool CloseService()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Order { get; } = 100;
-        public string Description { get; } = "插件管理器";
-
         public void RegistPlugIns(params IPlugIn[] plugIns)
         {
             var extenderProvider = DI.Get<IExtenderProvider>();

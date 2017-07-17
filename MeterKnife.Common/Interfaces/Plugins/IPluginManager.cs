@@ -2,7 +2,7 @@
 
 namespace MeterKnife.Interfaces.Plugins
 {
-    public interface IPluginManager : IEnvironmentItem
+    public interface IPluginManager
     {
         void RegistPlugIns(params IPlugIn[] plugIn);
     }
