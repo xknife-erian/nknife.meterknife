@@ -14,10 +14,12 @@ namespace MeterKnife.Views
 
         public DropFunctionManager()
         {
-            Add(PluginStyle.Base, DI.Get<FileMenuItem>().DropDownItems);
-            Add(PluginStyle.Measure, null);
-            Add(PluginStyle.Data, null);
-            Add(PluginStyle.Tool, null);
+            Add(PluginStyle.FileMenu, DI.Get<FileMenuItem>().DropDownItems);
+            Add(PluginStyle.MeasureMenu, DI.Get<MeasureMenuItem>().DropDownItems);
+            Add(PluginStyle.DataMenu, DI.Get<DataMenuItem>().DropDownItems);
+            Add(PluginStyle.ToolMenu, DI.Get<ToolMenuItem>().DropDownItems);
+            Add(PluginStyle.ViewMenu, DI.Get<ViewMenuItem>().DropDownItems);
+            Add(PluginStyle.HelpMenu, DI.Get<HelpMenuItem>().DropDownItems);
         }
     }
 }

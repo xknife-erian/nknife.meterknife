@@ -6,7 +6,11 @@ using System.Windows.Forms;
 
 namespace MeterKnife.Views.MenuItems
 {
-    public class ToolMenuItem : ToolStripMenuItem
+    public sealed class ToolMenuItem : ToolStripMenuItem
     {
+        public ToolMenuItem()
+        {
+            Text = "工具(&T)";
+        }
     }
 }

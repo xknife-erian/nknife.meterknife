@@ -105,9 +105,33 @@
       <Project>{1ab7a059-32cd-405f-a3b2-2d19b430bff4}</Project>
       <Name>MeterKnife.Datas</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Gateway\MeterKnife.Gateway.csproj">
+      <Project>{b1053860-12d3-409f-9961-bd8719b82e56}</Project>
+      <Name>MeterKnife.Gateway</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Kernel\MeterKnife.Kernel.csproj">
       <Project>{c0352137-c756-41dc-80f8-4b026546ad5b}</Project>
       <Name>MeterKnife.Kernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Plots\MeterKnife.Plots.csproj">
+      <Project>{9657610d-af0b-4a6e-854c-196780733d9a}</Project>
+      <Name>MeterKnife.Plots</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Plugins.FileMenu\MeterKnife.Plugins.FileMenu.csproj">
+      <Project>{f21aad20-3f81-4fa0-b9d5-63d8dcbc6e52}</Project>
+      <Name>MeterKnife.Plugins.FileMenu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Reports\MeterKnife.Reports.csproj">
+      <Project>{068a0168-d030-4757-8e19-ff0460d30acd}</Project>
+      <Name>MeterKnife.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Scpis\MeterKnife.Scpis.csproj">
+      <Project>{fa16056b-6bf8-464e-a05d-ab2914eb1e37}</Project>
+      <Name>MeterKnife.Scpis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.ViewModels\MeterKnife.ViewModels.csproj">
+      <Project>{a67f283f-ddbb-466d-9960-ed88ef553894}</Project>
+      <Name>MeterKnife.ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Views\MeterKnife.Views.csproj">
       <Project>{58446aa7-0041-46d1-a654-61660b9a00d5}</Project>

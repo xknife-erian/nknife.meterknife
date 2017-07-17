@@ -8,5 +8,9 @@ namespace MeterKnife.Views.MenuItems
 {
     public sealed class MeasureMenuItem : ToolStripMenuItem
     {
+        public MeasureMenuItem()
+        {
+            Text = "测量(&M)";
+        }
     }
 }

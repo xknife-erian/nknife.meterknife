@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using MeterKnife.Views.MenuItems;
 using NKnife.Interface;
 using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
@@ -24,6 +25,7 @@ namespace MeterKnife.Views
             Text = "MeterKnife自动化测量测试平台";
             Width = 1024;
             Height = 768;
+            FillMenu();
             InitializeDockPanel();
             ControlEventManager();
 #if !DEBUG
@@ -32,6 +34,19 @@ namespace MeterKnife.Views
             _About = DI.Get<IAbout>();
             var version =  _About.AssemblyVersion.ToString();
             Text = $"{Text} - {version}";
+        }
+
+        private void FillMenu()
+        {
+            _MenuStrip.SuspendLayout();
+            _MenuStrip.Items.Add(DI.Get<FileMenuItem>());
+            _MenuStrip.Items.Add(DI.Get<MeasureMenuItem>());
+            _MenuStrip.Items.Add(DI.Get<DataMenuItem>());
+            _MenuStrip.Items.Add(DI.Get<ToolMenuItem>());
+            _MenuStrip.Items.Add(DI.Get<ViewMenuItem>());
+            _MenuStrip.Items.Add(DI.Get<HelpMenuItem>());
+            _MenuStrip.ResumeLayout(false);
+            _MenuStrip.PerformLayout();
         }
 
         private void InitializeDockPanel()

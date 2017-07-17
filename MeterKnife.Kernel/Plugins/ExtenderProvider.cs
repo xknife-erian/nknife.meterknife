@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MeterKnife.Interfaces.Plugins;
+﻿using MeterKnife.Interfaces.Plugins;
 
-namespace MeterKnife.Kernel
+namespace MeterKnife.Kernel.Plugins
 {
     public class ExtenderProvider : IExtenderProvider
     {

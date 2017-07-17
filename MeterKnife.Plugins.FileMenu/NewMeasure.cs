@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MeterKnife.Interfaces.Plugins;
 
-namespace MeterKnife.Plugins.NewMeasure
+namespace MeterKnife.Plugins.FileMenu
 {
-    public class NewMeasurePlugin : IPlugIn
+    public class NewMeasure : IPlugIn
     {
+        private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("新建测量(&N)");
+
         #region Implementation of IPlugIn
 
         /// <summary>
         ///     描述本插件类型
         /// </summary>
-        public PluginStyle PluginStyle { get; } = PluginStyle.Base;
+        public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
 
         /// <summary>
         ///     插件的详细描述
@@ -29,7 +28,7 @@ namespace MeterKnife.Plugins.NewMeasure
         {
             foreach (ToolStripItemCollection collection in component.ToolStripItemCollections)
             {
-                collection.Add("新建测量");
+                collection.Add(_StripItem);
             }
             foreach (Control control in component.Containers)
             {
@@ -38,7 +37,7 @@ namespace MeterKnife.Plugins.NewMeasure
         }
 
         /// <summary>
-        ///     向扩展模组注册并释放核心扩展供给器。
+        ///     向扩展模组注册核心扩展供给器。
         /// </summary>
         /// <param name="provider">核心扩展供给器</param>
         public bool Register(ref IExtenderProvider provider)

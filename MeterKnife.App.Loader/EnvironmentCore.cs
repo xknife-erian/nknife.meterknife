@@ -44,7 +44,7 @@ namespace MeterKnife.App
             mainWorkbench.Shown += (s, e) =>
             {
                 Splasher.Status = "主控台即将载入完成...";
-                Thread.Sleep(1500);
+                Thread.Sleep(600);
                 Splasher.Close();
                 mainWorkbench.Activate();
                 _logger.Info("主控台载入完成.");
@@ -61,6 +61,7 @@ namespace MeterKnife.App
         private void DisplayMessage(string message)
         {
             Splasher.Status = message;
+            _logger.Info(message);
         }
 
         /// <summary>

@@ -22,7 +22,7 @@
         void BindViewComponent(IPluginViewComponent component);
 
         /// <summary>
-        ///     向扩展模组注册并释放核心扩展供给器。
+        ///     向扩展模组注册核心扩展供给器。
         /// </summary>
         /// <param name="provider">核心扩展供给器</param>
         bool Register(ref IExtenderProvider provider);

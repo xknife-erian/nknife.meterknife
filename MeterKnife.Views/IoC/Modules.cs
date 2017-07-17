@@ -22,6 +22,12 @@ namespace MeterKnife.Views.IoC
             Bind<IDropFunctionManager>().To<DropFunctionManager>().InSingletonScope();
 
             Bind<FileMenuItem>().ToSelf().InSingletonScope();
+            Bind<MeasureMenuItem>().ToSelf().InSingletonScope();
+            Bind<DataMenuItem>().ToSelf().InSingletonScope();
+            Bind<ToolMenuItem>().ToSelf().InSingletonScope();
+            Bind<ViewMenuItem>().ToSelf().InSingletonScope();
+            Bind<HelpMenuItem>().ToSelf().InSingletonScope();
+
         }
 
         #endregion

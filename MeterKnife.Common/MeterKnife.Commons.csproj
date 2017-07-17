@@ -77,7 +77,7 @@
     <Compile Include="Interfaces\Plugins\PluginStyle.cs" />
     <Compile Include="Interfaces\Plugins\IExtender.cs" />
     <Compile Include="Interfaces\Plugins\IExtenderProvider.cs" />
-    <Compile Include="Interfaces\Plugins\IPluginManager.cs" />
+    <Compile Include="Interfaces\Plugins\IPluginService.cs" />
     <Compile Include="Interfaces\Plugins\IDataExtender.cs" />
     <Compile Include="Interfaces\Plugins\IEventExtender.cs" />
     <Compile Include="Interfaces\Plugins\IFuctionExtender.cs" />

@@ -2,7 +2,11 @@
 
 namespace MeterKnife.Views.MenuItems
 {
-    public class HelpMenuItem : ToolStripMenuItem
+    public sealed class HelpMenuItem : ToolStripMenuItem
     {
+        public HelpMenuItem()
+        {
+            Text = "帮助(&H)";
+        }
     }
 }

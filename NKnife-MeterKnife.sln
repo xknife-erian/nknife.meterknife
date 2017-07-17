@@ -36,9 +36,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.App.Loader", "Me
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{030561A8-9253-499B-8C19-2E4320FFA8F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.NewMeasure", "MeterKnife.Plugins.NewMeasure\MeterKnife.Plugins.NewMeasure.csproj", "{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Gateway", "MeterKnife.Gateway\MeterKnife.Gateway.csproj", "{B1053860-12D3-409F-9961-BD8719B82E56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.FileMenu", "MeterKnife.Plugins.FileMenu\MeterKnife.Plugins.FileMenu.csproj", "{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -182,18 +182,6 @@ Global
 		{974F3368-91FD-405B-88DE-3CDD84DC23C5}.Release|x64.Build.0 = Release|Any CPU
 		{974F3368-91FD-405B-88DE-3CDD84DC23C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{974F3368-91FD-405B-88DE-3CDD84DC23C5}.Release|x86.Build.0 = Release|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x64.Build.0 = Debug|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x86.Build.0 = Debug|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x64.ActiveCfg = Release|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x64.Build.0 = Release|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x86.ActiveCfg = Release|Any CPU
-		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x86.Build.0 = Release|Any CPU
 		{B1053860-12D3-409F-9961-BD8719B82E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1053860-12D3-409F-9961-BD8719B82E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1053860-12D3-409F-9961-BD8719B82E56}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -206,6 +194,18 @@ Global
 		{B1053860-12D3-409F-9961-BD8719B82E56}.Release|x64.Build.0 = Release|Any CPU
 		{B1053860-12D3-409F-9961-BD8719B82E56}.Release|x86.ActiveCfg = Release|Any CPU
 		{B1053860-12D3-409F-9961-BD8719B82E56}.Release|x86.Build.0 = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x64.Build.0 = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Debug|x86.Build.0 = Debug|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x64.ActiveCfg = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x64.Build.0 = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x86.ActiveCfg = Release|Any CPU
+		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,11 @@
 
 namespace MeterKnife.Views.MenuItems
 {
-    public class ViewMenuItem : ToolStripMenuItem
+    public sealed class ViewMenuItem : ToolStripMenuItem
     {
+        public ViewMenuItem()
+        {
+            Text = "视图(&V)";
+        }
     }
 }
