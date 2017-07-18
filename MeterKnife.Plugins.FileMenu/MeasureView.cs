@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 using IExtenderProvider = MeterKnife.Interfaces.Plugins.IExtenderProvider;
 
