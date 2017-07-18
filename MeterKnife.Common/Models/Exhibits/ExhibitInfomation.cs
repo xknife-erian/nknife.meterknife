@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using NKnife.Channels.Interfaces;
 using NKnife.Channels.Interfaces.Channels;
 
-namespace MeterKnife.Datas.Entities
+namespace MeterKnife.Models.Exhibits
 {
     public class ExhibitInfomation
     {

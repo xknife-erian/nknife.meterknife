@@ -78,9 +78,6 @@
     <Compile Include="Dpi\ExhibitListRepository.cs" />
     <Compile Include="Dpi\ExhibitRepository.cs" />
     <Compile Include="Dpi\GlobalDataBaseRepositoryBase.cs" />
-    <Compile Include="Entities\ExhibitInfomation.cs" />
-    <Compile Include="Entities\ExhibitData.cs" />
-    <Compile Include="Entities\ExhibitItem.cs" />
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

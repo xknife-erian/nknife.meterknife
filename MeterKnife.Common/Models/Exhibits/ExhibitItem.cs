@@ -1,6 +1,6 @@
 ﻿using NKnife.Channels.Interfaces.Channels;
 
-namespace MeterKnife.Datas.Entities
+namespace MeterKnife.Models.Exhibits
 {
     public class ExhibitItem
     {

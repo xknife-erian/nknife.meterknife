@@ -9,7 +9,7 @@ namespace MeterKnife.Kernel.Plugins
         /// <summary>返回IQEventExtender的基接口，描述取号程序的核心事件与事件函数
         /// </summary>
         /// <returns>IQCore的基接口，描述取号程序的核心事件与事件函数</returns>
-        public IEventExtender Events { get; }
+        public IMeasureExtender Measures { get; }
 
         /// <summary>返回IQDataExtender的基接口，描述取号程序的运行时数据提供器
         /// </summary>

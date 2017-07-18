@@ -1,6 +1,7 @@
 ﻿namespace MeterKnife.Interfaces.Plugins
 {
-    /// <summary>取号程序的功能的提供器，实现一些类似重启应用程序的功能
+    /// <summary>
+    /// 该接口描述了一些非业务逻辑的功能。如：重启应用程序等等。
     /// </summary>
     public interface IFuctionExtender : IExtender
     {
@@ -23,9 +24,5 @@
         /// <summary>重启应用程序
         /// </summary>
         void RestartApplication();
-
-        /// <summary>显示触摸屏界面
-        /// </summary>
-        void ShowTouchScreen();
     }
 }

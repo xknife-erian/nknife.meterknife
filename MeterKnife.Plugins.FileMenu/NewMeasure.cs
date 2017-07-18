@@ -19,14 +19,15 @@ namespace MeterKnife.Plugins.FileMenu
         {
             _StripItem.Click += (s, e) =>
             {
-                var form = new MeasureView();
+                var view = new MeasureView();
+                view.SetProvider(_ExtenderProvider);
                 foreach (var container in _ViewComponent.Containers)
                 {
                     var panel = container as DockPanel;
                     if (panel != null)
                     {
                         var dockpanel = panel;
-                        form.Show(dockpanel, DockState.Document);
+                        view.Show(dockpanel, DockState.Document);
                     }
                 }
             };

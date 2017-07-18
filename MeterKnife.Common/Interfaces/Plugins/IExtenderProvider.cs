@@ -6,19 +6,16 @@ namespace MeterKnife.Interfaces.Plugins
     /// </summary>
     public interface IExtenderProvider
     {
-        /// <summary>返回IQEventExtender的基接口，描述取号程序的核心事件与事件函数
+        /// <summary>返回IMeasureExtender的基接口，描述业务逻辑中"测量"功能的核心事件与事件函数
         /// </summary>
-        /// <returns>IQCore的基接口，描述取号程序的核心事件与事件函数</returns>
-        IEventExtender Events { get; }
+        IMeasureExtender Measures { get; }
 
-        /// <summary>返回IQDataExtender的基接口，描述取号程序的运行时数据提供器
+        /// <summary>返回IDataExtender的基接口，描述对实时与历史数据提供的功能
         /// </summary>
-        /// <returns>IQRunTime的基接口，描述取号程序的运行时数据提供器</returns>
         IDataExtender Datas { get; }
 
-        /// <summary>返回IQManager接口，该接口描述取号程序的管理器，实现一些类似重启应用程序的功能
+        /// <summary>返回IFuctionExtender接口，该接口公开了一些非业务逻辑的功能
         /// </summary>
-        /// <returns></returns>
         IFuctionExtender Fuctions { get; }
     }
 }
