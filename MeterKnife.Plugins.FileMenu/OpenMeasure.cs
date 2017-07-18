@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 
 namespace MeterKnife.Plugins.FileMenu
@@ -9,7 +10,7 @@ namespace MeterKnife.Plugins.FileMenu
         private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("打开测量(&O)");
 
         public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
-        public PluginDetail Detail { get; }
+        public PluginDetail Detail { get; } = new PluginDetailKnife();
 
         public void BindViewComponent(IPluginViewComponent component)
         {

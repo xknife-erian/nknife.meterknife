@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MeterKnife.Interfaces.Plugins;
 
-namespace MeterKnife.Views
+namespace MeterKnife.Base.Plugins
 {
     public class PluginViewComponent : IPluginViewComponent
     {

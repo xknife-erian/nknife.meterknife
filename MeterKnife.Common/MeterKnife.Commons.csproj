@@ -65,6 +65,8 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Base\Plugins\PluginDetailKnife.cs" />
+    <Compile Include="Base\Plugins\PluginViewComponent.cs" />
     <Compile Include="Datas\Page.cs" />
     <Compile Include="Datas\Pageable.cs" />
     <Compile Include="Interfaces\Datas\ICrudRepository.cs" />

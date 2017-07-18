@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
+using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Plugins.FileMenu
 {
+    /// <summary>
+    /// 插件："新建测量"功能；
+    /// </summary>
     public class NewMeasure : IPlugIn
     {
         private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("新建测量(&N)");
@@ -18,9 +22,10 @@ namespace MeterKnife.Plugins.FileMenu
                 var form = new MeasureView();
                 foreach (var container in _ViewComponent.Containers)
                 {
-                    if (container is DockPanel)
+                    var panel = container as DockPanel;
+                    if (panel != null)
                     {
-                        var dockpanel = (DockPanel) container;
+                        var dockpanel = panel;
                         form.Show(dockpanel, DockState.Document);
                     }
                 }
@@ -37,7 +42,7 @@ namespace MeterKnife.Plugins.FileMenu
         /// <summary>
         ///     插件的详细描述
         /// </summary>
-        public PluginDetail Detail { get; } 
+        public PluginDetail Detail { get; } = new PluginDetailKnife();
 
         /// <summary>
         ///     将本插件的功能绑定于相应的菜单与工具条上，绑定需要呈现的控件到相应的界面组件上。
@@ -67,9 +72,9 @@ namespace MeterKnife.Plugins.FileMenu
         /// </summary>
         public bool UnRegister()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         #endregion
-    }
+    } 
 }
