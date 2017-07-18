@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using MeterKnife.Views.Containers;
 using MeterKnife.Views.MenuItems;
 using MeterKnife.Views.Menus;
 using NKnife.Interface;
@@ -56,8 +55,8 @@ namespace MeterKnife.Views
             _DockPanel = DI.Get<DockPanel>();
             _DockPanel.Theme = new VS2015BlueTheme();
             _DockPanel.Dock = DockStyle.Fill;
+            Controls.Add(_DockPanel);
             _DockPanel.BringToFront();
-            _ToolStripContainer.ContentPanel.Controls.Add(_DockPanel);
 
             var loggerView = new LoggerView();
 #if DEBUG
