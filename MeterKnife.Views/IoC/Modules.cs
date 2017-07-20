@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using MeterKnife.Interfaces.Plugins;
-using MeterKnife.Views.Containers;
 using MeterKnife.Views.MenuItems;
 using MeterKnife.Views.Menus;
 using Ninject.Modules;

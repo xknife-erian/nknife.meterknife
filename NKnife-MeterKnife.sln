@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Commons", "MeterKnife.Common\MeterKnife.Commons.csproj", "{8B62166A-BCB6-434D-91A8-62BCFC26D452}"
 EndProject
@@ -39,6 +39,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Gateway", "MeterKnife.Gateway\MeterKnife.Gateway.csproj", "{B1053860-12D3-409F-9961-BD8719B82E56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.FileMenu", "MeterKnife.Plugins.FileMenu\MeterKnife.Plugins.FileMenu.csproj", "{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.ViewMenu", "MeterKnife.Plugins.ViewMenu\MeterKnife.Plugins.ViewMenu.csproj", "{2155ED0A-4EB7-44FF-8CC3-5371639D2717}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -206,6 +208,18 @@ Global
 		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x64.Build.0 = Release|Any CPU
 		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x86.ActiveCfg = Release|Any CPU
 		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52}.Release|x86.Build.0 = Release|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Debug|x64.Build.0 = Debug|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Debug|x86.Build.0 = Debug|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Release|x64.ActiveCfg = Release|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Release|x64.Build.0 = Release|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Release|x86.ActiveCfg = Release|Any CPU
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -213,5 +227,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{42726C7B-5146-40F4-8876-2C4125C5173C} = {E3B3712D-75B6-4C9D-B82E-4613B3EB73A0}
 		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
+		{2155ED0A-4EB7-44FF-8CC3-5371639D2717} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
 	EndGlobalSection
 EndGlobal

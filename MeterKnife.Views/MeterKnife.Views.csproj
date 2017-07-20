@@ -86,17 +86,11 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Containers\BenchDockPanel.cs">
+    <Compile Include="BenchDockPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DropFunctionManager.cs" />
     <Compile Include="IoC\Modules.cs" />
-    <Compile Include="LoggerView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoggerView.designer.cs">
-      <DependentUpon>LoggerView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menus\DataMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -142,9 +136,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LoggerView.resx">
-      <DependentUpon>LoggerView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Workbench.resx">
       <DependentUpon>Workbench.cs</DependentUpon>
     </EmbeddedResource>

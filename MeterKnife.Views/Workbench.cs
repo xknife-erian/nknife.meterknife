@@ -57,13 +57,6 @@ namespace MeterKnife.Views
             _DockPanel.Dock = DockStyle.Fill;
             Controls.Add(_DockPanel);
             _DockPanel.BringToFront();
-
-            var loggerView = new LoggerView();
-#if DEBUG
-            loggerView.Show(_DockPanel, DockState.DockBottom);
-#else
-            loggerView.Show(_DockPanel, DockState.DockBottomAutoHide);
-#endif
         }
 
         private void ControlEventManager()

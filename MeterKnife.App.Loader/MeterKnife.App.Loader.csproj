@@ -122,6 +122,10 @@
       <Project>{f21aad20-3f81-4fa0-b9d5-63d8dcbc6e52}</Project>
       <Name>MeterKnife.Plugins.FileMenu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Plugins.ViewMenu\MeterKnife.Plugins.ViewMenu.csproj">
+      <Project>{2155ed0a-4eb7-44ff-8cc3-5371639d2717}</Project>
+      <Name>MeterKnife.Plugins.ViewMenu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Reports\MeterKnife.Reports.csproj">
       <Project>{068a0168-d030-4757-8e19-ff0460d30acd}</Project>
       <Name>MeterKnife.Reports</Name>
