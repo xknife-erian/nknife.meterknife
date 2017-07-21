@@ -48,12 +48,10 @@ namespace MeterKnife.Plugins.ViewMenu.Loggers
         public void BindViewComponent(PluginViewComponent component)
         {
             _ViewComponent = component;
-            foreach (ToolStripItemCollection collection in component.ToolStripItemCollections)
-            {
-                if (collection.Count > 0)
-                    collection.Add(new ToolStripSeparator());
-                collection.Add(_StripItem);
-            }
+            var collection = component.StripItemCollection;
+            if (collection.Count > 0)
+                collection.Add(new ToolStripSeparator());
+            collection.Add(_StripItem);
         }
 
         /// <summary>

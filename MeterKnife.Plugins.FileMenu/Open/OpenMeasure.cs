@@ -14,10 +14,7 @@ namespace MeterKnife.Plugins.FileMenu.Open
 
         public void BindViewComponent(PluginViewComponent component)
         {
-            foreach (ToolStripItemCollection collection in component.ToolStripItemCollections)
-            {
-                collection.Add(_StripItem);
-            }
+            component.StripItemCollection.Add(_StripItem);
         }
 
         /// <summary>

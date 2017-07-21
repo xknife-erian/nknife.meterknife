@@ -10,31 +10,26 @@ namespace MeterKnife.Base.Plugins
     /// </summary>
     public class PluginViewComponent
     {
-        private readonly List<ToolStripItemCollection> _ToolStripItemCollections = new List<ToolStripItemCollection>();
         private readonly List<Control> _Containers = new List<Control>();
-
-        #region Implementation of IPluginViewComponent
 
         /// <summary>
         /// 插件的功能所能绑定的相应的菜单与工具条
         /// </summary>
-        public ToolStripItemCollection[] ToolStripItemCollections => _ToolStripItemCollections.ToArray();
+        public ToolStripItemCollection StripItemCollection { get; private set; }
 
         /// <summary>
         /// 描述插件功能的可用性的变化状态的事件
         /// </summary>
-        public event EventHandler<PluginEnableEventArgs> PluginStateChanged;
+        public Action<int, bool, bool, bool> SetAction { get; set; }
 
         /// <summary>
         /// 插件的功能界面的容器
         /// </summary>
         public Control[] Containers => _Containers.ToArray();
 
-        #endregion
-
-        public void Add(ToolStripItemCollection toolStripItemCollection)
+        public void Set(ToolStripItemCollection toolStripItemCollection)
         {
-            _ToolStripItemCollections.Add(toolStripItemCollection);
+            StripItemCollection = toolStripItemCollection;
         }
 
         public void Add(Control control)

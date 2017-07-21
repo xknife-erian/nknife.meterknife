@@ -46,7 +46,9 @@ namespace MeterKnife.Kernel.Plugins
             {
                 try
                 {
-                    plugIn.BindViewComponent(_DropFunction[plugIn.PluginStyle]);
+                    var pvc = _DropFunction[plugIn.PluginStyle];
+                    pvc.SetAction = SetAction;
+                    plugIn.BindViewComponent(pvc);
                     plugIn.Register(ref extenderProvider);
                 }
                 catch (Exception e)
@@ -54,6 +56,11 @@ namespace MeterKnife.Kernel.Plugins
                     _logger.Error($"注册插件异常：{e.Message}", e);
                 }
             }
+        }
+
+        private void SetAction(int i, bool b, bool arg3, bool arg4)
+        {
+            
         }
 
         #endregion

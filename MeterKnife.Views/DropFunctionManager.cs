@@ -17,32 +17,32 @@ namespace MeterKnife.Views
         public DropFunctionManager()
         {
             var pv = new PluginViewComponent();
-            pv.Add(DI.Get<FileMenuItem>().DropDownItems);
+            pv.Set(DI.Get<FileMenuItem>().DropDownItems);
             pv.Add(DI.Get<DockPanel>());
             Add(PluginStyle.FileMenu, pv);
 
             pv = new PluginViewComponent();
-            pv.Add(DI.Get<MeasureMenuItem>().DropDownItems);
+            pv.Set(DI.Get<MeasureMenuItem>().DropDownItems);
             pv.Add(DI.Get<DockPanel>());
             Add(PluginStyle.MeasureMenu, pv);
 
             pv = new PluginViewComponent();
-            pv.Add(DI.Get<DataMenuItem>().DropDownItems);
+            pv.Set(DI.Get<DataMenuItem>().DropDownItems);
             pv.Add(DI.Get<DockPanel>());
             Add(PluginStyle.DataMenu, pv);
 
             pv = new PluginViewComponent();
-            pv.Add(DI.Get<ToolMenuItem>().DropDownItems);
+            pv.Set(DI.Get<ToolMenuItem>().DropDownItems);
             pv.Add(DI.Get<DockPanel>());
             Add(PluginStyle.ToolMenu, pv);
 
             pv = new PluginViewComponent();
-            pv.Add(DI.Get<ViewMenuItem>().DropDownItems);
+            pv.Set(DI.Get<ViewMenuItem>().DropDownItems);
             pv.Add(DI.Get<DockPanel>());
             Add(PluginStyle.ViewMenu, pv);
 
             pv = new PluginViewComponent();
-            pv.Add(DI.Get<HelpMenuItem>().DropDownItems);
+            pv.Set(DI.Get<HelpMenuItem>().DropDownItems);
             pv.Add(DI.Get<DockPanel>());
             Add(PluginStyle.HelpMenu, pv);
         }
