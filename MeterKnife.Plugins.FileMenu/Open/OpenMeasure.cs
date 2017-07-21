@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 
-namespace MeterKnife.Plugins.FileMenu
+namespace MeterKnife.Plugins.FileMenu.Open
 {
     public class OpenMeasure : IPlugIn
     {
@@ -12,7 +12,7 @@ namespace MeterKnife.Plugins.FileMenu
         public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
         public PluginDetail Detail { get; } = new PluginDetailKnife();
 
-        public void BindViewComponent(IPluginViewComponent component)
+        public void BindViewComponent(PluginViewComponent component)
         {
             foreach (ToolStripItemCollection collection in component.ToolStripItemCollections)
             {

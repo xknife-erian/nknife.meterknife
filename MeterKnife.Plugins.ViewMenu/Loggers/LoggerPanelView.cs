@@ -1,44 +1,40 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
+using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Plugins.FileMenu
+namespace MeterKnife.Plugins.ViewMenu.Loggers
 {
-    /// <summary>
-    /// 插件："新建测量"功能；
-    /// </summary>
-    public class NewMeasure : IPlugIn
+    public class LoggerPanelView : IPlugIn
     {
-        private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("新建测量(&N)");
-        private IPluginViewComponent _ViewComponent;
+        private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("日志(&L)");
+        private PluginViewComponent _ViewComponent;
         private IExtenderProvider _ExtenderProvider;
 
-        public NewMeasure()
+        public LoggerPanelView()
         {
             _StripItem.Click += (s, e) =>
             {
-                var view = new MeasureView();
-                view.SetProvider(_ExtenderProvider);
+                var view = DI.Get<LoggerView>();
                 foreach (var container in _ViewComponent.Containers)
                 {
                     var panel = container as DockPanel;
                     if (panel != null)
                     {
                         var dockpanel = panel;
-                        view.Show(dockpanel, DockState.Document);
+                        view.Show(dockpanel, DockState.DockBottom);
                     }
                 }
             };
         }
 
         #region Implementation of IPlugIn
-            
+
         /// <summary>
         ///     描述本插件类型
         /// </summary>
-        public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
+        public PluginStyle PluginStyle { get; } = PluginStyle.ViewMenu;
 
         /// <summary>
         ///     插件的详细描述
@@ -49,11 +45,13 @@ namespace MeterKnife.Plugins.FileMenu
         ///     将本插件的功能绑定于相应的菜单与工具条上，绑定需要呈现的控件到相应的界面组件上。
         /// </summary>
         /// <param name="component"></param>
-        public void BindViewComponent(IPluginViewComponent component)
+        public void BindViewComponent(PluginViewComponent component)
         {
             _ViewComponent = component;
             foreach (ToolStripItemCollection collection in component.ToolStripItemCollections)
             {
+                if (collection.Count > 0)
+                    collection.Add(new ToolStripSeparator());
                 collection.Add(_StripItem);
             }
         }
@@ -77,5 +75,5 @@ namespace MeterKnife.Plugins.FileMenu
         }
 
         #endregion
-    } 
+    }
 }

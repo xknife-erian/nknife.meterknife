@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Plugins.ViewMenu
+﻿namespace MeterKnife.Plugins.ViewMenu.Loggers
 {
     partial class LoggerView
     {

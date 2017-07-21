@@ -1,4 +1,6 @@
-﻿namespace MeterKnife.Interfaces.Plugins
+﻿using MeterKnife.Base.Plugins;
+
+namespace MeterKnife.Interfaces.Plugins
 {
     /// <summary>
     ///     插件接口。系统的功能通过插件实现，插件与核心服务交换消息，以实现各个扩展功能模组。
@@ -19,7 +21,7 @@
         ///     将本插件的功能绑定于相应的菜单与工具条上，绑定需要呈现的控件到相应的界面组件上。
         /// </summary>
         /// <param name="component"></param>
-        void BindViewComponent(IPluginViewComponent component);
+        void BindViewComponent(PluginViewComponent component);
 
         /// <summary>
         ///     向扩展模组注册核心扩展供给器。

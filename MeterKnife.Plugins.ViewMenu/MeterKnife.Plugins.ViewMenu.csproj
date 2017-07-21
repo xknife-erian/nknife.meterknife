@@ -67,18 +67,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoggerPanelView.cs" />
-    <Compile Include="LoggerView.cs">
+    <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
+    <Compile Include="IoC\Modules.cs" />
+    <Compile Include="Loggers\LoggerPanelView.cs" />
+    <Compile Include="Loggers\LoggerView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoggerView.designer.cs">
+    <Compile Include="Loggers\LoggerView.designer.cs">
       <DependentUpon>LoggerView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LoggerView.resx">
+    <EmbeddedResource Include="Loggers\LoggerView.resx">
       <DependentUpon>LoggerView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

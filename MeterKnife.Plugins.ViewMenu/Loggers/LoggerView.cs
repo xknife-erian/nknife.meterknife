@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using NKnife.NLog.WinForm;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Plugins.ViewMenu
+namespace MeterKnife.Plugins.ViewMenu.Loggers
 {
     public partial class LoggerView : DockContent
     {

@@ -12,7 +12,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Views
 {
-    public class DropFunctionManager : Dictionary<PluginStyle, IPluginViewComponent>, IDropFunctionManager
+    public class DropFunctionManager : Dictionary<PluginStyle, PluginViewComponent>, IDropFunctionManager
     {
         public DropFunctionManager()
         {
