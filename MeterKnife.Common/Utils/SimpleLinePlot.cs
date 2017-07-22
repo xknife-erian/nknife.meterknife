@@ -4,7 +4,7 @@ using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 
-namespace MeterKnife.Plots
+namespace MeterKnife.Utils
 {
     public class SimpleLinePlot
     {

@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
+using MeterKnife.Views.Measures;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Plugins.FileMenu.New
@@ -51,7 +52,7 @@ namespace MeterKnife.Plugins.FileMenu.New
         public void BindViewComponent(PluginViewComponent component)
         {
             _ViewComponent = component;
-            component.StripItemCollection.Add(_StripItem);
+            component.StripItemCollection.Insert(0, _StripItem);
         }
 
         /// <summary>

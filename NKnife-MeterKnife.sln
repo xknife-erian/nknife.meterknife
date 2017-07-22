@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Commons", "MeterKnife.Common\MeterKnife.Commons.csproj", "{8B62166A-BCB6-434D-91A8-62BCFC26D452}"
 EndProject
@@ -24,8 +24,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup", "Setup\Setup.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E3B3712D-75B6-4C9D-B82E-4613B3EB73A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plots", "MeterKnife.Plots\MeterKnife.Plots.csproj", "{9657610D-AF0B-4A6E-854C-196780733D9A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Unittests", "Tests\MeterKnife.Unittests\MeterKnife.Unittests.csproj", "{42726C7B-5146-40F4-8876-2C4125C5173C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Views", "MeterKnife.Views\MeterKnife.Views.csproj", "{58446AA7-0041-46D1-A654-61660B9A00D5}"
@@ -43,6 +41,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.ViewMenu", "MeterKnife.Plugins.ViewMenu\MeterKnife.Plugins.ViewMenu.csproj", "{2155ED0A-4EB7-44FF-8CC3-5371639D2717}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.MeasureMenu", "MeterKnife.Plugins.MeasureMenu\MeterKnife.Plugins.MeasureMenu.csproj", "{EEA8A692-5CF4-4CB1-B962-05635ABC1BF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Views.Measures", "MeterKnife.Views.Measures\MeterKnife.Views.Measures.csproj", "{C7118FC6-C829-4620-A472-5DF9AFE81E2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,18 +126,6 @@ Global
 		{44555887-C439-470C-944D-8866EC3D7067}.Release|x64.Build.0 = Release|Any CPU
 		{44555887-C439-470C-944D-8866EC3D7067}.Release|x86.ActiveCfg = Release|Any CPU
 		{44555887-C439-470C-944D-8866EC3D7067}.Release|x86.Build.0 = Release|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Debug|x64.Build.0 = Debug|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Debug|x86.Build.0 = Debug|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Release|x64.ActiveCfg = Release|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Release|x64.Build.0 = Release|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Release|x86.ActiveCfg = Release|Any CPU
-		{9657610D-AF0B-4A6E-854C-196780733D9A}.Release|x86.Build.0 = Release|Any CPU
 		{42726C7B-5146-40F4-8876-2C4125C5173C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{42726C7B-5146-40F4-8876-2C4125C5173C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42726C7B-5146-40F4-8876-2C4125C5173C}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -234,6 +222,18 @@ Global
 		{EEA8A692-5CF4-4CB1-B962-05635ABC1BF0}.Release|x64.Build.0 = Release|Any CPU
 		{EEA8A692-5CF4-4CB1-B962-05635ABC1BF0}.Release|x86.ActiveCfg = Release|Any CPU
 		{EEA8A692-5CF4-4CB1-B962-05635ABC1BF0}.Release|x86.Build.0 = Release|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Debug|x64.Build.0 = Debug|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Release|x64.ActiveCfg = Release|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Release|x64.Build.0 = Release|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

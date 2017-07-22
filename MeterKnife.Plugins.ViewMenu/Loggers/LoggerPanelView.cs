@@ -24,8 +24,13 @@ namespace MeterKnife.Plugins.ViewMenu.Loggers
                     {
                         var dockpanel = panel;
                         view.Show(dockpanel, DockState.DockBottom);
+                        _StripItem.CheckState = CheckState.Checked;
                     }
                 }
+                view.FormClosing += (n, v) =>
+                {
+                    _StripItem.CheckState = CheckState.Unchecked;
+                };
             };
         }
 

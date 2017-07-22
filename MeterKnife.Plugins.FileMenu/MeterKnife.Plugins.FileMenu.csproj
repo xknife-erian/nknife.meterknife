@@ -68,18 +68,8 @@
     <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.16.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
       <HintPath>..\packages\DockPanelSuite.2.16.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
-    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2013, Version=2.16.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.ThemeVS2013.2.16.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MeasureView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MeasureView.Designer.cs">
-      <DependentUpon>MeasureView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MeasureViewModel.cs" />
     <Compile Include="New\NewMeasure.cs" />
     <Compile Include="Open\OpenMeasure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +79,10 @@
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Commons.csproj">
       <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
       <Name>MeterKnife.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Views.Measures\MeterKnife.Views.Measures.csproj">
+      <Project>{c7118fc6-c829-4620-a472-5df9afe81e2c}</Project>
+      <Name>MeterKnife.Views.Measures</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -70,9 +70,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MeterKnife.Plots\MeterKnife.Plots.csproj">
-      <Project>{9657610D-AF0B-4A6E-854C-196780733D9A}</Project>
-      <Name>MeterKnife.Plots</Name>
+    <ProjectReference Include="..\..\MeterKnife.Common\MeterKnife.Commons.csproj">
+      <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
+      <Name>MeterKnife.Commons</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

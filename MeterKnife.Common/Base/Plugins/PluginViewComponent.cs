@@ -18,11 +18,6 @@ namespace MeterKnife.Base.Plugins
         public ToolStripItemCollection StripItemCollection { get; private set; }
 
         /// <summary>
-        /// 描述插件功能的可用性的变化状态的事件
-        /// </summary>
-        public Action<int, bool, bool, bool> SetAction { get; set; }
-
-        /// <summary>
         /// 插件的功能界面的容器
         /// </summary>
         public Control[] Containers => _Containers.ToArray();

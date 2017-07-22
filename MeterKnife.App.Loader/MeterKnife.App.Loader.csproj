@@ -114,10 +114,6 @@
       <Project>{c0352137-c756-41dc-80f8-4b026546ad5b}</Project>
       <Name>MeterKnife.Kernel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plots\MeterKnife.Plots.csproj">
-      <Project>{9657610d-af0b-4a6e-854c-196780733d9a}</Project>
-      <Name>MeterKnife.Plots</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Plugins.FileMenu\MeterKnife.Plugins.FileMenu.csproj">
       <Project>{f21aad20-3f81-4fa0-b9d5-63d8dcbc6e52}</Project>
       <Name>MeterKnife.Plugins.FileMenu</Name>

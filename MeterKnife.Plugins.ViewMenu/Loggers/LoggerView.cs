@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using NKnife.NLog.WinForm;
 using WeifenLuo.WinFormsUI.Docking;
@@ -19,5 +20,17 @@ namespace MeterKnife.Plugins.ViewMenu.Loggers
             logPanel.SetDebugMode(true);
             Controls.Add(logPanel);
         }
+
+        #region Overrides of Form
+
+        /// <summary>引发 <see cref="E:System.Windows.Forms.Form.Closing" /> 事件。</summary>
+        /// <param name="e">一个包含事件数据的 <see cref="T:System.ComponentModel.CancelEventArgs" />。</param>
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
+        }
+
+        #endregion
     }
 }

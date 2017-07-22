@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using MeterKnife.Plots;
+using MeterKnife.Utils;
 using NKnife.Base;
 using NUnit.Framework;
 
