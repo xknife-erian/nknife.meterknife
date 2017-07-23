@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using MeterKnife.Interfaces;
 using MeterKnife.Views.Menus;
 using NKnife.Interface;
 using NKnife.IoC;
@@ -14,7 +15,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Views
 {
-    public sealed partial class Workbench : Form
+    public sealed partial class Workbench : Form, IWorkbench
     {
         private readonly IAbout _About;
         private DockPanel _DockPanel;

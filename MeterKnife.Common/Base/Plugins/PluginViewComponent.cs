@@ -17,14 +17,17 @@ namespace MeterKnife.Base.Plugins
         /// </summary>
         public ToolStripItemCollection StripItemCollection { get; private set; }
 
+        public ContextMenuStrip ContextMenu { get; private set; }
+
         /// <summary>
         /// 插件的功能界面的容器
         /// </summary>
         public Control[] Containers => _Containers.ToArray();
 
-        public void Set(ToolStripItemCollection toolStripItemCollection)
+        public void Set(ToolStripItemCollection collection, ContextMenuStrip contextMenu)
         {
-            StripItemCollection = toolStripItemCollection;
+            StripItemCollection = collection;
+            ContextMenu = contextMenu;
         }
 
         public void Add(Control control)

@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MeterKnife.App.Tray.Properties;
+using MeterKnife.Base;
 using MeterKnife.Interfaces;
+using NKnife.IoC;
 
 namespace MeterKnife.App.Tray
 {
@@ -19,15 +21,26 @@ namespace MeterKnife.App.Tray
         /// <summary>
         /// 创建托盘菜单对象
         /// </summary>
-        private readonly ContextMenu _NotifyContextMenu = new ContextMenu();
+        private readonly ContextMenuStrip _NotifyContextMenu = DI.Get<TrayMenuStrip>();
+
+        public AppTrayService()
+        {
+            _Notifyicon.Icon = Resources.mk_main;
+            _Notifyicon.Visible = true;
+            _Notifyicon.ContextMenuStrip = _NotifyContextMenu;
+            _Notifyicon.MouseClick += _Notifyicon_MouseClick;
+        }
 
         #region Implementation of IEnvironmentItem
 
         public bool StartService()
         {
-            _Notifyicon.Icon = Resources.mk_main;
-            _Notifyicon.Visible = true;
             return true;
+        }
+
+        private void _Notifyicon_MouseClick(object sender, MouseEventArgs e)
+        {
+            _Notifyicon.ContextMenuStrip.Show();
         }
 
         public bool CloseService()
@@ -40,30 +53,5 @@ namespace MeterKnife.App.Tray
         public string Description { get; } = "程序托盘服务";
 
         #endregion
-
-
-        /// <summary>
-        /// 方法名称：notifyIconShow_SizeChanged(窗体大小改变后事件)
-        /// 方法作用：隐藏任务栏图标，显示托盘图标
-        /// 完成日期：2010年5月16日
-        /// 作者：心语
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void notifyIconShow_SizeChanged(object sender, EventArgs e)
-        {
-            //判断是否选择的是最小化按钮
-//            if (WindowState == FormWindowState.Minimized)
-//            {
-//                //托盘显示图标等于托盘图标对象
-//                //注意notifyIcon1是控件的名字而不是对象的名字
-//                notifyIcon1.Icon = ico;
-//                //隐藏任务栏区图标
-//                this.ShowInTaskbar = false;
-//                //图标显示在托盘区
-//                _Notifyicon.Visible = true;
-//            }
-        }
-
     }
 }

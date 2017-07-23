@@ -43,7 +43,7 @@ namespace MeterKnife.App
             Splasher.Status = "开始加载引擎...";
             _Kernels.LoadCoreService(DisplayMessage);
 
-            var mainWorkbench = DI.Get<Workbench>();
+            var mainWorkbench = (Form)(DI.Get<IWorkbench>());
             mainWorkbench.Shown += (s, e) =>
             {
                 Splasher.Status = "主控台即将载入完成...";

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Views.Menus;
 using Ninject.Modules;
@@ -20,7 +21,7 @@ namespace MeterKnife.Views.IoC
         public override void Load()
         {
             Bind<IAbout>().To<MyAbout>().InSingletonScope();
-            Bind<Workbench>().To<Workbench>().InSingletonScope();
+            Bind<IWorkbench>().To<Workbench>().InSingletonScope();
 
             Bind<DockPanel>().To<BenchDockPanel>().InSingletonScope();
 
