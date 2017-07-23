@@ -70,6 +70,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="NewMeasure.cs" />
     <Compile Include="OpenMeasure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

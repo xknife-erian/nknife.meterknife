@@ -4,6 +4,7 @@ using Common.Logging;
 using MeterKnife.Interfaces.Plugins;
 using NKnife.Interface;
 using NKnife.IoC;
+using NKnife.Utility;
 
 namespace MeterKnife.Kernel.Plugins
 {
@@ -18,6 +19,9 @@ namespace MeterKnife.Kernel.Plugins
         {
             try
             {
+                // 搜索所有的插件
+                var plugins = SearchTypes();
+                Plugins.AddRange(plugins);
                 // 注册所有插件
                 RegistPlugIns(Plugins.ToArray());
                 return true;
@@ -58,5 +62,25 @@ namespace MeterKnife.Kernel.Plugins
         }
 
         #endregion
+
+        private static ICollection<IPlugIn> SearchTypes()
+        {
+            List<IPlugIn> plugIns = new List<IPlugIn>(); 
+            var assems = UtilityAssembly.SearchAssemblyByDirectory(AppDomain.CurrentDomain.BaseDirectory);
+            foreach (var assembly in assems)
+            {
+                var types = assembly.GetTypes();
+                foreach (var type in types)
+                {
+                    if (type.ContainsInterface(typeof(IPlugIn)))
+                    {
+                        var plugin = (IPlugIn)UtilityType.CreateObject(type, type, false);
+                        plugIns.Add(plugin);
+                        _logger.Info($"{type.FullName}创建成功, 当前共{plugIns.Count}个plugin.");
+                    }
+                }
+            }
+            return plugIns;
+        }
     }
 }

@@ -77,16 +77,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dialogs\AddMeterDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\AddMeterDialog.designer.cs">
-      <DependentUpon>AddMeterDialog.cs</DependentUpon>
+    <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="Dialogs\MeasureSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\MeasureSettingDialog.Designer.cs">
+    <Compile Include="Dialogs\MeasureSettingDialog.designer.cs">
       <DependentUpon>MeasureSettingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="MeasureView.cs">
@@ -99,9 +96,6 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dialogs\AddMeterDialog.resx">
-      <DependentUpon>AddMeterDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MeasureSettingDialog.resx">
       <DependentUpon>MeasureSettingDialog.cs</DependentUpon>
     </EmbeddedResource>

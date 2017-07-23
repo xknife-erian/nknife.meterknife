@@ -6,18 +6,8 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("MeterKnife.Unittests")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("xknife.net")]
 [assembly: AssemblyProduct("MeterKnife.Unittests")]
-[assembly: AssemblyCopyright("Copyright © xknife.net 2017")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-
-// 将 ComVisible 设置为 false 会使此程序集中的类型
-//对 COM 组件不可见。如果需要从 COM 访问此程序集中的类型
-//请将此类型的 ComVisible 特性设置为 true。
-[assembly: ComVisible(false)]
+[assembly: AssemblyDescription("")]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
 [assembly: Guid("42726c7b-5146-40f4-8876-2c4125c5173c")]
