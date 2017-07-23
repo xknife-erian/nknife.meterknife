@@ -25,7 +25,7 @@ namespace MeterKnife.Unittests.Plots
             {
             }
 
-            public static Pair<float, float> UpdateRangeMethod(float value, ref bool isFirst, ref float max, ref float min)
+            public static Pair<double, double> UpdateRangeMethod(double value, ref bool isFirst, ref double max, ref double min)
             {
                 return UpdateRange(value, ref isFirst, ref max, ref min);
             }
@@ -35,12 +35,12 @@ namespace MeterKnife.Unittests.Plots
         public void UpdateRangeTest1()
         {
             var isFirst = true;
-            float max = 0, min = 0;
+            double max = 0, min = 0;
             var pair = SimpleLinePlotShip.UpdateRangeMethod(1, ref isFirst, ref max, ref min);
             isFirst.Should().Be(false);
             max.Should().Be(1.1F);
             min.Should().Be(0.9F);
-            pair.Should().Be(Pair<float, float>.Build(0.9F, 1.1F));
+            pair.Should().Be(Pair<double, double>.Build(0.9F, 1.1F));
         }
     }
 }

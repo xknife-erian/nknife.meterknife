@@ -19,8 +19,17 @@ namespace MeterKnife.ViewModels
 
         public event EventHandler PlotModelUpdated;
 
+        protected virtual void OnPlotModelUpdated()
+        {
+            PlotModelUpdated?.Invoke(this, EventArgs.Empty);
+        }
+
+        #region Demo数据生成
+
         private Thread _DemoThread;
+
         private bool _OnDemo = false;
+
         public void StartDemo()
         {
             var rand = new UtilityRandom();
@@ -33,7 +42,7 @@ namespace MeterKnife.ViewModels
                 {
                     var tail = rand.Next(0, 99999);
                     var v = $"9.99{tail}";
-                    Plot.Add(float.Parse(v));
+                    Plot.Add(double.Parse(v));
                     OnPlotModelUpdated();
                     Thread.Sleep(20);
                 }
@@ -44,12 +53,9 @@ namespace MeterKnife.ViewModels
         public void StopDemo()
         {
             _OnDemo = false;
+            _DemoThread?.Abort();
         }
 
-
-        protected virtual void OnPlotModelUpdated()
-        {
-            PlotModelUpdated?.Invoke(this, EventArgs.Empty);
-        }
+        #endregion
     }
 }

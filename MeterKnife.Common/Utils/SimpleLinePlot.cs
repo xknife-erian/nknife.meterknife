@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using NKnife.Base;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -12,8 +13,8 @@ namespace MeterKnife.Utils
         private readonly LineSeries _Series = new LineSeries();
         private readonly DateTimeAxis _TimeAxis = new DateTimeAxis();
         private bool _IsFirst = true;
-        private float _Max;
-        private float _Min;
+        private double _Max;
+        private double _Min;
 
         public SimpleLinePlot(string title)
         {
@@ -62,7 +63,7 @@ namespace MeterKnife.Utils
 
         public double Thickness => 2;
 
-        public void Add(float value)
+        public void Add(double value)
         {
             var pair = UpdateRange(value, ref _IsFirst, ref _Max, ref _Min);
             _LeftAxis.Minimum = pair.First;
@@ -70,29 +71,74 @@ namespace MeterKnife.Utils
             _Series.Points.Add(DateTimeAxis.CreateDataPoint(DateTime.Now, value));
         }
 
-        protected static Pair<float, float> UpdateRange(float value, ref bool isFirst, ref float max, ref float min)
+        protected static Pair<double, double> UpdateRange(double value, ref bool isFirst, ref double max, ref double min)
         {
             if (isFirst)
             {
-                if (value < 2)
-                {
-                    max = (float) (value + 0.1);
-                    min = (float) (value - 0.1);
-                }
-                else
-                {
-                    max = value + 1;
-                    min = value - 1;
-                }
+                var precision = GetPrecision(value);
+                var offset = GetMinPrecisionValue(precision);
+                max = value + offset;
+                min = value - offset;
                 isFirst = false;
-                return Pair<float, float>.Build(min, max);
+                return Pair<double, double>.Build(min, max);
             }
             if (value > max)
                 max = value;
             else if (value < min)
                 min = value;
             var r = Math.Abs(max - min) / 8;
-            return Pair<float, float>.Build(min - r, max + r);
+            return Pair<double, double>.Build(min - r, max + r);
+        }
+
+        private static int GetPrecision(double value)
+        {
+            string strValue = value.ToString(CultureInfo.InvariantCulture);
+            if (!strValue.Contains("."))
+                return 0;
+            int maxLength = strValue.Length;
+            int index = strValue.IndexOf(".", StringComparison.Ordinal);
+            return maxLength - 1 - index;
+        }
+
+        private static double GetMinPrecisionValue(int precision)
+        {
+            switch (precision)
+            {
+                case 1:
+                    return 0.1;
+                case 2:
+                    return 0.01;
+                case 3:
+                    return 0.001;
+                case 4:
+                    return 0.0001;
+                case 5:
+                    return 0.00001;
+                case 6:
+                    return 0.000001;
+                case 7:
+                    return 0.0000001;
+                case 8:
+                    return 0.00000001;
+                case 9:
+                    return 0.000000001;
+                case 10:
+                    return 0.0000000001;
+                case 11:
+                    return 0.00000000001;
+                case 12:
+                    return 0.000000000001;
+                case 13:
+                    return 0.0000000000001;
+                case 14:
+                    return 0.00000000000001;
+                case 15:
+                    return 0.000000000000001;
+                case 16:
+                    return 0.0000000000000001;
+                default:
+                    return 1;
+            }
         }
     }
 }
