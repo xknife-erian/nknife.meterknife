@@ -33,7 +33,6 @@ namespace MeterKnife.ViewModels
         public void StartDemo()
         {
             var rand = new UtilityRandom();
-
             _DemoThread = new Thread(() =>
             {
                 _OnDemo = true;
@@ -44,7 +43,7 @@ namespace MeterKnife.ViewModels
                     var v = $"9.99{tail}";
                     Plot.Add(double.Parse(v));
                     OnPlotModelUpdated();
-                    Thread.Sleep(20);
+                    Thread.Sleep(10);
                 }
             });
             _DemoThread.Start();

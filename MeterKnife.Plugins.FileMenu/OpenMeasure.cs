@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 
-namespace MeterKnife.Plugins.FileMenu.Open
+namespace MeterKnife.Plugins.FileMenu
 {
     public class OpenMeasure : IPlugIn
     {
@@ -12,9 +12,23 @@ namespace MeterKnife.Plugins.FileMenu.Open
         public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
         public PluginDetail Detail { get; } = new PluginDetailKnife();
 
+        public OpenMeasure()
+        {
+            _StripItem.ShortcutKeys = Keys.Control | Keys.O;
+        }
+
         public void BindViewComponent(PluginViewComponent component)
         {
-            component.StripItemCollection.Add(_StripItem);
+            var collection = component.StripItemCollection;
+            if (collection.Count > 2)
+            {
+                var item = collection[0];
+                collection.Insert(item.Text.Contains("N") ? 1 : 0, _StripItem);
+            }
+            else
+            {
+                collection.Insert(0, _StripItem);
+            }
         }
 
         /// <summary>

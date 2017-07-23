@@ -5,8 +5,8 @@ using System.Text;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Kernel.Plugins;
-using MeterKnife.Views.MenuItems;
 using MeterKnife.Views.Menus;
+using Ninject;
 using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -14,6 +14,7 @@ namespace MeterKnife.Views
 {
     public class DropFunctionManager : Dictionary<PluginStyle, PluginViewComponent>, IDropFunctionManager
     {
+
         public DropFunctionManager()
         {
             var pv = new PluginViewComponent();

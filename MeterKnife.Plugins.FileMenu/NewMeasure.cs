@@ -4,7 +4,7 @@ using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Views.Measures;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Plugins.FileMenu.New
+namespace MeterKnife.Plugins.FileMenu
 {
     /// <summary>
     /// 插件："新建测量"功能；
@@ -17,6 +17,7 @@ namespace MeterKnife.Plugins.FileMenu.New
 
         public NewMeasure()
         {
+            _StripItem.ShortcutKeys = Keys.Control | Keys.N;
             _StripItem.Click += (s, e) =>
             {
                 var view = new MeasureView();
@@ -28,6 +29,7 @@ namespace MeterKnife.Plugins.FileMenu.New
                     {
                         var dockpanel = panel;
                         view.Show(dockpanel, DockState.Document);
+                        view.SetWorkModel(true);
                     }
                 }
             };

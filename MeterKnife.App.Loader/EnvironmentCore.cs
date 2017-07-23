@@ -32,6 +32,7 @@ namespace MeterKnife.App
 
         private void LoadEnvironment()
         {
+            _logger.Info($"============================");
             _logger.Info($"==== {DateTime.Now.ToLongDateString()} ========================");
             _logger.Info($"==== {AppDomain.CurrentDomain.BaseDirectory} ====");
 
@@ -40,7 +41,7 @@ namespace MeterKnife.App
             Splasher.Status = "开始加载引擎...";
             Kernels.LoadCoreService(DisplayMessage);
 
-            var mainWorkbench = new Workbench();
+            var mainWorkbench = DI.Get<Workbench>();
             mainWorkbench.Shown += (s, e) =>
             {
                 Splasher.Status = "主控台即将载入完成...";
@@ -52,7 +53,7 @@ namespace MeterKnife.App
             mainWorkbench.Closed += (s, e) =>
             {
                 _logger.Info("软件准备关闭...");
-                OnApplicationExit(s, e);
+                Application.Exit();
             };
             mainWorkbench.Show();
             mainWorkbench.Refresh();
@@ -78,14 +79,6 @@ namespace MeterKnife.App
             catch (Exception exception)
             {
                 _logger.Error("卸载核心服务及插件", exception);
-            }
-            try
-            {
-                Application.Exit();
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
             }
         }
     }

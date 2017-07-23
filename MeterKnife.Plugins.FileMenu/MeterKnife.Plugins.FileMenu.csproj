@@ -70,8 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="New\NewMeasure.cs" />
-    <Compile Include="Open\OpenMeasure.cs" />
+    <Compile Include="NewMeasure.cs" />
+    <Compile Include="OpenMeasure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>

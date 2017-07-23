@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using MeterKnife.Interfaces.Plugins;
-using MeterKnife.Views.MenuItems;
 using MeterKnife.Views.Menus;
 using Ninject.Modules;
 using NKnife.Interface;
@@ -21,8 +20,7 @@ namespace MeterKnife.Views.IoC
         public override void Load()
         {
             Bind<IAbout>().To<MyAbout>().InSingletonScope();
-
-            Bind<IDropFunctionManager>().To<DropFunctionManager>().InSingletonScope();
+            Bind<Workbench>().To<Workbench>().InSingletonScope();
 
             Bind<DockPanel>().To<BenchDockPanel>().InSingletonScope();
 
@@ -32,6 +30,7 @@ namespace MeterKnife.Views.IoC
             Bind<ToolMenuItem>().ToSelf().InSingletonScope();
             Bind<ViewMenuItem>().ToSelf().InSingletonScope();
             Bind<HelpMenuItem>().ToSelf().InSingletonScope();
+            Bind<IDropFunctionManager>().To<DropFunctionManager>().InSingletonScope();
         }
 
         #endregion

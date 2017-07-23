@@ -90,6 +90,9 @@ namespace MeterKnife.Utils
             return Pair<double, double>.Build(min - r, max + r);
         }
 
+        /// <summary>
+        /// 获取小数的精度
+        /// </summary>
         private static int GetPrecision(double value)
         {
             string strValue = value.ToString(CultureInfo.InvariantCulture);
@@ -100,6 +103,10 @@ namespace MeterKnife.Utils
             return maxLength - 1 - index;
         }
 
+        /// <summary>
+        /// 获取指定小数精度的最小值
+        /// </summary>
+        /// <param name="precision">指定小数精度</param>
         private static double GetMinPrecisionValue(int precision)
         {
             switch (precision)

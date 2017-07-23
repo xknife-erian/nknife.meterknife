@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.MeasureM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Views.Measures", "MeterKnife.Views.Measures\MeterKnife.Views.Measures.csproj", "{C7118FC6-C829-4620-A472-5DF9AFE81E2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.HelpMenu", "MeterKnife.Plugins.HelpMenu\MeterKnife.Plugins.HelpMenu.csproj", "{656970B6-A847-4340-A706-AB2BC1D07EF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -234,6 +236,18 @@ Global
 		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Release|x64.Build.0 = Release|Any CPU
 		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Release|x86.ActiveCfg = Release|Any CPU
 		{C7118FC6-C829-4620-A472-5DF9AFE81E2C}.Release|x86.Build.0 = Release|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Debug|x64.Build.0 = Debug|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Debug|x86.Build.0 = Debug|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Release|x64.ActiveCfg = Release|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Release|x64.Build.0 = Release|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Release|x86.ActiveCfg = Release|Any CPU
+		{656970B6-A847-4340-A706-AB2BC1D07EF0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -243,5 +257,6 @@ Global
 		{F21AAD20-3F81-4FA0-B9D5-63D8DCBC6E52} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
 		{2155ED0A-4EB7-44FF-8CC3-5371639D2717} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
 		{EEA8A692-5CF4-4CB1-B962-05635ABC1BF0} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
+		{656970B6-A847-4340-A706-AB2BC1D07EF0} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
 	EndGlobalSection
 EndGlobal

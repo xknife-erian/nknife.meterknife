@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.ViewModels;
+using MeterKnife.Views.Measures.Dialogs;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Views.Measures
@@ -18,6 +19,22 @@ namespace MeterKnife.Views.Measures
             {
                 _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true));
             };
+        }
+
+        /// <summary>
+        /// 设置窗体的工作模式，是新建的测量，还是打开已有的测量
+        /// </summary>
+        /// <param name="isNewMeasure">true时是新建测量，false是打开已有的测量</param>
+        public void SetWorkModel(bool isNewMeasure)
+        {
+            if (isNewMeasure)
+            {
+                var dialog = new MeasureSettingDialog();
+                dialog.ShowDialog(this);
+            }
+            else
+            {
+            }
         }
 
         #region Overrides of Form
