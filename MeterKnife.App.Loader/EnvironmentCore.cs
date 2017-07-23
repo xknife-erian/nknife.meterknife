@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
+using MeterKnife.Interfaces;
 using MeterKnife.Kernel;
 using MeterKnife.Views;
 using NKnife.ControlKnife;
@@ -12,6 +13,7 @@ namespace MeterKnife.App
     public class EnvironmentCore : ApplicationContext
     {
         private static readonly ILog _logger = LogManager.GetLogger<EnvironmentCore>();
+        private readonly IKernels _Kernels = DI.Get<IKernels>();
 
         #region Singleton Instance
 
@@ -39,7 +41,7 @@ namespace MeterKnife.App
             _logger.Info("开始加载...");
 
             Splasher.Status = "开始加载引擎...";
-            Kernels.LoadCoreService(DisplayMessage);
+            _Kernels.LoadCoreService(DisplayMessage);
 
             var mainWorkbench = DI.Get<Workbench>();
             mainWorkbench.Shown += (s, e) =>
@@ -74,7 +76,7 @@ namespace MeterKnife.App
         {
             try
             {
-                Kernels.UnloadCoreService();
+                _Kernels.UnloadCoreService();
             }
             catch (Exception exception)
             {

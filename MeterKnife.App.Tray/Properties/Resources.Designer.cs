@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MeterKnife.App.Properties {
+namespace MeterKnife.App.Tray.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MeterKnife.App.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MeterKnife.App.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MeterKnife.App.Tray.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -67,16 +67,6 @@ namespace MeterKnife.App.Properties {
             get {
                 object obj = ResourceManager.GetObject("mk_main", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap mk_welcome {
-            get {
-                object obj = ResourceManager.GetObject("mk_welcome", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

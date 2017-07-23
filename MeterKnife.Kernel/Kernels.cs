@@ -9,26 +9,35 @@ using NKnife.Utility;
 
 namespace MeterKnife.Kernel
 {
-    public class Kernels
+    public class Kernels : IKernels
     {
         private static readonly ILog _logger = LogManager.GetLogger<Kernels>();
 
-        private static IPluginService _pluginService;
-        private static IGatewayService _gatewayService;
+        private readonly IAppTrayService _AppTrayService;
+        private readonly IPluginService _PluginService;
+        private readonly IGatewayService _GatewayService;
+
+        public Kernels()
+        {
+            _AppTrayService = DI.Get<IAppTrayService>();
+            _PluginService = DI.Get<IPluginService>();
+            _GatewayService = DI.Get<IGatewayService>();
+        }
 
         /// <summary>
         ///     加载核心服务及插件
         /// </summary>       
-        public static void LoadCoreService(Action<string> displayMessage)
+        public void LoadCoreService(Action<string> displayMessage)
         {
+            displayMessage("加载程序托盘服务...");
+            _AppTrayService.StartService();
+
             displayMessage("加载插件服务...");
-            _pluginService = DI.Get<IPluginService>();
-            _pluginService.StartService();
+            _PluginService.StartService();
             displayMessage("注册所有插件完成...");
 
             displayMessage("加载Getway服务...");
-            _gatewayService = DI.Get<IGatewayService>();
-            _gatewayService.StartService();
+            _GatewayService.StartService();
 
             displayMessage("加载核心服务及插件完成,关闭欢迎界面.");
         }
@@ -36,10 +45,11 @@ namespace MeterKnife.Kernel
         /// <summary>
         ///     卸载核心服务及插件
         /// </summary>
-        public static void UnloadCoreService()
+        public void UnloadCoreService()
         {
-            _gatewayService.CloseService();
-            _pluginService.CloseService();
+            _GatewayService.CloseService();
+            _PluginService.CloseService();
+            _AppTrayService.CloseService();
         }
     }
 }
