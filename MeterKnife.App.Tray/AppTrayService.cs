@@ -28,7 +28,10 @@ namespace MeterKnife.App.Tray
             _Notifyicon.Icon = Resources.mk_main;
             _Notifyicon.Visible = true;
             _Notifyicon.ContextMenuStrip = _NotifyContextMenu;
+            _Notifyicon.ContextMenuStrip.Show();
+            _Notifyicon.ContextMenuStrip.Close();
             _Notifyicon.MouseClick += _Notifyicon_MouseClick;
+            _Notifyicon.MouseDoubleClick += _Notifyicon_MouseDoubleClick;
         }
 
         #region Implementation of IEnvironmentItem
@@ -38,9 +41,21 @@ namespace MeterKnife.App.Tray
             return true;
         }
 
+        private void _Notifyicon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                var form = (Form) DI.Get<IWorkbench>();
+                form.ShowInTaskbar = true;  //显示在系统任务栏
+                form.WindowState = FormWindowState.Normal;  //还原窗体
+                form.Activate();
+            }
+        }
+
         private void _Notifyicon_MouseClick(object sender, MouseEventArgs e)
         {
-            _Notifyicon.ContextMenuStrip.Show();
+            if (e.Button == MouseButtons.Right)
+                _Notifyicon.ContextMenuStrip.Show();
         }
 
         public bool CloseService()

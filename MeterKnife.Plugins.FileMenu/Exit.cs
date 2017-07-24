@@ -24,8 +24,9 @@ namespace MeterKnife.Plugins.FileMenu
 
         private void OnExitMenuItemOnClick(object s, EventArgs e)
         {
-            var workbench = (Form) (DI.Get<IWorkbench>());
-            workbench.Close();
+            var workbench = DI.Get<IWorkbench>();
+            workbench.KernelCallFormClose = true;
+            ((Form)workbench).Close();
         }
 
         #region Implementation of IPlugIn

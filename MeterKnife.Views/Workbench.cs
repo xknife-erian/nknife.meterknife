@@ -28,6 +28,7 @@ namespace MeterKnife.Views
             Height = 768;
             FillMenu();
             InitializeDockPanel();
+            FormManager();
             ControlEventManager();
 #if !DEBUG
             WindowState = FormWindowState.Maximized;
@@ -35,6 +36,25 @@ namespace MeterKnife.Views
             _About = DI.Get<IAbout>();
             var version =  _About.AssemblyVersion.ToString();
             Text = $"{Text} - {version}";
+        }
+
+        private void FormManager()
+        {
+            SizeChanged += (s, e) =>
+            {
+                if (WindowState == FormWindowState.Minimized) //判断是否最小化
+                {
+                    ShowInTaskbar = false; //不显示在系统任务栏
+                }
+            };
+            FormClosing += (s, e) =>
+            {
+                if (!KernelCallFormClose && e.CloseReason == CloseReason.UserClosing)
+                {
+                    e.Cancel = true;
+                    WindowState = FormWindowState.Minimized;
+                }
+            };
         }
 
         private void FillMenu()
@@ -61,7 +81,16 @@ namespace MeterKnife.Views
 
         private void ControlEventManager()
         {
-
+            
         }
+
+        #region Implementation of IWorkbench
+
+        /// <summary>
+        /// 是否是应用程序正确请求关闭窗体
+        /// </summary>
+        public bool KernelCallFormClose { get; set; } = false;
+
+        #endregion
     }
 }
