@@ -16,7 +16,6 @@ namespace MeterKnife.Views
 {
     public class DropFunctionManager : Dictionary<PluginStyle, PluginViewComponent>, IDropFunctionManager
     {
-
         public DropFunctionManager()
         {
             var contextMenu = DI.Get<TrayMenuStrip>();

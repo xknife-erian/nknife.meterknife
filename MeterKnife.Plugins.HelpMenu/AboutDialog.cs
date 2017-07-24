@@ -13,11 +13,11 @@ namespace MeterKnife.Plugins.HelpMenu
 
             SuspendLayout();
             var about = DI.Get<IAbout>();
-            Text = $"关于 {about.AssemblyTitle}";
-            labelProductName.Text = about.AssemblyProduct;
-            labelVersion.Text = $"版本 {about.AssemblyVersion}";
-            labelCopyright.Text = about.AssemblyCopyright;
-            labelCompanyName.Text = about.AssemblyCompany;
+            Text = $"关于{about.AssemblyTitle}";
+            labelProductName.Text = $"{labelProductName.Text} {about.AssemblyProduct}";
+            labelVersion.Text = $"{labelVersion.Text} {about.AssemblyVersion}";
+            labelCopyright.Text = $"{labelCopyright.Text} {about.AssemblyCopyright}";
+            labelCompanyName.Text = $"{labelCompanyName.Text} {about.AssemblyCompany}";
             textBoxDescription.Text = about.AssemblyDescription;
             ResumeLayout(false);
         }

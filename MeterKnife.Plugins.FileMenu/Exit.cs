@@ -50,7 +50,7 @@ namespace MeterKnife.Plugins.FileMenu
             collection.Add(new ToolStripSeparator());
             collection.Add(_ExitMenuItem);
 
-            component.ContextMenu.Items.Add(_ExitContextMenuItem);
+            component.TrayMenu.Items.Add(_ExitContextMenuItem);
         }
 
         /// <summary>

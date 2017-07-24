@@ -38,8 +38,8 @@ namespace MeterKnife.Kernel.Plugins
             return true;
         }
 
-        public int Order { get; }
-        public string Description { get; }
+        public int Order { get; } = 5;
+        public string Description { get; } = "插件管理服务";
 
         #region Implementation of IEnvironmentItem
 

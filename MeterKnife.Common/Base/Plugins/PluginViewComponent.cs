@@ -17,7 +17,10 @@ namespace MeterKnife.Base.Plugins
         /// </summary>
         public ToolStripItemCollection StripItemCollection { get; private set; }
 
-        public ContextMenuStrip ContextMenu { get; private set; }
+        /// <summary>
+        /// 程序托盘菜单
+        /// </summary>
+        public ContextMenuStrip TrayMenu { get; private set; }
 
         /// <summary>
         /// 插件的功能界面的容器
@@ -27,7 +30,7 @@ namespace MeterKnife.Base.Plugins
         public void Set(ToolStripItemCollection collection, ContextMenuStrip contextMenu)
         {
             StripItemCollection = collection;
-            ContextMenu = contextMenu;
+            TrayMenu = contextMenu;
         }
 
         public void Add(Control control)
