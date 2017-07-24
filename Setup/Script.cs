@@ -22,28 +22,57 @@ namespace MeterKnife.Setup
         /// </summary>
         public static void Main(string[] args)
         {
-            string model = "release";
-#if DEBUG
-            model = "Debug";
-#else
-            model = "Release";
-#endif
-            var file = new FileInfo($@"..\..\..\MeterKnife.App.Loader\bin\{model}\MeterKnife.exe");
-            var project =
-                new Project("MeterKnife",
-                    //new Dir(@"%ProgramFiles%\XKNIFE\MeterKnife", new File(@"..\..\MeterKnife.App.Loader\bin\Debug\*.dll")),
-                    new Dir(@"%ProgramFiles%\XKNIFE\MeterKnife", new File(file.FullName)));
+            var dir0 = BuildDir("MeterKnife.App.Loader", true, "MeterKnife");
+            var dir1 = BuildDir("MeterKnife.App.Tray");
+            var dir2 = BuildDir("MeterKnife.Commons");
+            var dir3 = BuildDir("MeterKnife.Datas");
+            var dir4 = BuildDir("MeterKnife.Gateway");
+            var dir5 = BuildDir("MeterKnife.Kernel");
+            var dir6 = BuildDir("MeterKnife.Reports");
+            var dir7 = BuildDir("MeterKnife.Scpis");
+            var dir8 = BuildDir("MeterKnife.ViewModels");
+            var dir9 = BuildDir("MeterKnife.Views");
+            var dir10 = BuildDir("MeterKnife.Views.Measures");
+            var dir11 = BuildDir("MeterKnife.Plugins.FileMenu");
+            var dir12 = BuildDir("MeterKnife.Plugins.HelpMenu");
+            var dir13 = BuildDir("MeterKnife.Plugins.MeasureMenu");
+            var dir14 = BuildDir("MeterKnife.Plugins.ViewMenu");
 
-            project.UI = WUI.WixUI_InstallDir;
-            project.GUID = new Guid("6f330b47-2577-43ad-9095-1861ba25889b");
-            project.EmitConsistentPackageId = true;
-            project.PreserveTempFiles = true;
+            var project = new Project("MeterKnife",
+                dir0, dir1, dir2, dir3, dir4, dir5, dir6, dir7, dir8, dir9, dir10, dir11, dir12, dir13, dir14)
+            {
+                UI = WUI.WixUI_Common,
+                GUID = new Guid("9f310cd4-7a59-4cf8-8ffe-bcebfde327b5"),
+                EmitConsistentPackageId = true,
+                PreserveTempFiles = true
+            };
 
             project.BuildMsi();
 
             Console.WriteLine("===End==========");
             Console.WriteLine("Press any key end.");
             Console.ReadKey();
+        }
+
+        private static Dir BuildDir(string assemblyName, bool isExe = false, string name = "")
+        {
+            string model = "release";
+#if DEBUG
+            model = "Debug";
+#else
+            model = "Release";
+#endif
+            var f = @"..\..\..\";
+            var m = $@"\bin\{model}\";
+            var t = ".dll";
+            if (isExe)
+                t = ".exe";
+            if (string.IsNullOrEmpty(name))
+                name = assemblyName;
+            var path = $"{f}{assemblyName}{m}{name}{t}";
+            var fileInfo = new FileInfo(path);
+            var dir = new Dir(@"%ProgramFiles%\XKNIFE\MeterKnife", new File(fileInfo.FullName));
+            return dir;
         }
     }
 }

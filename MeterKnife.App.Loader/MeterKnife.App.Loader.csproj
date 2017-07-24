@@ -102,7 +102,7 @@
       <Project>{a8d6b3e0-713b-4abf-9c19-16a158c7d2d3}</Project>
       <Name>MeterKnife.App.Tray</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Commons.csproj">
+    <ProjectReference Include="..\MeterKnife.Commons\MeterKnife.Commons.csproj">
       <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
       <Name>MeterKnife.Commons</Name>
     </ProjectReference>
