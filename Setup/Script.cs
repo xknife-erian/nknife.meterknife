@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using WixSharp;
+using WixSharp.Controls;
 using File = WixSharp.File;
 
 namespace MeterKnife.Setup
@@ -22,39 +25,49 @@ namespace MeterKnife.Setup
         /// </summary>
         public static void Main(string[] args)
         {
-            var dir0 = BuildDir("MeterKnife.App.Loader", true, "MeterKnife");
-            var dir1 = BuildDir("MeterKnife.App.Tray");
-            var dir2 = BuildDir("MeterKnife.Commons");
-            var dir3 = BuildDir("MeterKnife.Datas");
-            var dir4 = BuildDir("MeterKnife.Gateway");
-            var dir5 = BuildDir("MeterKnife.Kernel");
-            var dir6 = BuildDir("MeterKnife.Reports");
-            var dir7 = BuildDir("MeterKnife.Scpis");
-            var dir8 = BuildDir("MeterKnife.ViewModels");
-            var dir9 = BuildDir("MeterKnife.Views");
-            var dir10 = BuildDir("MeterKnife.Views.Measures");
-            var dir11 = BuildDir("MeterKnife.Plugins.FileMenu");
-            var dir12 = BuildDir("MeterKnife.Plugins.HelpMenu");
-            var dir13 = BuildDir("MeterKnife.Plugins.MeasureMenu");
-            var dir14 = BuildDir("MeterKnife.Plugins.ViewMenu");
+            WixEntity[] files = GetFiles();
 
-            var project = new Project("MeterKnife",
-                dir0, dir1, dir2, dir3, dir4, dir5, dir6, dir7, dir8, dir9, dir10, dir11, dir12, dir13, dir14)
-            {
-                UI = WUI.WixUI_Common,
-                GUID = new Guid("9f310cd4-7a59-4cf8-8ffe-bcebfde327b5"),
-                EmitConsistentPackageId = true,
-                PreserveTempFiles = true
-            };
+            var dir = new Dir(@"%ProgramFiles%\XKNIFE\MeterKnife", files);
 
+            var project = new Project("MeterKnife", dir);
+            project.GUID = new Guid("9f310cd4-7a59-4cf8-8ffe-bcebfde327b5");
+            project.UI = WUI.WixUI_Mondo;
+            project.Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            project.PreserveTempFiles = true;
             project.BuildMsi();
 
+            Console.WriteLine();
             Console.WriteLine("===End==========");
             Console.WriteLine("Press any key end.");
             Console.ReadKey();
         }
 
-        private static Dir BuildDir(string assemblyName, bool isExe = false, string name = "")
+        private static WixEntity[] GetFiles()
+        {
+            List<WixEntity> entities = new List<WixEntity>();
+
+            BuildFile(entities, "MeterKnife.App.Loader", true, "MeterKnife");
+            var path = entities[0].Name;
+
+            var fi = new FileInfo(path);
+            if (fi.DirectoryName != null)
+            {
+                var dir = new DirectoryInfo(fi.DirectoryName);
+                var files = dir.GetFiles();
+                foreach (var file in files)
+                {
+                    if (file.Extension == ".dll")
+                    {
+                        var f = new File(file.FullName);
+                        entities.Add(f);
+                    }
+                }
+            }
+
+            return entities.ToArray();
+        }
+
+        private static void BuildFile(List<WixEntity> entities, string assemblyName, bool isExe = false, string name = "")
         {
             string model = "release";
 #if DEBUG
@@ -71,8 +84,9 @@ namespace MeterKnife.Setup
                 name = assemblyName;
             var path = $"{f}{assemblyName}{m}{name}{t}";
             var fileInfo = new FileInfo(path);
-            var dir = new Dir(@"%ProgramFiles%\XKNIFE\MeterKnife", new File(fileInfo.FullName));
-            return dir;
+            var file = new File(fileInfo.FullName);
+
+            entities.Add(file);
         }
     }
 }
