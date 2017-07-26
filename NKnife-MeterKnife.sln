@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Commons", "MeterKnife.Commons\MeterKnife.Commons.csproj", "{8B62166A-BCB6-434D-91A8-62BCFC26D452}"
 EndProject
@@ -47,6 +47,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.HelpMenu", "MeterKnife.Plugins.HelpMenu\MeterKnife.Plugins.HelpMenu.csproj", "{656970B6-A847-4340-A706-AB2BC1D07EF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.App.Tray", "MeterKnife.App.Tray\MeterKnife.App.Tray.csproj", "{A8D6B3E0-713B-4ABF-9C19-16A158C7D2D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.UITests", "Tests\MeterKnife.UITests\MeterKnife.UITests.csproj", "{40B97A38-789F-425C-A541-E655B457A154}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -262,6 +264,18 @@ Global
 		{A8D6B3E0-713B-4ABF-9C19-16A158C7D2D3}.Release|x64.Build.0 = Release|Any CPU
 		{A8D6B3E0-713B-4ABF-9C19-16A158C7D2D3}.Release|x86.ActiveCfg = Release|Any CPU
 		{A8D6B3E0-713B-4ABF-9C19-16A158C7D2D3}.Release|x86.Build.0 = Release|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Debug|x64.Build.0 = Debug|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Debug|x86.Build.0 = Debug|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Release|x64.ActiveCfg = Release|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Release|x64.Build.0 = Release|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Release|x86.ActiveCfg = Release|Any CPU
+		{40B97A38-789F-425C-A541-E655B457A154}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -272,5 +286,6 @@ Global
 		{2155ED0A-4EB7-44FF-8CC3-5371639D2717} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
 		{EEA8A692-5CF4-4CB1-B962-05635ABC1BF0} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
 		{656970B6-A847-4340-A706-AB2BC1D07EF0} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
+		{40B97A38-789F-425C-A541-E655B457A154} = {E3B3712D-75B6-4C9D-B82E-4613B3EB73A0}
 	EndGlobalSection
 EndGlobal
