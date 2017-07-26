@@ -36,11 +36,17 @@ namespace MeterKnife.Views.Measures
             this._TabControl = new System.Windows.Forms.TabControl();
             this._ToolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this._MeasurePlotPage.SuspendLayout();
             this._TabControl.SuspendLayout();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
             this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
             this._ToolStripContainer.SuspendLayout();
+            this._ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _MeasurePlotPage
@@ -50,7 +56,7 @@ namespace MeterKnife.Views.Measures
             this._MeasurePlotPage.Controls.Add(this._PlotView);
             this._MeasurePlotPage.Location = new System.Drawing.Point(4, 4);
             this._MeasurePlotPage.Name = "_MeasurePlotPage";
-            this._MeasurePlotPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this._MeasurePlotPage.Padding = new System.Windows.Forms.Padding(3);
             this._MeasurePlotPage.Size = new System.Drawing.Size(616, 385);
             this._MeasurePlotPage.TabIndex = 0;
             this._MeasurePlotPage.Text = "实时测量";
@@ -101,10 +107,61 @@ namespace MeterKnife.Views.Measures
             // _ToolStrip
             // 
             this._ToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton3,
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripButton4,
+            this.toolStripButton5});
             this._ToolStrip.Location = new System.Drawing.Point(3, 0);
             this._ToolStrip.Name = "_ToolStrip";
-            this._ToolStrip.Size = new System.Drawing.Size(43, 25);
+            this._ToolStrip.Size = new System.Drawing.Size(127, 25);
             this._ToolStrip.TabIndex = 0;
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = global::MeterKnife.Views.Measures.Properties.Resources.original;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "toolStripButton3";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::MeterKnife.Views.Measures.Properties.Resources.zoom_in;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::MeterKnife.Views.Measures.Properties.Resources.zoom_out;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "toolStripButton2";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = global::MeterKnife.Views.Measures.Properties.Resources.horizontal_zoom;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "toolStripButton4";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = global::MeterKnife.Views.Measures.Properties.Resources.vertical_zoom;
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Text = "toolStripButton5";
             // 
             // MeasureView
             // 
@@ -121,6 +178,8 @@ namespace MeterKnife.Views.Measures
             this._ToolStripContainer.TopToolStripPanel.PerformLayout();
             this._ToolStripContainer.ResumeLayout(false);
             this._ToolStripContainer.PerformLayout();
+            this._ToolStrip.ResumeLayout(false);
+            this._ToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -131,5 +190,10 @@ namespace MeterKnife.Views.Measures
         private TabControl _TabControl;
         private ToolStripContainer _ToolStripContainer;
         private ToolStrip _ToolStrip;
+        private ToolStripButton toolStripButton3;
+        private ToolStripButton toolStripButton1;
+        private ToolStripButton toolStripButton2;
+        private ToolStripButton toolStripButton4;
+        private ToolStripButton toolStripButton5;
     }
 }

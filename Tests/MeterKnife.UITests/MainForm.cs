@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MeterKnife.Views.Measures;
 using NKnife.ControlKnife;
 using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
@@ -28,6 +29,12 @@ namespace MeterKnife.UITests
             _DockPanel.Dock = DockStyle.Fill;
             Controls.Add(_DockPanel);
             _DockPanel.BringToFront();
+        }
+
+        private void _MainPlotTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MeasureView view = new MeasureView();
+            view.Show(_DockPanel, DockState.Document);
         }
     }
 }
