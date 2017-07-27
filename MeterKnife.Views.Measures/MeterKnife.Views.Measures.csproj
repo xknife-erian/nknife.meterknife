@@ -128,6 +128,7 @@
   <ItemGroup>
     <Content Include="Properties\Strip-Icon\horizontal_zoom.png" />
     <Content Include="Properties\Strip-Icon\original.png" />
+    <Content Include="Properties\Strip-Icon\theme.png" />
     <Content Include="Properties\Strip-Icon\vertical_zoom.png" />
     <Content Include="Properties\Strip-Icon\zoom_in.png" />
     <Content Include="Properties\Strip-Icon\zoom_out.png" />

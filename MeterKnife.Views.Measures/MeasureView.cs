@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.ViewModels;
 using MeterKnife.Views.Measures.Dialogs;
+using OxyPlot;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Views.Measures
@@ -14,11 +16,19 @@ namespace MeterKnife.Views.Measures
         public MeasureView()
         {
             InitializeComponent();
-            _PlotView.Model = _ViewModel.Plot.PlotModel;
+            _PlotView.Model = _ViewModel.Plot.GetPlotModel();
             _ViewModel.PlotModelUpdated += (s, e) =>
             {
                 _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true));
             };
+            _OriginalToolStripButton.Click += (s, e) => { };
+            _ZoomInToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(1.3); };
+            _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(-1.3); };
+        }
+
+        public PlotModel GetMainPlotModel()
+        {
+            return _PlotView.Model;
         }
 
         /// <summary>
