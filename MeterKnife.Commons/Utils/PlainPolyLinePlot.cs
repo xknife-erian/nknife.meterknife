@@ -24,23 +24,16 @@ namespace MeterKnife.Utils
         /// <summary>
         /// 构造函数：基础的折线图表, 横轴表示时间，纵轴代表测量值
         /// </summary>
-        public PlainPolyLinePlot()
-            : this("")
+        public PlainPolyLinePlot(PlotTheme plotTheme, string title = "")
         {
-        }
+            PlotTheme = plotTheme;
 
-        /// <summary>
-        /// 构造函数：基础的折线图表, 横轴表示时间，纵轴代表测量值
-        /// </summary>
-        public PlainPolyLinePlot(string title)
-        {
-            _PlotModel.PlotAreaBackground = OxyColor.FromArgb(255, 245, 255, 245); ;
+            _PlotModel.PlotAreaBackground = PlotTheme.ToOxyColor(plotTheme.AreaBackground);
             _PlotModel.Title = title;
             _PlotModel.TitleFontSize = 12F;
 
-            _LeftAxis.MajorGridlineColor = OxyColor.FromArgb(25, 0, 0, 90);
-            _LeftAxis.MinorGridlineColor = OxyColor.FromArgb(15, 0, 0, 90);
-            _LeftAxis.MajorGridlineStyle = LineStyle.Solid;
+            _LeftAxis.TextColor = PlotTheme.ToOxyColor(Color.Lavender);
+            _LeftAxis.MajorGridlineStyle = LineStyle.Dash;
             _LeftAxis.MinorGridlineStyle = LineStyle.Dot;
             _LeftAxis.MaximumPadding = 0;
             _LeftAxis.MinimumPadding = 0;
@@ -49,19 +42,18 @@ namespace MeterKnife.Utils
             _LeftAxis.Minimum = -220;
             _LeftAxis.Position = AxisPosition.Left;
 
-            _TimeAxis.MajorGridlineColor = OxyColor.FromArgb(25, 0, 0, 90);
-            _TimeAxis.MinorGridlineColor = OxyColor.FromArgb(15, 0, 0, 90);
-            _TimeAxis.MajorGridlineStyle = LineStyle.Solid;
+            _TimeAxis.TextColor = PlotTheme.ToOxyColor(Color.Lavender);
+            _TimeAxis.MajorGridlineStyle = LineStyle.Dash;
             _TimeAxis.MinorGridlineStyle = LineStyle.Dot;
             _TimeAxis.MaximumPadding = 0;
             _TimeAxis.MinimumPadding = 0;
             _TimeAxis.Position = AxisPosition.Bottom;
             _TimeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
 
-            _Series.Color = MainSeriesColor;
+            _Series.Color = PlotTheme.ToOxyColor(plotTheme.SeriesColor);
             _Series.MarkerFill = OxyColor.FromArgb(255, 24, 45, 6); //(255, 78, 154, 6);
             _Series.MarkerStroke = OxyColors.ForestGreen;
-            _Series.StrokeThickness = Thickness;
+            _Series.StrokeThickness = plotTheme.Thickness;
             _Series.TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}";
 
             _PlotModel.Axes.Add(_LeftAxis);
@@ -75,35 +67,9 @@ namespace MeterKnife.Utils
             set => _PlotModel.Title = value;
         }
 
-
         public double LeftAxisAngle => 0;
 
-        /// <summary>
-        /// 图表区背景色
-        /// </summary>
-        public OxyColor AreaColor
-        {
-            get { return _PlotModel.PlotAreaBackground; }
-            private set { _PlotModel.PlotAreaBackground = value; }
-        } 
-
-        /// <summary>
-        /// 设置图表区背景色
-        /// </summary>
-        public void SetAreaColor(Color color)
-        {
-            AreaColor = OxyColor.FromArgb(color.A, color.R, color.G, color.B);
-        }
-
-        /// <summary>
-        /// 数据线颜色
-        /// </summary>
-        public OxyColor MainSeriesColor => OxyColor.FromArgb(255, 78, 154, 6);
-
-        /// <summary>
-        /// 数据线线径
-        /// </summary>
-        public double Thickness => 2;
+        public PlotTheme PlotTheme { get ; set; }
 
         /// <summary>
         /// 增加测量数据

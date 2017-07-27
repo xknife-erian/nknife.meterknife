@@ -20,8 +20,8 @@ namespace MeterKnife.Unittests.Plots
 
         public class PlainPolyLinePlotShip : PlainPolyLinePlot
         {
-            public PlainPolyLinePlotShip(string title)
-                : base(title)
+            public PlainPolyLinePlotShip()
+                : base(new PlotTheme())
             {
             }
 

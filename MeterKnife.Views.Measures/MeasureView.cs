@@ -17,13 +17,14 @@ namespace MeterKnife.Views.Measures
         {
             InitializeComponent();
             _PlotView.Model = _ViewModel.Plot.GetPlotModel();
+            _PlotView.BackColor = _ViewModel.Plot.PlotTheme.ViewBackground;
             _ViewModel.PlotModelUpdated += (s, e) =>
             {
                 _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true));
             };
-            _OriginalToolStripButton.Click += (s, e) => { };
+            _OriginalToolStripButton.Click += (s, e) => {_PlotView.Model.ResetAllAxes(); };
             _ZoomInToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(1.3); };
-            _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(-1.3); };
+            _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(0.7); };
         }
 
         public PlotModel GetMainPlotModel()

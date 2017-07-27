@@ -34,19 +34,20 @@ namespace MeterKnife.Views.Measures
             this._MeasurePlotPage = new System.Windows.Forms.TabPage();
             this._PlotView = new OxyPlot.WindowsForms.PlotView();
             this._TabControl = new System.Windows.Forms.TabControl();
+            this._MeasureDataPage = new System.Windows.Forms.TabPage();
             this._ToolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
-            this._MeasureDataPage = new System.Windows.Forms.TabPage();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._OriginalToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._ZoomInToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ZoomOutToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._TimeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ValueRangeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._ThemeToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this._DefaultThemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.自定义主题ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MeasurePlotPage.SuspendLayout();
             this._TabControl.SuspendLayout();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
@@ -57,7 +58,7 @@ namespace MeterKnife.Views.Measures
             // 
             // _MeasurePlotPage
             // 
-            this._MeasurePlotPage.BackColor = System.Drawing.Color.DarkGray;
+            this._MeasurePlotPage.BackColor = System.Drawing.Color.MidnightBlue;
             this._MeasurePlotPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._MeasurePlotPage.Controls.Add(this._PlotView);
             this._MeasurePlotPage.Location = new System.Drawing.Point(4, 4);
@@ -69,9 +70,9 @@ namespace MeterKnife.Views.Measures
             // 
             // _PlotView
             // 
-            this._PlotView.BackColor = System.Drawing.Color.DarkGray;
             this._PlotView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._PlotView.Location = new System.Drawing.Point(3, 3);
+            this._PlotView.Margin = new System.Windows.Forms.Padding(1);
             this._PlotView.Name = "_PlotView";
             this._PlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
             this._PlotView.Size = new System.Drawing.Size(608, 369);
@@ -92,6 +93,16 @@ namespace MeterKnife.Views.Measures
             this._TabControl.SelectedIndex = 0;
             this._TabControl.Size = new System.Drawing.Size(624, 407);
             this._TabControl.TabIndex = 3;
+            // 
+            // _MeasureDataPage
+            // 
+            this._MeasureDataPage.Location = new System.Drawing.Point(4, 4);
+            this._MeasureDataPage.Name = "_MeasureDataPage";
+            this._MeasureDataPage.Padding = new System.Windows.Forms.Padding(3);
+            this._MeasureDataPage.Size = new System.Drawing.Size(616, 377);
+            this._MeasureDataPage.TabIndex = 1;
+            this._MeasureDataPage.Text = "数据";
+            this._MeasureDataPage.UseVisualStyleBackColor = true;
             // 
             // _ToolStripContainer
             // 
@@ -129,31 +140,6 @@ namespace MeterKnife.Views.Measures
             this._ToolStrip.Size = new System.Drawing.Size(207, 33);
             this._ToolStrip.TabIndex = 0;
             // 
-            // _MeasureDataPage
-            // 
-            this._MeasureDataPage.Location = new System.Drawing.Point(4, 4);
-            this._MeasureDataPage.Name = "_MeasureDataPage";
-            this._MeasureDataPage.Padding = new System.Windows.Forms.Padding(3);
-            this._MeasureDataPage.Size = new System.Drawing.Size(616, 377);
-            this._MeasureDataPage.TabIndex = 1;
-            this._MeasureDataPage.Text = "数据";
-            this._MeasureDataPage.UseVisualStyleBackColor = true;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
-            // 
             // _OriginalToolStripButton
             // 
             this._OriginalToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -163,7 +149,12 @@ namespace MeterKnife.Views.Measures
             this._OriginalToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._OriginalToolStripButton.Name = "_OriginalToolStripButton";
             this._OriginalToolStripButton.Size = new System.Drawing.Size(28, 28);
-            this._OriginalToolStripButton.Text = "toolStripButton3";
+            this._OriginalToolStripButton.Text = "恢复";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
             // _ZoomInToolStripButton
             // 
@@ -174,7 +165,7 @@ namespace MeterKnife.Views.Measures
             this._ZoomInToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._ZoomInToolStripButton.Name = "_ZoomInToolStripButton";
             this._ZoomInToolStripButton.Size = new System.Drawing.Size(28, 28);
-            this._ZoomInToolStripButton.Text = "toolStripButton1";
+            this._ZoomInToolStripButton.Text = "图表放大";
             // 
             // _ZoomOutToolStripButton
             // 
@@ -185,7 +176,12 @@ namespace MeterKnife.Views.Measures
             this._ZoomOutToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._ZoomOutToolStripButton.Name = "_ZoomOutToolStripButton";
             this._ZoomOutToolStripButton.Size = new System.Drawing.Size(28, 28);
-            this._ZoomOutToolStripButton.Text = "toolStripButton2";
+            this._ZoomOutToolStripButton.Text = "图表缩小";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
             // 
             // _TimeZoomToolStripButton
             // 
@@ -196,7 +192,7 @@ namespace MeterKnife.Views.Measures
             this._TimeZoomToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._TimeZoomToolStripButton.Name = "_TimeZoomToolStripButton";
             this._TimeZoomToolStripButton.Size = new System.Drawing.Size(28, 28);
-            this._TimeZoomToolStripButton.Text = "toolStripButton4";
+            this._TimeZoomToolStripButton.Text = "横轴放大";
             // 
             // _ValueRangeZoomToolStripButton
             // 
@@ -207,13 +203,19 @@ namespace MeterKnife.Views.Measures
             this._ValueRangeZoomToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._ValueRangeZoomToolStripButton.Name = "_ValueRangeZoomToolStripButton";
             this._ValueRangeZoomToolStripButton.Size = new System.Drawing.Size(28, 28);
-            this._ValueRangeZoomToolStripButton.Text = "toolStripButton5";
+            this._ValueRangeZoomToolStripButton.Text = "纵轴放大";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // _ThemeToolStripDropDownButton
             // 
             this._ThemeToolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._ThemeToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._DefaultThemeToolStripMenuItem});
+            this._DefaultThemeToolStripMenuItem,
+            this.自定义主题ToolStripMenuItem});
             this._ThemeToolStripDropDownButton.Image = global::MeterKnife.Views.Measures.Properties.Resources.theme;
             this._ThemeToolStripDropDownButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this._ThemeToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -227,6 +229,12 @@ namespace MeterKnife.Views.Measures
             this._DefaultThemeToolStripMenuItem.Name = "_DefaultThemeToolStripMenuItem";
             this._DefaultThemeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._DefaultThemeToolStripMenuItem.Text = "默认主题";
+            // 
+            // 自定义主题ToolStripMenuItem
+            // 
+            this.自定义主题ToolStripMenuItem.Name = "自定义主题ToolStripMenuItem";
+            this.自定义主题ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.自定义主题ToolStripMenuItem.Text = "自定义主题";
             // 
             // MeasureView
             // 
@@ -266,5 +274,6 @@ namespace MeterKnife.Views.Measures
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripDropDownButton _ThemeToolStripDropDownButton;
         private ToolStripMenuItem _DefaultThemeToolStripMenuItem;
+        private ToolStripMenuItem 自定义主题ToolStripMenuItem;
     }
 }

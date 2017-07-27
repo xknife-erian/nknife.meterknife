@@ -10,7 +10,7 @@ namespace MeterKnife.ViewModels
     public class MeasureViewModel : ViewModelBase
     {
         private IExtenderProvider _ExtenderProvider;
-        public PlainPolyLinePlot Plot { get; } = new PlainPolyLinePlot("");
+        public PlainPolyLinePlot Plot { get; } = new PlainPolyLinePlot(new PlotTheme());
 
         public void SetProvider(IExtenderProvider provider)
         {
@@ -36,14 +36,13 @@ namespace MeterKnife.ViewModels
             _DemoThread = new Thread(() =>
             {
                 _OnDemo = true;
-                Thread.Sleep(500);
                 while (_OnDemo)
                 {
+                    Thread.Sleep(200);
                     var tail = rand.Next(0, 99999);
                     var v = $"9.99{tail}";
                     Plot.Add(double.Parse(v));
                     OnPlotModelUpdated();
-                    Thread.Sleep(150);
                 }
             });
             _DemoThread.Start();
