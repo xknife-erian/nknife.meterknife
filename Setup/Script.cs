@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using WixSharp;
-using WixSharp.Controls;
 using File = WixSharp.File;
 
 namespace MeterKnife.Setup
@@ -37,7 +36,7 @@ namespace MeterKnife.Setup
             project.BuildMsi();
 
             Console.WriteLine();
-            Console.WriteLine("===End==========");
+            Console.WriteLine("===End============");
             Console.WriteLine("Press any key end.");
             Console.ReadKey();
         }
