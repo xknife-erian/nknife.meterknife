@@ -18,9 +18,9 @@ namespace MeterKnife.Unittests.Plots
         {
         }
 
-        public class SimpleLinePlotShip : SimpleLinePlot
+        public class PlainPolyLinePlotShip : PlainPolyLinePlot
         {
-            public SimpleLinePlotShip(string title)
+            public PlainPolyLinePlotShip(string title)
                 : base(title)
             {
             }
@@ -36,7 +36,7 @@ namespace MeterKnife.Unittests.Plots
         {
             var isFirst = true;
             double max = 0, min = 0;
-            var pair = SimpleLinePlotShip.UpdateRangeMethod(1, ref isFirst, ref max, ref min);
+            var pair = PlainPolyLinePlotShip.UpdateRangeMethod(1, ref isFirst, ref max, ref min);
             isFirst.Should().Be(false);
             max.Should().Be(1.1F);
             min.Should().Be(0.9F);

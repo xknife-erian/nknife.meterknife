@@ -35,6 +35,11 @@ namespace MeterKnife.UITests
         {
             MeasureView view = new MeasureView();
             view.Show(_DockPanel, DockState.Document);
+
+            var pview = new PropertyGridView();
+            pview.Show(_DockPanel, DockState.DockRight);
+            pview.SetObject1(view.GetMainPlotModel());
+            pview.SetObject2(view.GetMainPlotModel().Series[0]);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Globalization;
 using NKnife.Base;
 using OxyPlot;
@@ -7,8 +8,12 @@ using OxyPlot.Series;
 
 namespace MeterKnife.Utils
 {
-    public class SimpleLinePlot
+    /// <summary>
+    /// 基础的折线图表, 横轴表示时间，纵轴代表测量值
+    /// </summary>
+    public class PlainPolyLinePlot
     {
+        private readonly PlotModel _PlotModel = new PlotModel();
         private readonly LinearAxis _LeftAxis = new LinearAxis();
         private readonly LineSeries _Series = new LineSeries();
         private readonly DateTimeAxis _TimeAxis = new DateTimeAxis();
@@ -16,11 +21,22 @@ namespace MeterKnife.Utils
         private double _Max;
         private double _Min;
 
-        public SimpleLinePlot(string title)
+        /// <summary>
+        /// 构造函数：基础的折线图表, 横轴表示时间，纵轴代表测量值
+        /// </summary>
+        public PlainPolyLinePlot()
+            : this("")
         {
-            PlotModel.PlotAreaBackground = AreaColor;
-            PlotModel.Title = title;
-            PlotModel.TitleFontSize = 12F;
+        }
+
+        /// <summary>
+        /// 构造函数：基础的折线图表, 横轴表示时间，纵轴代表测量值
+        /// </summary>
+        public PlainPolyLinePlot(string title)
+        {
+            _PlotModel.PlotAreaBackground = OxyColor.FromArgb(255, 245, 255, 245); ;
+            _PlotModel.Title = title;
+            _PlotModel.TitleFontSize = 12F;
 
             _LeftAxis.MajorGridlineColor = OxyColor.FromArgb(25, 0, 0, 90);
             _LeftAxis.MinorGridlineColor = OxyColor.FromArgb(15, 0, 0, 90);
@@ -29,8 +45,8 @@ namespace MeterKnife.Utils
             _LeftAxis.MaximumPadding = 0;
             _LeftAxis.MinimumPadding = 0;
             _LeftAxis.Angle = LeftAxisAngle;
-            _LeftAxis.Maximum = 3000;
-            _LeftAxis.Minimum = 0;
+            _LeftAxis.Maximum = 220;
+            _LeftAxis.Minimum = -220;
             _LeftAxis.Position = AxisPosition.Left;
 
             _TimeAxis.MajorGridlineColor = OxyColor.FromArgb(25, 0, 0, 90);
@@ -48,29 +64,69 @@ namespace MeterKnife.Utils
             _Series.StrokeThickness = Thickness;
             _Series.TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}";
 
-            PlotModel.Axes.Add(_LeftAxis);
-            PlotModel.Axes.Add(_TimeAxis);
-            PlotModel.Series.Add(_Series);
+            _PlotModel.Axes.Add(_LeftAxis);
+            _PlotModel.Axes.Add(_TimeAxis);
+            _PlotModel.Series.Add(_Series);
         }
 
-        public PlotModel PlotModel { get; } = new PlotModel();
+        public string Title
+        {
+            get => _PlotModel.Title;
+            set => _PlotModel.Title = value;
+        }
+
 
         public double LeftAxisAngle => 0;
 
+        /// <summary>
+        /// 图表区背景色
+        /// </summary>
+        public OxyColor AreaColor
+        {
+            get { return _PlotModel.PlotAreaBackground; }
+            private set { _PlotModel.PlotAreaBackground = value; }
+        } 
+
+        /// <summary>
+        /// 设置图表区背景色
+        /// </summary>
+        public void SetAreaColor(Color color)
+        {
+            AreaColor = OxyColor.FromArgb(color.A, color.R, color.G, color.B);
+        }
+
+        /// <summary>
+        /// 数据线颜色
+        /// </summary>
         public OxyColor MainSeriesColor => OxyColor.FromArgb(255, 78, 154, 6);
 
-        public OxyColor AreaColor => OxyColor.FromArgb(255, 245, 255, 245);
-
+        /// <summary>
+        /// 数据线线径
+        /// </summary>
         public double Thickness => 2;
 
+        /// <summary>
+        /// 增加测量数据
+        /// </summary>
+        /// <param name="value">测量数据</param>
         public void Add(double value)
         {
+            //先根据测量数据调整纵轴的值的范围
             var pair = UpdateRange(value, ref _IsFirst, ref _Max, ref _Min);
             _LeftAxis.Minimum = pair.First;
             _LeftAxis.Maximum = pair.Second;
+            //向数据线上添加测量数据点
             _Series.Points.Add(DateTimeAxis.CreateDataPoint(DateTime.Now, value));
         }
 
+        /// <summary>
+        /// 根据当前测量值更新纵轴的显示区域
+        /// </summary>
+        /// <param name="value">当前测量值</param>
+        /// <param name="isFirst">是否是第一个数据</param>
+        /// <param name="max">纵值的最大数据</param>
+        /// <param name="min">纵值的最小数据</param>
+        /// <returns></returns>
         protected static Pair<double, double> UpdateRange(double value, ref bool isFirst, ref double max, ref double min)
         {
             if (isFirst)
@@ -146,6 +202,11 @@ namespace MeterKnife.Utils
                 default:
                     return 1;
             }
+        }
+
+        public PlotModel GetPlotModel()
+        {
+            return _PlotModel;
         }
     }
 }
