@@ -62,7 +62,7 @@
     <Compile Include="..\..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Plots\SimpleLinePlotUnittests.cs" />
+    <Compile Include="Plots\PlainPolyLinePlotUnittests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

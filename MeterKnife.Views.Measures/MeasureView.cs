@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.ViewModels;

@@ -113,8 +113,11 @@
     <Compile Include="Scpis\ScpiSubject.cs" />
     <Compile Include="Scpis\ScpiSubjectCollection.cs" />
     <Compile Include="Scpis\ScpisXmlFile.cs" />
-    <Compile Include="Utils\PlainPolyLinePlot.cs" />
-    <Compile Include="Utils\PlotTheme.cs" />
+    <Compile Include="Utils\Plots\PlainPolyLinePlot.cs" />
+    <Compile Include="Utils\Plots\PlotTheme.cs" />
+    <Compile Include="Utils\Plots\PlotThemeDropDownButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
