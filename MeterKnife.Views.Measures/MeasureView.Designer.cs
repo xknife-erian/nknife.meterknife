@@ -45,6 +45,7 @@ namespace MeterKnife.Views.Measures
             this._TimeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ValueRangeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._PlotThemeDropDownButton1 = new MeterKnife.Utils.Plots.PlotThemeDropDownButton();
             this._MeasurePlotPage.SuspendLayout();
             this._TabControl.SuspendLayout();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
@@ -130,10 +131,11 @@ namespace MeterKnife.Views.Measures
             this.toolStripSeparator3,
             this._TimeZoomToolStripButton,
             this._ValueRangeZoomToolStripButton,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this._PlotThemeDropDownButton1});
             this._ToolStrip.Location = new System.Drawing.Point(3, 0);
             this._ToolStrip.Name = "_ToolStrip";
-            this._ToolStrip.Size = new System.Drawing.Size(201, 33);
+            this._ToolStrip.Size = new System.Drawing.Size(238, 33);
             this._ToolStrip.TabIndex = 0;
             // 
             // _OriginalToolStripButton
@@ -206,6 +208,16 @@ namespace MeterKnife.Views.Measures
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
+            // _PlotThemeDropDownButton1
+            // 
+            this._PlotThemeDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._PlotThemeDropDownButton1.Image = global::MeterKnife.Views.Measures.Properties.Resources.theme;
+            this._PlotThemeDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._PlotThemeDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._PlotThemeDropDownButton1.Name = "_PlotThemeDropDownButton1";
+            this._PlotThemeDropDownButton1.Size = new System.Drawing.Size(37, 30);
+            this._PlotThemeDropDownButton1.Text = "主题";
+            // 
             // MeasureView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -242,5 +254,6 @@ namespace MeterKnife.Views.Measures
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripSeparator toolStripSeparator1;
+        private Utils.Plots.PlotThemeDropDownButton _PlotThemeDropDownButton1;
     }
 }
