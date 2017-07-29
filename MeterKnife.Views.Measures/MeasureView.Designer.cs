@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MeterKnife.Plots;
 using OxyPlot.WindowsForms;
 
 namespace MeterKnife.Views.Measures
@@ -45,7 +46,7 @@ namespace MeterKnife.Views.Measures
             this._TimeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ValueRangeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this._PlotThemeDropDownButton1 = new MeterKnife.Utils.Plots.PlotThemeDropDownButton();
+            this._PlotThemeDropDownButton1 = new PlotThemeDropDownButton();
             this._MeasurePlotPage.SuspendLayout();
             this._TabControl.SuspendLayout();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
@@ -254,6 +255,6 @@ namespace MeterKnife.Views.Measures
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripSeparator toolStripSeparator1;
-        private Utils.Plots.PlotThemeDropDownButton _PlotThemeDropDownButton1;
+        private PlotThemeDropDownButton _PlotThemeDropDownButton1;
     }
 }

@@ -2,7 +2,7 @@
 using System.Drawing;
 using OxyPlot;
 
-namespace MeterKnife.Utils.Plots
+namespace MeterKnife.Plots
 {
     /// <summary>
     /// 图表主题，保存图表的颜色等信息。
@@ -10,7 +10,7 @@ namespace MeterKnife.Utils.Plots
     public class PlotTheme
     {
         public string Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = "默认主题";
 
         public PlotTheme()
         {
@@ -20,22 +20,12 @@ namespace MeterKnife.Utils.Plots
         /// <summary>
         ///     左侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
         /// </summary>
-        public ColorPair LeftAxisGridlineColor { get; set; }
+        public GridLineColors LeftAxisGridLineColors { get; set; } = new GridLineColors();
 
         /// <summary>
         ///     底部数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
         /// </summary>
-        public ColorPair BottomAxisGridlineColor { get; set; }
-
-        /// <summary>
-        ///     顶部侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
-        /// </summary>
-        public ColorPair TopAxisGridlineColor { get; set; }
-
-        /// <summary>
-        ///     右侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
-        /// </summary>
-        public ColorPair RightAxisGridlineColor { get; set; }
+        public GridLineColors BottomAxisGridLineColors { get; set; } = new GridLineColors();
 
         /// <summary>
         ///     图表画框区背景色
@@ -57,6 +47,20 @@ namespace MeterKnife.Utils.Plots
         /// </summary>
         public double Thickness { get; set; } = 1.8;
 
+        /*
+        
+        /// <summary>
+        ///     顶部侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
+        /// </summary>
+        public GridLineColors TopAxisGridLineColors { get; set; } = new GridLineColors();
+
+        /// <summary>
+        ///     右侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
+        /// </summary>
+        public GridLineColors RightAxisGridLineColors { get; set; } = new GridLineColors();
+
+        */
+
         public static OxyColor ToOxyColor(Color color)
         {
             return OxyColor.FromArgb(color.A, color.R, color.G, color.B);
@@ -65,16 +69,16 @@ namespace MeterKnife.Utils.Plots
         /// <summary>
         /// 一对颜色，用在比如数轴网格线的着色上
         /// </summary>
-        public class ColorPair
+        public class GridLineColors
         {
             /// <summary>
             /// 突出显示的颜色
             /// </summary>
-            public Color Major { get; set; }
+            public Color Major { get; set; } = ColorTranslator.FromHtml("#40000000");
             /// <summary>
             /// 一般显示的颜色
             /// </summary>
-            public Color Minor { get; set; }
+            public Color Minor { get; set; } = ColorTranslator.FromHtml("#20000000");
         }
     }
 }

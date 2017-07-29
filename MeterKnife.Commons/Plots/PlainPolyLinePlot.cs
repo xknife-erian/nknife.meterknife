@@ -6,7 +6,7 @@ using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 
-namespace MeterKnife.Utils.Plots
+namespace MeterKnife.Plots
 {
     /// <summary>
     /// 基础的折线图表, 横轴表示时间，纵轴代表测量值
@@ -33,6 +33,8 @@ namespace MeterKnife.Utils.Plots
             _PlotModel.TitleFontSize = 12F;
 
             _LeftAxis.TextColor = PlotTheme.ToOxyColor(Color.Lavender);
+            _LeftAxis.MajorGridlineColor = PlotTheme.ToOxyColor(plotTheme.LeftAxisGridLineColors.Major);
+            _LeftAxis.MinorGridlineColor = PlotTheme.ToOxyColor(plotTheme.LeftAxisGridLineColors.Minor);
             _LeftAxis.MajorGridlineStyle = LineStyle.Dash;
             _LeftAxis.MinorGridlineStyle = LineStyle.Dot;
             _LeftAxis.MaximumPadding = 0;
@@ -43,6 +45,8 @@ namespace MeterKnife.Utils.Plots
             _LeftAxis.Position = AxisPosition.Left;
 
             _TimeAxis.TextColor = PlotTheme.ToOxyColor(Color.Lavender);
+            _TimeAxis.MajorGridlineColor = PlotTheme.ToOxyColor(plotTheme.BottomAxisGridLineColors.Major);
+            _TimeAxis.MinorGridlineColor = PlotTheme.ToOxyColor(plotTheme.BottomAxisGridLineColors.Minor);
             _TimeAxis.MajorGridlineStyle = LineStyle.Dash;
             _TimeAxis.MinorGridlineStyle = LineStyle.Dot;
             _TimeAxis.MaximumPadding = 0;
