@@ -59,6 +59,7 @@ namespace MeterKnife.Setup
                     {
                         var f = new File(file.FullName);
                         entities.Add(f);
+                        Console.WriteLine($">- {file.FullName}");
                     }
                 }
             }
