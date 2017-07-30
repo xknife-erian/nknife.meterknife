@@ -105,6 +105,12 @@
     <Compile Include="Models\Exhibits\ExhibitData.cs" />
     <Compile Include="Models\Exhibits\ExhibitInfomation.cs" />
     <Compile Include="Models\Exhibits\ExhibitItem.cs" />
+    <Compile Include="Plots\Dialogs\SeriesStyleItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\Dialogs\SeriesStyleItem.Designer.cs">
+      <DependentUpon>SeriesStyleItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Plots\Dialogs\ThemeColorItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Plots\Dialogs\SeriesStyleItem.resx">
+      <DependentUpon>SeriesStyleItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Plots\Dialogs\ThemeColorItem.resx">
       <DependentUpon>ThemeColorItem.cs</DependentUpon>
     </EmbeddedResource>

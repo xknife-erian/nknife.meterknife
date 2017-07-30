@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using OxyPlot;
 
@@ -40,12 +41,7 @@ namespace MeterKnife.Plots
         /// <summary>
         ///     数据线颜色
         /// </summary>
-        public Color SeriesColor { get; set; } = Color.Yellow;
-
-        /// <summary>
-        ///     数据线线径
-        /// </summary>
-        public double Thickness { get; set; } = 1.8;
+        public List<SeriesStyle> SeriesStyles { get; set; } = new List<SeriesStyle>(new[] {new SeriesStyle()});
 
         /*
         
@@ -64,6 +60,15 @@ namespace MeterKnife.Plots
         public static OxyColor ToOxyColor(Color color)
         {
             return OxyColor.FromArgb(color.A, color.R, color.G, color.B);
+        }
+
+        public class SeriesStyle
+        {
+            public Color Color { get; set; } = Color.Yellow;
+            /// <summary>
+            ///     数据线线径
+            /// </summary>
+            public double Thickness { get; set; } = 1.8;
         }
 
         /// <summary>

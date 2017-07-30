@@ -35,7 +35,6 @@
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
             this._ThemesListBox = new System.Windows.Forms.ListBox();
             this.themePanel1 = new MeterKnife.Plots.Dialogs.ThemePanel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
@@ -52,7 +51,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.ShowItemToolTips = false;
-            this.toolStrip1.Size = new System.Drawing.Size(410, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(395, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -87,9 +86,8 @@
             // _SplitContainer.Panel2
             // 
             this._SplitContainer.Panel2.Controls.Add(this.themePanel1);
-            this._SplitContainer.Panel2.Controls.Add(this.textBox1);
-            this._SplitContainer.Size = new System.Drawing.Size(410, 304);
-            this._SplitContainer.SplitterDistance = 82;
+            this._SplitContainer.Size = new System.Drawing.Size(395, 316);
+            this._SplitContainer.SplitterDistance = 79;
             this._SplitContainer.TabIndex = 2;
             // 
             // _ThemesListBox
@@ -100,34 +98,24 @@
             "默认主题"});
             this._ThemesListBox.Location = new System.Drawing.Point(0, 0);
             this._ThemesListBox.Name = "_ThemesListBox";
-            this._ThemesListBox.Size = new System.Drawing.Size(82, 304);
+            this._ThemesListBox.Size = new System.Drawing.Size(79, 316);
             this._ThemesListBox.TabIndex = 0;
             // 
             // themePanel1
             // 
-            this.themePanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.themePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.themePanel1.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.themePanel1.Location = new System.Drawing.Point(0, 21);
+            this.themePanel1.Location = new System.Drawing.Point(0, 0);
             this.themePanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.themePanel1.Name = "themePanel1";
-            this.themePanel1.Size = new System.Drawing.Size(324, 283);
+            this.themePanel1.Size = new System.Drawing.Size(312, 316);
             this.themePanel1.TabIndex = 0;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(324, 21);
-            this.textBox1.TabIndex = 1;
             // 
             // ThemeManagerDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 329);
+            this.ClientSize = new System.Drawing.Size(395, 341);
             this.Controls.Add(this._SplitContainer);
             this.Controls.Add(this.toolStrip1);
             this.Name = "ThemeManagerDialog";
@@ -138,7 +126,6 @@
             this.toolStrip1.PerformLayout();
             this._SplitContainer.Panel1.ResumeLayout(false);
             this._SplitContainer.Panel2.ResumeLayout(false);
-            this._SplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).EndInit();
             this._SplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -154,6 +141,5 @@
         private System.Windows.Forms.ToolStripButton _NewThemeToolStripButton;
         private System.Windows.Forms.ToolStripButton _DeleteThemeToolStripButton;
         private ThemePanel themePanel1;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

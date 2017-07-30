@@ -34,6 +34,8 @@
             // 
             // _ColorPanel
             // 
+            this._ColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._ColorPanel.BackColor = System.Drawing.Color.White;
             this._ColorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._ColorPanel.Location = new System.Drawing.Point(3, 3);
@@ -43,6 +45,7 @@
             // 
             // _Button
             // 
+            this._Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._Button.Location = new System.Drawing.Point(89, 3);
             this._Button.Name = "_Button";
             this._Button.Size = new System.Drawing.Size(50, 25);

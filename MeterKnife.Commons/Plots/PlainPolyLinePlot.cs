@@ -54,10 +54,11 @@ namespace MeterKnife.Plots
             _TimeAxis.Position = AxisPosition.Bottom;
             _TimeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
 
-            _Series.Color = PlotTheme.ToOxyColor(plotTheme.SeriesColor);
+            var series = plotTheme.SeriesStyles[0];
+            _Series.Color = PlotTheme.ToOxyColor(series.Color);
             _Series.MarkerFill = OxyColor.FromArgb(255, 24, 45, 6); //(255, 78, 154, 6);
             _Series.MarkerStroke = OxyColors.ForestGreen;
-            _Series.StrokeThickness = plotTheme.Thickness;
+            _Series.StrokeThickness = series.Thickness;
             _Series.TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}";
 
             _PlotModel.Axes.Add(_LeftAxis);
