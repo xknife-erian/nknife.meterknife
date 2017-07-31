@@ -33,6 +33,10 @@ namespace MeterKnife.Setup
             project.UI = WUI.WixUI_Mondo;
             project.Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             project.PreserveTempFiles = true;
+            project.Properties = new[]
+            {
+                new Property("PubDesktop", @"C:\Users\Public\Desktop\")
+            };
             project.BuildMsi();
 
             Console.WriteLine();
