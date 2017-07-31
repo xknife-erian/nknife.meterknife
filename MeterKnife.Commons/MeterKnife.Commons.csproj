@@ -118,13 +118,34 @@
     <Compile Include="Scpis\ScpiSubject.cs" />
     <Compile Include="Scpis\ScpiSubjectCollection.cs" />
     <Compile Include="Scpis\ScpisXmlFile.cs" />
+    <Compile Include="Utils\ColorControls\BorderState.cs" />
+    <Compile Include="Utils\ColorControls\BorderStyle.cs" />
+    <Compile Include="Utils\ColorControls\ColorPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\ColorControls\ColorPickerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\ColorControls\ColorPickerDialog.Designer.cs">
+      <DependentUpon>ColorPickerDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ColorControls\ColorShowBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\ColorControls\ColorSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\ColorControls\ExtMethodsColor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Utils\" />
+    <EmbeddedResource Include="Utils\ColorControls\ColorPickerDialog.resx">
+      <DependentUpon>ColorPickerDialog.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

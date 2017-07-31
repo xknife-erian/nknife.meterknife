@@ -126,6 +126,10 @@
     <Content Include="Properties\main.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MeterKnife.Plots\MeterKnife.Plots.csproj">
+      <Project>{0B2CB4C1-2373-469C-B4BB-B6D810F7A151}</Project>
+      <Name>MeterKnife.Plots</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Views.Measures\MeterKnife.Views.Measures.csproj">
       <Project>{c7118fc6-c829-4620-a472-5df9afe81e2c}</Project>
       <Name>MeterKnife.Views.Measures</Name>

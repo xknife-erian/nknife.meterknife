@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MeterKnife.Plots.Themes;
 using MeterKnife.Views.Measures;
+using MeterKnife.Views.Measures.Dialogs;
 using NKnife.ControlKnife;
 using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
@@ -40,6 +42,12 @@ namespace MeterKnife.UITests
             pview.Show(_DockPanel, DockState.DockRightAutoHide);
             pview.SetObject1(view.GetMainPlotModel());
             pview.SetObject2(view.GetMainPlotModel().Series[0]);
+        }
+
+        private void _ThemeManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialog = new ThemeManagerDialog();
+            dialog.ShowDialog(this);
         }
     }
 }

@@ -28,12 +28,10 @@ namespace MeterKnife.Plots.Themes
             BackColor = _Color;
             _Button.Click += (s, e) =>
             {
-                var dialog = new ColorDialog();
-                dialog.AllowFullOpen = true;
-                dialog.FullOpen = true;
+                var dialog = new ColorPickerDialog();
                 if (dialog.ShowDialog(FindForm()) == DialogResult.OK)
                 {
-                    Color = dialog.Color;
+                    Color = dialog.SelectedColor;
                 }
             };
         }

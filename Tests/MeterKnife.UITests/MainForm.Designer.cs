@@ -33,13 +33,16 @@
             this.plot测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainPlotTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
+            this.主题ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._ThemeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _MenuStrip
             // 
             this._MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.plot测试ToolStripMenuItem});
+            this.plot测试ToolStripMenuItem,
+            this.主题ToolStripMenuItem});
             this._MenuStrip.Location = new System.Drawing.Point(0, 0);
             this._MenuStrip.Name = "_MenuStrip";
             this._MenuStrip.Size = new System.Drawing.Size(1008, 25);
@@ -70,6 +73,22 @@
             this._StatusStrip.TabIndex = 1;
             this._StatusStrip.Text = "statusStrip1";
             // 
+            // 主题ToolStripMenuItem
+            // 
+            this.主题ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._ThemeManagerToolStripMenuItem});
+            this.主题ToolStripMenuItem.Name = "主题ToolStripMenuItem";
+            this.主题ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.主题ToolStripMenuItem.Text = "主题";
+            // 
+            // _ThemeManagerToolStripMenuItem
+            // 
+            this._ThemeManagerToolStripMenuItem.Name = "_ThemeManagerToolStripMenuItem";
+            this._ThemeManagerToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this._ThemeManagerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._ThemeManagerToolStripMenuItem.Text = "主题管理";
+            this._ThemeManagerToolStripMenuItem.Click += new System.EventHandler(this._ThemeManagerToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -96,6 +115,8 @@
         private System.Windows.Forms.StatusStrip _StatusStrip;
         private System.Windows.Forms.ToolStripMenuItem plot测试ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _MainPlotTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 主题ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _ThemeManagerToolStripMenuItem;
     }
 }
 
