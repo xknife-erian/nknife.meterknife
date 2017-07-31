@@ -3,6 +3,7 @@ using System.Threading;
 using GalaSoft.MvvmLight;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Plots;
+using MeterKnife.Plots.Themes;
 using NKnife.Utility;
 
 namespace MeterKnife.ViewModels
@@ -38,7 +39,7 @@ namespace MeterKnife.ViewModels
                 _OnDemo = true;
                 while (_OnDemo)
                 {
-                    Thread.Sleep(200);
+                    Thread.Sleep(1200);
                     var tail = rand.Next(0, 99999);
                     var v = $"9.99{tail}";
                     Plot.Add(double.Parse(v));

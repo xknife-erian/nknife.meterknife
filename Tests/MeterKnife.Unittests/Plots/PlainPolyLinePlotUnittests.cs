@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
-using MeterKnife.Plots;
-using MeterKnife.Plots.Themes;
+using MeterKnife.Utils;
+using MeterKnife.Utils.Plots;
 using NKnife.Base;
 using NUnit.Framework;
 
-namespace MeterKnife.Unittests
+namespace MeterKnife.Unittests.Plots
 {
     [TestFixture]
-    public class PlainPolyLinePlotTests
+    public class PlainPolyLinePlotUnittests
     {
         [OneTimeTearDown]
         public void CleanUp()

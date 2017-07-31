@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using MeterKnife.Plots;
+using MeterKnife.Plots.Themes;
 using OxyPlot.WindowsForms;
 
 namespace MeterKnife.Views.Measures

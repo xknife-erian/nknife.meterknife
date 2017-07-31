@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using OxyPlot;
 
-namespace MeterKnife.Plots
+namespace MeterKnife.Utils.Plots
 {
     /// <summary>
     /// 图表主题，保存图表的颜色等信息。
@@ -11,7 +10,7 @@ namespace MeterKnife.Plots
     public class PlotTheme
     {
         public string Id { get; set; }
-        public string Name { get; set; } = "默认主题";
+        public string Name { get; set; }
 
         public PlotTheme()
         {
@@ -21,12 +20,22 @@ namespace MeterKnife.Plots
         /// <summary>
         ///     左侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
         /// </summary>
-        public GridLineColors LeftAxisGridLineColors { get; set; } = new GridLineColors();
+        public ColorPair LeftAxisGridlineColor { get; set; }
 
         /// <summary>
         ///     底部数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
         /// </summary>
-        public GridLineColors BottomAxisGridLineColors { get; set; } = new GridLineColors();
+        public ColorPair BottomAxisGridlineColor { get; set; }
+
+        /// <summary>
+        ///     顶部侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
+        /// </summary>
+        public ColorPair TopAxisGridlineColor { get; set; }
+
+        /// <summary>
+        ///     右侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
+        /// </summary>
+        public ColorPair RightAxisGridlineColor { get; set; }
 
         /// <summary>
         ///     图表画框区背景色
@@ -41,49 +50,31 @@ namespace MeterKnife.Plots
         /// <summary>
         ///     数据线颜色
         /// </summary>
-        public List<SeriesStyle> SeriesStyles { get; set; } = new List<SeriesStyle>(new[] {new SeriesStyle()});
-
-        /*
-        
-        /// <summary>
-        ///     顶部侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
-        /// </summary>
-        public GridLineColors TopAxisGridLineColors { get; set; } = new GridLineColors();
+        public Color SeriesColor { get; set; } = Color.Yellow;
 
         /// <summary>
-        ///     右侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
+        ///     数据线线径
         /// </summary>
-        public GridLineColors RightAxisGridLineColors { get; set; } = new GridLineColors();
-
-        */
+        public double Thickness { get; set; } = 1.8;
 
         public static OxyColor ToOxyColor(Color color)
         {
             return OxyColor.FromArgb(color.A, color.R, color.G, color.B);
         }
 
-        public class SeriesStyle
-        {
-            public Color Color { get; set; } = Color.Yellow;
-            /// <summary>
-            ///     数据线线径
-            /// </summary>
-            public double Thickness { get; set; } = 1.8;
-        }
-
         /// <summary>
         /// 一对颜色，用在比如数轴网格线的着色上
         /// </summary>
-        public class GridLineColors
+        public class ColorPair
         {
             /// <summary>
             /// 突出显示的颜色
             /// </summary>
-            public Color Major { get; set; } = ColorTranslator.FromHtml("#40000000");
+            public Color Major { get; set; }
             /// <summary>
             /// 一般显示的颜色
             /// </summary>
-            public Color Minor { get; set; } = ColorTranslator.FromHtml("#20000000");
+            public Color Minor { get; set; }
         }
     }
 }

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{974F3368-91FD-405B-88DE-3CDD84DC23C5}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>MeterKnife.App</RootNamespace>
-    <AssemblyName>MeterKnife</AssemblyName>
+    <ProjectGuid>{0B2CB4C1-2373-469C-B4BB-B6D810F7A151}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MeterKnife.Plots</RootNamespace>
+    <AssemblyName>MeterKnife.Plots</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,9 +33,6 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Properties\mk-main.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
@@ -49,11 +46,11 @@
     <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.AutoUpdater, Version=1.4.1.611, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.AutoUpdater.1.4.1.611\lib\net40\NKnife.AutoUpdater.dll</HintPath>
-    </Reference>
     <Reference Include="NKnife.ControlKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.ControlKnife.17.5.0.511\lib\net40\NKnife.ControlKnife.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2.0.0-unstable0956\lib\net40\OxyPlot.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,14 +64,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap.cs" />
-    <Compile Include="FileCleaner.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EnvironmentCore.cs" />
-    <Compile Include="Properties\AssemblyVersion.cs" />
-    <Compile Include="SplashForm.cs">
+    <Compile Include="Themes\ColorComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Themes\ThemeColorItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Themes\ThemeColorItem.Designer.cs">
+      <DependentUpon>ThemeColorItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\ThemeManagerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Themes\ThemeManagerDialog.Designer.cs">
+      <DependentUpon>ThemeManagerDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlainPolyLinePlot.cs" />
+    <Compile Include="Themes\PlotTheme.cs" />
+    <Compile Include="Themes\PlotThemeDropDownButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Themes\ThemeColorItem.resx">
+      <DependentUpon>ThemeColorItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Themes\ThemeManagerDialog.resx">
+      <DependentUpon>ThemeManagerDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -85,7 +101,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -98,74 +113,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MeterKnife.App.Tray\MeterKnife.App.Tray.csproj">
-      <Project>{a8d6b3e0-713b-4abf-9c19-16a158c7d2d3}</Project>
-      <Name>MeterKnife.App.Tray</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Commons\MeterKnife.Commons.csproj">
       <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
       <Name>MeterKnife.Commons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Datas\MeterKnife.Datas.csproj">
-      <Project>{1ab7a059-32cd-405f-a3b2-2d19b430bff4}</Project>
-      <Name>MeterKnife.Datas</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Gateway\MeterKnife.Gateway.csproj">
-      <Project>{b1053860-12d3-409f-9961-bd8719b82e56}</Project>
-      <Name>MeterKnife.Gateway</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Kernel\MeterKnife.Kernel.csproj">
-      <Project>{c0352137-c756-41dc-80f8-4b026546ad5b}</Project>
-      <Name>MeterKnife.Kernel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plots\MeterKnife.Plots.csproj">
-      <Project>{0b2cb4c1-2373-469c-b4bb-b6d810f7a151}</Project>
-      <Name>MeterKnife.Plots</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plugins.FileMenu\MeterKnife.Plugins.FileMenu.csproj">
-      <Project>{f21aad20-3f81-4fa0-b9d5-63d8dcbc6e52}</Project>
-      <Name>MeterKnife.Plugins.FileMenu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plugins.HelpMenu\MeterKnife.Plugins.HelpMenu.csproj">
-      <Project>{656970b6-a847-4340-a706-ab2bc1d07ef0}</Project>
-      <Name>MeterKnife.Plugins.HelpMenu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plugins.MeasureMenu\MeterKnife.Plugins.MeasureMenu.csproj">
-      <Project>{eea8a692-5cf4-4cb1-b962-05635abc1bf0}</Project>
-      <Name>MeterKnife.Plugins.MeasureMenu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plugins.ViewMenu\MeterKnife.Plugins.ViewMenu.csproj">
-      <Project>{2155ed0a-4eb7-44ff-8cc3-5371639d2717}</Project>
-      <Name>MeterKnife.Plugins.ViewMenu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Reports\MeterKnife.Reports.csproj">
-      <Project>{068a0168-d030-4757-8e19-ff0460d30acd}</Project>
-      <Name>MeterKnife.Reports</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Scpis\MeterKnife.Scpis.csproj">
-      <Project>{fa16056b-6bf8-464e-a05d-ab2914eb1e37}</Project>
-      <Name>MeterKnife.Scpis</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.ViewModels\MeterKnife.ViewModels.csproj">
-      <Project>{a67f283f-ddbb-466d-9960-ed88ef553894}</Project>
-      <Name>MeterKnife.ViewModels</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Views.Measures\MeterKnife.Views.Measures.csproj">
-      <Project>{c7118fc6-c829-4620-a472-5df9afe81e2c}</Project>
-      <Name>MeterKnife.Views.Measures</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Views\MeterKnife.Views.csproj">
-      <Project>{58446aa7-0041-46d1-a654-61660b9a00d5}</Project>
-      <Name>MeterKnife.Views</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\mk-main.ico" />
-    <Content Include="Properties\mk-welcome.png" />
+    <Content Include="Properties\color_picker.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>

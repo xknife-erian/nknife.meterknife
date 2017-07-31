@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
+using MeterKnife.Plots.Themes;
 using NKnife.Base;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -56,8 +57,8 @@ namespace MeterKnife.Plots
 
             var series = plotTheme.SeriesStyles[0];
             _Series.Color = PlotTheme.ToOxyColor(series.Color);
-            _Series.MarkerFill = OxyColor.FromArgb(255, 24, 45, 6); //(255, 78, 154, 6);
-            _Series.MarkerStroke = OxyColors.ForestGreen;
+            _Series.MarkerFill = PlotTheme.ToOxyColor(Color.Red);//OxyColor.FromArgb(255, 24, 45, 6); //(255, 78, 154, 6);
+            _Series.MarkerStroke = PlotTheme.ToOxyColor(Color.Red);
             _Series.StrokeThickness = series.Thickness;
             _Series.TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}";
 

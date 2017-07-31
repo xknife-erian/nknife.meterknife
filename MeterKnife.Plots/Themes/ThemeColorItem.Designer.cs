@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Plots.Dialogs
+﻿namespace MeterKnife.Plots.Themes
 {
     partial class ThemeColorItem
     {
@@ -28,48 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._ColorPanel = new System.Windows.Forms.Panel();
             this._Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // _ColorPanel
-            // 
-            this._ColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._ColorPanel.BackColor = System.Drawing.Color.White;
-            this._ColorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._ColorPanel.Location = new System.Drawing.Point(3, 3);
-            this._ColorPanel.Name = "_ColorPanel";
-            this._ColorPanel.Size = new System.Drawing.Size(80, 24);
-            this._ColorPanel.TabIndex = 1;
             // 
             // _Button
             // 
             this._Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._Button.Location = new System.Drawing.Point(89, 3);
+            this._Button.BackgroundImage = global::MeterKnife.Plots.Properties.Resources.color_picker;
+            this._Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._Button.Location = new System.Drawing.Point(54, -1);
             this._Button.Name = "_Button";
-            this._Button.Size = new System.Drawing.Size(50, 25);
+            this._Button.Size = new System.Drawing.Size(27, 23);
             this._Button.TabIndex = 2;
-            this._Button.Text = "设置";
             this._Button.UseVisualStyleBackColor = true;
             // 
             // ThemeColorItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this._Button);
-            this.Controls.Add(this._ColorPanel);
             this.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ThemeColorItem";
-            this.Size = new System.Drawing.Size(142, 30);
+            this.Size = new System.Drawing.Size(80, 23);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel _ColorPanel;
         private System.Windows.Forms.Button _Button;
     }
 }

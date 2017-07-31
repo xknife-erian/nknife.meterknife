@@ -117,6 +117,10 @@
       <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
       <Name>MeterKnife.Commons</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Plots\MeterKnife.Plots.csproj">
+      <Project>{0b2cb4c1-2373-469c-b4bb-b6d810f7a151}</Project>
+      <Name>MeterKnife.Plots</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.ViewModels\MeterKnife.ViewModels.csproj">
       <Project>{a67f283f-ddbb-466d-9960-ed88ef553894}</Project>
       <Name>MeterKnife.ViewModels</Name>

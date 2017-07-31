@@ -1,7 +1,6 @@
 ﻿using System.Windows.Forms;
-using MeterKnife.Plots.Dialogs;
 
-namespace MeterKnife.Plots
+namespace MeterKnife.Plots.Themes
 {
     public sealed class PlotThemeDropDownButton : ToolStripDropDownButton
     {
