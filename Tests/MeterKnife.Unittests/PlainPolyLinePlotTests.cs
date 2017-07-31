@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
+using MeterKnife.Models;
 using MeterKnife.Plots;
-using MeterKnife.Plots.Themes;
 using NKnife.Base;
 using NUnit.Framework;
 

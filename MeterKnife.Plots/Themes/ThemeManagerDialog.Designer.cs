@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.themeColorItem5 = new MeterKnife.Plots.Themes.ThemeColorItem();
-            this.themeColorItem6 = new MeterKnife.Plots.Themes.ThemeColorItem();
+            this._BottomGridLineGroupBox = new System.Windows.Forms.GroupBox();
+            this._BottomAxisGridLineMinorColor = new MeterKnife.Plots.Themes.ThemeColorItem();
+            this._BottomAxisGridLineMajorColor = new MeterKnife.Plots.Themes.ThemeColorItem();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -39,62 +39,66 @@
             this.themeColorItem2 = new MeterKnife.Plots.Themes.ThemeColorItem();
             this.themeColorItem1 = new MeterKnife.Plots.Themes.ThemeColorItem();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.themeColorItem3 = new MeterKnife.Plots.Themes.ThemeColorItem();
-            this.themeColorItem4 = new MeterKnife.Plots.Themes.ThemeColorItem();
+            this._LeftGridLineGroupBox = new System.Windows.Forms.GroupBox();
+            this._LeftAxisGridLineMinorColor = new MeterKnife.Plots.Themes.ThemeColorItem();
+            this._LeftAxisGridLineMajorColor = new MeterKnife.Plots.Themes.ThemeColorItem();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this._ThemeListComboBox = new System.Windows.Forms.ComboBox();
+            this._NewThemeButton = new System.Windows.Forms.Button();
+            this._DeleteThemeButton = new System.Windows.Forms.Button();
+            this._EnableThemeButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.themeColorItem8 = new MeterKnife.Plots.Themes.ThemeColorItem();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this._SeriesListComboBox = new System.Windows.Forms.ComboBox();
+            this._BottomGridLineGroupBox.SuspendLayout();
+            this._LeftGridLineGroupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox2
+            // _BottomGridLineGroupBox
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._BottomGridLineGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.themeColorItem5);
-            this.groupBox2.Controls.Add(this.themeColorItem6);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Location = new System.Drawing.Point(19, 222);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(310, 76);
-            this.groupBox2.TabIndex = 28;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "左侧数轴网格线";
+            this._BottomGridLineGroupBox.Controls.Add(this._BottomAxisGridLineMinorColor);
+            this._BottomGridLineGroupBox.Controls.Add(this._BottomAxisGridLineMajorColor);
+            this._BottomGridLineGroupBox.Controls.Add(this.label8);
+            this._BottomGridLineGroupBox.Controls.Add(this.label9);
+            this._BottomGridLineGroupBox.Location = new System.Drawing.Point(19, 222);
+            this._BottomGridLineGroupBox.Name = "_BottomGridLineGroupBox";
+            this._BottomGridLineGroupBox.Size = new System.Drawing.Size(310, 76);
+            this._BottomGridLineGroupBox.TabIndex = 28;
+            this._BottomGridLineGroupBox.TabStop = false;
+            this._BottomGridLineGroupBox.Text = "底部数轴网格线";
             // 
-            // themeColorItem5
+            // _BottomAxisGridLineMinorColor
             // 
-            this.themeColorItem5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.themeColorItem5.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.themeColorItem5.Location = new System.Drawing.Point(96, 44);
-            this.themeColorItem5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.themeColorItem5.Name = "themeColorItem5";
-            this.themeColorItem5.Size = new System.Drawing.Size(80, 23);
-            this.themeColorItem5.TabIndex = 1;
+            this._BottomAxisGridLineMinorColor.BackColor = System.Drawing.Color.White;
+            this._BottomAxisGridLineMinorColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._BottomAxisGridLineMinorColor.Color = System.Drawing.Color.White;
+            this._BottomAxisGridLineMinorColor.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this._BottomAxisGridLineMinorColor.Location = new System.Drawing.Point(96, 44);
+            this._BottomAxisGridLineMinorColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._BottomAxisGridLineMinorColor.Name = "_BottomAxisGridLineMinorColor";
+            this._BottomAxisGridLineMinorColor.Size = new System.Drawing.Size(80, 23);
+            this._BottomAxisGridLineMinorColor.TabIndex = 1;
             // 
-            // themeColorItem6
+            // _BottomAxisGridLineMajorColor
             // 
-            this.themeColorItem6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.themeColorItem6.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.themeColorItem6.Location = new System.Drawing.Point(96, 18);
-            this.themeColorItem6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.themeColorItem6.Name = "themeColorItem6";
-            this.themeColorItem6.Size = new System.Drawing.Size(80, 23);
-            this.themeColorItem6.TabIndex = 0;
+            this._BottomAxisGridLineMajorColor.BackColor = System.Drawing.Color.White;
+            this._BottomAxisGridLineMajorColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._BottomAxisGridLineMajorColor.Color = System.Drawing.Color.White;
+            this._BottomAxisGridLineMajorColor.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this._BottomAxisGridLineMajorColor.Location = new System.Drawing.Point(96, 18);
+            this._BottomAxisGridLineMajorColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._BottomAxisGridLineMajorColor.Name = "_BottomAxisGridLineMajorColor";
+            this._BottomAxisGridLineMajorColor.Size = new System.Drawing.Size(80, 23);
+            this._BottomAxisGridLineMajorColor.TabIndex = 0;
             // 
             // label8
             // 
@@ -146,7 +150,9 @@
             // 
             // themeColorItem2
             // 
+            this.themeColorItem2.BackColor = System.Drawing.Color.White;
             this.themeColorItem2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.themeColorItem2.Color = System.Drawing.Color.White;
             this.themeColorItem2.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.themeColorItem2.Location = new System.Drawing.Point(115, 111);
             this.themeColorItem2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -156,7 +162,9 @@
             // 
             // themeColorItem1
             // 
+            this.themeColorItem1.BackColor = System.Drawing.Color.White;
             this.themeColorItem1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.themeColorItem1.Color = System.Drawing.Color.White;
             this.themeColorItem1.Font = new System.Drawing.Font("Verdana", 8.25F);
             this.themeColorItem1.Location = new System.Drawing.Point(115, 85);
             this.themeColorItem1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -174,40 +182,44 @@
             this.label5.TabIndex = 22;
             this.label5.Text = "主题:";
             // 
-            // groupBox1
+            // _LeftGridLineGroupBox
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._LeftGridLineGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.themeColorItem3);
-            this.groupBox1.Controls.Add(this.themeColorItem4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(19, 140);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(310, 76);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "左侧数轴网格线";
+            this._LeftGridLineGroupBox.Controls.Add(this._LeftAxisGridLineMinorColor);
+            this._LeftGridLineGroupBox.Controls.Add(this._LeftAxisGridLineMajorColor);
+            this._LeftGridLineGroupBox.Controls.Add(this.label3);
+            this._LeftGridLineGroupBox.Controls.Add(this.label4);
+            this._LeftGridLineGroupBox.Location = new System.Drawing.Point(19, 140);
+            this._LeftGridLineGroupBox.Name = "_LeftGridLineGroupBox";
+            this._LeftGridLineGroupBox.Size = new System.Drawing.Size(310, 76);
+            this._LeftGridLineGroupBox.TabIndex = 20;
+            this._LeftGridLineGroupBox.TabStop = false;
+            this._LeftGridLineGroupBox.Text = "左侧数轴网格线";
             // 
-            // themeColorItem3
+            // _LeftAxisGridLineMinorColor
             // 
-            this.themeColorItem3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.themeColorItem3.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.themeColorItem3.Location = new System.Drawing.Point(96, 44);
-            this.themeColorItem3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.themeColorItem3.Name = "themeColorItem3";
-            this.themeColorItem3.Size = new System.Drawing.Size(80, 23);
-            this.themeColorItem3.TabIndex = 1;
+            this._LeftAxisGridLineMinorColor.BackColor = System.Drawing.Color.White;
+            this._LeftAxisGridLineMinorColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._LeftAxisGridLineMinorColor.Color = System.Drawing.Color.White;
+            this._LeftAxisGridLineMinorColor.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this._LeftAxisGridLineMinorColor.Location = new System.Drawing.Point(96, 44);
+            this._LeftAxisGridLineMinorColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._LeftAxisGridLineMinorColor.Name = "_LeftAxisGridLineMinorColor";
+            this._LeftAxisGridLineMinorColor.Size = new System.Drawing.Size(80, 23);
+            this._LeftAxisGridLineMinorColor.TabIndex = 1;
             // 
-            // themeColorItem4
+            // _LeftAxisGridLineMajorColor
             // 
-            this.themeColorItem4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.themeColorItem4.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.themeColorItem4.Location = new System.Drawing.Point(96, 18);
-            this.themeColorItem4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.themeColorItem4.Name = "themeColorItem4";
-            this.themeColorItem4.Size = new System.Drawing.Size(80, 23);
-            this.themeColorItem4.TabIndex = 0;
+            this._LeftAxisGridLineMajorColor.BackColor = System.Drawing.Color.White;
+            this._LeftAxisGridLineMajorColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._LeftAxisGridLineMajorColor.Color = System.Drawing.Color.White;
+            this._LeftAxisGridLineMajorColor.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this._LeftAxisGridLineMajorColor.Location = new System.Drawing.Point(96, 18);
+            this._LeftAxisGridLineMajorColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._LeftAxisGridLineMajorColor.Name = "_LeftAxisGridLineMajorColor";
+            this._LeftAxisGridLineMajorColor.Size = new System.Drawing.Size(80, 23);
+            this._LeftAxisGridLineMajorColor.TabIndex = 0;
             // 
             // label3
             // 
@@ -253,40 +265,40 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "图表画框区";
             // 
-            // comboBox1
+            // _ThemeListComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(52, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(143, 21);
-            this.comboBox1.TabIndex = 0;
+            this._ThemeListComboBox.FormattingEnabled = true;
+            this._ThemeListComboBox.Location = new System.Drawing.Point(52, 19);
+            this._ThemeListComboBox.Name = "_ThemeListComboBox";
+            this._ThemeListComboBox.Size = new System.Drawing.Size(143, 21);
+            this._ThemeListComboBox.TabIndex = 0;
             // 
-            // button1
+            // _NewThemeButton
             // 
-            this.button1.Location = new System.Drawing.Point(201, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 21);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "新建";
-            this.button1.UseVisualStyleBackColor = true;
+            this._NewThemeButton.Location = new System.Drawing.Point(201, 19);
+            this._NewThemeButton.Name = "_NewThemeButton";
+            this._NewThemeButton.Size = new System.Drawing.Size(39, 21);
+            this._NewThemeButton.TabIndex = 1;
+            this._NewThemeButton.Text = "新建";
+            this._NewThemeButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // _DeleteThemeButton
             // 
-            this.button2.Location = new System.Drawing.Point(240, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(39, 21);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "删除";
-            this.button2.UseVisualStyleBackColor = true;
+            this._DeleteThemeButton.Location = new System.Drawing.Point(240, 19);
+            this._DeleteThemeButton.Name = "_DeleteThemeButton";
+            this._DeleteThemeButton.Size = new System.Drawing.Size(39, 21);
+            this._DeleteThemeButton.TabIndex = 2;
+            this._DeleteThemeButton.Text = "删除";
+            this._DeleteThemeButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // _EnableThemeButton
             // 
-            this.button3.Location = new System.Drawing.Point(291, 19);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(39, 21);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "启用";
-            this.button3.UseVisualStyleBackColor = true;
+            this._EnableThemeButton.Location = new System.Drawing.Point(291, 19);
+            this._EnableThemeButton.Name = "_EnableThemeButton";
+            this._EnableThemeButton.Size = new System.Drawing.Size(39, 21);
+            this._EnableThemeButton.TabIndex = 3;
+            this._EnableThemeButton.Text = "启用";
+            this._EnableThemeButton.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -302,34 +314,6 @@
             this.groupBox3.TabIndex = 29;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "数据线";
-            // 
-            // themeColorItem8
-            // 
-            this.themeColorItem8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.themeColorItem8.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.themeColorItem8.Location = new System.Drawing.Point(96, 26);
-            this.themeColorItem8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.themeColorItem8.Name = "themeColorItem8";
-            this.themeColorItem8.Size = new System.Drawing.Size(80, 23);
-            this.themeColorItem8.TabIndex = 0;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(22, 31);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(67, 13);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "数据线线体";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(69, 305);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(77, 21);
-            this.comboBox2.TabIndex = 5;
             // 
             // numericUpDown2
             // 
@@ -360,35 +344,65 @@
             0,
             65536});
             // 
+            // themeColorItem8
+            // 
+            this.themeColorItem8.BackColor = System.Drawing.Color.White;
+            this.themeColorItem8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.themeColorItem8.Color = System.Drawing.Color.White;
+            this.themeColorItem8.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this.themeColorItem8.Location = new System.Drawing.Point(96, 26);
+            this.themeColorItem8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.themeColorItem8.Name = "themeColorItem8";
+            this.themeColorItem8.Size = new System.Drawing.Size(80, 23);
+            this.themeColorItem8.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(22, 31);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(67, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "数据线线体";
+            // 
+            // _SeriesListComboBox
+            // 
+            this._SeriesListComboBox.FormattingEnabled = true;
+            this._SeriesListComboBox.Location = new System.Drawing.Point(69, 305);
+            this._SeriesListComboBox.Name = "_SeriesListComboBox";
+            this._SeriesListComboBox.Size = new System.Drawing.Size(77, 21);
+            this._SeriesListComboBox.TabIndex = 5;
+            // 
             // ThemeManagerDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 420);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this._SeriesListComboBox);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this._EnableThemeButton);
+            this.Controls.Add(this._DeleteThemeButton);
+            this.Controls.Add(this._NewThemeButton);
+            this.Controls.Add(this._ThemeListComboBox);
+            this.Controls.Add(this._BottomGridLineGroupBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.singleLine1);
             this.Controls.Add(this.themeColorItem2);
             this.Controls.Add(this.themeColorItem1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this._LeftGridLineGroupBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ThemeManagerDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "主题管理";
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this._BottomGridLineGroupBox.ResumeLayout(false);
+            this._BottomGridLineGroupBox.PerformLayout();
+            this._LeftGridLineGroupBox.ResumeLayout(false);
+            this._LeftGridLineGroupBox.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
@@ -399,9 +413,9 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
-        private ThemeColorItem themeColorItem5;
-        private ThemeColorItem themeColorItem6;
+        private System.Windows.Forms.GroupBox _BottomGridLineGroupBox;
+        private ThemeColorItem _BottomAxisGridLineMinorColor;
+        private ThemeColorItem _BottomAxisGridLineMajorColor;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
@@ -410,21 +424,21 @@
         private ThemeColorItem themeColorItem2;
         private ThemeColorItem themeColorItem1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private ThemeColorItem themeColorItem3;
-        private ThemeColorItem themeColorItem4;
+        private System.Windows.Forms.GroupBox _LeftGridLineGroupBox;
+        private ThemeColorItem _LeftAxisGridLineMinorColor;
+        private ThemeColorItem _LeftAxisGridLineMajorColor;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox _ThemeListComboBox;
+        private System.Windows.Forms.Button _NewThemeButton;
+        private System.Windows.Forms.Button _DeleteThemeButton;
+        private System.Windows.Forms.Button _EnableThemeButton;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private ThemeColorItem themeColorItem8;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox _SeriesListComboBox;
     }
 }

@@ -2,8 +2,8 @@
 using System.Threading;
 using GalaSoft.MvvmLight;
 using MeterKnife.Interfaces.Plugins;
+using MeterKnife.Models;
 using MeterKnife.Plots;
-using MeterKnife.Plots.Themes;
 using NKnife.Utility;
 
 namespace MeterKnife.ViewModels

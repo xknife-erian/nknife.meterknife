@@ -64,9 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Themes\ColorComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Themes\ThemeColorItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -80,7 +77,6 @@
       <DependentUpon>ThemeManagerDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="PlainPolyLinePlot.cs" />
-    <Compile Include="Themes\PlotTheme.cs" />
     <Compile Include="Themes\PlotThemeDropDownButton.cs">
       <SubType>Component</SubType>
     </Compile>

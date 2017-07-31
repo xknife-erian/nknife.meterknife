@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Plots.Themes
 {
-    partial class ThemeColorItem
+    sealed partial class ThemeColorItem
     {
         /// <summary> 
         /// 必需的设计器变量。

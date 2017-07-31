@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using OxyPlot;
 
-namespace MeterKnife.Plots.Themes
+namespace MeterKnife.Models
 {
     /// <summary>
     /// 图表主题，保存图表的颜色等信息。

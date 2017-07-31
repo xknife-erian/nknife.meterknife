@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
-using MeterKnife.Plots.Themes;
+using MeterKnife.Models;
 using NKnife.Base;
 using OxyPlot;
 using OxyPlot.Axes;

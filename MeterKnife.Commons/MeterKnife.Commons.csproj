@@ -87,6 +87,7 @@
     <Compile Include="Events\ExhibitDataCollectedEventArgs.cs" />
     <Compile Include="Interfaces\IAppTrayService.cs" />
     <Compile Include="Interfaces\IGatewayService.cs" />
+    <Compile Include="Interfaces\IHabitedDatas.cs" />
     <Compile Include="Interfaces\IKernels.cs" />
     <Compile Include="Interfaces\IWorkbench.cs" />
     <Compile Include="Interfaces\Plugins\IDropFunctionManager.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Models\Exhibits\ExhibitData.cs" />
     <Compile Include="Models\Exhibits\ExhibitInfomation.cs" />
     <Compile Include="Models\Exhibits\ExhibitItem.cs" />
+    <Compile Include="Models\PlotTheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scpis\IScpiFileVersionProcessor.cs" />
     <Compile Include="Scpis\ScpiCommand.cs" />
