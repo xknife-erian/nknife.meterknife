@@ -126,6 +126,10 @@
     <Content Include="Properties\main.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MeterKnife.Kernel\MeterKnife.Kernel.csproj">
+      <Project>{c0352137-c756-41dc-80f8-4b026546ad5b}</Project>
+      <Name>MeterKnife.Kernel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Plots\MeterKnife.Plots.csproj">
       <Project>{0B2CB4C1-2373-469C-B4BB-B6D810F7A151}</Project>
       <Name>MeterKnife.Plots</Name>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using NKnife.IoC;
 
 namespace MeterKnife.UITests
 {
@@ -15,6 +16,7 @@ namespace MeterKnife.UITests
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            DI.Initialize();
             Application.Run(new MainForm());
         }
     }

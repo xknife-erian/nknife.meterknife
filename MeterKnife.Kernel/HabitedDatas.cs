@@ -20,7 +20,7 @@ namespace MeterKnife.Kernel
         {
             get
             {
-                var content = GetValue(nameof(PlotThemes), null);
+                var content = GetValue(nameof(PlotThemes), new List<PlotTheme>(new[] {new PlotTheme()}));
                 var ts = JsonConvert.DeserializeObject<List<PlotTheme>>(content);
                 return ts;
             }
@@ -36,6 +36,12 @@ namespace MeterKnife.Kernel
                     SetValue(nameof(PlotThemes), JsonConvert.SerializeObject(value));
                 }
             }
+        }
+
+        public string UsingTheme
+        {
+            get => GetValue(nameof(UsingTheme), "默认主题");
+            set => SetValue(nameof(UsingTheme), value);
         }
     }
 }

@@ -6,5 +6,6 @@ namespace MeterKnife.Interfaces
     public interface IHabitedDatas
     {
         List<PlotTheme> PlotThemes { get; set; }
+        string UsingTheme { get; set; }
     }
 }
