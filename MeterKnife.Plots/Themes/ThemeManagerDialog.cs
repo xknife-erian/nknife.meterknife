@@ -1,11 +1,15 @@
-﻿using NKnife.ControlKnife;
+﻿using MeterKnife.Models;
+using NKnife.ControlKnife;
 
 namespace MeterKnife.Plots.Themes
 {
     public partial class ThemeManagerDialog : SimpleForm
     {
-        public ThemeManagerDialog()
+        public PlotTheme PlotTheme { get; set; }
+
+        public ThemeManagerDialog(PlotTheme plotTheme)
         {
+            PlotTheme = plotTheme;
             InitializeComponent();
         }
     }
