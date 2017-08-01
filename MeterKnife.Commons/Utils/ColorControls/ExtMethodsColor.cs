@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace AdamsLair.WinForms
+namespace MeterKnife.Utils.ColorControls
 {
 	internal static class ExtMethodsColor
 	{

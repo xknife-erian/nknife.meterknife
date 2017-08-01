@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.ComponentModel;
+using System.Windows.Forms;
 
-using AdamsLair.WinForms.Drawing;
-
-namespace AdamsLair.WinForms.ColorControls
+namespace MeterKnife.Utils.ColorControls
 {
 	public class ColorSlider : Control
 	{
-		//private	ControlRenderer	renderer	= new ControlRenderer();
+		private	ControlRenderer	renderer	= new ControlRenderer();
 		private	Bitmap			srcImage	= null;
 		private	int				pickerSize	= 5;
 		private	float			pickerPos	= 0.5f;
@@ -26,10 +24,10 @@ namespace AdamsLair.WinForms.ColorControls
 		public event EventHandler PercentualValueChanged = null;
 
 		
-//		public ControlRenderer Renderer
-//		{
-//			get { return this.renderer; }
-//		}
+		public ControlRenderer Renderer
+		{
+			get { return this.renderer; }
+		}
 
 		public Rectangle ColorAreaRectangle
 		{
@@ -218,7 +216,7 @@ namespace AdamsLair.WinForms.ColorControls
 			colorAreaImageAttr.SetWrapMode(WrapMode.TileFlipXY);
 			e.Graphics.DrawImage(this.srcImage, colorArea, 0, 0, this.srcImage.Width, this.srcImage.Height - 1, GraphicsUnit.Pixel, colorAreaImageAttr);
 
-			this.renderer.DrawBorder(e.Graphics, colorBox, Drawing.BorderStyle.ContentBox, BorderState.Normal);
+			this.renderer.DrawBorder(e.Graphics, colorBox, BorderStyle.ContentBox, BorderState.Normal);
 
 			Pen outerPickerPen = this.Enabled ? Pens.Black : new Pen(Color.FromArgb(128, Color.Black));
 			e.Graphics.DrawLines(outerPickerPen, new Point[] {

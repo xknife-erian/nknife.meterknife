@@ -118,8 +118,6 @@
     <Compile Include="Scpis\ScpiSubject.cs" />
     <Compile Include="Scpis\ScpiSubjectCollection.cs" />
     <Compile Include="Scpis\ScpisXmlFile.cs" />
-    <Compile Include="Utils\ColorControls\BorderState.cs" />
-    <Compile Include="Utils\ColorControls\BorderStyle.cs" />
     <Compile Include="Utils\ColorControls\ColorPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -135,6 +133,7 @@
     <Compile Include="Utils\ColorControls\ColorSlider.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utils\ColorControls\ControlRenderer.cs" />
     <Compile Include="Utils\ColorControls\ExtMethodsColor.cs" />
   </ItemGroup>
   <ItemGroup>

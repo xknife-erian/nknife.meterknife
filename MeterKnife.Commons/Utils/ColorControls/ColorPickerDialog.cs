@@ -7,7 +7,7 @@ using System.Windows.Forms;
  * https://github.com/AdamsLair/winforms.git
  */
 
-namespace AdamsLair.WinForms.ColorControls
+namespace MeterKnife.Utils.ColorControls
 {
     public partial class ColorPickerDialog : Form
     {

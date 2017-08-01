@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
-using AdamsLair.WinForms.Drawing;
-
-namespace AdamsLair.WinForms.ColorControls
+namespace MeterKnife.Utils.ColorControls
 {
 	public class ColorShowBox : Control
 	{
-		//private	ControlRenderer	renderer	= new ControlRenderer();
+		private	ControlRenderer	renderer	= new ControlRenderer();
 		private	Color			upperColor	= Color.Transparent;
 		private	Color			lowerColor	= Color.Transparent;
 
@@ -18,10 +16,10 @@ namespace AdamsLair.WinForms.ColorControls
 		public event EventHandler LowerClick = null;
 
 		
-//		public ControlRenderer Renderer
-//		{
-//			get { return this.renderer; }
-//		}
+		public ControlRenderer Renderer
+		{
+			get { return this.renderer; }
+		}
 		public Rectangle ColorAreaRectangle
 		{
 			get { return new Rectangle(
@@ -96,7 +94,7 @@ namespace AdamsLair.WinForms.ColorControls
 				colorArea.Width,
 				colorArea.Height / 2);
 
-			this.renderer.DrawBorder(e.Graphics, this.ClientRectangle, Drawing.BorderStyle.ContentBox, BorderState.Normal);
+			this.renderer.DrawBorder(e.Graphics, this.ClientRectangle, BorderStyle.ContentBox, BorderState.Normal);
 		}
 	}
 }
