@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading;
 using GalaSoft.MvvmLight;
+using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Models;
 using MeterKnife.Plots;
+using NKnife.IoC;
 using NKnife.Utility;
 
 namespace MeterKnife.ViewModels
@@ -11,7 +13,20 @@ namespace MeterKnife.ViewModels
     public class MeasureViewModel : ViewModelBase
     {
         private IExtenderProvider _ExtenderProvider;
-        public PlainPolyLinePlot Plot { get; } = new PlainPolyLinePlot(new PlotTheme());
+        public PlainPolyLinePlot Plot { get; }
+
+        public MeasureViewModel()
+        {
+            var hd = DI.Get<IHabitedDatas>();
+            var themes = hd.PlotThemes;
+            var usingTheme = hd.UsingTheme;
+            foreach (var plotTheme in themes)
+            {
+                if (plotTheme.Name == usingTheme)
+                    Plot = new PlainPolyLinePlot(plotTheme);
+            }
+
+        }
 
         public void SetProvider(IExtenderProvider provider)
         {
@@ -39,7 +54,7 @@ namespace MeterKnife.ViewModels
                 _OnDemo = true;
                 while (_OnDemo)
                 {
-                    Thread.Sleep(1200);
+                    Thread.Sleep(600);
                     var tail = rand.Next(0, 99999);
                     var v = $"9.99{tail}";
                     Plot.Add(double.Parse(v));

@@ -16,25 +16,29 @@ namespace MeterKnife.Kernel
     /// </summary>
     public class HabitedDatas : UserApplicationData, IHabitedDatas
     {
+        private readonly List<PlotTheme> _DefaultPlotThemes;
+
+        public HabitedDatas()
+        {
+            var pt = new PlotTheme();
+            pt.SeriesStyles.Add(new PlotTheme.SeriesStyle());
+            _DefaultPlotThemes = new List<PlotTheme>(new[] { pt });
+        }
+
         public List<PlotTheme> PlotThemes
         {
             get
             {
-                var content = GetValue(nameof(PlotThemes), new List<PlotTheme>(new[] {new PlotTheme()}));
-                var ts = JsonConvert.DeserializeObject<List<PlotTheme>>(content);
-                return ts;
+                var content = GetValue(nameof(PlotThemes), JsonConvert.SerializeObject(_DefaultPlotThemes));
+                var value = JsonConvert.DeserializeObject<List<PlotTheme>>(content);
+                return value;
             }
             set
             {
                 if (value == null || value.Count <= 0)
-                {
-                    var ts = new List<PlotTheme>(new[] {new PlotTheme()});
-                    SetValue(nameof(PlotThemes), JsonConvert.SerializeObject(ts));
-                }
+                    SetValue(nameof(PlotThemes), JsonConvert.SerializeObject(_DefaultPlotThemes));
                 else
-                {
                     SetValue(nameof(PlotThemes), JsonConvert.SerializeObject(value));
-                }
             }
         }
 

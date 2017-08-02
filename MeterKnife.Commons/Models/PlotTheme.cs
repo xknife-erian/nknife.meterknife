@@ -41,7 +41,7 @@ namespace MeterKnife.Models
         /// <summary>
         ///     数据线颜色
         /// </summary>
-        public List<SeriesStyle> SeriesStyles { get; set; } = new List<SeriesStyle>(new[] {new SeriesStyle()});
+        public List<SeriesStyle> SeriesStyles { get; set; } = new List<SeriesStyle>();
 
         /*
         
@@ -62,13 +62,38 @@ namespace MeterKnife.Models
             return OxyColor.FromArgb(color.A, color.R, color.G, color.B);
         }
 
+        #region Overrides of Object
+
+        /// <summary>返回表示当前 <see cref="T:System.Object" /> 的 <see cref="T:System.String" />。</summary>
+        /// <returns>
+        /// <see cref="T:System.String" />，表示当前的 <see cref="T:System.Object" />。</returns>
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        #endregion
+
         public class SeriesStyle
         {
+            public ushort Number { get; set; } = 1;
             public Color Color { get; set; } = Color.Yellow;
             /// <summary>
             ///     数据线线径
             /// </summary>
             public double Thickness { get; set; } = 1.8;
+
+            #region Overrides of Object
+
+            /// <summary>返回表示当前 <see cref="T:System.Object" /> 的 <see cref="T:System.String" />。</summary>
+            /// <returns>
+            /// <see cref="T:System.String" />，表示当前的 <see cref="T:System.Object" />。</returns>
+            public override string ToString()
+            {
+                return $"{Number}# 数据线";
+            }
+
+            #endregion
         }
 
         /// <summary>

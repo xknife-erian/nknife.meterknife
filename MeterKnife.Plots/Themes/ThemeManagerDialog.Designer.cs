@@ -36,8 +36,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.singleLine1 = new NKnife.ControlKnife.SingleLine();
-            this.themeColorItem2 = new MeterKnife.Plots.Themes.ThemeColorItem();
-            this.themeColorItem1 = new MeterKnife.Plots.Themes.ThemeColorItem();
+            this._AreaBackground = new MeterKnife.Plots.Themes.ThemeColorItem();
+            this._ViewBackground = new MeterKnife.Plots.Themes.ThemeColorItem();
             this.label5 = new System.Windows.Forms.Label();
             this._LeftGridLineGroupBox = new System.Windows.Forms.GroupBox();
             this._LeftAxisGridLineMinorColor = new MeterKnife.Plots.Themes.ThemeColorItem();
@@ -51,14 +51,15 @@
             this._DeleteThemeButton = new System.Windows.Forms.Button();
             this._EnableThemeButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.themeColorItem8 = new MeterKnife.Plots.Themes.ThemeColorItem();
+            this._SeriesThickness = new System.Windows.Forms.NumericUpDown();
+            this._SeriesColor = new MeterKnife.Plots.Themes.ThemeColorItem();
             this.label10 = new System.Windows.Forms.Label();
             this._SeriesListComboBox = new System.Windows.Forms.ComboBox();
+            this._CloseButton = new System.Windows.Forms.Button();
             this._BottomGridLineGroupBox.SuspendLayout();
             this._LeftGridLineGroupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._SeriesThickness)).BeginInit();
             this.SuspendLayout();
             // 
             // _BottomGridLineGroupBox
@@ -148,29 +149,29 @@
             this.singleLine1.TabIndex = 25;
             this.singleLine1.TabStop = false;
             // 
-            // themeColorItem2
+            // _AreaBackground
             // 
-            this.themeColorItem2.BackColor = System.Drawing.Color.White;
-            this.themeColorItem2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.themeColorItem2.Color = System.Drawing.Color.White;
-            this.themeColorItem2.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.themeColorItem2.Location = new System.Drawing.Point(115, 111);
-            this.themeColorItem2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.themeColorItem2.Name = "themeColorItem2";
-            this.themeColorItem2.Size = new System.Drawing.Size(80, 23);
-            this.themeColorItem2.TabIndex = 5;
+            this._AreaBackground.BackColor = System.Drawing.Color.White;
+            this._AreaBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._AreaBackground.Color = System.Drawing.Color.White;
+            this._AreaBackground.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this._AreaBackground.Location = new System.Drawing.Point(115, 111);
+            this._AreaBackground.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._AreaBackground.Name = "_AreaBackground";
+            this._AreaBackground.Size = new System.Drawing.Size(80, 23);
+            this._AreaBackground.TabIndex = 5;
             // 
-            // themeColorItem1
+            // _ViewBackground
             // 
-            this.themeColorItem1.BackColor = System.Drawing.Color.White;
-            this.themeColorItem1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.themeColorItem1.Color = System.Drawing.Color.White;
-            this.themeColorItem1.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.themeColorItem1.Location = new System.Drawing.Point(115, 85);
-            this.themeColorItem1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.themeColorItem1.Name = "themeColorItem1";
-            this.themeColorItem1.Size = new System.Drawing.Size(80, 23);
-            this.themeColorItem1.TabIndex = 4;
+            this._ViewBackground.BackColor = System.Drawing.Color.White;
+            this._ViewBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._ViewBackground.Color = System.Drawing.Color.White;
+            this._ViewBackground.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this._ViewBackground.Location = new System.Drawing.Point(115, 85);
+            this._ViewBackground.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._ViewBackground.Name = "_ViewBackground";
+            this._ViewBackground.Size = new System.Drawing.Size(80, 23);
+            this._ViewBackground.TabIndex = 4;
             // 
             // label5
             // 
@@ -267,6 +268,7 @@
             // 
             // _ThemeListComboBox
             // 
+            this._ThemeListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._ThemeListComboBox.FormattingEnabled = true;
             this._ThemeListComboBox.Location = new System.Drawing.Point(52, 19);
             this._ThemeListComboBox.Name = "_ThemeListComboBox";
@@ -278,7 +280,7 @@
             this._NewThemeButton.Location = new System.Drawing.Point(201, 19);
             this._NewThemeButton.Name = "_NewThemeButton";
             this._NewThemeButton.Size = new System.Drawing.Size(39, 21);
-            this._NewThemeButton.TabIndex = 1;
+            this._NewThemeButton.TabIndex = 2;
             this._NewThemeButton.Text = "新建";
             this._NewThemeButton.UseVisualStyleBackColor = true;
             // 
@@ -287,7 +289,7 @@
             this._DeleteThemeButton.Location = new System.Drawing.Point(240, 19);
             this._DeleteThemeButton.Name = "_DeleteThemeButton";
             this._DeleteThemeButton.Size = new System.Drawing.Size(39, 21);
-            this._DeleteThemeButton.TabIndex = 2;
+            this._DeleteThemeButton.TabIndex = 3;
             this._DeleteThemeButton.Text = "删除";
             this._DeleteThemeButton.UseVisualStyleBackColor = true;
             // 
@@ -296,7 +298,7 @@
             this._EnableThemeButton.Location = new System.Drawing.Point(291, 19);
             this._EnableThemeButton.Name = "_EnableThemeButton";
             this._EnableThemeButton.Size = new System.Drawing.Size(39, 21);
-            this._EnableThemeButton.TabIndex = 3;
+            this._EnableThemeButton.TabIndex = 1;
             this._EnableThemeButton.Text = "启用";
             this._EnableThemeButton.UseVisualStyleBackColor = true;
             // 
@@ -305,56 +307,56 @@
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.numericUpDown2);
-            this.groupBox3.Controls.Add(this.themeColorItem8);
+            this.groupBox3.Controls.Add(this._SeriesThickness);
+            this.groupBox3.Controls.Add(this._SeriesColor);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Location = new System.Drawing.Point(19, 308);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(310, 100);
+            this.groupBox3.Size = new System.Drawing.Size(310, 122);
             this.groupBox3.TabIndex = 29;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "数据线";
             // 
-            // numericUpDown2
+            // _SeriesThickness
             // 
-            this.numericUpDown2.DecimalPlaces = 1;
-            this.numericUpDown2.Font = new System.Drawing.Font("Tahoma", 9.5F);
-            this.numericUpDown2.Increment = new decimal(new int[] {
+            this._SeriesThickness.DecimalPlaces = 1;
+            this._SeriesThickness.Font = new System.Drawing.Font("Tahoma", 9.5F);
+            this._SeriesThickness.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown2.Location = new System.Drawing.Point(196, 26);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this._SeriesThickness.Location = new System.Drawing.Point(196, 26);
+            this._SeriesThickness.Maximum = new decimal(new int[] {
             20,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this._SeriesThickness.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(91, 23);
-            this.numericUpDown2.TabIndex = 5;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this._SeriesThickness.Name = "_SeriesThickness";
+            this._SeriesThickness.Size = new System.Drawing.Size(91, 23);
+            this._SeriesThickness.TabIndex = 1;
+            this._SeriesThickness.Value = new decimal(new int[] {
             18,
             0,
             0,
             65536});
             // 
-            // themeColorItem8
+            // _SeriesColor
             // 
-            this.themeColorItem8.BackColor = System.Drawing.Color.White;
-            this.themeColorItem8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.themeColorItem8.Color = System.Drawing.Color.White;
-            this.themeColorItem8.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.themeColorItem8.Location = new System.Drawing.Point(96, 26);
-            this.themeColorItem8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.themeColorItem8.Name = "themeColorItem8";
-            this.themeColorItem8.Size = new System.Drawing.Size(80, 23);
-            this.themeColorItem8.TabIndex = 0;
+            this._SeriesColor.BackColor = System.Drawing.Color.White;
+            this._SeriesColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._SeriesColor.Color = System.Drawing.Color.White;
+            this._SeriesColor.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this._SeriesColor.Location = new System.Drawing.Point(96, 26);
+            this._SeriesColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._SeriesColor.Name = "_SeriesColor";
+            this._SeriesColor.Size = new System.Drawing.Size(80, 23);
+            this._SeriesColor.TabIndex = 0;
             // 
             // label10
             // 
@@ -368,17 +370,29 @@
             // 
             // _SeriesListComboBox
             // 
+            this._SeriesListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._SeriesListComboBox.FormattingEnabled = true;
             this._SeriesListComboBox.Location = new System.Drawing.Point(69, 305);
             this._SeriesListComboBox.Name = "_SeriesListComboBox";
-            this._SeriesListComboBox.Size = new System.Drawing.Size(77, 21);
-            this._SeriesListComboBox.TabIndex = 5;
+            this._SeriesListComboBox.Size = new System.Drawing.Size(88, 21);
+            this._SeriesListComboBox.TabIndex = 6;
+            // 
+            // _CloseButton
+            // 
+            this._CloseButton.Location = new System.Drawing.Point(240, 432);
+            this._CloseButton.Name = "_CloseButton";
+            this._CloseButton.Size = new System.Drawing.Size(90, 27);
+            this._CloseButton.TabIndex = 30;
+            this._CloseButton.Text = "完成";
+            this._CloseButton.UseVisualStyleBackColor = true;
             // 
             // ThemeManagerDialog
             // 
+            this.AcceptButton = this._CloseButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 420);
+            this.ClientSize = new System.Drawing.Size(346, 468);
+            this.Controls.Add(this._CloseButton);
             this.Controls.Add(this._SeriesListComboBox);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this._EnableThemeButton);
@@ -389,15 +403,18 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.singleLine1);
-            this.Controls.Add(this.themeColorItem2);
-            this.Controls.Add(this.themeColorItem1);
+            this.Controls.Add(this._AreaBackground);
+            this.Controls.Add(this._ViewBackground);
             this.Controls.Add(this.label5);
             this.Controls.Add(this._LeftGridLineGroupBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ThemeManagerDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "主题管理";
             this._BottomGridLineGroupBox.ResumeLayout(false);
             this._BottomGridLineGroupBox.PerformLayout();
@@ -405,7 +422,7 @@
             this._LeftGridLineGroupBox.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._SeriesThickness)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,8 +438,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private NKnife.ControlKnife.SingleLine singleLine1;
-        private ThemeColorItem themeColorItem2;
-        private ThemeColorItem themeColorItem1;
+        private ThemeColorItem _AreaBackground;
+        private ThemeColorItem _ViewBackground;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox _LeftGridLineGroupBox;
         private ThemeColorItem _LeftAxisGridLineMinorColor;
@@ -436,9 +453,10 @@
         private System.Windows.Forms.Button _DeleteThemeButton;
         private System.Windows.Forms.Button _EnableThemeButton;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private ThemeColorItem themeColorItem8;
+        private System.Windows.Forms.NumericUpDown _SeriesThickness;
+        private ThemeColorItem _SeriesColor;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox _SeriesListComboBox;
+        private System.Windows.Forms.Button _CloseButton;
     }
 }
