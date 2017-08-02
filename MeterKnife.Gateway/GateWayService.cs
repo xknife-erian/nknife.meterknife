@@ -1,6 +1,7 @@
-using System;
 using System.Collections.Generic;
 using MeterKnife.Interfaces;
+using NKnife.Channels.Channels.Serials;
+using NKnife.Channels.Interfaces.Channels;
 using NKnife.Interface;
 
 namespace MeterKnife.Gateway
@@ -13,6 +14,7 @@ namespace MeterKnife.Gateway
 
         public bool StartService()
         {
+            IChannel<byte[]> channel = new SerialChannel(new SerialConfig(2));
             return true;
         }
 
