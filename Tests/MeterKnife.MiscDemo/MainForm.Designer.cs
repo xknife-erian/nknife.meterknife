@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.UITests
+﻿namespace MeterKnife.MiscDemo
 {
     partial class MainForm
     {

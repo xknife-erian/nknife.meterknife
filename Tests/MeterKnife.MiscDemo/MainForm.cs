@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MeterKnife.Plots.Themes;
 using MeterKnife.Views.Measures;
-using MeterKnife.Views.Measures.Dialogs;
 using NKnife.ControlKnife;
-using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.UITests
+namespace MeterKnife.MiscDemo
 {
     public partial class MainForm : SimpleForm
     {

@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.HelpMenu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.App.Tray", "MeterKnife.App.Tray\MeterKnife.App.Tray.csproj", "{A8D6B3E0-713B-4ABF-9C19-16A158C7D2D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.UITests", "Tests\MeterKnife.UITests\MeterKnife.UITests.csproj", "{40B97A38-789F-425C-A541-E655B457A154}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.MiscDemo", "Tests\MeterKnife.MiscDemo\MeterKnife.MiscDemo.csproj", "{40B97A38-789F-425C-A541-E655B457A154}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plots", "MeterKnife.Plots\MeterKnife.Plots.csproj", "{0B2CB4C1-2373-469C-B4BB-B6D810F7A151}"
 EndProject

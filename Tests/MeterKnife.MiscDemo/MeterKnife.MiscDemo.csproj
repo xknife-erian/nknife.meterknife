@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{40B97A38-789F-425C-A541-E655B457A154}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MeterKnife.UITests</RootNamespace>
-    <AssemblyName>MeterKnife.UITests</AssemblyName>
+    <RootNamespace>MeterKnife.MiscDemo</RootNamespace>
+    <AssemblyName>MeterKnife.MiscDemo</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -82,6 +82,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +110,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="PropertyGridView.resx">
       <DependentUpon>PropertyGridView.cs</DependentUpon>
