@@ -14,17 +14,25 @@ namespace MeterKnife.Plugins.ViewMenu.Loggers
 
         public LoggerPanelView()
         {
+            var view = DI.Get<LoggerView>();
             _StripItem.Click += (s, e) =>
             {
-                var view = DI.Get<LoggerView>();
                 foreach (var container in _ViewComponent.Containers)
                 {
                     var panel = container as DockPanel;
                     if (panel != null)
                     {
                         var dockpanel = panel;
-                        view.Show(dockpanel, DockState.DockBottom);
-                        _StripItem.CheckState = CheckState.Checked;
+                        if (_StripItem.CheckState != CheckState.Checked)
+                        {
+                            view.Show(dockpanel, DockState.DockBottom);
+                            _StripItem.CheckState = CheckState.Checked;
+                        }
+                        else
+                        {
+                            view.Show(dockpanel, DockState.DockBottomAutoHide);
+                            _StripItem.CheckState = CheckState.Unchecked;
+                        }
                     }
                 }
                 view.FormClosing += (n, v) =>
