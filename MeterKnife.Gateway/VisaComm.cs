@@ -5,7 +5,7 @@ using NKnife.Channels.Interfaces.Channels;
 
 namespace MeterKnife.Gateway
 {
-    public class Aglient82357 : IChannel<string>
+    public class VisaComm : IChannel<string>
     {
         #region Implementation of IChannel<string>
 
@@ -40,9 +40,9 @@ namespace MeterKnife.Gateway
         }
 
         public bool IsSynchronous { get; set; }
-        public List<IExhibit> Exhibits { get; }
+        public List<IExhibit> Exhibits { get; } = new List<IExhibit>();
         public uint TalkTotalTimeout { get; set; }
-        public bool IsOpen { get; }
+        public bool IsOpen { get; } = false;
         public event EventHandler Opening;
         public event EventHandler Opened;
         public event EventHandler Closeing;
