@@ -2,10 +2,19 @@
 using System.Threading;
 using Ivi.Visa.Interop;
 
-namespace MeterKnife.VISAs
+namespace MeterKnife.Keysights.VISAs
 {
+    /// <summary>
+    /// 对Keysight(Agilent)的GPIB控制组件的调用封装。该组件比较大的问题是仅支持.net2.0。
+    /// </summary>
     public class GPIBLinker
     {
+        /**
+         * Keysight IO 程序库套件 17.2 是新一代仪器控制软件。此版本提供更出色的用户体验，以及跨越仪器平台的其他改进。
+         * 利用更丰富的功能特性，连接变得空前容易。立即下载最新版本！
+         * http://www.keysight.com/main/software.jspx?cc=CN&lc=chi&ckey=2175637&nid=-33330.977662&id=2175637
+         */
+
         private IFormattedIO488 _Gpib;
 
         public GPIBLinker(Action<string> loggerAction, short gpibSelector, short address)

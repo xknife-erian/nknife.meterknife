@@ -7,8 +7,8 @@
     <ProjectGuid>{F983FB9D-37A3-4B2C-B4D7-6E1311DED746}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MeterKnife.VISAs</RootNamespace>
-    <AssemblyName>MeterKnife.VISAs</AssemblyName>
+    <RootNamespace>MeterKnife.Keysights.VISAs</RootNamespace>
+    <AssemblyName>MeterKnife.Keysights.VISAs</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
@@ -49,7 +48,7 @@
     <COMReference Include="VisaComLib">
       <Guid>{DB8CBF00-D6D3-11D4-AA51-00A024EE30BD}</Guid>
       <VersionMajor>5</VersionMajor>
-      <VersionMinor>5</VersionMinor>
+      <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

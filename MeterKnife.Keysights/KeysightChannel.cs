@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using NKnife.Channels.Channels.EventParams;
 using NKnife.Channels.Interfaces.Channels;
 
-namespace MeterKnife.Gateway
+namespace MeterKnife.Keysights
 {
-    public class VisaComm : IChannel<string>
+    public class KeysightChannel : IChannel<string>
     {
         #region Implementation of IChannel<string>
 
