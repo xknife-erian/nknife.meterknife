@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace MeterKnife.Keysights.VISAs
@@ -6,7 +7,7 @@ namespace MeterKnife.Keysights.VISAs
     /// <summary>
     /// 对Keysight(Agilent)的GPIB控制组件的调用封装。该组件比较大的问题是仅支持.net2.0。
     /// </summary>
-    public class GPIBLinker
+    public partial class GPIBLinker
     {
         /**
          * Keysight IO 程序库套件 17.2 是新一代仪器控制软件。此版本提供更出色的用户体验，以及跨越仪器平台的其他改进。
@@ -16,7 +17,7 @@ namespace MeterKnife.Keysights.VISAs
 
         private Ivi.Visa.Interop.IFormattedIO488 _Gpib;
 
-        public GPIBLinker(Action<string> loggerAction, short gpibSelector, short address)
+        public GPIBLinker(Action<GPIBLog> loggerAction, short gpibSelector, short address)
         {
             LoggerAction = loggerAction;
             GpibSelector = gpibSelector;
@@ -27,7 +28,7 @@ namespace MeterKnife.Keysights.VISAs
         public short Address { get; set; }
         public string Option { get; set; } = string.Empty;
         public int OpenTimeout { get; set; } = 2000;
-        public Action<string> LoggerAction { get; set; }
+        public Action<GPIBLog> LoggerAction { get; set; }
 
         public bool Initialize(out string idn)
         {
@@ -48,7 +49,7 @@ namespace MeterKnife.Keysights.VISAs
                     OpenTimeout,
                     Option
                 );
-                LoggerAction.Invoke($"VISA.SET: {openCommand}");
+                LoggerAction.Invoke(new GPIBLog(GPIBLogLevel.Trace, $"command: {openCommand}"));
 
                 _Gpib.WriteString("*CLS", true);
                 Thread.Sleep(500);
@@ -60,7 +61,7 @@ namespace MeterKnife.Keysights.VISAs
             }
             catch (Exception e)
             {
-                LoggerAction.Invoke($"ERROR:{e.Message}");
+                LoggerAction.Invoke(new GPIBLog(GPIBLogLevel.Error, $"ERROR:{e.Message}"));
                 idn = string.Empty;
                 return false;
             }
@@ -68,9 +69,17 @@ namespace MeterKnife.Keysights.VISAs
 
         public string Execute(string scpiCommand, uint timeOut, bool flushAndEnd = true)
         {
-            _Gpib.WriteString(scpiCommand, flushAndEnd);
-            Thread.Sleep((int) timeOut);
-            return _Gpib.ReadString();
+            try
+            {
+                _Gpib.WriteString(scpiCommand, flushAndEnd);
+                Thread.Sleep((int)timeOut);
+                return _Gpib.ReadString();
+            }
+            catch (Exception e)
+            {
+                LoggerAction.Invoke(new GPIBLog(GPIBLogLevel.Error, $"ERROR:{e.Message}"));
+                return "";
+            }
         }
     }
 }

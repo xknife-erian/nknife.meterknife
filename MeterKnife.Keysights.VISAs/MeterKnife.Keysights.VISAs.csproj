@@ -38,6 +38,8 @@
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
     <Compile Include="GPIBLinker.cs" />
+    <Compile Include="GPIBLog.cs" />
+    <Compile Include="GPIBLogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
