@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using Ivi.Visa.Interop;
 
 namespace MeterKnife.Keysights.VISAs
 {
@@ -15,7 +14,7 @@ namespace MeterKnife.Keysights.VISAs
          * http://www.keysight.com/main/software.jspx?cc=CN&lc=chi&ckey=2175637&nid=-33330.977662&id=2175637
          */
 
-        private IFormattedIO488 _Gpib;
+        private Ivi.Visa.Interop.IFormattedIO488 _Gpib;
 
         public GPIBLinker(Action<string> loggerAction, short gpibSelector, short address)
         {
@@ -37,12 +36,18 @@ namespace MeterKnife.Keysights.VISAs
             try
             {
                 // create the formatted IO object
-                _Gpib = new FormattedIO488Class();
+                _Gpib = new Ivi.Visa.Interop.FormattedIO488Class();
 
                 //create the resource manager
-                var mgr = new ResourceManager();
+                var resourceManager = new Ivi.Visa.Interop.ResourceManager();
 
-                _Gpib.IO = (IMessage)mgr.Open(openCommand, AccessMode.NO_LOCK, OpenTimeout, Option);
+                _Gpib.IO = (Ivi.Visa.Interop.IMessage) resourceManager.Open
+                (
+                    openCommand,
+                    Ivi.Visa.Interop.AccessMode.NO_LOCK,
+                    OpenTimeout,
+                    Option
+                );
                 LoggerAction.Invoke($"VISA.SET: {openCommand}");
 
                 _Gpib.WriteString("*CLS", true);

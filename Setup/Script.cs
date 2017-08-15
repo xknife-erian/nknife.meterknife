@@ -59,7 +59,7 @@ namespace MeterKnife.Setup
                 var files = dir.GetFiles();
                 foreach (var file in files)
                 {
-                    if (file.Extension == ".dll")
+                    if (file.Extension == ".dll" || file.Extension == ".exe")
                     {
                         var f = new File(file.FullName);
                         entities.Add(f);
