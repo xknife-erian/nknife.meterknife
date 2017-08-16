@@ -4,10 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{656970B6-A847-4340-A706-AB2BC1D07EF0}</ProjectGuid>
+    <ProjectGuid>{EC118282-B4FE-4837-B292-302A7E111C21}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>MeterKnife.Plugins.HelpMenu</RootNamespace>
-    <AssemblyName>MeterKnife.Plugins.HelpMenu</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MeterKnife.Keysights</RootNamespace>
+    <AssemblyName>MeterKnife.Keysights</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,20 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=3.4.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.4.0\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.4.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.4.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
+      <HintPath>..\..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.ControlKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.ControlKnife.17.5.0.511\lib\net40\NKnife.ControlKnife.dll</HintPath>
+    <Reference Include="NKnife.Channels, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.Channels.17.5.0.511\lib\net40\NKnife.Channels.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,37 +51,23 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
+    <Compile Include="..\..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="AboutDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AboutDialog.designer.cs">
-      <DependentUpon>AboutDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NewMeasure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="AboutDialog.resx">
-      <DependentUpon>AboutDialog.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="KeysightChannel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MeterKnife.Commons\MeterKnife.Commons.csproj">
-      <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
-      <Name>MeterKnife.Commons</Name>
+    <ProjectReference Include="..\MeterKnife.Keysights.VISAs\MeterKnife.Gateway.Keysights.VISAs.csproj">
+      <Project>{f983fb9d-37a3-4b2c-b4d7-6e1311ded746}</Project>
+      <Name>MeterKnife.Gateway.Keysights.VISAs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

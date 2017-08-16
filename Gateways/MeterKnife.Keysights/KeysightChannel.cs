@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Common.Logging;
+using MeterKnife.Keysights.VISAs;
 using NKnife.Channels.Channels.EventParams;
 using NKnife.Channels.Interfaces.Channels;
 
@@ -7,6 +9,28 @@ namespace MeterKnife.Keysights
 {
     public class KeysightChannel : IChannel<string>
     {
+        private static readonly ILog _logger = LogManager.GetLogger<KeysightChannel>();
+        private GPIBLinker _GPIBLinker;
+
+        public KeysightChannel()
+        {
+            _GPIBLinker = new GPIBLinker((log) =>
+            {
+                switch (log.LogLevel)
+                {
+                    case GPIBLinker.GPIBLogLevel.Trace:
+                        _logger.Trace(log.Message);
+                        break;
+                    case GPIBLinker.GPIBLogLevel.Warn:
+                        _logger.Warn(log.Message, log.Exception);
+                        break;
+                    case GPIBLinker.GPIBLogLevel.Error:
+                        _logger.Error(log.Message, log.Exception);
+                        break;
+                }
+            }, 0, 0);
+        }
+
         #region Implementation of IChannel<string>
 
         public bool Open()
