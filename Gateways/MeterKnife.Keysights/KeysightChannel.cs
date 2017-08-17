@@ -21,26 +21,6 @@ namespace MeterKnife.Keysights
             _GPIBTarget = gpibTarget;
         }
 
-        protected virtual void OnOpening()
-        {
-            Opening?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnOpened()
-        {
-            Opened?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnCloseing()
-        {
-            Closeing?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnClosed()
-        {
-            Closed?.Invoke(this, EventArgs.Empty);
-        }
-
         #region Implementation of IChannel<string>
 
         public bool Open()
@@ -61,6 +41,7 @@ namespace MeterKnife.Keysights
                         break;
                 }
             }, _GPIBTarget);
+            IsOpen = true;
             OnOpened();
             return true;
         }
@@ -68,6 +49,7 @@ namespace MeterKnife.Keysights
         public bool Close()
         {
             OnCloseing();
+            IsOpen = false;
             OnClosed();
             return true;
         }
@@ -118,6 +100,7 @@ namespace MeterKnife.Keysights
         {
             var w = (SyncSendReceivingParams) param;
             while (_QuestionGroup.Count > 0)
+            {
                 try
                 {
                     var question = _QuestionGroup.PeekOrDequeue();
@@ -129,6 +112,7 @@ namespace MeterKnife.Keysights
                 {
                     _logger.Warn($"Keysight:{e.Message}", e);
                 }
+            }
         }
 
         #endregion
@@ -143,16 +127,41 @@ namespace MeterKnife.Keysights
             //此种Channel不设置异步方式操作
         }
 
-        public bool IsSynchronous { get; set; }
+        public bool IsSynchronous { get; set; } = true;
         public List<IExhibit> Exhibits { get; } = new List<IExhibit>();
-        public uint TalkTotalTimeout { get; set; }
-        public bool IsOpen { get; } = false;
+        public uint TalkTotalTimeout { get; set; } = 2000;
+        public bool IsOpen { get; private set; } = false;
+
+        #region Event
+
         public event EventHandler Opening;
         public event EventHandler Opened;
         public event EventHandler Closeing;
         public event EventHandler Closed;
         public event EventHandler<ChannelModeChangedEventArgs> ChannelModeChanged;
         public event EventHandler<ChannelAnswerDataEventArgs<string>> DataArrived;
+
+        protected virtual void OnOpening()
+        {
+            Opening?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnOpened()
+        {
+            Opened?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnCloseing()
+        {
+            Closeing?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnClosed()
+        {
+            Closed?.Invoke(this, EventArgs.Empty);
+        }
+
+        #endregion
 
         #endregion
     }

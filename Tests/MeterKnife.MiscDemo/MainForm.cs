@@ -51,6 +51,8 @@ namespace MeterKnife.MiscDemo
         {
             var view = DI.Get<LoggerView>();
             view.Show(_DockPanel, DockState.DockBottom);
+            var ksView = new KeysightChannelDemoView();
+            ksView.Show(_DockPanel, DockState.Document);
         }
     }
 }

@@ -7,7 +7,7 @@
     <ProjectGuid>{40B97A38-789F-425C-A541-E655B457A154}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MeterKnife.MiscDemo</RootNamespace>
-    <AssemblyName>MeterKnife.MiscDemo</AssemblyName>
+    <AssemblyName>MeterKnifeDemo</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -85,6 +85,12 @@
     <Compile Include="..\..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="KeysightChannelDemoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeysightChannelDemoView.Designer.cs">
+      <DependentUpon>KeysightChannelDemoView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     <Compile Include="PropertyGridView.Designer.cs">
       <DependentUpon>PropertyGridView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="KeysightChannelDemoView.resx">
+      <DependentUpon>KeysightChannelDemoView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,6 +137,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Properties\main-32.ico" />
     <Content Include="Properties\main.ico" />
   </ItemGroup>
   <ItemGroup>

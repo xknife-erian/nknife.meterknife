@@ -34,10 +34,10 @@
             this._MainPlotTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.主题ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._ThemeManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._GatewayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CareOneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._KeysightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +49,7 @@
             this._GatewayToolStripMenuItem});
             this._MenuStrip.Location = new System.Drawing.Point(0, 0);
             this._MenuStrip.Name = "_MenuStrip";
-            this._MenuStrip.Size = new System.Drawing.Size(1008, 25);
+            this._MenuStrip.Size = new System.Drawing.Size(951, 25);
             this._MenuStrip.TabIndex = 0;
             this._MenuStrip.Text = "menuStrip1";
             // 
@@ -64,8 +64,7 @@
             // _MainPlotTestToolStripMenuItem
             // 
             this._MainPlotTestToolStripMenuItem.Name = "_MainPlotTestToolStripMenuItem";
-            this._MainPlotTestToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this._MainPlotTestToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this._MainPlotTestToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this._MainPlotTestToolStripMenuItem.Text = "主折线图测试";
             this._MainPlotTestToolStripMenuItem.Click += new System.EventHandler(this._MainPlotTestToolStripMenuItem_Click);
             // 
@@ -80,18 +79,9 @@
             // _ThemeManagerToolStripMenuItem
             // 
             this._ThemeManagerToolStripMenuItem.Name = "_ThemeManagerToolStripMenuItem";
-            this._ThemeManagerToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this._ThemeManagerToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this._ThemeManagerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this._ThemeManagerToolStripMenuItem.Text = "主题管理器窗体";
             this._ThemeManagerToolStripMenuItem.Click += new System.EventHandler(this._ThemeManagerToolStripMenuItem_Click);
-            // 
-            // _StatusStrip
-            // 
-            this._StatusStrip.Location = new System.Drawing.Point(0, 707);
-            this._StatusStrip.Name = "_StatusStrip";
-            this._StatusStrip.Size = new System.Drawing.Size(1008, 22);
-            this._StatusStrip.TabIndex = 1;
-            this._StatusStrip.Text = "statusStrip1";
             // 
             // _GatewayToolStripMenuItem
             // 
@@ -105,21 +95,30 @@
             // _CareOneToolStripMenuItem
             // 
             this._CareOneToolStripMenuItem.Name = "_CareOneToolStripMenuItem";
-            this._CareOneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._CareOneToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this._CareOneToolStripMenuItem.Text = "CareOne";
             // 
             // _KeysightToolStripMenuItem
             // 
             this._KeysightToolStripMenuItem.Name = "_KeysightToolStripMenuItem";
-            this._KeysightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._KeysightToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this._KeysightToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this._KeysightToolStripMenuItem.Text = "Keysight";
             this._KeysightToolStripMenuItem.Click += new System.EventHandler(this._KeysightToolStripMenuItem_Click);
+            // 
+            // _StatusStrip
+            // 
+            this._StatusStrip.Location = new System.Drawing.Point(0, 604);
+            this._StatusStrip.Name = "_StatusStrip";
+            this._StatusStrip.Size = new System.Drawing.Size(951, 22);
+            this._StatusStrip.TabIndex = 1;
+            this._StatusStrip.Text = "statusStrip1";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(951, 626);
             this.Controls.Add(this._StatusStrip);
             this.Controls.Add(this._MenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
