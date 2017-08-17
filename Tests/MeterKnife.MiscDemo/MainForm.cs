@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using MeterKnife.Plots.Themes;
+using MeterKnife.Plugins.ViewMenu.Loggers;
 using MeterKnife.Views.Measures;
 using NKnife.ControlKnife;
+using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.MiscDemo
@@ -23,6 +25,9 @@ namespace MeterKnife.MiscDemo
             _DockPanel.Dock = DockStyle.Fill;
             Controls.Add(_DockPanel);
             _DockPanel.BringToFront();
+
+            var view = DI.Get<LoggerView>();
+            view.Show(_DockPanel, DockState.DockBottomAutoHide);
         }
 
         private void _MainPlotTestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -40,6 +45,12 @@ namespace MeterKnife.MiscDemo
         {
             var dialog = new ThemeManagerDialog();
             dialog.ShowDialog(this);
+        }
+
+        private void _KeysightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = DI.Get<LoggerView>();
+            view.Show(_DockPanel, DockState.DockBottom);
         }
     }
 }

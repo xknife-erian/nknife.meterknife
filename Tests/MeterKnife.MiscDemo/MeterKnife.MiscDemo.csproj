@@ -147,6 +147,22 @@
       <Project>{58446aa7-0041-46d1-a654-61660b9a00d5}</Project>
       <Name>MeterKnife.Views</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Plugins\MeterKnife.Plugins.FileMenu\MeterKnife.Plugins.FileMenu.csproj">
+      <Project>{f21aad20-3f81-4fa0-b9d5-63d8dcbc6e52}</Project>
+      <Name>MeterKnife.Plugins.FileMenu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Plugins\MeterKnife.Plugins.HelpMenu\MeterKnife.Plugins.HelpMenu.csproj">
+      <Project>{656970b6-a847-4340-a706-ab2bc1d07ef0}</Project>
+      <Name>MeterKnife.Plugins.HelpMenu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Plugins\MeterKnife.Plugins.MeasureMenu\MeterKnife.Plugins.MeasureMenu.csproj">
+      <Project>{eea8a692-5cf4-4cb1-b962-05635abc1bf0}</Project>
+      <Name>MeterKnife.Plugins.MeasureMenu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Plugins\MeterKnife.Plugins.ViewMenu\MeterKnife.Plugins.ViewMenu.csproj">
+      <Project>{2155ed0a-4eb7-44ff-8cc3-5371639d2717}</Project>
+      <Name>MeterKnife.Plugins.ViewMenu</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

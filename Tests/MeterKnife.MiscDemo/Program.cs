@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common.Logging;
 using MeterKnife.UITests;
 using NKnife.IoC;
 
@@ -16,6 +17,8 @@ namespace MeterKnife.MiscDemo
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DI.Initialize();
+            var logger = LogManager.GetLogger<Application>();
+            logger.Info("开始Demo....");
             Application.Run(new MainForm());
         }
     }

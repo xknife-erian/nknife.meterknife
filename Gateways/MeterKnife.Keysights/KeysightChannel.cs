@@ -12,9 +12,9 @@ namespace MeterKnife.Keysights
     public class KeysightChannel : IChannel<string>
     {
         private static readonly ILog _logger = LogManager.GetLogger<KeysightChannel>();
+        private readonly ushort _GPIBTarget;
         private GPIBLinker _GPIBLinker;
         private KeysightQuestionGroup _QuestionGroup = new KeysightQuestionGroup();
-        private ushort _GPIBTarget = 0;
 
         public KeysightChannel(ushort gpibTarget = 0)
         {
@@ -39,16 +39,6 @@ namespace MeterKnife.Keysights
         protected virtual void OnClosed()
         {
             Closed?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnChannelModeChanged(ChannelModeChangedEventArgs e)
-        {
-            ChannelModeChanged?.Invoke(this, e);
-        }
-
-        protected virtual void OnDataArrived(ChannelAnswerDataEventArgs<string> e)
-        {
-            DataArrived?.Invoke(this, e);
         }
 
         #region Implementation of IChannel<string>
@@ -128,7 +118,6 @@ namespace MeterKnife.Keysights
         {
             var w = (SyncSendReceivingParams) param;
             while (_QuestionGroup.Count > 0)
-            {
                 try
                 {
                     var question = _QuestionGroup.PeekOrDequeue();
@@ -140,7 +129,6 @@ namespace MeterKnife.Keysights
                 {
                     _logger.Warn($"Keysight:{e.Message}", e);
                 }
-            }
         }
 
         #endregion
