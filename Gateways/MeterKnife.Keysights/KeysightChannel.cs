@@ -14,6 +14,12 @@ namespace MeterKnife.Keysights
         private static readonly ILog _logger = LogManager.GetLogger<KeysightChannel>();
         private GPIBLinker _GPIBLinker;
         private KeysightQuestionGroup _QuestionGroup = new KeysightQuestionGroup();
+        private ushort _GPIBTarget = 0;
+
+        public KeysightChannel(ushort gpibTarget = 0)
+        {
+            _GPIBTarget = gpibTarget;
+        }
 
         protected virtual void OnOpening()
         {
@@ -64,7 +70,7 @@ namespace MeterKnife.Keysights
                         _logger.Error(log.Message, log.Exception);
                         break;
                 }
-            }, 0);
+            }, _GPIBTarget);
             OnOpened();
             return true;
         }
@@ -81,11 +87,11 @@ namespace MeterKnife.Keysights
             _QuestionGroup = questionGroup;
         }
 
-        void IChannel<string>.UpdateQuestionGroup(IQuestionGroup<string> questionGroup)
+        void IChannel<string>.UpdateQuestionGroup(IQuestionGroup<string> qGroup)
         {
-            if (!(questionGroup is KeysightQuestionGroup))
-                throw new ArgumentException(nameof(questionGroup), $"{nameof(questionGroup)} need is {typeof(KeysightQuestionGroup).Name}");
-            UpdateQuestionGroup((KeysightQuestionGroup) questionGroup);
+            if (!(qGroup is KeysightQuestionGroup))
+                throw new ArgumentException(nameof(qGroup), $"{nameof(qGroup)} need is {typeof(KeysightQuestionGroup).Name}");
+            UpdateQuestionGroup((KeysightQuestionGroup) qGroup);
         }
 
         #region Sync-SendReceiving
@@ -138,7 +144,6 @@ namespace MeterKnife.Keysights
         }
 
         #endregion
-
 
         public void AutoSend(Action<IQuestion<string>> sendAction)
         {
