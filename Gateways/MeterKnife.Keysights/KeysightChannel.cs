@@ -12,35 +12,35 @@ namespace MeterKnife.Keysights
         private static readonly ILog _logger = LogManager.GetLogger<KeysightChannel>();
         private GPIBLinker _GPIBLinker;
 
-        public KeysightChannel()
-        {
-            _GPIBLinker = new GPIBLinker((log) =>
-            {
-                switch (log.LogLevel)
-                {
-                    case GPIBLinker.GPIBLogLevel.Trace:
-                        _logger.Trace(log.Message);
-                        break;
-                    case GPIBLinker.GPIBLogLevel.Warn:
-                        _logger.Warn(log.Message, log.Exception);
-                        break;
-                    case GPIBLinker.GPIBLogLevel.Error:
-                        _logger.Error(log.Message, log.Exception);
-                        break;
-                }
-            }, 0, 0);
-        }
-
         #region Implementation of IChannel<string>
 
         public bool Open()
         {
-            throw new NotImplementedException();
+            OnOpening();
+            _GPIBLinker = new GPIBLinker((log) =>
+            {
+                switch (log.LogLevel)
+                {
+                    case GPIBLogLevel.Trace:
+                        _logger.Trace(log.Message);
+                        break;
+                    case GPIBLogLevel.Warn:
+                        _logger.Warn(log.Message, log.Exception);
+                        break;
+                    case GPIBLogLevel.Error:
+                        _logger.Error(log.Message, log.Exception);
+                        break;
+                }
+            }, 0);
+            OnOpened();
+            return true;
         }
 
         public bool Close()
         {
-            throw new NotImplementedException();
+            OnCloseing();
+            OnClosed();
+            return true;
         }
 
         public void UpdateQuestionGroup(IQuestionGroup<string> questionGroup)
@@ -75,5 +75,35 @@ namespace MeterKnife.Keysights
         public event EventHandler<ChannelAnswerDataEventArgs<string>> DataArrived;
 
         #endregion
+
+        protected virtual void OnOpening()
+        {
+            Opening?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnOpened()
+        {
+            Opened?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnCloseing()
+        {
+            Closeing?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnClosed()
+        {
+            Closed?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnChannelModeChanged(ChannelModeChangedEventArgs e)
+        {
+            ChannelModeChanged?.Invoke(this, e);
+        }
+
+        protected virtual void OnDataArrived(ChannelAnswerDataEventArgs<string> e)
+        {
+            DataArrived?.Invoke(this, e);
+        }
     }
 }
