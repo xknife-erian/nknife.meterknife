@@ -37,11 +37,11 @@
     <ApplicationIcon>Properties\mk-main.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=3.4.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.4.0\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.4.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.4.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
@@ -134,19 +134,19 @@
       <Project>{0b2cb4c1-2373-469c-b4bb-b6d810f7a151}</Project>
       <Name>MeterKnife.Plots</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plugins.FileMenu\MeterKnife.Plugins.FileMenu.csproj">
+    <ProjectReference Include="..\Plugins\MeterKnife.Plugins.FileMenu\MeterKnife.Plugins.FileMenu.csproj">
       <Project>{f21aad20-3f81-4fa0-b9d5-63d8dcbc6e52}</Project>
       <Name>MeterKnife.Plugins.FileMenu</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plugins.HelpMenu\MeterKnife.Plugins.HelpMenu.csproj">
+    <ProjectReference Include="..\Plugins\MeterKnife.Plugins.HelpMenu\MeterKnife.Plugins.HelpMenu.csproj">
       <Project>{656970b6-a847-4340-a706-ab2bc1d07ef0}</Project>
       <Name>MeterKnife.Plugins.HelpMenu</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plugins.MeasureMenu\MeterKnife.Plugins.MeasureMenu.csproj">
+    <ProjectReference Include="..\Plugins\MeterKnife.Plugins.MeasureMenu\MeterKnife.Plugins.MeasureMenu.csproj">
       <Project>{eea8a692-5cf4-4cb1-b962-05635abc1bf0}</Project>
       <Name>MeterKnife.Plugins.MeasureMenu</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Plugins.ViewMenu\MeterKnife.Plugins.ViewMenu.csproj">
+    <ProjectReference Include="..\Plugins\MeterKnife.Plugins.ViewMenu\MeterKnife.Plugins.ViewMenu.csproj">
       <Project>{2155ed0a-4eb7-44ff-8cc3-5371639d2717}</Project>
       <Name>MeterKnife.Plugins.ViewMenu</Name>
     </ProjectReference>
