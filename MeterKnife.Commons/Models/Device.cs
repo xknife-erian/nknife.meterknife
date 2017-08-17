@@ -9,7 +9,7 @@ namespace MeterKnife.Models
             Brand = brand;
             Name = name;
             AbbrName = abbrName;
-            Address = 0;
+            Address = address;
         }
 
         #region Implementation of IDevice

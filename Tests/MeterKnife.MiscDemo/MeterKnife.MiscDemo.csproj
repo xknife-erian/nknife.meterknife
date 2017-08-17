@@ -55,6 +55,9 @@
     <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
     </Reference>
+    <Reference Include="NKnife.Channels, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.Channels.17.5.0.511\lib\net40\NKnife.Channels.dll</HintPath>
+    </Reference>
     <Reference Include="NKnife.ControlKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NKnife.ControlKnife.17.5.0.511\lib\net40\NKnife.ControlKnife.dll</HintPath>
     </Reference>
@@ -141,6 +144,18 @@
     <Content Include="Properties\main.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Gateways\MeterKnife.Cares\MeterKnife.Gateway.Cares.csproj">
+      <Project>{201309e4-cd58-4197-ac3b-6367cc4e65b1}</Project>
+      <Name>MeterKnife.Gateway.Cares</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights\MeterKnife.Gateway.Keysights.csproj">
+      <Project>{ec118282-b4fe-4837-b292-302a7e111c21}</Project>
+      <Name>MeterKnife.Gateway.Keysights</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Commons\MeterKnife.Commons.csproj">
+      <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
+      <Name>MeterKnife.Commons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Kernel\MeterKnife.Kernel.csproj">
       <Project>{c0352137-c756-41dc-80f8-4b026546ad5b}</Project>
       <Name>MeterKnife.Kernel</Name>

@@ -140,6 +140,7 @@
             this._SendButton.TabIndex = 2;
             this._SendButton.Text = "发送";
             this._SendButton.UseVisualStyleBackColor = true;
+            this._SendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
             // _LoopTimeBox
             // 
