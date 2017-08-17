@@ -57,8 +57,11 @@
     <Compile Include="..\..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="KeysightAnswer.cs" />
+    <Compile Include="KeysightQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="KeysightChannel.cs" />
+    <Compile Include="KeysightQuestionGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
