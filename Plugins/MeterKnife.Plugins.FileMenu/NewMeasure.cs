@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Views.Measures;
@@ -11,12 +12,13 @@ namespace MeterKnife.Plugins.FileMenu
     /// </summary>
     public class NewMeasure : IPlugIn
     {
-        private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("新建测量(&N)");
+        private readonly OrderToolStripMenuItem _StripItem = new OrderToolStripMenuItem("新建测量(&N)");
         private PluginViewComponent _ViewComponent;
         private IExtenderProvider _ExtenderProvider;
 
         public NewMeasure()
         {
+            _StripItem.Order = 0F;
             _StripItem.ShortcutKeys = Keys.Control | Keys.N;
             _StripItem.Click += (s, e) =>
             {
@@ -54,7 +56,7 @@ namespace MeterKnife.Plugins.FileMenu
         public void BindViewComponent(PluginViewComponent component)
         {
             _ViewComponent = component;
-            component.StripItemCollection.Insert(0, _StripItem);
+            component.StripItemCollection.Add(_StripItem);
         }
 
         /// <summary>

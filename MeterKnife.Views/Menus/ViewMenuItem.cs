@@ -1,8 +1,9 @@
 ﻿using System.Windows.Forms;
+using MeterKnife.Base;
 
 namespace MeterKnife.Views.Menus
 {
-    public sealed class ViewMenuItem : ToolStripMenuItem
+    public sealed class ViewMenuItem : OrderToolStripMenuItem
     {
         public ViewMenuItem()
         {

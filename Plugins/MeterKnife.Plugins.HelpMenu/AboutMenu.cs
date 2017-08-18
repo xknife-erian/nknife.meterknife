@@ -1,42 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
-using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Plugins;
-using NKnife.IoC;
 
-namespace MeterKnife.Plugins.FileMenu
+namespace MeterKnife.Plugins.HelpMenu
 {
-    public class Exit : IPlugIn
+    /// <summary>
+    /// 插件："新建测量"功能；
+    /// </summary>
+    public class AboutMenu : IPlugIn
     {
-        private readonly OrderToolStripMenuItem _ExitMenuItem = new OrderToolStripMenuItem("退出(&X)");
-        private readonly ToolStripMenuItem _ExitContextMenuItem = new ToolStripMenuItem("退出(&X)");
+        private readonly OrderToolStripMenuItem _StripItem = new OrderToolStripMenuItem("关于(&A)");
+        private PluginViewComponent _ViewComponent;
+        private IExtenderProvider _ExtenderProvider;
 
-        public Exit()
+        public AboutMenu()
         {
-            _ExitMenuItem.Order = 9999990F;
-            _ExitMenuItem.ShortcutKeys = Keys.Control | Keys.Alt | Keys.X;
-            _ExitMenuItem.Click += OnExitMenuItemOnClick;
-            _ExitContextMenuItem.Click += OnExitMenuItemOnClick;
-        }
-
-        private void OnExitMenuItemOnClick(object s, EventArgs e)
-        {
-            var workbench = DI.Get<IWorkbench>();
-            workbench.KernelCallFormClose = true;
-            ((Form)workbench).Close();
+            _StripItem.Order = 99999990F;
+            _StripItem.Click += (s, e) =>
+            {
+                var dialog = new AboutDialog();
+                dialog.ShowDialog();
+            };
         }
 
         #region Implementation of IPlugIn
-
+            
         /// <summary>
         ///     描述本插件类型
         /// </summary>
-        public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
+        public PluginStyle PluginStyle { get; } = PluginStyle.HelpMenu;
 
         /// <summary>
         ///     插件的详细描述
@@ -49,10 +42,11 @@ namespace MeterKnife.Plugins.FileMenu
         /// <param name="component"></param>
         public void BindViewComponent(PluginViewComponent component)
         {
+            _ViewComponent = component;
             var collection = component.StripItemCollection;
-            collection.Add(_ExitMenuItem);
-
-            component.TrayMenu.Items.Add(_ExitContextMenuItem);
+            if (collection.Count > 0)
+                collection.Add(new ToolStripSeparator());
+            collection.Add(_StripItem);
         }
 
         /// <summary>
@@ -61,6 +55,7 @@ namespace MeterKnife.Plugins.FileMenu
         /// <param name="provider">核心扩展供给器</param>
         public bool Register(ref IExtenderProvider provider)
         {
+            _ExtenderProvider = provider;
             return true;
         }
 
@@ -73,5 +68,5 @@ namespace MeterKnife.Plugins.FileMenu
         }
 
         #endregion
-    }
+    } 
 }

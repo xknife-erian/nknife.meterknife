@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 
@@ -7,28 +8,21 @@ namespace MeterKnife.Plugins.FileMenu
 {
     public class OpenMeasure : IPlugIn
     {
-        private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("打开测量(&O)");
+        private readonly OrderToolStripMenuItem _StripItem = new OrderToolStripMenuItem("打开测量(&O)");
 
         public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
         public PluginDetail Detail { get; } = new PluginDetailKnife();
 
         public OpenMeasure()
         {
+            _StripItem.Order = 1;
             _StripItem.ShortcutKeys = Keys.Control | Keys.O;
         }
 
         public void BindViewComponent(PluginViewComponent component)
         {
             var collection = component.StripItemCollection;
-            if (collection.Count > 2)
-            {
-                var item = collection[0];
-                collection.Insert(item.Text.Contains("N") ? 1 : 0, _StripItem);
-            }
-            else
-            {
-                collection.Insert(0, _StripItem);
-            }
+            collection.Add(_StripItem);
         }
 
         /// <summary>

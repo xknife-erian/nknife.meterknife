@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 using NKnife.IoC;
@@ -8,13 +9,14 @@ namespace MeterKnife.Plugins.ViewMenu.Loggers
 {
     public class LoggerPanelView : IPlugIn
     {
-        private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("日志(&L)");
+        private readonly OrderToolStripMenuItem _StripItem = new OrderToolStripMenuItem("日志(&L)");
         private PluginViewComponent _ViewComponent;
         private IExtenderProvider _ExtenderProvider;
 
         public LoggerPanelView()
         {
             var view = DI.Get<LoggerView>();
+            _StripItem.Order = 99999990F;
             _StripItem.Click += (s, e) =>
             {
                 foreach (var container in _ViewComponent.Containers)

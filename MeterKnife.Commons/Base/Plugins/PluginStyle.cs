@@ -1,4 +1,4 @@
-namespace MeterKnife.Interfaces.Plugins
+namespace MeterKnife.Base.Plugins
 {
     /// <summary>
     /// ²å¼şÀàĞÍ

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
+            this._CommandComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this._LoopTimeBox = new System.Windows.Forms.NumericUpDown();
             this._SendButton = new System.Windows.Forms.Button();
@@ -36,7 +37,6 @@
             this._AddressBox = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this._ResultListBox = new System.Windows.Forms.ListBox();
-            this._CommandComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
             this._SplitContainer.Panel2.SuspendLayout();
@@ -69,6 +69,17 @@
             this._SplitContainer.Size = new System.Drawing.Size(578, 371);
             this._SplitContainer.SplitterDistance = 36;
             this._SplitContainer.TabIndex = 0;
+            // 
+            // _CommandComboBox
+            // 
+            this._CommandComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._CommandComboBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._CommandComboBox.FormattingEnabled = true;
+            this._CommandComboBox.Location = new System.Drawing.Point(117, 8);
+            this._CommandComboBox.Name = "_CommandComboBox";
+            this._CommandComboBox.Size = new System.Drawing.Size(256, 23);
+            this._CommandComboBox.TabIndex = 6;
             // 
             // label2
             // 
@@ -161,17 +172,6 @@
             this._ResultListBox.Size = new System.Drawing.Size(578, 331);
             this._ResultListBox.TabIndex = 0;
             // 
-            // _CommandComboBox
-            // 
-            this._CommandComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._CommandComboBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._CommandComboBox.FormattingEnabled = true;
-            this._CommandComboBox.Location = new System.Drawing.Point(117, 8);
-            this._CommandComboBox.Name = "_CommandComboBox";
-            this._CommandComboBox.Size = new System.Drawing.Size(256, 23);
-            this._CommandComboBox.TabIndex = 6;
-            // 
             // KeysightChannelDemoView
             // 
             this.AcceptButton = this._SendButton;
@@ -179,6 +179,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 371);
             this.Controls.Add(this._SplitContainer);
+            this.DoubleBuffered = true;
             this.Name = "KeysightChannelDemoView";
             this.Text = "KeysightChannelDemoView";
             this._SplitContainer.Panel1.ResumeLayout(false);

@@ -1,33 +1,49 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
+using MeterKnife.Views.Measures;
+using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Plugins.HelpMenu
+namespace MeterKnife.Plugins.FileMenu
 {
-    /// <summary>
-    /// 插件："新建测量"功能；
-    /// </summary>
-    public class About : IPlugIn
+    public class InstrumentsDiscovery : IPlugIn
     {
-        private readonly ToolStripMenuItem _StripItem = new ToolStripMenuItem("关于(&A)");
+        private readonly OrderToolStripMenuItem _StripItem = new OrderToolStripMenuItem("仪器管理(&I)");
         private PluginViewComponent _ViewComponent;
         private IExtenderProvider _ExtenderProvider;
 
-        public About()
+        public InstrumentsDiscovery()
         {
+            _StripItem.Order = 10F;
+            _StripItem.ShortcutKeys = Keys.Control | Keys.I;
             _StripItem.Click += (s, e) =>
             {
-                var dialog = new AboutDialog();
-                dialog.ShowDialog();
+                var view = new MeasureView();
+                view.SetProvider(_ExtenderProvider);
+                foreach (var container in _ViewComponent.Containers)
+                {
+                    var panel = container as DockPanel;
+                    if (panel != null)
+                    {
+                        var dockpanel = panel;
+                        view.Show(dockpanel, DockState.Document);
+                        view.SetWorkModel(true);
+                    }
+                }
             };
         }
 
         #region Implementation of IPlugIn
-            
+
         /// <summary>
         ///     描述本插件类型
         /// </summary>
-        public PluginStyle PluginStyle { get; } = PluginStyle.HelpMenu;
+        public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
 
         /// <summary>
         ///     插件的详细描述
@@ -41,10 +57,7 @@ namespace MeterKnife.Plugins.HelpMenu
         public void BindViewComponent(PluginViewComponent component)
         {
             _ViewComponent = component;
-            var collection = component.StripItemCollection;
-            if (collection.Count > 0)
-                collection.Add(new ToolStripSeparator());
-            collection.Add(_StripItem);
+            component.StripItemCollection.Add(_StripItem);
         }
 
         /// <summary>
@@ -66,5 +79,5 @@ namespace MeterKnife.Plugins.HelpMenu
         }
 
         #endregion
-    } 
+    }
 }
