@@ -34,13 +34,29 @@ namespace MeterKnife.MiscDemo
 
         private void SendButton_Click(object sender, EventArgs e)
         {
+            var command = _CommandComboBox.Text;
+            if (!ContainCommand(command))
+            {
+                _CommandComboBox.Items.Insert(0, command);
+            }
+            var device = new Device("Keysight", "34401", "34401", (int) _AddressBox.Value);
             var ksChannel = new KeysightChannel();
-            ksChannel.Open();
             var group = new KeysightQuestionGroup();
-            var device = new Device("", "", "", (int) _AddressBox.Value);
-            group.Add(new KeysightQuestion(ksChannel, device, null, _LoopEnableCheckBox.Checked, _CommandTextBox.Text));
+            group.Add(new KeysightQuestion(ksChannel, device, null, _LoopEnableCheckBox.Checked, command));
             ksChannel.UpdateQuestionGroup(group);
+
+            ksChannel.Open();
             ksChannel.SendReceiving(SendAction, ReceivedFunc);
+        }
+
+        private bool ContainCommand(string command)
+        {
+            foreach (var item in _CommandComboBox.Items)
+            {
+                if (item.Equals(command))
+                    return true;
+            }
+            return false;
         }
 
         private void SendAction(IQuestion<string> question)

@@ -66,6 +66,11 @@ namespace MeterKnife.Keysights
             UpdateQuestionGroup((KeysightQuestionGroup) qGroup);
         }
 
+        public bool IsSynchronous { get; set; } = true;
+        public List<IExhibit> Exhibits { get; } = new List<IExhibit>();
+        public uint TalkTotalTimeout { get; set; } = 2000;
+        public bool IsOpen { get; private set; } = false;
+
         #region Sync-SendReceiving
 
         protected class SyncSendReceivingParams
@@ -117,6 +122,8 @@ namespace MeterKnife.Keysights
 
         #endregion
 
+        #region async, 不支持
+
         public void AutoSend(Action<IQuestion<string>> sendAction)
         {
             //此种Channel不设置异步方式操作
@@ -127,10 +134,7 @@ namespace MeterKnife.Keysights
             //此种Channel不设置异步方式操作
         }
 
-        public bool IsSynchronous { get; set; } = true;
-        public List<IExhibit> Exhibits { get; } = new List<IExhibit>();
-        public uint TalkTotalTimeout { get; set; } = 2000;
-        public bool IsOpen { get; private set; } = false;
+        #endregion
 
         #region Event
 
