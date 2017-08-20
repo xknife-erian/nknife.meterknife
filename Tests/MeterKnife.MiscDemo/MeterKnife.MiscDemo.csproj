@@ -156,6 +156,14 @@
       <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
       <Name>MeterKnife.Commons</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Datas\MeterKnife.Datas.csproj">
+      <Project>{1ab7a059-32cd-405f-a3b2-2d19b430bff4}</Project>
+      <Name>MeterKnife.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Gateway\MeterKnife.Gateway.csproj">
+      <Project>{b1053860-12d3-409f-9961-bd8719b82e56}</Project>
+      <Name>MeterKnife.Gateway</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Kernel\MeterKnife.Kernel.csproj">
       <Project>{c0352137-c756-41dc-80f8-4b026546ad5b}</Project>
       <Name>MeterKnife.Kernel</Name>
@@ -163,6 +171,22 @@
     <ProjectReference Include="..\..\MeterKnife.Plots\MeterKnife.Plots.csproj">
       <Project>{0B2CB4C1-2373-469C-B4BB-B6D810F7A151}</Project>
       <Name>MeterKnife.Plots</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Reports\MeterKnife.Reports.csproj">
+      <Project>{068a0168-d030-4757-8e19-ff0460d30acd}</Project>
+      <Name>MeterKnife.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Scpis\MeterKnife.Scpis.csproj">
+      <Project>{fa16056b-6bf8-464e-a05d-ab2914eb1e37}</Project>
+      <Name>MeterKnife.Scpis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.ViewModels\MeterKnife.ViewModels.csproj">
+      <Project>{a67f283f-ddbb-466d-9960-ed88ef553894}</Project>
+      <Name>MeterKnife.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Views.InstrumentsDiscovery\MeterKnife.Views.InstrumentsDiscovery.csproj">
+      <Project>{bf31ca09-666f-45f8-955b-c33d0de8d914}</Project>
+      <Name>MeterKnife.Views.InstrumentsDiscovery</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Views.Measures\MeterKnife.Views.Measures.csproj">
       <Project>{c7118fc6-c829-4620-a472-5df9afe81e2c}</Project>

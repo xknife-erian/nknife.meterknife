@@ -39,8 +39,6 @@ namespace MeterKnife.Views.Measures
         {
             if (isNewMeasure)
             {
-                var dialog = new MeasureSettingDialog();
-                dialog.ShowDialog(this);
             }
             else
             {

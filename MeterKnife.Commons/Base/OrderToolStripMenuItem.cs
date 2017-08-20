@@ -8,7 +8,7 @@ namespace MeterKnife.Base
     {
         private bool _IsFirstDropDown = true;
 
-        public OrderToolStripMenuItem() 
+        public OrderToolStripMenuItem()
             : this("")
         {
         }
@@ -27,12 +27,12 @@ namespace MeterKnife.Base
                     DropDownItems.Clear();
 
                     tmpItems.Sort(new MenuItemComparer());
-                    foreach (var toolStripItem in tmpItems)
+                    foreach (var item in tmpItems)
                     {
-                        var order = ((OrderToolStripMenuItem)toolStripItem).Order;
-                        if (order != 0 && order % 10 == 0)
+                        var order = ((OrderToolStripMenuItem) item).Order;
+                        if (tmpItems.Count > 1 && order != 0 && order % 10 <= 0)
                             DropDownItems.Add(new ToolStripSeparator());
-                        DropDownItems.Add(toolStripItem);
+                        DropDownItems.Add(item);
                     }
                 }
             };
@@ -44,10 +44,10 @@ namespace MeterKnife.Base
         {
             public int Compare(ToolStripItem m, ToolStripItem n)
             {
-                if (m != null && n != null)
+                var x = m as OrderToolStripMenuItem;
+                var y = n as OrderToolStripMenuItem;
+                if (x != null && y != null)
                 {
-                    var x = (OrderToolStripMenuItem) m;
-                    var y = (OrderToolStripMenuItem) n;
                     var xx = (int) (x.Order * 10000);
                     var yy = (int) (y.Order * 10000);
                     return xx - yy;

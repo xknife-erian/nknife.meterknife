@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Views.Measures
+﻿namespace MeterKnife.Views.InstrumentsDiscovery
 {
     partial class InstrumentsDiscoveryView
     {

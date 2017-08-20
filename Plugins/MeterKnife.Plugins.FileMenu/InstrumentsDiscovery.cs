@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
-using MeterKnife.Views.Measures;
+using MeterKnife.Views.InstrumentsDiscovery;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Plugins.FileMenu
@@ -19,11 +19,11 @@ namespace MeterKnife.Plugins.FileMenu
 
         public InstrumentsDiscovery()
         {
-            _StripItem.Order = 10F;
+            _StripItem.Order = 100F;
             _StripItem.ShortcutKeys = Keys.Control | Keys.I;
             _StripItem.Click += (s, e) =>
             {
-                var view = new MeasureView();
+                var view = new InstrumentsDiscoveryView();
                 view.SetProvider(_ExtenderProvider);
                 foreach (var container in _ViewComponent.Containers)
                 {
@@ -32,7 +32,6 @@ namespace MeterKnife.Plugins.FileMenu
                     {
                         var dockpanel = panel;
                         view.Show(dockpanel, DockState.Document);
-                        view.SetWorkModel(true);
                     }
                 }
             };

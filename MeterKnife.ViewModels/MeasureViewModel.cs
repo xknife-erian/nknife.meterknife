@@ -52,11 +52,12 @@ namespace MeterKnife.ViewModels
             _DemoThread = new Thread(() =>
             {
                 _OnDemo = true;
+                var top = rand.Next(0, 220);
                 while (_OnDemo)
                 {
                     Thread.Sleep(600);
                     var tail = rand.Next(0, 99999);
-                    var v = $"9.99{tail}";
+                    var v = $"{top}.99{tail}";
                     Plot.Add(double.Parse(v));
                     OnPlotModelUpdated();
                 }

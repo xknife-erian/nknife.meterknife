@@ -15,7 +15,7 @@ namespace MeterKnife.Plugins.FileMenu
 
         public OpenMeasure()
         {
-            _StripItem.Order = 1;
+            _StripItem.Order = 1F;
             _StripItem.ShortcutKeys = Keys.Control | Keys.O;
         }
 

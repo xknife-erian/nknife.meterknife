@@ -18,7 +18,7 @@ namespace MeterKnife.Plugins.FileMenu
 
         public Exit()
         {
-            _ExitMenuItem.Order = 9999990F;
+            _ExitMenuItem.Order = 10000F;
             _ExitMenuItem.ShortcutKeys = Keys.Control | Keys.Alt | Keys.X;
             _ExitMenuItem.Click += OnExitMenuItemOnClick;
             _ExitContextMenuItem.Click += OnExitMenuItemOnClick;

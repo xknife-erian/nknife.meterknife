@@ -16,7 +16,7 @@ namespace MeterKnife.Plugins.HelpMenu
 
         public AboutMenu()
         {
-            _StripItem.Order = 99999990F;
+            _StripItem.Order = 100F;
             _StripItem.Click += (s, e) =>
             {
                 var dialog = new AboutDialog();
