@@ -29,39 +29,41 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstrumentsDiscoveryView));
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.SuspendLayout();
+            this._SplitContainer = new System.Windows.Forms.SplitContainer();
+            ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
+            this._SplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // splitContainer1
+            // _SplitContainer
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Size = new System.Drawing.Size(851, 505);
-            this.splitContainer1.SplitterDistance = 344;
-            this.splitContainer1.TabIndex = 0;
+            this._SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this._SplitContainer.Location = new System.Drawing.Point(0, 0);
+            this._SplitContainer.Name = "_SplitContainer";
+            this._SplitContainer.Size = new System.Drawing.Size(851, 505);
+            this._SplitContainer.SplitterDistance = 360;
+            this._SplitContainer.TabIndex = 0;
             // 
             // InstrumentsDiscoveryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 505);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this._SplitContainer);
             this.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this.HideOnClose = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "InstrumentsDiscoveryView";
-            this.Text = "仪器搜索";
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.Text = "仪器管理";
+            ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).EndInit();
+            this._SplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer _SplitContainer;
     }
 }
