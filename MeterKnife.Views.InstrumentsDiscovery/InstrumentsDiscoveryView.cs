@@ -1,4 +1,5 @@
-﻿using MeterKnife.Interfaces.Plugins;
+﻿using System.Windows.Forms;
+using MeterKnife.Interfaces.Plugins;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Views.InstrumentsDiscovery
@@ -8,6 +9,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         public InstrumentsDiscoveryView()
         {
             InitializeComponent();
+            var item = new ListViewItem();
+            
         }
 
         public void SetProvider(IExtenderProvider extenderProvider)

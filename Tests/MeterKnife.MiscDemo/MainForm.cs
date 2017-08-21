@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Plots.Themes;
+using MeterKnife.Plugins.FileMenu;
 using MeterKnife.Plugins.ViewMenu.Loggers;
+using MeterKnife.Views.InstrumentsDiscovery;
 using MeterKnife.Views.Measures;
 using NKnife.ControlKnife;
 using NKnife.IoC;
@@ -53,6 +56,23 @@ namespace MeterKnife.MiscDemo
             view.Show(_DockPanel, DockState.DockBottom);
             var ksView = new KeysightChannelDemoView();
             ksView.Show(_DockPanel, DockState.Document);
+        }
+
+        private void _InstrumentsDiscoveryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ksView = new InstrumentsDiscoveryView();
+            ksView.Show(_DockPanel, DockState.Document);
+        }
+
+        private void _InstrumentsPanelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new DockContent();
+            view.Text = "仪器管理控件";
+            var panel = new InstrumentsPanel();
+            panel.BackColor = Color.Coral;
+            panel.Dock = DockStyle.Fill;
+            view.Controls.Add(panel);
+            view.Show(_DockPanel, DockState.Document);
         }
     }
 }

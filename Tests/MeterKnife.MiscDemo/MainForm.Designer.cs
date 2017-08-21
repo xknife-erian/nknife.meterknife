@@ -37,7 +37,10 @@
             this._GatewayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CareOneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._KeysightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._InstrumentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._InstrumentsDiscoveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
+            this._InstrumentsPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +49,8 @@
             this._MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.plot测试ToolStripMenuItem,
             this.主题ToolStripMenuItem,
-            this._GatewayToolStripMenuItem});
+            this._GatewayToolStripMenuItem,
+            this._InstrumentsToolStripMenuItem});
             this._MenuStrip.Location = new System.Drawing.Point(0, 0);
             this._MenuStrip.Name = "_MenuStrip";
             this._MenuStrip.Size = new System.Drawing.Size(951, 25);
@@ -106,6 +110,23 @@
             this._KeysightToolStripMenuItem.Text = "Keysight";
             this._KeysightToolStripMenuItem.Click += new System.EventHandler(this._KeysightToolStripMenuItem_Click);
             // 
+            // _InstrumentsToolStripMenuItem
+            // 
+            this._InstrumentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._InstrumentsPanelToolStripMenuItem,
+            this._InstrumentsDiscoveryToolStripMenuItem});
+            this._InstrumentsToolStripMenuItem.Name = "_InstrumentsToolStripMenuItem";
+            this._InstrumentsToolStripMenuItem.Size = new System.Drawing.Size(88, 21);
+            this._InstrumentsToolStripMenuItem.Text = "Instruments";
+            // 
+            // _InstrumentsDiscoveryToolStripMenuItem
+            // 
+            this._InstrumentsDiscoveryToolStripMenuItem.Name = "_InstrumentsDiscoveryToolStripMenuItem";
+            this._InstrumentsDiscoveryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this._InstrumentsDiscoveryToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._InstrumentsDiscoveryToolStripMenuItem.Text = "仪器管理窗口";
+            this._InstrumentsDiscoveryToolStripMenuItem.Click += new System.EventHandler(this._InstrumentsDiscoveryToolStripMenuItem_Click);
+            // 
             // _StatusStrip
             // 
             this._StatusStrip.Location = new System.Drawing.Point(0, 604);
@@ -113,6 +134,14 @@
             this._StatusStrip.Size = new System.Drawing.Size(951, 22);
             this._StatusStrip.TabIndex = 1;
             this._StatusStrip.Text = "statusStrip1";
+            // 
+            // _InstrumentsPanelToolStripMenuItem
+            // 
+            this._InstrumentsPanelToolStripMenuItem.Name = "_InstrumentsPanelToolStripMenuItem";
+            this._InstrumentsPanelToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this._InstrumentsPanelToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._InstrumentsPanelToolStripMenuItem.Text = "仪器管理面板控件";
+            this._InstrumentsPanelToolStripMenuItem.Click += new System.EventHandler(this._InstrumentsPanelToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -145,6 +174,9 @@
         private System.Windows.Forms.ToolStripMenuItem _GatewayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _CareOneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _KeysightToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _InstrumentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _InstrumentsDiscoveryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _InstrumentsPanelToolStripMenuItem;
     }
 }
 

@@ -49,6 +49,12 @@
     <Compile Include="InstrumentsDiscoveryView.Designer.cs">
       <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
     </Compile>
+    <Compile Include="InstrumentsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InstrumentsPanel.Designer.cs">
+      <DependentUpon>InstrumentsPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
@@ -56,11 +62,16 @@
     <EmbeddedResource Include="InstrumentsDiscoveryView.resx">
       <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InstrumentsPanel.resx">
+      <DependentUpon>InstrumentsPanel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Properties\1.png" />
+    <Content Include="Properties\2.png" />
     <Content Include="Properties\Icons\InstrumentsDiscovery.ico" />
   </ItemGroup>
   <ItemGroup>
