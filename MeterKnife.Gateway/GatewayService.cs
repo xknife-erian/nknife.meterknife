@@ -6,9 +6,9 @@ using NKnife.Interface;
 
 namespace MeterKnife.Gateway
 {
-    public class GatewayServicesss : IGatewayService
+    public class GatewayService : IGatewayService
     {
-        private List<GatewayModelsss> _GateWayModels = new List<GatewayModelsss>();
+        private List<GatewayModel> _GateWayModels = new List<GatewayModel>();
 
         #region Implementation of IEnvironmentItem
 
