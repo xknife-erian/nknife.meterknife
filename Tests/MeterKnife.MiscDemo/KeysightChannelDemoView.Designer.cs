@@ -139,16 +139,11 @@
             0,
             0,
             0});
-            this._AddressBox.Minimum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
             this._AddressBox.Name = "_AddressBox";
             this._AddressBox.Size = new System.Drawing.Size(39, 21);
             this._AddressBox.TabIndex = 3;
             this._AddressBox.Value = new decimal(new int[] {
-            24,
+            22,
             0,
             0,
             0});

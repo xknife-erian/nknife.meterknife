@@ -38,9 +38,9 @@
             this._CareOneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._KeysightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._InstrumentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._InstrumentsPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._InstrumentsDiscoveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
-            this._InstrumentsPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,6 +119,14 @@
             this._InstrumentsToolStripMenuItem.Size = new System.Drawing.Size(88, 21);
             this._InstrumentsToolStripMenuItem.Text = "Instruments";
             // 
+            // _InstrumentsPanelToolStripMenuItem
+            // 
+            this._InstrumentsPanelToolStripMenuItem.Name = "_InstrumentsPanelToolStripMenuItem";
+            this._InstrumentsPanelToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this._InstrumentsPanelToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._InstrumentsPanelToolStripMenuItem.Text = "仪器管理面板控件";
+            this._InstrumentsPanelToolStripMenuItem.Click += new System.EventHandler(this._InstrumentsPanelToolStripMenuItem_Click);
+            // 
             // _InstrumentsDiscoveryToolStripMenuItem
             // 
             this._InstrumentsDiscoveryToolStripMenuItem.Name = "_InstrumentsDiscoveryToolStripMenuItem";
@@ -135,14 +143,6 @@
             this._StatusStrip.TabIndex = 1;
             this._StatusStrip.Text = "statusStrip1";
             // 
-            // _InstrumentsPanelToolStripMenuItem
-            // 
-            this._InstrumentsPanelToolStripMenuItem.Name = "_InstrumentsPanelToolStripMenuItem";
-            this._InstrumentsPanelToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this._InstrumentsPanelToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this._InstrumentsPanelToolStripMenuItem.Text = "仪器管理面板控件";
-            this._InstrumentsPanelToolStripMenuItem.Click += new System.EventHandler(this._InstrumentsPanelToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,7 +155,7 @@
             this.MainMenuStrip = this._MenuStrip;
             this.MinimumSize = new System.Drawing.Size(120, 148);
             this.Name = "MainForm";
-            this.Text = "MeterKnife UI Test Form";
+            this.Text = "MeterKnife Misc Demo Form";
             this._MenuStrip.ResumeLayout(false);
             this._MenuStrip.PerformLayout();
             this.ResumeLayout(false);

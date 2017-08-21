@@ -26,21 +26,24 @@ namespace MeterKnife.Keysights
         public bool Open()
         {
             OnOpening();
-            _GPIBLinker = new GPIBLinker(log =>
+            if (_GPIBLinker == null || _GPIBTarget != _GPIBLinker.GpibSelector)
             {
-                switch (log.LogLevel)
+                _GPIBLinker = new GPIBLinker(log =>
                 {
-                    case GPIBLogLevel.Trace:
-                        _logger.Trace(log.Message);
-                        break;
-                    case GPIBLogLevel.Warn:
-                        _logger.Warn(log.Message, log.Exception);
-                        break;
-                    case GPIBLogLevel.Error:
-                        _logger.Error(log.Message, log.Exception);
-                        break;
-                }
-            }, _GPIBTarget);
+                    switch (log.LogLevel)
+                    {
+                        case GPIBLogLevel.Trace:
+                            _logger.Trace(log.Message);
+                            break;
+                        case GPIBLogLevel.Warn:
+                            _logger.Warn(log.Message, log.Exception);
+                            break;
+                        case GPIBLogLevel.Error:
+                            _logger.Error(log.Message, log.Exception);
+                            break;
+                    }
+                }, _GPIBTarget);
+            }
             IsOpen = true;
             OnOpened();
             return true;
