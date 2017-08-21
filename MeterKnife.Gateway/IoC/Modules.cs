@@ -14,7 +14,7 @@ namespace MeterKnife.Gateway.IoC
         /// <summary>Loads the module into the kernel.</summary>
         public override void Load()
         {
-            Bind<IGatewayService>().To<GatewayService>().InSingletonScope();
+            Bind<IGatewayService>().To<GatewayServicesss>().InSingletonScope();
         }
 
         #endregion

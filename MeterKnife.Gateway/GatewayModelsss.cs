@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MeterKnife.Gateway
 {
-    public enum GatewayModel
+    public enum GatewayModelsss
     {
         CareOne,
         CareTwo,
