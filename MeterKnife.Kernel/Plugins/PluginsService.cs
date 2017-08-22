@@ -72,7 +72,7 @@ namespace MeterKnife.Kernel.Plugins
                 var types = assembly.GetTypes();
                 foreach (var type in types)
                 {
-                    if (type.ContainsInterface(typeof(IPlugIn)))
+                    if (type.ContainsInterface(typeof(IPlugIn)) && !type.IsAbstract)
                     {
                         var plugin = (IPlugIn)UtilityType.CreateObject(type, type, false);
                         plugIns.Add(plugin);

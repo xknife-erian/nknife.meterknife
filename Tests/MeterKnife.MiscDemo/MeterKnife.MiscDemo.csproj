@@ -88,12 +88,6 @@
     <Compile Include="..\..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="KeysightChannelDemoView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KeysightChannelDemoView.Designer.cs">
-      <DependentUpon>KeysightChannelDemoView.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +102,6 @@
     <Compile Include="PropertyGridView.Designer.cs">
       <DependentUpon>PropertyGridView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="KeysightChannelDemoView.resx">
-      <DependentUpon>KeysightChannelDemoView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,10 +138,6 @@
     <ProjectReference Include="..\..\Gateways\MeterKnife.Cares\MeterKnife.Gateway.Cares.csproj">
       <Project>{201309e4-cd58-4197-ac3b-6367cc4e65b1}</Project>
       <Name>MeterKnife.Gateway.Cares</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights\MeterKnife.Gateway.Keysights.csproj">
-      <Project>{ec118282-b4fe-4837-b292-302a7e111c21}</Project>
-      <Name>MeterKnife.Gateway.Keysights</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Commons\MeterKnife.Commons.csproj">
       <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
@@ -207,6 +194,10 @@
     <ProjectReference Include="..\..\Plugins\MeterKnife.Plugins.MeasureMenu\MeterKnife.Plugins.MeasureMenu.csproj">
       <Project>{eea8a692-5cf4-4cb1-b962-05635abc1bf0}</Project>
       <Name>MeterKnife.Plugins.MeasureMenu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Plugins\MeterKnife.Plugins.ToolsMenu\MeterKnife.Plugins.ToolsMenu.csproj">
+      <Project>{c1c2780b-4db6-4878-910a-bb3b29c2eb53}</Project>
+      <Name>MeterKnife.Plugins.ToolsMenu</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Plugins\MeterKnife.Plugins.ViewMenu\MeterKnife.Plugins.ViewMenu.csproj">
       <Project>{2155ed0a-4eb7-44ff-8cc3-5371639d2717}</Project>

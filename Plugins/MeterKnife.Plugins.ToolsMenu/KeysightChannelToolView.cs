@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MeterKnife.Keysights;
 using MeterKnife.Models;
 using NKnife.Channels.Interfaces.Channels;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.MiscDemo
+namespace MeterKnife.Plugins.ToolsMenu
 {
-    public partial class KeysightChannelDemoView : DockContent
+    public partial class KeysightChannelToolView : DockContent
     {
-        public KeysightChannelDemoView()
+        public KeysightChannelToolView()
         {
             InitializeComponent();
             ControlStateCheck();

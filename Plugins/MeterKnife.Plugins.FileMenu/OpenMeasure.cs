@@ -1,35 +1,26 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 
 namespace MeterKnife.Plugins.FileMenu
 {
-    public class OpenMeasure : IPlugIn
+    public class OpenMeasure : PluginBase
     {
-        private readonly OrderToolStripMenuItem _StripItem = new OrderToolStripMenuItem("打开测量(&O)");
-
-        public PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
-        public PluginDetail Detail { get; } = new PluginDetailKnife();
-
         public OpenMeasure()
         {
+            _StripItem.Text = "打开测量(&O)";
             _StripItem.Order = 1F;
             _StripItem.ShortcutKeys = Keys.Control | Keys.O;
         }
 
-        public void BindViewComponent(PluginViewComponent component)
-        {
-            var collection = component.StripItemCollection;
-            collection.Add(_StripItem);
-        }
+        public override PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
+        public override PluginDetail Detail { get; } = new PluginDetailKnife();
 
         /// <summary>
         ///     向扩展模组注册核心扩展供给器。
         /// </summary>
-        /// <param name="provider">核心扩展供给器</param>
-        public bool Register(ref IExtenderProvider provider)
+        protected override bool OnProviderRegistered()
         {
             return true;
         }
@@ -37,9 +28,9 @@ namespace MeterKnife.Plugins.FileMenu
         /// <summary>
         ///     从扩展模组回收核心扩展供给器。
         /// </summary>
-        public bool UnRegister()
+        public override bool UnRegister()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

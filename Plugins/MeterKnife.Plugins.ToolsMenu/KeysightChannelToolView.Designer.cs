@@ -1,6 +1,6 @@
-﻿namespace MeterKnife.MiscDemo
+﻿namespace MeterKnife.Plugins.ToolsMenu
 {
-    partial class KeysightChannelDemoView
+    partial class KeysightChannelToolView
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,9 @@
             // 
             this._SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this._SplitContainer.Font = new System.Drawing.Font("微软雅黑", 8.5F);
             this._SplitContainer.Location = new System.Drawing.Point(0, 0);
+            this._SplitContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._SplitContainer.Name = "_SplitContainer";
             this._SplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -66,8 +68,9 @@
             // _SplitContainer.Panel2
             // 
             this._SplitContainer.Panel2.Controls.Add(this._ResultListBox);
-            this._SplitContainer.Size = new System.Drawing.Size(578, 371);
-            this._SplitContainer.SplitterDistance = 36;
+            this._SplitContainer.Size = new System.Drawing.Size(674, 495);
+            this._SplitContainer.SplitterDistance = 40;
+            this._SplitContainer.SplitterWidth = 6;
             this._SplitContainer.TabIndex = 0;
             // 
             // _CommandComboBox
@@ -76,32 +79,35 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._CommandComboBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._CommandComboBox.FormattingEnabled = true;
-            this._CommandComboBox.Location = new System.Drawing.Point(117, 8);
+            this._CommandComboBox.Location = new System.Drawing.Point(135, 12);
+            this._CommandComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._CommandComboBox.Name = "_CommandComboBox";
-            this._CommandComboBox.Size = new System.Drawing.Size(256, 23);
+            this._CommandComboBox.Size = new System.Drawing.Size(298, 23);
             this._CommandComboBox.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(482, 13);
+            this.label2.Location = new System.Drawing.Point(556, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 12);
+            this.label2.Size = new System.Drawing.Size(25, 17);
             this.label2.TabIndex = 5;
             this.label2.Text = "ms";
             // 
             // _LoopTimeBox
             // 
             this._LoopTimeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._LoopTimeBox.Location = new System.Drawing.Point(425, 9);
+            this._LoopTimeBox.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this._LoopTimeBox.Location = new System.Drawing.Point(492, 12);
+            this._LoopTimeBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._LoopTimeBox.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this._LoopTimeBox.Name = "_LoopTimeBox";
-            this._LoopTimeBox.Size = new System.Drawing.Size(55, 21);
+            this._LoopTimeBox.Size = new System.Drawing.Size(64, 23);
             this._LoopTimeBox.TabIndex = 1;
             this._LoopTimeBox.Value = new decimal(new int[] {
             1000,
@@ -112,9 +118,10 @@
             // _SendButton
             // 
             this._SendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._SendButton.Location = new System.Drawing.Point(502, 7);
+            this._SendButton.Location = new System.Drawing.Point(586, 9);
+            this._SendButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._SendButton.Name = "_SendButton";
-            this._SendButton.Size = new System.Drawing.Size(59, 24);
+            this._SendButton.Size = new System.Drawing.Size(69, 28);
             this._SendButton.TabIndex = 2;
             this._SendButton.Text = "发送";
             this._SendButton.UseVisualStyleBackColor = true;
@@ -124,23 +131,26 @@
             // 
             this._LoopEnableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._LoopEnableCheckBox.AutoSize = true;
-            this._LoopEnableCheckBox.Location = new System.Drawing.Point(379, 13);
+            this._LoopEnableCheckBox.Location = new System.Drawing.Point(439, 13);
+            this._LoopEnableCheckBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._LoopEnableCheckBox.Name = "_LoopEnableCheckBox";
-            this._LoopEnableCheckBox.Size = new System.Drawing.Size(48, 16);
+            this._LoopEnableCheckBox.Size = new System.Drawing.Size(51, 21);
             this._LoopEnableCheckBox.TabIndex = 1;
             this._LoopEnableCheckBox.Text = "循环";
             this._LoopEnableCheckBox.UseVisualStyleBackColor = true;
             // 
             // _AddressBox
             // 
-            this._AddressBox.Location = new System.Drawing.Point(72, 9);
+            this._AddressBox.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this._AddressBox.Location = new System.Drawing.Point(84, 12);
+            this._AddressBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._AddressBox.Maximum = new decimal(new int[] {
             36,
             0,
             0,
             0});
             this._AddressBox.Name = "_AddressBox";
-            this._AddressBox.Size = new System.Drawing.Size(39, 21);
+            this._AddressBox.Size = new System.Drawing.Size(45, 23);
             this._AddressBox.TabIndex = 3;
             this._AddressBox.Value = new decimal(new int[] {
             22,
@@ -151,9 +161,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 14);
+            this.label1.Location = new System.Drawing.Point(19, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.Size = new System.Drawing.Size(59, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "仪器地址:";
             // 
@@ -161,22 +171,25 @@
             // 
             this._ResultListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ResultListBox.FormattingEnabled = true;
-            this._ResultListBox.ItemHeight = 12;
+            this._ResultListBox.ItemHeight = 16;
             this._ResultListBox.Location = new System.Drawing.Point(0, 0);
+            this._ResultListBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ResultListBox.Name = "_ResultListBox";
-            this._ResultListBox.Size = new System.Drawing.Size(578, 331);
+            this._ResultListBox.Size = new System.Drawing.Size(674, 449);
             this._ResultListBox.TabIndex = 0;
             // 
-            // KeysightChannelDemoView
+            // KeysightChannelToolView
             // 
             this.AcceptButton = this._SendButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(578, 371);
+            this.ClientSize = new System.Drawing.Size(674, 495);
             this.Controls.Add(this._SplitContainer);
             this.DoubleBuffered = true;
-            this.Name = "KeysightChannelDemoView";
-            this.Text = "KeysightChannelDemoView";
+            this.Font = new System.Drawing.Font("微软雅黑", 8.25F);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "KeysightChannelToolView";
+            this.Text = "Aglient 82357x测试工具";
             this._SplitContainer.Panel1.ResumeLayout(false);
             this._SplitContainer.Panel1.PerformLayout();
             this._SplitContainer.Panel2.ResumeLayout(false);

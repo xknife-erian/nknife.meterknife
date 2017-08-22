@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Plots.Themes;
-using MeterKnife.Plugins.FileMenu;
+using MeterKnife.Plugins.ToolsMenu;
 using MeterKnife.Plugins.ViewMenu.Loggers;
 using MeterKnife.Views.InstrumentsDiscovery;
 using MeterKnife.Views.Measures;
@@ -54,7 +54,7 @@ namespace MeterKnife.MiscDemo
         {
             var view = DI.Get<LoggerView>();
             view.Show(_DockPanel, DockState.DockBottom);
-            var ksView = new KeysightChannelDemoView();
+            var ksView = new KeysightChannelToolView();
             ksView.Show(_DockPanel, DockState.Document);
         }
 

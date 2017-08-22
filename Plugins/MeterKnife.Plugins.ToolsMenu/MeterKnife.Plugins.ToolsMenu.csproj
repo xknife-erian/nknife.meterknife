@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF31CA09-666F-45F8-955B-C33D0DE8D914}</ProjectGuid>
+    <ProjectGuid>{C1C2780B-4DB6-4878-910A-BB3B29C2EB53}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>MeterKnife.Views.InstrumentsDiscovery</RootNamespace>
-    <AssemblyName>MeterKnife.Views.InstrumentsDiscovery</AssemblyName>
+    <RootNamespace>MeterKnife.Plugins.ToolsMenu</RootNamespace>
+    <AssemblyName>MeterKnife.Plugins.ToolsMenu</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,20 +29,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
+      <HintPath>..\..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife.Channels, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.Channels.17.5.0.511\lib\net40\NKnife.Channels.dll</HintPath>
     </Reference>
     <Reference Include="NKnife.ControlKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.ControlKnife.17.5.0.511\lib\net40\NKnife.ControlKnife.dll</HintPath>
+      <HintPath>..\..\packages\NKnife.ControlKnife.17.5.0.511\lib\net40\NKnife.ControlKnife.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,57 +57,43 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.3.0.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+      <HintPath>..\..\packages\DockPanelSuite.3.0.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
+    <Compile Include="..\..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="InstrumentsDetailCell.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="InstrumentsDetailCell.Designer.cs">
-      <DependentUpon>InstrumentsDetailCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="InstrumentsDiscoveryView.cs">
+    <Compile Include="KeysightChannelTool.cs" />
+    <Compile Include="KeysightChannelToolView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InstrumentsDiscoveryView.Designer.cs">
-      <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="InstrumentsPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="InstrumentsPanel.Designer.cs">
-      <DependentUpon>InstrumentsPanel.cs</DependentUpon>
+    <Compile Include="KeysightChannelToolView.Designer.cs">
+      <DependentUpon>KeysightChannelToolView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="InstrumentsDetailCell.resx">
-      <DependentUpon>InstrumentsDetailCell.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstrumentsDiscoveryView.resx">
-      <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstrumentsPanel.resx">
-      <DependentUpon>InstrumentsPanel.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\1.png" />
-    <Content Include="Properties\2.png" />
-    <Content Include="Properties\Icons\InstrumentsDiscovery.ico" />
+    <EmbeddedResource Include="KeysightChannelToolView.resx">
+      <DependentUpon>KeysightChannelToolView.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MeterKnife.Commons\MeterKnife.Commons.csproj">
-      <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
+    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights.VISAs\MeterKnife.Gateway.Keysights.VISAs.csproj">
+      <Project>{f983fb9d-37a3-4b2c-b4d7-6e1311ded746}</Project>
+      <Name>MeterKnife.Gateway.Keysights.VISAs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights\MeterKnife.Gateway.Keysights.csproj">
+      <Project>{EC118282-B4FE-4837-B292-302A7E111C21}</Project>
+      <Name>MeterKnife.Gateway.Keysights</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Commons\MeterKnife.Commons.csproj">
+      <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
       <Name>MeterKnife.Commons</Name>
     </ProjectReference>
   </ItemGroup>

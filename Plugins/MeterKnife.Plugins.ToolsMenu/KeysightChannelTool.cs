@@ -2,36 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
-using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
-using MeterKnife.Views.InstrumentsDiscovery;
-using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Plugins.FileMenu
+namespace MeterKnife.Plugins.ToolsMenu
 {
-    public class InstrumentsDiscovery : PluginBase
+    public class KeysightChannelTool : PluginBase
     {
-        public InstrumentsDiscovery()
+        public KeysightChannelTool()
         {
-            _StripItem.Text = "仪器管理(&I)";
-            _StripItem.Order = 100F;
-            _StripItem.ShortcutKeys = Keys.Control | Keys.I;
+            _StripItem.Text = "Aglient 82357x测试工具";
+            _StripItem.Order = 10F;
             _StripItem.Click += (s, e) =>
             {
-                var view = new InstrumentsDiscoveryView();
-                view.SetProvider(_ExtenderProvider);
+                var view = new KeysightChannelToolView();
                 ShowAtDockPanel(view);
             };
         }
 
-        #region Implementation of IPlugIn
+        #region Overrides of PluginBase
 
         /// <summary>
         ///     描述本插件类型
         /// </summary>
-        public override PluginStyle PluginStyle { get; } = PluginStyle.FileMenu;
+        public override PluginStyle PluginStyle { get; } = PluginStyle.ToolMenu;
 
         /// <summary>
         ///     插件的详细描述
