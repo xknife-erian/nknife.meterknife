@@ -61,10 +61,10 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="InstrumentsDetailCell.cs">
+    <Compile Include="Controls\InstrumentsDetailCell.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InstrumentsDetailCell.Designer.cs">
+    <Compile Include="Controls\InstrumentsDetailCell.Designer.cs">
       <DependentUpon>InstrumentsDetailCell.cs</DependentUpon>
     </Compile>
     <Compile Include="InstrumentsDiscoveryView.cs">
@@ -73,24 +73,33 @@
     <Compile Include="InstrumentsDiscoveryView.Designer.cs">
       <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
     </Compile>
-    <Compile Include="InstrumentsPanel.cs">
+    <Compile Include="Controls\InstrumentsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InstrumentsPanel.Designer.cs">
+    <Compile Include="Controls\InstrumentsPanel.Designer.cs">
       <DependentUpon>InstrumentsPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="InstrumentsDetailCell.resx">
+    <EmbeddedResource Include="Controls\InstrumentsDetailCell.resx">
       <DependentUpon>InstrumentsDetailCell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InstrumentsDiscoveryView.resx">
       <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InstrumentsPanel.resx">
+    <EmbeddedResource Include="Controls\InstrumentsPanel.resx">
       <DependentUpon>InstrumentsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +110,7 @@
     <Content Include="Properties\1.png" />
     <Content Include="Properties\2.png" />
     <Content Include="Properties\Icons\InstrumentsDiscovery.ico" />
+    <Content Include="Properties\meter64.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MeterKnife.Commons\MeterKnife.Commons.csproj">

@@ -1,4 +1,6 @@
-﻿namespace MeterKnife.Views.InstrumentsDiscovery
+﻿using MeterKnife.Views.InstrumentsDiscovery.Controls;
+
+namespace MeterKnife.Views.InstrumentsDiscovery
 {
     partial class InstrumentsDiscoveryView
     {
@@ -28,20 +30,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("LAN(TCPIP0)", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("USB(USB0)", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("LAN(Care1)", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Serial10(Care1)", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("34401");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("K2000");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("K2100");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("6871");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("6551");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstrumentsDiscoveryView));
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
-            this._ListView = new System.Windows.Forms.ListView();
+            this.instrumentsPanel1 = new InstrumentsPanel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
+            this._SplitContainer.Panel2.SuspendLayout();
             this._SplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,44 +54,66 @@
             // 
             // _SplitContainer.Panel1
             // 
-            this._SplitContainer.Panel1.Controls.Add(this._ListView);
+            this._SplitContainer.Panel1.Controls.Add(this.instrumentsPanel1);
+            // 
+            // _SplitContainer.Panel2
+            // 
+            this._SplitContainer.Panel2.BackColor = System.Drawing.Color.White;
+            this._SplitContainer.Panel2.Controls.Add(this.listView1);
             this._SplitContainer.Size = new System.Drawing.Size(851, 505);
-            this._SplitContainer.SplitterDistance = 360;
-            this._SplitContainer.SplitterWidth = 6;
+            this._SplitContainer.SplitterDistance = 400;
+            this._SplitContainer.SplitterWidth = 8;
             this._SplitContainer.TabIndex = 0;
             // 
-            // _ListView
+            // instrumentsPanel1
             // 
-            this._ListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewGroup1.Header = "LAN(TCPIP0)";
-            listViewGroup1.Name = "_LanGroup";
-            listViewGroup2.Header = "USB(USB0)";
-            listViewGroup2.Name = "_UsbGroup";
-            listViewGroup3.Header = "LAN(Care1)";
-            listViewGroup3.Name = "_LanCareOneGroup";
-            listViewGroup4.Header = "Serial10(Care1)";
-            listViewGroup4.Name = "_SerialCareGroup";
-            this._ListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4});
-            listViewItem1.Group = listViewGroup1;
-            listViewItem2.Group = listViewGroup3;
-            listViewItem3.Group = listViewGroup2;
-            listViewItem4.Group = listViewGroup4;
-            listViewItem5.Group = listViewGroup1;
-            this._ListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5});
-            this._ListView.Location = new System.Drawing.Point(0, 0);
-            this._ListView.Name = "_ListView";
-            this._ListView.Size = new System.Drawing.Size(360, 505);
-            this._ListView.TabIndex = 0;
-            this._ListView.UseCompatibleStateImageBehavior = false;
+            this.instrumentsPanel1.BackColor = System.Drawing.Color.White;
+            this.instrumentsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.instrumentsPanel1.Location = new System.Drawing.Point(0, 0);
+            this.instrumentsPanel1.Name = "instrumentsPanel1";
+            this.instrumentsPanel1.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.instrumentsPanel1.Size = new System.Drawing.Size(400, 505);
+            this.instrumentsPanel1.TabIndex = 0;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(443, 505);
+            this.listView1.TabIndex = 1;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 40;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "采集时间";
+            this.columnHeader2.Width = 90;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "测量物";
+            this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "测量内容";
+            this.columnHeader4.Width = 200;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "";
             // 
             // InstrumentsDiscoveryView
             // 
@@ -106,6 +128,7 @@
             this.Name = "InstrumentsDiscoveryView";
             this.Text = "仪器管理";
             this._SplitContainer.Panel1.ResumeLayout(false);
+            this._SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).EndInit();
             this._SplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -115,6 +138,12 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer _SplitContainer;
-        private System.Windows.Forms.ListView _ListView;
+        private InstrumentsPanel instrumentsPanel1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

@@ -5,6 +5,7 @@ using MeterKnife.Plots.Themes;
 using MeterKnife.Plugins.ToolsMenu;
 using MeterKnife.Plugins.ViewMenu.Loggers;
 using MeterKnife.Views.InstrumentsDiscovery;
+using MeterKnife.Views.InstrumentsDiscovery.Controls;
 using MeterKnife.Views.Measures;
 using NKnife.ControlKnife;
 using NKnife.IoC;
@@ -67,12 +68,13 @@ namespace MeterKnife.MiscDemo
         private void _InstrumentsPanelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var view = new DockContent();
+            view.Size = new Size(400, 600);
             view.Text = "仪器管理控件";
             var panel = new InstrumentsPanel();
-            panel.BackColor = Color.Coral;
+            panel.BackColor = Color.White;
             panel.Dock = DockStyle.Fill;
             view.Controls.Add(panel);
-            view.Show(_DockPanel, DockState.Document);
+            view.Show(_DockPanel, DockState.DockLeft);
         }
     }
 }
