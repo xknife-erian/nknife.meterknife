@@ -37,6 +37,7 @@
             this._AddressBox = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this._ResultListBox = new System.Windows.Forms.ListBox();
+            this._StopButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
             this._SplitContainer.Panel2.SuspendLayout();
@@ -57,6 +58,7 @@
             // 
             // _SplitContainer.Panel1
             // 
+            this._SplitContainer.Panel1.Controls.Add(this._StopButton);
             this._SplitContainer.Panel1.Controls.Add(this._CommandComboBox);
             this._SplitContainer.Panel1.Controls.Add(this.label2);
             this._SplitContainer.Panel1.Controls.Add(this._LoopTimeBox);
@@ -82,14 +84,14 @@
             this._CommandComboBox.Location = new System.Drawing.Point(135, 12);
             this._CommandComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._CommandComboBox.Name = "_CommandComboBox";
-            this._CommandComboBox.Size = new System.Drawing.Size(298, 23);
+            this._CommandComboBox.Size = new System.Drawing.Size(225, 23);
             this._CommandComboBox.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(556, 14);
+            this.label2.Location = new System.Drawing.Point(483, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 17);
             this.label2.TabIndex = 5;
@@ -99,7 +101,7 @@
             // 
             this._LoopTimeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._LoopTimeBox.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this._LoopTimeBox.Location = new System.Drawing.Point(492, 12);
+            this._LoopTimeBox.Location = new System.Drawing.Point(419, 12);
             this._LoopTimeBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._LoopTimeBox.Maximum = new decimal(new int[] {
             1000,
@@ -118,7 +120,7 @@
             // _SendButton
             // 
             this._SendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._SendButton.Location = new System.Drawing.Point(586, 9);
+            this._SendButton.Location = new System.Drawing.Point(513, 9);
             this._SendButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._SendButton.Name = "_SendButton";
             this._SendButton.Size = new System.Drawing.Size(69, 28);
@@ -131,7 +133,7 @@
             // 
             this._LoopEnableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._LoopEnableCheckBox.AutoSize = true;
-            this._LoopEnableCheckBox.Location = new System.Drawing.Point(439, 13);
+            this._LoopEnableCheckBox.Location = new System.Drawing.Point(370, 13);
             this._LoopEnableCheckBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._LoopEnableCheckBox.Name = "_LoopEnableCheckBox";
             this._LoopEnableCheckBox.Size = new System.Drawing.Size(51, 21);
@@ -178,6 +180,19 @@
             this._ResultListBox.Size = new System.Drawing.Size(674, 449);
             this._ResultListBox.TabIndex = 0;
             // 
+            // _StopButton
+            // 
+            this._StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._StopButton.Enabled = false;
+            this._StopButton.Location = new System.Drawing.Point(585, 9);
+            this._StopButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._StopButton.Name = "_StopButton";
+            this._StopButton.Size = new System.Drawing.Size(69, 28);
+            this._StopButton.TabIndex = 7;
+            this._StopButton.Text = "停止";
+            this._StopButton.UseVisualStyleBackColor = true;
+            this._StopButton.Click += new System.EventHandler(this._StopButton_Click);
+            // 
             // KeysightChannelToolView
             // 
             this.AcceptButton = this._SendButton;
@@ -212,5 +227,6 @@
         private System.Windows.Forms.ListBox _ResultListBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox _CommandComboBox;
+        private System.Windows.Forms.Button _StopButton;
     }
 }

@@ -64,7 +64,6 @@ namespace MeterKnife.Keysights.VISAs
             try
             {
                 _Gpib.WriteString(scpiCommand, flushAndEnd);
-                //Thread.Sleep((int)timeOut);
                 return _Gpib.ReadString();
             }
             catch (Exception e)

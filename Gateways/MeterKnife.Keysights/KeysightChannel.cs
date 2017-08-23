@@ -76,6 +76,10 @@ namespace MeterKnife.Keysights
 
         #region Sync-SendReceiving
 
+        private readonly AutoResetEvent _AutoReset = new AutoResetEvent(false);
+        private readonly System.Timers.Timer _Timer = new System.Timers.Timer();
+        private bool _IsLoop = true;
+
         protected class SyncSendReceivingParams
         {
             public SyncSendReceivingParams(Action<IQuestion<string>> sendAction, Func<AnswerBase<string>, bool> receivedFunc)
@@ -104,23 +108,45 @@ namespace MeterKnife.Keysights
 #endif
         }
 
+        public void StopSendReceiving()
+        {
+            _IsLoop = false;
+            _AutoReset.Set();
+            _Timer.Stop();
+        }
+
         protected void SendReceiving(object param)
         {
+            _IsLoop = true;
+            _Timer.Stop();
+            _Timer.Interval = TalkTotalTimeout;
+            _Timer.Elapsed += (s, e) =>
+            {
+                _AutoReset.Set();
+            };
+            bool isFirst = true;
             var w = (SyncSendReceivingParams) param;
-            while (_QuestionGroup.Count > 0)
+            while (_QuestionGroup.Count > 0 && _IsLoop)
             {
                 try
                 {
                     var question = _QuestionGroup.PeekOrDequeue();
                     w.SendAction.Invoke(question);
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                        _Timer.Start();
+                    }
                     var data = _GPIBLinker.Execute((ushort) question.Device.Address, question.Data, TalkTotalTimeout);
                     w.ReceivedFunc.Invoke(new KeysightAnswer(this, question.Device, question.Exhibit, data));
+                    _AutoReset.WaitOne();
                 }
                 catch (Exception e)
                 {
                     _logger.Warn($"Keysight:{e.Message}", e);
                 }
             }
+            _Timer.Stop();
         }
 
         #endregion
