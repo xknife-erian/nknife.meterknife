@@ -38,11 +38,11 @@ namespace MeterKnife.Keysights.VISAs
 
         public string IDN(ushort address)
         {
-            Execute(address, "*CLS");
-            return Execute(address, "*IDN?", 500);
+            Write(address, "*CLS");
+            return WriteAndRead(address, "*IDN?");
         }
 
-        public void Execute(ushort address, string scpiCommand, bool flushAndEnd = true)
+        public void Write(ushort address, string scpiCommand, bool flushAndEnd = true)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace MeterKnife.Keysights.VISAs
             }
         }
 
-        public string Execute(ushort address, string scpiCommand, uint timeOut, bool flushAndEnd = true)
+        public string WriteAndRead(ushort address, string scpiCommand, bool flushAndEnd = true)
         {
             if (address != _TargetInstrument)
             {
@@ -64,11 +64,19 @@ namespace MeterKnife.Keysights.VISAs
             try
             {
                 _Gpib.WriteString(scpiCommand, flushAndEnd);
+            }
+            catch (Exception e)
+            {
+                LoggerAction.Invoke(new GPIBLog(GPIBLogLevel.Error, $"WRITE-ERROR:{e.Message}"));
+                return "";
+            }
+            try
+            {
                 return _Gpib.ReadString();
             }
             catch (Exception e)
             {
-                LoggerAction.Invoke(new GPIBLog(GPIBLogLevel.Error, $"ERROR:{e.Message}"));
+                LoggerAction.Invoke(new GPIBLog(GPIBLogLevel.Error, $"READ-ERROR:{e.Message}"));
                 return "";
             }
         }

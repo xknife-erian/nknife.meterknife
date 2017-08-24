@@ -137,7 +137,7 @@ namespace MeterKnife.Keysights
                         isFirst = false;
                         _Timer.Start();
                     }
-                    var data = _GPIBLinker.Execute((ushort) question.Device.Address, question.Data, TalkTotalTimeout);
+                    var data = _GPIBLinker.WriteAndRead((ushort) question.Device.Address, question.Data);
                     w.ReceivedFunc.Invoke(new KeysightAnswer(this, question.Device, question.Exhibit, data));
                     _AutoReset.WaitOne();
                 }
