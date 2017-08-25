@@ -36,15 +36,15 @@
             this._UsingTimeLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this._MainPanel = new System.Windows.Forms.Panel();
+            this._TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this._PictureBox = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this._MainPanel.SuspendLayout();
+            this._TableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,44 +128,48 @@
             this.label2.Text = "最后采集:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel1
+            // _MainPanel
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Controls.Add(this._PictureBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(2, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 64);
-            this.panel1.TabIndex = 9;
+            this._MainPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this._MainPanel.Controls.Add(this._TableLayoutPanel);
+            this._MainPanel.Controls.Add(this._PictureBox);
+            this._MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._MainPanel.Location = new System.Drawing.Point(2, 4);
+            this._MainPanel.Name = "_MainPanel";
+            this._MainPanel.Size = new System.Drawing.Size(400, 64);
+            this._MainPanel.TabIndex = 9;
             // 
-            // tableLayoutPanel1
+            // _TableLayoutPanel
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this._ModelLabel, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this._DatasCountLabel, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this._ConnStringLabel, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this._UsingTimeLabel, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this._InformationLabel, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this._ManufacturerLabel, 3, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(68, 4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(330, 56);
-            this.tableLayoutPanel1.TabIndex = 9;
+            this._TableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._TableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(5)))));
+            this._TableLayoutPanel.ColumnCount = 4;
+            this._TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this._TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this._TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this._TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this._TableLayoutPanel.Controls.Add(this.label6, 0, 2);
+            this._TableLayoutPanel.Controls.Add(this.label5, 0, 1);
+            this._TableLayoutPanel.Controls.Add(this.label4, 2, 0);
+            this._TableLayoutPanel.Controls.Add(this.label3, 0, 0);
+            this._TableLayoutPanel.Controls.Add(this._ModelLabel, 1, 0);
+            this._TableLayoutPanel.Controls.Add(this._DatasCountLabel, 3, 2);
+            this._TableLayoutPanel.Controls.Add(this.label1, 2, 2);
+            this._TableLayoutPanel.Controls.Add(this._ConnStringLabel, 1, 1);
+            this._TableLayoutPanel.Controls.Add(this._UsingTimeLabel, 3, 1);
+            this._TableLayoutPanel.Controls.Add(this._InformationLabel, 1, 2);
+            this._TableLayoutPanel.Controls.Add(this.label2, 2, 1);
+            this._TableLayoutPanel.Controls.Add(this._ManufacturerLabel, 3, 0);
+            this._TableLayoutPanel.Location = new System.Drawing.Point(67, 4);
+            this._TableLayoutPanel.Name = "_TableLayoutPanel";
+            this._TableLayoutPanel.RowCount = 3;
+            this._TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this._TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this._TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this._TableLayoutPanel.Size = new System.Drawing.Size(330, 56);
+            this._TableLayoutPanel.TabIndex = 9;
             // 
             // label6
             // 
@@ -217,7 +221,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this._PictureBox.BackgroundImage = global::MeterKnife.Views.InstrumentsDiscovery.Properties.Resources.meter64;
             this._PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this._PictureBox.Location = new System.Drawing.Point(3, 2);
+            this._PictureBox.Location = new System.Drawing.Point(5, 2);
             this._PictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._PictureBox.Name = "_PictureBox";
             this._PictureBox.Size = new System.Drawing.Size(60, 60);
@@ -229,15 +233,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this._MainPanel);
             this.Font = new System.Drawing.Font("微软雅黑", 8.5F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "InstrumentsDetailCell";
             this.Padding = new System.Windows.Forms.Padding(2, 4, 2, 2);
             this.Size = new System.Drawing.Size(404, 70);
-            this.panel1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this._MainPanel.ResumeLayout(false);
+            this._TableLayoutPanel.ResumeLayout(false);
+            this._TableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -254,8 +258,8 @@
         private System.Windows.Forms.Label _UsingTimeLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel _MainPanel;
+        private System.Windows.Forms.TableLayoutPanel _TableLayoutPanel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MeterKnife.Views.InstrumentsDiscovery.Controls
@@ -8,6 +9,21 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         public InstrumentsDetailCell()
         {
             InitializeComponent();
+            _MainPanel.Paint += (s, e) =>
+            {
+                var g = e.Graphics;
+                var pen = new Pen(Color.DarkGray);
+
+                var leftTop = new Point(0, 0);
+                var rightTop = new Point(_MainPanel.Width - 1, 0);
+                var leftBottom = new Point(0, _MainPanel.Height - 1);
+                var rightBottom = new Point(_MainPanel.Width - 1, _MainPanel.Height - 1);
+
+                g.DrawLine(pen, leftTop, rightTop);
+                g.DrawLine(pen, leftTop, leftBottom);
+                g.DrawLine(pen, rightTop, rightBottom);
+                g.DrawLine(pen, leftBottom, rightBottom);
+            };
         }
 
         public Image Image
@@ -51,5 +67,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             get => _UsingTimeLabel.Text;
             set => _UsingTimeLabel.Text = value;
         }
+
     }
 }
