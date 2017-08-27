@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MeterKnife.Views.InstrumentsDiscovery.Controls
@@ -14,12 +8,28 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         public InstrumentsListHead()
         {
             InitializeComponent();
+            _GatewayModelLabel.Click += HeadClick;
+            _Panel.Click += HeadClick;
+            _CountLabel.Click += HeadClick;
+            _PictureBox.Click += HeadClick;
         }
 
         public string GatewayModel
         {
             get => _GatewayModelLabel.Text;
             set => _GatewayModelLabel.Text = value;
+        }
+
+        private void HeadClick(object sender, EventArgs e)
+        {
+            OnHeadClicked();
+        }
+
+        public event EventHandler HeadClicked;
+
+        protected virtual void OnHeadClicked()
+        {
+            HeadClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -12,12 +12,15 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 {
     public partial class InstrumentsListPanel : UserControl
     {
+        private bool _IsExpanded = true;
+        private Control[] _Cells;
+
         public InstrumentsListPanel()
         {
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
             InitializeComponent();
-
+            _ListHead.HeadClicked += OnListHeadOnHeadClicked;
             var cells = new List<InstrumentsDetailCell>();
             for (int i = 0; i < 5; i++)
             {
@@ -27,6 +30,25 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                 cells.Add(cell);
             }
             AddCells(cells.ToArray());
+        }
+
+        private void OnListHeadOnHeadClicked(object s, EventArgs e)
+        {
+            if (_IsExpanded)
+            {
+                _Cells = new Control[Controls.Count - 1];
+                SuspendLayout();
+                for (int i = 0; i < Controls.Count - 1; i++)
+                {
+                    _Cells[i] = Controls[i];
+                    Controls.RemoveAt(i);
+                }
+                ResumeLayout(false);
+            }
+            else
+            {
+                Controls.AddRange(_Cells);
+            }
         }
 
         public string GatewayModel

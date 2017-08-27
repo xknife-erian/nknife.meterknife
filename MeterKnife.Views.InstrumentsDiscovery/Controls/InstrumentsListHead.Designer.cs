@@ -30,16 +30,19 @@
         {
             this._PictureBox = new System.Windows.Forms.PictureBox();
             this._GatewayModelLabel = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this._Panel = new System.Windows.Forms.Panel();
+            this._CountLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox)).BeginInit();
-            this.panel1.SuspendLayout();
+            this._Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // _PictureBox
             // 
+            this._PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this._PictureBox.BackgroundImage = global::MeterKnife.Views.InstrumentsDiscovery.Properties.Resources.up;
             this._PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this._PictureBox.Location = new System.Drawing.Point(8, 2);
+            this._PictureBox.Location = new System.Drawing.Point(8, 5);
             this._PictureBox.Name = "_PictureBox";
             this._PictureBox.Size = new System.Drawing.Size(26, 26);
             this._PictureBox.TabIndex = 0;
@@ -47,36 +50,51 @@
             // 
             // _GatewayModelLabel
             // 
+            this._GatewayModelLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._GatewayModelLabel.AutoSize = true;
-            this._GatewayModelLabel.Location = new System.Drawing.Point(40, 9);
+            this._GatewayModelLabel.Location = new System.Drawing.Point(40, 10);
             this._GatewayModelLabel.Name = "_GatewayModelLabel";
             this._GatewayModelLabel.Size = new System.Drawing.Size(107, 12);
             this._GatewayModelLabel.TabIndex = 1;
             this._GatewayModelLabel.Text = "GatewayModelLabel";
             // 
-            // panel1
+            // _Panel
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this._GatewayModelLabel);
-            this.panel1.Controls.Add(this._PictureBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(2, 1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 30);
-            this.panel1.TabIndex = 2;
+            this._Panel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this._Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Panel.Controls.Add(this._CountLabel);
+            this._Panel.Controls.Add(this._GatewayModelLabel);
+            this._Panel.Controls.Add(this._PictureBox);
+            this._Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._Panel.Location = new System.Drawing.Point(2, 1);
+            this._Panel.Name = "_Panel";
+            this._Panel.Size = new System.Drawing.Size(400, 30);
+            this._Panel.TabIndex = 2;
+            // 
+            // _CountLabel
+            // 
+            this._CountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._CountLabel.AutoSize = true;
+            this._CountLabel.Location = new System.Drawing.Point(372, 10);
+            this._CountLabel.Name = "_CountLabel";
+            this._CountLabel.Size = new System.Drawing.Size(11, 12);
+            this._CountLabel.TabIndex = 2;
+            this._CountLabel.Text = "4";
             // 
             // InstrumentsListHead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this._Panel);
             this.Name = "InstrumentsListHead";
             this.Padding = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Size = new System.Drawing.Size(404, 32);
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this._Panel.ResumeLayout(false);
+            this._Panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -85,6 +103,7 @@
 
         private System.Windows.Forms.PictureBox _PictureBox;
         private System.Windows.Forms.Label _GatewayModelLabel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel _Panel;
+        private System.Windows.Forms.Label _CountLabel;
     }
 }
