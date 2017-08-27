@@ -8,6 +8,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
     {
         public InstrumentsDetailCell()
         {
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            UpdateStyles();
             InitializeComponent();
             _MainPanel.Paint += (s, e) =>
             {

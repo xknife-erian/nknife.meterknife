@@ -9,8 +9,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         public InstrumentsDiscoveryView()
         {
             InitializeComponent();
-            var item = new ListViewItem();
-            
         }
 
         public void SetProvider(IExtenderProvider extenderProvider)

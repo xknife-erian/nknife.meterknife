@@ -32,13 +32,13 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstrumentsDiscoveryView));
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
-            this.instrumentsPanel1 = new InstrumentsPanel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.instrumentsDiscoveryBox1 = new MeterKnife.Views.InstrumentsDiscovery.Controls.InstrumentsDiscoveryBox();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
             this._SplitContainer.Panel2.SuspendLayout();
@@ -54,7 +54,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // 
             // _SplitContainer.Panel1
             // 
-            this._SplitContainer.Panel1.Controls.Add(this.instrumentsPanel1);
+            this._SplitContainer.Panel1.Controls.Add(this.instrumentsDiscoveryBox1);
+            this._SplitContainer.Panel1.Padding = new System.Windows.Forms.Padding(1);
             // 
             // _SplitContainer.Panel2
             // 
@@ -64,16 +65,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this._SplitContainer.SplitterDistance = 400;
             this._SplitContainer.SplitterWidth = 8;
             this._SplitContainer.TabIndex = 0;
-            // 
-            // instrumentsPanel1
-            // 
-            this.instrumentsPanel1.BackColor = System.Drawing.Color.White;
-            this.instrumentsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.instrumentsPanel1.Location = new System.Drawing.Point(0, 0);
-            this.instrumentsPanel1.Name = "instrumentsPanel1";
-            this.instrumentsPanel1.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.instrumentsPanel1.Size = new System.Drawing.Size(400, 505);
-            this.instrumentsPanel1.TabIndex = 0;
             // 
             // listView1
             // 
@@ -115,6 +106,15 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // 
             this.columnHeader5.Text = "";
             // 
+            // instrumentsDiscoveryBox1
+            // 
+            this.instrumentsDiscoveryBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.instrumentsDiscoveryBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.instrumentsDiscoveryBox1.Location = new System.Drawing.Point(1, 1);
+            this.instrumentsDiscoveryBox1.Name = "instrumentsDiscoveryBox1";
+            this.instrumentsDiscoveryBox1.Size = new System.Drawing.Size(398, 503);
+            this.instrumentsDiscoveryBox1.TabIndex = 0;
+            // 
             // InstrumentsDiscoveryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -138,12 +138,12 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         #endregion
 
         private System.Windows.Forms.SplitContainer _SplitContainer;
-        private InstrumentsPanel instrumentsPanel1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private InstrumentsDiscoveryBox instrumentsDiscoveryBox1;
     }
 }
