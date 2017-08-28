@@ -5,9 +5,9 @@ using MeterKnife.Models;
 
 namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 {
-    public partial class InstrumentsDetailCell : UserControl
+    public partial class InstrumentsCell : UserControl
     {
-        public InstrumentsDetailCell()
+        public InstrumentsCell()
         {
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
@@ -29,15 +29,15 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             };
         }
 
-        public void SetInstrumentsDetail(Instrument detail)
+        public void SetInstruments(Instrument instrument)
         {
-            Image = detail.Image;
-            Model = detail.Model;
-            Manufacturer = detail.Manufacturer;
-            ConnString = detail.ConnectString;
-            Information = detail.Information;
-            DatasCount = detail.DatasCount.ToString();
-            UsingTime = detail.LastUsingTime.ToString("yy/MM/dd");
+            Image = instrument.Image;
+            Model = instrument.Model;
+            Manufacturer = instrument.Manufacturer;
+            ConnectString = instrument.ConnectString;
+            Information = instrument.Information;
+            DatasCount = instrument.DatasCount.ToString();
+            UsingTime = instrument.LastUsingTime.ToString("yy/MM/dd");
         }
 
         public Image Image
@@ -58,7 +58,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             set => _ManufacturerLabel.Text = value;
         }
 
-        public string ConnString
+        public string ConnectString
         {
             get => _ConnStringLabel.Text;
             set => _ConnStringLabel.Text = value;

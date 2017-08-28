@@ -64,7 +64,7 @@ namespace MeterKnife.Datas
         private static DemoAnswer[] GetAnswer(IExhibit exhibit, int count)
         {
             var channel = new DemoChannel();
-            var device = new Device("Huaxin", "MultiTemperature", "HXM");
+            var device = new Device("Huaxin", "8081", "MultiTemperature", "HXM");
 
             var answers = new DemoAnswer[count];
             for (int i = 0; i < count; i++)

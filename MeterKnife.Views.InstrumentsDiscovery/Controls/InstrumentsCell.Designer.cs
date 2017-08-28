@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 {
-    partial class InstrumentsDetailCell
+    partial class InstrumentsCell
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -228,7 +228,7 @@
             this._PictureBox.TabIndex = 0;
             this._PictureBox.TabStop = false;
             // 
-            // InstrumentsDetailCell
+            // InstrumentsCell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -236,7 +236,7 @@
             this.Controls.Add(this._MainPanel);
             this.Font = new System.Drawing.Font("微软雅黑", 8.5F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "InstrumentsDetailCell";
+            this.Name = "InstrumentsCell";
             this.Padding = new System.Windows.Forms.Padding(2, 4, 2, 2);
             this.Size = new System.Drawing.Size(404, 70);
             this._MainPanel.ResumeLayout(false);

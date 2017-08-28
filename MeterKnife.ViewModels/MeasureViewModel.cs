@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using GalaSoft.MvvmLight;
+using MeterKnife.Base;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Models;
@@ -10,9 +11,8 @@ using NKnife.Utility;
 
 namespace MeterKnife.ViewModels
 {
-    public class MeasureViewModel : ViewModelBase
+    public class MeasureViewModel : ViewmodelBaseKnife
     {
-        private IExtenderProvider _ExtenderProvider;
         public PlainPolyLinePlot Plot { get; }
 
         public MeasureViewModel()
@@ -25,12 +25,6 @@ namespace MeterKnife.ViewModels
                 if (plotTheme.Name == usingTheme)
                     Plot = new PlainPolyLinePlot(plotTheme);
             }
-
-        }
-
-        public void SetProvider(IExtenderProvider provider)
-        {
-            _ExtenderProvider = provider;
         }
 
         public event EventHandler PlotModelUpdated;

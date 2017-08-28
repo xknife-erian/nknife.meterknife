@@ -57,7 +57,6 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="GatewayModel.cs" />
     <Compile Include="GatewayService.cs" />
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

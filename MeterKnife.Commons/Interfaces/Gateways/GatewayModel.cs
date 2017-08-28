@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MeterKnife.Gateway
+﻿namespace MeterKnife.Interfaces.Gateways
 {
     public enum GatewayModel
     {
@@ -11,6 +7,7 @@ namespace MeterKnife.Gateway
         Aglient82357A,
         Aglient82357B,
         SerialPort,
-        TcpIp
+        TcpIp,
+        USB
     }
 }

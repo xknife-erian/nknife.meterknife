@@ -7,13 +7,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MeterKnife.Models;
 
 namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 {
     public partial class InstrumentsListPanel : UserControl
     {
         private bool _IsExpanded = true;
-        private InstrumentsDetailCell[] _Cells;
+        private InstrumentsCell[] _Cells;
 
         public InstrumentsListPanel()
         {
@@ -29,11 +30,11 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             if (!_IsExpanded)
             {
                 var count = Controls.Count - 1;
-                _Cells = new InstrumentsDetailCell[count];
+                _Cells = new InstrumentsCell[count];
                 SuspendLayout();
                 for (int i = 0; i < count; i++)
                 {
-                    _Cells[i] = (InstrumentsDetailCell) Controls[0];
+                    _Cells[i] = (InstrumentsCell) Controls[0];
                     Controls.RemoveAt(0);
                 }
                 ResumeLayout(false);
@@ -51,11 +52,23 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             set => _ListHead.GatewayModel = value;
         }
 
+        public void AddInstruments(params Instrument[] instruments)
+        {
+            var cells = new InstrumentsCell[instruments.Length];
+            for (int i = 0; i < instruments.Length; i++)
+            {
+                var cell = new InstrumentsCell();
+                cell.SetInstruments(instruments[i]);
+                cells[i] = cell;
+            }
+            AddCells(cells);
+        }
+
         /// <summary>
         /// 因采用了Dock.Top属性控制，故需要调整控件加入到Controls中的顺序，以保证一般设计思路中的后添加的控件在最下方显示。
         /// </summary>
         /// <param name="cells"></param>
-        public void AddCells(params InstrumentsDetailCell[] cells)
+        public void AddCells(params InstrumentsCell[] cells)
         {
             SuspendLayout();
             var cs = new Control[Controls.Count];
