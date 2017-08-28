@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
+using MeterKnife.Views.InstrumentsDiscovery.Properties;
 
 namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 {
     public partial class InstrumentsListHead : UserControl
     {
+        private bool _IsDown = true;
+
         public InstrumentsListHead()
         {
             InitializeComponent();
@@ -12,6 +16,26 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             _Panel.Click += HeadClick;
             _CountLabel.Click += HeadClick;
             _PictureBox.Click += HeadClick;
+
+            _GatewayModelLabel.MouseHover += HeadMouseHover;
+            _Panel.MouseHover += HeadMouseHover;
+            _CountLabel.MouseHover += HeadMouseHover;
+            _PictureBox.MouseHover += HeadMouseHover;
+
+            _GatewayModelLabel.MouseLeave += HeadMouseLeave;
+            _Panel.MouseLeave += HeadMouseLeave;
+            _CountLabel.MouseLeave += HeadMouseLeave;
+            _PictureBox.MouseLeave += HeadMouseLeave;
+        }
+
+        private void HeadMouseLeave(object sender, EventArgs e)
+        {
+            _Panel.BackColor = SystemColors.ControlDark;
+        }
+
+        private void HeadMouseHover(object sender, EventArgs e)
+        {
+            _Panel.BackColor = Color.Plum;
         }
 
         public string GatewayModel
@@ -22,6 +46,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 
         private void HeadClick(object sender, EventArgs e)
         {
+            _IsDown = !_IsDown;
+            _PictureBox.BackgroundImage = !_IsDown ? Resources.down : Resources.up;
             OnHeadClicked();
         }
 

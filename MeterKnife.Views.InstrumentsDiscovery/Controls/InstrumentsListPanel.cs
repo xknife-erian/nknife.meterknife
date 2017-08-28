@@ -13,7 +13,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
     public partial class InstrumentsListPanel : UserControl
     {
         private bool _IsExpanded = true;
-        private Control[] _Cells;
+        private InstrumentsDetailCell[] _Cells;
 
         public InstrumentsListPanel()
         {
@@ -34,20 +34,23 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 
         private void OnListHeadOnHeadClicked(object s, EventArgs e)
         {
-            if (_IsExpanded)
+            _IsExpanded = !_IsExpanded;
+            if (!_IsExpanded)
             {
-                _Cells = new Control[Controls.Count - 1];
+                var count = Controls.Count - 1;
+                _Cells = new InstrumentsDetailCell[count];
                 SuspendLayout();
-                for (int i = 0; i < Controls.Count - 1; i++)
+                for (int i = 0; i < count; i++)
                 {
-                    _Cells[i] = Controls[i];
-                    Controls.RemoveAt(i);
+                    _Cells[i] = (InstrumentsDetailCell) Controls[0];
+                    Controls.RemoveAt(0);
                 }
                 ResumeLayout(false);
             }
             else
             {
-                Controls.AddRange(_Cells);
+                if (_Cells != null)
+                    AddCells(_Cells);
             }
         }
 
