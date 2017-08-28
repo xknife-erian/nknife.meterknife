@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using MeterKnife.Models;
 
 namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 {
@@ -26,6 +27,17 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                 g.DrawLine(pen, rightTop, rightBottom);
                 g.DrawLine(pen, leftBottom, rightBottom);
             };
+        }
+
+        public void SetInstrumentsDetail(Instrument detail)
+        {
+            Image = detail.Image;
+            Model = detail.Model;
+            Manufacturer = detail.Manufacturer;
+            ConnString = detail.ConnectString;
+            Information = detail.Information;
+            DatasCount = detail.DatasCount.ToString();
+            UsingTime = detail.LastUsingTime.ToString("yy/MM/dd");
         }
 
         public Image Image

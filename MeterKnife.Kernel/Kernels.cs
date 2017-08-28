@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Common.Logging;
 using MeterKnife.Interfaces;
+using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Kernel.Plugins;
 using NKnife.IoC;

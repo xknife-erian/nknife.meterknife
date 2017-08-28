@@ -21,15 +21,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             UpdateStyles();
             InitializeComponent();
             _ListHead.HeadClicked += OnListHeadOnHeadClicked;
-            var cells = new List<InstrumentsDetailCell>();
-            for (int i = 0; i < 5; i++)
-            {
-                var cell = new InstrumentsDetailCell();
-                cell.Dock = DockStyle.Top;
-                cell.DatasCount = i.ToString();
-                cells.Add(cell);
-            }
-            AddCells(cells.ToArray());
         }
 
         private void OnListHeadOnHeadClicked(object s, EventArgs e)

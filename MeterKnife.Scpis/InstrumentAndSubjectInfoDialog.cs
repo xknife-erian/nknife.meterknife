@@ -8,15 +8,15 @@ namespace MeterKnife.Scpis
 {
     public partial class InstrumentAndSubjectInfoDialog : SimpleForm
     {
-        private readonly BrandCollection _BrandCollection;
+        private readonly ManufacturerCollection _ManufacturerCollection;
 
         public InstrumentAndSubjectInfoDialog()
         {
             InitializeComponent();
             var list = DI.Get<IScpiInfoGetter>().GetMeterInfoList();
-            _BrandCollection = new BrandCollection(list);
+            _ManufacturerCollection = new ManufacturerCollection(list);
 
-            foreach (var brand in _BrandCollection.Brands)
+            foreach (var brand in _ManufacturerCollection.Brands)
                 _BrandComboBox.Items.Add(brand);
 
             _BrandComboBox.SelectedIndex = 0;
@@ -66,7 +66,7 @@ namespace MeterKnife.Scpis
         private void UpdateNameAndDescription()
         {
             _NameComboBox.Items.Clear();
-            var names = _BrandCollection.ByBrand(_BrandComboBox.SelectedItem.ToString());
+            var names = _ManufacturerCollection.ByBrand(_BrandComboBox.SelectedItem.ToString());
             if (names != null && names.Count > 0)
             {
                 foreach (var name in names)
@@ -79,7 +79,7 @@ namespace MeterKnife.Scpis
 
         private void _NameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var t = _BrandCollection.ByBrandAndName(_BrandComboBox.Text, _NameComboBox.Text);
+            var t = _ManufacturerCollection.ByBrandAndName(_BrandComboBox.Text, _NameComboBox.Text);
             if (t != null)
                 _DescriptionTextBox.Text = t.Item3;
             else

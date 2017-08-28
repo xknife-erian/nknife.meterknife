@@ -1,6 +1,6 @@
 using NKnife.Interface;
 
-namespace MeterKnife.Interfaces
+namespace MeterKnife.Interfaces.Gateways
 {
     public interface IGatewayService : IEnvironmentItem
     {

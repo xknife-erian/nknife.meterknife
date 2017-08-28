@@ -4,9 +4,10 @@ namespace MeterKnife.Models
 {
     public class Device : IDevice
     {
-        public Device(string brand, string name, string abbrName, int address = -1)
+        public Device(string manufacturer, string model, string name, string abbrName, int address = -1)
         {
-            Brand = brand;
+            Manufacturer = manufacturer;
+            Model = model;
             Name = name;
             AbbrName = abbrName;
             Address = address;
@@ -15,9 +16,23 @@ namespace MeterKnife.Models
         #region Implementation of IDevice
 
         /// <summary>
+        ///     生产厂商
+        /// </summary>
+        public string Manufacturer { get; set; }
+
+        /// <summary>
+        ///     型号
+        /// </summary>
+        public string Model { get; set; }
+
+        /// <summary>
         ///     品牌
         /// </summary>
-        public string Brand { get; set; }
+        public string Brand
+        {
+            get => Manufacturer;
+            set => Manufacturer = value;
+        }
 
         /// <summary>
         ///     设备名称
@@ -33,6 +48,11 @@ namespace MeterKnife.Models
         ///     设备地址
         /// </summary>
         public int Address { get; set; }
+
+        /// <summary>
+        ///     设备说明或信息
+        /// </summary>
+        public string Information { get; set; }
 
         #endregion
     }

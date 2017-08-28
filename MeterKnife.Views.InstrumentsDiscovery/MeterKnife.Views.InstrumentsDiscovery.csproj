@@ -67,12 +67,6 @@
     <Compile Include="Controls\InstrumentsDetailCell.Designer.cs">
       <DependentUpon>InstrumentsDetailCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InstrumentsDiscoveryBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\InstrumentsDiscoveryBox.Designer.cs">
-      <DependentUpon>InstrumentsDiscoveryBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\InstrumentsListHead.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,9 +97,6 @@
     <EmbeddedResource Include="Controls\InstrumentsDetailCell.resx">
       <DependentUpon>InstrumentsDetailCell.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\InstrumentsDiscoveryBox.resx">
-      <DependentUpon>InstrumentsDiscoveryBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\InstrumentsListHead.resx">
       <DependentUpon>InstrumentsListHead.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Icons\InstrumentsDiscovery.ico" />
+    <Content Include="Properties\Images\add.png" />
     <Content Include="Properties\Images\down.png" />
     <Content Include="Properties\Images\meter64.png" />
     <Content Include="Properties\Images\up.png" />

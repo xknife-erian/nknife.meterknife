@@ -38,11 +38,18 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.instrumentsDiscoveryBox1 = new MeterKnife.Views.InstrumentsDiscovery.Controls.InstrumentsDiscoveryBox();
+            this._LeftPanel = new System.Windows.Forms.Panel();
+            this._LeftToolStripContainer = new System.Windows.Forms.ToolStripContainer();
+            this._LeftToolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
             this._SplitContainer.Panel2.SuspendLayout();
             this._SplitContainer.SuspendLayout();
+            this._LeftPanel.SuspendLayout();
+            this._LeftToolStripContainer.TopToolStripPanel.SuspendLayout();
+            this._LeftToolStripContainer.SuspendLayout();
+            this._LeftToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _SplitContainer
@@ -54,7 +61,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // 
             // _SplitContainer.Panel1
             // 
-            this._SplitContainer.Panel1.Controls.Add(this.instrumentsDiscoveryBox1);
+            this._SplitContainer.Panel1.Controls.Add(this._LeftPanel);
             this._SplitContainer.Panel1.Padding = new System.Windows.Forms.Padding(1);
             // 
             // _SplitContainer.Panel2
@@ -106,14 +113,53 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // 
             this.columnHeader5.Text = "";
             // 
-            // instrumentsDiscoveryBox1
+            // _LeftPanel
             // 
-            this.instrumentsDiscoveryBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.instrumentsDiscoveryBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.instrumentsDiscoveryBox1.Location = new System.Drawing.Point(1, 1);
-            this.instrumentsDiscoveryBox1.Name = "instrumentsDiscoveryBox1";
-            this.instrumentsDiscoveryBox1.Size = new System.Drawing.Size(398, 503);
-            this.instrumentsDiscoveryBox1.TabIndex = 0;
+            this._LeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._LeftPanel.Controls.Add(this._LeftToolStripContainer);
+            this._LeftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._LeftPanel.Location = new System.Drawing.Point(1, 1);
+            this._LeftPanel.Name = "_LeftPanel";
+            this._LeftPanel.Size = new System.Drawing.Size(398, 503);
+            this._LeftPanel.TabIndex = 0;
+            // 
+            // _LeftToolStripContainer
+            // 
+            this._LeftToolStripContainer.BottomToolStripPanelVisible = false;
+            // 
+            // _LeftToolStripContainer.ContentPanel
+            // 
+            this._LeftToolStripContainer.ContentPanel.Size = new System.Drawing.Size(396, 476);
+            this._LeftToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._LeftToolStripContainer.LeftToolStripPanelVisible = false;
+            this._LeftToolStripContainer.Location = new System.Drawing.Point(0, 0);
+            this._LeftToolStripContainer.Name = "_LeftToolStripContainer";
+            this._LeftToolStripContainer.RightToolStripPanelVisible = false;
+            this._LeftToolStripContainer.Size = new System.Drawing.Size(396, 501);
+            this._LeftToolStripContainer.TabIndex = 0;
+            this._LeftToolStripContainer.Text = "toolStripContainer1";
+            // 
+            // _LeftToolStripContainer.TopToolStripPanel
+            // 
+            this._LeftToolStripContainer.TopToolStripPanel.Controls.Add(this._LeftToolStrip);
+            // 
+            // _LeftToolStrip
+            // 
+            this._LeftToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._LeftToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButton1});
+            this._LeftToolStrip.Location = new System.Drawing.Point(3, 0);
+            this._LeftToolStrip.Name = "_LeftToolStrip";
+            this._LeftToolStrip.Size = new System.Drawing.Size(97, 25);
+            this._LeftToolStrip.TabIndex = 0;
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.Image = global::MeterKnife.Views.InstrumentsDiscovery.Properties.Resources.add;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(85, 22);
+            this.toolStripDropDownButton1.Text = "添加仪器";
             // 
             // InstrumentsDiscoveryView
             // 
@@ -131,6 +177,13 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this._SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).EndInit();
             this._SplitContainer.ResumeLayout(false);
+            this._LeftPanel.ResumeLayout(false);
+            this._LeftToolStripContainer.TopToolStripPanel.ResumeLayout(false);
+            this._LeftToolStripContainer.TopToolStripPanel.PerformLayout();
+            this._LeftToolStripContainer.ResumeLayout(false);
+            this._LeftToolStripContainer.PerformLayout();
+            this._LeftToolStrip.ResumeLayout(false);
+            this._LeftToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -144,6 +197,9 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private InstrumentsDiscoveryBox instrumentsDiscoveryBox1;
+        private System.Windows.Forms.Panel _LeftPanel;
+        private System.Windows.Forms.ToolStripContainer _LeftToolStripContainer;
+        private System.Windows.Forms.ToolStrip _LeftToolStrip;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
     }
 }

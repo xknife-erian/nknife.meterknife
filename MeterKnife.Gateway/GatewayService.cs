@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MeterKnife.Interfaces;
+using MeterKnife.Interfaces.Gateways;
 using NKnife.Channels.Channels.Serials;
 using NKnife.Channels.Interfaces.Channels;
 using NKnife.Interface;
