@@ -9,8 +9,6 @@ namespace MeterKnife.Gateway
 {
     public class GatewayService : IGatewayService
     {
-        private List<GatewayModel> _GateWayModels = new List<GatewayModel>();
-
         #region Implementation of IEnvironmentItem
 
         public bool StartService()
