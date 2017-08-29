@@ -29,11 +29,21 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             foreach (var discover in _ViewModel.Discovers)
             {
                 var panel = new InstrumentsListPanel();
-                var head = new InstrumentsListHead();
-                head.GatewayModel = discover.GatewayModel.ToString();
-                panel.Controls.Add(head);
+                panel.GatewayModel = discover.GatewayModel.ToString();
+                panel.Dock = DockStyle.Top;
                 panel.AddInstruments(discover.Instruments.ToArray());
-                _LeftPanel.Controls.Add(panel);
+                _LeftContentPanel.Controls.Add(panel);
+
+                var menuitem = new ToolStripMenuItem();
+                menuitem.Text = $"{discover.GatewayModel}";
+                _AddDropDownButton.DropDownItems.Add(menuitem);
+                menuitem.Click += (s, r) => discover.AddInstrument();
+                discover.InstrumentAdded += (s, i) =>
+                {
+                    var inst = i.Instrument;
+                    panel.AddInstruments(inst);
+                    panel.Count++;
+                };
             }
         }
 

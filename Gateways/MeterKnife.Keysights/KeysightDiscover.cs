@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
@@ -27,12 +28,22 @@ namespace MeterKnife.Keysights
         /// <summary>
         /// 本发现器的通道模式
         /// </summary>
-        public GatewayModel GatewayModel { get; set; }
+        public GatewayModel GatewayModel { get; set; } = GatewayModel.Aglient82357A;
 
         /// <summary>
         /// 本通道挂接的仪器或设备列表
         /// </summary>
         public List<Instrument> Instruments { get; } = new List<Instrument>();
+
+        /// <summary>
+        /// 手动添加仪器
+        /// </summary>
+        public void AddInstrument()
+        {
+            MessageBox.Show("KeysightDiscover");
+        }
+
+        public event EventHandler<InstrumentAddedEventArgs> InstrumentAdded;
 
         /// <summary>
         /// 当自动发现仪器的动作执行完成
@@ -71,6 +82,11 @@ namespace MeterKnife.Keysights
         protected virtual void OnDiscovered()
         {
             Discovered?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnInstrumentAdded(InstrumentAddedEventArgs e)
+        {
+            InstrumentAdded?.Invoke(this, e);
         }
     }
 }

@@ -44,6 +44,12 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             set => _GatewayModelLabel.Text = value;
         }
 
+        public int Count
+        {
+            get => int.Parse(_CountLabel.Text);
+            set => _CountLabel.Text = value.ToString();
+        }
+
         private void HeadClick(object sender, EventArgs e)
         {
             _IsDown = !_IsDown;

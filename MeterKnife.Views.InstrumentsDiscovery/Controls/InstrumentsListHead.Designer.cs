@@ -42,7 +42,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this._PictureBox.BackgroundImage = global::MeterKnife.Views.InstrumentsDiscovery.Properties.Resources.up;
             this._PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this._PictureBox.Location = new System.Drawing.Point(8, 3);
+            this._PictureBox.Location = new System.Drawing.Point(8, 5);
             this._PictureBox.Name = "_PictureBox";
             this._PictureBox.Size = new System.Drawing.Size(26, 26);
             this._PictureBox.TabIndex = 0;
@@ -54,7 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._GatewayModelLabel.AutoSize = true;
-            this._GatewayModelLabel.Location = new System.Drawing.Point(40, 8);
+            this._GatewayModelLabel.Location = new System.Drawing.Point(36, 10);
             this._GatewayModelLabel.Name = "_GatewayModelLabel";
             this._GatewayModelLabel.Size = new System.Drawing.Size(120, 13);
             this._GatewayModelLabel.TabIndex = 1;
@@ -79,11 +79,11 @@
             this._CountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._CountLabel.AutoSize = true;
-            this._CountLabel.Location = new System.Drawing.Point(372, 8);
+            this._CountLabel.Location = new System.Drawing.Point(372, 10);
             this._CountLabel.Name = "_CountLabel";
             this._CountLabel.Size = new System.Drawing.Size(14, 13);
             this._CountLabel.TabIndex = 2;
-            this._CountLabel.Text = "4";
+            this._CountLabel.Text = "0";
             // 
             // InstrumentsListHead
             // 

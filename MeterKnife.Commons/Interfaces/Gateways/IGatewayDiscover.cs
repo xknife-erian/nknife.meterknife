@@ -20,10 +20,23 @@ namespace MeterKnife.Interfaces.Gateways
         List<Instrument> Instruments { get; }
 
         /// <summary>
+        /// 手动添加仪器
+        /// </summary>
+        void AddInstrument();
+
+        /// <summary>
+        /// 当有仪器添加后
+        /// </summary>
+        event EventHandler<InstrumentAddedEventArgs> InstrumentAdded;
+
+        /// <summary>
         /// 当自动发现仪器的动作执行完成
         /// </summary>
         event EventHandler Discovered;
 
+        /// <summary>
+        /// 开始搜索该测量途径下的所有仪器
+        /// </summary>
         void BeginDiscover();
     }
 }

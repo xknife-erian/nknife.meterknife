@@ -33,12 +33,13 @@
             // 
             // _ListHead
             // 
+            this._ListHead.Count = 0;
             this._ListHead.Dock = System.Windows.Forms.DockStyle.Top;
             this._ListHead.GatewayModel = "GatewayModelLabel";
             this._ListHead.Location = new System.Drawing.Point(0, 0);
             this._ListHead.Name = "_ListHead";
             this._ListHead.Padding = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this._ListHead.Size = new System.Drawing.Size(364, 32);
+            this._ListHead.Size = new System.Drawing.Size(410, 32);
             this._ListHead.TabIndex = 0;
             // 
             // InstrumentsListPanel
@@ -48,7 +49,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this._ListHead);
             this.Name = "InstrumentsListPanel";
-            this.Size = new System.Drawing.Size(364, 269);
+            this.Size = new System.Drawing.Size(410, 40);
             this.ResumeLayout(false);
 
         }
