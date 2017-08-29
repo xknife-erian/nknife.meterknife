@@ -79,10 +79,10 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         public void AddCells(params InstrumentsCell[] cells)
         {
             SuspendLayout();
+            int height = 0;
             var cs = new Control[Controls.Count];
             Controls.CopyTo(cs, 0);//先将原有的控件倒出来
             Controls.Clear();
-            int height = 0;
             for (int i = cells.Length - 1; i >= 0; i--)
             {
                 var cell = cells[i];

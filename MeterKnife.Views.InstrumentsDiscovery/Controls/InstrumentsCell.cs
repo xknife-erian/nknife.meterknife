@@ -37,7 +37,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             ConnectString = instrument.ConnectString;
             Information = instrument.Information;
             DatasCount = instrument.DatasCount.ToString();
-            UsingTime = instrument.LastUsingTime.ToString("yy/MM/dd");
+            UsingTime = instrument.LastUsingTime.ToString("yyyy/MM/dd");
         }
 
         public Image Image

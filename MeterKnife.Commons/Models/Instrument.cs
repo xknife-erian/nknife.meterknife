@@ -31,6 +31,6 @@ namespace MeterKnife.Models
         /// <summary>
         /// 最后一次使用该仪器的时间
         /// </summary>
-        public DateTime LastUsingTime { get; set; }
+        public DateTime LastUsingTime { get; set; } = DateTime.Now;
     }
 }

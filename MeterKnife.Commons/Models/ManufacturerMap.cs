@@ -4,14 +4,14 @@ using System.Linq;
 
 namespace MeterKnife.Models
 {
-    public class ManufacturerCollection
+    public class ManufacturerMap
     {
         private readonly Dictionary<string, List<Tuple<string, string, string>>> _BrandMap =
             new Dictionary<string, List<Tuple<string, string, string>>>();
 
         private readonly List<Tuple<string, string, string>> _Collection;
 
-        public ManufacturerCollection(List<Tuple<string, string, string>> collection)
+        public ManufacturerMap(List<Tuple<string, string, string>> collection)
         {
             _Collection = collection;
             foreach (var tuple in collection)

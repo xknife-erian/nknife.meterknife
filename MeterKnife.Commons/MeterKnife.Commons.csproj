@@ -122,7 +122,8 @@
     <Compile Include="Interfaces\Plugins\IFuctionExtender.cs" />
     <Compile Include="Interfaces\Plugins\IPlugIn.cs" />
     <Compile Include="IoC\Modules.cs" />
-    <Compile Include="Models\ManufacturerCollection.cs" />
+    <Compile Include="Models\InstrumentMap.cs" />
+    <Compile Include="Models\ManufacturerMap.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\Exhibits\ExhibitData.cs" />
     <Compile Include="Models\Exhibits\ExhibitInfomation.cs" />

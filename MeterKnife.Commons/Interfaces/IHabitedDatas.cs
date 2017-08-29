@@ -22,6 +22,6 @@ namespace MeterKnife.Interfaces
         /// <summary>
         /// 用户已添加的测试途径
         /// </summary>
-        List<IGatewayDiscover> Discovers { get; set; }
+        Dictionary<GatewayModel, List<Instrument>> Gateways { get; set; }
     }
 }
