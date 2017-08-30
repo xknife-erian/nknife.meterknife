@@ -48,8 +48,8 @@
     <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.8.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.3.8.0\lib\net40\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.8.1\lib\net40\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
