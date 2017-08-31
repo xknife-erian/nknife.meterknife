@@ -12,30 +12,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         public InstrumentsListHead()
         {
             InitializeComponent();
-            _GatewayModelLabel.Click += HeadClick;
-            _Panel.Click += HeadClick;
-            _CountLabel.Click += HeadClick;
-            _PictureBox.Click += HeadClick;
-
-            _GatewayModelLabel.MouseHover += HeadMouseHover;
-            _Panel.MouseHover += HeadMouseHover;
-            _CountLabel.MouseHover += HeadMouseHover;
-            _PictureBox.MouseHover += HeadMouseHover;
-
-            _GatewayModelLabel.MouseLeave += HeadMouseLeave;
-            _Panel.MouseLeave += HeadMouseLeave;
-            _CountLabel.MouseLeave += HeadMouseLeave;
-            _PictureBox.MouseLeave += HeadMouseLeave;
-        }
-
-        private void HeadMouseLeave(object sender, EventArgs e)
-        {
-            _Panel.BackColor = SystemColors.ControlDark;
-        }
-
-        private void HeadMouseHover(object sender, EventArgs e)
-        {
-            _Panel.BackColor = Color.Plum;
+            ControlSameEvent();
         }
 
         public string GatewayModel
@@ -46,13 +23,43 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 
         public int Count
         {
-            get => int.Parse(_CountLabel.Text);
+            get
+            {
+                var count = 0;
+                int.TryParse(_CountLabel.Text, out count);
+                return count;
+            }
             set => _CountLabel.Text = value.ToString();
+        }
+
+        private void ControlSameEvent()
+        {
+            var array = new Control[_Panel.Controls.Count + 1];
+            _Panel.Controls.CopyTo(array, 0);
+            array[array.Length - 1] = _Panel;
+
+            foreach (var control in array)
+            {
+                control.Click += HeadClick;
+                control.MouseLeave += HeadMouseLeave;
+                control.MouseEnter += HeadMouseEnter;
+            }
+        }
+
+        private void HeadMouseLeave(object sender, EventArgs e)
+        {
+            _Panel.BackColor = SystemColors.ControlDark;
+        }
+
+        private void HeadMouseEnter(object sender, EventArgs e)
+        {
+            _Panel.BackColor = Color.Yellow;
         }
 
         private void HeadClick(object sender, EventArgs e)
         {
             _IsDown = !_IsDown;
+            //当点击时更替左侧的图形，给出上缩下拉的两种工作模式
             _PictureBox.BackgroundImage = !_IsDown ? Resources.down : Resources.up;
             OnHeadClicked();
         }

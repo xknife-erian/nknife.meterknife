@@ -12,6 +12,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
             InitializeComponent();
+
+            PanelMouseEnterAndLeave();
             _MainPanel.Paint += (s, e) =>
             {
                 var g = e.Graphics;
@@ -29,12 +31,45 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             };
         }
 
+        /// <summary>
+        /// 当鼠标在控件上时，整个控件颜色发生变化
+        /// </summary>
+        private void PanelMouseEnterAndLeave()
+        {
+            _MainPanel.MouseEnter += ControlMouseEnter;
+            _MainPanel.MouseLeave += CoutrolMouseLeave;
+            foreach (Control ctrl in _MainPanel.Controls)
+            {
+                ctrl.MouseEnter += ControlMouseEnter;
+                ctrl.MouseLeave += CoutrolMouseLeave;
+                if (ctrl.Controls.Count > 0)
+                {
+                    foreach (Control sunControl in ctrl.Controls)
+                    {
+                        sunControl.MouseEnter += ControlMouseEnter;
+                        sunControl.MouseLeave += CoutrolMouseLeave;
+                    }
+                }
+            }
+        }
+
+        private void CoutrolMouseLeave(object sender, EventArgs e)
+        {
+            _MainPanel.BackColor = SystemColors.ControlLight;
+        }
+
+        private void ControlMouseEnter(object sender, EventArgs e)
+        {
+            _MainPanel.BackColor = Color.LightGoldenrodYellow;
+        }
+
         public void SetInstruments(Instrument instrument)
         {
-            Image = instrument.Image;
+            if (instrument.Image != null)
+                Image = instrument.Image;
             Model = instrument.Model;
             Manufacturer = instrument.Manufacturer;
-            ConnectString = instrument.ConnectString;
+            Address = instrument.Address.ToString();
             Information = instrument.Information;
             DatasCount = instrument.DatasCount.ToString();
             UsingTime = instrument.LastUsingTime.ToString("yyyy/MM/dd");
@@ -42,8 +77,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 
         public Image Image
         {
-            get => _PictureBox.Image;
-            set => _PictureBox.Image = value;
+            get => _PictureBox.BackgroundImage;
+            set => _PictureBox.BackgroundImage = value;
         }
 
         public string Model
@@ -58,10 +93,10 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             set => _ManufacturerLabel.Text = value;
         }
 
-        public string ConnectString
+        public string Address
         {
-            get => _ConnStringLabel.Text;
-            set => _ConnStringLabel.Text = value;
+            get => _AddressLabel.Text;
+            set => _AddressLabel.Text = value;
         }
 
         public string Information

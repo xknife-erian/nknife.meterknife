@@ -19,11 +19,6 @@ namespace MeterKnife.Models
         public Image Image { get; set; }
 
         /// <summary>
-        /// 仪器的连接字符串
-        /// </summary>
-        public string ConnectString { get; set; } = string.Empty;
-
-        /// <summary>
         /// 使用该议器采集的数据数量
         /// </summary>
         public int DatasCount { get; set; }
