@@ -35,9 +35,10 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                 for (int i = 0; i < count; i++)
                 {
                     _Cells[i] = (InstrumentsCell) Controls[0];
+                    Height = Height - _Cells[i].Height;
                     Controls.RemoveAt(0);
                 }
-                ResumeLayout(false);
+                ResumeLayout(true);
             }
             else
             {
@@ -81,18 +82,18 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             SuspendLayout();
             int height = 0;
             var cs = new Control[Controls.Count];
-            Controls.CopyTo(cs, 0);//先将原有的控件倒出来
+            Controls.CopyTo(cs, 0); //先将原有的控件倒出来
             Controls.Clear();
             for (int i = cells.Length - 1; i >= 0; i--)
             {
                 var cell = cells[i];
-                Controls.Add(cell);//倒序将新的控件放入
-                height += cell.Height;//根据当前内部的控件数量，计算出整体应该有的高度
+                Controls.Add(cell); //倒序将新的控件放入
+                height += cell.Height; //根据当前内部的控件数量，计算出整体应该有的高度
             }
             foreach (var control in cs)
             {
-                Controls.Add(control);//原来的控件
-                height += control.Height;//根据当前内部的控件数量，计算出整体应该有的高度
+                Controls.Add(control); //原来的控件
+                height += control.Height + 1; //根据当前内部的控件数量，计算出整体应该有的高度
             }
             Height = height + 3;
             ResumeLayout(true);
