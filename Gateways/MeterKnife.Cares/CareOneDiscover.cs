@@ -29,7 +29,7 @@ namespace MeterKnife.Cares
         /// </summary>
         public void AddInstrument()
         {
-            var inst = new Instrument("HP", "34401", "HP34401", "HP34401", 22);
+            var inst = new Instrument("HP", "34401", "HP34401", 22);
             inst.DatasCount = _DemoCount++;
             Instruments.Add(inst);
             OnInstrumentAdded(new InstrumentAddedEventArgs(inst));

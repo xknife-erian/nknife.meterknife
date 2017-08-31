@@ -108,6 +108,7 @@
     <Compile Include="Interfaces\IAppTrayService.cs" />
     <Compile Include="Interfaces\Gateways\IGatewayDiscover.cs" />
     <Compile Include="Interfaces\Gateways\IGatewayService.cs" />
+    <Compile Include="Interfaces\IDatabaseService.cs" />
     <Compile Include="Interfaces\IHabitedDatas.cs" />
     <Compile Include="Interfaces\IKernels.cs" />
     <Compile Include="Interfaces\IWorkbench.cs" />
@@ -123,7 +124,6 @@
     <Compile Include="Interfaces\Plugins\IPlugIn.cs" />
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="Models\InstrumentMap.cs" />
-    <Compile Include="Models\ManufacturerMap.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\Exhibits\ExhibitData.cs" />
     <Compile Include="Models\Exhibits\ExhibitInfomation.cs" />

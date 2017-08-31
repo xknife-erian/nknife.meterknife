@@ -17,12 +17,14 @@ namespace MeterKnife.Kernel
         private readonly IAppTrayService _AppTrayService;
         private readonly IPluginService _PluginService;
         private readonly IGatewayService _GatewayService;
+        private readonly IDatabaseService _DatabaseService;
 
         public Kernels()
         {
             _AppTrayService = DI.Get<IAppTrayService>();
             _PluginService = DI.Get<IPluginService>();
             _GatewayService = DI.Get<IGatewayService>();
+            _DatabaseService = DI.Get<IDatabaseService>();
         }
 
         /// <summary>
@@ -37,6 +39,9 @@ namespace MeterKnife.Kernel
             _PluginService.StartService();
             displayMessage("注册所有插件完成...");
 
+            displayMessage("加载数据库服务...");
+            _DatabaseService.StartService();
+
             displayMessage("加载Getway服务...");
             _GatewayService.StartService();
 
@@ -49,6 +54,7 @@ namespace MeterKnife.Kernel
         public void UnloadCoreService()
         {
             _GatewayService.CloseService();
+            _DatabaseService.CloseService();
             _PluginService.CloseService();
             _AppTrayService.CloseService();
         }

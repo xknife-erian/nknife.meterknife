@@ -34,9 +34,9 @@ namespace MeterKnife.App
 
         private void LoadEnvironment()
         {
-            _logger.Info($"============================");
-            _logger.Info($"==== {DateTime.Now.ToLongDateString()} ========================");
-            _logger.Info($"==== {AppDomain.CurrentDomain.BaseDirectory} ====");
+            _logger.Info($"=============================================================================");
+            _logger.Info($">>>>>> {DateTime.Now.ToLongDateString()} <<<<<<");
+            _logger.Info($">>>>>> {AppDomain.CurrentDomain.BaseDirectory} <<<<<<");
 
             _logger.Info("开始加载...");
 

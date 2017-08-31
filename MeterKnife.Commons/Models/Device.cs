@@ -4,12 +4,11 @@ namespace MeterKnife.Models
 {
     public class Device : IDevice
     {
-        public Device(string manufacturer, string model, string name, string abbrName, int address = -1)
+        public Device(string manufacturer, string model, string name, int address = -1)
         {
             Manufacturer = manufacturer;
             Model = model;
             Name = name;
-            AbbrName = abbrName;
             Address = address;
         }
 
@@ -26,15 +25,6 @@ namespace MeterKnife.Models
         public string Model { get; set; }
 
         /// <summary>
-        ///     品牌
-        /// </summary>
-        public string Brand
-        {
-            get => Manufacturer;
-            set => Manufacturer = value;
-        }
-
-        /// <summary>
         ///     设备名称
         /// </summary>
         public string Name { get; set; }
@@ -42,7 +32,7 @@ namespace MeterKnife.Models
         /// <summary>
         ///     设备常用简称
         /// </summary>
-        public string AbbrName { get; }
+        public string AbbrName { get; } = string.Empty;
 
         /// <summary>
         ///     设备地址
@@ -52,7 +42,7 @@ namespace MeterKnife.Models
         /// <summary>
         ///     设备说明或信息
         /// </summary>
-        public string Information { get; set; }
+        public string Information { get; set; } = string.Empty;
 
         #endregion
     }

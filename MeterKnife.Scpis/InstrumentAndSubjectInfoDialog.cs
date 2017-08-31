@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using MeterKnife.Models;
 using NKnife.ControlKnife;
 using NKnife.IoC;
 

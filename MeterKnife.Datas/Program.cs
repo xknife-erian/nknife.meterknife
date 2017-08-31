@@ -1,9 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Linq.Expressions;
 using System.Text;
-using System.Windows.Forms;
-using LiteDB;
 using MeterKnife.Datas.Dpi;
 using MeterKnife.Models;
 using MeterKnife.Models.Exhibits;
@@ -11,6 +7,7 @@ using NKnife.Channels.Channels.Base;
 using NKnife.Channels.Interfaces;
 using NKnife.Channels.Interfaces.Channels;
 using NKnife.DataLite;
+using NKnife.Electronics;
 using NKnife.Utility;
 
 namespace MeterKnife.Datas
@@ -22,7 +19,7 @@ namespace MeterKnife.Datas
         public static void Main(string[] args)
         {
             //新建采集数据列表数据库
-            ExhibitListRepository elr = new ExhibitListRepository();
+            var elr = new ExhibitListRepository();
 
             //模拟
             var exhibitId = Guid.NewGuid().ToString("N").ToUpper();
@@ -34,7 +31,7 @@ namespace MeterKnife.Datas
             var answers = GetAnswer(exhibit, 5 * 1000);
             Console.WriteLine();
             Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff} === 20路温度数据开始");
-            int i = 0;
+            var i = 0;
             foreach (var answer in answers)
             {
                 var exh = new ExhibitData<double> {Values = new double[2]};
@@ -53,9 +50,7 @@ namespace MeterKnife.Datas
             var list = er.FindMulti(pageable);
 
             foreach (var exh in list.Content)
-            {
                 Console.WriteLine(exh);
-            }
             Console.WriteLine($"{DateTime.Now:HH:mm:ss.fff} === 查询20条温度分页数据完成");
 
             Console.ReadKey();
@@ -64,10 +59,10 @@ namespace MeterKnife.Datas
         private static DemoAnswer[] GetAnswer(IExhibit exhibit, int count)
         {
             var channel = new DemoChannel();
-            var device = new Device("Huaxin", "8081", "MultiTemperature", "HXM");
+            var device = new Device("Huaxin", "8081", "HXM");
 
             var answers = new DemoAnswer[count];
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var v = Encoding.ASCII.GetBytes($"9.{_random.Next(99977777, 99999999)}");
                 var answer = new DemoAnswer(channel, device, exhibit, v);
@@ -76,7 +71,7 @@ namespace MeterKnife.Datas
             return answers;
         }
 
-        class DemoAnswer : AnswerBase<byte[]>
+        private class DemoAnswer : AnswerBase<byte[]>
         {
             public DemoAnswer(IChannel<byte[]> channel, IDevice device, IExhibit exhibit, byte[] data)
                 : base(channel, device, exhibit, data)
@@ -84,7 +79,7 @@ namespace MeterKnife.Datas
             }
         }
 
-        class DemoChannel : ChannelBase<byte[]>
+        private class DemoChannel : ChannelBase<byte[]>
         {
             #region Overrides of ChannelBase<byte[]>
 
@@ -140,7 +135,7 @@ namespace MeterKnife.Datas
             #endregion
         }
 
-        class DemoExhibit : NKnife.Electronics.Resistance, IExhibit
+        private class DemoExhibit : Resistance, IExhibit
         {
             public DemoExhibit(string id)
             {
@@ -152,17 +147,17 @@ namespace MeterKnife.Datas
             #region Implementation of IExhibit
 
             /// <summary>
-            /// 观察点的ID
+            ///     观察点的ID
             /// </summary>
             public string Id { get; set; }
 
             /// <summary>
-            /// 关于本观察点的描述
+            ///     关于本观察点的描述
             /// </summary>
             public string Detail { get; set; }
 
             /// <summary>
-            /// 创建本观察点对象的时间(非物理的制造时间，一般来讲描述的是采集数据的开始时间)
+            ///     创建本观察点对象的时间(非物理的制造时间，一般来讲描述的是采集数据的开始时间)
             /// </summary>
             public DateTime CreatedTime { get; set; }
 

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MeterKnife.Models
+namespace MeterKnife.Scpis
 {
     public class ManufacturerMap
     {

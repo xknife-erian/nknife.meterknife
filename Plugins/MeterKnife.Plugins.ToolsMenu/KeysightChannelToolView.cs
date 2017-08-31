@@ -43,7 +43,7 @@ namespace MeterKnife.Plugins.ToolsMenu
             {
                 _CommandComboBox.Items.Insert(0, command);
             }
-            var device = new Device("Keysight", "34401", "34401", "34401", (int) _AddressBox.Value);
+            var device = new Device("Keysight", "34401", "AG34401", (int) _AddressBox.Value);
             var group = new KeysightQuestionGroup();
             var question = new KeysightQuestion(_KsChannel, device, null, isLoop, command);
             group.Add(question);

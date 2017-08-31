@@ -8,8 +8,8 @@ namespace MeterKnife.Models
     /// </summary>
     public class Instrument : Device
     {
-        public Instrument(string manufacturer, string model, string name, string abbrName, int address = -1) 
-            : base(manufacturer, model, name, abbrName, address)
+        public Instrument(string manufacturer, string model, string name, int address = -1) 
+            : base(manufacturer, model, name, address)
         {
         }
 
@@ -21,7 +21,7 @@ namespace MeterKnife.Models
         /// <summary>
         /// 仪器的连接字符串
         /// </summary>
-        public string ConnectString { get; set; }
+        public string ConnectString { get; set; } = string.Empty;
 
         /// <summary>
         /// 使用该议器采集的数据数量

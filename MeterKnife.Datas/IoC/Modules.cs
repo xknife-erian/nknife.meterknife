@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MeterKnife.Datas.Dpi;
+using MeterKnife.Interfaces;
 using Ninject.Modules;
+using NKnife.Interface;
 
 namespace MeterKnife.Datas.IoC
 {
@@ -14,7 +16,7 @@ namespace MeterKnife.Datas.IoC
         /// <summary>Loads the module into the kernel.</summary>
         public override void Load()
         {
-            Bind<DatabaseService>().ToSelf().InSingletonScope();
+            Bind<IDatabaseService>().To<DatabaseService>().InSingletonScope();
         }
 
         #endregion

@@ -40,7 +40,7 @@ namespace MeterKnife.Keysights
         /// </summary>
         public void AddInstrument()
         {
-            var inst = new Instrument("NF", "1915", "NF1915", "NF1915", 5);
+            var inst = new Instrument("NF", "1915", "NF1915", 5);
             Instruments.Add(inst);
             OnInstrumentAdded(new InstrumentAddedEventArgs(inst));  
         }
