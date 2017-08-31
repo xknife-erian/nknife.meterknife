@@ -39,8 +39,8 @@
     <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="LiteDB, Version=3.1.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiteDB.3.1.1\lib\net35\LiteDB.dll</HintPath>
+    <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.3.1.4\lib\net35\LiteDB.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -49,14 +49,14 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
+    <Reference Include="NKnife, Version=17.5.1.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.17.5.1.830\lib\net40\NKnife.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.Channels, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.Channels.17.5.0.511\lib\net40\NKnife.Channels.dll</HintPath>
+    <Reference Include="NKnife.Channels, Version=17.5.1.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.Channels.17.5.1.830\lib\net40\NKnife.Channels.dll</HintPath>
     </Reference>
     <Reference Include="NKnife.DataLite, Version=17.5.3.517, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.DataLite.17.5.3.517\lib\net40\NKnife.DataLite.dll</HintPath>
+      <HintPath>..\packages\NKnife.DataLite.17.5.4.830\lib\net40\NKnife.DataLite.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

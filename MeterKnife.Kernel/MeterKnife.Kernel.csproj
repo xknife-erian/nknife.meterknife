@@ -47,8 +47,8 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.17.5.0.511\lib\net40\NKnife.dll</HintPath>
+    <Reference Include="NKnife, Version=17.5.1.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.17.5.1.830\lib\net40\NKnife.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
