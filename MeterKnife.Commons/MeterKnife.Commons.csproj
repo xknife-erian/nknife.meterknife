@@ -52,14 +52,14 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NKnife, Version=17.5.1.830, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.17.5.1.830\lib\net40\NKnife.dll</HintPath>
+    <Reference Include="NKnife, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.17.5.4.830\lib\net40\NKnife.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.Channels, Version=17.5.1.830, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.Channels.17.5.1.830\lib\net40\NKnife.Channels.dll</HintPath>
+    <Reference Include="NKnife.Channels, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.Channels.17.5.4.830\lib\net40\NKnife.Channels.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.ControlKnife, Version=17.5.0.511, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.ControlKnife.17.5.0.511\lib\net40\NKnife.ControlKnife.dll</HintPath>
+    <Reference Include="NKnife.ControlKnife, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.ControlKnife.17.5.4.830\lib\net40\NKnife.ControlKnife.dll</HintPath>
     </Reference>
     <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Core.2.0.0-unstable0956\lib\net40\OxyPlot.dll</HintPath>
@@ -141,33 +141,13 @@
     <Compile Include="Scpis\ScpiSubject.cs" />
     <Compile Include="Scpis\ScpiSubjectCollection.cs" />
     <Compile Include="Scpis\ScpisXmlFile.cs" />
-    <Compile Include="Utils\ColorControls\ColorPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utils\ColorControls\ColorPickerDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Utils\ColorControls\ColorPickerDialog.Designer.cs">
-      <DependentUpon>ColorPickerDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Utils\ColorControls\ColorShowBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utils\ColorControls\ColorSlider.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utils\ColorControls\ControlRenderer.cs" />
-    <Compile Include="Utils\ColorControls\ExtMethodsColor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Utils\ColorControls\ColorPickerDialog.resx">
-      <DependentUpon>ColorPickerDialog.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
