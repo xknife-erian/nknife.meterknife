@@ -21,10 +21,10 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
             InitializeComponent();
-            _ListHead.HeadClicked += OnListHeadOnHeadClicked;
+            _ListHead.HeadLeftMouseClicked += OnHeadLeftMouseClicked;
         }
 
-        private void OnListHeadOnHeadClicked(object s, EventArgs e)
+        private void OnHeadLeftMouseClicked(object s, EventArgs e)
         {
             _IsExpanded = !_IsExpanded;
             if (!_IsExpanded)

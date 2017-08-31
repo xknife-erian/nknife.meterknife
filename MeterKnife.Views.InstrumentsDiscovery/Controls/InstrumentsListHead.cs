@@ -40,9 +40,29 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 
             foreach (var control in array)
             {
-                control.Click += HeadClick;
+                control.MouseClick += HeadMouseClick;
                 control.MouseLeave += HeadMouseLeave;
                 control.MouseEnter += HeadMouseEnter;
+            }
+        }
+
+        private void HeadMouseClick(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                {
+                    _IsDown = !_IsDown;
+                    //当点击时更替左侧的图形，给出上缩下拉的两种工作模式
+                    _PictureBox.BackgroundImage = !_IsDown ? Resources.down : Resources.up;
+                    OnHeadLeftMouseClicked();
+                    break;
+                }
+                case MouseButtons.Right:
+                {
+                    _ContextMenuStrip.Show(this, e.Location);
+                    break;
+                }
             }
         }
 
@@ -56,19 +76,11 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             _Panel.BackColor = Color.Yellow;
         }
 
-        private void HeadClick(object sender, EventArgs e)
-        {
-            _IsDown = !_IsDown;
-            //当点击时更替左侧的图形，给出上缩下拉的两种工作模式
-            _PictureBox.BackgroundImage = !_IsDown ? Resources.down : Resources.up;
-            OnHeadClicked();
-        }
+        public event EventHandler HeadLeftMouseClicked;
 
-        public event EventHandler HeadClicked;
-
-        protected virtual void OnHeadClicked()
+        protected virtual void OnHeadLeftMouseClicked()
         {
-            HeadClicked?.Invoke(this, EventArgs.Empty);
+            HeadLeftMouseClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Models;
@@ -13,7 +14,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             UpdateStyles();
             InitializeComponent();
 
-            PanelMouseEnterAndLeave();
+            ControlSameEventManager();
+
             _MainPanel.Paint += (s, e) =>
             {
                 var g = e.Graphics;
@@ -34,22 +36,25 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         /// <summary>
         /// 当鼠标在控件上时，整个控件颜色发生变化
         /// </summary>
-        private void PanelMouseEnterAndLeave()
+        private void ControlSameEventManager()
         {
-            _MainPanel.MouseEnter += ControlMouseEnter;
-            _MainPanel.MouseLeave += CoutrolMouseLeave;
-            foreach (Control ctrl in _MainPanel.Controls)
+            var list = new List<Control>();
+            AddToControlList(_MainPanel, list);
+
+            foreach (Control ctrl in list)
             {
                 ctrl.MouseEnter += ControlMouseEnter;
                 ctrl.MouseLeave += CoutrolMouseLeave;
-                if (ctrl.Controls.Count > 0)
-                {
-                    foreach (Control sunControl in ctrl.Controls)
-                    {
-                        sunControl.MouseEnter += ControlMouseEnter;
-                        sunControl.MouseLeave += CoutrolMouseLeave;
-                    }
-                }
+            }
+        }
+
+        private void AddToControlList(Control ctrl, List<Control> list)
+        {
+            list.Add(ctrl);
+            if (ctrl.Controls.Count > 0)
+            {
+                foreach (Control subControl in ctrl.Controls)
+                    AddToControlList(subControl, list);
             }
         }
 
