@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -20,22 +21,38 @@ namespace MeterKnife.Cares
         /// <summary>
         /// 本测量途径挂接的仪器或设备列表
         /// </summary>
-        public List<Instrument> Instruments { get; } = new List<Instrument>();
+        public ObservableCollection<Instrument> Instruments { get; } = new ObservableCollection<Instrument>();
 
         private int _DemoCount = 1;
 
         /// <summary>
         /// 手动添加仪器
         /// </summary>
-        public void AddInstrument()
+        public void CreateInstrument()
         {
             var inst = new Instrument("HP", "34401", "HP34401", 22);
             inst.DatasCount = _DemoCount++;
             Instruments.Add(inst);
-            OnInstrumentAdded(new InstrumentAddedEventArgs(inst));
         }
 
-        public event EventHandler<InstrumentAddedEventArgs> InstrumentAdded;
+        /// <summary>
+        /// 删除仪器信息
+        /// </summary>
+        /// <param name="instrument">指定的仪器</param>
+        public void DeleteInstrument(Instrument instrument)
+        {
+            Instrument t = null;
+            foreach (var inst in Instruments)
+            {
+                if (instrument.Equals(inst))
+                {
+                    t = inst;
+                    break;
+                }
+            }
+            if (t != null)
+                Instruments.Remove(t);
+        }
 
         public event EventHandler Discovered;
 
@@ -52,11 +69,6 @@ namespace MeterKnife.Cares
         protected virtual void OnDiscovered()
         {
             Discovered?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnInstrumentAdded(InstrumentAddedEventArgs e)
-        {
-            InstrumentAdded?.Invoke(this, e);
         }
     }
 }

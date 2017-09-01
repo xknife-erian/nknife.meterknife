@@ -34,6 +34,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
             this._LeftPanel = new System.Windows.Forms.Panel();
             this._LeftToolStripContainer = new System.Windows.Forms.ToolStripContainer();
+            this._LeftContentPanel = new System.Windows.Forms.Panel();
             this._LeftToolStrip = new System.Windows.Forms.ToolStrip();
             this._AddDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -42,7 +43,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._LeftContentPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
             this._SplitContainer.Panel2.SuspendLayout();
@@ -92,7 +92,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // _LeftToolStripContainer.ContentPanel
             // 
             this._LeftToolStripContainer.ContentPanel.Controls.Add(this._LeftContentPanel);
-            this._LeftToolStripContainer.ContentPanel.Size = new System.Drawing.Size(396, 476);
+            this._LeftToolStripContainer.ContentPanel.Size = new System.Drawing.Size(396, 474);
             this._LeftToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._LeftToolStripContainer.LeftToolStripPanelVisible = false;
             this._LeftToolStripContainer.Location = new System.Drawing.Point(0, 0);
@@ -106,6 +106,15 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // 
             this._LeftToolStripContainer.TopToolStripPanel.Controls.Add(this._LeftToolStrip);
             // 
+            // _LeftContentPanel
+            // 
+            this._LeftContentPanel.AutoScroll = true;
+            this._LeftContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._LeftContentPanel.Location = new System.Drawing.Point(0, 0);
+            this._LeftContentPanel.Name = "_LeftContentPanel";
+            this._LeftContentPanel.Size = new System.Drawing.Size(396, 474);
+            this._LeftContentPanel.TabIndex = 0;
+            // 
             // _LeftToolStrip
             // 
             this._LeftToolStrip.Dock = System.Windows.Forms.DockStyle.None;
@@ -113,7 +122,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this._AddDropDownButton});
             this._LeftToolStrip.Location = new System.Drawing.Point(3, 0);
             this._LeftToolStrip.Name = "_LeftToolStrip";
-            this._LeftToolStrip.Size = new System.Drawing.Size(97, 25);
+            this._LeftToolStrip.Padding = new System.Windows.Forms.Padding(0, 3, 1, 0);
+            this._LeftToolStrip.Size = new System.Drawing.Size(97, 27);
             this._LeftToolStrip.TabIndex = 0;
             // 
             // _AddDropDownButton
@@ -121,7 +131,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this._AddDropDownButton.Image = global::MeterKnife.Views.InstrumentsDiscovery.Properties.Resources.add;
             this._AddDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._AddDropDownButton.Name = "_AddDropDownButton";
-            this._AddDropDownButton.Size = new System.Drawing.Size(85, 22);
+            this._AddDropDownButton.Size = new System.Drawing.Size(85, 21);
             this._AddDropDownButton.Text = "添加仪器";
             // 
             // listView1
@@ -163,15 +173,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // columnHeader5
             // 
             this.columnHeader5.Text = "";
-            // 
-            // _LeftContentPanel
-            // 
-            this._LeftContentPanel.AutoScroll = true;
-            this._LeftContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._LeftContentPanel.Location = new System.Drawing.Point(0, 0);
-            this._LeftContentPanel.Name = "_LeftContentPanel";
-            this._LeftContentPanel.Size = new System.Drawing.Size(396, 476);
-            this._LeftContentPanel.TabIndex = 0;
             // 
             // InstrumentsDiscoveryView
             // 

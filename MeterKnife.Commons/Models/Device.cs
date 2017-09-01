@@ -1,4 +1,5 @@
-﻿using NKnife.Channels.Interfaces;
+﻿using System;
+using NKnife.Channels.Interfaces;
 
 namespace MeterKnife.Models
 {
@@ -6,11 +7,14 @@ namespace MeterKnife.Models
     {
         public Device(string manufacturer, string model, string name, int address = -1)
         {
+            Id = Guid.NewGuid().ToString("N");
             Manufacturer = manufacturer;
             Model = model;
             Name = name;
             Address = address;
         }
+
+        public string Id { get; set; }
 
         #region Implementation of IDevice
 

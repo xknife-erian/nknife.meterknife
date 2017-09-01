@@ -1,4 +1,6 @@
-﻿using MeterKnife.Base;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
+using MeterKnife.Base;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
 using NKnife.IoC;
@@ -7,29 +9,69 @@ namespace MeterKnife.ViewModels
 {
     public class InstrumentsDiscoveryViewModel : ViewmodelBaseKnife
     {
+        private readonly Dictionary<GatewayModel, IGatewayDiscover> _DiscoverMap = new Dictionary<GatewayModel, IGatewayDiscover>();
+
         public InstrumentsDiscoveryViewModel()
         {
-            Discovers.Load(HabitedDatas.Gateways);
-            foreach (var pair in Discovers)
+            InstrumentMap.Load(HabitedDatas.Gateways);
+            foreach (var pair in InstrumentMap)
             {
                 var model = pair.Key;
-                var instruments = pair.Value;
-
-                var discrover = DI.Get<IGatewayDiscover>(model.ToString());
-                discrover.InstrumentAdded += (s, e) =>
+                var tempInsts = pair.Value;
+                tempInsts.CollectionChanged += (s, e) =>
                 {
-                    instruments.Add(e.Instrument);
-                    HabitedDatas.Gateways = Discovers.ToMap();
+                    HabitedDatas.Gateways = InstrumentMap.ToMap();
+                };
+
+                var discrover = GetDiscover(model);
+                discrover.Instruments.CollectionChanged += (s, e) =>
+                {
+                    switch (e.Action)
+                    {
+                        case NotifyCollectionChangedAction.Add:
+                        {
+                            foreach (Instrument item in e.NewItems)
+                                tempInsts.Add(item);
+                            break;
+                        }
+                        case NotifyCollectionChangedAction.Remove:
+                        {
+                            foreach (Instrument item in e.OldItems)
+                                tempInsts.Remove(item);
+                            break;
+                        }
+                        case NotifyCollectionChangedAction.Move:
+                        case NotifyCollectionChangedAction.Replace:
+                        case NotifyCollectionChangedAction.Reset:
+                            break;
+                    }
                 };
             }
         }
 
-        public InstrumentMap Discovers { get; set; } = new InstrumentMap();
+        public InstrumentMap InstrumentMap { get; set; } = new InstrumentMap();
 
-        public void AddInstrument(GatewayModel model)
+        private IGatewayDiscover GetDiscover(GatewayModel model)
         {
-            var discrover = DI.Get<IGatewayDiscover>(model.ToString());
-            discrover.AddInstrument();
+            IGatewayDiscover discover;
+            if (!_DiscoverMap.TryGetValue(model, out discover))
+            {
+                discover = DI.Get<IGatewayDiscover>(model.ToString());
+                _DiscoverMap.Add(model, discover);
+            }
+            return discover;
+        }
+
+        public void CreateInstrument(GatewayModel model)
+        {
+            var discrover = GetDiscover(model);
+            discrover.CreateInstrument();
+        }
+
+        public void DeleteInstrument(GatewayModel model, Instrument instrument)
+        {
+            var discrover = GetDiscover(model);
+            discrover.DeleteInstrument(instrument);
         }
     }
 }

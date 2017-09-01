@@ -60,7 +60,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                 }
                 case MouseButtons.Right:
                 {
-                    _ContextMenuStrip.Show(this, e.Location);
+                    OnHeadRightMouseClicked();
                     break;
                 }
             }
@@ -77,10 +77,16 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         }
 
         public event EventHandler HeadLeftMouseClicked;
+        public event EventHandler HeadRightMouseClicked;
 
         protected virtual void OnHeadLeftMouseClicked()
         {
             HeadLeftMouseClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnHeadRightMouseClicked()
+        {
+            HeadRightMouseClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

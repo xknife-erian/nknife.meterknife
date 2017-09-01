@@ -22,6 +22,15 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             UpdateStyles();
             InitializeComponent();
             _ListHead.HeadLeftMouseClicked += OnHeadLeftMouseClicked;
+            _ListHead.MouseClick += ListHeadMouseClick;
+        }
+
+        private void ListHeadMouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                _HeadContextMenu.Show(_HeadContextMenu, e.Location);
+            }
         }
 
         private void OnHeadLeftMouseClicked(object s, EventArgs e)
@@ -96,6 +105,27 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                 height += control.Height + 1; //根据当前内部的控件数量，计算出整体应该有的高度
             }
             Height = height + 3;
+            ResumeLayout(true);
+        }
+
+        public void RemoveInstruments(Instrument inst)
+        {
+            SuspendLayout();
+            List<Control> cs = new List<Control>(Controls.Count);
+            foreach (Control control in Controls)
+            {
+                var cell = control as InstrumentsCell;
+                if (cell != null)
+                {
+                    Instrument instrument = (Instrument) cell.Tag;
+                    if(inst.Equals(instrument))
+                        cs.Add(control);
+                }
+            }
+            foreach (var control in cs)
+            {
+                Controls.Remove(control);
+            }
             ResumeLayout(true);
         }
     }

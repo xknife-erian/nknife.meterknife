@@ -28,20 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this._PictureBox = new System.Windows.Forms.PictureBox();
             this._GatewayModelLabel = new System.Windows.Forms.Label();
             this._Panel = new System.Windows.Forms.Panel();
             this._CountLabel = new System.Windows.Forms.Label();
-            this._ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._UpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.UnDropToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._DropToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox)).BeginInit();
             this._Panel.SuspendLayout();
-            this._ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _PictureBox
@@ -93,46 +85,6 @@
             this._CountLabel.TabIndex = 2;
             this._CountLabel.Text = "0";
             // 
-            // _ContextMenuStrip
-            // 
-            this._ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._UpdateToolStripMenuItem,
-            this._DeleteToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.UnDropToolStripMenuItem,
-            this._DropToolStripMenuItem});
-            this._ContextMenuStrip.Name = "_ContextMenuStrip";
-            this._ContextMenuStrip.Size = new System.Drawing.Size(153, 120);
-            // 
-            // _UpdateToolStripMenuItem
-            // 
-            this._UpdateToolStripMenuItem.Name = "_UpdateToolStripMenuItem";
-            this._UpdateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this._UpdateToolStripMenuItem.Text = "刷新(&R)";
-            // 
-            // _DeleteToolStripMenuItem
-            // 
-            this._DeleteToolStripMenuItem.Name = "_DeleteToolStripMenuItem";
-            this._DeleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this._DeleteToolStripMenuItem.Text = "删除(&D)";
-            // 
-            // UnDropToolStripMenuItem
-            // 
-            this.UnDropToolStripMenuItem.Name = "UnDropToolStripMenuItem";
-            this.UnDropToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.UnDropToolStripMenuItem.Text = "折叠(&E)";
-            // 
-            // _DropToolStripMenuItem
-            // 
-            this._DropToolStripMenuItem.Name = "_DropToolStripMenuItem";
-            this._DropToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this._DropToolStripMenuItem.Text = "展开(&P)";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
             // InstrumentsListHead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -144,7 +96,6 @@
             ((System.ComponentModel.ISupportInitialize)(this._PictureBox)).EndInit();
             this._Panel.ResumeLayout(false);
             this._Panel.PerformLayout();
-            this._ContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -155,11 +106,5 @@
         private System.Windows.Forms.Label _GatewayModelLabel;
         private System.Windows.Forms.Panel _Panel;
         private System.Windows.Forms.Label _CountLabel;
-        private System.Windows.Forms.ContextMenuStrip _ContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem _UpdateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _DeleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem UnDropToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _DropToolStripMenuItem;
     }
 }

@@ -30,12 +30,13 @@ namespace MeterKnife.Views.InstrumentsDiscovery
 
         private void ViewModelChange()
         {
-            foreach (var pair in _ViewModel.Discovers)
+            foreach (var pair in _ViewModel.InstrumentMap)
             {
                 var model = pair.Key;
                 var list = pair.Value;
                 list.CollectionChanged += (s, e) =>
                 {
+                    var panel = _PanelMap[model];
                     switch (e.Action)
                     {
                         case NotifyCollectionChangedAction.Add:
@@ -43,16 +44,21 @@ namespace MeterKnife.Views.InstrumentsDiscovery
                             var insts = new Instrument[e.NewItems.Count];
                             for (var i = 0; i < e.NewItems.Count; i++)
                                 insts[i] = (Instrument) e.NewItems[i];
-                            var panel = _PanelMap[model];
                             panel.AddInstruments(insts);
                             break;
                         }
                         case NotifyCollectionChangedAction.Move:
+                        {
+                            foreach (Instrument inst in e.OldItems)
+                                panel.RemoveInstruments(inst);
+                            break;
+                        }
                         case NotifyCollectionChangedAction.Remove:
                         case NotifyCollectionChangedAction.Replace:
                         case NotifyCollectionChangedAction.Reset:
                             break;
                     }
+                    panel.Count = list.Count;
                 };
             }
         }
@@ -62,14 +68,16 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            foreach (var pair in _ViewModel.Discovers)
+            foreach (var pair in _ViewModel.InstrumentMap)
             {
                 var model = pair.Key;
                 var instruments = pair.Value;
 
-                var panel = new InstrumentsListPanel();
-                panel.GatewayModel = model.ToString();
-                panel.Dock = DockStyle.Top;
+                var panel = new InstrumentsListPanel
+                {
+                    GatewayModel = model.ToString(),
+                    Dock = DockStyle.Top
+                };
                 panel.AddInstruments(instruments.ToArray());
                 panel.Count = instruments.Count;
                 _LeftContentPanel.Controls.Add(panel);
@@ -77,7 +85,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
 
                 var menuitem = new ToolStripMenuItem();
                 menuitem.Text = $"{model}";
-                menuitem.Click += (s, r) => _ViewModel.AddInstrument(model);
+                menuitem.Click += (s, r) => _ViewModel.CreateInstrument(model);
                 _AddDropDownButton.DropDownItems.Add(menuitem);
             }
         }

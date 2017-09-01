@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using MeterKnife.Models;
 
 namespace MeterKnife.Interfaces.Gateways
@@ -17,17 +18,18 @@ namespace MeterKnife.Interfaces.Gateways
         /// <summary>
         /// 本测量途径挂接的仪器或设备列表
         /// </summary>
-        List<Instrument> Instruments { get; }
+        ObservableCollection<Instrument> Instruments { get; }
 
         /// <summary>
-        /// 手动添加仪器
+        /// 建立仪器信息
         /// </summary>
-        void AddInstrument();
+        void CreateInstrument();
 
         /// <summary>
-        /// 当有仪器添加后
+        /// 删除仪器信息
         /// </summary>
-        event EventHandler<InstrumentAddedEventArgs> InstrumentAdded;
+        /// <param name="instrument">指定的仪器</param>
+        void DeleteInstrument(Instrument instrument);
 
         /// <summary>
         /// 当自动发现仪器的动作执行完成
@@ -38,5 +40,6 @@ namespace MeterKnife.Interfaces.Gateways
         /// 开始搜索该测量途径下的所有仪器
         /// </summary>
         void BeginDiscover();
+
     }
 }

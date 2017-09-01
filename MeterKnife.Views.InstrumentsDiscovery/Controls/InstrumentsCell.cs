@@ -45,16 +45,15 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             {
                 ctrl.MouseEnter += ControlMouseEnter;
                 ctrl.MouseLeave += CoutrolMouseLeave;
+                ctrl.MouseClick += ControlMouseClick;
             }
         }
 
-        private void AddToControlList(Control ctrl, List<Control> list)
+        private void ControlMouseClick(object sender, MouseEventArgs e)
         {
-            list.Add(ctrl);
-            if (ctrl.Controls.Count > 0)
+            if (e.Button == MouseButtons.Right)
             {
-                foreach (Control subControl in ctrl.Controls)
-                    AddToControlList(subControl, list);
+                OnCellRightMouseClicked();
             }
         }
 
@@ -68,16 +67,22 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             _MainPanel.BackColor = Color.LightGoldenrodYellow;
         }
 
+        public event EventHandler CellRightMouseClicked;
+
         public void SetInstruments(Instrument instrument)
         {
-            if (instrument.Image != null)
-                Image = instrument.Image;
-            Model = instrument.Model;
-            Manufacturer = instrument.Manufacturer;
-            Address = instrument.Address.ToString();
-            Information = instrument.Information;
-            DatasCount = instrument.DatasCount.ToString();
-            UsingTime = instrument.LastUsingTime.ToString("yyyy/MM/dd");
+            if (instrument != null)
+            {
+                Tag = instrument;
+                if (instrument.Image != null)
+                    Image = instrument.Image;
+                Model = instrument.Model;
+                Manufacturer = instrument.Manufacturer;
+                Address = instrument.Address.ToString();
+                Information = instrument.Information;
+                DatasCount = instrument.DatasCount.ToString();
+                UsingTime = instrument.LastUsingTime.ToString("yyyy/MM/dd");
+            }
         }
 
         public Image Image
@@ -122,5 +127,19 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             set => _UsingTimeLabel.Text = value;
         }
 
+        private void AddToControlList(Control ctrl, List<Control> list)
+        {
+            list.Add(ctrl);
+            if (ctrl.Controls.Count > 0)
+            {
+                foreach (Control subControl in ctrl.Controls)
+                    AddToControlList(subControl, list);
+            }
+        }
+
+        protected virtual void OnCellRightMouseClicked()
+        {
+            CellRightMouseClicked?.Invoke(this, EventArgs.Empty);
+        }
     }
 }
