@@ -50,7 +50,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
                         case NotifyCollectionChangedAction.Move:
                         {
                             foreach (Instrument inst in e.OldItems)
-                                panel.RemoveInstruments(inst);
+                                panel.RemoveInstrument(inst);
                             break;
                         }
                         case NotifyCollectionChangedAction.Remove:
@@ -61,6 +61,34 @@ namespace MeterKnife.Views.InstrumentsDiscovery
                     panel.Count = list.Count;
                 };
             }
+        }
+
+        private void TrigPanelEvent(InstrumentsListPanel panel)
+        {
+            panel.GatewayModelUpdate += (s, e) =>
+            {
+                _ViewModel.GatewayModelUpdate((GatewayModel)((ToolStripMenuItem)s).Tag);
+            };
+            panel.GatewayModelDelete += (s, e) =>
+            {
+                _ViewModel.GatewayModelDelete((GatewayModel)((ToolStripMenuItem)s).Tag);
+            };
+            panel.InstrumentDelete += (s, e) =>
+            {
+                _ViewModel.DeleteInstrument(panel.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
+            };
+            panel.InstrumentCommandManager += (s, e) =>
+            {
+                _ViewModel.InstrumentCommandManager(panel.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
+            };
+            panel.InstrumentConnectionTest += (s, e) =>
+            {
+                _ViewModel.InstrumentConnectionTest(panel.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
+            };
+            panel.InstrumentDatasManager += (s, e) =>
+            {
+                _ViewModel.InstrumentDatasManager(panel.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
+            };
         }
 
         #region Overrides of Form
@@ -75,13 +103,14 @@ namespace MeterKnife.Views.InstrumentsDiscovery
 
                 var panel = new InstrumentsListPanel
                 {
-                    GatewayModel = model.ToString(),
+                    GatewayModel = model,
                     Dock = DockStyle.Top
                 };
                 panel.AddInstruments(instruments.ToArray());
                 panel.Count = instruments.Count;
                 _LeftContentPanel.Controls.Add(panel);
                 _PanelMap.Add(model, panel);
+                TrigPanelEvent(panel);
 
                 var menuitem = new ToolStripMenuItem();
                 menuitem.Text = $"{model}";

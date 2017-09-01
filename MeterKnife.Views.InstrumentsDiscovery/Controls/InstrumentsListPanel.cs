@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
 
 namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 {
     public partial class InstrumentsListPanel : UserControl
     {
-        private InstrumentsCell[] _Cells;
+        private InstrumentCell[] _Cells;
         private bool _IsExpanded = true;
 
         public InstrumentsListPanel()
@@ -15,13 +17,17 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
             InitializeComponent();
+            ContextMenuEventManager();
+
+            _DropToolStripMenuItem.Enabled = false;
+            _DropToolStripMenuItem.CheckState = CheckState.Checked;
             _ListHead.HeadMouseClicked += OnHeadMouseClicked;
         }
 
-        public string GatewayModel
+        public GatewayModel GatewayModel
         {
-            get => _ListHead.GatewayModel;
-            set => _ListHead.GatewayModel = value;
+            get => (GatewayModel) Enum.Parse(typeof(GatewayModel), _ListHead.GatewayModel);
+            set => _ListHead.GatewayModel = value.ToString();
         }
 
         public int Count
@@ -30,12 +36,89 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             set => _ListHead.Count = value;
         }
 
+        private void OnHeadMouseClicked(object sender, HeadClickEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                {
+                    DropPanel();
+                    break;
+                }
+                case MouseButtons.Right:
+                {
+                    var p = PointToScreen(_ListHead.Location);
+                    foreach (var item in _HeadContextMenu.Items)
+                    {
+                        var menuitem = item as ToolStripMenuItem;
+                        if (menuitem != null)
+                            menuitem.Tag = e.GatewayModel;
+                    }
+                    _HeadContextMenu.Show(_ListHead, new Point(e.Location.X - p.X, e.Location.Y - p.Y));
+                    break;
+                }
+            }
+        }
+
+        private void DropPanel()
+        {
+            _IsExpanded = !_IsExpanded;
+            if (!_IsExpanded)
+            {
+                _DropToolStripMenuItem.Enabled = true;
+                _UnDropToolStripMenuItem.Enabled = false;
+                _DropToolStripMenuItem.CheckState = CheckState.Unchecked;
+                _UnDropToolStripMenuItem.CheckState = CheckState.Checked;
+
+                var count = Controls.Count - 1;
+                _Cells = new InstrumentCell[count];
+                SuspendLayout();
+                for (var i = 0; i < count; i++)
+                {
+                    _Cells[i] = (InstrumentCell) Controls[0];
+                    Height = Height - _Cells[i].Height;
+                    Controls.RemoveAt(0);
+                }
+                ResumeLayout(true);
+            }
+            else
+            {
+                _DropToolStripMenuItem.Enabled = false;
+                _UnDropToolStripMenuItem.Enabled = true;
+                _DropToolStripMenuItem.CheckState = CheckState.Checked;
+                _UnDropToolStripMenuItem.CheckState = CheckState.Unchecked;
+
+                if (_Cells != null)
+                    AddCells(_Cells);
+            }
+        }
+
+        private void OnCellMouseClicked(object sender, CellClickEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                {
+                    var sd = (Control) sender;
+                    var p = PointToScreen(sd.Location);
+                    foreach (var item in _CellContextMenu.Items)
+                    {
+                        var menuitem = item as ToolStripMenuItem;
+                        if (menuitem != null)
+                            menuitem.Tag = e.Instrument;
+                    }
+                    _CellContextMenu.Show(sd, new Point(e.Location.X - p.X, e.Location.Y - p.Y));
+                    break;
+                }
+            }
+        }
+
         public void AddInstruments(params Instrument[] instruments)
         {
-            var cells = new InstrumentsCell[instruments.Length];
+            var cells = new InstrumentCell[instruments.Length];
             for (var i = 0; i < instruments.Length; i++)
             {
-                var cell = new InstrumentsCell();
+                var cell = new InstrumentCell();
                 cell.Dock = DockStyle.Top;
                 cell.SetInstruments(instruments[i]);
                 cell.CellMouseClicked += OnCellMouseClicked;
@@ -44,54 +127,23 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             AddCells(cells);
         }
 
-        private void OnHeadMouseClicked(object s, MouseEventArgs e)
+        public void RemoveInstrument(Instrument inst)
         {
-            switch (e.Button)
+            SuspendLayout();
+            var cs = new List<Control>(Controls.Count);
+            foreach (Control control in Controls)
             {
-                case MouseButtons.Left:
+                var cell = control as InstrumentCell;
+                if (cell != null)
                 {
-                    _IsExpanded = !_IsExpanded;
-                    if (!_IsExpanded)
-                    {
-                        var count = Controls.Count - 1;
-                        _Cells = new InstrumentsCell[count];
-                        SuspendLayout();
-                        for (var i = 0; i < count; i++)
-                        {
-                            _Cells[i] = (InstrumentsCell)Controls[0];
-                            Height = Height - _Cells[i].Height;
-                            Controls.RemoveAt(0);
-                        }
-                        ResumeLayout(true);
-                    }
-                    else
-                    {
-                        if (_Cells != null)
-                            AddCells(_Cells);
-                    }
-                    break;
-                }
-                case MouseButtons.Right:
-                {
-                    var p = PointToScreen(_ListHead.Location);
-                    _HeadContextMenu.Show(_ListHead, new Point(e.Location.X - p.X, e.Location.Y - p.Y));
-                    break;
+                    var instrument = (Instrument) cell.Tag;
+                    if (inst.Equals(instrument))
+                        cs.Add(control);
                 }
             }
-        }
-
-        private void OnCellMouseClicked(object sender, MouseEventArgs e)
-        {
-            switch (e.Button)
-            {
-                case MouseButtons.Right:
-                {
-                    var sd = (Control) sender;
-                    var p = PointToScreen(sd.Location);
-                    _CellContextMenu.Show(sd, new Point(e.Location.X - p.X, e.Location.Y - p.Y));
-                    break;
-                }
-            }
+            foreach (var control in cs)
+                Controls.Remove(control);
+            ResumeLayout(true);
         }
 
         /// <summary>
@@ -99,7 +151,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         ///     Controls集合的没有Insert方法,很麻烦。
         /// </summary>
         /// <param name="cells"></param>
-        public void AddCells(params InstrumentsCell[] cells)
+        public void AddCells(params InstrumentCell[] cells)
         {
             SuspendLayout();
             var height = 0;
@@ -121,23 +173,58 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             ResumeLayout(true);
         }
 
-        public void RemoveInstruments(Instrument inst)
+        /// <summary>
+        ///     右键菜单的事件管理
+        /// </summary>
+        private void ContextMenuEventManager()
         {
-            SuspendLayout();
-            var cs = new List<Control>(Controls.Count);
-            foreach (Control control in Controls)
-            {
-                var cell = control as InstrumentsCell;
-                if (cell != null)
-                {
-                    var instrument = (Instrument) cell.Tag;
-                    if (inst.Equals(instrument))
-                        cs.Add(control);
-                }
-            }
-            foreach (var control in cs)
-                Controls.Remove(control);
-            ResumeLayout(true);
+            _DropToolStripMenuItem.Click += (s, e) => { DropPanel(); };
+            _UnDropToolStripMenuItem.Click += (s, e) => { DropPanel(); };
+
+            _UpdateGatewayToolStripMenuItem.Click += (s, e) => { OnGatewayModelUpdate(s); };
+            _DeleteGatewayToolStripMenuItem.Click += (s, e) => { OnGatewayModelDelete(s); };
+
+            _DeleteInstrumentToolStripMenuItem.Click += (s, e) => { OnInstrumentDelete(s); };
+            _ConnTestToolStripMenuItem.Click += (s, e) => { OnInstrumentConnectionTest(s); };
+            _CommandsToolStripMenuItem.Click += (s, e) => { OnInstrumentCommandManager(s); };
+            _DatasManagerToolStripMenuItem.Click += (s, e) => { OnInstrumentDatasManager(s); };
+        }
+
+        public event EventHandler GatewayModelUpdate;
+        public event EventHandler GatewayModelDelete;
+        public event EventHandler InstrumentDelete;
+        public event EventHandler InstrumentConnectionTest;
+        public event EventHandler InstrumentCommandManager;
+        public event EventHandler InstrumentDatasManager;
+
+        protected virtual void OnGatewayModelUpdate(object sender)
+        {
+            GatewayModelUpdate?.Invoke(sender, EventArgs.Empty);
+        }
+
+        protected virtual void OnGatewayModelDelete(object sender)
+        {
+            GatewayModelDelete?.Invoke(sender, EventArgs.Empty);
+        }
+
+        protected virtual void OnInstrumentDelete(object sender)
+        {
+            InstrumentDelete?.Invoke(sender, EventArgs.Empty);
+        }
+
+        protected virtual void OnInstrumentConnectionTest(object sender)
+        {
+            InstrumentConnectionTest?.Invoke(sender, EventArgs.Empty);
+        }
+
+        protected virtual void OnInstrumentCommandManager(object sender)
+        {
+            InstrumentCommandManager?.Invoke(sender, EventArgs.Empty);
+        }
+
+        protected virtual void OnInstrumentDatasManager(object sender)
+        {
+            InstrumentDatasManager?.Invoke(sender, EventArgs.Empty);
         }
     }
 }

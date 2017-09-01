@@ -73,5 +73,30 @@ namespace MeterKnife.ViewModels
             var discrover = GetDiscover(model);
             discrover.DeleteInstrument(instrument);
         }
+
+        public void GatewayModelUpdate(GatewayModel model)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void GatewayModelDelete(GatewayModel model)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void InstrumentCommandManager(GatewayModel model, Instrument instrument)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void InstrumentConnectionTest(GatewayModel model, Instrument instrument)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void InstrumentDatasManager(GatewayModel model, Instrument instrument)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

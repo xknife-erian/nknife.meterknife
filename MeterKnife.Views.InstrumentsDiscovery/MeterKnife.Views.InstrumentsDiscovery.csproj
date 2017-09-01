@@ -76,11 +76,11 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Controls\InstrumentsCell.cs">
+    <Compile Include="Controls\InstrumentCell.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\InstrumentsCell.Designer.cs">
-      <DependentUpon>InstrumentsCell.cs</DependentUpon>
+    <Compile Include="Controls\InstrumentCell.Designer.cs">
+      <DependentUpon>InstrumentCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\InstrumentsListHead.cs">
       <SubType>UserControl</SubType>
@@ -109,8 +109,8 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\InstrumentsCell.resx">
-      <DependentUpon>InstrumentsCell.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\InstrumentCell.resx">
+      <DependentUpon>InstrumentCell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\InstrumentsListHead.resx">
       <DependentUpon>InstrumentsListHead.cs</DependentUpon>

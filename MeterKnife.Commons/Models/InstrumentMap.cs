@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MeterKnife.Interfaces.Gateways;
+using NKnife.IoC;
 
 namespace MeterKnife.Models
 {
@@ -10,9 +11,13 @@ namespace MeterKnife.Models
         {
             foreach (var pair in map)
             {
+                var discover = DI.Get<IGatewayDiscover>(pair.Key.ToString());
                 var list = new ObservableCollection<Instrument>();
                 foreach (var instrument in pair.Value)
+                {
                     list.Add(instrument);
+                    discover.Instruments.Add(instrument);
+                }
                 Add(pair.Key, list);
             }
         }
