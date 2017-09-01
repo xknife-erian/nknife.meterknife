@@ -30,10 +30,18 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             set => _ListHead.Count = value;
         }
 
-        private void ListMouseClick(object sender, MouseEventArgs e)
+        public void AddInstruments(params Instrument[] instruments)
         {
-            if (e.Button == MouseButtons.Right)
-                _CellContextMenu.Show(_CellContextMenu, e.Location);
+            var cells = new InstrumentsCell[instruments.Length];
+            for (var i = 0; i < instruments.Length; i++)
+            {
+                var cell = new InstrumentsCell();
+                cell.Dock = DockStyle.Top;
+                cell.SetInstruments(instruments[i]);
+                cell.CellMouseClicked += OnCellMouseClicked;
+                cells[i] = cell;
+            }
+            AddCells(cells);
         }
 
         private void OnHeadMouseClicked(object s, MouseEventArgs e)
@@ -50,7 +58,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                         SuspendLayout();
                         for (var i = 0; i < count; i++)
                         {
-                            _Cells[i] = (InstrumentsCell) Controls[0];
+                            _Cells[i] = (InstrumentsCell)Controls[0];
                             Height = Height - _Cells[i].Height;
                             Controls.RemoveAt(0);
                         }
@@ -72,17 +80,18 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             }
         }
 
-        public void AddInstruments(params Instrument[] instruments)
+        private void OnCellMouseClicked(object sender, MouseEventArgs e)
         {
-            var cells = new InstrumentsCell[instruments.Length];
-            for (var i = 0; i < instruments.Length; i++)
+            switch (e.Button)
             {
-                var cell = new InstrumentsCell();
-                cell.Dock = DockStyle.Top;
-                cell.SetInstruments(instruments[i]);
-                cells[i] = cell;
+                case MouseButtons.Right:
+                {
+                    var sd = (Control) sender;
+                    var p = PointToScreen(sd.Location);
+                    _CellContextMenu.Show(sd, new Point(e.Location.X - p.X, e.Location.Y - p.Y));
+                    break;
+                }
             }
-            AddCells(cells);
         }
 
         /// <summary>

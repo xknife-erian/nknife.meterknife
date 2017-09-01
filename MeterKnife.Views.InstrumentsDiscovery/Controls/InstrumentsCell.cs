@@ -51,10 +51,9 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 
         private void ControlMouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                OnCellRightMouseClicked();
-            }
+            var p = ((Control)sender).PointToScreen(e.Location);
+            var me = new MouseEventArgs(e.Button, e.Clicks, p.X, p.Y, e.Delta);
+            OnMouseClicked(me);
         }
 
         private void CoutrolMouseLeave(object sender, EventArgs e)
@@ -67,7 +66,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             _MainPanel.BackColor = Color.LightGoldenrodYellow;
         }
 
-        public event EventHandler CellRightMouseClicked;
+        public event EventHandler<MouseEventArgs> CellMouseClicked;
 
         public void SetInstruments(Instrument instrument)
         {
@@ -137,9 +136,9 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             }
         }
 
-        protected virtual void OnCellRightMouseClicked()
+        protected virtual void OnMouseClicked(MouseEventArgs e)
         {
-            CellRightMouseClicked?.Invoke(this, EventArgs.Empty);
+            CellMouseClicked?.Invoke(this, e);
         }
     }
 }
