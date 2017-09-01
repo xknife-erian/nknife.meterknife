@@ -55,15 +55,12 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                     _IsDown = !_IsDown;
                     //当点击时更替左侧的图形，给出上缩下拉的两种工作模式
                     _PictureBox.BackgroundImage = !_IsDown ? Resources.down : Resources.up;
-                    OnHeadLeftMouseClicked();
-                    break;
-                }
-                case MouseButtons.Right:
-                {
-                    OnHeadRightMouseClicked();
                     break;
                 }
             }
+            var p = ((Control)sender).PointToScreen(e.Location);
+            var me = new MouseEventArgs(e.Button, e.Clicks, p.X, p.Y, e.Delta);
+            OnHeadMouseClicked(me);
         }
 
         private void HeadMouseLeave(object sender, EventArgs e)
@@ -73,20 +70,14 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 
         private void HeadMouseEnter(object sender, EventArgs e)
         {
-            _Panel.BackColor = Color.Yellow;
+            _Panel.BackColor = Color.GreenYellow;
         }
 
-        public event EventHandler HeadLeftMouseClicked;
-        public event EventHandler HeadRightMouseClicked;
+        public event EventHandler<MouseEventArgs> HeadMouseClicked;
 
-        protected virtual void OnHeadLeftMouseClicked()
+        protected virtual void OnHeadMouseClicked(MouseEventArgs e)
         {
-            HeadLeftMouseClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnHeadRightMouseClicked()
-        {
-            HeadRightMouseClicked?.Invoke(this, EventArgs.Empty);
+            HeadMouseClicked?.Invoke(this, e);
         }
     }
 }
