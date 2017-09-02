@@ -37,7 +37,7 @@ namespace MeterKnife.Interfaces.Gateways
         event EventHandler Discovered;
 
         /// <summary>
-        /// 开始搜索该测量途径下的所有仪器
+        /// 开始搜索该测量途径下的所有仪器(一般来讲这是一个异步操作)
         /// </summary>
         void BeginDiscover();
 

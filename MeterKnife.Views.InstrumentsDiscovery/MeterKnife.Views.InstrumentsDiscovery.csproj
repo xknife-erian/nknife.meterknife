@@ -76,6 +76,8 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Controls\CellClickEventArgs.cs" />
+    <Compile Include="Controls\HeadClickEventArgs.cs" />
     <Compile Include="Controls\InstrumentCell.cs">
       <SubType>UserControl</SubType>
     </Compile>

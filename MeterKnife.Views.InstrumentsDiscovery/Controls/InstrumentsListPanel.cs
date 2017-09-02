@@ -9,10 +9,10 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
 {
     public partial class InstrumentsListPanel : UserControl
     {
-        private InstrumentCell[] _Cells;
+        private InstrumentCell[] _HideCells;
         private bool _IsExpanded = true;
 
-        public InstrumentsListPanel()
+        public InstrumentsListPanel(IGatewayDiscover gatewayDiscover)
         {
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
@@ -22,12 +22,9 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             _DropToolStripMenuItem.Enabled = false;
             _DropToolStripMenuItem.CheckState = CheckState.Checked;
             _ListHead.HeadMouseClicked += OnHeadMouseClicked;
-        }
 
-        public GatewayModel GatewayModel
-        {
-            get => (GatewayModel) Enum.Parse(typeof(GatewayModel), _ListHead.GatewayModel);
-            set => _ListHead.GatewayModel = value.ToString();
+            //-----------------------------------------------------
+            Tag = gatewayDiscover;
         }
 
         public int Count
@@ -71,12 +68,12 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                 _UnDropToolStripMenuItem.CheckState = CheckState.Checked;
 
                 var count = Controls.Count - 1;
-                _Cells = new InstrumentCell[count];
+                _HideCells = new InstrumentCell[count];
                 SuspendLayout();
                 for (var i = 0; i < count; i++)
                 {
-                    _Cells[i] = (InstrumentCell) Controls[0];
-                    Height = Height - _Cells[i].Height;
+                    _HideCells[i] = (InstrumentCell) Controls[0];
+                    Height = Height - _HideCells[i].Height;
                     Controls.RemoveAt(0);
                 }
                 ResumeLayout(true);
@@ -88,8 +85,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                 _DropToolStripMenuItem.CheckState = CheckState.Checked;
                 _UnDropToolStripMenuItem.CheckState = CheckState.Unchecked;
 
-                if (_Cells != null)
-                    AddCells(_Cells);
+                if (_HideCells != null)
+                    AddCells(_HideCells);
             }
         }
 
@@ -118,9 +115,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             var cells = new InstrumentCell[instruments.Length];
             for (var i = 0; i < instruments.Length; i++)
             {
-                var cell = new InstrumentCell();
+                var cell = new InstrumentCell(instruments[i]);
                 cell.Dock = DockStyle.Top;
-                cell.SetInstruments(instruments[i]);
                 cell.CellMouseClicked += OnCellMouseClicked;
                 cells[i] = cell;
             }
@@ -142,7 +138,10 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
                 }
             }
             foreach (var control in cs)
+            {
+                Height -= control.Height;
                 Controls.Remove(control);
+            }
             ResumeLayout(true);
         }
 
