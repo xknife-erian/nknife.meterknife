@@ -94,6 +94,11 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         {
             switch (e.Button)
             {
+                case MouseButtons.Left:
+                {
+                    OnInstrumentSelected(sender, e);
+                    break;
+                }
                 case MouseButtons.Right:
                 {
                     var sd = (Control) sender;
@@ -117,7 +122,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             {
                 var cell = new InstrumentCell(instruments[i]);
                 cell.Dock = DockStyle.Top;
-                cell.CellMouseClicked += OnCellMouseClicked;
                 cells[i] = cell;
             }
             AddCells(cells);
@@ -160,6 +164,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             for (var i = cells.Length - 1; i >= 0; i--)
             {
                 var cell = cells[i];
+                cell.CellMouseClicked += OnCellMouseClicked;
                 Controls.Add(cell); //倒序将新的控件放入
                 height += cell.Height; //根据当前内部的控件数量，计算出整体应该有的高度
             }
@@ -195,6 +200,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         public event EventHandler InstrumentConnectionTest;
         public event EventHandler InstrumentCommandManager;
         public event EventHandler InstrumentDatasManager;
+        public event EventHandler<CellClickEventArgs> InstrumentSelected;
 
         protected virtual void OnGatewayModelUpdate(object sender)
         {
@@ -224,6 +230,11 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         protected virtual void OnInstrumentDatasManager(object sender)
         {
             InstrumentDatasManager?.Invoke(sender, EventArgs.Empty);
+        }
+
+        protected virtual void OnInstrumentSelected(object sender, CellClickEventArgs e)
+        {
+            InstrumentSelected?.Invoke(sender, e);
         }
     }
 }

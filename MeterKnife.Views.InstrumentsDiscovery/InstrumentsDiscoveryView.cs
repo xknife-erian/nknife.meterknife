@@ -20,6 +20,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         public InstrumentsDiscoveryView()
         {
             InitializeComponent();
+            ViewModelPropertiesChangedManager();
             foreach (var discover in _ViewModel.DiscoverMap.Values)
             {
                 OnInstrumentsCollectionChanged(discover);
@@ -29,6 +30,50 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         public void SetProvider(IExtenderProvider extenderProvider)
         {
             _ViewModel.SetProvider(extenderProvider);
+        }
+
+        private void ViewModelPropertiesChangedManager()
+        {
+            _ViewModel.PropertyChanged += (s, e) =>
+            {
+                switch (e.PropertyName)
+                {
+                    case nameof(_ViewModel.SelectedInstrument):
+                        MessageBox.Show($"{_ViewModel.SelectedInstrument.Id}");
+                        break;
+                }
+            };
+        }
+
+        /// <summary>
+        /// 在OnShown事件执行后初始化仪器管理容器
+        /// </summary>
+        private void InitializeInstrumentsContainer()
+        {
+            foreach (var pair in _ViewModel.DiscoverMap)
+            {
+                var model = pair.Key;
+                var discover = pair.Value;
+
+                var menuitem = new ToolStripMenuItem();
+                menuitem.Text = $"{model}";
+                menuitem.Click += (s, r) => _ViewModel.CreateInstrument(model);
+                _AddDropDownButton.DropDownItems.Add(menuitem);
+
+                var panel = new InstrumentsListPanel(discover);
+                panel.Dock = DockStyle.Top;
+                panel.AddInstruments(discover.Instruments.ToArray());
+                panel.Count = discover.Instruments.Count;
+                OnPanelEventTriggered(panel);
+
+                _LeftContentPanel.Controls.Add(panel);
+                _PanelMap.Add(model, panel);
+            }
+        }
+
+        private void OnInstrumentSelected(object sender, CellClickEventArgs e)
+        {
+            _ViewModel.SelectedInstrument = e.Instrument;
         }
 
         private void OnInstrumentsCollectionChanged(IGatewayDiscover discover)
@@ -61,7 +106,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             };
         }
 
-        private void TrigPanelEvent(InstrumentsListPanel panel)
+        private void OnPanelEventTriggered(InstrumentsListPanel panel)
         {
             panel.GatewayModelUpdate += (s, e) =>
             {
@@ -91,6 +136,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
                 var discover = (IGatewayDiscover)panel.Tag;
                 _ViewModel.InstrumentDatasManager(discover.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
             };
+            panel.InstrumentSelected += OnInstrumentSelected;
         }
 
         #region Overrides of Form
@@ -98,24 +144,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            foreach (var pair in _ViewModel.DiscoverMap)
-            {
-                var model = pair.Key;
-                var discover = pair.Value;
-
-                var panel = new InstrumentsListPanel(discover);
-                panel.Dock = DockStyle.Top;
-                panel.AddInstruments(discover.Instruments.ToArray());
-                panel.Count = discover.Instruments.Count;
-                _LeftContentPanel.Controls.Add(panel);
-                _PanelMap.Add(model, panel);
-                TrigPanelEvent(panel);
-
-                var menuitem = new ToolStripMenuItem();
-                menuitem.Text = $"{model}";
-                menuitem.Click += (s, r) => _ViewModel.CreateInstrument(model);
-                _AddDropDownButton.DropDownItems.Add(menuitem);
-            }
+            InitializeInstrumentsContainer();
         }
 
         #endregion

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using MeterKnife.Base;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
@@ -10,18 +9,21 @@ namespace MeterKnife.ViewModels
 {
     public class InstrumentsDiscoveryViewModel : ViewmodelBaseKnife
     {
-        public Dictionary<GatewayModel, IGatewayDiscover> DiscoverMap { get; }
+        private Instrument _SelectedInstrument;
 
         public InstrumentsDiscoveryViewModel()
         {
             DiscoverMap = Load(HabitedDatas.Gateways);
             foreach (var discrover in DiscoverMap.Values)
-            {
-                discrover.Instruments.CollectionChanged += (s, e) =>
-                {
-                    HabitedDatas.Gateways = ToMap(DiscoverMap);
-                };
-            }
+                discrover.Instruments.CollectionChanged += (s, e) => { HabitedDatas.Gateways = ToMap(DiscoverMap); };
+        }
+
+        public Dictionary<GatewayModel, IGatewayDiscover> DiscoverMap { get; }
+
+        public Instrument SelectedInstrument
+        {
+            get => _SelectedInstrument;
+            set { Set(() => SelectedInstrument, ref _SelectedInstrument, value); }
         }
 
         public void CreateInstrument(GatewayModel model)
@@ -62,7 +64,7 @@ namespace MeterKnife.ViewModels
         }
 
         /// <summary>
-        /// 将从保存的用户习惯数据中取出的数据转换成Discover的字典
+        ///     将从保存的用户习惯数据中取出的数据转换成Discover的字典
         /// </summary>
         /// <param name="map">从保存的用户习惯数据中取出的数据</param>
         private static Dictionary<GatewayModel, IGatewayDiscover> Load(Dictionary<GatewayModel, List<Instrument>> map)
@@ -79,7 +81,7 @@ namespace MeterKnife.ViewModels
         }
 
         /// <summary>
-        ///  将Discover的字典转换成可以保存成用户习惯数据的格式
+        ///     将Discover的字典转换成可以保存成用户习惯数据的格式
         /// </summary>
         private static Dictionary<GatewayModel, List<Instrument>> ToMap(Dictionary<GatewayModel, IGatewayDiscover> discoverMap)
         {

@@ -68,40 +68,40 @@
             this.toolStripSeparator2,
             this._DeleteGatewayToolStripMenuItem});
             this._HeadContextMenu.Name = "_ContextMenuStrip";
-            this._HeadContextMenu.Size = new System.Drawing.Size(153, 126);
+            this._HeadContextMenu.Size = new System.Drawing.Size(118, 104);
             // 
             // _UpdateGatewayToolStripMenuItem
             // 
             this._UpdateGatewayToolStripMenuItem.Name = "_UpdateGatewayToolStripMenuItem";
-            this._UpdateGatewayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._UpdateGatewayToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this._UpdateGatewayToolStripMenuItem.Text = "刷新(&R)";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(114, 6);
             // 
             // _UnDropToolStripMenuItem
             // 
             this._UnDropToolStripMenuItem.Name = "_UnDropToolStripMenuItem";
-            this._UnDropToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._UnDropToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this._UnDropToolStripMenuItem.Text = "折叠(&E)";
             // 
             // _DropToolStripMenuItem
             // 
             this._DropToolStripMenuItem.Name = "_DropToolStripMenuItem";
-            this._DropToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._DropToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this._DropToolStripMenuItem.Text = "展开(&P)";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(114, 6);
             // 
             // _DeleteGatewayToolStripMenuItem
             // 
             this._DeleteGatewayToolStripMenuItem.Name = "_DeleteGatewayToolStripMenuItem";
-            this._DeleteGatewayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._DeleteGatewayToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this._DeleteGatewayToolStripMenuItem.Text = "删除(&D)";
             // 
             // _CellContextMenu
@@ -148,7 +148,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.Controls.Add(this._ListHead);
             this.Name = "InstrumentsListPanel";
             this.Size = new System.Drawing.Size(410, 56);
