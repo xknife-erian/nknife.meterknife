@@ -37,12 +37,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this._LeftContentPanel = new System.Windows.Forms.Panel();
             this._LeftToolStrip = new System.Windows.Forms.ToolStrip();
             this._AddDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dataListPanel1 = new MeterKnife.Views.InstrumentsDiscovery.Controls.Datas.DatasListPanel();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
             this._SplitContainer.Panel2.SuspendLayout();
@@ -68,8 +63,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // 
             // _SplitContainer.Panel2
             // 
-            this._SplitContainer.Panel2.BackColor = System.Drawing.Color.White;
-            this._SplitContainer.Panel2.Controls.Add(this.listView1);
+            this._SplitContainer.Panel2.Controls.Add(this.dataListPanel1);
             this._SplitContainer.Size = new System.Drawing.Size(851, 505);
             this._SplitContainer.SplitterDistance = 400;
             this._SplitContainer.SplitterWidth = 8;
@@ -134,45 +128,13 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this._AddDropDownButton.Size = new System.Drawing.Size(85, 21);
             this._AddDropDownButton.Text = "添加仪器";
             // 
-            // listView1
+            // dataListPanel1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(443, 505);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "";
-            this.columnHeader1.Width = 40;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "采集时间";
-            this.columnHeader2.Width = 90;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "测量物";
-            this.columnHeader3.Width = 100;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "测量内容";
-            this.columnHeader4.Width = 200;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "";
+            this.dataListPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataListPanel1.Location = new System.Drawing.Point(0, 0);
+            this.dataListPanel1.Name = "dataListPanel1";
+            this.dataListPanel1.Size = new System.Drawing.Size(443, 505);
+            this.dataListPanel1.TabIndex = 0;
             // 
             // InstrumentsDiscoveryView
             // 
@@ -205,16 +167,11 @@ namespace MeterKnife.Views.InstrumentsDiscovery
         #endregion
 
         private System.Windows.Forms.SplitContainer _SplitContainer;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Panel _LeftPanel;
         private System.Windows.Forms.ToolStripContainer _LeftToolStripContainer;
         private System.Windows.Forms.ToolStrip _LeftToolStrip;
         private System.Windows.Forms.ToolStripDropDownButton _AddDropDownButton;
         private System.Windows.Forms.Panel _LeftContentPanel;
+        private Controls.Datas.DatasListPanel dataListPanel1;
     }
 }

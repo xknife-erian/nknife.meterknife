@@ -1,7 +1,7 @@
 using System.Windows.Forms;
 using MeterKnife.Interfaces.Gateways;
 
-namespace MeterKnife.Views.InstrumentsDiscovery.Controls
+namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
 {
     public class HeadClickEventArgs : MouseEventArgs
     {

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Views.InstrumentsDiscovery.Properties;
 
-namespace MeterKnife.Views.InstrumentsDiscovery.Controls
+namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
 {
     public partial class InstrumentsListHead : UserControl
     {

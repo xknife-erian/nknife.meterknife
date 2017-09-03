@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Models;
 
-namespace MeterKnife.Views.InstrumentsDiscovery.Controls
+namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
 {
     public partial class InstrumentCell : UserControl
     {

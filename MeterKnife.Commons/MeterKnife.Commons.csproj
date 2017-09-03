@@ -106,6 +106,7 @@
     <Compile Include="Events\ExhibitDataCollectedEventArgs.cs" />
     <Compile Include="Interfaces\Gateways\GatewayModel.cs" />
     <Compile Include="Interfaces\Gateways\InstrumentCollectionChangedEventArgs.cs" />
+    <Compile Include="Interfaces\Gateways\InstrumentConnectionState.cs" />
     <Compile Include="Interfaces\IAppTrayService.cs" />
     <Compile Include="Interfaces\Gateways\IGatewayDiscover.cs" />
     <Compile Include="Interfaces\Gateways\IGatewayService.cs" />

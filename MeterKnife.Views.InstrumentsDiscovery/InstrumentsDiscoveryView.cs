@@ -8,6 +8,7 @@ using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Models;
 using MeterKnife.ViewModels;
 using MeterKnife.Views.InstrumentsDiscovery.Controls;
+using MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Views.InstrumentsDiscovery

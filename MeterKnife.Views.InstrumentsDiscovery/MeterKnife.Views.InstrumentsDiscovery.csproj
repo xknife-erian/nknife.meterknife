@@ -76,24 +76,30 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Controls\CellClickEventArgs.cs" />
-    <Compile Include="Controls\HeadClickEventArgs.cs" />
-    <Compile Include="Controls\InstrumentCell.cs">
+    <Compile Include="Controls\Datas\DatasListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\InstrumentCell.Designer.cs">
+    <Compile Include="Controls\Datas\DatasListPanel.Designer.cs">
+      <DependentUpon>DatasListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Instruments\CellClickEventArgs.cs" />
+    <Compile Include="Controls\Instruments\HeadClickEventArgs.cs" />
+    <Compile Include="Controls\Instruments\InstrumentCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Instruments\InstrumentCell.Designer.cs">
       <DependentUpon>InstrumentCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InstrumentsListHead.cs">
+    <Compile Include="Controls\Instruments\InstrumentsListHead.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\InstrumentsListHead.Designer.cs">
+    <Compile Include="Controls\Instruments\InstrumentsListHead.Designer.cs">
       <DependentUpon>InstrumentsListHead.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InstrumentsListPanel.cs">
+    <Compile Include="Controls\Instruments\InstrumentsListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\InstrumentsListPanel.Designer.cs">
+    <Compile Include="Controls\Instruments\InstrumentsListPanel.Designer.cs">
       <DependentUpon>InstrumentsListPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="InstrumentsDiscoveryView.cs">
@@ -111,13 +117,16 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\InstrumentCell.resx">
+    <EmbeddedResource Include="Controls\Datas\DatasListPanel.resx">
+      <DependentUpon>DatasListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Instruments\InstrumentCell.resx">
       <DependentUpon>InstrumentCell.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\InstrumentsListHead.resx">
+    <EmbeddedResource Include="Controls\Instruments\InstrumentsListHead.resx">
       <DependentUpon>InstrumentsListHead.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\InstrumentsListPanel.resx">
+    <EmbeddedResource Include="Controls\Instruments\InstrumentsListPanel.resx">
       <DependentUpon>InstrumentsListPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InstrumentsDiscoveryView.resx">

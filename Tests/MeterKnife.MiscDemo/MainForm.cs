@@ -6,6 +6,7 @@ using MeterKnife.Plugins.ToolsMenu;
 using MeterKnife.Plugins.ViewMenu.Loggers;
 using MeterKnife.Views.InstrumentsDiscovery;
 using MeterKnife.Views.InstrumentsDiscovery.Controls;
+using MeterKnife.Views.InstrumentsDiscovery.Controls.Datas;
 using MeterKnife.Views.Measures;
 using NKnife.ControlKnife;
 using NKnife.IoC;
@@ -65,5 +66,12 @@ namespace MeterKnife.MiscDemo
             ksView.Show(_DockPanel, DockState.Document);
         }
 
+        private void _InstrumentDatasListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var view = new DockContent {Text = "仪器数据管理控件"};
+            var dataslistPanel = new DatasListPanel {Dock = DockStyle.Fill};
+            view.Controls.Add(dataslistPanel);
+            view.Show(_DockPanel, DockState.Document);
+        }
     }
 }

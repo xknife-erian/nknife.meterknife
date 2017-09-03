@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Views.InstrumentsDiscovery.Controls
+﻿namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
 {
     partial class InstrumentCell
     {

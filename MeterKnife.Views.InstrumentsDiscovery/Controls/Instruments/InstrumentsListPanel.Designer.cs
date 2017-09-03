@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Views.InstrumentsDiscovery.Controls
+﻿namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
 {
     partial class InstrumentsListPanel
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this._ListHead = new MeterKnife.Views.InstrumentsDiscovery.Controls.InstrumentsListHead();
+            this._ListHead = new InstrumentsListHead();
             this._HeadContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._RefreshInstrumentsStateByGatewayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._Separator1 = new System.Windows.Forms.ToolStripSeparator();
