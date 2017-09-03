@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
@@ -47,6 +48,11 @@ namespace MeterKnife.Base
         /// 开始搜索该测量途径下的所有仪器(一般来讲这是一个异步操作)
         /// </summary>
         public abstract void BeginDiscover();
+
+        /// <summary>
+        /// 刷新本测量途径挂接的仪器或设备列表
+        /// </summary>
+        public abstract List<InstrumentConnectionState> Refresh();
 
         protected virtual void OnDiscovered()
         {

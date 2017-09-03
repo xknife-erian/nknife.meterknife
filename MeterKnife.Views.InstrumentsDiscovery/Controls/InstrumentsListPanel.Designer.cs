@@ -31,17 +31,17 @@
             this.components = new System.ComponentModel.Container();
             this._ListHead = new MeterKnife.Views.InstrumentsDiscovery.Controls.InstrumentsListHead();
             this._HeadContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._UpdateGatewayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._RefreshInstrumentsStateByGatewayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._Separator1 = new System.Windows.Forms.ToolStripSeparator();
             this._UnDropToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._DropToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this._Separator2 = new System.Windows.Forms.ToolStripSeparator();
             this._DeleteGatewayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CellContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._ConnTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CommandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._DatasManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this._Separator3 = new System.Windows.Forms.ToolStripSeparator();
             this._DeleteInstrumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._HeadContextMenu.SuspendLayout();
             this._CellContextMenu.SuspendLayout();
@@ -61,25 +61,25 @@
             // _HeadContextMenu
             // 
             this._HeadContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._UpdateGatewayToolStripMenuItem,
-            this.toolStripSeparator1,
+            this._RefreshInstrumentsStateByGatewayToolStripMenuItem,
+            this._Separator1,
             this._UnDropToolStripMenuItem,
             this._DropToolStripMenuItem,
-            this.toolStripSeparator2,
+            this._Separator2,
             this._DeleteGatewayToolStripMenuItem});
             this._HeadContextMenu.Name = "_ContextMenuStrip";
             this._HeadContextMenu.Size = new System.Drawing.Size(118, 104);
             // 
-            // _UpdateGatewayToolStripMenuItem
+            // _RefreshInstrumentsStateByGatewayToolStripMenuItem
             // 
-            this._UpdateGatewayToolStripMenuItem.Name = "_UpdateGatewayToolStripMenuItem";
-            this._UpdateGatewayToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this._UpdateGatewayToolStripMenuItem.Text = "刷新(&R)";
+            this._RefreshInstrumentsStateByGatewayToolStripMenuItem.Name = "_RefreshInstrumentsStateByGatewayToolStripMenuItem";
+            this._RefreshInstrumentsStateByGatewayToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this._RefreshInstrumentsStateByGatewayToolStripMenuItem.Text = "刷新(&R)";
             // 
-            // toolStripSeparator1
+            // _Separator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(114, 6);
+            this._Separator1.Name = "_Separator1";
+            this._Separator1.Size = new System.Drawing.Size(114, 6);
             // 
             // _UnDropToolStripMenuItem
             // 
@@ -93,10 +93,10 @@
             this._DropToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this._DropToolStripMenuItem.Text = "展开(&P)";
             // 
-            // toolStripSeparator2
+            // _Separator2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(114, 6);
+            this._Separator2.Name = "_Separator2";
+            this._Separator2.Size = new System.Drawing.Size(114, 6);
             // 
             // _DeleteGatewayToolStripMenuItem
             // 
@@ -110,7 +110,7 @@
             this._ConnTestToolStripMenuItem,
             this._CommandsToolStripMenuItem,
             this._DatasManagerToolStripMenuItem,
-            this.toolStripSeparator3,
+            this._Separator3,
             this._DeleteInstrumentToolStripMenuItem});
             this._CellContextMenu.Name = "_ContextMenuStrip";
             this._CellContextMenu.Size = new System.Drawing.Size(145, 98);
@@ -133,10 +133,10 @@
             this._DatasManagerToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this._DatasManagerToolStripMenuItem.Text = "数据管理(&M)";
             // 
-            // toolStripSeparator3
+            // _Separator3
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
+            this._Separator3.Name = "_Separator3";
+            this._Separator3.Size = new System.Drawing.Size(141, 6);
             // 
             // _DeleteInstrumentToolStripMenuItem
             // 
@@ -161,17 +161,18 @@
 
         private InstrumentsListHead _ListHead;
         private System.Windows.Forms.ContextMenuStrip _HeadContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem _UpdateGatewayToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem _RefreshInstrumentsStateByGatewayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _UnDropToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _DropToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem _DeleteGatewayToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip _CellContextMenu;
         private System.Windows.Forms.ToolStripMenuItem _ConnTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _CommandsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _DatasManagerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem _DeleteInstrumentToolStripMenuItem;
+
+        private System.Windows.Forms.ToolStripSeparator _Separator1;
+        private System.Windows.Forms.ToolStripSeparator _Separator2;
+        private System.Windows.Forms.ToolStripSeparator _Separator3;
     }
 }

@@ -108,9 +108,9 @@ namespace MeterKnife.Views.InstrumentsDiscovery
 
         private void OnPanelEventTriggered(InstrumentsListPanel panel)
         {
-            panel.GatewayModelUpdate += (s, e) =>
+            panel.GatewayModelRefreshInstrumentsState += (s, e) =>
             {
-                _ViewModel.GatewayModelUpdate((GatewayModel)((ToolStripMenuItem)s).Tag);
+                _ViewModel.RefreshInstrumentStateByGateway((GatewayModel)((ToolStripMenuItem)s).Tag);
             };
             panel.GatewayModelDelete += (s, e) =>
             {

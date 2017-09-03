@@ -53,6 +53,14 @@ namespace MeterKnife.Keysights
             OnDiscovered();
         }
 
+        /// <summary>
+        /// 刷新本测量途径挂接的仪器或设备列表
+        /// </summary>
+        public override List<InstrumentConnectionState> Refresh()
+        {
+            throw new NotImplementedException();
+        }
+
         private void UpdateInstrument(Instrument instrument)
         {
             

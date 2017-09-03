@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using MeterKnife.Base;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
 using NKnife.IoC;
+using NKnife.Utility;
 
 namespace MeterKnife.ViewModels
 {
@@ -15,10 +17,23 @@ namespace MeterKnife.ViewModels
         {
             DiscoverMap = Load(HabitedDatas.Gateways);
             foreach (var discrover in DiscoverMap.Values)
-                discrover.Instruments.CollectionChanged += (s, e) => { HabitedDatas.Gateways = ToMap(DiscoverMap); };
+            {
+                discrover.Instruments.CollectionChanged += (s, e) =>
+                {
+                    HabitedDatas.Gateways = ToMap(DiscoverMap);
+                };
+            }
+            foreach (var pair in InstrumentStateMap)
+            {
+                pair.Value.CollectionChanged += (s, e) =>
+                {
+                    
+                };
+            }
         }
 
         public Dictionary<GatewayModel, IGatewayDiscover> DiscoverMap { get; }
+        public Dictionary<GatewayModel, StateCollection> InstrumentStateMap { get; } = new Dictionary<GatewayModel, StateCollection>();
 
         public Instrument SelectedInstrument
         {
@@ -38,9 +53,22 @@ namespace MeterKnife.ViewModels
             discrover.DeleteInstrument(instrument);
         }
 
-        public void GatewayModelUpdate(GatewayModel model)
+        /// <summary>
+        /// 刷新指定的测量途径下所有保存的仪器的连接状态
+        /// </summary>
+        /// <param name="model">指定的测量途径</param>
+        public void RefreshInstrumentStateByGateway(GatewayModel model)
         {
-            throw new NotImplementedException();
+            var discrover = DiscoverMap[model];
+            var newStates = discrover.Refresh();
+            var oldStates = InstrumentStateMap[model];
+            for (int i = 0; i < newStates.Count; i++)
+            {
+                if (oldStates[i].Equals(newStates[i]))
+                {
+                    oldStates[i] = newStates[i];
+                }
+            }
         }
 
         public void GatewayModelDelete(GatewayModel model)
@@ -93,6 +121,10 @@ namespace MeterKnife.ViewModels
                 map.Add(pair.Key, list);
             }
             return map;
+        }
+
+        public class StateCollection : ObservableCollection<InstrumentConnectionState>
+        {
         }
     }
 }

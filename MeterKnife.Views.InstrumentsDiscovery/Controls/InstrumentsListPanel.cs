@@ -22,6 +22,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             _DropToolStripMenuItem.Enabled = false;
             _DropToolStripMenuItem.CheckState = CheckState.Checked;
             _ListHead.HeadMouseClicked += OnHeadMouseClicked;
+            _ListHead.GatewayModel = gatewayDiscover.GatewayModel.ToString();
 
             //-----------------------------------------------------
             Tag = gatewayDiscover;
@@ -185,7 +186,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             _DropToolStripMenuItem.Click += (s, e) => { DropPanel(); };
             _UnDropToolStripMenuItem.Click += (s, e) => { DropPanel(); };
 
-            _UpdateGatewayToolStripMenuItem.Click += (s, e) => { OnGatewayModelUpdate(s); };
+            _RefreshInstrumentsStateByGatewayToolStripMenuItem.Click += (s, e) => { OnGatewayModelRefreshInstrumentsState(s); };
             _DeleteGatewayToolStripMenuItem.Click += (s, e) => { OnGatewayModelDelete(s); };
 
             _DeleteInstrumentToolStripMenuItem.Click += (s, e) => { OnInstrumentDelete(s); };
@@ -194,7 +195,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
             _DatasManagerToolStripMenuItem.Click += (s, e) => { OnInstrumentDatasManager(s); };
         }
 
-        public event EventHandler GatewayModelUpdate;
+        public event EventHandler GatewayModelRefreshInstrumentsState;
         public event EventHandler GatewayModelDelete;
         public event EventHandler InstrumentDelete;
         public event EventHandler InstrumentConnectionTest;
@@ -202,9 +203,9 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls
         public event EventHandler InstrumentDatasManager;
         public event EventHandler<CellClickEventArgs> InstrumentSelected;
 
-        protected virtual void OnGatewayModelUpdate(object sender)
+        protected virtual void OnGatewayModelRefreshInstrumentsState(object sender)
         {
-            GatewayModelUpdate?.Invoke(sender, EventArgs.Empty);
+            GatewayModelRefreshInstrumentsState?.Invoke(sender, EventArgs.Empty);
         }
 
         protected virtual void OnGatewayModelDelete(object sender)
