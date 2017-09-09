@@ -20,13 +20,14 @@ namespace MeterKnife.Cares
         public override GatewayModel GatewayModel { get; set; } = GatewayModel.CareOne;
 
         private int _DemoCount = 1;
-
+        private NKnife.Utility.UtilityRandom _Random = new NKnife.Utility.UtilityRandom();
         /// <summary>
         /// 手动添加仪器
         /// </summary>
         public override void CreateInstrument()
         {
-            var inst = new Instrument("HP", "34401", "HP34401", 22);
+            var model = $"344{_Random.Next(10, 99)}";
+            var inst = new Instrument("HP", model, $"HP{model}", _Random.Next(1, 36));
             inst.DatasCount = _DemoCount++;
             Instruments.Add(inst);
         }

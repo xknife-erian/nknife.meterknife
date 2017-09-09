@@ -28,16 +28,19 @@ namespace MeterKnife.Keysights
         #region Implementation of IGatewayDiscover
 
         /// <summary>
-        /// 本发现器的通道模式
+        /// 本发现器的通道模式30393
         /// </summary>
         public override GatewayModel GatewayModel { get; set; } = GatewayModel.Aglient82357A;
+
+        private NKnife.Utility.UtilityRandom _Random = new NKnife.Utility.UtilityRandom();
 
         /// <summary>
         /// 手动添加仪器
         /// </summary>
         public override void CreateInstrument()
         {
-            var inst = new Instrument("NF", "1915", "NF1915", 5);
+            var model = $"20{_Random.Next(10, 99)}";
+            var inst = new Instrument("Keithley", model, $"Keithley{model}", _Random.Next(1, 36));
             Instruments.Add(inst);
         }
 
