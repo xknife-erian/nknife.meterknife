@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Models;
@@ -15,7 +16,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
             InitializeComponent();
 
             ControlSameEventManager();
-
             _MainPanel.Paint += (s, e) =>
             {
                 var g = e.Graphics;
@@ -44,6 +44,14 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 DatasCount = instrument.DatasCount.ToString();
                 UsingTime = instrument.LastUsingTime.ToString("yyyy/MM/dd");
             }
+
+            var topPanel = new TransparentPanel();
+            topPanel.Dock = DockStyle.Fill;
+            Controls.Add(topPanel);
+            topPanel.BringToFront();
+            topPanel.MouseEnter += ControlMouseEnter;
+            topPanel.MouseLeave += CoutrolMouseLeave;
+            topPanel.MouseClick += ControlMouseClick;
         }
 
         public Image Image
@@ -98,9 +106,9 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
 
             foreach (var ctrl in list)
             {
-                ctrl.MouseEnter += ControlMouseEnter;
-                ctrl.MouseLeave += CoutrolMouseLeave;
-                ctrl.MouseClick += ControlMouseClick;
+//                ctrl.MouseEnter += ControlMouseEnter;
+//                ctrl.MouseLeave += CoutrolMouseLeave;
+//                ctrl.MouseClick += ControlMouseClick;
             }
         }
 
@@ -134,6 +142,15 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
         protected virtual void OnMouseClicked(CellClickEventArgs e)
         {
             CellMouseClicked?.Invoke(this, e);
+        }
+    }
+
+    public class TransparentPanel : System.Windows.Forms.Control
+    {
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            //base.OnPaint(e);
+            e.Graphics.FillRectangle(Brushes.Transparent, this.DisplayRectangle);
         }
     }
 }

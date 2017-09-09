@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using MeterKnife.Base;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
+using NKnife.Utility;
 
 namespace MeterKnife.Cares
 {
@@ -15,14 +12,15 @@ namespace MeterKnife.Cares
         #region Implementation of IGatewayDiscover
 
         /// <summary>
-        /// 本发现器的测量途径模式
+        ///     本发现器的测量途径模式
         /// </summary>
         public override GatewayModel GatewayModel { get; set; } = GatewayModel.CareOne;
 
         private int _DemoCount = 1;
-        private NKnife.Utility.UtilityRandom _Random = new NKnife.Utility.UtilityRandom();
+        private readonly UtilityRandom _Random = new UtilityRandom();
+
         /// <summary>
-        /// 手动添加仪器
+        ///     手动添加仪器
         /// </summary>
         public override void CreateInstrument()
         {
@@ -33,7 +31,7 @@ namespace MeterKnife.Cares
         }
 
         /// <summary>
-        /// 开始搜索该测量途径下的所有仪器
+        ///     开始搜索该测量途径下的所有仪器
         /// </summary>
         public override void BeginDiscover()
         {
@@ -41,7 +39,7 @@ namespace MeterKnife.Cares
         }
 
         /// <summary>
-        /// 刷新本测量途径挂接的仪器或设备列表
+        ///     刷新本测量途径挂接的仪器或设备列表
         /// </summary>
         public override List<InstrumentConnectionState> Refresh()
         {

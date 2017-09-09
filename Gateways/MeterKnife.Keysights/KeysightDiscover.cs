@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Base;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
 using NKnife.Channels.Interfaces.Channels;
 using NKnife.IoC;
+using NKnife.Utility;
 
 namespace MeterKnife.Keysights
 {
@@ -28,14 +25,14 @@ namespace MeterKnife.Keysights
         #region Implementation of IGatewayDiscover
 
         /// <summary>
-        /// 本发现器的通道模式30393
+        ///     本发现器的通道模式30393
         /// </summary>
         public override GatewayModel GatewayModel { get; set; } = GatewayModel.Aglient82357A;
 
-        private NKnife.Utility.UtilityRandom _Random = new NKnife.Utility.UtilityRandom();
+        private readonly UtilityRandom _Random = new UtilityRandom();
 
         /// <summary>
-        /// 手动添加仪器
+        ///     手动添加仪器
         /// </summary>
         public override void CreateInstrument()
         {
@@ -50,14 +47,12 @@ namespace MeterKnife.Keysights
             _Channel.UpdateQuestionGroup(group);
             _Channel.SendReceiving(SendAction, ReceivedFunc);
             foreach (var instrument in Instruments)
-            {
                 UpdateInstrument(instrument);
-            }
             OnDiscovered();
         }
 
         /// <summary>
-        /// 刷新本测量途径挂接的仪器或设备列表
+        ///     刷新本测量途径挂接的仪器或设备列表
         /// </summary>
         public override List<InstrumentConnectionState> Refresh()
         {
@@ -66,7 +61,6 @@ namespace MeterKnife.Keysights
 
         private void UpdateInstrument(Instrument instrument)
         {
-            
         }
 
         private void SendAction(IQuestion<string> question)
