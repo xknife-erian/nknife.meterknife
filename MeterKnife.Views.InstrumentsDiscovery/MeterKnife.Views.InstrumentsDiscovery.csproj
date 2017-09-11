@@ -102,6 +102,9 @@
     <Compile Include="Controls\Instruments\InstrumentsListPanel.Designer.cs">
       <DependentUpon>InstrumentsListPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Instruments\TransparentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="InstrumentsDiscoveryView.cs">
       <SubType>Form</SubType>
     </Compile>

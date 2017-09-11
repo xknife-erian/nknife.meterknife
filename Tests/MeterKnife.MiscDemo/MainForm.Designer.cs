@@ -40,8 +40,12 @@
             this._InstrumentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._InstrumentsDiscoveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
+            this._UserControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._InstrumentDatasListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._InstrumentCellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._TipStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._MenuStrip.SuspendLayout();
+            this._StatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _MenuStrip
@@ -50,7 +54,8 @@
             this.plot测试ToolStripMenuItem,
             this.主题ToolStripMenuItem,
             this._GatewayToolStripMenuItem,
-            this._InstrumentsToolStripMenuItem});
+            this._InstrumentsToolStripMenuItem,
+            this._UserControlToolStripMenuItem});
             this._MenuStrip.Location = new System.Drawing.Point(0, 0);
             this._MenuStrip.Name = "_MenuStrip";
             this._MenuStrip.Size = new System.Drawing.Size(951, 25);
@@ -122,25 +127,48 @@
             // 
             this._InstrumentsDiscoveryToolStripMenuItem.Name = "_InstrumentsDiscoveryToolStripMenuItem";
             this._InstrumentsDiscoveryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this._InstrumentsDiscoveryToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._InstrumentsDiscoveryToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this._InstrumentsDiscoveryToolStripMenuItem.Text = "仪器管理窗口";
             this._InstrumentsDiscoveryToolStripMenuItem.Click += new System.EventHandler(this._InstrumentsDiscoveryToolStripMenuItem_Click);
             // 
             // _StatusStrip
             // 
+            this._StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._TipStatusLabel});
             this._StatusStrip.Location = new System.Drawing.Point(0, 604);
             this._StatusStrip.Name = "_StatusStrip";
             this._StatusStrip.Size = new System.Drawing.Size(951, 22);
             this._StatusStrip.TabIndex = 1;
             this._StatusStrip.Text = "statusStrip1";
             // 
+            // _UserControlToolStripMenuItem
+            // 
+            this._UserControlToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._InstrumentCellToolStripMenuItem});
+            this._UserControlToolStripMenuItem.Name = "_UserControlToolStripMenuItem";
+            this._UserControlToolStripMenuItem.Size = new System.Drawing.Size(90, 21);
+            this._UserControlToolStripMenuItem.Text = "UserControl";
+            // 
             // _InstrumentDatasListToolStripMenuItem
             // 
             this._InstrumentDatasListToolStripMenuItem.Name = "_InstrumentDatasListToolStripMenuItem";
-            this._InstrumentDatasListToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this._InstrumentDatasListToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._InstrumentDatasListToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this._InstrumentDatasListToolStripMenuItem.Text = "仪器数据管理控件";
             this._InstrumentDatasListToolStripMenuItem.Click += new System.EventHandler(this._InstrumentDatasListToolStripMenuItem_Click);
+            // 
+            // _InstrumentCellToolStripMenuItem
+            // 
+            this._InstrumentCellToolStripMenuItem.Name = "_InstrumentCellToolStripMenuItem";
+            this._InstrumentCellToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this._InstrumentCellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this._InstrumentCellToolStripMenuItem.Text = "InstrumentCell";
+            this._InstrumentCellToolStripMenuItem.Click += new System.EventHandler(this._InstrumentCellToolStripMenuItem_Click);
+            // 
+            // _TipStatusLabel
+            // 
+            this._TipStatusLabel.Name = "_TipStatusLabel";
+            this._TipStatusLabel.Size = new System.Drawing.Size(26, 17);
+            this._TipStatusLabel.Text = "......";
             // 
             // MainForm
             // 
@@ -157,6 +185,8 @@
             this.Text = "MeterKnife Misc Demo Form";
             this._MenuStrip.ResumeLayout(false);
             this._MenuStrip.PerformLayout();
+            this._StatusStrip.ResumeLayout(false);
+            this._StatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,6 +206,9 @@
         private System.Windows.Forms.ToolStripMenuItem _InstrumentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _InstrumentsDiscoveryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _InstrumentDatasListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _UserControlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _InstrumentCellToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel _TipStatusLabel;
     }
 }
 

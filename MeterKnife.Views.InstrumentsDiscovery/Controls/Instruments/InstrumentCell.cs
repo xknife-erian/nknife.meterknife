@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Models;
@@ -45,55 +44,13 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 UsingTime = instrument.LastUsingTime.ToString("yyyy/MM/dd");
             }
 
-            var topPanel = new TransparentPanel();
+            var topPanel = new OpacityPanel();
             topPanel.Dock = DockStyle.Fill;
-            Controls.Add(topPanel);
-            topPanel.BringToFront();
             topPanel.MouseEnter += ControlMouseEnter;
             topPanel.MouseLeave += CoutrolMouseLeave;
             topPanel.MouseClick += ControlMouseClick;
-        }
-
-        public Image Image
-        {
-            get => _PictureBox.BackgroundImage;
-            set => _PictureBox.BackgroundImage = value;
-        }
-
-        public string Model
-        {
-            get => _ModelLabel.Text;
-            set => _ModelLabel.Text = value;
-        }
-
-        public string Manufacturer
-        {
-            get => _ManufacturerLabel.Text;
-            set => _ManufacturerLabel.Text = value;
-        }
-
-        public string Address
-        {
-            get => _AddressLabel.Text;
-            set => _AddressLabel.Text = value;
-        }
-
-        public string Information
-        {
-            get => _InformationLabel.Text;
-            set => _InformationLabel.Text = value;
-        }
-
-        public string DatasCount
-        {
-            get => _DatasCountLabel.Text;
-            set => _DatasCountLabel.Text = value;
-        }
-
-        public string UsingTime
-        {
-            get => _UsingTimeLabel.Text;
-            set => _UsingTimeLabel.Text = value;
+            _MainPanel.Controls.Add(topPanel);
+            topPanel.BringToFront();
         }
 
         /// <summary>
@@ -143,14 +100,60 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
         {
             CellMouseClicked?.Invoke(this, e);
         }
+
+        #region base model property
+
+        public Image Image
+        {
+            get => _PictureBox.BackgroundImage;
+            set => _PictureBox.BackgroundImage = value;
+        }
+
+        public string Model
+        {
+            get => _ModelLabel.Text;
+            set => _ModelLabel.Text = value;
+        }
+
+        public string Manufacturer
+        {
+            get => _ManufacturerLabel.Text;
+            set => _ManufacturerLabel.Text = value;
+        }
+
+        public string Address
+        {
+            get => _AddressLabel.Text;
+            set => _AddressLabel.Text = value;
+        }
+
+        public string Information
+        {
+            get => _InformationLabel.Text;
+            set => _InformationLabel.Text = value;
+        }
+
+        public string DatasCount
+        {
+            get => _DatasCountLabel.Text;
+            set => _DatasCountLabel.Text = value;
+        }
+
+        public string UsingTime
+        {
+            get => _UsingTimeLabel.Text;
+            set => _UsingTimeLabel.Text = value;
+        }
+
+        #endregion
     }
 
-    public class TransparentPanel : System.Windows.Forms.Control
+    public sealed class OpacityPanel : Control
     {
-        protected override void OnPaint(PaintEventArgs e)
+        public OpacityPanel()
         {
-            //base.OnPaint(e);
-            e.Graphics.FillRectangle(Brushes.Transparent, this.DisplayRectangle);
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            BackColor = Color.Transparent;
         }
     }
 }
