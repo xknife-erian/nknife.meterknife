@@ -82,13 +82,11 @@ namespace MeterKnife.MiscDemo
             var view = new DockContent {Text = "Instrument Cell" };
             var cell = new InstrumentCell(new Instrument("HP", "34401", "HP34401", 23));
             cell.Location = new Point(20, 20);
-            view.BackColor = Color.MidnightBlue;
             view.Controls.Add(cell);
             view.Show(_DockPanel, DockState.Document);
-            cell.BackColor = Color.Beige;
             cell.CellMouseClicked += (s, x) =>
             {
-                _TipStatusLabel.Text = $"{cell.Address} -- {++clickCount} -- {Guid.NewGuid().ToString("N").Substring(0, 3)}";
+                _TipStatusLabel.Text = $"{cell.Instrument.Address} -- {++clickCount} -- {Guid.NewGuid().ToString("N").Substring(0, 3)}";
             };
         }
     }
