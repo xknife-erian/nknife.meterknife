@@ -68,14 +68,6 @@ namespace MeterKnife.MiscDemo
             ksView.Show(_DockPanel, DockState.Document);
         }
 
-        private void _InstrumentDatasListToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var view = new DockContent {Text = "仪器数据管理控件"};
-            var dataslistPanel = new DatasListPanel {Dock = DockStyle.Fill};
-            view.Controls.Add(dataslistPanel);
-            view.Show(_DockPanel, DockState.Document);
-        }
-
         private void _InstrumentCellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var clickCount = 0;

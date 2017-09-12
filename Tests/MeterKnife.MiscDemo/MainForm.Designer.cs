@@ -39,10 +39,9 @@
             this._KeysightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._InstrumentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._InstrumentsDiscoveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._UserControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._InstrumentDatasListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._InstrumentCellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._TipStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._MenuStrip.SuspendLayout();
             this._StatusStrip.SuspendLayout();
@@ -73,7 +72,7 @@
             // _MainPlotTestToolStripMenuItem
             // 
             this._MainPlotTestToolStripMenuItem.Name = "_MainPlotTestToolStripMenuItem";
-            this._MainPlotTestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._MainPlotTestToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this._MainPlotTestToolStripMenuItem.Text = "主折线图测试";
             this._MainPlotTestToolStripMenuItem.Click += new System.EventHandler(this._MainPlotTestToolStripMenuItem_Click);
             // 
@@ -104,21 +103,20 @@
             // _CareOneToolStripMenuItem
             // 
             this._CareOneToolStripMenuItem.Name = "_CareOneToolStripMenuItem";
-            this._CareOneToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._CareOneToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this._CareOneToolStripMenuItem.Text = "CareOne";
             // 
             // _KeysightToolStripMenuItem
             // 
             this._KeysightToolStripMenuItem.Name = "_KeysightToolStripMenuItem";
-            this._KeysightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._KeysightToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this._KeysightToolStripMenuItem.Text = "Keysight";
             this._KeysightToolStripMenuItem.Click += new System.EventHandler(this._KeysightToolStripMenuItem_Click);
             // 
             // _InstrumentsToolStripMenuItem
             // 
             this._InstrumentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._InstrumentsDiscoveryToolStripMenuItem,
-            this._InstrumentDatasListToolStripMenuItem});
+            this._InstrumentsDiscoveryToolStripMenuItem});
             this._InstrumentsToolStripMenuItem.Name = "_InstrumentsToolStripMenuItem";
             this._InstrumentsToolStripMenuItem.Size = new System.Drawing.Size(88, 21);
             this._InstrumentsToolStripMenuItem.Text = "Instruments";
@@ -126,10 +124,25 @@
             // _InstrumentsDiscoveryToolStripMenuItem
             // 
             this._InstrumentsDiscoveryToolStripMenuItem.Name = "_InstrumentsDiscoveryToolStripMenuItem";
-            this._InstrumentsDiscoveryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this._InstrumentsDiscoveryToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this._InstrumentsDiscoveryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this._InstrumentsDiscoveryToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this._InstrumentsDiscoveryToolStripMenuItem.Text = "仪器管理窗口";
             this._InstrumentsDiscoveryToolStripMenuItem.Click += new System.EventHandler(this._InstrumentsDiscoveryToolStripMenuItem_Click);
+            // 
+            // _UserControlToolStripMenuItem
+            // 
+            this._UserControlToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._InstrumentCellToolStripMenuItem});
+            this._UserControlToolStripMenuItem.Name = "_UserControlToolStripMenuItem";
+            this._UserControlToolStripMenuItem.Size = new System.Drawing.Size(90, 21);
+            this._UserControlToolStripMenuItem.Text = "UserControl";
+            // 
+            // _InstrumentCellToolStripMenuItem
+            // 
+            this._InstrumentCellToolStripMenuItem.Name = "_InstrumentCellToolStripMenuItem";
+            this._InstrumentCellToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this._InstrumentCellToolStripMenuItem.Text = "InstrumentCell";
+            this._InstrumentCellToolStripMenuItem.Click += new System.EventHandler(this._InstrumentCellToolStripMenuItem_Click);
             // 
             // _StatusStrip
             // 
@@ -140,29 +153,6 @@
             this._StatusStrip.Size = new System.Drawing.Size(951, 22);
             this._StatusStrip.TabIndex = 1;
             this._StatusStrip.Text = "statusStrip1";
-            // 
-            // _UserControlToolStripMenuItem
-            // 
-            this._UserControlToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._InstrumentCellToolStripMenuItem});
-            this._UserControlToolStripMenuItem.Name = "_UserControlToolStripMenuItem";
-            this._UserControlToolStripMenuItem.Size = new System.Drawing.Size(90, 21);
-            this._UserControlToolStripMenuItem.Text = "UserControl";
-            // 
-            // _InstrumentDatasListToolStripMenuItem
-            // 
-            this._InstrumentDatasListToolStripMenuItem.Name = "_InstrumentDatasListToolStripMenuItem";
-            this._InstrumentDatasListToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this._InstrumentDatasListToolStripMenuItem.Text = "仪器数据管理控件";
-            this._InstrumentDatasListToolStripMenuItem.Click += new System.EventHandler(this._InstrumentDatasListToolStripMenuItem_Click);
-            // 
-            // _InstrumentCellToolStripMenuItem
-            // 
-            this._InstrumentCellToolStripMenuItem.Name = "_InstrumentCellToolStripMenuItem";
-            this._InstrumentCellToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this._InstrumentCellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this._InstrumentCellToolStripMenuItem.Text = "InstrumentCell";
-            this._InstrumentCellToolStripMenuItem.Click += new System.EventHandler(this._InstrumentCellToolStripMenuItem_Click);
             // 
             // _TipStatusLabel
             // 
@@ -205,7 +195,6 @@
         private System.Windows.Forms.ToolStripMenuItem _KeysightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _InstrumentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _InstrumentsDiscoveryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _InstrumentDatasListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _UserControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _InstrumentCellToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel _TipStatusLabel;

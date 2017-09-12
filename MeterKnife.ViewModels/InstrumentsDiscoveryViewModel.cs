@@ -5,35 +5,21 @@ using MeterKnife.Base;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
 using NKnife.IoC;
-using NKnife.Utility;
 
 namespace MeterKnife.ViewModels
 {
     public class InstrumentsDiscoveryViewModel : ViewmodelBaseKnife
     {
-        private Instrument _SelectedInstrument;
-
         public InstrumentsDiscoveryViewModel()
         {
             DiscoverMap = Load(HabitedDatas.Gateways);
-            foreach (var discrover in DiscoverMap.Values)
-            {
-                discrover.Instruments.CollectionChanged += (s, e) =>
-                {
-                    HabitedDatas.Gateways = ToMap(DiscoverMap);
-                };
-            }
-            foreach (var pair in InstrumentStateMap)
-            {
-                pair.Value.CollectionChanged += (s, e) =>
-                {
-                    
-                };
-            }
+            OnDiscoverInstrumentsCollectionChanged();
+            OnInstrumentConnectionStateChanged();
         }
 
-        public Dictionary<GatewayModel, IGatewayDiscover> DiscoverMap { get; }
-        public Dictionary<GatewayModel, StateCollection> InstrumentStateMap { get; } = new Dictionary<GatewayModel, StateCollection>();
+        #region Property: SelectedInstrument
+
+        private Instrument _SelectedInstrument;
 
         public Instrument SelectedInstrument
         {
@@ -41,55 +27,11 @@ namespace MeterKnife.ViewModels
             set { Set(() => SelectedInstrument, ref _SelectedInstrument, value); }
         }
 
-        public void CreateInstrument(GatewayModel model)
-        {
-            var discrover = DiscoverMap[model];
-            discrover.CreateInstrument();
-        }
+        #endregion
 
-        public void DeleteInstrument(GatewayModel model, Instrument instrument)
-        {
-            var discrover = DiscoverMap[model];
-            discrover.DeleteInstrument(instrument);
-        }
+        #region Discover
 
-        /// <summary>
-        /// 刷新指定的测量途径下所有保存的仪器的连接状态
-        /// </summary>
-        /// <param name="model">指定的测量途径</param>
-        public void RefreshInstrumentStateByGateway(GatewayModel model)
-        {
-            var discrover = DiscoverMap[model];
-            var newStates = discrover.Refresh();
-            var oldStates = InstrumentStateMap[model];
-            for (int i = 0; i < newStates.Count; i++)
-            {
-                if (oldStates[i].Equals(newStates[i]))
-                {
-                    oldStates[i] = newStates[i];
-                }
-            }
-        }
-
-        public void GatewayModelDelete(GatewayModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InstrumentCommandManager(GatewayModel model, Instrument instrument)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InstrumentConnectionTest(GatewayModel model, Instrument instrument)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InstrumentDatasManager(GatewayModel model, Instrument instrument)
-        {
-            throw new NotImplementedException();
-        }
+        public Dictionary<GatewayModel, IGatewayDiscover> DiscoverMap { get; }
 
         /// <summary>
         ///     将从保存的用户习惯数据中取出的数据转换成Discover的字典
@@ -123,8 +65,88 @@ namespace MeterKnife.ViewModels
             return map;
         }
 
-        public class StateCollection : ObservableCollection<InstrumentConnectionState>
+        /// <summary>
+        ///     在构造函数里注册所有InstrumentsConllection
+        /// </summary>
+        private void OnDiscoverInstrumentsCollectionChanged()
+        {
+            foreach (var discrover in DiscoverMap.Values)
+                discrover.Instruments.CollectionChanged += (s, e) => { HabitedDatas.Gateways = ToMap(DiscoverMap); };
+        }
+
+        #endregion
+
+        #region Gateway
+
+        /// <summary>
+        ///     刷新指定的测量途径下所有保存的仪器的连接状态
+        /// </summary>
+        /// <param name="model">指定的测量途径</param>
+        public void RefreshInstrumentStateByGateway(GatewayModel model)
+        {
+            var discrover = DiscoverMap[model];
+            var newStates = discrover.Refresh();
+            var oldStates = InstrumentStateMap[model];
+            for (var i = 0; i < newStates.Count; i++)
+                if (oldStates[i].Equals(newStates[i]))
+                    oldStates[i] = newStates[i];
+        }
+
+        public void GatewayModelDelete(GatewayModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region Instrument
+
+        public void CreateInstrument(GatewayModel model)
+        {
+            var discrover = DiscoverMap[model];
+            discrover.CreateInstrument();
+        }
+
+        public void DeleteInstrument(GatewayModel model, Instrument instrument)
+        {
+            var discrover = DiscoverMap[model];
+            discrover.DeleteInstrument(instrument);
+        }
+
+        public void InstrumentCommandManager(GatewayModel model, Instrument instrument)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InstrumentConnectionTest(GatewayModel model, Instrument instrument)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InstrumentDatasManager(GatewayModel model, Instrument instrument)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region InstrumentState
+
+        public StateMap InstrumentStateMap { get; } = new StateMap();
+
+        /// <summary>
+        ///     在构造函数里注册了所有仪器的连接状态发生变化时
+        /// </summary>
+        private void OnInstrumentConnectionStateChanged()
+        {
+            foreach (var pair in InstrumentStateMap)
+                pair.Value.CollectionChanged += (s, e) => { };
+        }
+
+        public class StateMap : Dictionary<GatewayModel, ObservableCollection<InstrumentConnectionState>>
         {
         }
+
+        #endregion
     }
 }

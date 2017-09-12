@@ -174,7 +174,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 Controls.Add(control); //原来的控件
                 height += control.Height + 1; //根据当前内部的控件数量，计算出整体应该有的高度
             }
-            Height = height + 3;
+            Height = height + 4;
             ResumeLayout(true);
         }
 
