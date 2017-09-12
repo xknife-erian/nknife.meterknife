@@ -7,17 +7,46 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
 {
     public sealed partial class InstrumentCell : UserControl
     {
-        private const int PADDING = 3;
+        /// <summary>
+        ///     上下的内部间距
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        private const int T_B_PADDING = 5;
+
+        /// <summary>
+        ///     左右的内部间距
+        /// </summary>
+        private const int L_R_PADDING = 2;
+        private Brush _BackgroundColor = Brushes.AliceBlue;
+
+        private Rectangle _Border;
+        private Rectangle _Inner;
 
         public InstrumentCell(Instrument instrument)
         {
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
             InitializeComponent();
-            BackColor = SystemColors.ControlLight;
 
             if (instrument != null)
                 Instrument = instrument;
+            _Border = new Rectangle(2, 2, Width - 3, Height - 3);
+            _Inner = new Rectangle(3, 3, Width - 5, Height - 5);
+            MouseClick += ControlMouseClick;
+            MouseEnter += InstrumentCell_MouseEnter;
+            MouseLeave += InstrumentCell_MouseLeave;
+        }
+
+        private void InstrumentCell_MouseLeave(object sender, EventArgs e)
+        {
+            _BackgroundColor = Brushes.AliceBlue;
+            Refresh();
+        }
+
+        private void InstrumentCell_MouseEnter(object sender, EventArgs e)
+        {
+            _BackgroundColor = Brushes.LightYellow;
+            Refresh();
         }
 
         public Instrument Instrument { get; set; }
@@ -29,7 +58,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
             CellMouseClicked?.Invoke(this, e);
         }
 
-        struct Cell
+        private struct Cell
         {
             public Cell(int rowCount, int columnCount, int targetRow, int targetColumn)
             {
@@ -39,13 +68,13 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 TargetColumn = targetColumn;
             }
 
-            public int RowCount { get; set; }
-            public int ColumnCount { get; set; }
-            public int TargetRow { get; set; }
-            public int TargetColumn { get; set; }
+            public int RowCount { get; }
+            public int ColumnCount { get; }
+            public int TargetRow { get; }
+            public int TargetColumn { get; }
         }
 
-        struct NameValue
+        private struct NameValue
         {
             public NameValue(string name, string value)
             {
@@ -53,8 +82,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 Value = value;
             }
 
-            public string Name { get; set; }
-            public string Value { get; set; }
+            public string Name { get; }
+            public string Value { get; }
         }
 
         #region Overrides of Control
@@ -76,19 +105,28 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
             DrawLabel(g, new Cell(3, 2, 3, 2), new NameValue("最后采集:", $"{Instrument.LastUsingTime:yyyy/MM/dd HH:mm}"));
         }
 
+        #region Overrides of Control
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            _Border = new Rectangle(2, 2, Width - 5, Height - 3);
+            _Inner = new Rectangle(3, 3, Width - 7, Height - 5);
+            base.OnSizeChanged(e);
+            Invalidate();
+        }
+
+        #endregion
+
+        private void ControlMouseClick(object sender, MouseEventArgs e)
+        {
+            var me = new CellClickEventArgs((Instrument)Tag, e.Button, e.Clicks, e.X, e.Y, e.Delta);
+            OnCellMouseClicked(me);
+        }
+
         private void DrawBorder(Graphics g)
         {
-            var pen = new Pen(Color.DarkGray);
-
-            var leftTop = new Point(0, 0);
-            var rightTop = new Point(Width - 1, 0);
-            var leftBottom = new Point(0, Height - 1);
-            var rightBottom = new Point(Width - 1, Height - 1);
-
-            g.DrawLine(pen, leftTop, rightTop);
-            g.DrawLine(pen, leftTop, leftBottom);
-            g.DrawLine(pen, rightTop, rightBottom);
-            g.DrawLine(pen, leftBottom, rightBottom);
+            g.FillRectangle(_BackgroundColor, _Inner);
+            g.DrawRectangle(Pens.Gray, _Border);
         }
 
         private void DrawLabel(Graphics g, Cell cell, NameValue nameValue)
@@ -96,39 +134,31 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
             var r = GetNameValueRect(g, cell);
 
             var beginX = r.InitX + (cell.TargetColumn - 1) * r.ColumnWidth;
-            var beginY = (cell.TargetRow - 1) * r.RowHeight + PADDING;
+            var beginY = (cell.TargetRow - 1) * r.RowHeight + T_B_PADDING;
 
             var nameRect = new RectangleF(beginX, beginY + r.FontHeightOffset, r.NameWidth, r.RowHeight);
             var valueRect = new RectangleF(beginX + r.NameWidth, beginY + r.FontHeightOffset, r.ValueWidth, r.RowHeight);
 
-            //g.DrawRectangle(Pens.BlueViolet, Rectangle.Truncate(nameRect));
             g.DrawString(nameValue.Name, Font, Brushes.Black, nameRect);
-            //g.DrawRectangle(Pens.Brown, Rectangle.Truncate(valueRect));
-            g.DrawString(nameValue.Value, Font, Brushes.Black, valueRect);
+            g.DrawString(nameValue.Value, Font, Brushes.Black, valueRect.X, valueRect.Y);
         }
-
-        private NameValueRect _NameValueRect;
 
         private NameValueRect GetNameValueRect(Graphics g, Cell cell)
         {
-            if (_NameValueRect.IsEmpty())
-            {
-                var initX = Height;
-                var fontSize = g.MeasureString("中", Font);
+            var initX = Height;
+            var fontSize = g.MeasureString("中国文字:", Font);
 
-                var columnWidth = (Width - initX - PADDING) / cell.ColumnCount;
-                var rowHeight = (Height - PADDING * 2) / cell.RowCount;
+            var columnWidth = (Width - initX - L_R_PADDING) / cell.ColumnCount;
+            var rowHeight = (Height - T_B_PADDING * 2) / cell.RowCount;
 
-                var nameWidth = (float) (columnWidth * 0.4);
-                var valueWidth = columnWidth - nameWidth;
-                var fontHeightOffset = (rowHeight - fontSize.Height) / 2;
+            var nameWidth = fontSize.Width + L_R_PADDING;
+            var valueWidth = columnWidth - nameWidth;
+            var fontHeightOffset = (rowHeight - fontSize.Height) / 2;
 
-                _NameValueRect = new NameValueRect(initX, columnWidth, rowHeight, nameWidth, valueWidth, fontHeightOffset);
-            }
-            return _NameValueRect;
+            return new NameValueRect(initX, columnWidth, rowHeight, nameWidth, valueWidth, fontHeightOffset);
         }
 
-        struct NameValueRect
+        private struct NameValueRect
         {
             public NameValueRect(int initX, float columnWidth, float rowHeight, float nameWidth, float valueWidth, float fontHeightOffset)
             {
@@ -140,17 +170,19 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 InitX = initX;
             }
 
-            public int InitX { get; set; }
+            public int InitX { get; }
             public float ColumnWidth { get; set; }
-            public float RowHeight { get; set; }
-            public float NameWidth { get; set; }
-            public float ValueWidth { get; set; }
-            public float FontHeightOffset { get; set; }
+            public float RowHeight { get; }
+            public float NameWidth { get; }
+            public float ValueWidth { get; }
+            public float FontHeightOffset { get; }
 
             public bool IsEmpty()
             {
                 return Math.Abs(ColumnWidth) <= 0;
             }
+
+            public static NameValueRect Empty => new NameValueRect {ColumnWidth = 0};
         }
 
         private void DrawImage(Graphics g)
