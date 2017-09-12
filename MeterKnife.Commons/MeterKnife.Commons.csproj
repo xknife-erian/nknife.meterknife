@@ -142,6 +142,7 @@
     <Compile Include="Scpis\ScpiSubject.cs" />
     <Compile Include="Scpis\ScpiSubjectCollection.cs" />
     <Compile Include="Scpis\ScpisXmlFile.cs" />
+    <Compile Include="Utilities\ImageUtil.cs" />
     <Compile Include="Utilities\Util.cs" />
   </ItemGroup>
   <ItemGroup>

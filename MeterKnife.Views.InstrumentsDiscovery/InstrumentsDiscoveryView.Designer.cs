@@ -64,8 +64,8 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // _SplitContainer.Panel2
             // 
             this._SplitContainer.Panel2.Controls.Add(this.dataListPanel1);
-            this._SplitContainer.Size = new System.Drawing.Size(851, 505);
-            this._SplitContainer.SplitterDistance = 400;
+            this._SplitContainer.Size = new System.Drawing.Size(1008, 495);
+            this._SplitContainer.SplitterDistance = 480;
             this._SplitContainer.SplitterWidth = 8;
             this._SplitContainer.TabIndex = 0;
             // 
@@ -76,7 +76,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this._LeftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._LeftPanel.Location = new System.Drawing.Point(1, 1);
             this._LeftPanel.Name = "_LeftPanel";
-            this._LeftPanel.Size = new System.Drawing.Size(398, 503);
+            this._LeftPanel.Size = new System.Drawing.Size(478, 493);
             this._LeftPanel.TabIndex = 0;
             // 
             // _LeftToolStripContainer
@@ -86,13 +86,13 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             // _LeftToolStripContainer.ContentPanel
             // 
             this._LeftToolStripContainer.ContentPanel.Controls.Add(this._LeftContentPanel);
-            this._LeftToolStripContainer.ContentPanel.Size = new System.Drawing.Size(396, 474);
+            this._LeftToolStripContainer.ContentPanel.Size = new System.Drawing.Size(476, 464);
             this._LeftToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._LeftToolStripContainer.LeftToolStripPanelVisible = false;
             this._LeftToolStripContainer.Location = new System.Drawing.Point(0, 0);
             this._LeftToolStripContainer.Name = "_LeftToolStripContainer";
             this._LeftToolStripContainer.RightToolStripPanelVisible = false;
-            this._LeftToolStripContainer.Size = new System.Drawing.Size(396, 501);
+            this._LeftToolStripContainer.Size = new System.Drawing.Size(476, 491);
             this._LeftToolStripContainer.TabIndex = 0;
             this._LeftToolStripContainer.Text = "toolStripContainer1";
             // 
@@ -106,7 +106,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this._LeftContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._LeftContentPanel.Location = new System.Drawing.Point(0, 0);
             this._LeftContentPanel.Name = "_LeftContentPanel";
-            this._LeftContentPanel.Size = new System.Drawing.Size(396, 474);
+            this._LeftContentPanel.Size = new System.Drawing.Size(476, 464);
             this._LeftContentPanel.TabIndex = 0;
             // 
             // _LeftToolStrip
@@ -133,19 +133,18 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             this.dataListPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataListPanel1.Location = new System.Drawing.Point(0, 0);
             this.dataListPanel1.Name = "dataListPanel1";
-            this.dataListPanel1.Size = new System.Drawing.Size(443, 505);
+            this.dataListPanel1.Size = new System.Drawing.Size(520, 495);
             this.dataListPanel1.TabIndex = 0;
             // 
             // InstrumentsDiscoveryView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 505);
+            this.ClientSize = new System.Drawing.Size(1008, 495);
             this.Controls.Add(this._SplitContainer);
-            this.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this.Font = new System.Drawing.Font("Tahoma", 8.75F);
             this.HideOnClose = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "InstrumentsDiscoveryView";
             this.Text = "仪器管理";
             this._SplitContainer.Panel1.ResumeLayout(false);
