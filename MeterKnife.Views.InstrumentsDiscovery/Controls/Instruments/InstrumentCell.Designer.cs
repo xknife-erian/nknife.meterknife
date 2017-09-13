@@ -33,7 +33,6 @@
             // InstrumentCell
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "InstrumentCell";
             this.Size = new System.Drawing.Size(400, 70);
             this.ResumeLayout(false);

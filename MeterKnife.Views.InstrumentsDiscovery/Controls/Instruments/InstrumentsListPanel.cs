@@ -61,7 +61,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
         private void DropPanel()
         {
             _IsExpanded = !_IsExpanded;
-            if (!_IsExpanded)
+            if (!_IsExpanded)//收起
             {
                 _DropToolStripMenuItem.Enabled = true;
                 _UnDropToolStripMenuItem.Enabled = false;
@@ -79,7 +79,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 }
                 ResumeLayout(true);
             }
-            else
+            else//展开
             {
                 _DropToolStripMenuItem.Enabled = false;
                 _UnDropToolStripMenuItem.Enabled = true;
@@ -158,23 +158,23 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
         public void AddCells(params InstrumentCell[] cells)
         {
             SuspendLayout();
-            var height = 0;
+            var height = Padding.Top;
             var cs = new Control[Controls.Count];
             Controls.CopyTo(cs, 0); //先将原有的控件倒出来
             Controls.Clear();
-            for (var i = cells.Length - 1; i >= 0; i--)
+            for (var i = cells.Length - 1; i >= 0; i--) //新控件
             {
                 var cell = cells[i];
                 cell.CellMouseClicked += OnCellMouseClicked;
                 Controls.Add(cell); //倒序将新的控件放入
-                height += cell.Height; //根据当前内部的控件数量，计算出整体应该有的高度
+                height += cell.Height + cell.Margin.Top + Padding.Top; //根据当前内部的控件数量，计算出整体应该有的高度
             }
-            foreach (var control in cs)
+            foreach (var control in cs) //老控件
             {
                 Controls.Add(control); //原来的控件
-                height += control.Height + 1; //根据当前内部的控件数量，计算出整体应该有的高度
+                height += control.Height + control.Margin.Top + Padding.Top; //根据当前内部的控件数量，计算出整体应该有的高度
             }
-            Height = height + 4;
+            Height = height + Padding.Bottom;
             ResumeLayout(true);
         }
 

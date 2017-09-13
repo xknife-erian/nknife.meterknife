@@ -54,7 +54,6 @@
             this._ListHead.GatewayModel = "GatewayModelLabel";
             this._ListHead.Location = new System.Drawing.Point(0, 0);
             this._ListHead.Name = "_ListHead";
-            this._ListHead.Padding = new System.Windows.Forms.Padding(2, 3, 2, 1);
             this._ListHead.Size = new System.Drawing.Size(410, 32);
             this._ListHead.TabIndex = 0;
             // 
@@ -148,7 +147,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Tomato;
             this.Controls.Add(this._ListHead);
             this.Name = "InstrumentsListPanel";
             this.Size = new System.Drawing.Size(410, 56);
