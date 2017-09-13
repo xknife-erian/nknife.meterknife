@@ -28,6 +28,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
         private Rectangle _Border;
         private Rectangle _Inner;
         private Rectangle _ImgRectangle;
+        private Instrument _Instrument;
 
         public InstrumentCell(Instrument instrument)
         {
@@ -38,8 +39,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
             if (instrument != null)
             {
                 Instrument = instrument;
-                if (Instrument.Image == null)
-                    Instrument.Image = Resources.meter64;
             }
             UpdateRectangles();
             MouseClick += Cell_MouseClick;
@@ -56,7 +55,17 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
             _NameValueRect = NameValueRect.Empty;
         }
 
-        public Instrument Instrument { get; set; }
+        public Instrument Instrument
+        {
+            get => _Instrument;
+            set
+            {
+                _Instrument = value;
+                if (_Instrument != null && _Instrument.Image == null)
+                    _Instrument.Image = Resources.meter64;
+                Invalidate();
+            }
+        }
 
         private void Cell_MouseLeave(object sender, EventArgs e)
         {

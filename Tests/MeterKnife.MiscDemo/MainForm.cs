@@ -12,6 +12,7 @@ using MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments;
 using MeterKnife.Views.Measures;
 using NKnife.ControlKnife;
 using NKnife.IoC;
+using NKnife.Utility;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.MiscDemo
@@ -19,6 +20,7 @@ namespace MeterKnife.MiscDemo
     public partial class MainForm : SimpleForm
     {
         private readonly DockPanel _DockPanel = new DockPanel();
+        private readonly UtilityRandom _Random = new UtilityRandom();
 
         public MainForm()
         {
@@ -71,7 +73,7 @@ namespace MeterKnife.MiscDemo
         private void _InstrumentCellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var clickCount = 0;
-            var view = new DockContent {Text = "Instrument Cell" };
+            var view = new DockContent {Text = "Instrument Cell"};
             var cell = new InstrumentCell(new Instrument("HP", "34401", "HP34401", 23));
             cell.Location = new Point(20, 20);
             view.Controls.Add(cell);
@@ -79,6 +81,18 @@ namespace MeterKnife.MiscDemo
             cell.CellMouseClicked += (s, x) =>
             {
                 _TipStatusLabel.Text = $"{cell.Instrument.Address} -- {++clickCount} -- {Guid.NewGuid().ToString("N").Substring(0, 3)}";
+            };
+
+            var button = new Button();
+            button.Text = "下一个";
+            button.Size = new Size(60, 30);
+            button.Location = new Point(cell.Location.X, cell.Location.Y + cell.Height + 30);
+            view.Controls.Add(button);
+            button.Click += (s, x) =>
+            {
+                var m = _Random.GetString(4, UtilityRandom.RandomCharType.Uppercased);
+                var model = _Random.Next(1000, 99999);
+                cell.Instrument = new Instrument(m, $"{model}", $"{m}{model}", _Random.Next(10, 99));
             };
         }
     }
