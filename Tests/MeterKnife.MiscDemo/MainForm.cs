@@ -72,10 +72,17 @@ namespace MeterKnife.MiscDemo
 
         private void _InstrumentCellToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var clickCount = 0;
             var view = new DockContent {Text = "Instrument Cell"};
+
+            var head = new InstrumentsListHead();
+            head.Location = new Point(20,20);
+            head.GatewayModel = "Aglient82357B";
+            head.Count = 99;
+            view.Controls.Add(head);
+
+            var clickCount = 0;
             var cell = new InstrumentCell(new Instrument("HP", "34401", "HP34401", 23));
-            cell.Location = new Point(20, 20);
+            cell.Location = new Point(head.Location.X, head.Location.Y + head.Height + 5);
             view.Controls.Add(cell);
             view.Show(_DockPanel, DockState.Document);
             cell.CellMouseClicked += (s, x) =>
@@ -85,8 +92,8 @@ namespace MeterKnife.MiscDemo
 
             var button = new Button();
             button.Text = "下一个";
-            button.Size = new Size(60, 30);
-            button.Location = new Point(cell.Location.X, cell.Location.Y + cell.Height + 30);
+            button.Size = new Size(60, 25);
+            button.Location = new Point(cell.Location.X, cell.Location.Y + cell.Height + 12);
             view.Controls.Add(button);
             button.Click += (s, x) =>
             {
@@ -94,6 +101,7 @@ namespace MeterKnife.MiscDemo
                 var model = _Random.Next(1000, 99999);
                 cell.Instrument = new Instrument(m, $"{model}", $"{m}{model}", _Random.Next(10, 99));
             };
+
         }
     }
 }
