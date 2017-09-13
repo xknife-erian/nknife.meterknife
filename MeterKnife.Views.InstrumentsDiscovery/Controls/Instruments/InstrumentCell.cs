@@ -82,7 +82,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
 
         private void Cell_MouseClick(object sender, MouseEventArgs e)
         {
-            var me = new CellClickEventArgs((Instrument) Tag, e.Button, e.Clicks, e.X, e.Y, e.Delta);
+            var me = new CellClickEventArgs(Instrument, e.Button, e.Clicks, e.X, e.Y, e.Delta);
             OnCellMouseClicked(me);
         }
 

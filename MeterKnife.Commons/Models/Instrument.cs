@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using Newtonsoft.Json;
 
 namespace MeterKnife.Models
 {
@@ -16,6 +17,7 @@ namespace MeterKnife.Models
         /// <summary>
         ///     仪器的图片
         /// </summary>
+        [JsonIgnore]
         public Image Image { get; set; }
 
         /// <summary>

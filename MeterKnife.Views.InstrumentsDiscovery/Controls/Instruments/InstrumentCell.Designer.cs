@@ -32,7 +32,8 @@
             // 
             // InstrumentCell
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "InstrumentCell";
             this.Size = new System.Drawing.Size(400, 70);
             this.ResumeLayout(false);

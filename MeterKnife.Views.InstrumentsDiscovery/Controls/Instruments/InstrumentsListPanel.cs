@@ -9,7 +9,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
 {
     public partial class InstrumentsListPanel : UserControl
     {
-        private InstrumentCell[] _HideCells;
         private bool _IsExpanded = true;
 
         public InstrumentsListPanel(IGatewayDiscover gatewayDiscover)
@@ -45,14 +44,13 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 }
                 case MouseButtons.Right:
                 {
-                    var p = PointToScreen(_ListHead.Location);
                     foreach (var item in _HeadContextMenu.Items)
                     {
                         var menuitem = item as ToolStripMenuItem;
                         if (menuitem != null)
                             menuitem.Tag = e.GatewayModel;
                     }
-                    _HeadContextMenu.Show(_ListHead, new Point(e.Location.X - p.X, e.Location.Y - p.Y));
+                    _HeadContextMenu.Show(_ListHead, new Point(e.Location.X, e.Location.Y));
                     break;
                 }
             }
@@ -61,33 +59,26 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
         private void DropPanel()
         {
             _IsExpanded = !_IsExpanded;
-            if (!_IsExpanded)//收起
+            if (!_IsExpanded) //收起
             {
                 _DropToolStripMenuItem.Enabled = true;
                 _UnDropToolStripMenuItem.Enabled = false;
                 _DropToolStripMenuItem.CheckState = CheckState.Unchecked;
                 _UnDropToolStripMenuItem.CheckState = CheckState.Checked;
 
-                var count = Controls.Count - 1;
-                _HideCells = new InstrumentCell[count];
-                SuspendLayout();
-                for (var i = 0; i < count; i++)
-                {
-                    _HideCells[i] = (InstrumentCell) Controls[0];
-                    Height = Height - _HideCells[i].Height;
-                    Controls.RemoveAt(0);
-                }
-                ResumeLayout(true);
+                Height = Controls[Controls.Count - 1].Height;
             }
-            else//展开
+            else //展开
             {
                 _DropToolStripMenuItem.Enabled = false;
                 _UnDropToolStripMenuItem.Enabled = true;
                 _DropToolStripMenuItem.CheckState = CheckState.Checked;
                 _UnDropToolStripMenuItem.CheckState = CheckState.Unchecked;
 
-                if (_HideCells != null)
-                    AddCells(_HideCells);
+                var height = 0;
+                foreach (Control ctr in Controls)
+                    height += ctr.Height;
+                Height = height;
             }
         }
 
@@ -103,14 +94,13 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 case MouseButtons.Right:
                 {
                     var sd = (Control) sender;
-                    var p = PointToScreen(sd.Location);
                     foreach (var item in _CellContextMenu.Items)
                     {
                         var menuitem = item as ToolStripMenuItem;
                         if (menuitem != null)
                             menuitem.Tag = e.Instrument;
                     }
-                    _CellContextMenu.Show(sd, new Point(e.Location.X - p.X, e.Location.Y - p.Y));
+                    _CellContextMenu.Show(sd, new Point(e.Location.X, e.Location.Y));
                     break;
                 }
             }
@@ -121,8 +111,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
             var cells = new InstrumentCell[instruments.Length];
             for (var i = 0; i < instruments.Length; i++)
             {
-                var cell = new InstrumentCell(instruments[i]);
-                cell.Dock = DockStyle.Top;
+                var cell = new InstrumentCell(instruments[i]) {Dock = DockStyle.Top};
                 cells[i] = cell;
             }
             AddCells(cells);
@@ -137,7 +126,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 var cell = control as InstrumentCell;
                 if (cell != null)
                 {
-                    var instrument = (Instrument) cell.Tag;
+                    var instrument = cell.Instrument;
                     if (inst.Equals(instrument))
                         cs.Add(control);
                 }
@@ -158,7 +147,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
         public void AddCells(params InstrumentCell[] cells)
         {
             SuspendLayout();
-            var height = Padding.Top;
+            var height = 0;
             var cs = new Control[Controls.Count];
             Controls.CopyTo(cs, 0); //先将原有的控件倒出来
             Controls.Clear();
@@ -167,15 +156,14 @@ namespace MeterKnife.Views.InstrumentsDiscovery.Controls.Instruments
                 var cell = cells[i];
                 cell.CellMouseClicked += OnCellMouseClicked;
                 Controls.Add(cell); //倒序将新的控件放入
-                height += cell.Height + cell.Margin.Top + Padding.Top; //根据当前内部的控件数量，计算出整体应该有的高度
             }
             foreach (var control in cs) //老控件
-            {
                 Controls.Add(control); //原来的控件
-                height += control.Height + control.Margin.Top + Padding.Top; //根据当前内部的控件数量，计算出整体应该有的高度
-            }
-            Height = height + Padding.Bottom;
             ResumeLayout(true);
+            foreach (Control ctr in Controls)
+                height += ctr.Height;
+            Height = height;
+            Invalidate();
         }
 
         /// <summary>

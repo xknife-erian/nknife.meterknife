@@ -64,6 +64,7 @@ namespace MeterKnife.Views.InstrumentsDiscovery
                 panel.Dock = DockStyle.Top;
                 panel.AddInstruments(discover.Instruments.ToArray());
                 panel.Count = discover.Instruments.Count;
+                panel.Height = panel.Height + 16 * panel.Count;
                 OnPanelEventTriggered(panel);
 
                 _LeftContentPanel.Controls.Add(panel);
