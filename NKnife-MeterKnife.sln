@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{00127327-0B2C-4032-B22F-D3C9CA24DB9E}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\Care通讯协议说明.doc = Documents\Care通讯协议说明.doc
+		CHANGELOG.md = CHANGELOG.md
 		Documents\MK.xmind = Documents\MK.xmind
 		README.md = README.md
 	EndProjectSection

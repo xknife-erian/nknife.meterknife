@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MeterKnife.Interfaces.Gateways;
 using Ninject.Modules;
+using NKnife.Channels.Channels.Serials;
 
 namespace MeterKnife.Cares.IoC
 {
@@ -15,6 +16,7 @@ namespace MeterKnife.Cares.IoC
         public override void Load()
         {
             Bind<IGatewayDiscover>().To<CareOneDiscover>().InSingletonScope().Named(nameof(GatewayModel.CareOne));
+            Bind<SerialChannel>().To<CareOneSerialChannel>().Named(nameof(GatewayModel.CareOne));
         }
 
         #endregion

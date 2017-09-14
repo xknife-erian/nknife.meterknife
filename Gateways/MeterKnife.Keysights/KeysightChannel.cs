@@ -19,6 +19,7 @@ namespace MeterKnife.Keysights
         public KeysightChannel(ushort gpibTarget = 0)
         {
             _GPIBTarget = gpibTarget;
+            _logger.Info($"GPIBLinker GPIBTarget is {gpibTarget}.");
         }
 
         #region Implementation of IChannel<string>
@@ -26,6 +27,7 @@ namespace MeterKnife.Keysights
         public bool Open()
         {
             OnOpening();
+            _logger.Info($"GPIBLinker OnOpening...");
             if (_GPIBLinker == null || _GPIBTarget != _GPIBLinker.GpibSelector)
             {
                 _GPIBLinker = new GPIBLinker(log =>
@@ -46,6 +48,7 @@ namespace MeterKnife.Keysights
             }
             IsOpen = true;
             OnOpened();
+            _logger.Info($"GPIBLinker OnOpened...");
             return true;
         }
 

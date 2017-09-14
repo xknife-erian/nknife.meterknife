@@ -6,9 +6,9 @@ using NKnife.Channels.Channels.Serials;
 
 namespace MeterKnife.Cares
 {
-    public class CareOneChannel : SerialChannel
+    public class CareOneSerialChannel : SerialChannel
     {
-        public CareOneChannel(SerialConfig serialConfig) 
+        public CareOneSerialChannel(SerialConfig serialConfig) 
             : base(serialConfig)
         {
         }
