@@ -12,7 +12,7 @@ namespace MeterKnife.ViewModels
     {
         public InstrumentsDiscoveryViewModel()
         {
-            DiscoverMap = Load(HabitedDatas.Gateways);
+            DiscoverMap = Load(Habited.Gateways);
             OnDiscoverInstrumentsCollectionChanged();
             OnInstrumentConnectionStateChanged();
         }
@@ -71,7 +71,7 @@ namespace MeterKnife.ViewModels
         private void OnDiscoverInstrumentsCollectionChanged()
         {
             foreach (var discrover in DiscoverMap.Values)
-                discrover.Instruments.CollectionChanged += (s, e) => { HabitedDatas.Gateways = ToMap(DiscoverMap); };
+                discrover.Instruments.CollectionChanged += (s, e) => { Habited.Gateways = ToMap(DiscoverMap); };
         }
 
         #endregion

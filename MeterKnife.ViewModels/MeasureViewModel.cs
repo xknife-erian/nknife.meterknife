@@ -17,7 +17,7 @@ namespace MeterKnife.ViewModels
 
         public MeasureViewModel()
         {
-            var hd = DI.Get<IHabitedDatas>();
+            var hd = DI.Get<IHabited>();
             var themes = hd.PlotThemes;
             var usingTheme = hd.UsingTheme;
             foreach (var plotTheme in themes)

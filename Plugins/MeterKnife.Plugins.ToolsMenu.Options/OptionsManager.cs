@@ -2,21 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
+using NKnife.ControlKnife;
+using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Plugins.ToolsMenu
+namespace MeterKnife.Plugins.ToolsMenu.Options
 {
-    public class KeysightChannelTool : PluginBase
+    public class OptionsManager : PluginBase
     {
-        public KeysightChannelTool()
+        public OptionsManager()
         {
-            _StripItem.Text = "Aglient 82357x工具(&G)";
-            _StripItem.Order = 10F;
+            _StripItem.Text = "选项(&O)";
+            _StripItem.ShortcutKeys = Keys.Control | Keys.Alt | Keys.O;
+            _StripItem.Order = 1000F;
             _StripItem.Click += (s, e) =>
             {
-                var view = new KeysightChannelToolView();
-                ShowAtDockPanel(view);
+                var view = new OptionsForm();
+                Form parentForm = null;
+                foreach (var container in _ViewComponent.Containers)
+                {
+                    var panel = container as DockPanel;
+                    if (panel != null)
+                    {
+                        parentForm = panel.FindForm();
+                        break;
+                    }
+                }
+                DialogResult dr = (parentForm != null) ? view.ShowDialog(parentForm) : view.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                }
             };
         }
 

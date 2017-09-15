@@ -53,15 +53,14 @@ namespace MeterKnife.Base.Plugins
 
         #endregion
 
-        protected void ShowAtDockPanel(DockContent view)
+        protected void ShowAtDockPanel(DockContent view, DockState dockState = DockState.Document)
         {
             foreach (var container in _ViewComponent.Containers)
             {
                 var panel = container as DockPanel;
                 if (panel != null)
                 {
-                    var dockpanel = panel;
-                    view.Show(dockpanel, DockState.Document);
+                    view.Show(panel, dockState);
                 }
             }
         }

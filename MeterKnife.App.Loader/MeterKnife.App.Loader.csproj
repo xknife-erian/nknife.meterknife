@@ -150,6 +150,14 @@
       <Project>{eea8a692-5cf4-4cb1-b962-05635abc1bf0}</Project>
       <Name>MeterKnife.Plugins.MeasureMenu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Plugins\MeterKnife.Plugins.ToolsMenu.Options\MeterKnife.Plugins.ToolsMenu.Options.csproj">
+      <Project>{62169230-2da6-418b-bd46-832d51702768}</Project>
+      <Name>MeterKnife.Plugins.ToolsMenu.Options</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\MeterKnife.Plugins.ToolsMenu.Updates\MeterKnife.Plugins.ToolsMenu.Updates.csproj">
+      <Project>{6560d6ab-ff87-4ae6-9972-08af90d4637d}</Project>
+      <Name>MeterKnife.Plugins.ToolsMenu.Updates</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Plugins\MeterKnife.Plugins.ToolsMenu\MeterKnife.Plugins.ToolsMenu.csproj">
       <Project>{c1c2780b-4db6-4878-910a-bb3b29c2eb53}</Project>
       <Name>MeterKnife.Plugins.ToolsMenu</Name>

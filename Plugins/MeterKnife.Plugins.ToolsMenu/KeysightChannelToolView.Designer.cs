@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
+            this._StopButton = new System.Windows.Forms.Button();
             this._CommandComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this._LoopTimeBox = new System.Windows.Forms.NumericUpDown();
@@ -37,7 +38,6 @@
             this._AddressBox = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this._ResultListBox = new System.Windows.Forms.ListBox();
-            this._StopButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
             this._SplitContainer.Panel2.SuspendLayout();
@@ -74,6 +74,19 @@
             this._SplitContainer.SplitterDistance = 40;
             this._SplitContainer.SplitterWidth = 6;
             this._SplitContainer.TabIndex = 0;
+            // 
+            // _StopButton
+            // 
+            this._StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._StopButton.Enabled = false;
+            this._StopButton.Location = new System.Drawing.Point(585, 9);
+            this._StopButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._StopButton.Name = "_StopButton";
+            this._StopButton.Size = new System.Drawing.Size(69, 28);
+            this._StopButton.TabIndex = 7;
+            this._StopButton.Text = "停止";
+            this._StopButton.UseVisualStyleBackColor = true;
+            this._StopButton.Click += new System.EventHandler(this._StopButton_Click);
             // 
             // _CommandComboBox
             // 
@@ -180,19 +193,6 @@
             this._ResultListBox.Size = new System.Drawing.Size(674, 449);
             this._ResultListBox.TabIndex = 0;
             // 
-            // _StopButton
-            // 
-            this._StopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._StopButton.Enabled = false;
-            this._StopButton.Location = new System.Drawing.Point(585, 9);
-            this._StopButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this._StopButton.Name = "_StopButton";
-            this._StopButton.Size = new System.Drawing.Size(69, 28);
-            this._StopButton.TabIndex = 7;
-            this._StopButton.Text = "停止";
-            this._StopButton.UseVisualStyleBackColor = true;
-            this._StopButton.Click += new System.EventHandler(this._StopButton_Click);
-            // 
             // KeysightChannelToolView
             // 
             this.AcceptButton = this._SendButton;
@@ -204,7 +204,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 8.25F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "KeysightChannelToolView";
-            this.Text = "Aglient 82357x测试工具";
+            this.Text = "Aglient 82357x工具";
             this._SplitContainer.Panel1.ResumeLayout(false);
             this._SplitContainer.Panel1.PerformLayout();
             this._SplitContainer.Panel2.ResumeLayout(false);

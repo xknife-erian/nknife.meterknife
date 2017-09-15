@@ -111,7 +111,7 @@
     <Compile Include="Interfaces\Gateways\IGatewayDiscover.cs" />
     <Compile Include="Interfaces\Gateways\IGatewayService.cs" />
     <Compile Include="Interfaces\IDatabaseService.cs" />
-    <Compile Include="Interfaces\IHabitedDatas.cs" />
+    <Compile Include="Interfaces\IHabited.cs" />
     <Compile Include="Interfaces\IKernels.cs" />
     <Compile Include="Interfaces\IWorkbench.cs" />
     <Compile Include="Interfaces\Plugins\IDropFunctionManager.cs" />
