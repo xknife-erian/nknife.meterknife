@@ -16,12 +16,12 @@ namespace MeterKnife.Kernel
     /// <summary>
     /// 用户使用习惯
     /// </summary>
-    public class HabitedDatas : UserApplicationData, IHabitedDatas
+    public class Habited : UserApplicationData, IHabited
     {
         private readonly List<PlotTheme> _DefaultPlotThemes;
         private readonly Dictionary<GatewayModel, List<Instrument>> _DefaultDiscovers;
 
-        public HabitedDatas()
+        public Habited()
         {
             var pt = new PlotTheme();
             pt.SeriesStyles.Add(new PlotTheme.SeriesStyle());

@@ -11,12 +11,12 @@ namespace MeterKnife.Base
 {
     public class ViewmodelBaseKnife : ViewModelBase
     {
-        protected IHabitedDatas HabitedDatas { get; }
+        protected IHabited Habited { get; }
         protected IExtenderProvider ExtenderProvider { get; set; }
 
         public ViewmodelBaseKnife()
         {
-            HabitedDatas = DI.Get<IHabitedDatas>();
+            Habited = DI.Get<IHabited>();
         }
 
         public virtual void SetProvider(IExtenderProvider extenderProvider)
