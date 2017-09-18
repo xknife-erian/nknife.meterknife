@@ -15,7 +15,6 @@ namespace MeterKnife.Plugins.ToolsMenu.Options
         public OptionsManager()
         {
             _StripItem.Text = "选项(&O)";
-            _StripItem.ShortcutKeys = Keys.Control | Keys.Alt | Keys.O;
             _StripItem.Order = 1000F;
             _StripItem.Click += (s, e) =>
             {
