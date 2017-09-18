@@ -14,7 +14,7 @@ namespace MeterKnife.Gateway
     public class GatewayService : IGatewayService
     {
         private static readonly ILog _logger = LogManager.GetLogger<GatewayService>();
-        private readonly IHabitedDatas _HabitedDatas = DI.Get<IHabitedDatas>();
+        private readonly IHabited _HabitedDatas = DI.Get<IHabited>();
 
         private Thread _GatewayCoreThread;
         private AutoResetEvent _AutoReset = new AutoResetEvent(false);
