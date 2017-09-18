@@ -31,6 +31,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteDB, Version=3.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LiteDB.3.1.4\lib\net35\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.17.5.4.830\lib\net40\NKnife.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife.Channels, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.Channels.17.5.4.830\lib\net40\NKnife.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife.DataLite, Version=17.5.3.517, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.DataLite.17.5.4.830\lib\net40\NKnife.DataLite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,8 +64,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CareOneSerialChannelDemo.cs" />
+    <Compile Include="DemoBase.cs" />
+    <Compile Include="KeysightChannelDemo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gateways\MeterKnife.Cares\MeterKnife.Gateway.Cares.csproj">
+      <Project>{201309E4-CD58-4197-AC3B-6367CC4E65B1}</Project>
+      <Name>MeterKnife.Gateway.Cares</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Commons\MeterKnife.Commons.csproj">
+      <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
+      <Name>MeterKnife.Commons</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

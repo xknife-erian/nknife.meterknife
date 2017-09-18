@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Common.Logging;
+using MeterKnife.Cares;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Keysights;
@@ -17,7 +18,7 @@ namespace MeterKnife.Gateway
         private readonly IHabited _HabitedDatas = DI.Get<IHabited>();
 
         private Thread _GatewayCoreThread;
-        private AutoResetEvent _AutoReset = new AutoResetEvent(false);
+        private readonly AutoResetEvent _AutoReset = new AutoResetEvent(false);
 
         private void LoadAllGateways()
         {
@@ -35,7 +36,8 @@ namespace MeterKnife.Gateway
                     case GatewayModel.CareOne:
                     case GatewayModel.CareTwo:
                     {
-                        var channel = DI.Get<SerialChannel>(nameof(GatewayModel.CareOne));
+                        var config = new SerialConfig(10);
+                        var channel = new CareOneSerialChannel(config);
                         channel.Open();
                         break;
                     }
@@ -65,6 +67,7 @@ namespace MeterKnife.Gateway
                 }
             }
             _AutoReset.Set();
+            _logger.Info($"{_GatewayCoreThread.Name}线程AutoReset.Set.");
         }
 
         #region Implementation of IEnvironmentItem
@@ -73,6 +76,7 @@ namespace MeterKnife.Gateway
         {
             _GatewayCoreThread = new Thread(LoadAllGateways) {Name = $"{nameof(GatewayService)}-Thread", IsBackground = true};
             _GatewayCoreThread.Start();
+            _logger.Info($"{_GatewayCoreThread.Name}线程启动.");
             return true;
         }
 

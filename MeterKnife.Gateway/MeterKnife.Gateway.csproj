@@ -62,6 +62,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gateways\MeterKnife.Cares\MeterKnife.Gateway.Cares.csproj">
+      <Project>{201309E4-CD58-4197-AC3B-6367CC4E65B1}</Project>
+      <Name>MeterKnife.Gateway.Cares</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gateways\MeterKnife.Keysights\MeterKnife.Gateway.Keysights.csproj">
       <Project>{EC118282-B4FE-4837-B292-302A7E111C21}</Project>
       <Name>MeterKnife.Gateway.Keysights</Name>

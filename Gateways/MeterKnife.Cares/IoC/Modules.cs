@@ -16,7 +16,6 @@ namespace MeterKnife.Cares.IoC
         public override void Load()
         {
             Bind<IGatewayDiscover>().To<CareOneDiscover>().InSingletonScope().Named(nameof(GatewayModel.CareOne));
-            Bind<SerialChannel>().To<CareOneSerialChannel>().Named(nameof(GatewayModel.CareOne));
         }
 
         #endregion
