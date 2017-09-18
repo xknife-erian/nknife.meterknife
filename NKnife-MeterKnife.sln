@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Commons", "MeterKnife.Commons\MeterKnife.Commons.csproj", "{8B62166A-BCB6-434D-91A8-62BCFC26D452}"
 EndProject
@@ -66,6 +66,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.ToolsMenu.Options", "Plugins\MeterKnife.Plugins.ToolsMenu.Options\MeterKnife.Plugins.ToolsMenu.Options.csproj", "{62169230-2DA6-418B-BD46-832D51702768}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Plugins.ToolsMenu.Updates", "Plugins\MeterKnife.Plugins.ToolsMenu.Updates\MeterKnife.Plugins.ToolsMenu.Updates.csproj", "{6560D6AB-FF87-4AE6-9972-08AF90D4637D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.ConsoleDemo", "Tests\MeterKnife.ConsoleDemo\MeterKnife.ConsoleDemo.csproj", "{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -377,6 +379,18 @@ Global
 		{6560D6AB-FF87-4AE6-9972-08AF90D4637D}.Release|x64.Build.0 = Release|Any CPU
 		{6560D6AB-FF87-4AE6-9972-08AF90D4637D}.Release|x86.ActiveCfg = Release|Any CPU
 		{6560D6AB-FF87-4AE6-9972-08AF90D4637D}.Release|x86.Build.0 = Release|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Debug|x64.Build.0 = Debug|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Debug|x86.Build.0 = Debug|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Release|x64.ActiveCfg = Release|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Release|x64.Build.0 = Release|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Release|x86.ActiveCfg = Release|Any CPU
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -395,5 +409,9 @@ Global
 		{C1C2780B-4DB6-4878-910A-BB3B29C2EB53} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
 		{62169230-2DA6-418B-BD46-832D51702768} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
 		{6560D6AB-FF87-4AE6-9972-08AF90D4637D} = {030561A8-9253-499B-8C19-2E4320FFA8F4}
+		{F874D24B-89A1-4101-BDEA-A2E9C6C9DC6C} = {E3B3712D-75B6-4C9D-B82E-4613B3EB73A0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4176C5D-95A6-49FE-A75F-79038FF98F14}
 	EndGlobalSection
 EndGlobal
