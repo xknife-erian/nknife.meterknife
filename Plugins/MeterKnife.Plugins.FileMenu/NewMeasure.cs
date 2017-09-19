@@ -3,6 +3,7 @@ using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Views.Measures;
+using MeterKnife.Views.Measures.Dialogs;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Plugins.FileMenu
@@ -19,10 +20,15 @@ namespace MeterKnife.Plugins.FileMenu
             _StripItem.ShortcutKeys = Keys.Control | Keys.N;
             _StripItem.Click += (s, e) =>
             {
-                var view = new MeasureView();
-                view.SetProvider(_ExtenderProvider);
-                view.SetWorkModel(true);
-                ShowAtDockPanel(view);
+                var dialog = new MeasureCaseSelectorDialog();
+                var rs = dialog.ShowDialog(_StripItem.Owner.FindForm());
+                if (rs == DialogResult.OK)
+                {
+                    var view = new MeasureView();
+                    view.SetProvider(_ExtenderProvider);
+                    view.SetWorkModel(true);
+                    ShowAtDockPanel(view);
+                }
             };
         }
 

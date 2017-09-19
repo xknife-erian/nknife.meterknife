@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this._InstrumentsTree = new System.Windows.Forms.TreeView();
+            this._LeftLabel = new System.Windows.Forms.Label();
+            this._MeasureCaseListView = new System.Windows.Forms.ListView();
+            this._RightLabel = new System.Windows.Forms.Label();
+            this._InstrumentsManagerButton = new System.Windows.Forms.Button();
+            this._CancelButton = new System.Windows.Forms.Button();
+            this._AcceptButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -52,85 +52,98 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel1.Controls.Add(this._InstrumentsTree);
+            this.splitContainer1.Panel1.Controls.Add(this._LeftLabel);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Panel2.Controls.Add(this.textBox2);
+            this.splitContainer1.Panel2.Controls.Add(this._MeasureCaseListView);
+            this.splitContainer1.Panel2.Controls.Add(this._RightLabel);
             this.splitContainer1.Size = new System.Drawing.Size(614, 391);
             this.splitContainer1.SplitterDistance = 204;
+            this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 0;
             // 
-            // button1
+            // _InstrumentsTree
             // 
-            this.button1.Location = new System.Drawing.Point(11, 408);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 27);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "仪器管理(&M)";
-            this.button1.UseVisualStyleBackColor = true;
+            this._InstrumentsTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._InstrumentsTree.Location = new System.Drawing.Point(0, 24);
+            this._InstrumentsTree.Name = "_InstrumentsTree";
+            this._InstrumentsTree.Size = new System.Drawing.Size(204, 367);
+            this._InstrumentsTree.TabIndex = 1;
             // 
-            // button2
+            // _LeftLabel
             // 
-            this.button2.Location = new System.Drawing.Point(539, 409);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 27);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "取消(&X)";
-            this.button2.UseVisualStyleBackColor = true;
+            this._LeftLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._LeftLabel.Location = new System.Drawing.Point(0, 0);
+            this._LeftLabel.Name = "_LeftLabel";
+            this._LeftLabel.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this._LeftLabel.Size = new System.Drawing.Size(204, 24);
+            this._LeftLabel.TabIndex = 1;
+            this._LeftLabel.Text = "仪器列表";
+            this._LeftLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button3
+            // _MeasureCaseListView
             // 
-            this.button3.Location = new System.Drawing.Point(446, 409);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(87, 27);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "确定(&C)";
-            this.button3.UseVisualStyleBackColor = true;
+            this._MeasureCaseListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._MeasureCaseListView.Location = new System.Drawing.Point(0, 24);
+            this._MeasureCaseListView.Name = "_MeasureCaseListView";
+            this._MeasureCaseListView.Size = new System.Drawing.Size(402, 367);
+            this._MeasureCaseListView.TabIndex = 1;
+            this._MeasureCaseListView.UseCompatibleStateImageBehavior = false;
             // 
-            // textBox1
+            // _RightLabel
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(204, 21);
-            this.textBox1.TabIndex = 0;
+            this._RightLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._RightLabel.Location = new System.Drawing.Point(0, 0);
+            this._RightLabel.Name = "_RightLabel";
+            this._RightLabel.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this._RightLabel.Size = new System.Drawing.Size(402, 24);
+            this._RightLabel.TabIndex = 1;
+            this._RightLabel.Text = "测试案例";
+            this._RightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox2
+            // _InstrumentsManagerButton
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox2.Location = new System.Drawing.Point(0, 0);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(406, 21);
-            this.textBox2.TabIndex = 0;
+            this._InstrumentsManagerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._InstrumentsManagerButton.Location = new System.Drawing.Point(11, 408);
+            this._InstrumentsManagerButton.Name = "_InstrumentsManagerButton";
+            this._InstrumentsManagerButton.Size = new System.Drawing.Size(87, 27);
+            this._InstrumentsManagerButton.TabIndex = 1;
+            this._InstrumentsManagerButton.Text = "仪器管理(&M)";
+            this._InstrumentsManagerButton.UseVisualStyleBackColor = true;
             // 
-            // treeView1
+            // _CancelButton
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 21);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(204, 370);
-            this.treeView1.TabIndex = 1;
+            this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._CancelButton.Location = new System.Drawing.Point(539, 409);
+            this._CancelButton.Name = "_CancelButton";
+            this._CancelButton.Size = new System.Drawing.Size(87, 27);
+            this._CancelButton.TabIndex = 2;
+            this._CancelButton.Text = "取消(&X)";
+            this._CancelButton.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // _AcceptButton
             // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 21);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(406, 370);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this._AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._AcceptButton.Location = new System.Drawing.Point(446, 409);
+            this._AcceptButton.Name = "_AcceptButton";
+            this._AcceptButton.Size = new System.Drawing.Size(87, 27);
+            this._AcceptButton.TabIndex = 3;
+            this._AcceptButton.Text = "确定(&C)";
+            this._AcceptButton.UseVisualStyleBackColor = true;
             // 
             // MeasureCaseSelectorDialog
             // 
+            this.AcceptButton = this._AcceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this._CancelButton;
             this.ClientSize = new System.Drawing.Size(638, 445);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this._AcceptButton);
+            this.Controls.Add(this._CancelButton);
+            this.Controls.Add(this._InstrumentsManagerButton);
             this.Controls.Add(this.splitContainer1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -139,9 +152,7 @@
             this.ShowInTaskbar = false;
             this.Text = "测试案例选择器";
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -151,12 +162,12 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TreeView _InstrumentsTree;
+        private System.Windows.Forms.ListView _MeasureCaseListView;
+        private System.Windows.Forms.Button _InstrumentsManagerButton;
+        private System.Windows.Forms.Button _CancelButton;
+        private System.Windows.Forms.Button _AcceptButton;
+        private System.Windows.Forms.Label _LeftLabel;
+        private System.Windows.Forms.Label _RightLabel;
     }
 }

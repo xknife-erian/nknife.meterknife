@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MeterKnife.Base;
+using MeterKnife.Base.Viewmodels;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
 using NKnife.IoC;
 
 namespace MeterKnife.ViewModels
 {
-    public class InstrumentsDiscoveryViewModel : ViewmodelBaseKnife
+    public class InstrumentsDiscoveryViewModel : GatewayViewModelBase
     {
         public InstrumentsDiscoveryViewModel()
         {
@@ -30,40 +31,6 @@ namespace MeterKnife.ViewModels
         #endregion
 
         #region Discover
-
-        public Dictionary<GatewayModel, IGatewayDiscover> DiscoverMap { get; }
-
-        /// <summary>
-        ///     将从保存的用户习惯数据中取出的数据转换成Discover的字典
-        /// </summary>
-        /// <param name="map">从保存的用户习惯数据中取出的数据</param>
-        private static Dictionary<GatewayModel, IGatewayDiscover> Load(Dictionary<GatewayModel, List<Instrument>> map)
-        {
-            var result = new Dictionary<GatewayModel, IGatewayDiscover>();
-            foreach (var pair in map)
-            {
-                var discover = DI.Get<IGatewayDiscover>(pair.Key.ToString());
-                foreach (var instrument in pair.Value)
-                    discover.Instruments.Add(instrument);
-                result.Add(pair.Key, discover);
-            }
-            return result;
-        }
-
-        /// <summary>
-        ///     将Discover的字典转换成可以保存成用户习惯数据的格式
-        /// </summary>
-        private static Dictionary<GatewayModel, List<Instrument>> ToMap(Dictionary<GatewayModel, IGatewayDiscover> discoverMap)
-        {
-            var map = new Dictionary<GatewayModel, List<Instrument>>();
-            foreach (var pair in discoverMap)
-            {
-                var list = new List<Instrument>();
-                list.AddRange(pair.Value.Instruments);
-                map.Add(pair.Key, list);
-            }
-            return map;
-        }
 
         /// <summary>
         ///     在构造函数里注册所有InstrumentsConllection

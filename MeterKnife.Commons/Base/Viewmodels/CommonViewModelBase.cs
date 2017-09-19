@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Plugins;
 using NKnife.IoC;
 
-namespace MeterKnife.Base
+namespace MeterKnife.Base.Viewmodels
 {
-    public class ViewmodelBaseKnife : ViewModelBase
+    public class CommonViewModelBase : ViewModelBase
     {
         protected IHabited Habited { get; }
         protected IExtenderProvider ExtenderProvider { get; set; }
 
-        public ViewmodelBaseKnife()
+        public CommonViewModelBase()
         {
             Habited = DI.Get<IHabited>();
         }

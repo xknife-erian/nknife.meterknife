@@ -1,31 +1,26 @@
 ﻿using System;
 using System.Threading;
-using GalaSoft.MvvmLight;
-using MeterKnife.Base;
+using MeterKnife.Base.Viewmodels;
 using MeterKnife.Interfaces;
-using MeterKnife.Interfaces.Plugins;
-using MeterKnife.Models;
 using MeterKnife.Plots;
 using NKnife.IoC;
 using NKnife.Utility;
 
 namespace MeterKnife.ViewModels
 {
-    public class MeasureViewModel : ViewmodelBaseKnife
+    public class MeasureViewModel : CommonViewModelBase
     {
-        public PlainPolyLinePlot Plot { get; }
-
         public MeasureViewModel()
         {
             var hd = DI.Get<IHabited>();
             var themes = hd.PlotThemes;
             var usingTheme = hd.UsingTheme;
             foreach (var plotTheme in themes)
-            {
                 if (plotTheme.Name == usingTheme)
                     Plot = new PlainPolyLinePlot(plotTheme);
-            }
         }
+
+        public PlainPolyLinePlot Plot { get; }
 
         public event EventHandler PlotModelUpdated;
 
@@ -38,7 +33,7 @@ namespace MeterKnife.ViewModels
 
         private Thread _DemoThread;
 
-        private bool _OnDemo = false;
+        private bool _OnDemo;
 
         public void StartDemo()
         {
