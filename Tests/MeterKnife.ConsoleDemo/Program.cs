@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MeterKnife.ConsoleDemo
 {
-    class Program
+    public class Program
     {
-        static bool isRun = true;
-        static void Main(string[] args)
+        private static bool _isRun = true;
+
+        public static void Main(string[] args)
         {
-            while (isRun)
+            while (_isRun)
             {
                 PrintHelpInfomation();
                 var line = Console.ReadLine();
-                switch (line)
+                if (line == null)
+                    continue;
+                switch (line.ToUpper())
                 {
                     case "1":
                         var config = CareOneSerialChannelDemo.GetConfig();
@@ -25,6 +25,9 @@ namespace MeterKnife.ConsoleDemo
                     case "2":
                         new KeysightChannelDemo().Run();
                         break;
+                    case "X":
+                        _isRun = false;
+                        break;
                 }
             }
         }
@@ -34,8 +37,9 @@ namespace MeterKnife.ConsoleDemo
             Console.Clear();
             Console.WriteLine("===============================");
             Console.WriteLine("选择Demo项目：");
-            Console.WriteLine("1.CareOneSerialChannel");
-            Console.WriteLine("2.KeysightChannel");
+            Console.WriteLine("1. CareOneSerialChannel");
+            Console.WriteLine("2. KeysightChannel");
+            Console.WriteLine("X. Exit Demo.");
         }
     }
 }

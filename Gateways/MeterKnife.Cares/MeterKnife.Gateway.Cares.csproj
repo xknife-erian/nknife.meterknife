@@ -60,8 +60,16 @@
     </Compile>
     <Compile Include="CareOneSerialChannel.cs" />
     <Compile Include="CareOneDiscover.cs" />
+    <Compile Include="Protocols\CareOneCodec.cs" />
+    <Compile Include="Protocols\CareOneDatagramDecoder.cs" />
+    <Compile Include="Protocols\CareOneDatagramEncoder.cs" />
+    <Compile Include="Protocols\CareOneProtocolCommandParser.cs" />
+    <Compile Include="Protocols\CareOneProtocolHandler.cs" />
+    <Compile Include="Protocols\CareOneProtocolPacker.cs" />
+    <Compile Include="Protocols\CareOneProtocolUnPacker.cs" />
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocols\CareTalking.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
