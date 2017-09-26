@@ -45,30 +45,6 @@ namespace MeterKnife.Views.Measures
             }
         }
 
-        #region Overrides of Form
-
-        /// <summary>引发 <see cref="E:System.Windows.Forms.Form.Shown" /> 事件。</summary>
-        /// <param name="e">一个包含事件数据的 <see cref="T:System.EventArgs" />。</param>
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
-            _ViewModel.StartDemo();
-        }
-
-        #region Overrides of Form
-
-        /// <summary>引发 <see cref="E:System.Windows.Forms.Form.FormClosing" /> 事件。</summary>
-        /// <param name="e">一个包含事件数据的 <see cref="T:System.Windows.Forms.FormClosingEventArgs" />。</param>
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-            _ViewModel.StopDemo();
-        }
-
-        #endregion
-
-        #endregion
-
         public void SetProvider(IExtenderProvider extenderProvider)
         {
             _ViewModel.SetProvider(extenderProvider);

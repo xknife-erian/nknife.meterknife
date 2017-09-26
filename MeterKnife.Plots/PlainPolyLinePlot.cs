@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using MeterKnife.Models;
@@ -16,7 +17,6 @@ namespace MeterKnife.Plots
     {
         private readonly PlotModel _PlotModel = new PlotModel();
         private readonly LinearAxis _LeftAxis = new LinearAxis();
-        private readonly LineSeries _Series = new LineSeries();
         private readonly DateTimeAxis _TimeAxis = new DateTimeAxis();
         private bool _IsFirst = true;
         private double _Max;
@@ -55,16 +55,8 @@ namespace MeterKnife.Plots
             _TimeAxis.Position = AxisPosition.Bottom;
             _TimeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
 
-            var series = plotTheme.SeriesStyles[0];
-            _Series.Color = PlotTheme.ToOxyColor(series.Color);
-            _Series.MarkerFill = PlotTheme.ToOxyColor(Color.Red);//OxyColor.FromArgb(255, 24, 45, 6); //(255, 78, 154, 6);
-            _Series.MarkerStroke = PlotTheme.ToOxyColor(Color.Red);
-            _Series.StrokeThickness = series.Thickness;
-            _Series.TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}";
-
             _PlotModel.Axes.Add(_LeftAxis);
             _PlotModel.Axes.Add(_TimeAxis);
-            _PlotModel.Series.Add(_Series);
         }
 
         public PlotModel GetPlotModel()
@@ -80,20 +72,44 @@ namespace MeterKnife.Plots
 
         public double LeftAxisAngle => 0;
 
-        public PlotTheme PlotTheme { get ; set; }
+        public PlotTheme PlotTheme { get; set; }
+
+        private readonly List<LineSeries> _SeriesList = new List<LineSeries>();
 
         /// <summary>
         /// 增加测量数据
         /// </summary>
+        /// <param name="number">数据渠道编号</param>
         /// <param name="value">测量数据</param>
-        public void Add(double value)
+        public void Add(ushort number, double value)
         {
+            if (number > _SeriesList.Count)
+                AddSeries(number);
             //先根据测量数据调整纵轴的值的范围
             var pair = UpdateRange(value, ref _IsFirst, ref _Max, ref _Min);
             _LeftAxis.Minimum = pair.First;
             _LeftAxis.Maximum = pair.Second;
             //向数据线上添加测量数据点
-            _Series.Points.Add(DateTimeAxis.CreateDataPoint(DateTime.Now, value));
+            _SeriesList[number-1].Points.Add(DateTimeAxis.CreateDataPoint(DateTime.Now, value));
+        }
+
+        /// <summary>
+        /// 增加数据线
+        /// </summary>
+        /// <param name="number"></param>
+        private void AddSeries(ushort number)
+        {
+            var seriesStyle = PlotTheme.SeriesStyles[number];
+            var series = new LineSeries
+            {
+                Color = PlotTheme.ToOxyColor(seriesStyle.Color),
+                MarkerFill = PlotTheme.ToOxyColor(Color.Red),
+                MarkerStroke = PlotTheme.ToOxyColor(Color.Red),
+                StrokeThickness = seriesStyle.Thickness,
+                TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}"
+            };
+            _SeriesList.Add(series);
+            _PlotModel.Series.Add(series);
         }
 
         /// <summary>
@@ -106,7 +122,7 @@ namespace MeterKnife.Plots
         /// <returns></returns>
         protected static Pair<double, double> UpdateRange(double value, ref bool isFirst, ref double max, ref double min)
         {
-            if (isFirst)
+            if (isFirst) //当第一个数据时，做一些常规处理
             {
                 var precision = GetPrecision(value);
                 var offset = GetMinPrecisionValue(precision);
@@ -126,7 +142,7 @@ namespace MeterKnife.Plots
         /// <summary>
         /// 获取小数的精度
         /// </summary>
-        private static int GetPrecision(double value)
+        public static int GetPrecision(double value)
         {
             string strValue = value.ToString(CultureInfo.InvariantCulture);
             if (!strValue.Contains("."))
@@ -140,46 +156,9 @@ namespace MeterKnife.Plots
         /// 获取指定小数精度的最小值
         /// </summary>
         /// <param name="precision">指定小数精度</param>
-        private static double GetMinPrecisionValue(int precision)
+        public static double GetMinPrecisionValue(int precision)
         {
-            switch (precision)
-            {
-                case 1:
-                    return 0.1;
-                case 2:
-                    return 0.01;
-                case 3:
-                    return 0.001;
-                case 4:
-                    return 0.0001;
-                case 5:
-                    return 0.00001;
-                case 6:
-                    return 0.000001;
-                case 7:
-                    return 0.0000001;
-                case 8:
-                    return 0.00000001;
-                case 9:
-                    return 0.000000001;
-                case 10:
-                    return 0.0000000001;
-                case 11:
-                    return 0.00000000001;
-                case 12:
-                    return 0.000000000001;
-                case 13:
-                    return 0.0000000000001;
-                case 14:
-                    return 0.00000000000001;
-                case 15:
-                    return 0.000000000000001;
-                case 16:
-                    return 0.0000000000000001;
-                default:
-                    return 1;
-            }
+            return Math.Pow(10, -precision);
         }
-
     }
 }

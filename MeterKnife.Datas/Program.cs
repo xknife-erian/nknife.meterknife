@@ -34,9 +34,8 @@ namespace MeterKnife.Datas
             var i = 0;
             foreach (var answer in answers)
             {
-                var exh = new ExhibitData<double> {Values = new double[2]};
-                exh.Values[0] = double.Parse(answer.Data.ToString(Encoding.ASCII));
-                exh.Values[1] = double.Parse(answer.Data.ToString(Encoding.ASCII));
+                var exh = new ExhibitData<double> {};
+                exh.Value = double.Parse(answer.Data.ToString(Encoding.ASCII));
                 exh.Time = DateTime.Now;
                 er.Save(exh);
                 if (i % 100 == 0)

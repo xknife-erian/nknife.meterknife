@@ -3,11 +3,24 @@ using Newtonsoft.Json;
 
 namespace MeterKnife.Models.Exhibits
 {
+    /// <summary>
+    /// 被测物在单一时刻的测量值
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ExhibitData<T>
     {
+        /// <summary>
+        /// 被测物的ID
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// 被测物的单一时刻
+        /// </summary>
         public DateTime Time { get; set; }
-        public T[] Values { get; set; }
+        /// <summary>
+        /// 测量值
+        /// </summary>
+        public T Value { get; set; }
 
         #region Overrides of Object
 
