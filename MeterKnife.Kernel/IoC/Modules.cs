@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MeterKnife.Interfaces;
+using MeterKnife.Interfaces.Measures;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Kernel.Plugins;
 using Ninject;
@@ -22,6 +23,7 @@ namespace MeterKnife.Kernel.IoC
 
             Bind<IExtenderProvider>().To<ExtenderProvider>();
             Bind<IPluginService>().To<PluginsService>().InSingletonScope();
+            Bind<IMeasureService>().To<Measures>().InSingletonScope();
         }
 
         #endregion

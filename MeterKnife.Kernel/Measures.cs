@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using MeterKnife.Interfaces.Measures;
 using MeterKnife.Scpis;
 using NKnife.Channels.Interfaces.Channels;
@@ -11,16 +12,16 @@ namespace MeterKnife.Kernel
 
         public bool StartService()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool CloseService()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public int Order { get; } = 999;
-        public string Description { get; } = "面向全局的测量数据广播服务。";
+        public string Description { get; } = "面向全局的测量数据广播服务";
 
         #endregion
 
@@ -28,14 +29,14 @@ namespace MeterKnife.Kernel
 
         public event EventHandler<MeasureEventArgs> Measured;
 
-        protected virtual void OnMeasured(MeasureEventArgs e)
+        protected virtual void OnMeasured(object e)
         {
-            Measured?.Invoke(this, e);
+            Measured?.Invoke(this, (MeasureEventArgs)e);
         }
 
-        public void AddValue(ushort number, double value, IExhibit exhibit)
+        public void AddValue(ushort number, IExhibit exhibit, double value)
         {
-            OnMeasured(new MeasureEventArgs(number, value, exhibit));
+            ThreadPool.QueueUserWorkItem(OnMeasured, new MeasureEventArgs(number, value, exhibit));
         }
 
         #endregion

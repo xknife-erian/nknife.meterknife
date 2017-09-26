@@ -83,14 +83,14 @@ namespace MeterKnife.Plots
         /// <param name="value">测量数据</param>
         public void Add(ushort number, double value)
         {
-            if (number > _SeriesList.Count)
+            if (number >= _SeriesList.Count)
                 AddSeries(number);
             //先根据测量数据调整纵轴的值的范围
             var pair = UpdateRange(value, ref _IsFirst, ref _Max, ref _Min);
             _LeftAxis.Minimum = pair.First;
             _LeftAxis.Maximum = pair.Second;
             //向数据线上添加测量数据点
-            _SeriesList[number-1].Points.Add(DateTimeAxis.CreateDataPoint(DateTime.Now, value));
+            _SeriesList[number].Points.Add(DateTimeAxis.CreateDataPoint(DateTime.Now, value));
         }
 
         /// <summary>
@@ -99,7 +99,9 @@ namespace MeterKnife.Plots
         /// <param name="number"></param>
         private void AddSeries(ushort number)
         {
-            var seriesStyle = PlotTheme.SeriesStyles[number];
+            PlotTheme.SeriesStyle seriesStyle = PlotTheme.SeriesStyles[0];
+            if (number < PlotTheme.SeriesStyles.Count - 1)
+                seriesStyle = PlotTheme.SeriesStyles[number - 1];
             var series = new LineSeries
             {
                 Color = PlotTheme.ToOxyColor(seriesStyle.Color),

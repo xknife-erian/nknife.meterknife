@@ -12,6 +12,6 @@ namespace MeterKnife.Interfaces.Measures
     {
         event EventHandler<MeasureEventArgs> Measured;
 
-        void AddValue(ushort number, double value, IExhibit exhibit);
+        void AddValue(ushort number, IExhibit exhibit, double value);
     }
 }

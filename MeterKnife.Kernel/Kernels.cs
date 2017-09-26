@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Common.Logging;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Gateways;
+using MeterKnife.Interfaces.Measures;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Kernel.Plugins;
 using NKnife.IoC;
@@ -18,6 +19,7 @@ namespace MeterKnife.Kernel
         private readonly IPluginService _PluginService;
         private readonly IGatewayService _GatewayService;
         private readonly IDatabaseService _DatabaseService;
+        private readonly IMeasureService _MeasureService;
 
         public Kernels()
         {
@@ -25,6 +27,7 @@ namespace MeterKnife.Kernel
             _PluginService = DI.Get<IPluginService>();
             _GatewayService = DI.Get<IGatewayService>();
             _DatabaseService = DI.Get<IDatabaseService>();
+            _MeasureService = DI.Get<IMeasureService>();
         }
 
         /// <summary>
@@ -45,6 +48,9 @@ namespace MeterKnife.Kernel
             displayMessage("加载Getway服务...");
             _GatewayService.StartService();
 
+            displayMessage($"加载{_MeasureService.Description}...");
+            _MeasureService.StartService();
+
             displayMessage("加载核心服务及插件完成,关闭欢迎界面.");
         }
 
@@ -56,6 +62,7 @@ namespace MeterKnife.Kernel
             _GatewayService.CloseService();
             _DatabaseService.CloseService();
             _PluginService.CloseService();
+            _MeasureService.StartService();
             _AppTrayService.CloseService();
         }
     }

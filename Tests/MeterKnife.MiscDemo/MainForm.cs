@@ -47,7 +47,11 @@ namespace MeterKnife.MiscDemo
             var pview = new PropertyGridView();
             pview.Show(_DockPanel, DockState.DockRightAutoHide);
             pview.SetObject1(view.GetMainPlotModel());
-            pview.SetObject2(view.GetMainPlotModel().Series[0]);
+            //pview.SetObject2(view.GetMainPlotModel().Series[0]);
+
+            var builder = new MeasureDataRandomBuilder();
+            builder.StartDemo();
+            pview.Closing += (s, x) => { builder.StopDemo(); };
         }
 
         private void _ThemeManagerToolStripMenuItem_Click(object sender, EventArgs e)
