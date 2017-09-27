@@ -29,7 +29,7 @@ namespace MeterKnife.ViewModels
 
         private void OnMeasured(object sender, MeasureEventArgs e)
         {
-            Plot.Add(e.Number, e.Value);
+            Plot.AddValues(e.Number, e.Value);
             OnPlotModelUpdated();
         }
 

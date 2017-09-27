@@ -26,9 +26,9 @@ namespace MeterKnife.Unittests
             {
             }
 
-            public static Pair<double, double> UpdateRangeMethod(double value, ref bool isFirst, ref double max, ref double min)
+            public static Pair<double, double> UpdateRangeMethod(double[] values, ref bool isFirst, ref double max, ref double min)
             {
-                return UpdateRange(value, ref isFirst, ref max, ref min);
+                return UpdateRange(values, ref isFirst, ref max, ref min);
             }
         }
 
@@ -37,7 +37,7 @@ namespace MeterKnife.Unittests
         {
             var isFirst = true;
             double max = 0, min = 0;
-            var pair = PlainPolyLinePlotShip.UpdateRangeMethod(1, ref isFirst, ref max, ref min);
+            var pair = PlainPolyLinePlotShip.UpdateRangeMethod(new[] {1d}, ref isFirst, ref max, ref min);
             isFirst.Should().Be(false);
             max.Should().Be(1.1F);
             min.Should().Be(0.9F);

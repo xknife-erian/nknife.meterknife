@@ -50,16 +50,9 @@
             this._NewThemeButton = new System.Windows.Forms.Button();
             this._DeleteThemeButton = new System.Windows.Forms.Button();
             this._EnableThemeButton = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this._SeriesThickness = new System.Windows.Forms.NumericUpDown();
-            this._SeriesColor = new MeterKnife.Plots.Themes.ThemeColorItem();
-            this.label10 = new System.Windows.Forms.Label();
-            this._SeriesListComboBox = new System.Windows.Forms.ComboBox();
             this._CloseButton = new System.Windows.Forms.Button();
             this._BottomGridLineGroupBox.SuspendLayout();
             this._LeftGridLineGroupBox.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._SeriesThickness)).BeginInit();
             this.SuspendLayout();
             // 
             // _BottomGridLineGroupBox
@@ -302,88 +295,13 @@
             this._EnableThemeButton.Text = "启用";
             this._EnableThemeButton.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this._SeriesThickness);
-            this.groupBox3.Controls.Add(this._SeriesColor);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Location = new System.Drawing.Point(19, 308);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(310, 122);
-            this.groupBox3.TabIndex = 29;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "数据线";
-            // 
-            // _SeriesThickness
-            // 
-            this._SeriesThickness.DecimalPlaces = 1;
-            this._SeriesThickness.Font = new System.Drawing.Font("Tahoma", 9.5F);
-            this._SeriesThickness.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this._SeriesThickness.Location = new System.Drawing.Point(196, 26);
-            this._SeriesThickness.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this._SeriesThickness.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this._SeriesThickness.Name = "_SeriesThickness";
-            this._SeriesThickness.Size = new System.Drawing.Size(91, 23);
-            this._SeriesThickness.TabIndex = 1;
-            this._SeriesThickness.Value = new decimal(new int[] {
-            18,
-            0,
-            0,
-            65536});
-            // 
-            // _SeriesColor
-            // 
-            this._SeriesColor.BackColor = System.Drawing.Color.White;
-            this._SeriesColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._SeriesColor.Color = System.Drawing.Color.White;
-            this._SeriesColor.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this._SeriesColor.Location = new System.Drawing.Point(96, 26);
-            this._SeriesColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._SeriesColor.Name = "_SeriesColor";
-            this._SeriesColor.Size = new System.Drawing.Size(80, 23);
-            this._SeriesColor.TabIndex = 0;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(22, 31);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(67, 13);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "数据线线体";
-            // 
-            // _SeriesListComboBox
-            // 
-            this._SeriesListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._SeriesListComboBox.FormattingEnabled = true;
-            this._SeriesListComboBox.Location = new System.Drawing.Point(69, 305);
-            this._SeriesListComboBox.Name = "_SeriesListComboBox";
-            this._SeriesListComboBox.Size = new System.Drawing.Size(88, 21);
-            this._SeriesListComboBox.TabIndex = 6;
-            // 
             // _CloseButton
             // 
-            this._CloseButton.Location = new System.Drawing.Point(240, 432);
+            this._CloseButton.Location = new System.Drawing.Point(240, 308);
             this._CloseButton.Name = "_CloseButton";
             this._CloseButton.Size = new System.Drawing.Size(90, 27);
             this._CloseButton.TabIndex = 30;
-            this._CloseButton.Text = "完成";
+            this._CloseButton.Text = "完成(&C)";
             this._CloseButton.UseVisualStyleBackColor = true;
             // 
             // ThemeManagerDialog
@@ -391,10 +309,8 @@
             this.AcceptButton = this._CloseButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 468);
+            this.ClientSize = new System.Drawing.Size(346, 351);
             this.Controls.Add(this._CloseButton);
-            this.Controls.Add(this._SeriesListComboBox);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this._EnableThemeButton);
             this.Controls.Add(this._DeleteThemeButton);
             this.Controls.Add(this._NewThemeButton);
@@ -420,9 +336,6 @@
             this._BottomGridLineGroupBox.PerformLayout();
             this._LeftGridLineGroupBox.ResumeLayout(false);
             this._LeftGridLineGroupBox.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._SeriesThickness)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -452,11 +365,6 @@
         private System.Windows.Forms.Button _NewThemeButton;
         private System.Windows.Forms.Button _DeleteThemeButton;
         private System.Windows.Forms.Button _EnableThemeButton;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.NumericUpDown _SeriesThickness;
-        private ThemeColorItem _SeriesColor;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox _SeriesListComboBox;
         private System.Windows.Forms.Button _CloseButton;
     }
 }

@@ -50,7 +50,7 @@ namespace MeterKnife.MiscDemo
             //pview.SetObject2(view.GetMainPlotModel().Series[0]);
 
             var builder = new MeasureDataRandomBuilder();
-            builder.StartDemo();
+            //builder.StartDemo();
             pview.Closing += (s, x) => { builder.StopDemo(); };
         }
 

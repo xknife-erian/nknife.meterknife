@@ -8,7 +8,7 @@ namespace MeterKnife.Models
     /// <summary>
     /// 图表主题，保存图表的颜色等信息。
     /// </summary>
-    public class PlotTheme
+    public partial class PlotTheme
     {
         public string Id { get; set; }
         public string Name { get; set; } = "默认主题";
@@ -38,12 +38,11 @@ namespace MeterKnife.Models
         /// </summary>
         public Color AreaBackground { get; set; } = Color.DimGray;
 
+        /*
         /// <summary>
         ///     数据线颜色
         /// </summary>
-        public List<SeriesStyle> SeriesStyles { get; set; } = new List<SeriesStyle>();
-
-        /*
+        public List<PlotSeriesStyle> SeriesStyles { get; set; } = new List<PlotSeriesStyle>();
         
         /// <summary>
         ///     顶部侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
@@ -62,38 +61,12 @@ namespace MeterKnife.Models
             return OxyColor.FromArgb(color.A, color.R, color.G, color.B);
         }
 
-        #region Overrides of Object
-
         /// <summary>返回表示当前 <see cref="T:System.Object" /> 的 <see cref="T:System.String" />。</summary>
         /// <returns>
         /// <see cref="T:System.String" />，表示当前的 <see cref="T:System.Object" />。</returns>
         public override string ToString()
         {
             return Name;
-        }
-
-        #endregion
-
-        public class SeriesStyle
-        {
-            public ushort Number { get; set; } = 1;
-            public Color Color { get; set; } = Color.Yellow;
-            /// <summary>
-            ///     数据线线径
-            /// </summary>
-            public double Thickness { get; set; } = 1.8;
-
-            #region Overrides of Object
-
-            /// <summary>返回表示当前 <see cref="T:System.Object" /> 的 <see cref="T:System.String" />。</summary>
-            /// <returns>
-            /// <see cref="T:System.String" />，表示当前的 <see cref="T:System.Object" />。</returns>
-            public override string ToString()
-            {
-                return $"{Number}# 数据线";
-            }
-
-            #endregion
         }
 
         /// <summary>

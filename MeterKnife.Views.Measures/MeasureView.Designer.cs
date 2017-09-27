@@ -38,7 +38,10 @@ namespace MeterKnife.Views.Measures
             this._PlotView = new OxyPlot.WindowsForms.PlotView();
             this._TabControl = new System.Windows.Forms.TabControl();
             this._MeasureDataPage = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this._ToolStripContainer = new System.Windows.Forms.ToolStripContainer();
+            this._DataToolStrip = new System.Windows.Forms.ToolStrip();
+            this._SetDataSeriesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._PlotToolStrip = new System.Windows.Forms.ToolStrip();
             this._OriginalToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -49,20 +52,15 @@ namespace MeterKnife.Views.Measures
             this._ValueRangeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._PlotThemeDropDownButton1 = new MeterKnife.Plots.Themes.PlotThemeDropDownButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this._DataToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this._MeasurePlotPage.SuspendLayout();
             this._TabControl.SuspendLayout();
             this._MeasureDataPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
             this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
             this._ToolStripContainer.SuspendLayout();
-            this._PlotToolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this._DataToolStrip.SuspendLayout();
+            this._PlotToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _MeasurePlotPage
@@ -73,7 +71,7 @@ namespace MeterKnife.Views.Measures
             this._MeasurePlotPage.Location = new System.Drawing.Point(4, 4);
             this._MeasurePlotPage.Name = "_MeasurePlotPage";
             this._MeasurePlotPage.Padding = new System.Windows.Forms.Padding(3);
-            this._MeasurePlotPage.Size = new System.Drawing.Size(616, 377);
+            this._MeasurePlotPage.Size = new System.Drawing.Size(616, 385);
             this._MeasurePlotPage.TabIndex = 0;
             this._MeasurePlotPage.Text = "实时测量";
             // 
@@ -84,7 +82,7 @@ namespace MeterKnife.Views.Measures
             this._PlotView.Margin = new System.Windows.Forms.Padding(1);
             this._PlotView.Name = "_PlotView";
             this._PlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this._PlotView.Size = new System.Drawing.Size(608, 369);
+            this._PlotView.Size = new System.Drawing.Size(608, 377);
             this._PlotView.TabIndex = 1;
             this._PlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this._PlotView.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
@@ -109,10 +107,20 @@ namespace MeterKnife.Views.Measures
             this._MeasureDataPage.Location = new System.Drawing.Point(4, 4);
             this._MeasureDataPage.Name = "_MeasureDataPage";
             this._MeasureDataPage.Padding = new System.Windows.Forms.Padding(3);
-            this._MeasureDataPage.Size = new System.Drawing.Size(616, 385);
+            this._MeasureDataPage.Size = new System.Drawing.Size(616, 360);
             this._MeasureDataPage.TabIndex = 1;
             this._MeasureDataPage.Text = "数据";
             this._MeasureDataPage.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(610, 354);
+            this.dataGridView1.TabIndex = 0;
             // 
             // _ToolStripContainer
             // 
@@ -133,6 +141,25 @@ namespace MeterKnife.Views.Measures
             this._ToolStripContainer.TopToolStripPanel.Controls.Add(this._PlotToolStrip);
             this._ToolStripContainer.TopToolStripPanel.Controls.Add(this._DataToolStrip);
             // 
+            // _DataToolStrip
+            // 
+            this._DataToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._DataToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._SetDataSeriesToolStripButton});
+            this._DataToolStrip.Location = new System.Drawing.Point(6, 0);
+            this._DataToolStrip.Name = "_DataToolStrip";
+            this._DataToolStrip.Size = new System.Drawing.Size(131, 25);
+            this._DataToolStrip.TabIndex = 1;
+            // 
+            // _SetDataSeriesToolStripButton
+            // 
+            this._SetDataSeriesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_SetDataSeriesToolStripButton.Image")));
+            this._SetDataSeriesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._SetDataSeriesToolStripButton.Name = "_SetDataSeriesToolStripButton";
+            this._SetDataSeriesToolStripButton.Size = new System.Drawing.Size(88, 22);
+            this._SetDataSeriesToolStripButton.Text = "设置数据线";
+            this._SetDataSeriesToolStripButton.Click += new System.EventHandler(this.SetDataSeriesButtonClick);
+            // 
             // _PlotToolStrip
             // 
             this._PlotToolStrip.Dock = System.Windows.Forms.DockStyle.None;
@@ -146,7 +173,7 @@ namespace MeterKnife.Views.Measures
             this._ValueRangeZoomToolStripButton,
             this.toolStripSeparator1,
             this._PlotThemeDropDownButton1});
-            this._PlotToolStrip.Location = new System.Drawing.Point(3, 0);
+            this._PlotToolStrip.Location = new System.Drawing.Point(138, 0);
             this._PlotToolStrip.Name = "_PlotToolStrip";
             this._PlotToolStrip.Size = new System.Drawing.Size(174, 25);
             this._PlotToolStrip.TabIndex = 0;
@@ -225,55 +252,6 @@ namespace MeterKnife.Views.Measures
             this._PlotThemeDropDownButton1.Size = new System.Drawing.Size(29, 22);
             this._PlotThemeDropDownButton1.Text = "主题";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(610, 379);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // _DataToolStrip
-            // 
-            this._DataToolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this._DataToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3});
-            this._DataToolStrip.Location = new System.Drawing.Point(177, 0);
-            this._DataToolStrip.Name = "_DataToolStrip";
-            this._DataToolStrip.Size = new System.Drawing.Size(81, 25);
-            this._DataToolStrip.TabIndex = 1;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "toolStripButton3";
-            // 
             // MeasureView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -285,16 +263,16 @@ namespace MeterKnife.Views.Measures
             this._MeasurePlotPage.ResumeLayout(false);
             this._TabControl.ResumeLayout(false);
             this._MeasureDataPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this._ToolStripContainer.ContentPanel.ResumeLayout(false);
             this._ToolStripContainer.TopToolStripPanel.ResumeLayout(false);
             this._ToolStripContainer.TopToolStripPanel.PerformLayout();
             this._ToolStripContainer.ResumeLayout(false);
             this._ToolStripContainer.PerformLayout();
-            this._PlotToolStrip.ResumeLayout(false);
-            this._PlotToolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this._DataToolStrip.ResumeLayout(false);
             this._DataToolStrip.PerformLayout();
+            this._PlotToolStrip.ResumeLayout(false);
+            this._PlotToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -317,8 +295,6 @@ namespace MeterKnife.Views.Measures
         private PlotThemeDropDownButton _PlotThemeDropDownButton1;
         private DataGridView dataGridView1;
         private ToolStrip _DataToolStrip;
-        private ToolStripButton toolStripButton1;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton toolStripButton3;
+        private ToolStripButton _SetDataSeriesToolStripButton;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using MeterKnife.Models;
 using NKnife.Base;
 using OxyPlot;
@@ -57,6 +58,8 @@ namespace MeterKnife.Plots
 
             _PlotModel.Axes.Add(_LeftAxis);
             _PlotModel.Axes.Add(_TimeAxis);
+
+            SetSeries(new PlotSeriesStyle());
         }
 
         public PlotModel GetPlotModel()
@@ -80,63 +83,70 @@ namespace MeterKnife.Plots
         /// 增加测量数据
         /// </summary>
         /// <param name="number">数据渠道编号</param>
-        /// <param name="value">测量数据</param>
-        public void Add(ushort number, double value)
+        /// <param name="values">测量数据</param>
+        public void AddValues(ushort number, params double[] values)
         {
-            if (number >= _SeriesList.Count)
-                AddSeries(number);
             //先根据测量数据调整纵轴的值的范围
-            var pair = UpdateRange(value, ref _IsFirst, ref _Max, ref _Min);
+            var pair = UpdateRange(values, ref _IsFirst, ref _Max, ref _Min);
             _LeftAxis.Minimum = pair.First;
             _LeftAxis.Maximum = pair.Second;
             //向数据线上添加测量数据点
-            _SeriesList[number].Points.Add(DateTimeAxis.CreateDataPoint(DateTime.Now, value));
+            DataPoint[] points = new DataPoint[values.Length];
+            for (int i = 0; i < values.Length; i++)
+            {
+                points[i] = DateTimeAxis.CreateDataPoint(DateTime.Now, values[i]);
+            }
+            _SeriesList[number].Points.AddRange(points);
         }
 
         /// <summary>
         /// 增加数据线
         /// </summary>
-        /// <param name="number"></param>
-        private void AddSeries(ushort number)
+        /// <param name="styles">数据线的样式</param>
+        public void SetSeries(params PlotSeriesStyle[] styles)
         {
-            PlotTheme.SeriesStyle seriesStyle = PlotTheme.SeriesStyles[0];
-            if (number < PlotTheme.SeriesStyles.Count - 1)
-                seriesStyle = PlotTheme.SeriesStyles[number - 1];
-            var series = new LineSeries
+            _SeriesList.Clear();
+            _PlotModel.Series.Clear();
+            foreach (var style in styles)
             {
-                Color = PlotTheme.ToOxyColor(seriesStyle.Color),
-                MarkerFill = PlotTheme.ToOxyColor(Color.Red),
-                MarkerStroke = PlotTheme.ToOxyColor(Color.Red),
-                StrokeThickness = seriesStyle.Thickness,
-                TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}"
-            };
-            _SeriesList.Add(series);
-            _PlotModel.Series.Add(series);
+                var series = new LineSeries
+                {
+                    Color = PlotTheme.ToOxyColor(style.Color),
+                    MarkerFill = PlotTheme.ToOxyColor(style.MarkerFillColor),
+                    MarkerStroke = PlotTheme.ToOxyColor(style.MarkerStrokeColor),
+                    StrokeThickness = style.Thickness,
+                    TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}"
+                };
+                _SeriesList.Add(series);
+                _PlotModel.Series.Add(series);
+            }
         }
 
         /// <summary>
         /// 根据当前测量值更新纵轴的显示区域
         /// </summary>
-        /// <param name="value">当前测量值</param>
+        /// <param name="values">当前测量值</param>
         /// <param name="isFirst">是否是第一个数据</param>
         /// <param name="max">纵值的最大数据</param>
         /// <param name="min">纵值的最小数据</param>
         /// <returns></returns>
-        protected static Pair<double, double> UpdateRange(double value, ref bool isFirst, ref double max, ref double min)
+        protected static Pair<double, double> UpdateRange(double[] values, ref bool isFirst, ref double max, ref double min)
         {
             if (isFirst) //当第一个数据时，做一些常规处理
             {
-                var precision = GetPrecision(value);
+                var precision = GetPrecision(values[0]);
                 var offset = GetMinPrecisionValue(precision);
-                max = value + offset;
-                min = value - offset;
+                max = values[0] + offset;
+                min = values[0] - offset;
                 isFirst = false;
                 return Pair<double, double>.Build(min, max);
             }
-            if (value > max)
-                max = value;
-            else if (value < min)
-                min = value;
+            var x = values.Max();
+            var n = values.Min();
+            if (x > max)
+                max = x;
+            else if (n < min)
+                min = n;
             var r = Math.Abs(max - min) / 8;
             return Pair<double, double>.Build(min - r, max + r);
         }

@@ -24,7 +24,6 @@ namespace MeterKnife.Kernel
         public Habited()
         {
             var pt = new PlotTheme();
-            pt.SeriesStyles.Add(new PlotTheme.SeriesStyle());
             _DefaultPlotThemes = new List<PlotTheme>(new[] {pt});
 
             _DefaultDiscovers = new Dictionary<GatewayModel, List<Instrument>>();

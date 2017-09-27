@@ -36,24 +36,24 @@ namespace MeterKnife.Plots.Themes
                 _LeftAxisGridLineMinorColor.Color = PlotTheme.LeftAxisGridLineColors.Minor;
                 _ViewBackground.Color = PlotTheme.ViewBackground;
                 _AreaBackground.Color = PlotTheme.AreaBackground;
-                foreach (var t in PlotTheme.SeriesStyles)
-                {
-                    _SeriesListComboBox.Items.Add(t);
-                }
-                if (_SeriesListComboBox.Items.Count <= 0)
-                {
-                    var item = new PlotTheme.SeriesStyle();
-                    PlotTheme.SeriesStyles.Add(item);
-                    _SeriesListComboBox.Items.Add(item);
-                }
-                _SeriesListComboBox.SelectedIndex = 0;
+//                foreach (var t in PlotTheme.SeriesStyles)
+//                {
+//                    _SeriesListComboBox.Items.AddValues(t);
+//                }
+//                if (_SeriesListComboBox.Items.Count <= 0)
+//                {
+//                    var item = new PlotTheme.PlotSeriesStyle();
+//                    PlotTheme.SeriesStyles.AddValues(item);
+//                    _SeriesListComboBox.Items.AddValues(item);
+//                }
+//                _SeriesListComboBox.SelectedIndex = 0;
             };
-            _SeriesListComboBox.SelectedIndexChanged += (s, e) =>
-            {
-                var seriesStyle = (PlotTheme.SeriesStyle) _SeriesListComboBox.SelectedItem;
-                _SeriesColor.Color = seriesStyle.Color;
-                _SeriesThickness.Value = (decimal) seriesStyle.Thickness;
-            };
+//            _SeriesListComboBox.SelectedIndexChanged += (s, e) =>
+//            {
+//                var seriesStyle = (PlotTheme.PlotSeriesStyle) _SeriesListComboBox.SelectedItem;
+//                _SeriesColor.Color = seriesStyle.Color;
+//                _SeriesThickness.Value = (decimal) seriesStyle.Thickness;
+//            };
             _CloseButton.Click += (s, e) => { Close(); };
         }
 

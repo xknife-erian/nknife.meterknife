@@ -49,5 +49,10 @@ namespace MeterKnife.Views.Measures
         {
             _ViewModel.SetProvider(extenderProvider);
         }
+
+        private void SetDataSeriesButtonClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

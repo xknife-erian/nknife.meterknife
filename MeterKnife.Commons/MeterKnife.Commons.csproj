@@ -134,6 +134,7 @@
     <Compile Include="Models\Exhibits\ExhibitInfomation.cs" />
     <Compile Include="Models\Exhibits\ExhibitItem.cs" />
     <Compile Include="Models\Instrument.cs" />
+    <Compile Include="Models\PlotSeriesStyle.cs" />
     <Compile Include="Models\PlotTheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scpis\IScpiFileVersionProcessor.cs" />
