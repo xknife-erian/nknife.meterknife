@@ -80,6 +80,12 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Dialogs\DataSeriesSettingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DataSeriesSettingDialog.Designer.cs">
+      <DependentUpon>DataSeriesSettingDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\MeasureCaseSelectorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\DataSeriesSettingDialog.resx">
+      <DependentUpon>DataSeriesSettingDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\MeasureCaseSelectorDialog.resx">
       <DependentUpon>MeasureCaseSelectorDialog.cs</DependentUpon>
     </EmbeddedResource>
