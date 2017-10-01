@@ -84,7 +84,7 @@ namespace MeterKnife.Plots
         /// </summary>
         /// <param name="number">数据渠道编号</param>
         /// <param name="values">测量数据</param>
-        public void AddValues(ushort number, params double[] values)
+        public void AddValues(int number, params double[] values)
         {
             //先根据测量数据调整纵轴的值的范围
             var pair = UpdateRange(values, ref _IsFirst, ref _Max, ref _Min);

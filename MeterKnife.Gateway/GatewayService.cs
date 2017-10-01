@@ -87,7 +87,7 @@ namespace MeterKnife.Gateway
         }
 
         public int Order { get; } = 10;
-        public string Description { get; } = "";
+        public string Description { get; } = "全局的测量途径服务";
 
         #endregion
     }

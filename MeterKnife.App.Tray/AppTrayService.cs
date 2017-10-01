@@ -11,6 +11,9 @@ using NKnife.IoC;
 
 namespace MeterKnife.App.Tray
 {
+    /// <summary>
+    /// 本应用程序实现的程序托盘的功能
+    /// </summary>
     public class AppTrayService : IAppTrayService
     {
         /// <summary>

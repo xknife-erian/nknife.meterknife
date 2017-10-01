@@ -35,17 +35,17 @@ namespace MeterKnife.Kernel
         /// </summary>       
         public void LoadCoreService(Action<string> displayMessage)
         {
-            displayMessage("加载程序托盘服务...");
+            displayMessage($"加载{_AppTrayService.Description}...");
             _AppTrayService.StartService();
 
-            displayMessage("加载插件服务...");
+            displayMessage($"加载{_PluginService.Description}...");
             _PluginService.StartService();
             displayMessage("注册所有插件完成...");
 
-            displayMessage("加载数据库服务...");
+            displayMessage($"加载{_DatabaseService.Description}...");
             _DatabaseService.StartService();
 
-            displayMessage("加载Getway服务...");
+            displayMessage($"加载{_GatewayService.Description}...");
             _GatewayService.StartService();
 
             displayMessage($"加载{_MeasureService.Description}...");

@@ -45,6 +45,11 @@ namespace MeterKnife.Views.Measures
             }
         }
 
+        public void AddDataToolStripItem(ToolStripMenuItem item)
+        {
+            _DataToolStrip.Items.Add(item);
+        }
+
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
             var dialog = new DataSeriesSettingDialog();

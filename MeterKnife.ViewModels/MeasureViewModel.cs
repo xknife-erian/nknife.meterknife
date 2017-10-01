@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using MeterKnife.Base;
 using MeterKnife.Base.Viewmodels;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Measures;
 using MeterKnife.Plots;
+using NKnife.Channels.Interfaces.Channels;
 using NKnife.IoC;
 using NKnife.Utility;
 
@@ -14,9 +16,8 @@ namespace MeterKnife.ViewModels
     {
         public MeasureViewModel()
         {
-            var hd = DI.Get<IHabited>();
-            var themes = hd.PlotThemes;
-            var usingTheme = hd.UsingTheme;
+            var themes = Habited.PlotThemes;
+            var usingTheme = Habited.UsingTheme;
             foreach (var plotTheme in themes)
             {
                 if (plotTheme.Name == usingTheme)
@@ -28,13 +29,20 @@ namespace MeterKnife.ViewModels
             measureService.Measured += OnMeasured;
         }
 
-        public List<int> SeriesNumbers { get; set; } = new List<int>();
+        private List<ExhibitBase> _Exhibits;
+
+        public List<ExhibitBase> Exhibits
+        {
+            get => _Exhibits;
+            set { Set(() => Exhibits, ref _Exhibits, value); }
+        }
 
         private void OnMeasured(object sender, MeasureEventArgs e)
         {
-            if (SeriesNumbers.Contains(e.Number))
+            var index = _Exhibits.IndexOf(e.Exhibit);
+            if (index >= 0)
             {
-                Plot.AddValues(e.Number, e.Value);
+                Plot.AddValues(index, e.Value);
                 OnPlotModelUpdated();
             }
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using MeterKnife.Base;
 using MeterKnife.Scpis;
 using NKnife.Channels.Interfaces.Channels;
 
@@ -6,14 +7,12 @@ namespace MeterKnife.Interfaces.Measures
 {
     public class MeasureEventArgs : EventArgs
     {
-        public MeasureEventArgs(ushort number, double value, IExhibit exhibit)
+        public MeasureEventArgs(ExhibitBase exhibit, double value)
         {
-            Number = number;
             Value = value;
             Exhibit = exhibit;
         }
-        public ushort Number { get; set; }
         public double Value { get; set; }
-        public IExhibit Exhibit { get; set; }
+        public ExhibitBase Exhibit { get; set; }
     }
 }

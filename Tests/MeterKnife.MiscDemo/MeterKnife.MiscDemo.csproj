@@ -95,6 +95,8 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MeasureDataRandomBuilder.cs" />
+    <Compile Include="Mocks\AbcExhibit.cs" />
+    <Compile Include="Mocks\AmnExhibit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyGridView.cs">

@@ -65,7 +65,7 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Measures.cs" />
+    <Compile Include="Measures\MeasureService.cs" />
     <Compile Include="Habited.cs" />
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="Kernels.cs" />

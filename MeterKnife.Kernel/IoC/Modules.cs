@@ -5,6 +5,7 @@ using System.Text;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Measures;
 using MeterKnife.Interfaces.Plugins;
+using MeterKnife.Kernel.Measures;
 using MeterKnife.Kernel.Plugins;
 using Ninject;
 using Ninject.Modules;
@@ -22,7 +23,7 @@ namespace MeterKnife.Kernel.IoC
             Bind<IHabited>().To<Habited>().InSingletonScope();
 
             Bind<IPluginService>().To<PluginsService>().InSingletonScope();
-            Bind<IMeasureService>().To<Measures>().InSingletonScope();
+            Bind<IMeasureService>().To<MeasureService>().InSingletonScope();
         }
 
         #endregion

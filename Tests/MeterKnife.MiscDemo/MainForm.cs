@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using MeterKnife.Interfaces.Measures;
+using MeterKnife.MiscDemo.Mocks;
 using MeterKnife.Models;
 using MeterKnife.Plots.Themes;
 using MeterKnife.Plugins.ToolsMenu;
@@ -41,16 +43,31 @@ namespace MeterKnife.MiscDemo
 
         private void _MainPlotTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MeasureView view = new MeasureView();
-            view.Show(_DockPanel, DockState.Document);
+            //先向测量服务中添加模拟的被测物
+            IMeasureService measureService = DI.Get<IMeasureService>();
+            measureService.Exhibits.Clear();
+            for (int i = 0; i < 99; i++)
+            {
+                var exhibit = new AbcExhibit();
+                measureService.Exhibits.Add(exhibit);
+            }
+
+            var measureView = new MeasureView();
+            measureView.Show(_DockPanel, DockState.Document);
+
+            var startButton = new ToolStripMenuItem("Demo数据");
+            startButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            startButton.Margin = new Padding(0, 3, 0, 2);
+            startButton.Click += (s, x) =>
+            {
+                var builder = new MeasureDataRandomBuilder(measureView);
+                builder.StartDemo();
+            };
+            measureView.AddDataToolStripItem(startButton);
 
             var pview = new PropertyGridView();
             pview.Show(_DockPanel, DockState.DockRightAutoHide);
-            pview.SetObject1(view.GetMainPlotModel());
-
-            var builder = new MeasureDataRandomBuilder();
-            //builder.StartDemo();
-            pview.Closing += (s, x) => { builder.StopDemo(); };
+            pview.SetObject1(measureView.GetMainPlotModel());
         }
 
         private void _ThemeManagerToolStripMenuItem_Click(object sender, EventArgs e)

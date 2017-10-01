@@ -85,6 +85,7 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
+    <Compile Include="Base\ExhibitBase.cs" />
     <Compile Include="Base\GatewayDiscoverBase.cs" />
     <Compile Include="Base\Viewmodels\GatewayViewModelBase.cs" />
     <Compile Include="Base\OrderToolStripMenuItem.cs">
