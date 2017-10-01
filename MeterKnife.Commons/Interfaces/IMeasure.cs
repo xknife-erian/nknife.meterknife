@@ -1,22 +1,22 @@
 ﻿using System;
 using MeterKnife.Events;
 
-namespace MeterKnife.Interfaces.Plugins
+namespace MeterKnife.Interfaces
 {
     /// <summary>
     ///     “测量”功能的基接口，描述“测量”功能的核心函数与事件。
     /// </summary>
-    public interface IMeasureExtender : IExtender
+    public interface IMeasure
     {
         /// <summary>
         ///     当采集到一个数据时
         /// </summary>
-        event EventHandler<ExhibitDataCollectedEventArgs> AfterDataCollected;
+        event EventHandler<ExhibitDataMeasuredEventArgs> AfterDataCollected;
 
         /// <summary>
         ///     当测量即将开始时
         /// </summary>
-        event EventHandler<EventArgs> MeasureStarting;
+        event EventHandler MeasureStarting;
 
         /// <summary>
         ///     测量启动
@@ -26,12 +26,12 @@ namespace MeterKnife.Interfaces.Plugins
         /// <summary>
         ///     当测量开始后
         /// </summary>
-        event EventHandler<EventArgs> MeasureStarted;
+        event EventHandler MeasureStarted;
 
         /// <summary>
         ///     当测量即将暂停时
         /// </summary>
-        event EventHandler<EventArgs> MeasurePauseing;
+        event EventHandler MeasurePauseing;
 
         /// <summary>
         ///     测量暂停
@@ -41,12 +41,12 @@ namespace MeterKnife.Interfaces.Plugins
         /// <summary>
         ///     当测量暂停后
         /// </summary>
-        event EventHandler<EventArgs> MeasurePauseed;
+        event EventHandler MeasurePauseed;
 
         /// <summary>
         ///     当测量即将停止时
         /// </summary>
-        event EventHandler<EventArgs> MeasureStoping;
+        event EventHandler MeasureStoping;
 
         /// <summary>
         ///     测量结束
@@ -56,6 +56,6 @@ namespace MeterKnife.Interfaces.Plugins
         /// <summary>
         ///     当测量停止后
         /// </summary>
-        event EventHandler<EventArgs> MeasureStoped;
+        event EventHandler MeasureStoped;
     }
 }

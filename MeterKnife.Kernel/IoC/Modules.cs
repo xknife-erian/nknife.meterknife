@@ -21,7 +21,6 @@ namespace MeterKnife.Kernel.IoC
             Bind<IKernels>().To<Kernels>().InSingletonScope();
             Bind<IHabited>().To<Habited>().InSingletonScope();
 
-            Bind<IExtenderProvider>().To<ExtenderProvider>();
             Bind<IPluginService>().To<PluginsService>().InSingletonScope();
             Bind<IMeasureService>().To<Measures>().InSingletonScope();
         }

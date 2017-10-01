@@ -43,15 +43,6 @@ namespace MeterKnife.Plugins.FileMenu
         /// </summary>
         public override PluginDetail Detail { get; } = new PluginDetailKnife();
 
-
-        /// <summary>
-        ///     向扩展模组注册核心扩展供给器。
-        /// </summary>
-        protected override bool OnProviderRegistered()
-        {
-            return true;
-        }
-
         /// <summary>
         ///     从扩展模组回收核心扩展供给器。
         /// </summary>

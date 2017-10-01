@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using MeterKnife.Base.Viewmodels;
 using MeterKnife.Interfaces;
@@ -27,10 +28,15 @@ namespace MeterKnife.ViewModels
             measureService.Measured += OnMeasured;
         }
 
+        public List<int> SeriesNumbers { get; set; } = new List<int>();
+
         private void OnMeasured(object sender, MeasureEventArgs e)
         {
-            Plot.AddValues(e.Number, e.Value);
-            OnPlotModelUpdated();
+            if (SeriesNumbers.Contains(e.Number))
+            {
+                Plot.AddValues(e.Number, e.Value);
+                OnPlotModelUpdated();
+            }
         }
 
         public PlainPolyLinePlot Plot { get; }

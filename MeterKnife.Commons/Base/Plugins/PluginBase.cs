@@ -7,7 +7,6 @@ namespace MeterKnife.Base.Plugins
     {
         protected readonly OrderToolStripMenuItem _StripItem = new OrderToolStripMenuItem();
         protected PluginViewComponent _ViewComponent;
-        protected IExtenderProvider _ExtenderProvider;
 
         #region Implementation of IPlugIn
 
@@ -30,21 +29,6 @@ namespace MeterKnife.Base.Plugins
             _ViewComponent = component;
             _ViewComponent.StripItemCollection.Add(_StripItem);
         }
-
-        /// <summary>
-        ///     向扩展模组注册核心扩展供给器。
-        /// </summary>
-        /// <param name="provider">核心扩展供给器</param>
-        public virtual bool Register(ref IExtenderProvider provider)
-        {
-            _ExtenderProvider = provider;
-            return OnProviderRegistered();
-        }
-
-        /// <summary>
-        ///     向扩展模组注册核心扩展供给器。
-        /// </summary>
-        protected abstract bool OnProviderRegistered();
 
         /// <summary>
         ///     从扩展模组回收核心扩展供给器。

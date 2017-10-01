@@ -21,7 +21,6 @@ namespace MeterKnife.Plugins.FileMenu
             _StripItem.Click += (s, e) =>
             {
                 var view = new InstrumentsDiscoveryView();
-                view.SetProvider(_ExtenderProvider);
                 ShowAtDockPanel(view);
             };
         }
@@ -37,14 +36,6 @@ namespace MeterKnife.Plugins.FileMenu
         ///     插件的详细描述
         /// </summary>
         public override PluginDetail Detail { get; } = new PluginDetailKnife();
-
-        /// <summary>
-        ///     向扩展模组注册核心扩展供给器。
-        /// </summary>
-        protected override bool OnProviderRegistered()
-        {
-            return true;
-        }
 
         /// <summary>
         ///     从扩展模组回收核心扩展供给器。

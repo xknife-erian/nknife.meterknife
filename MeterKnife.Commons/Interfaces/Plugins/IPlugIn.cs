@@ -24,12 +24,6 @@ namespace MeterKnife.Interfaces.Plugins
         void BindViewComponent(PluginViewComponent component);
 
         /// <summary>
-        ///     向扩展模组注册核心扩展供给器。
-        /// </summary>
-        /// <param name="provider">核心扩展供给器</param>
-        bool Register(ref IExtenderProvider provider);
-
-        /// <summary>
         ///     从扩展模组回收核心扩展供给器。
         /// </summary>
         bool UnRegister();

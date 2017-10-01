@@ -45,14 +45,10 @@ namespace MeterKnife.Views.Measures
             }
         }
 
-        public void SetProvider(IExtenderProvider extenderProvider)
-        {
-            _ViewModel.SetProvider(extenderProvider);
-        }
-
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
-
+            var dialog = new DataSeriesSettingDialog();
+            dialog.ShowDialog(this);
         }
     }
 }

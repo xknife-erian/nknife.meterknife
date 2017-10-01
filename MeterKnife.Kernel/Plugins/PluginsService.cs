@@ -45,15 +45,13 @@ namespace MeterKnife.Kernel.Plugins
 
         public void RegistPlugIns(params IPlugIn[] plugIns)
         {
-            var extenderProvider = DI.Get<IExtenderProvider>();
             foreach (IPlugIn plugIn in plugIns)
             {
                 try
                 {
                     var pvc = _DropFunction[plugIn.PluginStyle];
                     plugIn.BindViewComponent(pvc);
-                    plugIn.Register(ref extenderProvider);
-                }
+                  }
                 catch (Exception e)
                 {
                     _logger.Error($"注册插件异常：{e.Message}", e);

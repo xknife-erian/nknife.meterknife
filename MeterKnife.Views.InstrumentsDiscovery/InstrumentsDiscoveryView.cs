@@ -27,11 +27,6 @@ namespace MeterKnife.Views.InstrumentsDiscovery
             }
         }
 
-        public void SetProvider(IExtenderProvider extenderProvider)
-        {
-            _ViewModel.SetProvider(extenderProvider);
-        }
-
         private void ViewModelPropertiesChangedManager()
         {
             _ViewModel.PropertyChanged += (s, e) =>

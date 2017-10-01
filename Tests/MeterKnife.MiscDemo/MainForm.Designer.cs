@@ -66,13 +66,15 @@
             this.plot测试ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._MainPlotTestToolStripMenuItem});
             this.plot测试ToolStripMenuItem.Name = "plot测试ToolStripMenuItem";
+            this.plot测试ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.plot测试ToolStripMenuItem.Size = new System.Drawing.Size(48, 21);
             this.plot测试ToolStripMenuItem.Text = "Plots";
             // 
             // _MainPlotTestToolStripMenuItem
             // 
             this._MainPlotTestToolStripMenuItem.Name = "_MainPlotTestToolStripMenuItem";
-            this._MainPlotTestToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this._MainPlotTestToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this._MainPlotTestToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this._MainPlotTestToolStripMenuItem.Text = "主折线图测试";
             this._MainPlotTestToolStripMenuItem.Click += new System.EventHandler(this._MainPlotTestToolStripMenuItem_Click);
             // 
@@ -124,8 +126,7 @@
             // _InstrumentsDiscoveryToolStripMenuItem
             // 
             this._InstrumentsDiscoveryToolStripMenuItem.Name = "_InstrumentsDiscoveryToolStripMenuItem";
-            this._InstrumentsDiscoveryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this._InstrumentsDiscoveryToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this._InstrumentsDiscoveryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._InstrumentsDiscoveryToolStripMenuItem.Text = "仪器管理窗口";
             this._InstrumentsDiscoveryToolStripMenuItem.Click += new System.EventHandler(this._InstrumentsDiscoveryToolStripMenuItem_Click);
             // 

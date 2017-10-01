@@ -3,11 +3,11 @@ using MeterKnife.Models.Exhibits;
 
 namespace MeterKnife.Events
 {
-    public class ExhibitDataCollectedEventArgs : EventArgs
+    public class ExhibitDataMeasuredEventArgs : EventArgs
     {
         public ExhibitData<double> ExhibitData { get; set; }
 
-        public ExhibitDataCollectedEventArgs(ExhibitData<double> data)
+        public ExhibitDataMeasuredEventArgs(ExhibitData<double> data)
         {
             ExhibitData = data;
         }

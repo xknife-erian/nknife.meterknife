@@ -104,7 +104,7 @@
     <Compile Include="Interfaces\Datas\IPageable.cs" />
     <Compile Include="Interfaces\Datas\IPagingAndSortingRepository.cs" />
     <Compile Include="Interfaces\Datas\IRepository.cs" />
-    <Compile Include="Events\ExhibitDataCollectedEventArgs.cs" />
+    <Compile Include="Events\ExhibitDataMeasuredEventArgs.cs" />
     <Compile Include="Interfaces\Gateways\GatewayModel.cs" />
     <Compile Include="Interfaces\Gateways\InstrumentCollectionChangedEventArgs.cs" />
     <Compile Include="Interfaces\Gateways\InstrumentConnectionState.cs" />
@@ -118,14 +118,10 @@
     <Compile Include="Interfaces\IWorkbench.cs" />
     <Compile Include="Interfaces\Measures\MeasureEventArgs.cs" />
     <Compile Include="Interfaces\Plugins\IDropFunctionManager.cs" />
-    <Compile Include="Interfaces\Plugins\IExtender.cs" />
     <Compile Include="Base\Plugins\PluginDetail.cs" />
     <Compile Include="Base\Plugins\PluginStyle.cs" />
-    <Compile Include="Interfaces\Plugins\IExtenderProvider.cs" />
     <Compile Include="Interfaces\Plugins\IPluginService.cs" />
-    <Compile Include="Interfaces\Plugins\IDataExtender.cs" />
-    <Compile Include="Interfaces\Plugins\IMeasureExtender.cs" />
-    <Compile Include="Interfaces\Plugins\IFuctionExtender.cs" />
+    <Compile Include="Interfaces\IMeasure.cs" />
     <Compile Include="Interfaces\Plugins\IPlugIn.cs" />
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="Models\Device.cs" />
