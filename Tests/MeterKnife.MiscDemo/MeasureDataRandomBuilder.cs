@@ -1,52 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Windows.Forms;
-using MeterKnife.Base;
 using MeterKnife.Interfaces.Measures;
+using MeterKnife.Views.Measures;
 using NKnife.IoC;
 using NKnife.Utility;
 
 namespace MeterKnife.MiscDemo
 {
-    class MeasureDataRandomBuilder
+    internal class MeasureDataRandomBuilder
     {
-        private readonly UtilityRandom _Rand = new UtilityRandom();
         private readonly IMeasureService _MeasureService = DI.Get<IMeasureService>();
+        private readonly UtilityRandom _Rand = new UtilityRandom();
         private Thread _DemoThread;
+
+        private readonly MeasureView _MeasureViewForm;
 
         private bool _OnDemo;
 
-        public MeasureDataRandomBuilder(Form form)
+        public MeasureDataRandomBuilder(MeasureView form)
         {
+            _MeasureViewForm = form;
             form.Closing += (s, x) => { StopDemo(); };
         }
 
         public void StartDemo()
         {
-            _Exhibits.Clear();
+            var exhibits = _MeasureViewForm.ViewModel.Exhibits;
+            var index = exhibits.Count - 1;
 
-            _DemoThread = new Thread(() =>
+            if (index >= 0)
             {
-                _OnDemo = true;
-                var head = 9;//_Rand.Next(9, 10);
-                while (_OnDemo)
+                _DemoThread = new Thread(() =>
                 {
-                    for (ushort i = 0; i < 8; i++)
-                    {
-                        var tail = _Rand.Next(0, 99999);
-                        var v = double.Parse($"{head}.99{tail}");
-                        _MeasureService.AddValue(null, v);
-                        Thread.Sleep(200);
-                    }
-                }
-            });
-            _DemoThread.Start();
+                    _OnDemo = true;
+                    var head = 9; //_Rand.Next(9, 10);
+                    while (_OnDemo)
+                        for (ushort i = 0; i < index; i++)
+                        {
+                            var tail = _Rand.Next(0, 99999);
+                            var v = double.Parse($"{head}.99{tail}");
+                            _MeasureService.AddValue(exhibits[i], v);
+                            Thread.Sleep(200);
+                        }
+                });
+                _DemoThread.Start();
+            }
+            else
+            {
+                MessageBox.Show("无被采集物，Demo结束。");
+            }
         }
 
-        private List<ExhibitBase> _Exhibits = new List<ExhibitBase>();
 
         public void StopDemo()
         {

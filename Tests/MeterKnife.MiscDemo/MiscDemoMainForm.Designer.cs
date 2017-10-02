@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.MiscDemo
 {
-    partial class MainForm
+    partial class MiscDemoMainForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MiscDemoMainForm));
             this._MenuStrip = new System.Windows.Forms.MenuStrip();
             this.plot测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainPlotTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -161,7 +161,7 @@
             this._TipStatusLabel.Size = new System.Drawing.Size(26, 17);
             this._TipStatusLabel.Text = "......";
             // 
-            // MainForm
+            // MiscDemoMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -172,7 +172,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this._MenuStrip;
             this.MinimumSize = new System.Drawing.Size(120, 148);
-            this.Name = "MainForm";
+            this.Name = "MiscDemoMainForm";
             this.Text = "MeterKnife Misc Demo Form";
             this._MenuStrip.ResumeLayout(false);
             this._MenuStrip.PerformLayout();

@@ -26,6 +26,8 @@ namespace MeterKnife.Views.Measures
             _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(0.7); };
         }
 
+        public MeasureViewModel ViewModel => _ViewModel;
+
         public PlotModel GetMainPlotModel()
         {
             return _PlotView.Model;
@@ -52,7 +54,7 @@ namespace MeterKnife.Views.Measures
 
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
-            var dialog = new DataSeriesSettingDialog();
+            var dialog = new DataSeriesSettingDialog(_ViewModel);
             dialog.ShowDialog(this);
         }
     }

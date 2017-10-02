@@ -34,7 +34,7 @@ namespace MeterKnife.Kernel.Measures
         /// <summary>
         ///     被测量物的列表
         /// </summary>
-        public List<ExhibitBase> Exhibits { get; set; }
+        public List<ExhibitBase> Exhibits { get; set; } = new List<ExhibitBase>(1);
 
         /// <summary>
         ///     当测量指令采集到数据时发生。

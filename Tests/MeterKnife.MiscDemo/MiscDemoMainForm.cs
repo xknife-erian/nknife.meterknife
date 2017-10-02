@@ -19,12 +19,12 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.MiscDemo
 {
-    public partial class MainForm : SimpleForm
+    public partial class MiscDemoMainForm : SimpleForm
     {
         private readonly DockPanel _DockPanel = new DockPanel();
         private readonly UtilityRandom _Random = new UtilityRandom();
 
-        public MainForm()
+        public MiscDemoMainForm()
         {
             InitializeComponent();
             InitializeDockPanel();

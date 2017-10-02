@@ -29,12 +29,19 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this._ExhibitsComboBox = new System.Windows.Forms.ComboBox();
+            this._LineStyleComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this._ThicknessNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.themeColorItem1 = new MeterKnife.Plots.Themes.ThemeColorItem();
@@ -45,14 +52,7 @@
             this.horizontalLine1 = new NKnife.ControlKnife.HorizontalLine();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ThicknessNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // listView1
@@ -72,6 +72,41 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 24;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "数据名称";
+            this.columnHeader2.Width = 110;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "类型";
+            this.columnHeader3.Width = 65;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "线宽";
+            this.columnHeader4.Width = 65;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "线颜色";
+            this.columnHeader5.Width = 50;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "标记框";
+            this.columnHeader6.Width = 50;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "标记体";
+            this.columnHeader7.Width = 50;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(354, 305);
@@ -81,21 +116,23 @@
             this.button1.Text = "确定(&C)";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // _ExhibitsComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(14, 31);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
+            this._ExhibitsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._ExhibitsComboBox.FormattingEnabled = true;
+            this._ExhibitsComboBox.Location = new System.Drawing.Point(14, 31);
+            this._ExhibitsComboBox.Name = "_ExhibitsComboBox";
+            this._ExhibitsComboBox.Size = new System.Drawing.Size(121, 21);
+            this._ExhibitsComboBox.TabIndex = 2;
             // 
-            // comboBox2
+            // _LineStyleComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(151, 31);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(63, 21);
-            this.comboBox2.TabIndex = 3;
+            this._LineStyleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._LineStyleComboBox.FormattingEnabled = true;
+            this._LineStyleComboBox.Location = new System.Drawing.Point(151, 31);
+            this._LineStyleComboBox.Name = "_LineStyleComboBox";
+            this._LineStyleComboBox.Size = new System.Drawing.Size(63, 21);
+            this._LineStyleComboBox.TabIndex = 3;
             // 
             // label1
             // 
@@ -115,12 +152,33 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "类型";
             // 
-            // numericUpDown1
+            // _ThicknessNumericUpDown
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(219, 31);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(56, 21);
-            this.numericUpDown1.TabIndex = 8;
+            this._ThicknessNumericUpDown.DecimalPlaces = 1;
+            this._ThicknessNumericUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this._ThicknessNumericUpDown.Location = new System.Drawing.Point(219, 31);
+            this._ThicknessNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this._ThicknessNumericUpDown.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this._ThicknessNumericUpDown.Name = "_ThicknessNumericUpDown";
+            this._ThicknessNumericUpDown.Size = new System.Drawing.Size(56, 21);
+            this._ThicknessNumericUpDown.TabIndex = 8;
+            this._ThicknessNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label3
             // 
@@ -226,41 +284,6 @@
             this.button3.Text = "添加";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "";
-            this.columnHeader1.Width = 24;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "数据名称";
-            this.columnHeader2.Width = 110;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "类型";
-            this.columnHeader3.Width = 65;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "线宽";
-            this.columnHeader4.Width = 65;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "线颜色";
-            this.columnHeader5.Width = 50;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "标记框";
-            this.columnHeader6.Width = 50;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "标记体";
-            this.columnHeader7.Width = 50;
-            // 
             // DataSeriesSettingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,11 +299,11 @@
             this.Controls.Add(this.themeColorItem1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this._ThicknessNumericUpDown);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this._LineStyleComboBox);
+            this.Controls.Add(this._ExhibitsComboBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listView1);
             this.MaximizeBox = false;
@@ -289,7 +312,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "数据线选择";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ThicknessNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,11 +322,11 @@
 
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox _ExhibitsComboBox;
+        private System.Windows.Forms.ComboBox _LineStyleComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown _ThicknessNumericUpDown;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private Plots.Themes.ThemeColorItem themeColorItem1;

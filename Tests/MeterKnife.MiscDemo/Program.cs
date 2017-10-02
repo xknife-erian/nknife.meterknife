@@ -19,7 +19,7 @@ namespace MeterKnife.MiscDemo
             DI.Initialize();
             var logger = LogManager.GetLogger<Application>();
             logger.Info("开始Demo....");
-            Application.Run(new MainForm());
+            Application.Run(new MiscDemoMainForm());
         }
     }
 }

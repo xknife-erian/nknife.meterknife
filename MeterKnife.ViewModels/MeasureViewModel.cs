@@ -29,7 +29,7 @@ namespace MeterKnife.ViewModels
             measureService.Measured += OnMeasured;
         }
 
-        private List<ExhibitBase> _Exhibits;
+        private List<ExhibitBase> _Exhibits = new List<ExhibitBase>(1);
 
         public List<ExhibitBase> Exhibits
         {
