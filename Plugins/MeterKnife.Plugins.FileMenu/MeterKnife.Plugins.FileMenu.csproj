@@ -85,13 +85,9 @@
       <Project>{8b62166a-bcb6-434d-91a8-62bcfc26d452}</Project>
       <Name>MeterKnife.Commons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MeterKnife.Views.InstrumentsDiscovery\MeterKnife.Views.InstrumentsDiscovery.csproj">
-      <Project>{bf31ca09-666f-45f8-955b-c33d0de8d914}</Project>
-      <Name>MeterKnife.Views.InstrumentsDiscovery</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\MeterKnife.Views.Measures\MeterKnife.Views.Measures.csproj">
-      <Project>{c7118fc6-c829-4620-a472-5df9afe81e2c}</Project>
-      <Name>MeterKnife.Views.Measures</Name>
+    <ProjectReference Include="..\..\MeterKnife.Views\MeterKnife.Views.csproj">
+      <Project>{58446AA7-0041-46D1-A654-61660B9A00D5}</Project>
+      <Name>MeterKnife.Views</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

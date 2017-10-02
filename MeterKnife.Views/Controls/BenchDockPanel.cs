@@ -1,6 +1,6 @@
 ﻿using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Views
+namespace MeterKnife.Views.Controls
 {
     public class BenchDockPanel : DockPanel
     {

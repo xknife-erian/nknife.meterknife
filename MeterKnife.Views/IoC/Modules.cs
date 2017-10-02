@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Plugins;
+using MeterKnife.Views.Controls;
 using MeterKnife.Views.Menus;
 using Ninject.Modules;
 using NKnife.Interface;

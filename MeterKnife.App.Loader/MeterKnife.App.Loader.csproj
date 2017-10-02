@@ -134,10 +134,6 @@
       <Project>{0b2cb4c1-2373-469c-b4bb-b6d810f7a151}</Project>
       <Name>MeterKnife.Plots</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Views.InstrumentsDiscovery\MeterKnife.Views.InstrumentsDiscovery.csproj">
-      <Project>{bf31ca09-666f-45f8-955b-c33d0de8d914}</Project>
-      <Name>MeterKnife.Views.InstrumentsDiscovery</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Plugins\MeterKnife.Plugins.FileMenu\MeterKnife.Plugins.FileMenu.csproj">
       <Project>{f21aad20-3f81-4fa0-b9d5-63d8dcbc6e52}</Project>
       <Name>MeterKnife.Plugins.FileMenu</Name>
@@ -177,10 +173,6 @@
     <ProjectReference Include="..\MeterKnife.ViewModels\MeterKnife.ViewModels.csproj">
       <Project>{a67f283f-ddbb-466d-9960-ed88ef553894}</Project>
       <Name>MeterKnife.ViewModels</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Views.Measures\MeterKnife.Views.Measures.csproj">
-      <Project>{c7118fc6-c829-4620-a472-5df9afe81e2c}</Project>
-      <Name>MeterKnife.Views.Measures</Name>
     </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Views\MeterKnife.Views.csproj">
       <Project>{58446aa7-0041-46d1-a654-61660b9a00d5}</Project>

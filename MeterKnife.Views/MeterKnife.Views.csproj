@@ -50,11 +50,17 @@
     <Reference Include="NKnife, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.17.5.4.830\lib\net40\NKnife.dll</HintPath>
     </Reference>
+    <Reference Include="NKnife.Channels, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.Channels.17.5.4.830\lib\net40\NKnife.Channels.dll</HintPath>
+    </Reference>
     <Reference Include="NKnife.ControlKnife, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.ControlKnife.17.5.4.830\lib\net40\NKnife.ControlKnife.dll</HintPath>
     </Reference>
     <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Core.2.0.0-unstable0956\lib\net40\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.WindowsForms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=245eacd6b5d2d338, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.WindowsForms.2.0.0-unstable0956\lib\net40\OxyPlot.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -80,11 +86,67 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="BenchDockPanel.cs">
+    <Compile Include="Controls\BenchDockPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DropFunctionManager.cs" />
+    <Compile Include="Controls\DatasListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DatasListPanel.Designer.cs">
+      <DependentUpon>DatasListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Instruments\CellClickEventArgs.cs" />
+    <Compile Include="Controls\Instruments\HeadClickEventArgs.cs" />
+    <Compile Include="Controls\Instruments\InstrumentCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Instruments\InstrumentCell.Designer.cs">
+      <DependentUpon>InstrumentCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Instruments\InstrumentsListHead.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Instruments\InstrumentsListHead.Designer.cs">
+      <DependentUpon>InstrumentsListHead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Instruments\InstrumentsListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Instruments\InstrumentsListPanel.Designer.cs">
+      <DependentUpon>InstrumentsListPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstrumentsDiscovery\InstrumentsDiscoveryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstrumentsDiscovery\InstrumentsDiscoveryView.Designer.cs">
+      <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
+    </Compile>
     <Compile Include="IoC\Modules.cs" />
+    <Compile Include="Measures\Dialogs\DataSeriesSettingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Measures\Dialogs\DataSeriesSettingDialog.Designer.cs">
+      <DependentUpon>DataSeriesSettingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Measures\Dialogs\MeasureCaseSelectorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Measures\Dialogs\MeasureCaseSelectorDialog.Designer.cs">
+      <DependentUpon>MeasureCaseSelectorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Measures\Dialogs\MeasureSettingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Measures\Dialogs\MeasureSettingDialog.Designer.cs">
+      <DependentUpon>MeasureSettingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Measures\MeasureView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Measures\MeasureView.Designer.cs">
+      <DependentUpon>MeasureView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\DataMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -104,6 +166,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Workbench.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +188,10 @@
       <Project>{c0352137-c756-41dc-80f8-4b026546ad5b}</Project>
       <Name>MeterKnife.Kernel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Plots\MeterKnife.Plots.csproj">
+      <Project>{0B2CB4C1-2373-469C-B4BB-B6D810F7A151}</Project>
+      <Name>MeterKnife.Plots</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.ViewModels\MeterKnife.ViewModels.csproj">
       <Project>{a67f283f-ddbb-466d-9960-ed88ef553894}</Project>
       <Name>MeterKnife.ViewModels</Name>
@@ -131,10 +202,53 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\DatasListPanel.resx">
+      <DependentUpon>DatasListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Instruments\InstrumentCell.resx">
+      <DependentUpon>InstrumentCell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Instruments\InstrumentsListHead.resx">
+      <DependentUpon>InstrumentsListHead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Instruments\InstrumentsListPanel.resx">
+      <DependentUpon>InstrumentsListPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstrumentsDiscovery\InstrumentsDiscoveryView.resx">
+      <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Measures\Dialogs\DataSeriesSettingDialog.resx">
+      <DependentUpon>DataSeriesSettingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Measures\Dialogs\MeasureCaseSelectorDialog.resx">
+      <DependentUpon>MeasureCaseSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Measures\Dialogs\MeasureSettingDialog.resx">
+      <DependentUpon>MeasureSettingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Measures\MeasureView.resx">
+      <DependentUpon>MeasureView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Workbench.resx">
       <DependentUpon>Workbench.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Properties\Icons\FormIcon-InstrumentsDiscovery.ico" />
+    <Content Include="Properties\Images\InstrumentsManager\InstrumentsManager_add.png" />
+    <Content Include="Properties\Images\InstrumentsManager\InstrumentsListHead_down.png" />
+    <Content Include="Properties\Images\InstrumentDefaultIcon.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_horizontal_zoom.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_original.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_vertical_zoom.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_in.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_out.png" />
+    <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
+    <Content Include="Properties\Images\InstrumentsManager\InstrumentsListHead_up.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
