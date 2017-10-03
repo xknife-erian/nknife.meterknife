@@ -2,8 +2,8 @@
 using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
+using MeterKnife.Views;
 using MeterKnife.Views.Measures;
-using MeterKnife.Views.Measures.Dialogs;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Plugins.FileMenu

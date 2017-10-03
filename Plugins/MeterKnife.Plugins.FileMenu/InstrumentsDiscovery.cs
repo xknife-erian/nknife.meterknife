@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
 using MeterKnife.Interfaces.Plugins;
-using MeterKnife.Views.InstrumentsDiscovery;
+using MeterKnife.Views;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Plugins.FileMenu

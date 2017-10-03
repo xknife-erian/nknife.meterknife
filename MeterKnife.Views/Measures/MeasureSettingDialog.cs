@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
-using NKnife.Events;
-using NKnife.IoC;
 
-namespace MeterKnife.Views.Measures.Dialogs
+namespace MeterKnife.Views.Measures
 {
     public sealed partial class MeasureSettingDialog : Form
     {

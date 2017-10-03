@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
-using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Plugins;
-using MeterKnife.Kernel.Plugins;
-using MeterKnife.Views.Menus;
-using Ninject;
 using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Views
+namespace MeterKnife.Views.Menus
 {
     public class DropFunctionManager : Dictionary<PluginStyle, PluginViewComponent>, IDropFunctionManager
     {

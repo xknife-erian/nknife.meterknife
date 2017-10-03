@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Views.Measures.Dialogs
+﻿namespace MeterKnife.Views.Measures
 {
     sealed partial class MeasureSettingDialog
     {

@@ -89,7 +89,7 @@
     <Compile Include="Controls\BenchDockPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DropFunctionManager.cs" />
+    <Compile Include="Menus\DropFunctionManager.cs" />
     <Compile Include="Controls\DatasListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,35 +116,35 @@
     <Compile Include="Controls\Instruments\InstrumentsListPanel.Designer.cs">
       <DependentUpon>InstrumentsListPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="InstrumentsDiscovery\InstrumentsDiscoveryView.cs">
+    <Compile Include="InstrumentsDiscoveryView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InstrumentsDiscovery\InstrumentsDiscoveryView.Designer.cs">
+    <Compile Include="InstrumentsDiscoveryView.Designer.cs">
       <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
     </Compile>
     <Compile Include="IoC\Modules.cs" />
-    <Compile Include="Measures\Dialogs\DataSeriesSettingDialog.cs">
+    <Compile Include="Measures\DataSeriesSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Measures\Dialogs\DataSeriesSettingDialog.Designer.cs">
+    <Compile Include="Measures\DataSeriesSettingDialog.Designer.cs">
       <DependentUpon>DataSeriesSettingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Measures\Dialogs\MeasureCaseSelectorDialog.cs">
+    <Compile Include="Measures\MeasureCaseSelectorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Measures\Dialogs\MeasureCaseSelectorDialog.Designer.cs">
+    <Compile Include="Measures\MeasureCaseSelectorDialog.Designer.cs">
       <DependentUpon>MeasureCaseSelectorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Measures\Dialogs\MeasureSettingDialog.cs">
+    <Compile Include="Measures\MeasureSettingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Measures\Dialogs\MeasureSettingDialog.Designer.cs">
+    <Compile Include="Measures\MeasureSettingDialog.Designer.cs">
       <DependentUpon>MeasureSettingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Measures\MeasureView.cs">
+    <Compile Include="MeasureView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Measures\MeasureView.Designer.cs">
+    <Compile Include="MeasureView.Designer.cs">
       <DependentUpon>MeasureView.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\DataMenuItem.cs">
@@ -214,19 +214,19 @@
     <EmbeddedResource Include="Controls\Instruments\InstrumentsListPanel.resx">
       <DependentUpon>InstrumentsListPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InstrumentsDiscovery\InstrumentsDiscoveryView.resx">
+    <EmbeddedResource Include="InstrumentsDiscoveryView.resx">
       <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Measures\Dialogs\DataSeriesSettingDialog.resx">
+    <EmbeddedResource Include="Measures\DataSeriesSettingDialog.resx">
       <DependentUpon>DataSeriesSettingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Measures\Dialogs\MeasureCaseSelectorDialog.resx">
+    <EmbeddedResource Include="Measures\MeasureCaseSelectorDialog.resx">
       <DependentUpon>MeasureCaseSelectorDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Measures\Dialogs\MeasureSettingDialog.resx">
+    <EmbeddedResource Include="Measures\MeasureSettingDialog.resx">
       <DependentUpon>MeasureSettingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Measures\MeasureView.resx">
+    <EmbeddedResource Include="MeasureView.resx">
       <DependentUpon>MeasureView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -249,6 +249,9 @@
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_out.png" />
     <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
     <Content Include="Properties\Images\InstrumentsManager\InstrumentsListHead_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Instruments\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

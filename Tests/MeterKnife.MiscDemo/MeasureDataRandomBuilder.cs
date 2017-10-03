@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
 using MeterKnife.Interfaces.Measures;
-using MeterKnife.Views.Measures;
+using MeterKnife.Views;
 using NKnife.IoC;
 using NKnife.Utility;
 

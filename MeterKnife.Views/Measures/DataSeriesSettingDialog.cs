@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using MeterKnife.Interfaces.Measures;
+﻿using MeterKnife.Interfaces.Measures;
 using MeterKnife.Models;
 using MeterKnife.ViewModels;
 using NKnife.IoC;
-using OxyPlot;
 
-namespace MeterKnife.Views.Measures.Dialogs
+namespace MeterKnife.Views.Measures
 {
     public partial class DataSeriesSettingDialog : NKnife.ControlKnife.SimpleForm
     {

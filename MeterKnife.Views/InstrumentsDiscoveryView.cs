@@ -4,13 +4,12 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Forms;
 using MeterKnife.Interfaces.Gateways;
-using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Models;
 using MeterKnife.ViewModels;
 using MeterKnife.Views.Controls.Instruments;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Views.InstrumentsDiscovery
+namespace MeterKnife.Views
 {
     public partial class InstrumentsDiscoveryView : DockContent
     {

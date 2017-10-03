@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Views.Measures.Dialogs
+﻿namespace MeterKnife.Views.Measures
 {
     partial class MeasureCaseSelectorDialog
     {

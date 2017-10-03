@@ -1,6 +1,6 @@
 ﻿using MeterKnife.Views.Controls;
 
-namespace MeterKnife.Views.InstrumentsDiscovery
+namespace MeterKnife.Views
 {
     partial class InstrumentsDiscoveryView
     {

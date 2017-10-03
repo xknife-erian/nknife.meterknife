@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using MeterKnife.Interfaces.Plugins;
 using MeterKnife.ViewModels;
-using MeterKnife.Views.Measures.Dialogs;
+using MeterKnife.Views.Measures;
 using OxyPlot;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.Views.Measures
+namespace MeterKnife.Views
 {
     public partial class MeasureView : DockContent
     {

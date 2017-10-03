@@ -1,8 +1,7 @@
 ﻿using System.Windows.Forms;
-using MeterKnife.Plots;
 using MeterKnife.Plots.Themes;
 
-namespace MeterKnife.Views.Measures
+namespace MeterKnife.Views
 {
     partial class MeasureView
     {
