@@ -23,6 +23,7 @@ namespace MeterKnife.Views.IoC
         {
             Bind<IAbout>().To<MyAbout>().InSingletonScope();
             Bind<IWorkbench>().To<Workbench>().InSingletonScope();
+            Bind<IViewsManager>().To<ViewsManager>().InSingletonScope();
 
             Bind<DockPanel>().To<BenchDockPanel>().InSingletonScope();
 

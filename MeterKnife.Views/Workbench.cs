@@ -18,7 +18,6 @@ namespace MeterKnife.Views
     public sealed partial class Workbench : Form, IWorkbench
     {
         private readonly IAbout _About;
-        private DockPanel _DockPanel;
 
         public Workbench()
         {
@@ -26,7 +25,7 @@ namespace MeterKnife.Views
             Text = "MeterKnife自动化测量测试平台";
             Width = 1024;
             Height = 768;
-            FillMenu();
+            InitializeMainMenu();
             InitializeDockPanel();
             FormManager();
             ControlEventManager();
@@ -57,7 +56,7 @@ namespace MeterKnife.Views
             };
         }
 
-        private void FillMenu()
+        private void InitializeMainMenu()
         {
             _MenuStrip.SuspendLayout();
             _MenuStrip.Items.Add(DI.Get<FileMenuItem>());
@@ -72,11 +71,11 @@ namespace MeterKnife.Views
 
         private void InitializeDockPanel()
         {
-            _DockPanel = DI.Get<DockPanel>();
-            _DockPanel.Theme = new VS2015BlueTheme();
-            _DockPanel.Dock = DockStyle.Fill;
-            Controls.Add(_DockPanel);
-            _DockPanel.BringToFront();
+            MainDockPanel = DI.Get<DockPanel>();
+            MainDockPanel.Theme = new VS2015BlueTheme();
+            MainDockPanel.Dock = DockStyle.Fill;
+            Controls.Add(MainDockPanel);
+            MainDockPanel.BringToFront();
         }
 
         private void ControlEventManager()
@@ -85,6 +84,8 @@ namespace MeterKnife.Views
         }
 
         #region Implementation of IWorkbench
+
+        public DockPanel MainDockPanel { get; set; }
 
         /// <summary>
         /// 是否是应用程序正确请求关闭窗体

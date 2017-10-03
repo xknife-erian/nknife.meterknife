@@ -1,4 +1,6 @@
-﻿using MeterKnife.Interfaces.Plugins;
+﻿using MeterKnife.Interfaces;
+using MeterKnife.Interfaces.Plugins;
+using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Base.Plugins
@@ -39,14 +41,7 @@ namespace MeterKnife.Base.Plugins
 
         protected void ShowAtDockPanel(DockContent view, DockState dockState = DockState.Document)
         {
-            foreach (var container in _ViewComponent.Containers)
-            {
-                var panel = container as DockPanel;
-                if (panel != null)
-                {
-                    view.Show(panel, dockState);
-                }
-            }
+            view.Show(DI.Get<IWorkbench>().MainDockPanel, dockState);
         }
     }
 }

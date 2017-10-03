@@ -5,8 +5,10 @@ using System.Text;
 using System.Windows.Forms;
 using MeterKnife.Base;
 using MeterKnife.Base.Plugins;
+using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Plugins;
 using MeterKnife.Views;
+using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Plugins.FileMenu
@@ -20,7 +22,7 @@ namespace MeterKnife.Plugins.FileMenu
             _StripItem.ShortcutKeys = Keys.Control | Keys.I;
             _StripItem.Click += (s, e) =>
             {
-                var view = new InstrumentsDiscoveryView();
+                var view = (DockContent)DI.Get<IViewsManager>().InstrumentsDiscoveryView;
                 ShowAtDockPanel(view);
             };
         }

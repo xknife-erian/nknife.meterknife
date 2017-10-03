@@ -171,6 +171,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewsManager.cs" />
     <Compile Include="Workbench.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,8 +251,6 @@
     <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
     <Content Include="Properties\Images\InstrumentsManager\InstrumentsListHead_up.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Instruments\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,8 +10,5 @@ namespace MeterKnife.ViewModels
 {
     public class MeasureCaseSelectorViewModel : GatewayViewModelBase
     {
-        public void CallInstrumentsManager()
-        {
-        }
     }
 }

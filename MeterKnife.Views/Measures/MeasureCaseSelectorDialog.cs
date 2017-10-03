@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using MeterKnife.Interfaces;
 using MeterKnife.Models;
 using MeterKnife.ViewModels;
 using NKnife.ControlKnife;
+using NKnife.IoC;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Views.Measures
 {
@@ -40,9 +43,10 @@ namespace MeterKnife.Views.Measures
 
         private void InstrumentsManagerButtonClick(object sender, EventArgs e)
         {
+            var dockContent = (DockContent) DI.Get<IViewsManager>().InstrumentsDiscoveryView;
             DialogResult = DialogResult.Cancel;
             Close();
-            _ViewModel.CallInstrumentsManager();
+            dockContent.Show(DI.Get<IWorkbench>().MainDockPanel, DockState.Document);
         }
     }
 }
