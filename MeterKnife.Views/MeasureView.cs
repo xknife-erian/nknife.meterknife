@@ -53,7 +53,8 @@ namespace MeterKnife.Views
 
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
-            var dialog = new DataSeriesSettingDialog(_ViewModel);
+            var dialog = new DataSeriesSettingDialog();
+            dialog.SetExhibits(_ViewModel.Exhibits);
             dialog.ShowDialog(this);
         }
     }

@@ -31,7 +31,6 @@ namespace MeterKnife.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeasureView));
             this._MeasurePlotPage = new System.Windows.Forms.TabPage();
             this._PlotView = new OxyPlot.WindowsForms.PlotView();
             this._TabControl = new System.Windows.Forms.TabControl();
@@ -151,7 +150,7 @@ namespace MeterKnife.Views
             // 
             // _SetDataSeriesToolStripButton
             // 
-            this._SetDataSeriesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_SetDataSeriesToolStripButton.Image")));
+            this._SetDataSeriesToolStripButton.Image = global::MeterKnife.Views.Properties.Resources.PlotOperateStripIcon_series_selection;
             this._SetDataSeriesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SetDataSeriesToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._SetDataSeriesToolStripButton.Name = "_SetDataSeriesToolStripButton";
@@ -174,7 +173,7 @@ namespace MeterKnife.Views
             this._PlotThemeDropDownButton1});
             this._PlotToolStrip.Location = new System.Drawing.Point(103, 0);
             this._PlotToolStrip.Name = "_PlotToolStrip";
-            this._PlotToolStrip.Size = new System.Drawing.Size(174, 25);
+            this._PlotToolStrip.Size = new System.Drawing.Size(205, 25);
             this._PlotToolStrip.TabIndex = 0;
             // 
             // _OriginalToolStripButton

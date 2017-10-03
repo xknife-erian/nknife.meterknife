@@ -245,6 +245,7 @@
     <Content Include="Properties\Images\InstrumentDefaultIcon.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_horizontal_zoom.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_original.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_series_selection.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_vertical_zoom.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_in.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_out.png" />

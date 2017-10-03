@@ -1,4 +1,6 @@
-﻿using MeterKnife.Interfaces.Measures;
+﻿using System.Collections.Generic;
+using MeterKnife.Base;
+using MeterKnife.Interfaces.Measures;
 using MeterKnife.Models;
 using MeterKnife.ViewModels;
 using NKnife.IoC;
@@ -7,11 +9,8 @@ namespace MeterKnife.Views.Measures
 {
     public partial class DataSeriesSettingDialog : NKnife.ControlKnife.SimpleForm
     {
-        private MeasureViewModel _MeasureViewModel;
-
-        public DataSeriesSettingDialog(MeasureViewModel measureViewModel)
+        public DataSeriesSettingDialog()
         {
-            _MeasureViewModel = measureViewModel;
             InitializeComponent();
 
             IMeasureService measureService = DI.Get<IMeasureService>();
@@ -28,6 +27,11 @@ namespace MeterKnife.Views.Measures
                 _LineStyleComboBox.Items.Add(lineStyle);
             }
             _LineStyleComboBox.SelectedIndex = 0;
+        }
+
+        public void SetExhibits(List<ExhibitBase> exhibits)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

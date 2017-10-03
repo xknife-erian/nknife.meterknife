@@ -133,6 +133,16 @@ namespace MeterKnife.Views.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap PlotOperateStripIcon_series_selection {
+            get {
+                object obj = ResourceManager.GetObject("PlotOperateStripIcon_series_selection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap PlotOperateStripIcon_vertical_zoom {
             get {
                 object obj = ResourceManager.GetObject("PlotOperateStripIcon_vertical_zoom", resourceCulture);
