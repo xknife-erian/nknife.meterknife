@@ -23,5 +23,7 @@ namespace MeterKnife.Interfaces
         /// 用户已添加的测试途径
         /// </summary>
         Dictionary<GatewayModel, List<Instrument>> Gateways { get; set; }
+
+        List<PlotSeriesStyleSolution> SeriesStyleSolutions { get; set; }
     }
 }

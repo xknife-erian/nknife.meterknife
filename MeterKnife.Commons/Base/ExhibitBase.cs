@@ -13,8 +13,13 @@ namespace MeterKnife.Base
             Id = Guid.NewGuid().ToString("N").ToUpper();
         }
 
+        public string Name { get; set; }
+
         #region Implementation of IExhibit
 
+        /// <summary>
+        /// 被测物的ID，如不设置，将使用自动生成的ID
+        /// </summary>
         public string Id { get; set; }
         public string Detail { get; set; }
         public DateTime CreatedTime { get; set; }
@@ -35,16 +40,18 @@ namespace MeterKnife.Base
 
         #region Equality members
 
-        protected bool Equals(ExhibitBase other)
+        protected virtual bool Equals(ExhibitBase other)
         {
             return string.Equals(Id, other.Id);
         }
+
+        private readonly Guid _Hash = Guid.NewGuid();
 
         /// <summary>用作特定类型的哈希函数。</summary>
         /// <returns>当前 <see cref="T:System.Object" /> 的哈希代码。</returns>
         public override int GetHashCode()
         {
-            return (Id != null ? Id.GetHashCode() : 0);
+            return _Hash.GetHashCode();
         }
 
         #endregion

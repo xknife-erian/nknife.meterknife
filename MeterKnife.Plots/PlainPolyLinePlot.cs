@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using Common.Logging;
 using MeterKnife.Models;
 using NKnife.Base;
 using OxyPlot;
@@ -16,6 +17,7 @@ namespace MeterKnife.Plots
     /// </summary>
     public class PlainPolyLinePlot
     {
+        private static readonly ILog _logger = LogManager.GetLogger<PlainPolyLinePlot>();
         private readonly PlotModel _PlotModel = new PlotModel();
         private readonly LinearAxis _LeftAxis = new LinearAxis();
         private readonly DateTimeAxis _TimeAxis = new DateTimeAxis();
@@ -58,8 +60,6 @@ namespace MeterKnife.Plots
 
             _PlotModel.Axes.Add(_LeftAxis);
             _PlotModel.Axes.Add(_TimeAxis);
-
-            SetSeries(new PlotSeriesStyle());
         }
 
         public PlotModel GetPlotModel()
@@ -76,8 +76,6 @@ namespace MeterKnife.Plots
         public double LeftAxisAngle => 0;
 
         public PlotTheme PlotTheme { get; set; }
-
-        private readonly List<LineSeries> _SeriesList = new List<LineSeries>();
 
         /// <summary>
         /// 增加测量数据
@@ -96,29 +94,28 @@ namespace MeterKnife.Plots
             {
                 points[i] = DateTimeAxis.CreateDataPoint(DateTime.Now, values[i]);
             }
-            _SeriesList[number].Points.AddRange(points);
+            ((LineSeries)_PlotModel.Series[number]).Points.AddRange(points);
         }
 
         /// <summary>
         /// 增加数据线
         /// </summary>
         /// <param name="styles">数据线的样式</param>
-        public void SetSeries(params PlotSeriesStyle[] styles)
+        public void SetSeries(params PlotSeriesStyleSolution.ExhibitSeriesStyle[] styles)
         {
-            _SeriesList.Clear();
             _PlotModel.Series.Clear();
             foreach (var style in styles)
             {
                 var series = new LineSeries
                 {
-                    Color = PlotTheme.ToOxyColor(style.Color),
-                    MarkerFill = PlotTheme.ToOxyColor(style.MarkerFillColor),
-                    MarkerStroke = PlotTheme.ToOxyColor(style.MarkerStrokeColor),
-                    StrokeThickness = style.Thickness,
+                    Color = PlotTheme.ToOxyColor(style.SeriesStyle.Color),
+                    MarkerFill = PlotTheme.ToOxyColor(style.SeriesStyle.MarkerFillColor),
+                    MarkerStroke = PlotTheme.ToOxyColor(style.SeriesStyle.MarkerStrokeColor),
+                    StrokeThickness = style.SeriesStyle.Thickness,
                     TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}"
                 };
-                _SeriesList.Add(series);
                 _PlotModel.Series.Add(series);
+                _logger.Trace($"{_PlotModel.Series.Count}:{series.Color}");
             }
         }
 

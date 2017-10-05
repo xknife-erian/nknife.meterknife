@@ -25,8 +25,8 @@ namespace MeterKnife.MiscDemo
 
         public void StartDemo()
         {
-            var exhibits = _MeasureViewForm.ViewModel.Exhibits;
-            var index = exhibits.Count - 1;
+            var solution = _MeasureViewForm.ViewModel.SeriesStyleSolution;
+            var index = solution.Count;
 
             if (index >= 0)
             {
@@ -35,13 +35,15 @@ namespace MeterKnife.MiscDemo
                     _OnDemo = true;
                     var head = 9; //_Rand.Next(9, 10);
                     while (_OnDemo)
+                    {
                         for (ushort i = 0; i < index; i++)
                         {
                             var tail = _Rand.Next(0, 99999);
                             var v = double.Parse($"{head}.99{tail}");
-                            _MeasureService.AddValue(exhibits[i], v);
-                            Thread.Sleep(200);
+                            _MeasureService.AddValue(solution[i].Exhibit, v);
+                            Thread.Sleep(100);
                         }
+                    }
                 });
                 _DemoThread.Start();
             }

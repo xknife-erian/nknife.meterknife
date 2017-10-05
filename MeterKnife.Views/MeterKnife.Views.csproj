@@ -89,6 +89,18 @@
     <Compile Include="Controls\BenchDockPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Measures\Series\DataSeriesEditorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Measures\Series\DataSeriesEditorDialog.Designer.cs">
+      <DependentUpon>DataSeriesEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Measures\Series\SolutionListDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Measures\Series\SolutionListDialog.Designer.cs">
+      <DependentUpon>SolutionListDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\DropFunctionManager.cs" />
     <Compile Include="Controls\DatasListPanel.cs">
       <SubType>UserControl</SubType>
@@ -123,11 +135,11 @@
       <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
     </Compile>
     <Compile Include="IoC\Modules.cs" />
-    <Compile Include="Measures\DataSeriesSettingDialog.cs">
+    <Compile Include="Measures\Series\DataSeriesListDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Measures\DataSeriesSettingDialog.Designer.cs">
-      <DependentUpon>DataSeriesSettingDialog.cs</DependentUpon>
+    <Compile Include="Measures\Series\DataSeriesListDialog.Designer.cs">
+      <DependentUpon>DataSeriesListDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Measures\MeasureCaseSelectorDialog.cs">
       <SubType>Form</SubType>
@@ -218,14 +230,20 @@
     <EmbeddedResource Include="InstrumentsDiscoveryView.resx">
       <DependentUpon>InstrumentsDiscoveryView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Measures\DataSeriesSettingDialog.resx">
-      <DependentUpon>DataSeriesSettingDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Measures\Series\DataSeriesEditorDialog.resx">
+      <DependentUpon>DataSeriesEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Measures\Series\DataSeriesListDialog.resx">
+      <DependentUpon>DataSeriesListDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Measures\MeasureCaseSelectorDialog.resx">
       <DependentUpon>MeasureCaseSelectorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Measures\MeasureSettingDialog.resx">
       <DependentUpon>MeasureSettingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Measures\Series\SolutionListDialog.resx">
+      <DependentUpon>SolutionListDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MeasureView.resx">
       <DependentUpon>MeasureView.cs</DependentUpon>

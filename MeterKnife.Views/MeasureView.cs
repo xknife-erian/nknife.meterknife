@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MeterKnife.ViewModels;
 using MeterKnife.Views.Measures;
+using MeterKnife.Views.Measures.Series;
 using OxyPlot;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -16,11 +17,8 @@ namespace MeterKnife.Views
             InitializeComponent();
             _PlotView.Model = _ViewModel.Plot.GetPlotModel();
             _PlotView.BackColor = _ViewModel.Plot.PlotTheme.ViewBackground;
-            _ViewModel.PlotModelUpdated += (s, e) =>
-            {
-                _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true));
-            };
-            _OriginalToolStripButton.Click += (s, e) => {_PlotView.Model.ResetAllAxes(); };
+            _ViewModel.PlotModelUpdated += (s, e) => { _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true)); };
+            _OriginalToolStripButton.Click += (s, e) => { _PlotView.Model.ResetAllAxes(); };
             _ZoomInToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(1.3); };
             _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(0.7); };
         }
@@ -53,9 +51,12 @@ namespace MeterKnife.Views
 
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
-            var dialog = new DataSeriesSettingDialog();
-            dialog.SetExhibits(_ViewModel.Exhibits);
-            dialog.ShowDialog(this);
+            var dialog = new DataSeriesListDialog();
+            dialog.Solution = _ViewModel.SeriesStyleSolution;
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                _ViewModel.SeriesStyleSolution = dialog.Solution;
+            }
         }
     }
 }

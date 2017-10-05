@@ -20,11 +20,13 @@ namespace MeterKnife.Kernel
     {
         private readonly List<PlotTheme> _DefaultPlotThemes;
         private readonly Dictionary<GatewayModel, List<Instrument>> _DefaultDiscovers;
+        private readonly List<PlotSeriesStyleSolution> _DefaultSeriesStyleSolutions;
 
         public Habited()
         {
             var pt = new PlotTheme();
             _DefaultPlotThemes = new List<PlotTheme>(new[] {pt});
+            _DefaultSeriesStyleSolutions = new List<PlotSeriesStyleSolution>(0);
 
             _DefaultDiscovers = new Dictionary<GatewayModel, List<Instrument>>();
             _DefaultDiscovers.Add(GatewayModel.Aglient82357A, new List<Instrument>());
@@ -74,6 +76,23 @@ namespace MeterKnife.Kernel
                     SetValue(nameof(Gateways), JsonConvert.SerializeObject(_DefaultDiscovers));
                 else
                     SetValue(nameof(Gateways), JsonConvert.SerializeObject(value));
+            }
+        }
+
+        public List<PlotSeriesStyleSolution> SeriesStyleSolutions
+        {
+            get
+            {
+                var content = GetValue(nameof(SeriesStyleSolutions), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions));
+                var value = JsonConvert.DeserializeObject<List<PlotSeriesStyleSolution>>(content);
+                return value;
+            }
+            set
+            {
+                if (value == null || value.Count <= 0)
+                    SetValue(nameof(SeriesStyleSolutions), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions));
+                else
+                    SetValue(nameof(SeriesStyleSolutions), JsonConvert.SerializeObject(value));
             }
         }
     }
