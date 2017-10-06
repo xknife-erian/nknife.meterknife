@@ -8,8 +8,7 @@ namespace MeterKnife.Models
     public class PlotSeriesStyle
     {
         public Color Color { get; set; } = AllSeriesColors[0];
-        public Color MarkerFillColor { get; set; } = Color.Red;
-        public Color MarkerStrokeColor { get; set; } = Color.Red;
+        public double Offset { get; set; } = 0;
 
         /// <summary>
         ///     数据线线径

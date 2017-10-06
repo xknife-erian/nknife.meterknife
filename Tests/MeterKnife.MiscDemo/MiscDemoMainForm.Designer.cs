@@ -43,6 +43,7 @@
             this._InstrumentCellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._TipStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._DataSeriesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MenuStrip.SuspendLayout();
             this._StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -73,15 +74,15 @@
             // _MainPlotTestToolStripMenuItem
             // 
             this._MainPlotTestToolStripMenuItem.Name = "_MainPlotTestToolStripMenuItem";
-            this._MainPlotTestToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this._MainPlotTestToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this._MainPlotTestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this._MainPlotTestToolStripMenuItem.Text = "主折线图测试";
             this._MainPlotTestToolStripMenuItem.Click += new System.EventHandler(this._MainPlotTestToolStripMenuItem_Click);
             // 
             // 主题ToolStripMenuItem
             // 
             this.主题ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._ThemeManagerToolStripMenuItem});
+            this._ThemeManagerToolStripMenuItem,
+            this._DataSeriesListToolStripMenuItem});
             this.主题ToolStripMenuItem.Name = "主题ToolStripMenuItem";
             this.主题ToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
             this.主题ToolStripMenuItem.Text = "Dialog";
@@ -89,7 +90,7 @@
             // _ThemeManagerToolStripMenuItem
             // 
             this._ThemeManagerToolStripMenuItem.Name = "_ThemeManagerToolStripMenuItem";
-            this._ThemeManagerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this._ThemeManagerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this._ThemeManagerToolStripMenuItem.Text = "主题管理器窗体";
             this._ThemeManagerToolStripMenuItem.Click += new System.EventHandler(this._ThemeManagerToolStripMenuItem_Click);
             // 
@@ -126,7 +127,7 @@
             // _InstrumentsDiscoveryToolStripMenuItem
             // 
             this._InstrumentsDiscoveryToolStripMenuItem.Name = "_InstrumentsDiscoveryToolStripMenuItem";
-            this._InstrumentsDiscoveryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._InstrumentsDiscoveryToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this._InstrumentsDiscoveryToolStripMenuItem.Text = "仪器管理窗口";
             this._InstrumentsDiscoveryToolStripMenuItem.Click += new System.EventHandler(this._InstrumentsDiscoveryToolStripMenuItem_Click);
             // 
@@ -160,6 +161,14 @@
             this._TipStatusLabel.Name = "_TipStatusLabel";
             this._TipStatusLabel.Size = new System.Drawing.Size(26, 17);
             this._TipStatusLabel.Text = "......";
+            // 
+            // _DataSeriesListToolStripMenuItem
+            // 
+            this._DataSeriesListToolStripMenuItem.Name = "_DataSeriesListToolStripMenuItem";
+            this._DataSeriesListToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this._DataSeriesListToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this._DataSeriesListToolStripMenuItem.Text = "DataSeriesList";
+            this._DataSeriesListToolStripMenuItem.Click += new System.EventHandler(this._DataSeriesListToolStripMenuItem_Click);
             // 
             // MiscDemoMainForm
             // 
@@ -199,6 +208,7 @@
         private System.Windows.Forms.ToolStripMenuItem _UserControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _InstrumentCellToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel _TipStatusLabel;
+        private System.Windows.Forms.ToolStripMenuItem _DataSeriesListToolStripMenuItem;
     }
 }
 

@@ -51,7 +51,8 @@ namespace MeterKnife.ViewModels
             _logger.Trace($"数据Index:{index},{e.Exhibit.Id}");
             if (index >= 0)
             {
-                Plot.AddValues(index, e.Value);
+                var style = _SeriesStyleSolution[index].SeriesStyle;
+                Plot.AddValues(index, e.Value + style.Offset);
                 OnPlotModelUpdated();
             }
         }

@@ -34,7 +34,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._AcceptButton = new System.Windows.Forms.Button();
             this._ModifyButton = new System.Windows.Forms.Button();
@@ -55,7 +54,6 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6,
             this.columnHeader7});
             this._ListView.FullRowSelect = true;
             this._ListView.GridLines = true;
@@ -75,7 +73,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "数据名称";
-            this.columnHeader2.Width = 110;
+            this.columnHeader2.Width = 150;
             // 
             // columnHeader3
             // 
@@ -92,14 +90,9 @@
             this.columnHeader5.Text = "线颜色";
             this.columnHeader5.Width = 50;
             // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "标记框";
-            this.columnHeader6.Width = 50;
-            // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "标记体";
+            this.columnHeader7.Text = "偏移量";
             this.columnHeader7.Width = 50;
             // 
             // _AcceptButton
@@ -186,7 +179,7 @@
             this.Name = "DataSeriesListDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "数据线选择";
+            this.Text = "数据线选择与样式设置";
             this.ResumeLayout(false);
 
         }
@@ -200,7 +193,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Button _ModifyButton;
         private System.Windows.Forms.Button _AppendButton;

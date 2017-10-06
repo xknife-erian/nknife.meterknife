@@ -109,8 +109,6 @@ namespace MeterKnife.Plots
                 var series = new LineSeries
                 {
                     Color = PlotTheme.ToOxyColor(style.SeriesStyle.Color),
-                    MarkerFill = PlotTheme.ToOxyColor(style.SeriesStyle.MarkerFillColor),
-                    MarkerStroke = PlotTheme.ToOxyColor(style.SeriesStyle.MarkerStrokeColor),
                     StrokeThickness = style.SeriesStyle.Thickness,
                     TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}"
                 };

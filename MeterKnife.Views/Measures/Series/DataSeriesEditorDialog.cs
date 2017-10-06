@@ -10,20 +10,15 @@ namespace MeterKnife.Views.Measures.Series
 {
     public partial class DataSeriesEditorDialog : SimpleForm
     {
-        private PlotSeriesStyleSolution.ExhibitSeriesStyle _Style;
-
         public DataSeriesEditorDialog()
         {
             InitializeComponent();
             _LineColor.Color = Color.Yellow;
-            _MarkerFillColor.Color = Color.Red;
-            _MarkerStrokeColor.Color = Color.Red;
 
             IMeasureService measureService = DI.Get<IMeasureService>();
-
-            foreach (var exhibit in measureService.Exhibits)
+            foreach (var e in measureService.Exhibits)
             {
-                _ExhibitsComboBox.Items.Add(exhibit);
+                _ExhibitsComboBox.Items.Add(e);
             }
             if (_ExhibitsComboBox.Items.Count > 0)
             {
@@ -48,21 +43,26 @@ namespace MeterKnife.Views.Measures.Series
             };
         }
 
+        private PlotSeriesStyleSolution.ExhibitSeriesStyle _SeriesStyle;
+
         public PlotSeriesStyleSolution.ExhibitSeriesStyle SeriesStyle
         {
             get
             {
                 var s = new PlotSeriesStyle();
                 s.Color = _LineColor.Color;
-                s.MarkerStrokeColor = _MarkerStrokeColor.Color;
-                s.MarkerFillColor = _MarkerFillColor.Color;
                 s.Thickness = (double) _ThicknessNumericUpDown.Value;
                 s.SeriesLineStyle = (PlotSeriesStyle.LineStyleWrap) _LineStyleComboBox.SelectedItem;
-                var style = new PlotSeriesStyleSolution.ExhibitSeriesStyle((ExhibitBase) _ExhibitsComboBox.SelectedItem, s);
-                return style;
+                s.Offset = (double) _OffsetNumericUpDown.Value;
+                if (_SeriesStyle != null) //当修改一个Style时
+                    _SeriesStyle.SeriesStyle = s;
+                else//当新建一个Style时
+                    _SeriesStyle = new PlotSeriesStyleSolution.ExhibitSeriesStyle((ExhibitBase) _ExhibitsComboBox.SelectedItem, s);
+                return _SeriesStyle;
             }
             set
             {
+                //当进入该属性的设置时一般是修改一个Style
                 //设置Combox的选择项
                 foreach (var item in _ExhibitsComboBox.Items)
                 {
@@ -72,14 +72,38 @@ namespace MeterKnife.Views.Measures.Series
                     if (exhibit.Equals(value.Exhibit))
                     {
                         _ExhibitsComboBox.SelectedItem = exhibit;
+                        _ExhibitsComboBox.Enabled = false;//被测物不可修改
                         break;
                     }
                 }
                 _LineStyleComboBox.SelectedItem = value.SeriesStyle.SeriesLineStyle;
                 _ThicknessNumericUpDown.Value = (decimal) value.SeriesStyle.Thickness;
+                _OffsetNumericUpDown.Value = (decimal) value.SeriesStyle.Offset;
                 _LineColor.Color = value.SeriesStyle.Color;
-                _MarkerFillColor.Color = value.SeriesStyle.MarkerFillColor;
-                _MarkerStrokeColor.Color = value.SeriesStyle.MarkerStrokeColor;
+                _MainGroupBox.Text = $"数据线样式设置({value.Exhibit})";
+                _SeriesStyle = value;
+            }
+        }
+
+        /// <summary>
+        /// 当新建样式时，已被选择过的数据线，不再列表中出现。
+        /// </summary>
+        /// <param name="solution">样式方案(被测物列表)</param>
+        public void IgnoreExistsExhibits(PlotSeriesStyleSolution solution)
+        {
+            foreach (var style in solution)
+            {
+                var i = 0;
+                while (i < _ExhibitsComboBox.Items.Count)
+                {
+                    var exhibit = _ExhibitsComboBox.Items[i] as ExhibitBase;
+                    if (style.Exhibit.Equals(exhibit))
+                    {
+                        _ExhibitsComboBox.Items.RemoveAt(i);
+                        break;
+                    }
+                    i++;
+                }
             }
         }
     }

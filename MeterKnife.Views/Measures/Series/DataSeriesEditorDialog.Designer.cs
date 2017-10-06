@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._MarkerStrokeColor = new MeterKnife.Plots.Themes.ThemeColorItem();
-            this.label6 = new System.Windows.Forms.Label();
-            this._MarkerFillColor = new MeterKnife.Plots.Themes.ThemeColorItem();
             this.label5 = new System.Windows.Forms.Label();
             this._LineColor = new MeterKnife.Plots.Themes.ThemeColorItem();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,51 +40,20 @@
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
             this._MainGroupBox = new System.Windows.Forms.GroupBox();
+            this._OffsetNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this._ThicknessNumericUpDown)).BeginInit();
             this._MainGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._OffsetNumericUpDown)).BeginInit();
             this.SuspendLayout();
-            // 
-            // _MarkerStrokeColor
-            // 
-            this._MarkerStrokeColor.BackColor = System.Drawing.Color.White;
-            this._MarkerStrokeColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._MarkerStrokeColor.Color = System.Drawing.Color.White;
-            this._MarkerStrokeColor.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this._MarkerStrokeColor.Location = new System.Drawing.Point(416, 53);
-            this._MarkerStrokeColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._MarkerStrokeColor.Name = "_MarkerStrokeColor";
-            this._MarkerStrokeColor.Size = new System.Drawing.Size(57, 25);
-            this._MarkerStrokeColor.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(413, 37);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "颜色";
-            // 
-            // _MarkerFillColor
-            // 
-            this._MarkerFillColor.BackColor = System.Drawing.Color.White;
-            this._MarkerFillColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._MarkerFillColor.Color = System.Drawing.Color.White;
-            this._MarkerFillColor.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this._MarkerFillColor.Location = new System.Drawing.Point(355, 53);
-            this._MarkerFillColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._MarkerFillColor.Name = "_MarkerFillColor";
-            this._MarkerFillColor.Size = new System.Drawing.Size(57, 25);
-            this._MarkerFillColor.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(352, 37);
+            this.label5.Location = new System.Drawing.Point(332, 37);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 24;
-            this.label5.Text = "颜色";
+            this.label5.Text = "偏移";
             // 
             // _LineColor
             // 
@@ -95,7 +61,7 @@
             this._LineColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._LineColor.Color = System.Drawing.Color.White;
             this._LineColor.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this._LineColor.Location = new System.Drawing.Point(294, 53);
+            this._LineColor.Location = new System.Drawing.Point(274, 53);
             this._LineColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._LineColor.Name = "_LineColor";
             this._LineColor.Size = new System.Drawing.Size(57, 25);
@@ -104,7 +70,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(291, 37);
+            this.label4.Location = new System.Drawing.Point(271, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 22;
@@ -113,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(231, 37);
+            this.label3.Location = new System.Drawing.Point(211, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 21;
@@ -127,7 +93,7 @@
             0,
             0,
             65536});
-            this._ThicknessNumericUpDown.Location = new System.Drawing.Point(234, 55);
+            this._ThicknessNumericUpDown.Location = new System.Drawing.Point(214, 55);
             this._ThicknessNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -150,7 +116,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 37);
+            this.label2.Location = new System.Drawing.Point(143, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 19;
@@ -159,7 +125,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 37);
+            this.label1.Location = new System.Drawing.Point(20, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 18;
@@ -169,7 +135,7 @@
             // 
             this._LineStyleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._LineStyleComboBox.FormattingEnabled = true;
-            this._LineStyleComboBox.Location = new System.Drawing.Point(166, 55);
+            this._LineStyleComboBox.Location = new System.Drawing.Point(146, 55);
             this._LineStyleComboBox.Name = "_LineStyleComboBox";
             this._LineStyleComboBox.Size = new System.Drawing.Size(63, 21);
             this._LineStyleComboBox.TabIndex = 1;
@@ -178,7 +144,7 @@
             // 
             this._ExhibitsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._ExhibitsComboBox.FormattingEnabled = true;
-            this._ExhibitsComboBox.Location = new System.Drawing.Point(29, 55);
+            this._ExhibitsComboBox.Location = new System.Drawing.Point(20, 55);
             this._ExhibitsComboBox.Name = "_ExhibitsComboBox";
             this._ExhibitsComboBox.Size = new System.Drawing.Size(121, 21);
             this._ExhibitsComboBox.TabIndex = 0;
@@ -186,7 +152,7 @@
             // _CancelButton
             // 
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(421, 125);
+            this._CancelButton.Location = new System.Drawing.Point(364, 125);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(89, 31);
             this._CancelButton.TabIndex = 2;
@@ -195,7 +161,7 @@
             // 
             // _AcceptButton
             // 
-            this._AcceptButton.Location = new System.Drawing.Point(326, 125);
+            this._AcceptButton.Location = new System.Drawing.Point(269, 125);
             this._AcceptButton.Name = "_AcceptButton";
             this._AcceptButton.Size = new System.Drawing.Size(89, 31);
             this._AcceptButton.TabIndex = 1;
@@ -204,24 +170,39 @@
             // 
             // _MainGroupBox
             // 
+            this._MainGroupBox.Controls.Add(this._OffsetNumericUpDown);
             this._MainGroupBox.Controls.Add(this._ExhibitsComboBox);
             this._MainGroupBox.Controls.Add(this._LineStyleComboBox);
             this._MainGroupBox.Controls.Add(this.label1);
-            this._MainGroupBox.Controls.Add(this._MarkerStrokeColor);
             this._MainGroupBox.Controls.Add(this.label2);
-            this._MainGroupBox.Controls.Add(this.label6);
             this._MainGroupBox.Controls.Add(this._ThicknessNumericUpDown);
-            this._MainGroupBox.Controls.Add(this._MarkerFillColor);
             this._MainGroupBox.Controls.Add(this.label3);
             this._MainGroupBox.Controls.Add(this.label5);
             this._MainGroupBox.Controls.Add(this.label4);
             this._MainGroupBox.Controls.Add(this._LineColor);
             this._MainGroupBox.Location = new System.Drawing.Point(12, 12);
             this._MainGroupBox.Name = "_MainGroupBox";
-            this._MainGroupBox.Size = new System.Drawing.Size(498, 107);
+            this._MainGroupBox.Size = new System.Drawing.Size(441, 107);
             this._MainGroupBox.TabIndex = 0;
             this._MainGroupBox.TabStop = false;
-            this._MainGroupBox.Text = "数据线样式设置";
+            // 
+            // _OffsetNumericUpDown
+            // 
+            this._OffsetNumericUpDown.DecimalPlaces = 8;
+            this._OffsetNumericUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this._OffsetNumericUpDown.Location = new System.Drawing.Point(335, 54);
+            this._OffsetNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this._OffsetNumericUpDown.Name = "_OffsetNumericUpDown";
+            this._OffsetNumericUpDown.Size = new System.Drawing.Size(89, 21);
+            this._OffsetNumericUpDown.TabIndex = 25;
             // 
             // DataSeriesEditorDialog
             // 
@@ -229,7 +210,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(522, 168);
+            this.ClientSize = new System.Drawing.Size(464, 169);
             this.Controls.Add(this._MainGroupBox);
             this.Controls.Add(this._AcceptButton);
             this.Controls.Add(this._CancelButton);
@@ -244,15 +225,12 @@
             ((System.ComponentModel.ISupportInitialize)(this._ThicknessNumericUpDown)).EndInit();
             this._MainGroupBox.ResumeLayout(false);
             this._MainGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._OffsetNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private MeterKnife.Plots.Themes.ThemeColorItem _MarkerStrokeColor;
-        private System.Windows.Forms.Label label6;
-        private MeterKnife.Plots.Themes.ThemeColorItem _MarkerFillColor;
         private System.Windows.Forms.Label label5;
         private MeterKnife.Plots.Themes.ThemeColorItem _LineColor;
         private System.Windows.Forms.Label label4;
@@ -265,5 +243,6 @@
         private System.Windows.Forms.Button _CancelButton;
         private System.Windows.Forms.Button _AcceptButton;
         private System.Windows.Forms.GroupBox _MainGroupBox;
+        private System.Windows.Forms.NumericUpDown _OffsetNumericUpDown;
     }
 }

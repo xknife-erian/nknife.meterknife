@@ -9,6 +9,7 @@ using MeterKnife.Plugins.ToolsMenu;
 using MeterKnife.Plugins.ViewMenu.Loggers;
 using MeterKnife.Views;
 using MeterKnife.Views.Controls.Instruments;
+using MeterKnife.Views.Measures.Series;
 using NKnife.ControlKnife;
 using NKnife.IoC;
 using NKnife.Utility;
@@ -119,6 +120,21 @@ namespace MeterKnife.MiscDemo
                 cell.Instrument = new Instrument(m, $"{model}", $"{m}{model}", _Random.Next(10, 99));
             };
 
+        }
+
+        private void _DataSeriesListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //先向测量服务中添加模拟的被测物
+            IMeasureService measureService = DI.Get<IMeasureService>();
+            measureService.Exhibits.Clear();
+            for (int i = 0; i < 30; i++)
+            {
+                var exhibit = new AbcExhibit();
+                measureService.Exhibits.Add(exhibit);
+            }
+
+            var dialog = new DataSeriesListDialog();
+            dialog.ShowDialog(this);
         }
     }
 }

@@ -15,15 +15,13 @@ namespace MeterKnife.Views.Measures.Series
         {
             InitializeComponent();
             ButtonStateManager();
+            _ListView.SelectedIndexChanged += (s, e) => ButtonStateManager();
         }
 
         private void ButtonStateManager()
         {
-            if (_ListView.SelectedItems.Count <= 0)
-            {
-                _DeleteButton.Enabled = false;
-                _ModifyButton.Enabled = false;
-            }
+            _DeleteButton.Enabled = _ListView.SelectedItems.Count > 0;
+            _ModifyButton.Enabled = _ListView.SelectedItems.Count > 0;
             if (_Habited.SeriesStyleSolutions.Count <= 0)
             {
                 _LoadButton.Enabled = false;
@@ -48,18 +46,19 @@ namespace MeterKnife.Views.Measures.Series
                 var i = 1;
                 foreach (var style in value)
                 {
-                    var listItem = ByStyle(style);
+                    var listItem = new ListViewItem();
+                    ByStyle(style, listItem);
                     listItem.Text = $"{i++}";
                     _ListView.Items.Add(listItem);
                 }
             }
         }
 
-        private static ListViewItem ByStyle(PlotSeriesStyleSolution.ExhibitSeriesStyle style)
+        private static void ByStyle(PlotSeriesStyleSolution.ExhibitSeriesStyle style, ListViewItem item)
         {
-            var item = new ListViewItem();
             item.UseItemStyleForSubItems = false;
             item.Tag = style;
+            item.SubItems.Clear();
             item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.Exhibit.ToString()));
             item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.SeriesLineStyle.ToString()));
             item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.Thickness.ToString(CultureInfo.InvariantCulture)));
@@ -68,40 +67,45 @@ namespace MeterKnife.Views.Measures.Series
             subItem.BackColor = style.SeriesStyle.Color;
             item.SubItems.Add(subItem);
 
-            subItem = new ListViewItem.ListViewSubItem();
-            subItem.BackColor = style.SeriesStyle.MarkerStrokeColor;
-            item.SubItems.Add(subItem);
-
-            subItem = new ListViewItem.ListViewSubItem();
-            subItem.BackColor = style.SeriesStyle.MarkerFillColor;
-            item.SubItems.Add(subItem);
-            return item;
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.Offset.ToString(CultureInfo.InvariantCulture)));
         }
 
         private void _AppendButton_Click(object sender, System.EventArgs e)
         {
             var dialog = new DataSeriesEditorDialog();
+            dialog.IgnoreExistsExhibits(_Solution);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                var item = ByStyle(dialog.SeriesStyle);
+                var style = dialog.SeriesStyle;
+                var item = new ListViewItem();
+                ByStyle(style, item);
                 item.Text = $"{_ListView.Items.Count + 1}";
                 _ListView.Items.Add(item);
+                _Solution.Add(style); //向方案中添加样式
+                _ListView.Select();
+                item.Selected = true;
             }
+            ButtonStateManager();
         }
 
         private void _DeleteButton_Click(object sender, System.EventArgs e)
         {
+            ButtonStateManager();
         }
 
         private void _ModifyButton_Click(object sender, System.EventArgs e)
         {
+            var item = _ListView.SelectedItems[0];
+            var index = item.Text;
             var dialog = new DataSeriesEditorDialog
             {
-                SeriesStyle = (PlotSeriesStyleSolution.ExhibitSeriesStyle) _ListView.SelectedItems[0].Tag
+                SeriesStyle = (PlotSeriesStyleSolution.ExhibitSeriesStyle) item.Tag
             };
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
+                ByStyle(dialog.SeriesStyle, item);
             }
+            item.Text = index;
         }
 
         private void _AcceptButton_Click(object sender, System.EventArgs e)
@@ -126,6 +130,7 @@ namespace MeterKnife.Views.Measures.Series
             {
                 SaveSolution(dialog.SolutionName);
             }
+            ButtonStateManager();
         }
 
         private void SaveSolution(string dialogSolutionName)
