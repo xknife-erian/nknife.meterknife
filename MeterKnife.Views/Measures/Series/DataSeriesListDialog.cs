@@ -90,6 +90,21 @@ namespace MeterKnife.Views.Measures.Series
 
         private void _DeleteButton_Click(object sender, System.EventArgs e)
         {
+            var item = _ListView.SelectedItems[0];
+            var style = (PlotSeriesStyleSolution.ExhibitSeriesStyle) item.Tag;
+            var dr = MessageBox.Show(this, $"确认删除{style.Exhibit}数据的显示样式？", "删除样式",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.Yes)
+            {
+                if (_Solution.Remove(style))
+                {
+                    _ListView.Items.Remove(item);
+                    for (int i = 1; i <= _ListView.Items.Count; i++)
+                    {
+                        _ListView.Items[i - 1].Text = $"{i}";
+                    }
+                }
+            }
             ButtonStateManager();
         }
 
