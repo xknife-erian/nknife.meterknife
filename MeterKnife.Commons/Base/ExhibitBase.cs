@@ -6,7 +6,7 @@ using NKnife.Channels.Interfaces.Channels;
 
 namespace MeterKnife.Base
 {
-    public abstract class ExhibitBase : IExhibit
+    public class ExhibitBase : IExhibit
     {
         protected ExhibitBase()
         {
@@ -22,7 +22,7 @@ namespace MeterKnife.Base
         /// </summary>
         public string Id { get; set; }
         public string Detail { get; set; }
-        public DateTime CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; } = DateTime.Now;
 
         #endregion
 

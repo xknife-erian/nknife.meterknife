@@ -33,7 +33,7 @@ namespace MeterKnife.ViewModels
             measureService.Measured += OnMeasured;
         }
 
-        private PlotSeriesStyleSolution _SeriesStyleSolution = new PlotSeriesStyleSolution(1);
+        private PlotSeriesStyleSolution _SeriesStyleSolution = new PlotSeriesStyleSolution();
 
         public PlotSeriesStyleSolution SeriesStyleSolution
         {
@@ -41,7 +41,7 @@ namespace MeterKnife.ViewModels
             set
             {
                 Set(() => SeriesStyleSolution, ref _SeriesStyleSolution, value);
-                Plot.SetSeries(value.ToArray());
+                Plot.SetSeries(value.Styles.ToArray());
             }
         }
 
@@ -51,7 +51,7 @@ namespace MeterKnife.ViewModels
             _logger.Trace($"数据Index:{index},{e.Exhibit.Id}");
             if (index >= 0)
             {
-                var style = _SeriesStyleSolution[index].SeriesStyle;
+                var style = _SeriesStyleSolution.Styles[index].SeriesStyle;
                 Plot.AddValues(index, e.Value + style.Offset);
                 OnPlotModelUpdated();
             }

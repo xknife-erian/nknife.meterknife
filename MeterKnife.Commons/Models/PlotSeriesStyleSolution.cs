@@ -11,18 +11,15 @@ namespace MeterKnife.Models
     /// <summary>
     /// 数据折线图中被测物与被测物数据折线样式的列表，该列表在一些情况下会被反复使用，那么这个时候可以保存为方案
     /// </summary>
-    public class PlotSeriesStyleSolution : List<PlotSeriesStyleSolution.ExhibitSeriesStyle>
+    public class PlotSeriesStyleSolution
     {
         public PlotSeriesStyleSolution()
         {
         }
 
-        public PlotSeriesStyleSolution(int capacty)
-            : base(capacty)
-        {
-        }
+        public List<PlotSeriesStyleSolution.ExhibitSeriesStyle> Styles { get; set; } = new List<ExhibitSeriesStyle>(1);
 
-        public string Name { get; set; }
+        public string SolutionName { get; set; }
 
         /// <summary>
         /// 返回指定被测物在列表中的索引
@@ -31,9 +28,9 @@ namespace MeterKnife.Models
         /// <returns>在列表中的索引，包含则返回索引号，否则返回-1</returns>
         public int IndexOf(ExhibitBase exhibit)
         {
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < Styles.Count; i++)
             {
-                if (this[i].Exhibit.Equals(exhibit))
+                if (Styles[i].Exhibit.Equals(exhibit))
                     return i;
             }
             return -1;
@@ -46,7 +43,7 @@ namespace MeterKnife.Models
         /// <returns>列表中是否包含被测物，true包含，否则反之</returns>
         public bool Contains(ExhibitBase exhibit)
         {
-            return this.Any(style => style.Exhibit.Equals(exhibit));
+            return Styles.Any(style => style.Exhibit.Equals(exhibit));
         }
 
         /// <summary>

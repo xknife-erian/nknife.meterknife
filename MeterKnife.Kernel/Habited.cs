@@ -33,6 +33,11 @@ namespace MeterKnife.Kernel
             _DefaultDiscovers.Add(GatewayModel.CareOne, new List<Instrument>());
         }
 
+        public void SaveHabited()
+        {
+            this.Save();
+        }
+
         /// <summary>
         /// 用户自定义的主题
         /// </summary>
@@ -79,20 +84,23 @@ namespace MeterKnife.Kernel
             }
         }
 
-        public List<PlotSeriesStyleSolution> SeriesStyleSolutions
+        /// <summary>
+        /// 数据折线样式列表
+        /// </summary>
+        public List<PlotSeriesStyleSolution> SeriesStyleSolutionList
         {
             get
             {
-                var content = GetValue(nameof(SeriesStyleSolutions), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions));
+                var content = GetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions));
                 var value = JsonConvert.DeserializeObject<List<PlotSeriesStyleSolution>>(content);
                 return value;
             }
             set
             {
                 if (value == null || value.Count <= 0)
-                    SetValue(nameof(SeriesStyleSolutions), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions));
+                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions));
                 else
-                    SetValue(nameof(SeriesStyleSolutions), JsonConvert.SerializeObject(value));
+                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(value));
             }
         }
     }

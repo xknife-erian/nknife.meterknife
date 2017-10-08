@@ -91,7 +91,7 @@ namespace MeterKnife.Views.Measures.Series
         /// <param name="solution">样式方案(被测物列表)</param>
         public void IgnoreExistsExhibits(PlotSeriesStyleSolution solution)
         {
-            foreach (var style in solution)
+            foreach (var style in solution.Styles)
             {
                 var i = 0;
                 while (i < _ExhibitsComboBox.Items.Count)

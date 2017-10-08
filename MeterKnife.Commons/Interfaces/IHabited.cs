@@ -24,6 +24,9 @@ namespace MeterKnife.Interfaces
         /// </summary>
         Dictionary<GatewayModel, List<Instrument>> Gateways { get; set; }
 
-        List<PlotSeriesStyleSolution> SeriesStyleSolutions { get; set; }
+        /// <summary>
+        /// 数据折线样式列表
+        /// </summary>
+        List<PlotSeriesStyleSolution> SeriesStyleSolutionList { get; set; }
     }
 }

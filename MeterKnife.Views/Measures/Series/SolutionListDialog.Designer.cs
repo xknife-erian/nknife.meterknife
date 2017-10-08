@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this._ListView = new System.Windows.Forms.ListView();
+            this._IndexColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._NameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._DatasCountColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._NameTextBox = new System.Windows.Forms.TextBox();
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this._IndexColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._NameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._DatasCountColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // _ListView
@@ -54,6 +54,21 @@
             this._ListView.UseCompatibleStateImageBehavior = false;
             this._ListView.View = System.Windows.Forms.View.Details;
             // 
+            // _IndexColumnHeader
+            // 
+            this._IndexColumnHeader.Text = "";
+            this._IndexColumnHeader.Width = 30;
+            // 
+            // _NameColumnHeader
+            // 
+            this._NameColumnHeader.Text = "名称";
+            this._NameColumnHeader.Width = 140;
+            // 
+            // _DatasCountColumnHeader
+            // 
+            this._DatasCountColumnHeader.Text = "数据项";
+            this._DatasCountColumnHeader.Width = 50;
+            // 
             // _NameTextBox
             // 
             this._NameTextBox.Location = new System.Drawing.Point(57, 250);
@@ -70,6 +85,7 @@
             this._CancelButton.TabIndex = 2;
             this._CancelButton.Text = "取消(&X)";
             this._CancelButton.UseVisualStyleBackColor = true;
+            this._CancelButton.Click += new System.EventHandler(this._CancelButton_Click);
             // 
             // _AcceptButton
             // 
@@ -79,6 +95,7 @@
             this._AcceptButton.TabIndex = 1;
             this._AcceptButton.Text = "确定(&C)";
             this._AcceptButton.UseVisualStyleBackColor = true;
+            this._AcceptButton.Click += new System.EventHandler(this._AcceptButton_Click);
             // 
             // label1
             // 
@@ -88,21 +105,6 @@
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "样式名:";
-            // 
-            // _IndexColumnHeader
-            // 
-            this._IndexColumnHeader.Text = "";
-            this._IndexColumnHeader.Width = 30;
-            // 
-            // _NameColumnHeader
-            // 
-            this._NameColumnHeader.Text = "名称";
-            this._NameColumnHeader.Width = 140;
-            // 
-            // _DatasCountColumnHeader
-            // 
-            this._DatasCountColumnHeader.Text = "数据项";
-            this._DatasCountColumnHeader.Width = 50;
             // 
             // SolutionListDialog
             // 

@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Forms;
 using MeterKnife.Interfaces;
 using MeterKnife.Models;
@@ -22,7 +23,7 @@ namespace MeterKnife.Views.Measures.Series
         {
             _DeleteButton.Enabled = _ListView.SelectedItems.Count > 0;
             _ModifyButton.Enabled = _ListView.SelectedItems.Count > 0;
-            if (_Habited.SeriesStyleSolutions.Count <= 0)
+            if (_Habited.SeriesStyleSolutionList.Count <= 0)
             {
                 _LoadButton.Enabled = false;
             }
@@ -32,11 +33,11 @@ namespace MeterKnife.Views.Measures.Series
         {
             get
             {
-                _Solution.Clear();
+                _Solution.Styles.Clear();
                 foreach (ListViewItem item in _ListView.Items)
                 {
                     var style = (PlotSeriesStyleSolution.ExhibitSeriesStyle) item.Tag;
-                    _Solution.Add(style);
+                    _Solution.Styles.Add(style);
                 }
                 return _Solution;
             }
@@ -44,7 +45,7 @@ namespace MeterKnife.Views.Measures.Series
             {
                 _Solution = value;
                 var i = 1;
-                foreach (var style in value)
+                foreach (var style in value.Styles)
                 {
                     var listItem = new ListViewItem();
                     ByStyle(style, listItem);
@@ -81,7 +82,7 @@ namespace MeterKnife.Views.Measures.Series
                 ByStyle(style, item);
                 item.Text = $"{_ListView.Items.Count + 1}";
                 _ListView.Items.Add(item);
-                _Solution.Add(style); //向方案中添加样式
+                _Solution.Styles.Add(style); //向方案中添加样式
                 _ListView.Select();
                 item.Selected = true;
             }
@@ -96,7 +97,7 @@ namespace MeterKnife.Views.Measures.Series
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.Yes)
             {
-                if (_Solution.Remove(style))
+                if (_Solution.Styles.Remove(style))
                 {
                     _ListView.Items.Remove(item);
                     for (int i = 1; i <= _ListView.Items.Count; i++)
@@ -148,9 +149,12 @@ namespace MeterKnife.Views.Measures.Series
             ButtonStateManager();
         }
 
-        private void SaveSolution(string dialogSolutionName)
+        private void SaveSolution(string solutionName)
         {
-            throw new System.NotImplementedException();
+            Solution.SolutionName = solutionName;
+            var list = new List<PlotSeriesStyleSolution>(_Habited.SeriesStyleSolutionList);
+            list.Add(Solution);
+            _Habited.SeriesStyleSolutionList = list;
         }
     }
 }
