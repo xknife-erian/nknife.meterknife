@@ -2,7 +2,7 @@
 
 namespace MeterKnife.Interfaces
 {
-    public interface IDatabaseService : IEnvironmentItem
+    public interface IDatasService : IEnvironmentItem
     {
     }
 }

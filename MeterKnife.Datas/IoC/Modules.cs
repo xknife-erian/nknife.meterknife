@@ -16,7 +16,7 @@ namespace MeterKnife.Datas.IoC
         /// <summary>Loads the module into the kernel.</summary>
         public override void Load()
         {
-            Bind<IDatabaseService>().To<DatabaseService>().InSingletonScope();
+            Bind<IDatasService>().To<DatasService>().InSingletonScope();
         }
 
         #endregion

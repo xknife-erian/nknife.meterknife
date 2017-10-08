@@ -108,7 +108,7 @@
     <Compile Include="Interfaces\IAppTrayService.cs" />
     <Compile Include="Interfaces\Gateways\IGatewayDiscover.cs" />
     <Compile Include="Interfaces\Gateways\IGatewayService.cs" />
-    <Compile Include="Interfaces\IDatabaseService.cs" />
+    <Compile Include="Interfaces\IDatasService.cs" />
     <Compile Include="Interfaces\IHabited.cs" />
     <Compile Include="Interfaces\IKernels.cs" />
     <Compile Include="Interfaces\IViewsManager.cs" />

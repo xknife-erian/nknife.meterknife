@@ -3,14 +3,16 @@ using System.IO;
 using Common.Logging;
 using LiteDB;
 using MeterKnife.Interfaces;
+using MeterKnife.Interfaces.Measures;
 using NKnife.Interface;
+using NKnife.IoC;
 using NKnife.Utility;
 
 namespace MeterKnife.Datas.Dpi
 {
-    public class DatabaseService : IDatabaseService, IDisposable
+    public class DatasService : IDatasService, IDisposable
     {
-        private static readonly ILog _logger = LogManager.GetLogger<DatabaseService>();
+        private static readonly ILog _logger = LogManager.GetLogger<DatasService>();
 
         private LiteDatabase _Database;
 
@@ -40,6 +42,9 @@ namespace MeterKnife.Datas.Dpi
                     fullpath = Path.Combine(fullpath, "mk.litedb");
                     _Database = new LiteDatabase(fullpath);
                 }
+                var measureService = DI.Get<IMeasureService>();
+                measureService.Measured += OnMeasured;
+
                 return true;
             }
             catch (Exception e)
@@ -67,5 +72,10 @@ namespace MeterKnife.Datas.Dpi
         public string Description { get; } = "LiteDb全局数据库服务";
 
         #endregion
+
+        private void OnMeasured(object sender, MeasureEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

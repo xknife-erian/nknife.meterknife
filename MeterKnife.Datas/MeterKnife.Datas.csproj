@@ -72,7 +72,7 @@
     <Compile Include="..\MeterKnife.App.Loader\Properties\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
     </Compile>
-    <Compile Include="Dpi\DatabaseService.cs" />
+    <Compile Include="Dpi\DatasService.cs" />
     <Compile Include="Dpi\ExhibitListRepository.cs" />
     <Compile Include="Dpi\ExhibitRepository.cs" />
     <Compile Include="Dpi\GlobalDataBaseRepositoryBase.cs" />
