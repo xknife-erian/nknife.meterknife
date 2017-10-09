@@ -6,13 +6,8 @@ using NKnife.Channels.Interfaces.Channels;
 
 namespace MeterKnife.Base
 {
-    public class ExhibitBase : IExhibit
+    public abstract class ExhibitBase : IExhibit
     {
-        protected ExhibitBase()
-        {
-            Id = Guid.NewGuid().ToString("N").ToUpper();
-        }
-
         public string Name { get; set; }
 
         #region Implementation of IExhibit
@@ -20,13 +15,21 @@ namespace MeterKnife.Base
         /// <summary>
         /// 被测物的ID，如不设置，将使用自动生成的ID
         /// </summary>
-        public string Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString("N").ToUpper();
         public string Detail { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.Now;
 
         #endregion
 
         #region Overrides of Object
+
+        /// <summary>返回表示当前 <see cref="T:System.Object" /> 的 <see cref="T:System.String" />。</summary>
+        /// <returns>
+        /// <see cref="T:System.String" />，表示当前的 <see cref="T:System.Object" />。</returns>
+        public override string ToString()
+        {
+            return Name;
+        }
 
         /// <summary>确定指定的 <see cref="T:System.Object" /> 是否等于当前的 <see cref="T:System.Object" />。</summary>
         /// <returns>如果指定的 <see cref="T:System.Object" /> 等于当前的 <see cref="T:System.Object" />，则为 true；否则为 false。</returns>

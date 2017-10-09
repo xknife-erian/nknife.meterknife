@@ -91,16 +91,22 @@ namespace MeterKnife.Kernel
         {
             get
             {
-                var content = GetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions));
-                var value = JsonConvert.DeserializeObject<List<PlotSeriesStyleSolution>>(content);
+                var content = GetValue(nameof(SeriesStyleSolutionList),
+                    JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions, Formatting.None,
+                        new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All}));
+                var value = JsonConvert.DeserializeObject<List<PlotSeriesStyleSolution>>(content,
+                    new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All});
                 return value;
             }
             set
             {
                 if (value == null || value.Count <= 0)
-                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions));
+                    SetValue(nameof(SeriesStyleSolutionList),
+                        JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions, Formatting.None,
+                            new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All}));
                 else
-                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(value));
+                    SetValue(nameof(SeriesStyleSolutionList),
+                        JsonConvert.SerializeObject(value, Formatting.None, new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All}));
             }
         }
     }

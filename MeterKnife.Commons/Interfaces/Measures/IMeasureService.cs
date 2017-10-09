@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MeterKnife.Base;
-using NKnife.Channels.Interfaces.Channels;
+using MeterKnife.Models;
 using NKnife.Interface;
 
 namespace MeterKnife.Interfaces.Measures
@@ -15,6 +15,11 @@ namespace MeterKnife.Interfaces.Measures
         ///     被测量物的列表
         /// </summary>
         List<ExhibitBase> Exhibits { get; set; }
+
+        /// <summary>
+        ///     正在执行的测量工作列表
+        /// </summary>
+        List<MeasureJob> Jobs { get; set; }
 
         /// <summary>
         ///     当测量指令采集到数据时发生。

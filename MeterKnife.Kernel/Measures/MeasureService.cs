@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using MeterKnife.Base;
 using MeterKnife.Interfaces.Measures;
+using MeterKnife.Models;
 using NKnife.Channels.Interfaces.Channels;
 
 namespace MeterKnife.Kernel.Measures
@@ -35,6 +36,11 @@ namespace MeterKnife.Kernel.Measures
         ///     被测量物的列表
         /// </summary>
         public List<ExhibitBase> Exhibits { get; set; } = new List<ExhibitBase>(1);
+
+        /// <summary>
+        ///     正在执行的测量工作列表
+        /// </summary>
+        public List<MeasureJob> Jobs { get; set; } = new List<MeasureJob>(1);
 
         /// <summary>
         ///     当测量指令采集到数据时发生。
