@@ -44,11 +44,12 @@ namespace MeterKnife.Kernel.Measures
         /// <summary>
         ///     当测量指令采集到数据时，将数据置入MeasureService服务中
         /// </summary>
+        /// <param name="jobNumber">测量事件编号</param>
         /// <param name="exhibit">被测量物</param>
         /// <param name="value">测量数据</param>
-        public void AddValue(ExhibitBase exhibit, double value)
+        public void AddValue(string jobNumber, ExhibitBase exhibit, double value)
         {
-            ThreadPool.QueueUserWorkItem(OnMeasured, new MeasureEventArgs(exhibit, value));
+            ThreadPool.QueueUserWorkItem(OnMeasured, new MeasureEventArgs(jobNumber, exhibit, value, DateTime.Now));
         }
 
         protected virtual void OnMeasured(object e)

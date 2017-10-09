@@ -24,8 +24,9 @@ namespace MeterKnife.Interfaces.Measures
         /// <summary>
         ///     当测量指令采集到数据时，将数据置入MeasureService服务中
         /// </summary>
+        /// <param name="jobNumber">测量事件编号</param>
         /// <param name="exhibit">被测量物</param>
         /// <param name="value">测量数据</param>
-        void AddValue(ExhibitBase exhibit, double value);
+        void AddValue(string jobNumber, ExhibitBase exhibit, double value);
     }
 }

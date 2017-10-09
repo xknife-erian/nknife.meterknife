@@ -115,6 +115,7 @@
     <Compile Include="Interfaces\Measures\IMeasureService.cs" />
     <Compile Include="Interfaces\IWorkbench.cs" />
     <Compile Include="Interfaces\Measures\MeasureEventArgs.cs" />
+    <Compile Include="Models\MeasureJob.cs" />
     <Compile Include="Interfaces\Plugins\IDropFunctionManager.cs" />
     <Compile Include="Base\Plugins\PluginDetail.cs" />
     <Compile Include="Base\Plugins\PluginStyle.cs" />
