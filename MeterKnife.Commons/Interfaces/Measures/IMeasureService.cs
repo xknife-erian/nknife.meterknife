@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MeterKnife.Models;
+using NKnife.Events;
 using NKnife.Interface;
 
 namespace MeterKnife.Interfaces.Measures
@@ -16,12 +17,32 @@ namespace MeterKnife.Interfaces.Measures
         List<IExhibit> Exhibits { get; set; }
 
         /// <summary>
+        /// 当新增被测物后发生
+        /// </summary>
+        event EventHandler<EventArgs<IExhibit>> ExhibitAdded;
+
+        /// <summary>
+        /// 当被测物移除后发生
+        /// </summary>
+        event EventHandler<EventArgs<IExhibit>> ExhibitRemoved;
+
+        /// <summary>
         ///     正在执行的测量工作列表
         /// </summary>
         List<MeasureJob> Jobs { get; set; }
 
         /// <summary>
-        ///     当测量指令采集到数据时发生。
+        /// 当新增测量事物后发生
+        /// </summary>
+        event EventHandler<EventArgs<MeasureJob>> MeasureJobAdded;
+
+        /// <summary>
+        /// 当测量事物移除后发生
+        /// </summary>
+        event EventHandler<EventArgs<MeasureJob>> MeasureJobRemoved;
+
+        /// <summary>
+        ///     当测量事物启动后采集到即时数据时发生。
         /// </summary>
         event EventHandler<MeasureEventArgs> Measured;
 
