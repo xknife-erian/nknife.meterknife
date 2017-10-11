@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Gateways;
 using MeterKnife.Models;
-using MeterKnife.Plots.Themes;
 using Newtonsoft.Json;
-using NKnife.IoC;
-using NKnife.Utility;
 using NKnife.Wrapper;
 
 namespace MeterKnife.Kernel
 {
     /// <summary>
-    /// 用户使用习惯
+    ///     用户使用习惯
     /// </summary>
     public class Habited : UserApplicationData, IHabited
     {
-        private readonly List<PlotTheme> _DefaultPlotThemes;
+        /// <summary>
+        /// 定义JSON序列化时需要将类型名置入，以方便反序列化时可以定位接口的实现
+        /// </summary>
+        private static readonly JsonSerializerSettings _hasTypeNameJsonSettings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All};
         private readonly Dictionary<GatewayModel, List<Instrument>> _DefaultDiscovers;
+        private readonly List<PlotTheme> _DefaultPlotThemes;
         private readonly List<PlotSeriesStyleSolution> _DefaultSeriesStyleSolutions;
 
         public Habited()
@@ -33,13 +31,8 @@ namespace MeterKnife.Kernel
             _DefaultDiscovers.Add(GatewayModel.CareOne, new List<Instrument>());
         }
 
-        public void SaveHabited()
-        {
-            this.Save();
-        }
-
         /// <summary>
-        /// 用户自定义的主题
+        ///     用户自定义的主题
         /// </summary>
         public List<PlotTheme> PlotThemes
         {
@@ -59,7 +52,7 @@ namespace MeterKnife.Kernel
         }
 
         /// <summary>
-        /// 用户当前正在使用的主题
+        ///     用户当前正在使用的主题
         /// </summary>
         public string UsingTheme
         {
@@ -85,29 +78,29 @@ namespace MeterKnife.Kernel
         }
 
         /// <summary>
-        /// 数据折线样式列表
+        ///     数据折线样式列表
         /// </summary>
         public List<PlotSeriesStyleSolution> SeriesStyleSolutionList
         {
             get
             {
                 var content = GetValue(nameof(SeriesStyleSolutionList),
-                    JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions, Formatting.None,
-                        new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All}));
-                var value = JsonConvert.DeserializeObject<List<PlotSeriesStyleSolution>>(content,
-                    new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All});
+                    JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions, Formatting.None, _hasTypeNameJsonSettings));
+                var value = JsonConvert.DeserializeObject<List<PlotSeriesStyleSolution>>(content, _hasTypeNameJsonSettings);
                 return value;
             }
             set
             {
                 if (value == null || value.Count <= 0)
-                    SetValue(nameof(SeriesStyleSolutionList),
-                        JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions, Formatting.None,
-                            new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All}));
+                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions, Formatting.None, _hasTypeNameJsonSettings));
                 else
-                    SetValue(nameof(SeriesStyleSolutionList),
-                        JsonConvert.SerializeObject(value, Formatting.None, new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All}));
+                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(value, Formatting.None, _hasTypeNameJsonSettings));
             }
+        }
+
+        public void SaveHabited()
+        {
+            Save();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace MeterKnife.Interfaces.Measures
 {
     public class MeasureEventArgs : EventArgs
     {
-        public MeasureEventArgs(string jobNumber, ExhibitBase exhibit, double value, DateTime time)
+        public MeasureEventArgs(string jobNumber, IExhibit exhibit, double value, DateTime time)
         {
             JobNumber = jobNumber;
             Value = value;
@@ -26,7 +26,7 @@ namespace MeterKnife.Interfaces.Measures
         /// <summary>
         /// 被测物
         /// </summary>
-        public ExhibitBase Exhibit { get; set; }
+        public IExhibit Exhibit { get; set; }
         /// <summary>
         /// 测量时的即时时间
         /// </summary>

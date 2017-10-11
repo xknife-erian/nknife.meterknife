@@ -2,7 +2,7 @@
 using System.Text;
 using MeterKnife.Datas.Dpi;
 using MeterKnife.Models;
-using MeterKnife.Models.Exhibits;
+using MeterKnife.Models.Datas;
 using NKnife.Channels.Channels.Base;
 using NKnife.Channels.Interfaces;
 using NKnife.Channels.Interfaces.Channels;

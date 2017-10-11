@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading;
 using MeterKnife.Base;
+using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Measures;
 using MeterKnife.Models;
-using NKnife.Channels.Interfaces.Channels;
 
 namespace MeterKnife.Kernel.Measures
 {
@@ -35,7 +35,7 @@ namespace MeterKnife.Kernel.Measures
         /// <summary>
         ///     被测量物的列表
         /// </summary>
-        public List<ExhibitBase> Exhibits { get; set; } = new List<ExhibitBase>(1);
+        public List<IExhibit> Exhibits { get; set; } = new List<IExhibit>(1);
 
         /// <summary>
         ///     正在执行的测量工作列表
@@ -53,7 +53,7 @@ namespace MeterKnife.Kernel.Measures
         /// <param name="jobNumber">测量事件编号</param>
         /// <param name="exhibit">被测量物</param>
         /// <param name="value">测量数据</param>
-        public void AddValue(string jobNumber, ExhibitBase exhibit, double value)
+        public void AddValue(string jobNumber, IExhibit exhibit, double value)
         {
             ThreadPool.QueueUserWorkItem(OnMeasured, new MeasureEventArgs(jobNumber, exhibit, value, DateTime.Now));
         }

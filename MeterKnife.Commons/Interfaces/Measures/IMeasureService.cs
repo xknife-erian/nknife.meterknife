@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MeterKnife.Base;
 using MeterKnife.Models;
 using NKnife.Interface;
 
@@ -14,7 +13,7 @@ namespace MeterKnife.Interfaces.Measures
         /// <summary>
         ///     被测量物的列表
         /// </summary>
-        List<ExhibitBase> Exhibits { get; set; }
+        List<IExhibit> Exhibits { get; set; }
 
         /// <summary>
         ///     正在执行的测量工作列表
@@ -32,6 +31,6 @@ namespace MeterKnife.Interfaces.Measures
         /// <param name="jobNumber">测量事件编号</param>
         /// <param name="exhibit">被测量物</param>
         /// <param name="value">测量数据</param>
-        void AddValue(string jobNumber, ExhibitBase exhibit, double value);
+        void AddValue(string jobNumber, IExhibit exhibit, double value);
     }
 }

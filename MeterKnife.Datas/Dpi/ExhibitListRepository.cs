@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using LiteDB;
-using MeterKnife.Models.Exhibits;
+using MeterKnife.Models.Datas;
 using NKnife.DataLite;
 
 namespace MeterKnife.Datas.Dpi

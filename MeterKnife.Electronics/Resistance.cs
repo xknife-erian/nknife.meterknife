@@ -29,10 +29,6 @@ namespace MeterKnife.Electronics
         /// </summary>
         public float MaximalVoltage { get; set; }
 
-        /// <summary>当前实例电阻可分解为的电阻的组合
-        /// </summary>
-        public Resistances Group { get; private set; }
-
         /// <summary>创建作为当前实例副本的新对象。
         /// </summary>
         /// <returns>
@@ -46,7 +42,6 @@ namespace MeterKnife.Electronics
                 Tolerance = Tolerance,
                 RatedPower = RatedPower,
                 MaximalVoltage = MaximalVoltage,
-                Group = Group
             };
             return newObj;
         }

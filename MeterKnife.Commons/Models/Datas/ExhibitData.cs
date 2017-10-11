@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace MeterKnife.Models.Exhibits
+namespace MeterKnife.Models.Datas
 {
     /// <summary>
     /// 被测物在单一时刻的测量值

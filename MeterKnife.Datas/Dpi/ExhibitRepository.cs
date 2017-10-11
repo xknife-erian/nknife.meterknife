@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LiteDB;
-using MeterKnife.Models.Exhibits;
+using MeterKnife.Models.Datas;
 
 namespace MeterKnife.Datas.Dpi
 {

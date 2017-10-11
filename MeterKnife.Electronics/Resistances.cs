@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using NKnife.Electronics;
 using System.Linq;
 
 namespace MeterKnife.Electronics
@@ -9,9 +8,9 @@ namespace MeterKnife.Electronics
     /// 本集合实现了排序，当新的电阻对象被添加进集合后，集合会自动按阻值大小进行排序。
     /// 阻值大的电阻对象索引小，反之，索引大。
     /// </summary>
-    public class Resistances : IList<NKnife.Electronics.Resistance>
+    public class Resistances : IList<Resistance>
     {
-        protected List<NKnife.Electronics.Resistance> _Resistances;
+        private readonly List<Resistance> _Resistances;
 
         public Resistances()
             : this(4, CircuitType.Series)
@@ -20,7 +19,7 @@ namespace MeterKnife.Electronics
 
         public Resistances(int capacity, CircuitType circuitType)
         {
-            _Resistances = new List<NKnife.Electronics.Resistance>(capacity);
+            _Resistances = new List<Resistance>(capacity);
             CircuitType = circuitType;
         }
 
@@ -69,7 +68,7 @@ namespace MeterKnife.Electronics
             return sum;
         }
 
-        public IEnumerator<NKnife.Electronics.Resistance> GetEnumerator()
+        public IEnumerator<Resistance> GetEnumerator()
         {
             return _Resistances.GetEnumerator();
         }
@@ -79,7 +78,7 @@ namespace MeterKnife.Electronics
             return GetEnumerator();
         }
 
-        public void Add(NKnife.Electronics.Resistance item)
+        public void Add(Resistance item)
         {
             _Resistances.Add(item);
             _Resistances.Sort();
@@ -90,18 +89,18 @@ namespace MeterKnife.Electronics
             _Resistances.Clear();
         }
 
-        public bool Contains(NKnife.Electronics.Resistance item)
+        public bool Contains(Resistance item)
         {
             return _Resistances.Contains(item);
         }
 
-        public void CopyTo(NKnife.Electronics.Resistance[] array, int arrayIndex)
+        public void CopyTo(Resistance[] array, int arrayIndex)
         {
             _Resistances.CopyTo(array, arrayIndex);
             _Resistances.Sort();
         }
 
-        public bool Remove(NKnife.Electronics.Resistance item)
+        public bool Remove(Resistance item)
         {
             return _Resistances.Remove(item);
         }
@@ -116,12 +115,12 @@ namespace MeterKnife.Electronics
             get { return false; }
         }
 
-        public int IndexOf(NKnife.Electronics.Resistance item)
+        public int IndexOf(Resistance item)
         {
             return _Resistances.IndexOf(item);
         }
 
-        public void Insert(int index, NKnife.Electronics.Resistance item)
+        public void Insert(int index, Resistance item)
         {
             _Resistances.Insert(index, item);
             _Resistances.Sort();
@@ -132,7 +131,7 @@ namespace MeterKnife.Electronics
             _Resistances.RemoveAt(index);
         }
 
-        public NKnife.Electronics.Resistance this[int index]
+        public Resistance this[int index]
         {
             get { return _Resistances[index]; }
             set

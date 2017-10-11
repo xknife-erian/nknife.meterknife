@@ -5,6 +5,8 @@ using System.Text;
 using MeterKnife.Base;
 using Newtonsoft.Json;
 using NKnife.Base;
+using NKnife.Channels.Interfaces.Channels;
+using IExhibit = MeterKnife.Interfaces.IExhibit;
 
 namespace MeterKnife.Models
 {
@@ -26,7 +28,7 @@ namespace MeterKnife.Models
         /// </summary>
         /// <param name="exhibit">指定的被测物</param>
         /// <returns>在列表中的索引，包含则返回索引号，否则返回-1</returns>
-        public int IndexOf(ExhibitBase exhibit)
+        public int IndexOf(IExhibit exhibit)
         {
             for (int i = 0; i < Styles.Count; i++)
             {
@@ -51,7 +53,7 @@ namespace MeterKnife.Models
         /// </summary>
         public class ExhibitSeriesStyle
         {
-            public ExhibitSeriesStyle(ExhibitBase exhibit, PlotSeriesStyle seriesStyle)
+            public ExhibitSeriesStyle(IExhibit exhibit, PlotSeriesStyle seriesStyle)
             {
                 Id = Guid.NewGuid();
                 Exhibit = exhibit;
@@ -68,7 +70,7 @@ namespace MeterKnife.Models
             /// <summary>
             /// 指定被测物
             /// </summary>
-            public ExhibitBase Exhibit { get; set; }
+            public IExhibit Exhibit { get; set; }
 
             /// <summary>
             /// 该被测物的数据折线

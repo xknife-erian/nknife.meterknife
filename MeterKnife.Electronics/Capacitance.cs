@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MeterKnife.Base;
 
-namespace MeterKnife.Models.Exhibits
+namespace MeterKnife.Electronics
 {
-    public class DoubleExhibitData : ExhibitData<Double>
+    public class Capacitance : ExhibitBase
     {
     }
 }
