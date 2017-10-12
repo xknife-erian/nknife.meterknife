@@ -5,6 +5,7 @@ using MeterKnife.Base;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Measures;
 using MeterKnife.Models;
+using NKnife.Events;
 
 namespace MeterKnife.Kernel.Measures
 {
@@ -37,10 +38,16 @@ namespace MeterKnife.Kernel.Measures
         /// </summary>
         public List<IExhibit> Exhibits { get; set; } = new List<IExhibit>(1);
 
+        public event EventHandler<EventArgs<IExhibit>> ExhibitAdded;
+        public event EventHandler<EventArgs<IExhibit>> ExhibitRemoved;
+
         /// <summary>
         ///     正在执行的测量工作列表
         /// </summary>
         public List<MeasureJob> Jobs { get; set; } = new List<MeasureJob>(1);
+
+        public event EventHandler<EventArgs<MeasureJob>> MeasureJobAdded;
+        public event EventHandler<EventArgs<MeasureJob>> MeasureJobRemoved;
 
         /// <summary>
         ///     当测量指令采集到数据时发生。
@@ -55,7 +62,7 @@ namespace MeterKnife.Kernel.Measures
         /// <param name="value">测量数据</param>
         public void AddValue(string jobNumber, IExhibit exhibit, double value)
         {
-            ThreadPool.QueueUserWorkItem(OnMeasured, new MeasureEventArgs(jobNumber, exhibit, value, DateTime.Now));
+            ThreadPool.QueueUserWorkItem(OnMeasured, new MeasureEventArgs(jobNumber, exhibit.Id, value, DateTime.Now));
         }
 
         protected virtual void OnMeasured(object e)

@@ -43,9 +43,9 @@ namespace MeterKnife.Plugins.ToolsMenu
             {
                 _CommandComboBox.Items.Insert(0, command);
             }
-            var device = new Device("Keysight", "34401", "AG34401", (int) _AddressBox.Value);
+            var instrument = new Instrument("Keysight", "34401", "AG34401", (int) _AddressBox.Value);
             var group = new KeysightQuestionGroup();
-            var question = new KeysightQuestion(_KsChannel, device, null, isLoop, command);
+            var question = new KeysightQuestion(_KsChannel, instrument, null, isLoop, command);
             group.Add(question);
 
             _KsChannel.TalkTotalTimeout = (uint) _LoopTimeBox.Value;

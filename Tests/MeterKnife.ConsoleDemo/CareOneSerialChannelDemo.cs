@@ -12,7 +12,7 @@ namespace MeterKnife.ConsoleDemo
     {
         private CareOneSerialChannel _Channel;
 
-        private Device _DemoDevice = new Device("HP", "34401", "HP34401");
+        private readonly Instrument _DemoInstrument = new Instrument("HP", "34401", "HP34401");
 
         public SerialConfig Config { get; set; }
 
@@ -33,9 +33,9 @@ namespace MeterKnife.ConsoleDemo
 
         private SerialQuestionGroup GetQuestionGroup(ushort address)
         {
-            _DemoDevice.Address = address;
+            _DemoInstrument.Address = address;
             var group = new SerialQuestionGroup();
-            group.Add(new SerialQuestion(_Channel, _DemoDevice, null, false, new byte[]{}));
+            group.Add(new SerialQuestion(_Channel, _DemoInstrument, null, false, new byte[]{}));
             return null;
         }
 

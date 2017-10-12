@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
 using MeterKnife.Datas.Dpi;
+using MeterKnife.Interfaces;
 using MeterKnife.Models;
 using MeterKnife.Models.Datas;
 using NKnife.Channels.Channels.Base;
-using NKnife.Channels.Interfaces;
 using NKnife.Channels.Interfaces.Channels;
 using NKnife.DataLite;
 using NKnife.Electronics;
@@ -58,7 +58,7 @@ namespace MeterKnife.Datas
         private static DemoAnswer[] GetAnswer(IExhibit exhibit, int count)
         {
             var channel = new DemoChannel();
-            var device = new Device("Huaxin", "8081", "HXM");
+            var device = new Instrument("Huaxin", "8081", "HXM");
 
             var answers = new DemoAnswer[count];
             for (var i = 0; i < count; i++)
@@ -72,8 +72,8 @@ namespace MeterKnife.Datas
 
         private class DemoAnswer : AnswerBase<byte[]>
         {
-            public DemoAnswer(IChannel<byte[]> channel, IDevice device, IExhibit exhibit, byte[] data)
-                : base(channel, device, exhibit, data)
+            public DemoAnswer(IChannel<byte[]> channel, Instrument instrument, IExhibit exhibit, byte[] data)
+                : base(channel, instrument, exhibit, data)
             {
             }
         }

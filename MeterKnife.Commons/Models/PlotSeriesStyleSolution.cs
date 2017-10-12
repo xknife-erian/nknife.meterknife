@@ -39,6 +39,21 @@ namespace MeterKnife.Models
         }
 
         /// <summary>
+        /// 返回指定被测物在列表中的索引
+        /// </summary>
+        /// <param name="exhibitId">指定的被测物Id</param>
+        /// <returns>在列表中的索引，包含则返回索引号，否则返回-1</returns>
+        public int IndexOf(string exhibitId)
+        {
+            for (int i = 0; i < Styles.Count; i++)
+            {
+                if (Styles[i].Exhibit.Id.Equals(exhibitId))
+                    return i;
+            }
+            return -1;
+        }
+
+        /// <summary>
         /// 返回列表中是否包含被测物
         /// </summary>
         /// <param name="exhibit">被测物</param>

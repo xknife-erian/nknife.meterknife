@@ -2,10 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Common.Logging;
+using MeterKnife.Interfaces;
 using MeterKnife.Keysights.VISAs;
+using MeterKnife.Models;
 using NKnife.Channels.Channels.Base;
 using NKnife.Channels.Channels.EventParams;
 using NKnife.Channels.Interfaces.Channels;
+using NKnife.Interface;
+using Timer = System.Timers.Timer;
 
 namespace MeterKnife.Keysights
 {
@@ -29,7 +33,6 @@ namespace MeterKnife.Keysights
             OnOpening();
             _logger.Info($"GPIBLinker OnOpening...");
             if (_GPIBLinker == null || _GPIBTarget != _GPIBLinker.GpibSelector)
-            {
                 _GPIBLinker = new GPIBLinker(log =>
                 {
                     switch (log.LogLevel)
@@ -45,7 +48,6 @@ namespace MeterKnife.Keysights
                             break;
                     }
                 }, _GPIBTarget);
-            }
             IsOpen = true;
             OnOpened();
             _logger.Info($"GPIBLinker OnOpened...");
@@ -73,14 +75,14 @@ namespace MeterKnife.Keysights
         }
 
         public bool IsSynchronous { get; set; } = true;
-        public List<IExhibit> Exhibits { get; } = new List<IExhibit>();
+        public List<IId> Targets { get; } = new List<IId>();
         public uint TalkTotalTimeout { get; set; } = 2000;
-        public bool IsOpen { get; private set; } = false;
+        public bool IsOpen { get; private set; }
 
         #region Sync-SendReceiving
 
         private readonly AutoResetEvent _AutoReset = new AutoResetEvent(false);
-        private readonly System.Timers.Timer _Timer = new System.Timers.Timer();
+        private readonly Timer _Timer = new Timer();
         private bool _IsLoop = true;
 
         protected class SyncSendReceivingParams
@@ -123,32 +125,29 @@ namespace MeterKnife.Keysights
             _IsLoop = true;
             _Timer.Stop();
             _Timer.Interval = TalkTotalTimeout;
-            _Timer.Elapsed += (s, e) =>
-            {
-                _AutoReset.Set();
-            };
-            bool isFirst = true;
+            _Timer.Elapsed += (s, e) => { _AutoReset.Set(); };
+            var isFirst = true;
             var w = (SyncSendReceivingParams) param;
             while (_QuestionGroup.Count > 0 && _IsLoop)
-            {
                 try
                 {
                     var question = _QuestionGroup.PeekOrDequeue();
+                    var instrument = (Instrument) question.Instrument;
+                    var exhibit = (IExhibit) question.Target;
                     w.SendAction.Invoke(question);
                     if (isFirst)
                     {
                         isFirst = false;
                         _Timer.Start();
                     }
-                    var data = _GPIBLinker.WriteAndRead((ushort) question.Device.Address, question.Data);
-                    w.ReceivedFunc.Invoke(new KeysightAnswer(this, question.Device, question.Exhibit, data));
+                    var data = _GPIBLinker.WriteAndRead((ushort) instrument.Address, question.Data);
+                    w.ReceivedFunc.Invoke(new KeysightAnswer(this, instrument, exhibit, data));
                     _AutoReset.WaitOne();
                 }
                 catch (Exception e)
                 {
                     _logger.Warn($"Keysight:{e.Message}", e);
                 }
-            }
             _Timer.Stop();
         }
 

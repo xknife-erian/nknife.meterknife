@@ -10,7 +10,7 @@ namespace MeterKnife.Kernel
     /// <summary>
     ///     用户使用习惯
     /// </summary>
-    public class Habited : UserApplicationData, IHabited
+    public class Habited : HabitedDatas, IHabited
     {
         /// <summary>
         /// 定义JSON序列化时需要将类型名置入，以方便反序列化时可以定位接口的实现

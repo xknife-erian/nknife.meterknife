@@ -47,8 +47,8 @@ namespace MeterKnife.ViewModels
 
         private void OnMeasured(object sender, MeasureEventArgs e)
         {
-            var index = _SeriesStyleSolution.IndexOf(e.Exhibit);
-            _logger.Trace($"数据Index:{index},{e.Exhibit.Id}");
+            var index = _SeriesStyleSolution.IndexOf(e.ExhibitId);
+            _logger.Trace($"数据Index:{index},{e.ExhibitId}");
             if (index >= 0)
             {
                 var style = _SeriesStyleSolution.Styles[index].SeriesStyle;

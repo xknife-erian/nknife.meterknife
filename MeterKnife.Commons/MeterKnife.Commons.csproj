@@ -52,11 +52,11 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NKnife, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.17.5.4.830\lib\net40\NKnife.dll</HintPath>
+    <Reference Include="NKnife, Version=17.5.5.1012, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.17.5.5.1012\lib\net40\NKnife.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.Channels, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.Channels.17.5.4.830\lib\net40\NKnife.Channels.dll</HintPath>
+    <Reference Include="NKnife.Channels, Version=17.5.5.1012, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.Channels.17.5.5.1012\lib\net40\NKnife.Channels.dll</HintPath>
     </Reference>
     <Reference Include="NKnife.ControlKnife, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.ControlKnife.17.5.4.830\lib\net40\NKnife.ControlKnife.dll</HintPath>
@@ -124,7 +124,6 @@
     <Compile Include="Interfaces\IMeasure.cs" />
     <Compile Include="Interfaces\Plugins\IPlugIn.cs" />
     <Compile Include="IoC\Modules.cs" />
-    <Compile Include="Models\Device.cs" />
     <Compile Include="Models\Datas\DoubleExhibitData.cs" />
     <Compile Include="Models\Datas\ExhibitData.cs" />
     <Compile Include="Models\Datas\ExhibitItem.cs" />

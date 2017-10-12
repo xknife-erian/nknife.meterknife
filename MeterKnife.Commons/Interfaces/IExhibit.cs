@@ -1,4 +1,5 @@
 ﻿using System;
+using NKnife.Interface;
 
 namespace MeterKnife.Interfaces
 {
@@ -18,10 +19,5 @@ namespace MeterKnife.Interfaces
         /// 创建本观察点对象的时间(非物理的制造时间，一般来讲描述的是采集数据的开始时间)
         /// </summary>
         DateTime CreatedTime { get; set; }
-    }
-
-    public interface IId
-    {
-        string Id { get; set; }
     }
 }

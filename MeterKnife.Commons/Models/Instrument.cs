@@ -1,18 +1,53 @@
 ﻿using System;
 using System.Drawing;
 using Newtonsoft.Json;
+using NKnife.Interface;
 
 namespace MeterKnife.Models
 {
     /// <summary>
     ///     仪器
     /// </summary>
-    public class Instrument : Device
+    public class Instrument : IId
     {
         public Instrument(string manufacturer, string model, string name, int address = -1)
-            : base(manufacturer, model, name, address)
         {
+            Id = Guid.NewGuid().ToString("N");
+            Manufacturer = manufacturer;
+            Model = model;
+            Name = name;
+            Address = address;
         }
+
+        /// <summary>
+        ///     生产厂商
+        /// </summary>
+        public string Manufacturer { get; set; }
+
+        /// <summary>
+        ///     型号
+        /// </summary>
+        public string Model { get; set; }
+
+        /// <summary>
+        ///     设备名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     设备常用简称
+        /// </summary>
+        public string AbbrName { get; } = string.Empty;
+
+        /// <summary>
+        ///     设备地址
+        /// </summary>
+        public int Address { get; set; }
+
+        /// <summary>
+        ///     设备说明或信息
+        /// </summary>
+        public string Information { get; set; } = string.Empty;
 
         /// <summary>
         ///     仪器的图片
@@ -29,6 +64,8 @@ namespace MeterKnife.Models
         ///     最后一次使用该仪器的时间
         /// </summary>
         public DateTime LastUsingTime { get; set; } = DateTime.Now;
+
+        public string Id { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -58,17 +95,5 @@ namespace MeterKnife.Models
         }
 
         #endregion
-
-        public struct NameValue
-        {
-            public NameValue(string name, string value)
-            {
-                Name = name;
-                Value = value;
-            }
-
-            public string Name { get; set; }
-            public string Value { get; set; }
-        }
     }
 }
