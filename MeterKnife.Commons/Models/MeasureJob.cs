@@ -1,21 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using MeterKnife.Interfaces;
+using MeterKnife.Scpis;
 
 namespace MeterKnife.Models
 {
     /// <summary>
-    ///     描述一项测量工作的类型。
-    ///     该测量工作是指在一套对一个或多个被测物循环环执行测量的过程。
+    ///     描述一项测量事务的类型。
+    ///     该测量事务是指在一套对一个或多个被测物循环环执行测量的过程，该过程可能会多次启动与停止。
     ///     本软件会将本过程所采集的数据单独存储在一个文件数据库中。
     /// </summary>
     public class MeasureJob
     {
         public string Id { get; set; }
-        public List<IExhibit> Exhibits { get; set; }
-        public List<Instrument> Instruments { get; set; }
-        public List<string> Commands { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime StopTime { get; set; }
+        public List<IExhibit> Exhibits { get; set; } = new List<IExhibit>(1);
+        public List<Instrument> Instruments { get; set; } = new List<Instrument>(1);
+        public List<Duration> Durations { get; set; } = new List<Duration>(1);
+
+        /// <summary>
+        /// 描述一次测量
+        /// </summary>
+        public class Duration
+        {
+            public ScpiSubject ScpiSubject { get; set; }
+            public DateTime Start { get; set; }
+            public DateTime Stop { get; set; }
+        }
     }
 }
