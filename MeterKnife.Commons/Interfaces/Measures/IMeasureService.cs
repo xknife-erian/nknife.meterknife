@@ -14,7 +14,7 @@ namespace MeterKnife.Interfaces.Measures
         /// <summary>
         ///     被测量物的列表
         /// </summary>
-        List<IExhibit> Exhibits { get; set; }
+        ICollection<IExhibit> Exhibits { get; set; }
 
         /// <summary>
         /// 当新增被测物后发生
@@ -29,7 +29,7 @@ namespace MeterKnife.Interfaces.Measures
         /// <summary>
         ///     正在执行的测量工作列表
         /// </summary>
-        List<MeasureJob> Jobs { get; set; }
+        ICollection<MeasureJob> Jobs { get; set; }
 
         /// <summary>
         /// 当新增测量事物后发生

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Threading;
 using MeterKnife.Base;
 using MeterKnife.Interfaces;
@@ -14,6 +16,35 @@ namespace MeterKnife.Kernel.Measures
     /// </summary>
     public class MeasureService : IMeasureService
     {
+        public MeasureService()
+        {
+            ((ObservableCollection<IExhibit>)Exhibits).CollectionChanged += (s, e) =>
+            {
+                switch (e.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                    case NotifyCollectionChangedAction.Move:
+                    case NotifyCollectionChangedAction.Remove:
+                    case NotifyCollectionChangedAction.Replace:
+                    case NotifyCollectionChangedAction.Reset:
+                    default:
+                        break;
+                }
+            };
+            ((ObservableCollection<MeasureJob>)Jobs).CollectionChanged += (s, e) =>
+            {
+                switch (e.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                    case NotifyCollectionChangedAction.Move:
+                    case NotifyCollectionChangedAction.Remove:
+                    case NotifyCollectionChangedAction.Replace:
+                    case NotifyCollectionChangedAction.Reset:
+                    default:
+                        break;
+                }
+            };
+        }
         #region Implementation of IEnvironmentItem
 
         public bool StartService()
@@ -36,7 +67,7 @@ namespace MeterKnife.Kernel.Measures
         /// <summary>
         ///     被测量物的列表
         /// </summary>
-        public List<IExhibit> Exhibits { get; set; } = new List<IExhibit>(1);
+        public ICollection<IExhibit> Exhibits { get; set; } = new ObservableCollection<IExhibit>();
 
         public event EventHandler<EventArgs<IExhibit>> ExhibitAdded;
         public event EventHandler<EventArgs<IExhibit>> ExhibitRemoved;
@@ -44,7 +75,7 @@ namespace MeterKnife.Kernel.Measures
         /// <summary>
         ///     正在执行的测量工作列表
         /// </summary>
-        public List<MeasureJob> Jobs { get; set; } = new List<MeasureJob>(1);
+        public ICollection<MeasureJob> Jobs { get; set; } = new ObservableCollection<MeasureJob>();
 
         public event EventHandler<EventArgs<MeasureJob>> MeasureJobAdded;
         public event EventHandler<EventArgs<MeasureJob>> MeasureJobRemoved;
@@ -71,5 +102,25 @@ namespace MeterKnife.Kernel.Measures
         }
 
         #endregion
+
+        protected virtual void OnExhibitAdded(EventArgs<IExhibit> e)
+        {
+            ExhibitAdded?.Invoke(this, e);
+        }
+
+        protected virtual void OnExhibitRemoved(EventArgs<IExhibit> e)
+        {
+            ExhibitRemoved?.Invoke(this, e);
+        }
+
+        protected virtual void OnMeasureJobAdded(EventArgs<MeasureJob> e)
+        {
+            MeasureJobAdded?.Invoke(this, e);
+        }
+
+        protected virtual void OnMeasureJobRemoved(EventArgs<MeasureJob> e)
+        {
+            MeasureJobRemoved?.Invoke(this, e);
+        }
     }
 }
