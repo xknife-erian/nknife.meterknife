@@ -25,6 +25,9 @@ namespace MeterKnife.ConsoleDemo
                     case "2":
                         new KeysightChannelDemo().Run();
                         break;
+                    case "3":
+                        new KeysightChannelDemo().Run();
+                        break;
                     case "X":
                         _isRun = false;
                         break;

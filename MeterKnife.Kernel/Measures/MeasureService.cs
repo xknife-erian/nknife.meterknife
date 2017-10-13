@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Threading;
 using MeterKnife.Base;
+using MeterKnife.Events;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Measures;
 using MeterKnife.Models;
@@ -18,33 +19,9 @@ namespace MeterKnife.Kernel.Measures
     {
         public MeasureService()
         {
-            ((ObservableCollection<IExhibit>)Exhibits).CollectionChanged += (s, e) =>
-            {
-                switch (e.Action)
-                {
-                    case NotifyCollectionChangedAction.Add:
-                    case NotifyCollectionChangedAction.Move:
-                    case NotifyCollectionChangedAction.Remove:
-                    case NotifyCollectionChangedAction.Replace:
-                    case NotifyCollectionChangedAction.Reset:
-                    default:
-                        break;
-                }
-            };
-            ((ObservableCollection<MeasureJob>)Jobs).CollectionChanged += (s, e) =>
-            {
-                switch (e.Action)
-                {
-                    case NotifyCollectionChangedAction.Add:
-                    case NotifyCollectionChangedAction.Move:
-                    case NotifyCollectionChangedAction.Remove:
-                    case NotifyCollectionChangedAction.Replace:
-                    case NotifyCollectionChangedAction.Reset:
-                    default:
-                        break;
-                }
-            };
+            CollectionChanged();
         }
+
         #region Implementation of IEnvironmentItem
 
         public bool StartService()
@@ -89,11 +66,65 @@ namespace MeterKnife.Kernel.Measures
         ///     当测量指令采集到数据时，将数据置入MeasureService服务中
         /// </summary>
         /// <param name="jobNumber">测量事件编号</param>
-        /// <param name="exhibit">被测量物</param>
+        /// <param name="exhibitId">被测量物</param>
         /// <param name="value">测量数据</param>
-        public void AddValue(string jobNumber, IExhibit exhibit, double value)
+        public void AddValue(string jobNumber, string exhibitId, double value)
         {
-            ThreadPool.QueueUserWorkItem(OnMeasured, new MeasureEventArgs(jobNumber, exhibit.Id, value, DateTime.Now));
+            ThreadPool.QueueUserWorkItem(OnMeasured, new MeasureEventArgs(jobNumber, exhibitId, value, DateTime.Now));
+        }
+
+        private void CollectionChanged()
+        {
+            ((ObservableCollection<IExhibit>) Exhibits).CollectionChanged += (s, e) =>
+            {
+                switch (e.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                        foreach (var item in e.NewItems)
+                        {
+                            var exhibit = item as IExhibit;
+                            OnExhibitAdded(new EventArgs<IExhibit>(exhibit));
+                        }
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                    case NotifyCollectionChangedAction.Remove:
+                        foreach (var item in e.NewItems)
+                        {
+                            var exhibit = item as IExhibit;
+                            OnExhibitRemoved(new EventArgs<IExhibit>(exhibit));
+                        }
+                        break;
+                    case NotifyCollectionChangedAction.Move:
+                    case NotifyCollectionChangedAction.Replace:
+                    default:
+                        break;
+                }
+            };
+            ((ObservableCollection<MeasureJob>) Jobs).CollectionChanged += (s, e) =>
+            {
+                switch (e.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                        foreach (var item in e.NewItems)
+                        {
+                            var job = item as MeasureJob;
+                            OnMeasureJobAdded(new EventArgs<MeasureJob>(job));
+                        }
+                        break;
+                    case NotifyCollectionChangedAction.Reset:
+                    case NotifyCollectionChangedAction.Remove:
+                        foreach (var item in e.NewItems)
+                        {
+                            var job = item as MeasureJob;
+                            OnMeasureJobRemoved(new EventArgs<MeasureJob>(job));
+                        }
+                        break;
+                    case NotifyCollectionChangedAction.Move:
+                    case NotifyCollectionChangedAction.Replace:
+                    default:
+                        break;
+                }
+            };
         }
 
         protected virtual void OnMeasured(object e)

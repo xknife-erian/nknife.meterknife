@@ -12,7 +12,7 @@ namespace MeterKnife.Keysights
 {
     public class KeysightAnswer : AnswerBase<string>
     {
-        public KeysightAnswer(IChannel<string> channel, Instrument device, IExhibit exhibit, string data) 
+        public KeysightAnswer(KeysightChannel channel, Instrument device, IExhibit exhibit, string data) 
             : base(channel, device, exhibit, data)
         {
         }

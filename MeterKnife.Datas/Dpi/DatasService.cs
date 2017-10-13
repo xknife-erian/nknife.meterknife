@@ -2,6 +2,7 @@
 using System.IO;
 using Common.Logging;
 using LiteDB;
+using MeterKnife.Events;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Measures;
 using NKnife.Interface;
@@ -14,16 +15,16 @@ namespace MeterKnife.Datas.Dpi
     {
         private static readonly ILog _logger = LogManager.GetLogger<DatasService>();
 
-        private LiteDatabase _Database;
+        private LiteDatabase _GlobalDatabase;
 
-        public LiteDatabase DataBase => _Database;
+        public LiteDatabase GlobalDataBase => _GlobalDatabase;
 
         #region IDisposable
 
         /// <summary>执行与释放或重置非托管资源相关的应用程序定义的任务。</summary>
         public void Dispose()
         {
-            _Database?.Dispose();
+            _GlobalDatabase?.Dispose();
         }
 
         #endregion
@@ -34,13 +35,13 @@ namespace MeterKnife.Datas.Dpi
         {
             try
             {
-                if (_Database == null)
+                if (_GlobalDatabase == null)
                 {
                     var fullpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Datas\");
                     if (!Directory.Exists(fullpath))
                         UtilityFile.CreateDirectory(fullpath);
                     fullpath = Path.Combine(fullpath, "mk.litedb");
-                    _Database = new LiteDatabase(fullpath);
+                    _GlobalDatabase = new LiteDatabase(fullpath);
                 }
                 var measureService = DI.Get<IMeasureService>();
                 measureService.Measured += OnMeasured;
@@ -58,7 +59,7 @@ namespace MeterKnife.Datas.Dpi
         {
             try
             {
-                _Database?.Dispose();
+                _GlobalDatabase?.Dispose();
                 return true;
             }
             catch (Exception e)
@@ -75,7 +76,10 @@ namespace MeterKnife.Datas.Dpi
 
         private void OnMeasured(object sender, MeasureEventArgs e)
         {
-            throw new NotImplementedException();
+            var jobId = e.JobId;
+            var exhibitId = e.ExhibitId;
+            var time = e.Time;
+            var value = e.Value;
         }
     }
 }

@@ -131,16 +131,16 @@ namespace MeterKnife.Keysights
             while (_QuestionGroup.Count > 0 && _IsLoop)
                 try
                 {
-                    var question = _QuestionGroup.PeekOrDequeue();
-                    var instrument = (Instrument) question.Instrument;
-                    var exhibit = (IExhibit) question.Target;
-                    w.SendAction.Invoke(question);
+                    var q = _QuestionGroup.PeekOrDequeue();
+                    var instrument = (Instrument) q.Instrument;
+                    var exhibit = (IExhibit) q.Target;
+                    w.SendAction.Invoke(q);
                     if (isFirst)
                     {
                         isFirst = false;
                         _Timer.Start();
                     }
-                    var data = _GPIBLinker.WriteAndRead((ushort) instrument.Address, question.Data);
+                    var data = _GPIBLinker.WriteAndRead((ushort) instrument.Address, q.Data);
                     w.ReceivedFunc.Invoke(new KeysightAnswer(this, instrument, exhibit, data));
                     _AutoReset.WaitOne();
                 }
@@ -196,8 +196,19 @@ namespace MeterKnife.Keysights
             Closed?.Invoke(this, EventArgs.Empty);
         }
 
+        protected virtual void OnChannelModeChanged(ChannelModeChangedEventArgs e)
+        {
+            ChannelModeChanged?.Invoke(this, e);
+        }
+
+        protected virtual void OnDataArrived(ChannelAnswerDataEventArgs<string> e)
+        {
+            DataArrived?.Invoke(this, e);
+        }
+
         #endregion
 
         #endregion
+
     }
 }

@@ -8,7 +8,7 @@ namespace MeterKnife.Datas.Dpi
     {
         #region Overrides of RepositoryBase<ExhibitData<T>>
 
-        protected override LiteDatabase Database => DI.Get<DatasService>().DataBase;
+        protected override LiteDatabase Database => DI.Get<DatasService>().GlobalDataBase;
 
         #endregion
     }

@@ -1,9 +1,6 @@
 ﻿using System;
-using MeterKnife.Base;
-using MeterKnife.Scpis;
-using NKnife.Channels.Interfaces.Channels;
 
-namespace MeterKnife.Interfaces.Measures
+namespace MeterKnife.Events
 {
     /// <summary>
     ///     当测量事物启动后采集到即时数据时发生的事件信息封装。

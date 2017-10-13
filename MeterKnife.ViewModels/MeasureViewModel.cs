@@ -4,6 +4,7 @@ using System.Threading;
 using Common.Logging;
 using MeterKnife.Base;
 using MeterKnife.Base.Viewmodels;
+using MeterKnife.Events;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Measures;
 using MeterKnife.Models;

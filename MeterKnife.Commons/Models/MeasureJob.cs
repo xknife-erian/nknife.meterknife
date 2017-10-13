@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MeterKnife.Events;
 using MeterKnife.Interfaces;
 using MeterKnife.Scpis;
 
@@ -15,12 +16,12 @@ namespace MeterKnife.Models
         public string Id { get; set; }
         public List<IExhibit> Exhibits { get; set; } = new List<IExhibit>(1);
         public List<Instrument> Instruments { get; set; } = new List<Instrument>(1);
-        public List<Duration> Durations { get; set; } = new List<Duration>(1);
+        public List<Measure> Durations { get; set; } = new List<Measure>(1);
 
         /// <summary>
-        /// 描述一次测量
+        ///     “测量”功能的基接口，描述“测量”功能的核心函数与事件。
         /// </summary>
-        public class Duration
+        public class Measure
         {
             public ScpiSubject ScpiSubject { get; set; }
             public DateTime Start { get; set; }

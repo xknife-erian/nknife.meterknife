@@ -16,7 +16,6 @@ namespace MeterKnife.ConsoleDemo
 
         public SerialConfig Config { get; set; }
 
-
         public override void Run()
         {
             Debug.Assert(Config != null, "SerialConfig未设置");
