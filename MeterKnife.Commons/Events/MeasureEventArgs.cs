@@ -19,14 +19,17 @@ namespace MeterKnife.Events
         /// 测量事件编号
         /// </summary>
         public string JobId { get; set; }
-        /// <summary>
-        /// 测量值
-        /// </summary>
-        public double Value { get; set; }
+
         /// <summary>
         /// 被测物
         /// </summary>
         public string ExhibitId { get; set; }
+
+        /// <summary>
+        /// 测量值
+        /// </summary>
+        public double Value { get; set; }
+
         /// <summary>
         /// 测量时的即时时间
         /// </summary>

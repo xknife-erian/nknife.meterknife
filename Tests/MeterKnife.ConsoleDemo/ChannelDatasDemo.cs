@@ -4,6 +4,7 @@ using NKnife.Channels.Channels.Base;
 using NKnife.Channels.Interfaces.Channels;
 using NKnife.IoC;
 using System;
+using NKnife.Interface;
 
 namespace MeterKnife.ConsoleDemo
 {
@@ -28,6 +29,18 @@ namespace MeterKnife.ConsoleDemo
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+    }
+
+    public class MeasureAnswer : IAnswer<double>
+    {
+        #region Implementation of ISwap<double>
+
+        public double Data { get; set; }
+        public IChannel<double> Channel { get; }
+        public IId Instrument { get; }
+        public IId Target { get; }
 
         #endregion
     }
