@@ -1,4 +1,5 @@
 ﻿using System;
+using MeterKnife.Base;
 using MeterKnife.Interfaces;
 using MeterKnife.Models;
 using NKnife.Channels.Channels.Base;
@@ -13,7 +14,7 @@ namespace MeterKnife.Keysights
         /// <summary>
         /// 描述设备向PC串口返回的交换数据
         /// </summary>
-        public KeysightQuestion(IChannel<string> channel, Instrument instrument, IExhibit exhibit, bool isLoop, string data) 
+        public KeysightQuestion(KeysightChannel channel, Instrument instrument, ExhibitBase exhibit, bool isLoop, string data) 
             : base(channel, instrument, exhibit, isLoop, data)
         {
             _Id = Guid.NewGuid();

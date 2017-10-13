@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
 
@@ -9,10 +10,22 @@ namespace MeterKnife.Scpis
     /// </summary>
     public class ScpiSubject
     {
+        private Guid _JobNumber;
+
         public ScpiSubject()
         {
             Collect = new ScpiGroup {Category = ScpiCommandGroupCategory.Collect};
             Initializtion = new ScpiGroup {Category = ScpiCommandGroupCategory.Initializtion};
+        }
+
+        public void SetJobNumber(Guid jobNumber)
+        {
+            _JobNumber = jobNumber;
+        }
+
+        public Guid GetJobNumber()
+        {
+            return _JobNumber;
         }
 
         /// <summary>

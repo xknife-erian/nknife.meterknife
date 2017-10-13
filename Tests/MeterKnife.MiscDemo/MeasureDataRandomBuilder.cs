@@ -40,7 +40,7 @@ namespace MeterKnife.MiscDemo
                         {
                             var tail = _Rand.Next(0, 99999);
                             var v = double.Parse($"{head}.99{tail}");
-                            _MeasureService.AddValue("", solution.Styles[i].Exhibit, v);
+                            _MeasureService.AddValue("", solution.Styles[i].Exhibit.Id, v);
                             Thread.Sleep(100);
                         }
                     }

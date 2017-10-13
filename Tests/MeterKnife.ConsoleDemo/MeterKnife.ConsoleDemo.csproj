@@ -64,12 +64,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\Channels\ByteDatasMockChannel.cs" />
     <Compile Include="CareOneSerialChannelDemo.cs" />
     <Compile Include="ChannelDatasDemo.cs" />
     <Compile Include="DemoBase.cs" />
     <Compile Include="KeysightChannelDemo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mocks\Channels\StringDatasMockChannel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -80,9 +82,17 @@
       <Project>{201309E4-CD58-4197-AC3B-6367CC4E65B1}</Project>
       <Name>MeterKnife.Gateway.Cares</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights\MeterKnife.Gateway.Keysights.csproj">
+      <Project>{EC118282-B4FE-4837-B292-302A7E111C21}</Project>
+      <Name>MeterKnife.Gateway.Keysights</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Commons\MeterKnife.Commons.csproj">
       <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
       <Name>MeterKnife.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Electronics\MeterKnife.Electronics.csproj">
+      <Project>{92451625-7892-4E75-A818-0DEBB181C94E}</Project>
+      <Name>MeterKnife.Electronics</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

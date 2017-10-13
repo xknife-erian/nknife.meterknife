@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="IoC\Modules.cs" />
     <Compile Include="KeysightAnswer.cs" />
+    <Compile Include="KeysightDataConverter.cs" />
     <Compile Include="KeysightDiscover.cs" />
     <Compile Include="KeysightQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,19 +1,18 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using Common.Logging;
-using MeterKnife.Interfaces;
+using MeterKnife.Base;
+using MeterKnife.Base.Channels;
 using MeterKnife.Keysights.VISAs;
 using MeterKnife.Models;
 using NKnife.Channels.Channels.Base;
 using NKnife.Channels.Channels.EventParams;
 using NKnife.Channels.Interfaces.Channels;
-using NKnife.Interface;
 using Timer = System.Timers.Timer;
 
 namespace MeterKnife.Keysights
 {
-    public class KeysightChannel : IChannel<string>
+    public class KeysightChannel : MeasureChannelBase<string>
     {
         private static readonly ILog _logger = LogManager.GetLogger<KeysightChannel>();
         private readonly ushort _GPIBTarget;
@@ -24,11 +23,14 @@ namespace MeterKnife.Keysights
         {
             _GPIBTarget = gpibTarget;
             _logger.Info($"GPIBLinker GPIBTarget is {gpibTarget}.");
+
+            IsSynchronous = true;
+            TalkTotalTimeout = 2000;
         }
 
         #region Implementation of IChannel<string>
 
-        public bool Open()
+        public override bool Open()
         {
             OnOpening();
             _logger.Info($"GPIBLinker OnOpening...");
@@ -54,7 +56,7 @@ namespace MeterKnife.Keysights
             return true;
         }
 
-        public bool Close()
+        public override bool Close()
         {
             OnCloseing();
             IsOpen = false;
@@ -62,22 +64,17 @@ namespace MeterKnife.Keysights
             return true;
         }
 
-        public void UpdateQuestionGroup(KeysightQuestionGroup questionGroup)
-        {
-            _QuestionGroup = questionGroup;
-        }
-
-        void IChannel<string>.UpdateQuestionGroup(IQuestionGroup<string> qGroup)
+        public override void UpdateQuestionGroup(IQuestionGroup<string> qGroup)
         {
             if (!(qGroup is KeysightQuestionGroup))
                 throw new ArgumentException(nameof(qGroup), $"{nameof(qGroup)} need is {typeof(KeysightQuestionGroup).Name}");
             UpdateQuestionGroup((KeysightQuestionGroup) qGroup);
         }
 
-        public bool IsSynchronous { get; set; } = true;
-        public List<IId> Targets { get; } = new List<IId>();
-        public uint TalkTotalTimeout { get; set; } = 2000;
-        public bool IsOpen { get; private set; }
+        public void UpdateQuestionGroup(KeysightQuestionGroup questionGroup)
+        {
+            _QuestionGroup = questionGroup;
+        }
 
         #region Sync-SendReceiving
 
@@ -103,7 +100,7 @@ namespace MeterKnife.Keysights
         /// <param name="sendAction">当发送完成时</param>
         /// <param name="receivedFunc">当采集到数据(返回的数据)的处理方法。当返回true时，表示接收数据是完整的；返回flase时，表示接收数据不完整，还需要继续接收。</param>
         /// <returns>是否采集到数据</returns>
-        public void SendReceiving(Action<IQuestion<string>> sendAction, Func<IAnswer<string>, bool> receivedFunc)
+        public override void SendReceiving(Action<IQuestion<string>> sendAction, Func<IAnswer<string>, bool> receivedFunc)
         {
             ThreadPool.QueueUserWorkItem(SendReceiving, new SyncSendReceivingParams(sendAction, receivedFunc));
 #if DEBUG
@@ -133,7 +130,7 @@ namespace MeterKnife.Keysights
                 {
                     var q = _QuestionGroup.PeekOrDequeue();
                     var instrument = (Instrument) q.Instrument;
-                    var exhibit = (IExhibit) q.Target;
+                    var exhibit = (ExhibitBase) q.Target;
                     w.SendAction.Invoke(q);
                     if (isFirst)
                     {
@@ -155,12 +152,12 @@ namespace MeterKnife.Keysights
 
         #region async, 不支持
 
-        public void AutoSend(Action<IQuestion<string>> sendAction)
+        public override void AutoSend(Action<IQuestion<string>> sendAction)
         {
             //此种Channel不设置异步方式操作
         }
 
-        public void Break()
+        public override void Break()
         {
             //此种Channel不设置异步方式操作
         }
@@ -210,5 +207,13 @@ namespace MeterKnife.Keysights
 
         #endregion
 
+        #region Overrides of MeasureChannelBase<string>
+
+        public override MeasureQuestionGroup<string> ToQuestionGroup(MeasureJob.Measure measure)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
