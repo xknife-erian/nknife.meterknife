@@ -18,7 +18,7 @@ namespace MeterKnife.Scpis
                 _Category = value;
                 switch (value)
                 {
-                    case ScpiCommandGroupCategory.Collect:
+                    case ScpiCommandGroupCategory.Measure:
                         _IntervalNumericUpDown.Value = 400;
                         _IsReturnCheckBox.Checked = true;
                         break;

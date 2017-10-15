@@ -8,6 +8,6 @@ namespace MeterKnife.Base.Channels
 {
     public abstract class MeasureChannelBase<T> : ChannelBase<T>
     {
-        public abstract MeasureQuestionGroup<T> ToQuestionGroup(MeasureJob.Measure measure);
+        public abstract MeasureQuestionGroup<string> ToQuestionGroup(MeasureJob.Measure measure);
     }
 }

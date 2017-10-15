@@ -3,7 +3,7 @@ namespace MeterKnife.Scpis
     public enum ScpiCommandGroupCategory
     {
         Initializtion,
-        Collect,
+        Measure,
         None
     }
 }

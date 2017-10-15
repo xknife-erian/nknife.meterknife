@@ -14,7 +14,7 @@ namespace MeterKnife.Scpis
 
         public ScpiSubject()
         {
-            Collect = new ScpiGroup {Category = ScpiCommandGroupCategory.Collect};
+            Measure = new ScpiGroup {Category = ScpiCommandGroupCategory.Measure};
             Initializtion = new ScpiGroup {Category = ScpiCommandGroupCategory.Initializtion};
         }
 
@@ -37,9 +37,9 @@ namespace MeterKnife.Scpis
         /// </summary>
         public ScpiGroup Initializtion { get; set; }
         /// <summary>
-        /// 采集指令集合
+        /// 测量指令集合
         /// </summary>
-        public ScpiGroup Collect { get; set; }
+        public ScpiGroup Measure { get; set; }
 
         /// <summary>
         /// 指令集合所在的主题集合
@@ -61,7 +61,7 @@ namespace MeterKnife.Scpis
             element.AppendChild(groupElement);
 
             groupElement = document.CreateElement("group");
-            Collect.Build(ref groupElement);
+            Measure.Build(ref groupElement);
             element.AppendChild(groupElement);
         }
 
@@ -95,7 +95,7 @@ namespace MeterKnife.Scpis
                                 scpiSubject.Initializtion = ScpiGroup.Prase(groupElement);
                                 break;
                             case "collect":
-                                scpiSubject.Collect = ScpiGroup.Prase(groupElement);
+                                scpiSubject.Measure = ScpiGroup.Prase(groupElement);
                                 break;
                         }
                     }

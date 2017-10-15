@@ -15,9 +15,9 @@ namespace MeterKnife.Models
     {
         public MeasureJob()
         {
-            Id = Guid.NewGuid();
+            Number = Guid.NewGuid();
         }
-        public Guid Id { get; }
+        public Guid Number { get; }
         public List<IExhibit> Exhibits { get; set; } = new List<IExhibit>(1);
         public List<Instrument> Instruments { get; set; } = new List<Instrument>(1);
         public List<Measure> Measures { get; set; } = new List<Measure>(1);
@@ -27,13 +27,14 @@ namespace MeterKnife.Models
         /// </summary>
         public class Measure
         {
-            public Measure(Guid id, ScpiSubject scpiSubject, DateTime startTime)
+            public Measure(MeasureJob job, ScpiSubject scpiSubject, DateTime startTime)
             {
-                Id = id;
+                Job = job;
                 ScpiSubject = scpiSubject;
                 Start = startTime;
+                job.Measures.Add(this);
             }
-            public Guid Id { get; }
+            public MeasureJob Job { get; }
             public ScpiSubject ScpiSubject { get; }
             public DateTime Start { get; }
             public DateTime Stop { get; set; }
@@ -56,14 +57,14 @@ namespace MeterKnife.Models
 
         protected bool Equals(MeasureJob other)
         {
-            return Id.Equals(other.Id);
+            return Number.Equals(other.Number);
         }
 
         /// <summary>用作特定类型的哈希函数。</summary>
         /// <returns>当前 <see cref="T:System.Object" /> 的哈希代码。</returns>
         public override int GetHashCode()
         {
-            return Id.GetHashCode();
+            return Number.GetHashCode();
         }
 
         #endregion

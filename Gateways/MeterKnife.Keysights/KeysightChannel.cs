@@ -5,6 +5,7 @@ using MeterKnife.Base;
 using MeterKnife.Base.Channels;
 using MeterKnife.Keysights.VISAs;
 using MeterKnife.Models;
+using MeterKnife.Scpis;
 using NKnife.Channels.Channels.Base;
 using NKnife.Channels.Channels.EventParams;
 using NKnife.Channels.Interfaces.Channels;
@@ -34,7 +35,17 @@ namespace MeterKnife.Keysights
         {
             OnOpening();
             _logger.Info($"GPIBLinker OnOpening...");
+            OpenGPIBLinker();
+            IsOpen = true;
+            OnOpened();
+            _logger.Info($"GPIBLinker OnOpened...");
+            return true;
+        }
+
+        protected virtual void OpenGPIBLinker()
+        {
             if (_GPIBLinker == null || _GPIBTarget != _GPIBLinker.GpibSelector)
+            {
                 _GPIBLinker = new GPIBLinker(log =>
                 {
                     switch (log.LogLevel)
@@ -50,10 +61,7 @@ namespace MeterKnife.Keysights
                             break;
                     }
                 }, _GPIBTarget);
-            IsOpen = true;
-            OnOpened();
-            _logger.Info($"GPIBLinker OnOpened...");
-            return true;
+            }
         }
 
         public override bool Close()
@@ -126,26 +134,34 @@ namespace MeterKnife.Keysights
             var isFirst = true;
             var w = (SyncSendReceivingParams) param;
             while (_QuestionGroup.Count > 0 && _IsLoop)
+            {
+                var q = _QuestionGroup.PeekOrDequeue();
+                var instrument = (Instrument)q.Instrument;
+                var exhibit = (ExhibitBase)q.Target;
                 try
                 {
-                    var q = _QuestionGroup.PeekOrDequeue();
-                    var instrument = (Instrument) q.Instrument;
-                    var exhibit = (ExhibitBase) q.Target;
                     w.SendAction.Invoke(q);
                     if (isFirst)
                     {
                         isFirst = false;
                         _Timer.Start();
                     }
-                    var data = _GPIBLinker.WriteAndRead((ushort) instrument.Address, q.Data);
-                    w.ReceivedFunc.Invoke(new KeysightAnswer(this, instrument, exhibit, data));
+                    var data = WriteAndRead(instrument.Address, q.Data);
+                    var answer = new KeysightAnswer(_QuestionGroup.JobNumber, this, instrument, exhibit, data);
+                    w.ReceivedFunc.Invoke(answer);
                     _AutoReset.WaitOne();
                 }
                 catch (Exception e)
                 {
                     _logger.Warn($"Keysight:{e.Message}", e);
                 }
+            }
             _Timer.Stop();
+        }
+
+        protected virtual string WriteAndRead(int address, string command)
+        {
+            return _GPIBLinker.WriteAndRead((ushort) address, command);
         }
 
         #endregion
@@ -211,7 +227,20 @@ namespace MeterKnife.Keysights
 
         public override MeasureQuestionGroup<string> ToQuestionGroup(MeasureJob.Measure measure)
         {
-            throw new NotImplementedException();
+            var qg = new KeysightQuestionGroup();
+            var scpis = measure.ScpiSubject;
+            foreach (ScpiCommand command in scpis.Initializtion)
+            {
+                var keysightQuestion = new KeysightQuestion(this, command.Instrument, command.Exhibit, false, command.Command);
+                qg.Add(keysightQuestion);
+            }
+            foreach (ScpiCommand command in scpis.Measure)
+            {
+                var keysightQuestion = new KeysightQuestion(this, command.Instrument, command.Exhibit, true, command.Command);
+                //keysightQuestion.LoopInterval = command.Interval;
+                qg.Add(keysightQuestion);
+            }
+            return qg;
         }
 
         #endregion

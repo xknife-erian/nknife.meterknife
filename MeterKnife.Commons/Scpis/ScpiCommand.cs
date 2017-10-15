@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Xml;
+using MeterKnife.Base;
+using MeterKnife.Models;
 using NKnife.Converts;
 using NKnife.XML;
 
@@ -18,11 +20,18 @@ namespace MeterKnife.Scpis
         {
             Interval = 200;
             IsHex = false;
-            IsMultiPath = false;
             IsReturn = true;
-            Selected = true;
-            CarePath = 0;
         }
+
+        /// <summary>
+        /// 本指令面向的仪器
+        /// </summary>
+        public Instrument Instrument { get; set; }
+
+        /// <summary>
+        /// 本指令面向的被测物
+        /// </summary>
+        public ExhibitBase Exhibit { get; set; }
 
         /// <summary>
         ///     命令主体
@@ -43,21 +52,6 @@ namespace MeterKnife.Scpis
         ///     命令主体是用原生字符串表达,还是16进制字符串表达
         /// </summary>
         public bool IsHex { get; set; }
-
-        /// <summary>
-        ///     命令主体是否是Care的多路扩展指令
-        /// </summary>
-        public bool IsMultiPath { get; set; }
-
-        /// <summary>
-        ///     Care的多路扩展指令所描述的第几路
-        /// </summary>
-        public short CarePath { get; set; }
-
-        /// <summary>
-        ///     命令是否被选择
-        /// </summary>
-        public bool Selected { get; set; }
 
         /// <summary>
         ///     命令的解释
@@ -87,17 +81,11 @@ namespace MeterKnife.Scpis
             if (bool.TryParse(element.GetAttribute("hex"), out isHex))
                 command.IsHex = isHex;
             bool selected;
-            if (bool.TryParse(element.GetAttribute("selected"), out selected))
-                command.Selected = selected;
             bool isReturn;
             if (bool.TryParse(element.GetAttribute("return"), out isReturn))
                 command.IsReturn = isReturn;
             bool isMultiPath;
-            if (bool.TryParse(element.GetAttribute("multipath"), out isMultiPath))
-                command.IsMultiPath = isMultiPath;
             short carePath;
-            if (short.TryParse(element.GetAttribute("carepath"), out carePath))
-                command.CarePath = carePath;
             if (element.HasAttribute("description"))
                 command.Description = element.GetAttribute("description");
             return command;
@@ -114,10 +102,6 @@ namespace MeterKnife.Scpis
             element.SetAttribute("interval", Interval.ToString());
             element.SetAttribute("hex", IsHex.ToString());
             element.SetAttribute("return", IsReturn.ToString());
-            element.SetAttribute("multipath", IsMultiPath.ToString());
-            element.SetAttribute("carepath", CarePath.ToString());
-            if (!Selected)
-                element.SetAttribute("selected", Selected.ToString());
             if (!string.IsNullOrEmpty(Description))
                 element.SetAttribute("description", Description);
             element.SetCDataElement(Command);
@@ -134,8 +118,6 @@ namespace MeterKnife.Scpis
             const byte subCommand = 0x00;
 
             var scpiBytes = IsHex ? UtilityConvert.HexToBytes(Command) : Encoding.ASCII.GetBytes(Command);
-            if (IsMultiPath)
-                gpibAddress = 0;
 
             var bs = new byte[] {0x08, (byte) gpibAddress, (byte) (scpiBytes.Length + 2), mainCommand, subCommand};
             var result = new byte[bs.Length + scpiBytes.Length];

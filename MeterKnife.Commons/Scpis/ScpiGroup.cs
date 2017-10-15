@@ -44,7 +44,7 @@ namespace MeterKnife.Scpis
                         group.Category = ScpiCommandGroupCategory.Initializtion;
                         break;
                     case "collect":
-                        group.Category = ScpiCommandGroupCategory.Collect;
+                        group.Category = ScpiCommandGroupCategory.Measure;
                         break;
                 }
             }
@@ -63,7 +63,7 @@ namespace MeterKnife.Scpis
             element.RemoveAll();
             switch (Category)
             {
-                case ScpiCommandGroupCategory.Collect:
+                case ScpiCommandGroupCategory.Measure:
                     element.SetAttribute("way", "collect");
                     break;
                 case ScpiCommandGroupCategory.Initializtion:

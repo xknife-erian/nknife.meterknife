@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NKnife.Channels.Interfaces.Channels;
 
@@ -6,13 +5,18 @@ namespace MeterKnife.Base.Channels
 {
     public abstract class MeasureQuestionGroup<T> : List<MeasureQuestion<T>>, IQuestionGroup<T>
     {
+        /// <summary>
+        /// 测量事务编号
+        /// </summary>
+        public string JobNumber { get; set; }
+
         #region Implementation of IEnumerable<out IQuestion<T>>
 
         /// <summary>返回一个循环访问集合的枚举器。</summary>
         /// <returns>可用于循环访问集合的 <see cref="T:System.Collections.Generic.IEnumerator`1" />。</returns>
-        public IEnumerator<IQuestion<T>> GetEnumerator()
+        IEnumerator<IQuestion<T>> IEnumerable<IQuestion<T>>.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
 
         #endregion
@@ -24,17 +28,17 @@ namespace MeterKnife.Base.Channels
         /// <exception cref="T:System.NotSupportedException">
         ///     <see cref="T:System.Collections.Generic.ICollection`1" /> 是只读的。
         /// </exception>
-        public void Add(IQuestion<T> item)
+        void ICollection<IQuestion<T>>.Add(IQuestion<T> item)
         {
-            throw new NotImplementedException();
+            Add((MeasureQuestion<T>) item);
         }
 
         /// <summary>确定 <see cref="T:System.Collections.Generic.ICollection`1" /> 是否包含特定值。</summary>
         /// <returns>如果在 <see cref="T:System.Collections.Generic.ICollection`1" /> 中找到 <paramref name="item" />，则为 true；否则为 false。</returns>
         /// <param name="item">要在 <see cref="T:System.Collections.Generic.ICollection`1" /> 中定位的对象。</param>
-        public bool Contains(IQuestion<T> item)
+        bool ICollection<IQuestion<T>>.Contains(IQuestion<T> item)
         {
-            throw new NotImplementedException();
+            return Contains((MeasureQuestion<T>) item);
         }
 
         /// <summary>
@@ -59,9 +63,14 @@ namespace MeterKnife.Base.Channels
         ///     <paramref name="arrayIndex" /> 到目标 <paramref name="array" /> 结尾处之间的可用空间。- 或 -无法自动将类型 <paramref name="T" /> 强制转换为目标
         ///     <paramref name="array" /> 的类型。
         /// </exception>
-        public void CopyTo(IQuestion<T>[] array, int arrayIndex)
+        void ICollection<IQuestion<T>>.CopyTo(IQuestion<T>[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            var n = 0;
+            for (var i = arrayIndex; i < Count; i++)
+            {
+                array[n] = this[i];
+                n++;
+            }
         }
 
         /// <summary>从 <see cref="T:System.Collections.Generic.ICollection`1" /> 中移除特定对象的第一个匹配项。</summary>
@@ -73,14 +82,14 @@ namespace MeterKnife.Base.Channels
         /// <exception cref="T:System.NotSupportedException">
         ///     <see cref="T:System.Collections.Generic.ICollection`1" /> 是只读的。
         /// </exception>
-        public bool Remove(IQuestion<T> item)
+        bool ICollection<IQuestion<T>>.Remove(IQuestion<T> item)
         {
-            throw new NotImplementedException();
+            return Remove((MeasureQuestion<T>) item);
         }
 
         /// <summary>获取一个值，该值指示 <see cref="T:System.Collections.Generic.ICollection`1" /> 是否为只读。</summary>
         /// <returns>如果 <see cref="T:System.Collections.Generic.ICollection`1" /> 为只读，则为 true；否则为 false。</returns>
-        public bool IsReadOnly { get; }
+        bool ICollection<IQuestion<T>>.IsReadOnly => ((ICollection<IQuestion<string>>) this).IsReadOnly;
 
         #endregion
     }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using MeterKnife.Base.Channels;
 using NKnife.Interface;
 
 namespace MeterKnife.Interfaces.Gateways

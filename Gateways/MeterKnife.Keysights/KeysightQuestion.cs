@@ -1,5 +1,6 @@
 ﻿using System;
 using MeterKnife.Base;
+using MeterKnife.Base.Channels;
 using MeterKnife.Interfaces;
 using MeterKnife.Models;
 using NKnife.Channels.Channels.Base;
@@ -8,14 +9,15 @@ using NKnife.Channels.Interfaces.Channels;
 
 namespace MeterKnife.Keysights
 {
-    public class KeysightQuestion : QuestionBase<string>
+    public class KeysightQuestion : MeasureQuestion<string>
     {
         private readonly Guid _Id;
+
         /// <summary>
         /// 描述设备向PC串口返回的交换数据
         /// </summary>
-        public KeysightQuestion(KeysightChannel channel, Instrument instrument, ExhibitBase exhibit, bool isLoop, string data) 
-            : base(channel, instrument, exhibit, isLoop, data)
+        public KeysightQuestion(KeysightChannel channel, Instrument instrument, ExhibitBase exhibit, bool isLoop, string command) 
+            : base(channel, instrument, exhibit, isLoop, command)
         {
             _Id = Guid.NewGuid();
         }

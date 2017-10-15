@@ -52,11 +52,16 @@
     <Reference Include="NKnife.Channels, Version=17.5.5.1012, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NKnife.Channels.17.5.5.1012\lib\net40\NKnife.Channels.dll</HintPath>
     </Reference>
+    <Reference Include="NKnife.ControlKnife, Version=17.5.4.830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NKnife.ControlKnife.17.5.4.830\lib\net40\NKnife.ControlKnife.dll</HintPath>
+    </Reference>
     <Reference Include="NKnife.DataLite, Version=17.5.5.1012, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NKnife.DataLite.17.5.5.1012\lib\net40\NKnife.DataLite.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\MockChannelViewModel.cs" />
     <Compile Include="Mocks\Channels\ByteDatasMockChannel.cs" />
     <Compile Include="CareOneSerialChannelDemo.cs" />
     <Compile Include="ChannelDatasDemo.cs" />
@@ -82,6 +88,10 @@
       <Project>{201309E4-CD58-4197-AC3B-6367CC4E65B1}</Project>
       <Name>MeterKnife.Gateway.Cares</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights.VISAs\MeterKnife.Gateway.Keysights.VISAs.csproj">
+      <Project>{f983fb9d-37a3-4b2c-b4d7-6e1311ded746}</Project>
+      <Name>MeterKnife.Gateway.Keysights.VISAs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights\MeterKnife.Gateway.Keysights.csproj">
       <Project>{EC118282-B4FE-4837-B292-302A7E111C21}</Project>
       <Name>MeterKnife.Gateway.Keysights</Name>
@@ -90,9 +100,33 @@
       <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
       <Name>MeterKnife.Commons</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Datas\MeterKnife.Datas.csproj">
+      <Project>{1ab7a059-32cd-405f-a3b2-2d19b430bff4}</Project>
+      <Name>MeterKnife.Datas</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Electronics\MeterKnife.Electronics.csproj">
       <Project>{92451625-7892-4E75-A818-0DEBB181C94E}</Project>
       <Name>MeterKnife.Electronics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Gateway\MeterKnife.Gateway.csproj">
+      <Project>{b1053860-12d3-409f-9961-bd8719b82e56}</Project>
+      <Name>MeterKnife.Gateway</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Kernel\MeterKnife.Kernel.csproj">
+      <Project>{c0352137-c756-41dc-80f8-4b026546ad5b}</Project>
+      <Name>MeterKnife.Kernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Plots\MeterKnife.Plots.csproj">
+      <Project>{0b2cb4c1-2373-469c-b4bb-b6d810f7a151}</Project>
+      <Name>MeterKnife.Plots</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Reports\MeterKnife.Reports.csproj">
+      <Project>{068a0168-d030-4757-8e19-ff0460d30acd}</Project>
+      <Name>MeterKnife.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MeterKnife.Scpis\MeterKnife.Scpis.csproj">
+      <Project>{fa16056b-6bf8-464e-a05d-ab2914eb1e37}</Project>
+      <Name>MeterKnife.Scpis</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

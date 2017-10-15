@@ -1,4 +1,5 @@
 ﻿using System;
+using NKnife.IoC;
 
 namespace MeterKnife.ConsoleDemo
 {
@@ -11,6 +12,7 @@ namespace MeterKnife.ConsoleDemo
             while (_isRun)
             {
                 PrintHelpInfomation();
+                DI.Initialize();
                 var line = Console.ReadLine();
                 if (line == null)
                     continue;
@@ -26,7 +28,7 @@ namespace MeterKnife.ConsoleDemo
                         new KeysightChannelDemo().Run();
                         break;
                     case "3":
-                        new KeysightChannelDemo().Run();
+                        new ChannelDatasDemo().Run();
                         break;
                     case "X":
                         _isRun = false;
@@ -42,6 +44,7 @@ namespace MeterKnife.ConsoleDemo
             Console.WriteLine("选择Demo项目：");
             Console.WriteLine("1. CareOneSerialChannel");
             Console.WriteLine("2. KeysightChannel");
+            Console.WriteLine("3. ChannelDatasDemo");
             Console.WriteLine("X. Exit Demo.");
         }
     }

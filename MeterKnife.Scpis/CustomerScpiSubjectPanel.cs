@@ -67,9 +67,9 @@ namespace MeterKnife.Scpis
         private void _ListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             var scpiCommand = (ScpiCommand) e.Item.Tag;
-            if (scpiCommand.Selected != e.Item.Checked)
-                IsModified = true;
-            scpiCommand.Selected = e.Item.Checked;
+//            if (scpiCommand.Selected != e.Item.Checked)
+//                IsModified = true;
+//            scpiCommand.Selected = e.Item.Checked;
         }
 
         private void _ListView_SelectedIndexChanged(object s, EventArgs e)
@@ -141,9 +141,9 @@ namespace MeterKnife.Scpis
                 {
                     AddListItem(ScpiCommandGroupCategory.Initializtion, command);
                 }
-                foreach (var command in _CurrentScpiSubject.Collect)
+                foreach (var command in _CurrentScpiSubject.Measure)
                 {
-                    AddListItem(ScpiCommandGroupCategory.Collect, command);
+                    AddListItem(ScpiCommandGroupCategory.Measure, command);
                 }
             }
             _ListView.EndUpdate();
@@ -231,7 +231,7 @@ namespace MeterKnife.Scpis
                 _CurrentScpiSubject = new ScpiSubject();
 
             var dialog = new ScpiCommandEditorDialog();
-            dialog.Category = ScpiCommandGroupCategory.Collect;
+            dialog.Category = ScpiCommandGroupCategory.Measure;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
@@ -242,7 +242,7 @@ namespace MeterKnife.Scpis
                     IsHex = dialog.IsHex,
                     IsReturn = true
                 };
-                AddListItem(ScpiCommandGroupCategory.Collect, command);
+                AddListItem(ScpiCommandGroupCategory.Measure, command);
             }
         }
 
@@ -256,16 +256,16 @@ namespace MeterKnife.Scpis
                     if (!_CurrentScpiSubject.Initializtion.Contains(command))
                         _CurrentScpiSubject.Initializtion.Add(command);
                     break;
-                case ScpiCommandGroupCategory.Collect:
+                case ScpiCommandGroupCategory.Measure:
                     listitem.Group = _CollectGroup;
-                    if (!_CurrentScpiSubject.Collect.Contains(command))
-                        _CurrentScpiSubject.Collect.Add(command);
+                    if (!_CurrentScpiSubject.Measure.Contains(command))
+                        _CurrentScpiSubject.Measure.Add(command);
                     break;
             }
             var subitem = new ListViewItem.ListViewSubItem {Text = command.Command};
             listitem.SubItems.Add(subitem);
             subitem = new ListViewItem.ListViewSubItem {Text = command.Interval.ToString()};
-            listitem.Checked = command.Selected;
+//            listitem.Checked = command.Selected;
             listitem.SubItems.Add(subitem);
             listitem.Tag = command;
             listitem.ToolTipText = command.ToString();
@@ -291,7 +291,7 @@ namespace MeterKnife.Scpis
                         _CurrentScpiSubject.Initializtion.RemoveAt(n);
                         break;
                     case "COLLECT":
-                        _CurrentScpiSubject.Collect.RemoveAt(n);
+                        _CurrentScpiSubject.Measure.RemoveAt(n);
                         break;
                 }
                 IsModified = true;
@@ -352,7 +352,7 @@ namespace MeterKnife.Scpis
                     _CurrentScpiSubject.Initializtion.DownItem(n);
                     break;
                 case "COLLECT":
-                    _CurrentScpiSubject.Collect.DownItem(n);
+                    _CurrentScpiSubject.Measure.DownItem(n);
                     break;
             }
             UpdateListView();
@@ -371,7 +371,7 @@ namespace MeterKnife.Scpis
                     _CurrentScpiSubject.Initializtion.UpItem(n);
                     break;
                 case "COLLECT":
-                    _CurrentScpiSubject.Collect.UpItem(n);
+                    _CurrentScpiSubject.Measure.UpItem(n);
                     break;
             }
             UpdateListView();

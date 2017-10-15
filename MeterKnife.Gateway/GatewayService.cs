@@ -20,6 +20,8 @@ namespace MeterKnife.Gateway
         private Thread _GatewayCoreThread;
         private readonly AutoResetEvent _AutoReset = new AutoResetEvent(false);
 
+
+
         private void LoadAllGateways()
         {
             foreach (var gateway in _HabitedDatas.Gateways.Keys)

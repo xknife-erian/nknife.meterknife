@@ -10,12 +10,12 @@ namespace MeterKnife.Base.Channels
 {
     public abstract class MeasureAnswer<T> : AnswerBase<T>
     {
-        protected MeasureAnswer(string jobId, IChannel<T> channel, IId device, IId target, T data) 
-            : base(channel, device, target, data)
+        protected MeasureAnswer(string jobNumber, IChannel<T> channel, IId instrument, IId target, T data) 
+            : base(channel, instrument, target, data)
         {
-            JobId = jobId;
+            JobNumber = jobNumber;
         }
 
-        public string JobId { get; set; }
+        public string JobNumber { get; set; }
     }
 }
