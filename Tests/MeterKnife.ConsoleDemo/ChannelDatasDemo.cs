@@ -18,30 +18,30 @@ namespace MeterKnife.ConsoleDemo
         private readonly Instrument _K2000 = new Instrument("Keithley", "2000", "K2000", 23);
         private readonly Instrument _K2700 = new Instrument("Keithley", "2700", "K2700", 24);
 
-        private readonly Temperature _Temperature = new Temperature();
-        private readonly Voltage _Voltage = new Voltage();
-        private readonly Current _Current = new Current();
+        private readonly Temperature _Temperature = new Temperature() { Name = "Temperature" };
+        private readonly Voltage _Voltage = new Voltage() { Name = "Voltage" };
+        private readonly Current _Current = new Current() { Name = "Current" };
 
-        private readonly Resistance _Res1 = new Resistance();
-        private readonly Resistance _Res10 = new Resistance();
-        private readonly Resistance _Res11 = new Resistance();
-        private readonly Resistance _Res12 = new Resistance();
-        private readonly Resistance _Res13 = new Resistance();
-        private readonly Resistance _Res14 = new Resistance();
-        private readonly Resistance _Res15 = new Resistance();
-        private readonly Resistance _Res16 = new Resistance();
-        private readonly Resistance _Res17 = new Resistance();
-        private readonly Resistance _Res18 = new Resistance();
-        private readonly Resistance _Res19 = new Resistance();
-        private readonly Resistance _Res2 = new Resistance();
-        private readonly Resistance _Res20 = new Resistance();
-        private readonly Resistance _Res3 = new Resistance();
-        private readonly Resistance _Res4 = new Resistance();
-        private readonly Resistance _Res5 = new Resistance();
-        private readonly Resistance _Res6 = new Resistance();
-        private readonly Resistance _Res7 = new Resistance();
-        private readonly Resistance _Res8 = new Resistance();
-        private readonly Resistance _Res9 = new Resistance();
+        private readonly Resistance _Res1 = new Resistance(){Name = "Res1"};
+        private readonly Resistance _Res10 = new Resistance() { Name = "Res10" };
+        private readonly Resistance _Res11 = new Resistance() { Name = "Res11" };
+        private readonly Resistance _Res12 = new Resistance() { Name = "Res12" };
+        private readonly Resistance _Res13 = new Resistance() { Name = "Res13" };
+        private readonly Resistance _Res14 = new Resistance() { Name = "Res14" };
+        private readonly Resistance _Res15 = new Resistance() { Name = "Res15" };
+        private readonly Resistance _Res16 = new Resistance() { Name = "Res16" };
+        private readonly Resistance _Res17 = new Resistance() { Name = "Res17" };
+        private readonly Resistance _Res18 = new Resistance() { Name = "Res18" };
+        private readonly Resistance _Res19 = new Resistance() { Name = "Res19" };
+        private readonly Resistance _Res2 = new Resistance() { Name = "Res2" };
+        private readonly Resistance _Res20 = new Resistance() { Name = "Res20" };
+        private readonly Resistance _Res3 = new Resistance() { Name = "Res3" };
+        private readonly Resistance _Res4 = new Resistance() { Name = "Res4" };
+        private readonly Resistance _Res5 = new Resistance() { Name = "Res5" };
+        private readonly Resistance _Res6 = new Resistance() { Name = "Res6" };
+        private readonly Resistance _Res7 = new Resistance() { Name = "Res7" };
+        private readonly Resistance _Res8 = new Resistance() { Name = "Res8" };
+        private readonly Resistance _Res9 = new Resistance() { Name = "Res9" };
 
         private readonly AutoResetEvent _ResetFlag = new AutoResetEvent(false);
 
@@ -131,12 +131,15 @@ namespace MeterKnife.ConsoleDemo
         private ScpiSubject BuildScpiSubject(int flag)
         {
             var scpisubject = new ScpiSubject();
+
             scpisubject.Initializtion.Add(new ScpiCommand() {Instrument = _Ag34401});
             scpisubject.Initializtion.Add(new ScpiCommand() {Instrument = _K2000});
             scpisubject.Initializtion.Add(new ScpiCommand() {Instrument = _K2700});
+
             scpisubject.Measure.Add(new ScpiCommand() {Instrument = _Care1, Exhibit = _Temperature});
             scpisubject.Measure.Add(new ScpiCommand() {Instrument = _Ag34401, Exhibit = _Voltage});
             scpisubject.Measure.Add(new ScpiCommand() {Instrument = _K2000, Exhibit = _Current});
+
             scpisubject.Measure.Add(new ScpiCommand() {Instrument = _K2700, Exhibit = _Res1});
             scpisubject.Measure.Add(new ScpiCommand() {Instrument = _K2700, Exhibit = _Res2});
             scpisubject.Measure.Add(new ScpiCommand() {Instrument = _K2700, Exhibit = _Res3});

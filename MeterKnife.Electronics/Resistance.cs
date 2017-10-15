@@ -98,7 +98,7 @@ namespace MeterKnife.Electronics
                 case 'M':
                 case 'G':
                 default:
-                    return ToString();
+                    return $"{Value}Ω";
             }
         }
     }

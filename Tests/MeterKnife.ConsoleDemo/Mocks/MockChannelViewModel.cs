@@ -1,4 +1,5 @@
 using System;
+using MeterKnife.Base;
 using MeterKnife.ConsoleDemo.Mocks.Channels;
 using MeterKnife.Interfaces.Measures;
 using MeterKnife.Keysights;
@@ -15,6 +16,7 @@ namespace MeterKnife.ConsoleDemo.Mocks
 
         public MockChannelViewModel()
         {
+            _KeysightChannel.TalkTotalTimeout = 80;
             _KeysightChannel.Open();
         }
 
@@ -46,7 +48,9 @@ namespace MeterKnife.ConsoleDemo.Mocks
             {
                 var value = ToDouble(answer.Data);
                 _MeasureService.AddValue(ans.JobNumber, ans.Target.Id, value);
-                Console.WriteLine($"<:{value}");
+                var instrument = (Instrument) ans.Instrument;
+                var exhibit = (ExhibitBase) ans.Target;
+                Console.WriteLine($"<:{instrument.Name}-{exhibit.Name}:{value}");
             }
             return true;
         }
