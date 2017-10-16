@@ -13,6 +13,11 @@ namespace MeterKnife.Interfaces.Measures
     public interface IMeasureService : IEnvironmentItem
     {
         /// <summary>
+        /// 创建一个测量事务
+        /// </summary>
+        MeasureJob CreateMeasureJob();
+
+        /// <summary>
         ///     被测量物的列表
         /// </summary>
         ICollection<IExhibit> Exhibits { get; set; }
@@ -54,5 +59,6 @@ namespace MeterKnife.Interfaces.Measures
         /// <param name="exhibitId">被测量物</param>
         /// <param name="value">测量数据</param>
         void AddValue(string jobNumber, string exhibitId, double value);
+
     }
 }

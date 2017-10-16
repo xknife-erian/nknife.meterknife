@@ -42,6 +42,16 @@ namespace MeterKnife.Kernel.Measures
         #region Implementation of IMeasureService
 
         /// <summary>
+        /// 创建一个测量事务
+        /// </summary>
+        public MeasureJob CreateMeasureJob()
+        {
+            var job = new MeasureJob();
+            Jobs.Add(job);
+            return job;
+        }
+
+        /// <summary>
         ///     被测量物的列表
         /// </summary>
         public ICollection<IExhibit> Exhibits { get; set; } = new ObservableCollection<IExhibit>();
@@ -50,7 +60,7 @@ namespace MeterKnife.Kernel.Measures
         public event EventHandler<EventArgs<IExhibit>> ExhibitRemoved;
 
         /// <summary>
-        ///     正在执行的测量工作列表
+        ///     正在执行的测量事务列表
         /// </summary>
         public ICollection<MeasureJob> Jobs { get; set; } = new ObservableCollection<MeasureJob>();
 

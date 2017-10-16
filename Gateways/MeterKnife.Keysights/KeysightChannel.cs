@@ -225,22 +225,22 @@ namespace MeterKnife.Keysights
 
         #region Overrides of MeasureChannelBase<string>
 
-        public override MeasureQuestionGroup<string> ToQuestionGroup(MeasureJob.Measure measure)
+        public override void Binding(MeasureJob.Measure measure)
         {
-            var qg = new KeysightQuestionGroup();
+            var questionGroup = new KeysightQuestionGroup();
             var scpis = measure.ScpiSubject;
             foreach (ScpiCommand command in scpis.Initializtion)
             {
                 var keysightQuestion = new KeysightQuestion(this, command.Instrument, command.Exhibit, false, command.Command);
-                qg.Add(keysightQuestion);
+                questionGroup.Add(keysightQuestion);
             }
             foreach (ScpiCommand command in scpis.Measure)
             {
                 var keysightQuestion = new KeysightQuestion(this, command.Instrument, command.Exhibit, true, command.Command);
                 //keysightQuestion.LoopInterval = command.Interval;
-                qg.Add(keysightQuestion);
+                questionGroup.Add(keysightQuestion);
             }
-            return qg;
+            UpdateQuestionGroup(questionGroup);
         }
 
         #endregion

@@ -20,9 +20,9 @@ namespace MeterKnife.ConsoleDemo.Mocks
             _KeysightChannel.Open();
         }
 
-        public void AddMeasure(MeasureJob.Measure measure)
+        public void BindingMeasure(MeasureJob.Measure measure)
         {
-            _KeysightChannel.UpdateQuestionGroup(_KeysightChannel.ToQuestionGroup(measure));
+            _KeysightChannel.Binding(measure);
         }
 
         public void Start()

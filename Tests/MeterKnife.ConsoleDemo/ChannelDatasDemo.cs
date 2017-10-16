@@ -2,6 +2,7 @@
 using System.Threading;
 using MeterKnife.ConsoleDemo.Mocks;
 using MeterKnife.Electronics;
+using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Measures;
 using MeterKnife.Models;
 using MeterKnife.Scpis;
@@ -11,8 +12,6 @@ namespace MeterKnife.ConsoleDemo
 {
     public class ChannelDatasDemo : DemoBase
     {
-        private readonly IMeasureService _MeasureService = DI.Get<IMeasureService>();
-
         private readonly Instrument _Ag34401 = new Instrument("Agilent", "34401", "34401", 22);
         private readonly Instrument _Care1 = new Instrument("Care", "1", "Care1", 0);
         private readonly Instrument _K2000 = new Instrument("Keithley", "2000", "K2000", 23);
@@ -47,6 +46,8 @@ namespace MeterKnife.ConsoleDemo
 
         public override void Run()
         {
+            var measureService = DI.Get<IMeasureService>();
+            var datasService = DI.Get<IDatasService>();
             //模拟一次用户测量过程
 
             var viewModel = new MockChannelViewModel();
@@ -54,7 +55,7 @@ namespace MeterKnife.ConsoleDemo
             //1.新建测量事务。
             //本事务由34401测量电流，K2001测量电压，K2700扫描测量20组电阻
             //测量过程模拟用户暂停两次。
-            var job = new MeasureJob();
+            var job = measureService.CreateMeasureJob();
 
             //2.在测量事务中加入1个温度，1个电压，1个电流，20个电阻
 
@@ -91,35 +92,35 @@ namespace MeterKnife.ConsoleDemo
 
             //__1__启动一次测量
             var measure = new MeasureJob.Measure(job, BuildScpiSubject(1), DateTime.Now);
-            viewModel.AddMeasure(measure);
+            viewModel.BindingMeasure(measure);
             viewModel.Start();
             _ResetFlag.WaitOne(1000 * 3);
             viewModel.Pause();
 
             //__2__启动一次测量
             measure = new MeasureJob.Measure(job, BuildScpiSubject(2), DateTime.Now);
-            viewModel.AddMeasure(measure);
+            viewModel.BindingMeasure(measure);
             viewModel.Start();
             _ResetFlag.WaitOne(1000 * 20);
             viewModel.Pause();
 
             //__3__启动一次测量
             measure = new MeasureJob.Measure(job, BuildScpiSubject(3), DateTime.Now);
-            viewModel.AddMeasure(measure);
+            viewModel.BindingMeasure(measure);
             viewModel.Start();
             _ResetFlag.WaitOne(1000 * 5);
             viewModel.Pause();
 
             //__4__启动一次测量
             measure = new MeasureJob.Measure(job, BuildScpiSubject(4), DateTime.Now);
-            viewModel.AddMeasure(measure);
+            viewModel.BindingMeasure(measure);
             viewModel.Start();
             _ResetFlag.WaitOne(1000 * 5);
             viewModel.Pause();
 
             //__5__启动一次测量
             measure = new MeasureJob.Measure(job, BuildScpiSubject(5), DateTime.Now);
-            viewModel.AddMeasure(measure);
+            viewModel.BindingMeasure(measure);
             viewModel.Start();
             _ResetFlag.WaitOne(1000 * 5);
             viewModel.Pause();

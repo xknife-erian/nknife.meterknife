@@ -5,7 +5,8 @@ using LiteDB;
 using MeterKnife.Events;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Measures;
-using NKnife.Interface;
+using MeterKnife.Models;
+using NKnife.Events;
 using NKnife.IoC;
 using NKnife.Utility;
 
@@ -43,8 +44,7 @@ namespace MeterKnife.Datas.Dpi
                     fullpath = Path.Combine(fullpath, "mk.litedb");
                     _GlobalDatabase = new LiteDatabase(fullpath);
                 }
-                var measureService = DI.Get<IMeasureService>();
-                measureService.Measured += OnMeasured;
+                MeasureEvent();
 
                 return true;
             }
@@ -73,6 +73,36 @@ namespace MeterKnife.Datas.Dpi
         public string Description { get; } = "LiteDb全局数据库服务";
 
         #endregion
+
+        private void MeasureEvent()
+        {
+            var measureService = DI.Get<IMeasureService>();
+            measureService.Measured += OnMeasured;
+            measureService.ExhibitAdded += MeasureService_ExhibitAdded;
+            measureService.ExhibitRemoved += MeasureService_ExhibitRemoved;
+            measureService.MeasureJobAdded += MeasureService_MeasureJobAdded;
+            measureService.MeasureJobRemoved += MeasureService_MeasureJobRemoved;
+        }
+
+        private void MeasureService_MeasureJobRemoved(object sender, EventArgs<MeasureJob> e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MeasureService_MeasureJobAdded(object sender, EventArgs<MeasureJob> e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MeasureService_ExhibitRemoved(object sender, EventArgs<IExhibit> e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MeasureService_ExhibitAdded(object sender, EventArgs<IExhibit> e)
+        {
+            throw new NotImplementedException();
+        }
 
         private void OnMeasured(object sender, MeasureEventArgs e)
         {

@@ -23,7 +23,7 @@ namespace MeterKnife.Models
         public List<Measure> Measures { get; set; } = new List<Measure>(1);
 
         /// <summary>
-        ///     “测量”功能的基接口，描述“测量”功能的核心函数与事件。
+        ///     测量事务中“测量”事件的基接口，描述“测量”事件的相关属性。
         /// </summary>
         public class Measure
         {
