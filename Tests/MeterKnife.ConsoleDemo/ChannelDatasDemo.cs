@@ -47,7 +47,9 @@ namespace MeterKnife.ConsoleDemo
         public override void Run()
         {
             var measureService = DI.Get<IMeasureService>();
+            measureService.StartService();
             var datasService = DI.Get<IDatasService>();
+            datasService.StartService();
             //模拟一次用户测量过程
 
             var viewModel = new MockChannelViewModel();

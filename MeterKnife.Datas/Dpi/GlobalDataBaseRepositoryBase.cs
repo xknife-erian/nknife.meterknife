@@ -1,4 +1,5 @@
 ﻿using LiteDB;
+using MeterKnife.Interfaces;
 using NKnife.DataLite;
 using NKnife.IoC;
 
@@ -8,7 +9,7 @@ namespace MeterKnife.Datas.Dpi
     {
         #region Overrides of RepositoryBase<ExhibitData<T>>
 
-        protected override LiteDatabase Database => DI.Get<DatasService>().GlobalDataBase;
+        protected override LiteDatabase Database => ((DatasService)DI.Get<IDatasService>()).GlobalDataBase;
 
         #endregion
     }

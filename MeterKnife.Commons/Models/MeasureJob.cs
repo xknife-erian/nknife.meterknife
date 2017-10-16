@@ -17,10 +17,16 @@ namespace MeterKnife.Models
         {
             Number = Guid.NewGuid();
         }
+        public int Id { get; set; }
+
         public Guid Number { get; }
         public List<IExhibit> Exhibits { get; set; } = new List<IExhibit>(1);
         public List<Instrument> Instruments { get; set; } = new List<Instrument>(1);
         public List<Measure> Measures { get; set; } = new List<Measure>(1);
+        /// <summary>
+        /// 对此项测量事务的用户描述
+        /// </summary>
+        public string Description { get; set; }
 
         /// <summary>
         ///     测量事务中“测量”事件的基接口，描述“测量”事件的相关属性。

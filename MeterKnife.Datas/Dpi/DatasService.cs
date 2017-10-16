@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Common.Logging;
 using LiteDB;
 using MeterKnife.Events;
@@ -19,6 +20,8 @@ namespace MeterKnife.Datas.Dpi
         private LiteDatabase _GlobalDatabase;
 
         public LiteDatabase GlobalDataBase => _GlobalDatabase;
+
+        private MeasureJobRepository _MeasureJobs;
 
         #region IDisposable
 
@@ -45,7 +48,6 @@ namespace MeterKnife.Datas.Dpi
                     _GlobalDatabase = new LiteDatabase(fullpath);
                 }
                 MeasureEvent();
-
                 return true;
             }
             catch (Exception e)
@@ -76,6 +78,7 @@ namespace MeterKnife.Datas.Dpi
 
         private void MeasureEvent()
         {
+            _MeasureJobs = new MeasureJobRepository();
             var measureService = DI.Get<IMeasureService>();
             measureService.Measured += OnMeasured;
             measureService.ExhibitAdded += MeasureService_ExhibitAdded;
@@ -86,12 +89,12 @@ namespace MeterKnife.Datas.Dpi
 
         private void MeasureService_MeasureJobRemoved(object sender, EventArgs<MeasureJob> e)
         {
-            throw new NotImplementedException();
         }
 
         private void MeasureService_MeasureJobAdded(object sender, EventArgs<MeasureJob> e)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"--------->MeasureJob Count: {_MeasureJobs.FindAll().Count()}");
+            _MeasureJobs.Save(e.Item);
         }
 
         private void MeasureService_ExhibitRemoved(object sender, EventArgs<IExhibit> e)
