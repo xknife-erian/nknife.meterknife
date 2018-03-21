@@ -90,20 +90,27 @@ namespace MeterKnife.Kernel.Measures
                 switch (e.Action)
                 {
                     case NotifyCollectionChangedAction.Add:
+                    {
                         foreach (var item in e.NewItems)
                         {
                             var exhibit = item as IExhibit;
                             OnExhibitAdded(new EventArgs<IExhibit>(exhibit));
                         }
                         break;
+                    }
                     case NotifyCollectionChangedAction.Reset:
                     case NotifyCollectionChangedAction.Remove:
-                        foreach (var item in e.NewItems)
+                    {
+                        if (e.NewItems != null)
                         {
-                            var exhibit = item as IExhibit;
-                            OnExhibitRemoved(new EventArgs<IExhibit>(exhibit));
+                            foreach (var item in e.NewItems)
+                            {
+                                var exhibit = item as IExhibit;
+                                OnExhibitRemoved(new EventArgs<IExhibit>(exhibit));
+                            }
                         }
                         break;
+                    }
                     case NotifyCollectionChangedAction.Move:
                     case NotifyCollectionChangedAction.Replace:
                     default:
