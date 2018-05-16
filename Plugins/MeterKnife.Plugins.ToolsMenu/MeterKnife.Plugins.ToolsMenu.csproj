@@ -84,14 +84,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights.VISAs\MeterKnife.Gateway.Keysights.VISAs.csproj">
-      <Project>{f983fb9d-37a3-4b2c-b4d7-6e1311ded746}</Project>
-      <Name>MeterKnife.Gateway.Keysights.VISAs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights\MeterKnife.Gateway.Keysights.csproj">
-      <Project>{EC118282-B4FE-4837-B292-302A7E111C21}</Project>
-      <Name>MeterKnife.Gateway.Keysights</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Commons\MeterKnife.Commons.csproj">
       <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
       <Name>MeterKnife.Commons</Name>

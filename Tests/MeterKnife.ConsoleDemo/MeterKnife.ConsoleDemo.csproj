@@ -88,12 +88,8 @@
       <Project>{201309E4-CD58-4197-AC3B-6367CC4E65B1}</Project>
       <Name>MeterKnife.Gateway.Cares</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights.VISAs\MeterKnife.Gateway.Keysights.VISAs.csproj">
-      <Project>{f983fb9d-37a3-4b2c-b4d7-6e1311ded746}</Project>
-      <Name>MeterKnife.Gateway.Keysights.VISAs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights\MeterKnife.Gateway.Keysights.csproj">
-      <Project>{EC118282-B4FE-4837-B292-302A7E111C21}</Project>
+      <Project>{ec118282-b4fe-4837-b292-302a7e111c21}</Project>
       <Name>MeterKnife.Gateway.Keysights</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Commons\MeterKnife.Commons.csproj">
