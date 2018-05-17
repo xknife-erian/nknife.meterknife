@@ -84,6 +84,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Gateways\MeterKnife.Keysights\MeterKnife.Gateway.Keysights.csproj">
+      <Project>{ec118282-b4fe-4837-b292-302a7e111c21}</Project>
+      <Name>MeterKnife.Gateway.Keysights</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MeterKnife.Commons\MeterKnife.Commons.csproj">
       <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
       <Name>MeterKnife.Commons</Name>
