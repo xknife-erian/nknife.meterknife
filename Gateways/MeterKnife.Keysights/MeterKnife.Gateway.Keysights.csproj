@@ -76,10 +76,6 @@
       <Project>{8B62166A-BCB6-434D-91A8-62BCFC26D452}</Project>
       <Name>MeterKnife.Commons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Keysights.VISAs\MeterKnife.Gateway.Keysights.VISAs.csproj">
-      <Project>{f983fb9d-37a3-4b2c-b4d7-6e1311ded746}</Project>
-      <Name>MeterKnife.Gateway.Keysights.VISAs</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

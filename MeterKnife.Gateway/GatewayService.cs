@@ -4,7 +4,6 @@ using Common.Logging;
 using MeterKnife.Cares;
 using MeterKnife.Interfaces;
 using MeterKnife.Interfaces.Gateways;
-using MeterKnife.Keysights;
 using NKnife.Channels.Channels.Serials;
 using NKnife.Channels.Interfaces.Channels;
 using NKnife.Interface;
@@ -31,8 +30,8 @@ namespace MeterKnife.Gateway
                     case GatewayModel.Aglient82357A:
                     case GatewayModel.Aglient82357B:
                     {
-                        var channel = new KeysightChannel();
-                        channel.Open();
+                        //var channel = new KeysightChannel();
+                        //channel.Open();
                         break;
                     }
                     case GatewayModel.CareOne:

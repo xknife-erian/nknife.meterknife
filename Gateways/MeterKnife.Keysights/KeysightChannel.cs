@@ -3,7 +3,7 @@ using System.Threading;
 using Common.Logging;
 using MeterKnife.Base;
 using MeterKnife.Base.Channels;
-using MeterKnife.Keysights.VISAs;
+//using MeterKnife.Keysights.VISAs;
 using MeterKnife.Models;
 using MeterKnife.Scpis;
 using NKnife.Channels.Channels.Base;
@@ -17,7 +17,7 @@ namespace MeterKnife.Keysights
     {
         private static readonly ILog _logger = LogManager.GetLogger<KeysightChannel>();
         private readonly ushort _GPIBTarget;
-        private GPIBLinker _GPIBLinker;
+        //private GPIBLinker _GPIBLinker;
         private KeysightQuestionGroup _QuestionGroup = new KeysightQuestionGroup();
 
         public KeysightChannel(ushort gpibTarget = 0)
@@ -44,6 +44,7 @@ namespace MeterKnife.Keysights
 
         protected virtual void OpenGPIBLinker()
         {
+            /*
             if (_GPIBLinker == null || _GPIBTarget != _GPIBLinker.GpibSelector)
             {
                 _GPIBLinker = new GPIBLinker(log =>
@@ -62,6 +63,7 @@ namespace MeterKnife.Keysights
                     }
                 }, _GPIBTarget);
             }
+            */
         }
 
         public override bool Close()
@@ -161,7 +163,7 @@ namespace MeterKnife.Keysights
 
         protected virtual string WriteAndRead(int address, string command)
         {
-            return _GPIBLinker.WriteAndRead((ushort) address, command);
+            return "";// _GPIBLinker.WriteAndRead((ushort) address, command);
         }
 
         #endregion
