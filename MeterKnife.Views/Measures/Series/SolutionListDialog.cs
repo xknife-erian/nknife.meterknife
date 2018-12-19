@@ -19,8 +19,8 @@ namespace MeterKnife.Views.Measures.Series
         {
             InitializeComponent();
             _NameTextBox.Enabled = isSave;
-            var habited = DI.Get<IHabited>();
-            var list = habited.SeriesStyleSolutionList;
+            var habits = DI.Get<IUserHabits>();
+            var list = habits.SeriesStyleSolutionList;
             for (int i = 0; i < list.Count; i++)
             {
                 var solution = list[i];

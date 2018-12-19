@@ -21,8 +21,8 @@ namespace MeterKnife.ViewModels
 
         public MeasureViewModel()
         {
-            var themes = Habited.PlotThemes;
-            var usingTheme = Habited.UsingTheme;
+            var themes = Habit.PlotThemes;
+            var usingTheme = Habit.UsingTheme;
             foreach (var plotTheme in themes)
             {
                 if (plotTheme.Name == usingTheme)

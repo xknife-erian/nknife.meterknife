@@ -7,7 +7,7 @@ namespace MeterKnife.Interfaces
     /// <summary>
     /// 一个描述用户习惯的数据
     /// </summary>
-    public interface IHabited
+    public interface IUserHabits
     {
         /// <summary>
         /// 用户自定义的主题

@@ -7,11 +7,11 @@ namespace MeterKnife.Base.Viewmodels
 {
     public class CommonViewModelBase : ViewModelBase
     {
-        protected IHabited Habited { get; }
+        protected IUserHabits Habit { get; }
 
         public CommonViewModelBase()
         {
-            Habited = DI.Get<IHabited>();
+            Habit = DI.Get<IUserHabits>();
         }
     }
 }

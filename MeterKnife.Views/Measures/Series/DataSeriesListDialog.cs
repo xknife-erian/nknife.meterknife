@@ -10,7 +10,7 @@ namespace MeterKnife.Views.Measures.Series
     public partial class DataSeriesListDialog : NKnife.ControlKnife.SimpleForm
     {
         private PlotSeriesStyleSolution _solution = new PlotSeriesStyleSolution();
-        private readonly IHabited _habited = DI.Get<IHabited>();
+        private readonly IUserHabits _habits = DI.Get<IUserHabits>();
 
         public DataSeriesListDialog()
         {
@@ -23,7 +23,7 @@ namespace MeterKnife.Views.Measures.Series
         {
             _DeleteButton.Enabled = _ListView.SelectedItems.Count > 0;
             _ModifyButton.Enabled = _ListView.SelectedItems.Count > 0;
-            if (_habited.SeriesStyleSolutionList.Count <= 0)
+            if (_habits.SeriesStyleSolutionList.Count <= 0)
             {
                 _LoadButton.Enabled = false;
             }
@@ -152,9 +152,9 @@ namespace MeterKnife.Views.Measures.Series
         private void SaveSolution(string solutionName)
         {
             Solution.SolutionName = solutionName;
-            var list = new List<PlotSeriesStyleSolution>(_habited.SeriesStyleSolutionList);
+            var list = new List<PlotSeriesStyleSolution>(_habits.SeriesStyleSolutionList);
             list.Add(Solution);
-            _habited.SeriesStyleSolutionList = list;
+            _habits.SeriesStyleSolutionList = list;
         }
     }
 }

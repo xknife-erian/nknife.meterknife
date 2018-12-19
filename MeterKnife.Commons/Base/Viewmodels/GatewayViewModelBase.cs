@@ -9,7 +9,7 @@ namespace MeterKnife.Base.Viewmodels
     {
         public GatewayViewModelBase()
         {
-            DiscoverMap = Load(Habited.Gateways);
+            DiscoverMap = Load(Habit.Gateways);
         }
 
         public Dictionary<GatewayModel, IGatewayDiscover> DiscoverMap { get; protected set; }

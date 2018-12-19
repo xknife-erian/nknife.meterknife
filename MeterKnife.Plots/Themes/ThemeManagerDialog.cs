@@ -64,7 +64,7 @@ namespace MeterKnife.Plots.Themes
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            var hd = DI.Get<IHabited>();
+            var hd = DI.Get<IUserHabits>();
             var themes = hd.PlotThemes;
             var usingTheme = hd.UsingTheme;
             foreach (var plotTheme in themes)

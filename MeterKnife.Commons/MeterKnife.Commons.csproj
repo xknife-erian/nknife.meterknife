@@ -113,7 +113,7 @@
     <Compile Include="Interfaces\Gateways\IGatewayService.cs" />
     <Compile Include="Interfaces\IDatasService.cs" />
     <Compile Include="Interfaces\IExhibit.cs" />
-    <Compile Include="Interfaces\IHabited.cs" />
+    <Compile Include="Interfaces\IUserHabits.cs" />
     <Compile Include="Interfaces\IKernels.cs" />
     <Compile Include="Interfaces\IViewsManager.cs" />
     <Compile Include="Interfaces\Measures\IMeasureService.cs" />

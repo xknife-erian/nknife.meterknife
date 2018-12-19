@@ -20,7 +20,7 @@ namespace MeterKnife.Kernel.IoC
         public override void Load()
         {
             Bind<IKernels>().To<Kernels>().InSingletonScope();
-            Bind<IHabited>().To<Habited>().InSingletonScope();
+            Bind<IUserHabits>().To<Habits>().InSingletonScope();
 
             Bind<IPluginService>().To<PluginsService>().InSingletonScope();
             Bind<IMeasureService>().To<MeasureService>().InSingletonScope();
