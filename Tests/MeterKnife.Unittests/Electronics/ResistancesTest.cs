@@ -1,9 +1,8 @@
 ﻿using System;
-using NKnife.Electronics;
-using NKnife.Electronics.Collections;
+using MeterKnife.Electronics;
 using NUnit.Framework;
 
-namespace NKnife.UnitTest.Electronics
+namespace MeterKnife.Unittests.Electronics
 {
     /// <summary>
     /// 

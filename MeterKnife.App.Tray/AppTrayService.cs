@@ -19,7 +19,7 @@ namespace MeterKnife.App.Tray
         /// <summary>
         /// 创建NotifyIcon对象
         /// </summary>
-        private readonly NotifyIcon _notifyicon = new NotifyIcon();
+        private readonly NotifyIcon _notifyIcon = new NotifyIcon();
 
         /// <summary>
         /// 创建托盘菜单对象
@@ -28,13 +28,13 @@ namespace MeterKnife.App.Tray
 
         public AppTrayService()
         {
-            _notifyicon.Icon = Resources.mk_main;
-            _notifyicon.Visible = true;
-            _notifyicon.ContextMenuStrip = _notifyContextMenu;
-            _notifyicon.ContextMenuStrip.Show();
-            _notifyicon.ContextMenuStrip.Close();
-            _notifyicon.MouseClick += _Notifyicon_MouseClick;
-            _notifyicon.MouseDoubleClick += _Notifyicon_MouseDoubleClick;
+            _notifyIcon.Icon = Resources.mk_main;
+            _notifyIcon.Visible = true;
+            _notifyIcon.ContextMenuStrip = _notifyContextMenu;
+            _notifyIcon.ContextMenuStrip.Show();
+            _notifyIcon.ContextMenuStrip.Close();
+            _notifyIcon.MouseClick += NotifyIconMouseClick;
+            _notifyIcon.MouseDoubleClick += NotifyIconMouseDoubleClick;
         }
 
         #region Implementation of IEnvironmentItem
@@ -44,7 +44,7 @@ namespace MeterKnife.App.Tray
             return true;
         }
 
-        private void _Notifyicon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void NotifyIconMouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -55,15 +55,15 @@ namespace MeterKnife.App.Tray
             }
         }
 
-        private void _Notifyicon_MouseClick(object sender, MouseEventArgs e)
+        private void NotifyIconMouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
-                _notifyicon.ContextMenuStrip.Show();
+                _notifyIcon.ContextMenuStrip.Show();
         }
 
         public bool CloseService()
         {
-            _notifyicon.Visible = false;
+            _notifyIcon.Visible = false;
             return true;
         }
 

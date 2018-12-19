@@ -1,9 +1,8 @@
-﻿using NKnife.Electronics;
-using NKnife.Electronics.Collections;
-using NKnife.Electronics.Helper;
+﻿using MeterKnife.Electronics;
+using MeterKnife.Electronics.Helper;
 using NUnit.Framework;
 
-namespace NKnife.UnitTest.Electronics
+namespace MeterKnife.Unittests.Electronics
 {
     [TestFixture]
     public class ResistanceValueResolveTest
