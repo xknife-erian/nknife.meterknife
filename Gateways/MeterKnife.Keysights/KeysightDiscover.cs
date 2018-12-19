@@ -12,14 +12,14 @@ namespace MeterKnife.Keysights
 {
     public class KeysightDiscover : GatewayDiscoverBase
     {
-        private static readonly ILog _logger = LogManager.GetLogger<KeysightDiscover>();
+        private static readonly ILog Logger = LogManager.GetLogger<KeysightDiscover>();
 
-        private readonly KeysightChannel _Channel;
+        private readonly KeysightChannel _channel;
 
         public KeysightDiscover()
         {
-            _Channel = DI.Get<KeysightChannel>();
-            _Channel.Open();
+            _channel = DI.Get<KeysightChannel>();
+            _channel.Open();
         }
 
         #region Implementation of IGatewayDiscover
@@ -29,23 +29,23 @@ namespace MeterKnife.Keysights
         /// </summary>
         public override GatewayModel GatewayModel { get; set; } = GatewayModel.Aglient82357A;
 
-        private readonly UtilityRandom _Random = new UtilityRandom();
+        private readonly UtilityRandom _random = new UtilityRandom();
 
         /// <summary>
         ///     手动添加仪器
         /// </summary>
         public override void CreateInstrument()
         {
-            var model = $"20{_Random.Next(10, 99)}";
-            var inst = new Instrument("Keithley", model, $"Keithley{model}", _Random.Next(1, 36));
+            var model = $"20{_random.Next(10, 99)}";
+            var inst = new Instrument("Keithley", model, $"Keithley{model}", _random.Next(1, 36));
             Instruments.Add(inst);
         }
 
         public override void BeginDiscover()
         {
             var group = new KeysightQuestionGroup();
-            _Channel.UpdateQuestionGroup(group);
-            _Channel.SendReceiving(SendAction, ReceivedFunc);
+            _channel.UpdateQuestionGroup(group);
+            _channel.SendReceiving(SendAction, ReceivedFunc);
             foreach (var instrument in Instruments)
                 UpdateInstrument(instrument);
             OnDiscovered();
@@ -65,7 +65,7 @@ namespace MeterKnife.Keysights
 
         private void SendAction(IQuestion<string> question)
         {
-            _logger.Debug(question.Data);
+            Logger.Debug(question.Data);
         }
 
         private bool ReceivedFunc(IAnswer<string> answer)

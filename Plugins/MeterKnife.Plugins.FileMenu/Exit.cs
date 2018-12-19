@@ -13,7 +13,7 @@ namespace MeterKnife.Plugins.FileMenu
 {
     public class Exit : PluginBase
     {
-        private readonly ToolStripMenuItem _ExitContextMenuItem = new ToolStripMenuItem("退出(&X)");
+        private readonly ToolStripMenuItem _exitContextMenuItem = new ToolStripMenuItem("退出(&X)");
 
         public Exit()
         {
@@ -21,7 +21,7 @@ namespace MeterKnife.Plugins.FileMenu
             _StripItem.Order = 10000F;
             _StripItem.ShortcutKeys = Keys.Control | Keys.Alt | Keys.X;
             _StripItem.Click += OnExitMenuItemOnClick;
-            _ExitContextMenuItem.Click += OnExitMenuItemOnClick;
+            _exitContextMenuItem.Click += OnExitMenuItemOnClick;
         }
 
         private void OnExitMenuItemOnClick(object s, EventArgs e)
@@ -62,7 +62,7 @@ namespace MeterKnife.Plugins.FileMenu
         public override void BindViewComponent(PluginViewComponent component)
         {
             base.BindViewComponent(component);
-            _ViewComponent.TrayMenu.Items.Add(_ExitContextMenuItem);
+            _ViewComponent.TrayMenu.Items.Add(_exitContextMenuItem);
         }
 
         #endregion

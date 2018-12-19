@@ -9,8 +9,8 @@ namespace MeterKnife.Views.Measures.Series
 {
     public partial class DataSeriesListDialog : NKnife.ControlKnife.SimpleForm
     {
-        private PlotSeriesStyleSolution _Solution = new PlotSeriesStyleSolution();
-        private readonly IHabited _Habited = DI.Get<IHabited>();
+        private PlotSeriesStyleSolution _solution = new PlotSeriesStyleSolution();
+        private readonly IHabited _habited = DI.Get<IHabited>();
 
         public DataSeriesListDialog()
         {
@@ -23,7 +23,7 @@ namespace MeterKnife.Views.Measures.Series
         {
             _DeleteButton.Enabled = _ListView.SelectedItems.Count > 0;
             _ModifyButton.Enabled = _ListView.SelectedItems.Count > 0;
-            if (_Habited.SeriesStyleSolutionList.Count <= 0)
+            if (_habited.SeriesStyleSolutionList.Count <= 0)
             {
                 _LoadButton.Enabled = false;
             }
@@ -33,17 +33,17 @@ namespace MeterKnife.Views.Measures.Series
         {
             get
             {
-                _Solution.Styles.Clear();
+                _solution.Styles.Clear();
                 foreach (ListViewItem item in _ListView.Items)
                 {
                     var style = (PlotSeriesStyleSolution.ExhibitSeriesStyle) item.Tag;
-                    _Solution.Styles.Add(style);
+                    _solution.Styles.Add(style);
                 }
-                return _Solution;
+                return _solution;
             }
             set
             {
-                _Solution = value;
+                _solution = value;
                 var i = 1;
                 foreach (var style in value.Styles)
                 {
@@ -74,7 +74,7 @@ namespace MeterKnife.Views.Measures.Series
         private void _AppendButton_Click(object sender, System.EventArgs e)
         {
             var dialog = new DataSeriesEditorDialog();
-            dialog.IgnoreExistsExhibits(_Solution);
+            dialog.IgnoreExistsExhibits(_solution);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var style = dialog.SeriesStyle;
@@ -82,7 +82,7 @@ namespace MeterKnife.Views.Measures.Series
                 ByStyle(style, item);
                 item.Text = $"{_ListView.Items.Count + 1}";
                 _ListView.Items.Add(item);
-                _Solution.Styles.Add(style); //向方案中添加样式
+                _solution.Styles.Add(style); //向方案中添加样式
                 _ListView.Select();
                 item.Selected = true;
             }
@@ -97,7 +97,7 @@ namespace MeterKnife.Views.Measures.Series
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.Yes)
             {
-                if (_Solution.Styles.Remove(style))
+                if (_solution.Styles.Remove(style))
                 {
                     _ListView.Items.Remove(item);
                     for (int i = 1; i <= _ListView.Items.Count; i++)
@@ -152,9 +152,9 @@ namespace MeterKnife.Views.Measures.Series
         private void SaveSolution(string solutionName)
         {
             Solution.SolutionName = solutionName;
-            var list = new List<PlotSeriesStyleSolution>(_Habited.SeriesStyleSolutionList);
+            var list = new List<PlotSeriesStyleSolution>(_habited.SeriesStyleSolutionList);
             list.Add(Solution);
-            _Habited.SeriesStyleSolutionList = list;
+            _habited.SeriesStyleSolutionList = list;
         }
     }
 }

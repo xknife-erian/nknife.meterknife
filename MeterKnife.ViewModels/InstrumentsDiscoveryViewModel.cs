@@ -20,12 +20,12 @@ namespace MeterKnife.ViewModels
 
         #region Property: SelectedInstrument
 
-        private Instrument _SelectedInstrument;
+        private Instrument _selectedInstrument;
 
         public Instrument SelectedInstrument
         {
-            get => _SelectedInstrument;
-            set { Set(() => SelectedInstrument, ref _SelectedInstrument, value); }
+            get => _selectedInstrument;
+            set { Set(() => SelectedInstrument, ref _selectedInstrument, value); }
         }
 
         #endregion

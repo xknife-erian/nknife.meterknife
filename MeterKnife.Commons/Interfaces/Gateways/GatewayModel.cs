@@ -11,6 +11,6 @@
         Aglient82357B,
         SerialPort,
         TcpIp,
-        USB
+        Usb
     }
 }

@@ -14,7 +14,7 @@ namespace MeterKnife.Reports
 {
     internal class Program
     {
-        private const string STSHI =
+        private const string Stshi =
             "我是你河边上破旧的老水车\r\n数百年来纺着疲惫的歌\r\n我是你额上熏黑的矿灯\r\n照你在历史的隧洞里蜗行摸索\r\n我是干瘪的稻穗\r\n是失修的路基\r\n是淤滩上的驳船\r\n把纤绳深深勒进你的肩膊\r\n";
 
         /// <summary>

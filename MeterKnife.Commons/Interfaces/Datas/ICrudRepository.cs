@@ -2,7 +2,7 @@
 
 namespace MeterKnife.Interfaces.Datas
 {
-    public interface ICrudRepository<T, ID> : IRepository<T>
+    public interface ICrudRepository<T, TId> : IRepository<T>
     {
         /// <summary>
         /// Saves a given entity. Use the returned instance for further operations as the save operation might have changed the entity instance completely.
@@ -20,12 +20,12 @@ namespace MeterKnife.Interfaces.Datas
         /// <summary>
         /// Retrieves an entity by its id.
         /// </summary>
-        T FindOne(ID id);
+        T FindOne(TId id);
 
         /// <summary>
         /// Returns whether an entity with the given id exists.
         /// </summary>
-        bool Exists(ID id);
+        bool Exists(TId id);
 
         /// <summary>
         /// Returns all instances of the type.
@@ -35,7 +35,7 @@ namespace MeterKnife.Interfaces.Datas
         /// <summary>
         /// Returns all instances of the type with the given IDs.
         /// </summary>
-        IEnumerable<T> FindAll(IEnumerable<ID> ids);
+        IEnumerable<T> FindAll(IEnumerable<TId> ids);
 
         /// <summary>
         /// Returns the number of entities available.
@@ -46,7 +46,7 @@ namespace MeterKnife.Interfaces.Datas
         /// Deletes the entity with the given id.
         /// </summary>
         /// <param name="id">id must not be null</param>
-        void Delete(ID id);
+        void Delete(TId id);
 
         /// <summary>
         /// Deletes a given entity.

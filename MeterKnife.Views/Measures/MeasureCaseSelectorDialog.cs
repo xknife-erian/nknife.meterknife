@@ -11,7 +11,7 @@ namespace MeterKnife.Views.Measures
 {
     public partial class MeasureCaseSelectorDialog : SimpleForm
     {
-        private readonly MeasureCaseSelectorViewModel _ViewModel = new MeasureCaseSelectorViewModel();
+        private readonly MeasureCaseSelectorViewModel _viewModel = new MeasureCaseSelectorViewModel();
 
         public MeasureCaseSelectorDialog()
         {
@@ -23,7 +23,7 @@ namespace MeterKnife.Views.Measures
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            var map = _ViewModel.DiscoverMap;
+            var map = _viewModel.DiscoverMap;
             foreach (var pair in map)
             {
                 var gatewayNode = new TreeNode($"{pair.Key}");

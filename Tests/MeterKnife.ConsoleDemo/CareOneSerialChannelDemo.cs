@@ -10,31 +10,31 @@ namespace MeterKnife.ConsoleDemo
 {
     public class CareOneSerialChannelDemo: DemoBase
     {
-        private CareOneSerialChannel _Channel;
+        private CareOneSerialChannel _channel;
 
-        private readonly Instrument _DemoInstrument = new Instrument("HP", "34401", "HP34401");
+        private readonly Instrument _demoInstrument = new Instrument("HP", "34401", "HP34401");
 
         public SerialConfig Config { get; set; }
 
         public override void Run()
         {
             Debug.Assert(Config != null, "SerialConfig未设置");
-            _Channel = new CareOneSerialChannel(Config);
-            _Channel.Open();
+            _channel = new CareOneSerialChannel(Config);
+            _channel.Open();
 
             Console.Write("请输入仪器地址：");
             var address = Console.ReadLine();
             var group = GetQuestionGroup(ushort.Parse(address));
-            _Channel.UpdateQuestionGroup(group);
+            _channel.UpdateQuestionGroup(group);
 
             Console.ReadLine();
         }
 
         private SerialQuestionGroup GetQuestionGroup(ushort address)
         {
-            _DemoInstrument.Address = address;
+            _demoInstrument.Address = address;
             var group = new SerialQuestionGroup();
-            group.Add(new SerialQuestion(_Channel, _DemoInstrument, null, false, new byte[]{}));
+            group.Add(new SerialQuestion(_channel, _demoInstrument, null, false, new byte[]{}));
             return null;
         }
 

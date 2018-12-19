@@ -17,17 +17,17 @@ namespace MeterKnife.Views.Controls.Instruments
         /// <summary>
         ///     左右的内部间距
         /// </summary>
-        private const int L_R_PADDING = 2;
+        private const int LRPadding = 2;
 
-        private Brush _BackgroundBrush = Brushes.DarkOliveGreen;
-        private Brush _FontBrush = Brushes.White;
+        private Brush _backgroundBrush = Brushes.DarkOliveGreen;
+        private Brush _fontBrush = Brushes.White;
 
-        private Rectangle _Border;
-        private Rectangle _ImgRectangle;
-        private Rectangle _Inner;
-        private bool _IsDown = true;
+        private Rectangle _border;
+        private Rectangle _imgRectangle;
+        private Rectangle _inner;
+        private bool _isDown = true;
 
-        private Image _LeftImage = Resources.InstrumentsListHead_down;
+        private Image _leftImage = Resources.InstrumentsListHead_down;
 
         public InstrumentsListHead()
         {
@@ -52,20 +52,20 @@ namespace MeterKnife.Views.Controls.Instruments
         {
             base.OnPaint(e);
             var g = e.Graphics;
-            g.FillRectangle(_BackgroundBrush, _Inner);
-            g.DrawRectangle(Pens.Gray, _Border);
-            g.DrawImage(_LeftImage, _ImgRectangle);
+            g.FillRectangle(_backgroundBrush, _inner);
+            g.DrawRectangle(Pens.Gray, _border);
+            g.DrawImage(_leftImage, _imgRectangle);
 
             var s = g.MeasureString(GatewayModel, Font);
-            var strX = _ImgRectangle.X + _ImgRectangle.Width + L_R_PADDING * 2;
+            var strX = _imgRectangle.X + _imgRectangle.Width + LRPadding * 2;
             var strY = (Height - s.Height) / 2 + 1;
-            g.DrawString(GatewayModel, Font, _FontBrush, strX, strY);
+            g.DrawString(GatewayModel, Font, _fontBrush, strX, strY);
 
             var c = $"{Count}";
             s = g.MeasureString(c, Font);
-            strX = (int) (Width - s.Width - L_R_PADDING * 6);
+            strX = (int) (Width - s.Width - LRPadding * 6);
 
-            g.DrawString(c, Font, _FontBrush, strX, strY);
+            g.DrawString(c, Font, _fontBrush, strX, strY);
         }
 
         public string GatewayModel { get; set; }
@@ -75,9 +75,9 @@ namespace MeterKnife.Views.Controls.Instruments
         private void UpdateRectangles()
         {
             const int baseW = 18;
-            _Border = new Rectangle(2, 2, Width - 5, Height - 5);
-            _Inner = new Rectangle(3, 3, Width - 5, Height - 5);
-            _ImgRectangle = new Rectangle(14 + L_R_PADDING, (Height - baseW) / 2 + 1, baseW, baseW);
+            _border = new Rectangle(2, 2, Width - 5, Height - 5);
+            _inner = new Rectangle(3, 3, Width - 5, Height - 5);
+            _imgRectangle = new Rectangle(14 + LRPadding, (Height - baseW) / 2 + 1, baseW, baseW);
         }
 
         private void HeadMouseClick(object sender, MouseEventArgs e)
@@ -86,9 +86,9 @@ namespace MeterKnife.Views.Controls.Instruments
             {
                 case MouseButtons.Left:
                 {
-                    _IsDown = !_IsDown;
+                    _isDown = !_isDown;
                     //当点击时更替左侧的图形，给出上缩下拉的两种工作模式
-                    _LeftImage = !_IsDown ? Resources.InstrumentsListHead_up : Resources.InstrumentsListHead_down;
+                    _leftImage = !_isDown ? Resources.InstrumentsListHead_up : Resources.InstrumentsListHead_down;
                     break;
                 }
             }
@@ -101,15 +101,15 @@ namespace MeterKnife.Views.Controls.Instruments
 
         private void HeadMouseLeave(object sender, EventArgs e)
         {
-            _BackgroundBrush = Brushes.DarkOliveGreen;
-            _FontBrush = Brushes.White;
+            _backgroundBrush = Brushes.DarkOliveGreen;
+            _fontBrush = Brushes.White;
             Refresh();
         }
 
         private void HeadMouseEnter(object sender, EventArgs e)
         {
-            _BackgroundBrush = Brushes.DarkKhaki;
-            _FontBrush = Brushes.Black;
+            _backgroundBrush = Brushes.DarkKhaki;
+            _fontBrush = Brushes.Black;
             Refresh();
         }
 

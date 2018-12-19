@@ -15,20 +15,20 @@ namespace MeterKnife.Datas.Dpi
 {
     public class DatasService : IDatasService, IDisposable
     {
-        private static readonly ILog _logger = LogManager.GetLogger<DatasService>();
+        private static readonly ILog Logger = LogManager.GetLogger<DatasService>();
 
-        private LiteDatabase _GlobalDatabase;
+        private LiteDatabase _globalDatabase;
 
-        public LiteDatabase GlobalDataBase => _GlobalDatabase;
+        public LiteDatabase GlobalDataBase => _globalDatabase;
 
-        private MeasureJobRepository _MeasureJobs;
+        private MeasureJobRepository _measureJobs;
 
         #region IDisposable
 
         /// <summary>执行与释放或重置非托管资源相关的应用程序定义的任务。</summary>
         public void Dispose()
         {
-            _GlobalDatabase?.Dispose();
+            _globalDatabase?.Dispose();
         }
 
         #endregion
@@ -39,20 +39,20 @@ namespace MeterKnife.Datas.Dpi
         {
             try
             {
-                if (_GlobalDatabase == null)
+                if (_globalDatabase == null)
                 {
                     var fullpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Datas\");
                     if (!Directory.Exists(fullpath))
                         UtilityFile.CreateDirectory(fullpath);
                     fullpath = Path.Combine(fullpath, "mk.litedb");
-                    _GlobalDatabase = new LiteDatabase(fullpath);
+                    _globalDatabase = new LiteDatabase(fullpath);
                 }
                 MeasureEvent();
                 return true;
             }
             catch (Exception e)
             {
-                _logger.Error(e.Message, e);
+                Logger.Error(e.Message, e);
                 return false;
             }
         }
@@ -61,12 +61,12 @@ namespace MeterKnife.Datas.Dpi
         {
             try
             {
-                _GlobalDatabase?.Dispose();
+                _globalDatabase?.Dispose();
                 return true;
             }
             catch (Exception e)
             {
-                _logger.Error(e.Message, e);
+                Logger.Error(e.Message, e);
                 return false;
             }
         }
@@ -78,7 +78,7 @@ namespace MeterKnife.Datas.Dpi
 
         private void MeasureEvent()
         {
-            _MeasureJobs = new MeasureJobRepository();
+            _measureJobs = new MeasureJobRepository();
             var measureService = DI.Get<IMeasureService>();
             measureService.Measured += OnMeasured;
             measureService.ExhibitAdded += MeasureService_ExhibitAdded;
@@ -93,8 +93,8 @@ namespace MeterKnife.Datas.Dpi
 
         private void MeasureService_MeasureJobAdded(object sender, EventArgs<MeasureJob> e)
         {
-            Console.WriteLine($"--------->MeasureJob Count: {_MeasureJobs.FindAll().Count()}");
-            _MeasureJobs.Save(e.Item);
+            Console.WriteLine($"--------->MeasureJob Count: {_measureJobs.FindAll().Count()}");
+            _measureJobs.Save(e.Item);
         }
 
         private void MeasureService_ExhibitRemoved(object sender, EventArgs<IExhibit> e)

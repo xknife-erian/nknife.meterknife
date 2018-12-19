@@ -7,7 +7,7 @@ namespace MeterKnife.Electronics
     {
         public enum Unit
         {
-            Ω,
+            Ω,
             K,
             M,
             G

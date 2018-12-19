@@ -15,15 +15,15 @@ namespace MeterKnife.Keysights
 {
     public class KeysightChannel : MeasureChannelBase<string>
     {
-        private static readonly ILog _logger = LogManager.GetLogger<KeysightChannel>();
-        private readonly ushort _GPIBTarget;
+        private static readonly ILog Logger = LogManager.GetLogger<KeysightChannel>();
+        private readonly ushort _gpibTarget;
         //private GPIBLinker _GPIBLinker;
-        private KeysightQuestionGroup _QuestionGroup = new KeysightQuestionGroup();
+        private KeysightQuestionGroup _questionGroup = new KeysightQuestionGroup();
 
         public KeysightChannel(ushort gpibTarget = 0)
         {
-            _GPIBTarget = gpibTarget;
-            _logger.Info($"GPIBLinker GPIBTarget is {gpibTarget}.");
+            _gpibTarget = gpibTarget;
+            Logger.Info($"GPIBLinker GPIBTarget is {gpibTarget}.");
 
             IsSynchronous = true;
             TalkTotalTimeout = 2000;
@@ -34,15 +34,15 @@ namespace MeterKnife.Keysights
         public override bool Open()
         {
             OnOpening();
-            _logger.Info($"GPIBLinker OnOpening...");
-            OpenGPIBLinker();
+            Logger.Info($"GPIBLinker OnOpening...");
+            OpenGpibLinker();
             IsOpen = true;
             OnOpened();
-            _logger.Info($"GPIBLinker OnOpened...");
+            Logger.Info($"GPIBLinker OnOpened...");
             return true;
         }
 
-        protected virtual void OpenGPIBLinker()
+        protected virtual void OpenGpibLinker()
         {
             /*
             if (_GPIBLinker == null || _GPIBTarget != _GPIBLinker.GpibSelector)
@@ -83,14 +83,14 @@ namespace MeterKnife.Keysights
 
         public void UpdateQuestionGroup(KeysightQuestionGroup questionGroup)
         {
-            _QuestionGroup = questionGroup;
+            _questionGroup = questionGroup;
         }
 
         #region Sync-SendReceiving
 
-        private readonly AutoResetEvent _AutoReset = new AutoResetEvent(false);
-        private readonly Timer _Timer = new Timer();
-        private bool _IsLoop = true;
+        private readonly AutoResetEvent _autoReset = new AutoResetEvent(false);
+        private readonly Timer _timer = new Timer();
+        private bool _isLoop = true;
 
         protected class SyncSendReceivingParams
         {
@@ -116,28 +116,28 @@ namespace MeterKnife.Keysights
 #if DEBUG
             int a, b = 0;
             ThreadPool.GetAvailableThreads(out a, out b);
-            _logger.Trace($"WorkerThreads: {a}, CompletionPortThreads: {b}");
+            Logger.Trace($"WorkerThreads: {a}, CompletionPortThreads: {b}");
 #endif
         }
 
         public void StopSendReceiving()
         {
-            _IsLoop = false;
-            _AutoReset.Set();
-            _Timer.Stop();
+            _isLoop = false;
+            _autoReset.Set();
+            _timer.Stop();
         }
 
         protected void SendReceiving(object param)
         {
-            _IsLoop = true;
-            _Timer.Stop();
-            _Timer.Interval = TalkTotalTimeout;
-            _Timer.Elapsed += (s, e) => { _AutoReset.Set(); };
+            _isLoop = true;
+            _timer.Stop();
+            _timer.Interval = TalkTotalTimeout;
+            _timer.Elapsed += (s, e) => { _autoReset.Set(); };
             var isFirst = true;
             var w = (SyncSendReceivingParams) param;
-            while (_QuestionGroup.Count > 0 && _IsLoop)
+            while (_questionGroup.Count > 0 && _isLoop)
             {
-                var q = _QuestionGroup.PeekOrDequeue();
+                var q = _questionGroup.PeekOrDequeue();
                 var instrument = (Instrument)q.Instrument;
                 var exhibit = (ExhibitBase)q.Target;
                 try
@@ -146,19 +146,19 @@ namespace MeterKnife.Keysights
                     if (isFirst)
                     {
                         isFirst = false;
-                        _Timer.Start();
+                        _timer.Start();
                     }
                     var data = WriteAndRead(instrument.Address, q.Data);
-                    var answer = new KeysightAnswer(_QuestionGroup.JobNumber, this, instrument, exhibit, data);
+                    var answer = new KeysightAnswer(_questionGroup.JobNumber, this, instrument, exhibit, data);
                     w.ReceivedFunc.Invoke(answer);
-                    _AutoReset.WaitOne();
+                    _autoReset.WaitOne();
                 }
                 catch (Exception e)
                 {
-                    _logger.Warn($"Keysight:{e.Message}", e);
+                    Logger.Warn($"Keysight:{e.Message}", e);
                 }
             }
-            _Timer.Stop();
+            _timer.Stop();
         }
 
         protected virtual string WriteAndRead(int address, string command)

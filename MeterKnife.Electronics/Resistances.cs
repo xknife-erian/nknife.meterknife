@@ -10,7 +10,7 @@ namespace MeterKnife.Electronics
     /// </summary>
     public class Resistances : IList<Resistance>
     {
-        private readonly List<Resistance> _Resistances;
+        private readonly List<Resistance> _resistances;
 
         public Resistances()
             : this(4, CircuitType.Series)
@@ -19,7 +19,7 @@ namespace MeterKnife.Electronics
 
         public Resistances(int capacity, CircuitType circuitType)
         {
-            _Resistances = new List<Resistance>(capacity);
+            _resistances = new List<Resistance>(capacity);
             CircuitType = circuitType;
         }
 
@@ -51,8 +51,8 @@ namespace MeterKnife.Electronics
         {
             //总电阻的倒数等于各分电阻的倒数之和
             double sum;
-            if (_Resistances.Count > 0)
-                sum = _Resistances.Sum(res => 1/res.Value);
+            if (_resistances.Count > 0)
+                sum = _resistances.Sum(res => 1/res.Value);
             else
                 return 0;
             return 1/sum;
@@ -63,14 +63,14 @@ namespace MeterKnife.Electronics
         private double SeriesEquivalentValue()
         {
             double sum = 0;
-            if (_Resistances.Count > 0)
-                sum += _Resistances.Sum(res => res.Value);
+            if (_resistances.Count > 0)
+                sum += _resistances.Sum(res => res.Value);
             return sum;
         }
 
         public IEnumerator<Resistance> GetEnumerator()
         {
-            return _Resistances.GetEnumerator();
+            return _resistances.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -80,34 +80,34 @@ namespace MeterKnife.Electronics
 
         public void Add(Resistance item)
         {
-            _Resistances.Add(item);
-            _Resistances.Sort();
+            _resistances.Add(item);
+            _resistances.Sort();
         }
 
         public void Clear()
         {
-            _Resistances.Clear();
+            _resistances.Clear();
         }
 
         public bool Contains(Resistance item)
         {
-            return _Resistances.Contains(item);
+            return _resistances.Contains(item);
         }
 
         public void CopyTo(Resistance[] array, int arrayIndex)
         {
-            _Resistances.CopyTo(array, arrayIndex);
-            _Resistances.Sort();
+            _resistances.CopyTo(array, arrayIndex);
+            _resistances.Sort();
         }
 
         public bool Remove(Resistance item)
         {
-            return _Resistances.Remove(item);
+            return _resistances.Remove(item);
         }
 
         public int Count
         {
-            get { return _Resistances.Count; }
+            get { return _resistances.Count; }
         }
 
         public bool IsReadOnly
@@ -117,27 +117,27 @@ namespace MeterKnife.Electronics
 
         public int IndexOf(Resistance item)
         {
-            return _Resistances.IndexOf(item);
+            return _resistances.IndexOf(item);
         }
 
         public void Insert(int index, Resistance item)
         {
-            _Resistances.Insert(index, item);
-            _Resistances.Sort();
+            _resistances.Insert(index, item);
+            _resistances.Sort();
         }
 
         public void RemoveAt(int index)
         {
-            _Resistances.RemoveAt(index);
+            _resistances.RemoveAt(index);
         }
 
         public Resistance this[int index]
         {
-            get { return _Resistances[index]; }
+            get { return _resistances[index]; }
             set
             {
-                _Resistances[index] = value;
-                _Resistances.Sort();
+                _resistances[index] = value;
+                _resistances.Sort();
             }
         }
     }

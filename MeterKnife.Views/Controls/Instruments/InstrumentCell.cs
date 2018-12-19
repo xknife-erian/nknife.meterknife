@@ -18,15 +18,15 @@ namespace MeterKnife.Views.Controls.Instruments
         /// <summary>
         ///     左右的内部间距
         /// </summary>
-        private const int L_R_PADDING = 2;
+        private const int LRPadding = 2;
 
-        private Brush _BackgroundColor = Brushes.AliceBlue;
-        private NameValueRect _NameValueRect = NameValueRect.Empty;
+        private Brush _backgroundColor = Brushes.AliceBlue;
+        private NameValueRect _nameValueRect = NameValueRect.Empty;
 
-        private Rectangle _Border;
-        private Rectangle _Inner;
-        private Rectangle _ImgRectangle;
-        private Instrument _Instrument;
+        private Rectangle _border;
+        private Rectangle _inner;
+        private Rectangle _imgRectangle;
+        private Instrument _instrument;
 
         public InstrumentCell(Instrument instrument)
         {
@@ -46,34 +46,34 @@ namespace MeterKnife.Views.Controls.Instruments
 
         private void UpdateRectangles()
         {
-            _Border = new Rectangle(2, 2, Width - 5, Height - 5);
-            _Inner = new Rectangle(3, 3, Width - 7, Height - 7);
+            _border = new Rectangle(2, 2, Width - 5, Height - 5);
+            _inner = new Rectangle(3, 3, Width - 7, Height - 7);
             var s = Height - (T_B_PADDING + 3) * 2;
-            _ImgRectangle = new Rectangle(7 + L_R_PADDING, 4 + T_B_PADDING, s, s);
-            _NameValueRect = NameValueRect.Empty;
+            _imgRectangle = new Rectangle(7 + LRPadding, 4 + T_B_PADDING, s, s);
+            _nameValueRect = NameValueRect.Empty;
         }
 
         public Instrument Instrument
         {
-            get => _Instrument;
+            get => _instrument;
             set
             {
-                _Instrument = value;
-                if (_Instrument != null && _Instrument.Image == null)
-                    _Instrument.Image = Resources.InstrumentDefaultIcon;
+                _instrument = value;
+                if (_instrument != null && _instrument.Image == null)
+                    _instrument.Image = Resources.InstrumentDefaultIcon;
                 Invalidate();
             }
         }
 
         private void Cell_MouseLeave(object sender, EventArgs e)
         {
-            _BackgroundColor = Brushes.AliceBlue;
+            _backgroundColor = Brushes.AliceBlue;
             Refresh();
         }
 
         private void Cell_MouseEnter(object sender, EventArgs e)
         {
-            _BackgroundColor = Brushes.LightYellow;
+            _backgroundColor = Brushes.LightYellow;
             Refresh();
         }
 
@@ -92,27 +92,27 @@ namespace MeterKnife.Views.Controls.Instruments
 
         private NameValueRect CalculateNameValueRect(Graphics g, Cell cell)
         {
-            if (_NameValueRect.IsEmpty())
+            if (_nameValueRect.IsEmpty())
             {
                 var initX = Height;
                 var fontSize = g.MeasureString("中国文字:", Font);
 
-                var columnWidth = (Width - initX - L_R_PADDING) / cell.ColumnCount;
+                var columnWidth = (Width - initX - LRPadding) / cell.ColumnCount;
                 var rowHeight = (Height - T_B_PADDING * 2) / cell.RowCount;
 
-                var nameWidth = fontSize.Width + L_R_PADDING;
+                var nameWidth = fontSize.Width + LRPadding;
                 var valueWidth = columnWidth - nameWidth;
                 var fontHeightOffset = (rowHeight - fontSize.Height) / 2;
 
-                _NameValueRect = new NameValueRect(initX, columnWidth, rowHeight, nameWidth, valueWidth, fontHeightOffset);
+                _nameValueRect = new NameValueRect(initX, columnWidth, rowHeight, nameWidth, valueWidth, fontHeightOffset);
             }
-            return _NameValueRect;
+            return _nameValueRect;
         }
 
         private void DrawBorder(Graphics g)
         {
-            g.FillRectangle(_BackgroundColor, _Inner);
-            g.DrawRectangle(Pens.Gray, _Border);
+            g.FillRectangle(_backgroundColor, _inner);
+            g.DrawRectangle(Pens.Gray, _border);
         }
 
         private void DrawLabel(Graphics g, Cell cell, NameValue nameValue)
@@ -135,7 +135,7 @@ namespace MeterKnife.Views.Controls.Instruments
              * 画仪器的图标在控件的左侧，设计为占用一个正方形的区域，该正方形的区域如无仪器图标也需要预留出空白位置，以保持整体的一致性。
              */
             if (Instrument.Image == null) return;
-            var actualRect = Util.AdjustSize(_ImgRectangle, Instrument.Image.Width, Instrument.Image.Height);
+            var actualRect = Util.AdjustSize(_imgRectangle, Instrument.Image.Width, Instrument.Image.Height);
             g.DrawImage(Instrument.Image, actualRect);
         }
 

@@ -12,8 +12,8 @@ namespace MeterKnife.App
 {
     public class EnvironmentCore : ApplicationContext
     {
-        private static readonly ILog _logger = LogManager.GetLogger<EnvironmentCore>();
-        private readonly IKernels _Kernels = DI.Get<IKernels>();
+        private static readonly ILog Logger = LogManager.GetLogger<EnvironmentCore>();
+        private readonly IKernels _kernels = DI.Get<IKernels>();
 
         #region Singleton Instance
 
@@ -34,14 +34,14 @@ namespace MeterKnife.App
 
         private void LoadEnvironment()
         {
-            _logger.Info($"=============================================================================");
-            _logger.Info($">>>>>> {DateTime.Now.ToLongDateString()} <<<<<<");
-            _logger.Info($">>>>>> {AppDomain.CurrentDomain.BaseDirectory} <<<<<<");
+            Logger.Info($"=============================================================================");
+            Logger.Info($">>>>>> {DateTime.Now.ToLongDateString()} <<<<<<");
+            Logger.Info($">>>>>> {AppDomain.CurrentDomain.BaseDirectory} <<<<<<");
 
-            _logger.Info("开始加载...");
+            Logger.Info("开始加载...");
 
             Splasher.Status = "开始加载引擎...";
-            _Kernels.LoadCoreService(DisplayMessage);
+            _kernels.LoadCoreService(DisplayMessage);
 
             var mainWorkbench = (Form)(DI.Get<IWorkbench>());
             mainWorkbench.Shown += (s, e) =>
@@ -50,11 +50,11 @@ namespace MeterKnife.App
                 Thread.Sleep(600);
                 Splasher.Close();
                 mainWorkbench.Activate();
-                _logger.Info("主控台载入完成.");
+                Logger.Info("主控台载入完成.");
             };
             mainWorkbench.Closed += (s, e) =>
             {
-                _logger.Info("软件准备关闭...");
+                Logger.Info("软件准备关闭...");
                 Application.Exit();
             };
             mainWorkbench.Show();
@@ -64,7 +64,7 @@ namespace MeterKnife.App
         private void DisplayMessage(string message)
         {
             Splasher.Status = message;
-            _logger.Info(message);
+            Logger.Info(message);
         }
 
         /// <summary>
@@ -76,11 +76,11 @@ namespace MeterKnife.App
         {
             try
             {
-                _Kernels.UnloadCoreService();
+                _kernels.UnloadCoreService();
             }
             catch (Exception exception)
             {
-                _logger.Error("卸载核心服务及插件", exception);
+                Logger.Error("卸载核心服务及插件", exception);
             }
         }
     }

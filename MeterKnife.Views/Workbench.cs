@@ -17,7 +17,7 @@ namespace MeterKnife.Views
 {
     public sealed partial class Workbench : Form, IWorkbench
     {
-        private readonly IAbout _About;
+        private readonly IAbout _about;
 
         public Workbench()
         {
@@ -32,8 +32,8 @@ namespace MeterKnife.Views
 #if !DEBUG
             WindowState = FormWindowState.Maximized;
 #endif
-            _About = DI.Get<IAbout>();
-            var version =  _About.AssemblyVersion.ToString();
+            _about = DI.Get<IAbout>();
+            var version =  _about.AssemblyVersion.ToString();
             Text = $"{Text} - {version}";
         }
 

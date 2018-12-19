@@ -7,9 +7,9 @@ namespace MeterKnife.Views.Measures
 {
     public sealed partial class MeasureSettingDialog : Form
     {
-        private static readonly ILog _logger = LogManager.GetLogger<MeasureSettingDialog>();
+        private static readonly ILog Logger = LogManager.GetLogger<MeasureSettingDialog>();
 
-        private readonly List<int> _GpibList = new List<int>();
+        private readonly List<int> _gpibList = new List<int>();
 
         public MeasureSettingDialog()
         {
@@ -24,7 +24,7 @@ namespace MeterKnife.Views.Measures
         private void OnAcceptButtonClick(object s, EventArgs e)
         {
             var address = (short)_NumberBox.Value;
-            if (_GpibList.Contains(address))
+            if (_gpibList.Contains(address))
             {
                 MessageBox.Show(this, "请重新输入GPIB地址，该地址已有仪器占用。", "重复的GPIB地址", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;

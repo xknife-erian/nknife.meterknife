@@ -13,21 +13,21 @@ namespace MeterKnife.Kernel
 {
     public class Kernels : IKernels
     {
-        private static readonly ILog _logger = LogManager.GetLogger<Kernels>();
+        private static readonly ILog Logger = LogManager.GetLogger<Kernels>();
 
-        private readonly IAppTrayService _AppTrayService;
-        private readonly IPluginService _PluginService;
-        private readonly IGatewayService _GatewayService;
-        private readonly IDatasService _DatasService;
-        private readonly IMeasureService _MeasureService;
+        private readonly IAppTrayService _appTrayService;
+        private readonly IPluginService _pluginService;
+        private readonly IGatewayService _gatewayService;
+        private readonly IDatasService _datasService;
+        private readonly IMeasureService _measureService;
 
         public Kernels()
         {
-            _AppTrayService = DI.Get<IAppTrayService>();
-            _PluginService = DI.Get<IPluginService>();
-            _GatewayService = DI.Get<IGatewayService>();
-            _DatasService = DI.Get<IDatasService>();
-            _MeasureService = DI.Get<IMeasureService>();
+            _appTrayService = DI.Get<IAppTrayService>();
+            _pluginService = DI.Get<IPluginService>();
+            _gatewayService = DI.Get<IGatewayService>();
+            _datasService = DI.Get<IDatasService>();
+            _measureService = DI.Get<IMeasureService>();
         }
 
         /// <summary>
@@ -35,21 +35,21 @@ namespace MeterKnife.Kernel
         /// </summary>       
         public void LoadCoreService(Action<string> displayMessage)
         {
-            displayMessage($"加载{_AppTrayService.Description}...");
-            _AppTrayService.StartService();
+            displayMessage($"加载{_appTrayService.Description}...");
+            _appTrayService.StartService();
 
-            displayMessage($"加载{_PluginService.Description}...");
-            _PluginService.StartService();
+            displayMessage($"加载{_pluginService.Description}...");
+            _pluginService.StartService();
             displayMessage("注册所有插件完成...");
 
-            displayMessage($"加载{_DatasService.Description}...");
-            _DatasService.StartService();
+            displayMessage($"加载{_datasService.Description}...");
+            _datasService.StartService();
 
-            displayMessage($"加载{_GatewayService.Description}...");
-            _GatewayService.StartService();
+            displayMessage($"加载{_gatewayService.Description}...");
+            _gatewayService.StartService();
 
-            displayMessage($"加载{_MeasureService.Description}...");
-            _MeasureService.StartService();
+            displayMessage($"加载{_measureService.Description}...");
+            _measureService.StartService();
 
             displayMessage("加载核心服务及插件完成,关闭欢迎界面.");
         }
@@ -59,11 +59,11 @@ namespace MeterKnife.Kernel
         /// </summary>
         public void UnloadCoreService()
         {
-            _GatewayService.CloseService();
-            _DatasService.CloseService();
-            _PluginService.CloseService();
-            _MeasureService.StartService();
-            _AppTrayService.CloseService();
+            _gatewayService.CloseService();
+            _datasService.CloseService();
+            _pluginService.CloseService();
+            _measureService.StartService();
+            _appTrayService.CloseService();
         }
     }
 }

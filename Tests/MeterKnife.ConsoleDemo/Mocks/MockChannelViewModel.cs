@@ -11,30 +11,30 @@ namespace MeterKnife.ConsoleDemo.Mocks
 {
     public class MockChannelViewModel
     {
-        private readonly StringDatasMockChannel _KeysightChannel = new StringDatasMockChannel();
-        private readonly IMeasureService _MeasureService = DI.Get<IMeasureService>();
+        private readonly StringDatasMockChannel _keysightChannel = new StringDatasMockChannel();
+        private readonly IMeasureService _measureService = DI.Get<IMeasureService>();
 
         public MockChannelViewModel()
         {
-            _KeysightChannel.TalkTotalTimeout = 80;
-            _KeysightChannel.Open();
+            _keysightChannel.TalkTotalTimeout = 80;
+            _keysightChannel.Open();
         }
 
         public void BindingMeasure(MeasureJob.Measure measure)
         {
-            _KeysightChannel.Binding(measure);
+            _keysightChannel.Binding(measure);
         }
 
         public void Start()
         {
             Console.WriteLine("start...");
-            _KeysightChannel.SendReceiving(SendAction, ReceivedFunc);
+            _keysightChannel.SendReceiving(SendAction, ReceivedFunc);
         }
 
         public void Pause()
         {
             Console.WriteLine("pause___");
-            _KeysightChannel.StopSendReceiving();
+            _keysightChannel.StopSendReceiving();
         }
 
         public void Stop()
@@ -47,7 +47,7 @@ namespace MeterKnife.ConsoleDemo.Mocks
             if (ans != null)
             {
                 var value = ToDouble(answer.Data);
-                _MeasureService.AddValue(ans.JobNumber, ans.Target.Id, value);
+                _measureService.AddValue(ans.JobNumber, ans.Target.Id, value);
                 var instrument = (Instrument) ans.Instrument;
                 var exhibit = (ExhibitBase) ans.Target;
                 Console.WriteLine($"<:{instrument.Name}-{exhibit.Name}:{value}");

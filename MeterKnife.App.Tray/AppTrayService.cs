@@ -19,22 +19,22 @@ namespace MeterKnife.App.Tray
         /// <summary>
         /// 创建NotifyIcon对象
         /// </summary>
-        private readonly NotifyIcon _Notifyicon = new NotifyIcon();
+        private readonly NotifyIcon _notifyicon = new NotifyIcon();
 
         /// <summary>
         /// 创建托盘菜单对象
         /// </summary>
-        private readonly ContextMenuStrip _NotifyContextMenu = DI.Get<TrayMenuStrip>();
+        private readonly ContextMenuStrip _notifyContextMenu = DI.Get<TrayMenuStrip>();
 
         public AppTrayService()
         {
-            _Notifyicon.Icon = Resources.mk_main;
-            _Notifyicon.Visible = true;
-            _Notifyicon.ContextMenuStrip = _NotifyContextMenu;
-            _Notifyicon.ContextMenuStrip.Show();
-            _Notifyicon.ContextMenuStrip.Close();
-            _Notifyicon.MouseClick += _Notifyicon_MouseClick;
-            _Notifyicon.MouseDoubleClick += _Notifyicon_MouseDoubleClick;
+            _notifyicon.Icon = Resources.mk_main;
+            _notifyicon.Visible = true;
+            _notifyicon.ContextMenuStrip = _notifyContextMenu;
+            _notifyicon.ContextMenuStrip.Show();
+            _notifyicon.ContextMenuStrip.Close();
+            _notifyicon.MouseClick += _Notifyicon_MouseClick;
+            _notifyicon.MouseDoubleClick += _Notifyicon_MouseDoubleClick;
         }
 
         #region Implementation of IEnvironmentItem
@@ -58,12 +58,12 @@ namespace MeterKnife.App.Tray
         private void _Notifyicon_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
-                _Notifyicon.ContextMenuStrip.Show();
+                _notifyicon.ContextMenuStrip.Show();
         }
 
         public bool CloseService()
         {
-            _Notifyicon.Visible = false;
+            _notifyicon.Visible = false;
             return true;
         }
 

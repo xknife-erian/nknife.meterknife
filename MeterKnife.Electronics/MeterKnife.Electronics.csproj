@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Capacitance.cs" />
     <Compile Include="CircuitType.cs" />
+    <Compile Include="Collections\Resistances.cs" />
     <Compile Include="Current.cs" />
     <Compile Include="Exceptions\ResistanceCollectionException.cs" />
     <Compile Include="Frequency.cs" />

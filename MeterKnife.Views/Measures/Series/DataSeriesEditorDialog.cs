@@ -43,7 +43,7 @@ namespace MeterKnife.Views.Measures.Series
             };
         }
 
-        private PlotSeriesStyleSolution.ExhibitSeriesStyle _SeriesStyle;
+        private PlotSeriesStyleSolution.ExhibitSeriesStyle _seriesStyle;
 
         public PlotSeriesStyleSolution.ExhibitSeriesStyle SeriesStyle
         {
@@ -54,11 +54,11 @@ namespace MeterKnife.Views.Measures.Series
                 s.Thickness = (double) _ThicknessNumericUpDown.Value;
                 s.SeriesLineStyle = (PlotSeriesStyle.LineStyleWrap) _LineStyleComboBox.SelectedItem;
                 s.Offset = (double) _OffsetNumericUpDown.Value;
-                if (_SeriesStyle != null) //当修改一个Style时
-                    _SeriesStyle.SeriesStyle = s;
+                if (_seriesStyle != null) //当修改一个Style时
+                    _seriesStyle.SeriesStyle = s;
                 else//当新建一个Style时
-                    _SeriesStyle = new PlotSeriesStyleSolution.ExhibitSeriesStyle((ExhibitBase) _ExhibitsComboBox.SelectedItem, s);
-                return _SeriesStyle;
+                    _seriesStyle = new PlotSeriesStyleSolution.ExhibitSeriesStyle((ExhibitBase) _ExhibitsComboBox.SelectedItem, s);
+                return _seriesStyle;
             }
             set
             {
@@ -81,7 +81,7 @@ namespace MeterKnife.Views.Measures.Series
                 _OffsetNumericUpDown.Value = (decimal) value.SeriesStyle.Offset;
                 _LineColor.Color = value.SeriesStyle.Color;
                 _MainGroupBox.Text = $"数据线样式设置({value.Exhibit})";
-                _SeriesStyle = value;
+                _seriesStyle = value;
             }
         }
 

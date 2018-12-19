@@ -6,7 +6,7 @@ namespace MeterKnife.Base
 {
     public class OrderToolStripMenuItem : ToolStripMenuItem
     {
-        private bool _IsFirstDropDown = true;
+        private bool _isFirstDropDown = true;
 
         public OrderToolStripMenuItem()
             : this("")
@@ -18,9 +18,9 @@ namespace MeterKnife.Base
         {
             DropDownOpening += (s, e) =>
             {
-                if (_IsFirstDropDown)
+                if (_isFirstDropDown)
                 {
-                    _IsFirstDropDown = false;
+                    _isFirstDropDown = false;
                     var tmpItems = new List<ToolStripItem>();
                     foreach (ToolStripItem dropDownItem in DropDownItems)
                         tmpItems.Add(dropDownItem);

@@ -15,20 +15,20 @@ namespace MeterKnife.Kernel
         /// <summary>
         /// 定义JSON序列化时需要将类型名置入，以方便反序列化时可以定位接口的实现
         /// </summary>
-        private static readonly JsonSerializerSettings _hasTypeNameJsonSettings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All};
-        private readonly Dictionary<GatewayModel, List<Instrument>> _DefaultDiscovers;
-        private readonly List<PlotTheme> _DefaultPlotThemes;
-        private readonly List<PlotSeriesStyleSolution> _DefaultSeriesStyleSolutions;
+        private static readonly JsonSerializerSettings HasTypeNameJsonSettings = new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All};
+        private readonly Dictionary<GatewayModel, List<Instrument>> _defaultDiscovers;
+        private readonly List<PlotTheme> _defaultPlotThemes;
+        private readonly List<PlotSeriesStyleSolution> _defaultSeriesStyleSolutions;
 
         public Habited()
         {
             var pt = new PlotTheme();
-            _DefaultPlotThemes = new List<PlotTheme>(new[] {pt});
-            _DefaultSeriesStyleSolutions = new List<PlotSeriesStyleSolution>(0);
+            _defaultPlotThemes = new List<PlotTheme>(new[] {pt});
+            _defaultSeriesStyleSolutions = new List<PlotSeriesStyleSolution>(0);
 
-            _DefaultDiscovers = new Dictionary<GatewayModel, List<Instrument>>();
-            _DefaultDiscovers.Add(GatewayModel.Aglient82357A, new List<Instrument>());
-            _DefaultDiscovers.Add(GatewayModel.CareOne, new List<Instrument>());
+            _defaultDiscovers = new Dictionary<GatewayModel, List<Instrument>>();
+            _defaultDiscovers.Add(GatewayModel.Aglient82357A, new List<Instrument>());
+            _defaultDiscovers.Add(GatewayModel.CareOne, new List<Instrument>());
         }
 
         /// <summary>
@@ -38,14 +38,14 @@ namespace MeterKnife.Kernel
         {
             get
             {
-                var content = GetValue(nameof(PlotThemes), JsonConvert.SerializeObject(_DefaultPlotThemes));
+                var content = GetValue(nameof(PlotThemes), JsonConvert.SerializeObject(_defaultPlotThemes));
                 var value = JsonConvert.DeserializeObject<List<PlotTheme>>(content);
                 return value;
             }
             set
             {
                 if (value == null || value.Count <= 0)
-                    SetValue(nameof(PlotThemes), JsonConvert.SerializeObject(_DefaultPlotThemes));
+                    SetValue(nameof(PlotThemes), JsonConvert.SerializeObject(_defaultPlotThemes));
                 else
                     SetValue(nameof(PlotThemes), JsonConvert.SerializeObject(value));
             }
@@ -64,14 +64,14 @@ namespace MeterKnife.Kernel
         {
             get
             {
-                var content = GetValue(nameof(Gateways), JsonConvert.SerializeObject(_DefaultDiscovers));
+                var content = GetValue(nameof(Gateways), JsonConvert.SerializeObject(_defaultDiscovers));
                 var value = JsonConvert.DeserializeObject<Dictionary<GatewayModel, List<Instrument>>>(content);
                 return value;
             }
             set
             {
                 if (value == null || value.Count <= 0)
-                    SetValue(nameof(Gateways), JsonConvert.SerializeObject(_DefaultDiscovers));
+                    SetValue(nameof(Gateways), JsonConvert.SerializeObject(_defaultDiscovers));
                 else
                     SetValue(nameof(Gateways), JsonConvert.SerializeObject(value));
             }
@@ -85,16 +85,16 @@ namespace MeterKnife.Kernel
             get
             {
                 var content = GetValue(nameof(SeriesStyleSolutionList),
-                    JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions, Formatting.None, _hasTypeNameJsonSettings));
-                var value = JsonConvert.DeserializeObject<List<PlotSeriesStyleSolution>>(content, _hasTypeNameJsonSettings);
+                    JsonConvert.SerializeObject(_defaultSeriesStyleSolutions, Formatting.None, HasTypeNameJsonSettings));
+                var value = JsonConvert.DeserializeObject<List<PlotSeriesStyleSolution>>(content, HasTypeNameJsonSettings);
                 return value;
             }
             set
             {
                 if (value == null || value.Count <= 0)
-                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(_DefaultSeriesStyleSolutions, Formatting.None, _hasTypeNameJsonSettings));
+                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(_defaultSeriesStyleSolutions, Formatting.None, HasTypeNameJsonSettings));
                 else
-                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(value, Formatting.None, _hasTypeNameJsonSettings));
+                    SetValue(nameof(SeriesStyleSolutionList), JsonConvert.SerializeObject(value, Formatting.None, HasTypeNameJsonSettings));
             }
         }
 

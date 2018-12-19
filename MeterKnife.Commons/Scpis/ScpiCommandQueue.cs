@@ -9,21 +9,21 @@ namespace MeterKnife.Scpis
     /// </summary>
     public class ScpiCommandQueue : SyncQueue<ScpiCommandQueue.Item>
     {
-        private readonly AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
+        private readonly AutoResetEvent _autoResetEvent = new AutoResetEvent(false);
 
         public ScpiCommandQueue()
         {
-            _AutoResetEvent.Set();
+            _autoResetEvent.Set();
         }
 
         public void Sleep(int interval)
         {
-            _AutoResetEvent.WaitOne(interval);
+            _autoResetEvent.WaitOne(interval);
         }
 
         public void Reset()
         {
-            _AutoResetEvent.Reset();
+            _autoResetEvent.Reset();
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace MeterKnife.Scpis
     /// </summary>
     public class ScpiSubject
     {
-        private Guid _JobNumber;
+        private Guid _jobNumber;
 
         public ScpiSubject()
         {
@@ -20,12 +20,12 @@ namespace MeterKnife.Scpis
 
         public void SetJobNumber(Guid jobNumber)
         {
-            _JobNumber = jobNumber;
+            _jobNumber = jobNumber;
         }
 
         public Guid GetJobNumber()
         {
-            return _JobNumber;
+            return _jobNumber;
         }
 
         /// <summary>

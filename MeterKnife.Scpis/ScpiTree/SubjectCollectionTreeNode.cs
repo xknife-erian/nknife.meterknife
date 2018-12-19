@@ -10,12 +10,12 @@ namespace MeterKnife.Scpis.ScpiTree
 
     public class SubjectCollectionTreeNode : TreeNode
     {
-        private readonly ScpiSubjectCollection _Collection;
+        private readonly ScpiSubjectCollection _collection;
 
         public SubjectCollectionTreeNode(ScpiSubjectCollection collection)
             : this(string.Format("{0}{1}", collection.Brand, collection.Name))
         {
-            _Collection = collection;
+            _collection = collection;
         }
 
         public SubjectCollectionTreeNode(string name)
@@ -27,7 +27,7 @@ namespace MeterKnife.Scpis.ScpiTree
 
         public ScpiSubjectCollection GetScpiSubjectCollection()
         {
-            return _Collection;
+            return _collection;
         }
     }
 }

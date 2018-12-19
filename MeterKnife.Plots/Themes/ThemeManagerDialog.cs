@@ -8,16 +8,16 @@ namespace MeterKnife.Plots.Themes
 {
     public partial class ThemeManagerDialog : SimpleForm
     {
-        private PlotTheme _PlotTheme;
+        private PlotTheme _plotTheme;
 
         public PlotTheme PlotTheme
         {
-            get => _PlotTheme;
+            get => _plotTheme;
             set
             {
-                if (value != null && _PlotTheme != value)
+                if (value != null && _plotTheme != value)
                 {
-                    _PlotTheme = value;
+                    _plotTheme = value;
                     OnPlotThemeChanged();
                 }
             }

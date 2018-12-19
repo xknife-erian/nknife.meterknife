@@ -12,12 +12,12 @@ namespace MeterKnife.Cares.Protocols
 {
     public class CareOneProtocolUnPacker : BytesProtocolUnPacker
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CareOneProtocolUnPacker>();
+        private static readonly ILog Logger = LogManager.GetLogger<CareOneProtocolUnPacker>();
 
         /// <summary>
         /// 科学计数法正则
         /// </summary>
-        private static readonly Regex _scientificNotationRegex = new Regex(RegexString.RegexStr_ScientificNotation, RegexOptions.IgnoreCase);
+        private static readonly Regex ScientificNotationRegex = new Regex(RegexString.RegexStr_ScientificNotation, RegexOptions.IgnoreCase);
 
         public override void Execute(BytesProtocol protocol, byte[] data, byte[] command)
         {
@@ -49,7 +49,7 @@ namespace MeterKnife.Cares.Protocols
             //+1.00355300E-01
             string value = Encoding.ASCII.GetString(contentBytes).TrimEnd('\n');
 
-            MatchCollection mac = _scientificNotationRegex.Matches(value);
+            MatchCollection mac = ScientificNotationRegex.Matches(value);
             if (mac.Count > 0)
             {
                 string firstMatch = mac[0].Groups[0].Value;

@@ -10,7 +10,7 @@ namespace MeterKnife.Base.Plugins
     /// </summary>
     public class PluginViewComponent
     {
-        private readonly List<Control> _Containers = new List<Control>();
+        private readonly List<Control> _containers = new List<Control>();
 
         /// <summary>
         /// 插件的功能所能绑定的相应的菜单与工具条
@@ -25,7 +25,7 @@ namespace MeterKnife.Base.Plugins
         /// <summary>
         /// 插件的功能界面的容器
         /// </summary>
-        public Control[] Containers => _Containers.ToArray();
+        public Control[] Containers => _containers.ToArray();
 
         public void Set(ToolStripItemCollection collection, ContextMenuStrip contextMenu)
         {
@@ -35,7 +35,7 @@ namespace MeterKnife.Base.Plugins
 
         public void Add(Control control)
         {
-            _Containers.Add(control);
+            _containers.Add(control);
         }
     }
 }

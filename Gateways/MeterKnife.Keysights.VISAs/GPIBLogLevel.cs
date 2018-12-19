@@ -1,6 +1,6 @@
 ﻿namespace MeterKnife.Keysights.VISAs
 {
-    public enum GPIBLogLevel
+    public enum GpibLogLevel
     {
         Trace = 0,
         Warn = 1,

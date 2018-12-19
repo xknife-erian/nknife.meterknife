@@ -16,17 +16,17 @@ namespace MeterKnife.Cares
         /// </summary>
         public override GatewayModel GatewayModel { get; set; } = GatewayModel.CareOne;
 
-        private int _DemoCount = 1;
-        private readonly UtilityRandom _Random = new UtilityRandom();
+        private int _demoCount = 1;
+        private readonly UtilityRandom _random = new UtilityRandom();
 
         /// <summary>
         ///     手动添加仪器
         /// </summary>
         public override void CreateInstrument()
         {
-            var model = $"344{_Random.Next(10, 99)}";
-            var inst = new Instrument("HP", model, $"HP{model}", _Random.Next(1, 36));
-            inst.DatasCount = _DemoCount++;
+            var model = $"344{_random.Next(10, 99)}";
+            var inst = new Instrument("HP", model, $"HP{model}", _random.Next(1, 36));
+            inst.DatasCount = _demoCount++;
             Instruments.Add(inst);
         }
 

@@ -11,7 +11,7 @@ namespace MeterKnife.Keysights
 {
     public class KeysightQuestion : MeasureQuestion<string>
     {
-        private readonly Guid _Id;
+        private readonly Guid _id;
 
         /// <summary>
         /// 描述设备向PC串口返回的交换数据
@@ -19,7 +19,7 @@ namespace MeterKnife.Keysights
         public KeysightQuestion(KeysightChannel channel, Instrument instrument, ExhibitBase exhibit, bool isLoop, string command) 
             : base(channel, instrument, exhibit, isLoop, command)
         {
-            _Id = Guid.NewGuid();
+            _id = Guid.NewGuid();
         }
 
         #region Overrides of Object
@@ -38,14 +38,14 @@ namespace MeterKnife.Keysights
 
         protected bool Equals(KeysightQuestion other)
         {
-            return _Id.Equals(other._Id);
+            return _id.Equals(other._id);
         }
 
         /// <summary>用作特定类型的哈希函数。</summary>
         /// <returns>当前 <see cref="T:System.Object" /> 的哈希代码。</returns>
         public override int GetHashCode()
         {
-            return _Id.GetHashCode();
+            return _id.GetHashCode();
         }
 
         #endregion

@@ -9,7 +9,7 @@ namespace MeterKnife.Views.Controls.Instruments
 {
     public partial class InstrumentsListPanel : UserControl
     {
-        private bool _IsExpanded = true;
+        private bool _isExpanded = true;
 
         public InstrumentsListPanel(IGatewayDiscover gatewayDiscover)
         {
@@ -58,8 +58,8 @@ namespace MeterKnife.Views.Controls.Instruments
 
         private void DropPanel()
         {
-            _IsExpanded = !_IsExpanded;
-            if (!_IsExpanded) //收起
+            _isExpanded = !_isExpanded;
+            if (!_isExpanded) //收起
             {
                 _DropToolStripMenuItem.Enabled = true;
                 _UnDropToolStripMenuItem.Enabled = false;

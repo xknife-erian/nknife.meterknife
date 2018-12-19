@@ -17,7 +17,7 @@ namespace MeterKnife.ViewModels
 {
     public class MeasureViewModel : CommonViewModelBase
     {
-        private static readonly ILog _logger = LogManager.GetLogger<MeasureViewModel>();
+        private static readonly ILog Logger = LogManager.GetLogger<MeasureViewModel>();
 
         public MeasureViewModel()
         {
@@ -34,25 +34,25 @@ namespace MeterKnife.ViewModels
             measureService.Measured += OnMeasured;
         }
 
-        private PlotSeriesStyleSolution _SeriesStyleSolution = new PlotSeriesStyleSolution();
+        private PlotSeriesStyleSolution _seriesStyleSolution = new PlotSeriesStyleSolution();
 
         public PlotSeriesStyleSolution SeriesStyleSolution
         {
-            get => _SeriesStyleSolution;
+            get => _seriesStyleSolution;
             set
             {
-                Set(() => SeriesStyleSolution, ref _SeriesStyleSolution, value);
+                Set(() => SeriesStyleSolution, ref _seriesStyleSolution, value);
                 Plot.SetSeries(value.Styles.ToArray());
             }
         }
 
         private void OnMeasured(object sender, MeasureEventArgs e)
         {
-            var index = _SeriesStyleSolution.IndexOf(e.ExhibitId);
-            _logger.Trace($"数据Index:{index},{e.ExhibitId}");
+            var index = _seriesStyleSolution.IndexOf(e.ExhibitId);
+            Logger.Trace($"数据Index:{index},{e.ExhibitId}");
             if (index >= 0)
             {
-                var style = _SeriesStyleSolution.Styles[index].SeriesStyle;
+                var style = _seriesStyleSolution.Styles[index].SeriesStyle;
                 Plot.AddValues(index, e.Value + style.Offset);
                 OnPlotModelUpdated();
             }

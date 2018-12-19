@@ -7,7 +7,7 @@ namespace MeterKnife.Interfaces.Datas
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="ID"></typeparam>
-    public interface IPagingAndSortingRepository<T, ID> : ICrudRepository<T, ID>
+    public interface IPagingAndSortingRepository<T, TId> : ICrudRepository<T, TId>
     {
 
         /// <summary>

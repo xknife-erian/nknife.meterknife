@@ -5,9 +5,9 @@ namespace MeterKnife.ConsoleDemo.Mocks.Channels
 {
     public class StringDatasMockChannel : KeysightChannel
     {
-        private readonly UtilityRandom _Random = new UtilityRandom();
+        private readonly UtilityRandom _random = new UtilityRandom();
 
-        protected override void OpenGPIBLinker()
+        protected override void OpenGpibLinker()
         {
         }
 
@@ -22,22 +22,22 @@ namespace MeterKnife.ConsoleDemo.Mocks.Channels
             {
                 case 0:
                 {
-                    var tail = _Random.Next(10, 99);
+                    var tail = _random.Next(10, 99);
                     return $"25.{tail}";//温度
                 }
                 case 22:
                 {
-                    var tail = _Random.Next(100, 999);
+                    var tail = _random.Next(100, 999);
                     return $"3.3000{tail}";
                 }
                 case 23:
                 {
-                    var tail = _Random.Next(100, 999);
+                    var tail = _random.Next(100, 999);
                     return $"500.0{tail}";
                 }
                 case 24:
                 {
-                    var tail = _Random.Next(10000, 99999);
+                    var tail = _random.Next(10000, 99999);
                     return $"10.0{tail}";
                 }
             }

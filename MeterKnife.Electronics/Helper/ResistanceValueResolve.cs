@@ -9,7 +9,7 @@ namespace MeterKnife.Electronics.Helper
     /// </summary>
     public class ResistanceValueResolve
     {
-        private Resistances _SmallPrioritResult;
+        private Resistances _smallPriorityResult;
 
         /// <summary>
         ///     已存在的电阻的集合
@@ -31,7 +31,7 @@ namespace MeterKnife.Electronics.Helper
             if (target < 0)
                 throw new ArgumentException("需分解的电阻值不能小于零.");
 
-            var resultlist = new List<Resistances>();
+            var resultList = new List<Resistances>();
 
             //分解剩余的阻值余数
             var remainder = target;
@@ -41,24 +41,24 @@ namespace MeterKnife.Electronics.Helper
                 var result = new Resistances();
                 remainder = TryGetSeriesBigValuePriorityResult(ref result, target, begin);
                 if (result != null && result.Count >= 0)
-                    resultlist.Add(result);
+                    resultList.Add(result);
             }
             if ((model & ResistanceValueResolveModel.All) == ResistanceValueResolveModel.SeriesSmallValuePriority)
             {
                 var result = new Resistances();
                 remainder = TryGetSeriesSmallValuePriorityResult(ref result, target, Existing.Count);
                 if (result != null && result.Count >= 0)
-                    resultlist.Add(result);
+                    resultList.Add(result);
             }
             if ((model & ResistanceValueResolveModel.All) == ResistanceValueResolveModel.ParallelingSimple)
             {
                 var result = new Resistances();
                 remainder = TryGetSeriesBigValuePriorityResult(ref result, target, begin);
                 if (result != null && result.Count >= 0)
-                    resultlist.Add(result);
+                    resultList.Add(result);
             }
 
-            results = resultlist.ToArray();
+            results = resultList.ToArray();
             return remainder;
         }
 
@@ -111,8 +111,8 @@ namespace MeterKnife.Electronics.Helper
             if (end < 0 || end >= Existing.Count)
                 end = Existing.Count - 1;
 
-            if (result.Count == 0 && (_SmallPrioritResult == null || _SmallPrioritResult.Count > 0))
-                _SmallPrioritResult = new Resistances();
+            if (result.Count == 0 && (_smallPriorityResult == null || _smallPriorityResult.Count > 0))
+                _smallPriorityResult = new Resistances();
 
             //下面代码中我们称已存在的电阻的集合为“数列”，并假定该数列已按大到小进行过排序
             for (var i = end; i >= 0; i--) //反向循环
@@ -122,7 +122,7 @@ namespace MeterKnife.Electronics.Helper
                     continue;
                 var count = (int) (target / resValue);
                 // 当目标值可分解，且分解的份数小于上次分解的份数
-                if (count > 1 && count > _SmallPrioritResult.Count)
+                if (count > 1 && count > _smallPriorityResult.Count)
                 {
                     result.Clear();
                     for (var j = 0; j < count; j++)
@@ -135,10 +135,10 @@ namespace MeterKnife.Electronics.Helper
                     remainder = TryGetSeriesBigValuePriorityResult(ref bigResult, remainder, i);
                     if (bigResult.Count > 0)
                         foreach (var res in bigResult)
-                            _SmallPrioritResult.Add(res);
-                    foreach (var res in _SmallPrioritResult)
+                            _smallPriorityResult.Add(res);
+                    foreach (var res in _smallPriorityResult)
                         result.Add(res);
-                    _SmallPrioritResult.Clear();
+                    _smallPriorityResult.Clear();
                     //return remainder;
                 }
             }

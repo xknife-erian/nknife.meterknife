@@ -14,7 +14,7 @@ namespace MeterKnife.Datas
 {
     public class Program
     {
-        private static readonly UtilityRandom _random = new UtilityRandom();
+        private static readonly UtilityRandom Random = new UtilityRandom();
 
         public static void Main(string[] args)
         {
@@ -63,7 +63,7 @@ namespace MeterKnife.Datas
             var answers = new DemoAnswer[count];
             for (var i = 0; i < count; i++)
             {
-                var v = Encoding.ASCII.GetBytes($"9.{_random.Next(99977777, 99999999)}");
+                var v = Encoding.ASCII.GetBytes($"9.{Random.Next(99977777, 99999999)}");
                 var answer = new DemoAnswer(channel, device, exhibit, v);
                 answers[i] = answer;
             }

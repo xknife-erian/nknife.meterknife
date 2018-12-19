@@ -13,17 +13,17 @@ namespace MeterKnife.Gateway
 {
     public class GatewayService : IGatewayService
     {
-        private static readonly ILog _logger = LogManager.GetLogger<GatewayService>();
-        private readonly IHabited _HabitedDatas = DI.Get<IHabited>();
+        private static readonly ILog Logger = LogManager.GetLogger<GatewayService>();
+        private readonly IHabited _habitedDatas = DI.Get<IHabited>();
 
-        private Thread _GatewayCoreThread;
-        private readonly AutoResetEvent _AutoReset = new AutoResetEvent(false);
+        private Thread _gatewayCoreThread;
+        private readonly AutoResetEvent _autoReset = new AutoResetEvent(false);
 
 
 
         private void LoadAllGateways()
         {
-            foreach (var gateway in _HabitedDatas.Gateways.Keys)
+            foreach (var gateway in _habitedDatas.Gateways.Keys)
             {
                 switch (gateway)
                 {
@@ -44,16 +44,16 @@ namespace MeterKnife.Gateway
                     }
                     case GatewayModel.SerialPort:
                     case GatewayModel.TcpIp:
-                    case GatewayModel.USB:
+                    case GatewayModel.Usb:
                         break;
                 }
             }
-            _AutoReset.Reset();
+            _autoReset.Reset();
         }
 
         private void UnLoadAllGateways()
         {
-            foreach (var gateway in _HabitedDatas.Gateways.Keys)
+            foreach (var gateway in _habitedDatas.Gateways.Keys)
             {
                 switch (gateway)
                 {
@@ -63,21 +63,21 @@ namespace MeterKnife.Gateway
                     case GatewayModel.Aglient82357B:
                     case GatewayModel.SerialPort:
                     case GatewayModel.TcpIp:
-                    case GatewayModel.USB:
+                    case GatewayModel.Usb:
                         break;
                 }
             }
-            _AutoReset.Set();
-            _logger.Info($"{_GatewayCoreThread.Name}线程AutoReset.Set.");
+            _autoReset.Set();
+            Logger.Info($"{_gatewayCoreThread.Name}线程AutoReset.Set.");
         }
 
         #region Implementation of IEnvironmentItem
 
         public bool StartService()
         {
-            _GatewayCoreThread = new Thread(LoadAllGateways) {Name = $"{nameof(GatewayService)}-Thread", IsBackground = true};
-            _GatewayCoreThread.Start();
-            _logger.Info($"{_GatewayCoreThread.Name}线程启动.");
+            _gatewayCoreThread = new Thread(LoadAllGateways) {Name = $"{nameof(GatewayService)}-Thread", IsBackground = true};
+            _gatewayCoreThread.Start();
+            Logger.Info($"{_gatewayCoreThread.Name}线程启动.");
             return true;
         }
 

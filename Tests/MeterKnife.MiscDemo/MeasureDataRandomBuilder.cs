@@ -9,43 +9,43 @@ namespace MeterKnife.MiscDemo
 {
     internal class MeasureDataRandomBuilder
     {
-        private readonly IMeasureService _MeasureService = DI.Get<IMeasureService>();
-        private readonly UtilityRandom _Rand = new UtilityRandom();
-        private Thread _DemoThread;
+        private readonly IMeasureService _measureService = DI.Get<IMeasureService>();
+        private readonly UtilityRandom _rand = new UtilityRandom();
+        private Thread _demoThread;
 
-        private readonly MeasureView _MeasureViewForm;
+        private readonly MeasureView _measureViewForm;
 
-        private bool _OnDemo;
+        private bool _onDemo;
 
         public MeasureDataRandomBuilder(MeasureView form)
         {
-            _MeasureViewForm = form;
+            _measureViewForm = form;
             form.Closing += (s, x) => { StopDemo(); };
         }
 
         public void StartDemo()
         {
-            var solution = _MeasureViewForm.ViewModel.SeriesStyleSolution;
+            var solution = _measureViewForm.ViewModel.SeriesStyleSolution;
             var index = solution.Styles.Count;
 
             if (index >= 0)
             {
-                _DemoThread = new Thread(() =>
+                _demoThread = new Thread(() =>
                 {
-                    _OnDemo = true;
+                    _onDemo = true;
                     var head = 9; //_Rand.Next(9, 10);
-                    while (_OnDemo)
+                    while (_onDemo)
                     {
                         for (ushort i = 0; i < index; i++)
                         {
-                            var tail = _Rand.Next(0, 99999);
+                            var tail = _rand.Next(0, 99999);
                             var v = double.Parse($"{head}.99{tail}");
-                            _MeasureService.AddValue("", solution.Styles[i].Exhibit.Id, v);
+                            _measureService.AddValue("", solution.Styles[i].Exhibit.Id, v);
                             Thread.Sleep(100);
                         }
                     }
                 });
-                _DemoThread.Start();
+                _demoThread.Start();
             }
             else
             {
@@ -56,8 +56,8 @@ namespace MeterKnife.MiscDemo
 
         public void StopDemo()
         {
-            _OnDemo = false;
-            _DemoThread?.Abort();
+            _onDemo = false;
+            _demoThread?.Abort();
         }
     }
 }

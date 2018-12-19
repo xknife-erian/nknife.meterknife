@@ -9,11 +9,11 @@ namespace MeterKnife.Cares.Protocols
 {
     public abstract class CareOneProtocolHandler : BaseProtocolHandler<byte[]>
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CareOneProtocolHandler>();
+        private static readonly ILog Logger = LogManager.GetLogger<CareOneProtocolHandler>();
 
         protected CareOneProtocolHandler()
         {
-            _Id = Guid.NewGuid();
+            _id = Guid.NewGuid();
             Commands = new List<byte[]>();
         }
 
@@ -24,7 +24,7 @@ namespace MeterKnife.Cares.Protocols
             if (!(protocol is CareTalking))
             {
                 Debug.Assert(false, "Protocol类型有误, 不是CareSaying类型");
-                _logger.Warn("Protocol类型有误, 不是CareSaying类型");
+                Logger.Warn("Protocol类型有误, 不是CareSaying类型");
                 return;
             }
             Recevied((CareTalking)protocol);
@@ -32,7 +32,7 @@ namespace MeterKnife.Cares.Protocols
 
         public abstract void Recevied(CareTalking protocol);
 
-        private readonly Guid _Id;
+        private readonly Guid _id;
 
         public override bool Equals(object obj)
         {
@@ -43,12 +43,12 @@ namespace MeterKnife.Cares.Protocols
 
         protected bool Equals(CareOneProtocolHandler other)
         {
-            return _Id.Equals(other._Id);
+            return _id.Equals(other._id);
         }
 
         public override int GetHashCode()
         {
-            return _Id.GetHashCode();
+            return _id.GetHashCode();
         }
     }
 }

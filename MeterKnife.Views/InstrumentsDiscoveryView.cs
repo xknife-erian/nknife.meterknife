@@ -13,14 +13,14 @@ namespace MeterKnife.Views
 {
     public partial class InstrumentsDiscoveryView : DockContent
     {
-        private readonly Dictionary<GatewayModel, InstrumentsListPanel> _PanelMap = new Dictionary<GatewayModel, InstrumentsListPanel>();
-        private readonly InstrumentsDiscoveryViewModel _ViewModel = new InstrumentsDiscoveryViewModel();
+        private readonly Dictionary<GatewayModel, InstrumentsListPanel> _panelMap = new Dictionary<GatewayModel, InstrumentsListPanel>();
+        private readonly InstrumentsDiscoveryViewModel _viewModel = new InstrumentsDiscoveryViewModel();
 
         public InstrumentsDiscoveryView()
         {
             InitializeComponent();
             ViewModelPropertiesChangedManager();
-            foreach (var discover in _ViewModel.DiscoverMap.Values)
+            foreach (var discover in _viewModel.DiscoverMap.Values)
             {
                 OnInstrumentsCollectionChanged(discover);
             }
@@ -28,12 +28,12 @@ namespace MeterKnife.Views
 
         private void ViewModelPropertiesChangedManager()
         {
-            _ViewModel.PropertyChanged += (s, e) =>
+            _viewModel.PropertyChanged += (s, e) =>
             {
                 switch (e.PropertyName)
                 {
-                    case nameof(_ViewModel.SelectedInstrument):
-                        MessageBox.Show($"{_ViewModel.SelectedInstrument.Id}");
+                    case nameof(_viewModel.SelectedInstrument):
+                        MessageBox.Show($"{_viewModel.SelectedInstrument.Id}");
                         break;
                 }
             };
@@ -44,14 +44,14 @@ namespace MeterKnife.Views
         /// </summary>
         private void InitializeInstrumentsContainer()
         {
-            foreach (var pair in _ViewModel.DiscoverMap)
+            foreach (var pair in _viewModel.DiscoverMap)
             {
                 var model = pair.Key;
                 var discover = pair.Value;
 
                 var menuitem = new ToolStripMenuItem();
                 menuitem.Text = $"{model}";
-                menuitem.Click += (s, r) => _ViewModel.CreateInstrument(model);
+                menuitem.Click += (s, r) => _viewModel.CreateInstrument(model);
                 _AddDropDownButton.DropDownItems.Add(menuitem);
 
                 var panel = new InstrumentsListPanel(discover);
@@ -62,20 +62,20 @@ namespace MeterKnife.Views
                 OnPanelEventTriggered(panel);
 
                 _LeftContentPanel.Controls.Add(panel);
-                _PanelMap.Add(model, panel);
+                _panelMap.Add(model, panel);
             }
         }
 
         private void OnInstrumentSelected(object sender, CellClickEventArgs e)
         {
-            _ViewModel.SelectedInstrument = e.Instrument;
+            _viewModel.SelectedInstrument = e.Instrument;
         }
 
         private void OnInstrumentsCollectionChanged(IGatewayDiscover discover)
         {
             discover.Instruments.CollectionChanged += (s, e) =>
             {
-                var panel = _PanelMap[discover.GatewayModel];
+                var panel = _panelMap[discover.GatewayModel];
                 switch (e.Action)
                 {
                     case NotifyCollectionChangedAction.Add:
@@ -105,31 +105,31 @@ namespace MeterKnife.Views
         {
             panel.GatewayModelRefreshInstrumentsState += (s, e) =>
             {
-                _ViewModel.RefreshInstrumentStateByGateway((GatewayModel)((ToolStripMenuItem)s).Tag);
+                _viewModel.RefreshInstrumentStateByGateway((GatewayModel)((ToolStripMenuItem)s).Tag);
             };
             panel.GatewayModelDelete += (s, e) =>
             {
-                _ViewModel.GatewayModelDelete((GatewayModel)((ToolStripMenuItem)s).Tag);
+                _viewModel.GatewayModelDelete((GatewayModel)((ToolStripMenuItem)s).Tag);
             };
             panel.InstrumentDelete += (s, e) =>
             {
                 var discover = (IGatewayDiscover) panel.Tag;
-                _ViewModel.DeleteInstrument(discover.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
+                _viewModel.DeleteInstrument(discover.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
             };
             panel.InstrumentCommandManager += (s, e) =>
             {
                 var discover = (IGatewayDiscover)panel.Tag;
-                _ViewModel.InstrumentCommandManager(discover.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
+                _viewModel.InstrumentCommandManager(discover.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
             };
             panel.InstrumentConnectionTest += (s, e) =>
             {
                 var discover = (IGatewayDiscover)panel.Tag;
-                _ViewModel.InstrumentConnectionTest(discover.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
+                _viewModel.InstrumentConnectionTest(discover.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
             };
             panel.InstrumentDatasManager += (s, e) =>
             {
                 var discover = (IGatewayDiscover)panel.Tag;
-                _ViewModel.InstrumentDatasManager(discover.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
+                _viewModel.InstrumentDatasManager(discover.GatewayModel, (Instrument)((ToolStripMenuItem)s).Tag);
             };
             panel.InstrumentSelected += OnInstrumentSelected;
         }

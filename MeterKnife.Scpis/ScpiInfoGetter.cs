@@ -6,11 +6,11 @@ namespace MeterKnife.Scpis
 {
     public class ScpiInfoGetter : IScpiInfoGetter
     {
-        private readonly DirectoryInfo _Directory = new DirectoryInfo(ScpiUtil.ScpisPath);
+        private readonly DirectoryInfo _directory = new DirectoryInfo(ScpiUtil.ScpisPath);
 
         public IEnumerable<ScpiSubjectCollection> GetScpiSubjectCollections()
         {
-            var files = _Directory.GetFiles("*.xml", SearchOption.AllDirectories);
+            var files = _directory.GetFiles("*.xml", SearchOption.AllDirectories);
             var list = new List<ScpiSubjectCollection>(files.Length);
             foreach (var file in files)
             {
@@ -25,7 +25,7 @@ namespace MeterKnife.Scpis
         public List<Tuple<string, string, string>> GetMeterInfoList()
         {
             var list = new List<Tuple<string, string, string>>();
-            var files = _Directory.GetFiles("*.xml", SearchOption.AllDirectories);
+            var files = _directory.GetFiles("*.xml", SearchOption.AllDirectories);
             foreach (var file in files)
             {
                 var collection = new ScpiSubjectCollection();

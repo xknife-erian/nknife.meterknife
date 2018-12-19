@@ -11,7 +11,7 @@ namespace MeterKnife.App
 {
     internal sealed class SplashForm : Form, ISplashForm
     {
-        private static readonly ILog _logger = LogManager.GetLogger<SplashForm>();
+        private static readonly ILog Logger = LogManager.GetLogger<SplashForm>();
 
         public SplashForm()
         {
@@ -67,21 +67,21 @@ namespace MeterKnife.App
                 Controls.Add(projectNameLabel);
             }
 
-            _StatusInfoLabel = new Label();
-            _StatusInfoLabel.AutoSize = true;
-            _StatusInfoLabel.BackColor = Color.Transparent;
-            _StatusInfoLabel.ForeColor = Color.White;
-            _StatusInfoLabel.Location = new Point(30, Height - 40);
-            _StatusInfoLabel.Size = new Size(180, 13);
-            _StatusInfoLabel.TabIndex = 0;
-            _StatusInfoLabel.Text = "开始启动主控程序...";
-            Controls.Add(_StatusInfoLabel);
+            _statusInfoLabel = new Label();
+            _statusInfoLabel.AutoSize = true;
+            _statusInfoLabel.BackColor = Color.Transparent;
+            _statusInfoLabel.ForeColor = Color.White;
+            _statusInfoLabel.Location = new Point(30, Height - 40);
+            _statusInfoLabel.Size = new Size(180, 13);
+            _statusInfoLabel.TabIndex = 0;
+            _statusInfoLabel.Text = "开始启动主控程序...";
+            Controls.Add(_statusInfoLabel);
 
             var updaterVersionLabel = new Label();
             updaterVersionLabel.BackColor = Color.Transparent;
             updaterVersionLabel.ForeColor = Color.White;
             updaterVersionLabel.Size = new Size(220, 13);
-            updaterVersionLabel.Location = new Point(30, _StatusInfoLabel.Location.Y - 6 - updaterVersionLabel.Height);
+            updaterVersionLabel.Location = new Point(30, _statusInfoLabel.Location.Y - 6 - updaterVersionLabel.Height);
             Controls.Add(updaterVersionLabel);
 
             var callerVersionLabel = new Label();
@@ -99,14 +99,14 @@ namespace MeterKnife.App
 
         #region ISplashForm
 
-        private readonly Label _StatusInfoLabel;
+        private readonly Label _statusInfoLabel;
 
         void ISplashForm.SetStatusInfo(string newStatusInfo)
         {
             try
             {
-                _StatusInfoLabel.Text = newStatusInfo;
-                _StatusInfoLabel.Refresh();
+                _statusInfoLabel.Text = newStatusInfo;
+                _statusInfoLabel.Refresh();
             }
             catch (Exception e)
             {

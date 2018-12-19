@@ -48,13 +48,13 @@ namespace MeterKnife.Base
             return string.Equals(Id, other.Id);
         }
 
-        private readonly int _Hash = (Guid.NewGuid().GetHashCode() >> 28) * 31;
+        private readonly int _hash = (Guid.NewGuid().GetHashCode() >> 28) * 31;
 
         /// <summary>用作特定类型的哈希函数。</summary>
         /// <returns>当前 <see cref="T:System.Object" /> 的哈希代码。</returns>
         public override int GetHashCode()
         {
-            return _Hash;
+            return _hash;
         }
 
         #endregion

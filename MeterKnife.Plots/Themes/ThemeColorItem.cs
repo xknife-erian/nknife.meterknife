@@ -7,17 +7,17 @@ namespace MeterKnife.Plots.Themes
 {
     public sealed partial class ThemeColorItem : UserControl
     {
-        private Color _Color = Color.White;
+        private Color _color = Color.White;
 
         public Color Color
         {
-            get => _Color;
+            get => _color;
             set
             {
-                if (value != _Color)
+                if (value != _color)
                 {
-                    _Color = value;
-                    BackColor = _Color;
+                    _color = value;
+                    BackColor = _color;
                     OnColorChanged(new ColorChangedEventArgs(value));
                 }
             }
@@ -26,7 +26,7 @@ namespace MeterKnife.Plots.Themes
         public ThemeColorItem()
         {
             InitializeComponent();
-            BackColor = _Color;
+            BackColor = _color;
             _Button.Click += (s, e) =>
             {
                 var dialog = new ColorPickerDialog();

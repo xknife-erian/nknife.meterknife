@@ -10,9 +10,9 @@ namespace MeterKnife.Kernel.Plugins
 {
     public class PluginsService : IPluginService
     {
-        private static readonly ILog _logger = LogManager.GetLogger<PluginsService>();
+        private static readonly ILog Logger = LogManager.GetLogger<PluginsService>();
 
-        private readonly IDropFunctionManager _DropFunction = DI.Get<IDropFunctionManager>();
+        private readonly IDropFunctionManager _dropFunction = DI.Get<IDropFunctionManager>();
         public List<IPlugIn> Plugins { get; } = new List<IPlugIn>();
 
         public bool StartService()
@@ -28,7 +28,7 @@ namespace MeterKnife.Kernel.Plugins
             }
             catch (Exception e)
             {
-                _logger.Error($"注册插件异常：{e.Message}", e);
+                Logger.Error($"注册插件异常：{e.Message}", e);
                 return false;
             }
         }
@@ -49,12 +49,12 @@ namespace MeterKnife.Kernel.Plugins
             {
                 try
                 {
-                    var pvc = _DropFunction[plugIn.PluginStyle];
+                    var pvc = _dropFunction[plugIn.PluginStyle];
                     plugIn.BindViewComponent(pvc);
                   }
                 catch (Exception e)
                 {
-                    _logger.Error($"注册插件异常：{e.Message}", e);
+                    Logger.Error($"注册插件异常：{e.Message}", e);
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace MeterKnife.Kernel.Plugins
                     {
                         var plugin = (IPlugIn)UtilityType.CreateObject(type, type, false);
                         plugIns.Add(plugin);
-                        _logger.Info($"{type.FullName}创建成功, 当前共{plugIns.Count}个plugin.");
+                        Logger.Info($"{type.FullName}创建成功, 当前共{plugIns.Count}个plugin.");
                     }
                 }
             }

@@ -2,16 +2,16 @@
 
 namespace MeterKnife.Keysights.VISAs
 {
-    public struct GPIBLog
+    public struct GpibLog
     {
-        public GPIBLog(GPIBLogLevel logLevel, string message, Exception exception = null)
+        public GpibLog(GpibLogLevel logLevel, string message, Exception exception = null)
         {
             LogLevel = logLevel;
             Message = message;
             Exception = exception;
         }
 
-        public GPIBLogLevel LogLevel { get; set; }
+        public GpibLogLevel LogLevel { get; set; }
         public string Message { get; set; }
         public Exception Exception { get; set; }
     }

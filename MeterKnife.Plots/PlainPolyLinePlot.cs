@@ -17,13 +17,13 @@ namespace MeterKnife.Plots
     /// </summary>
     public class PlainPolyLinePlot
     {
-        private static readonly ILog _logger = LogManager.GetLogger<PlainPolyLinePlot>();
-        private readonly PlotModel _PlotModel = new PlotModel();
-        private readonly LinearAxis _LeftAxis = new LinearAxis();
-        private readonly DateTimeAxis _TimeAxis = new DateTimeAxis();
-        private bool _IsFirst = true;
-        private double _Max;
-        private double _Min;
+        private static readonly ILog Logger = LogManager.GetLogger<PlainPolyLinePlot>();
+        private readonly PlotModel _plotModel = new PlotModel();
+        private readonly LinearAxis _leftAxis = new LinearAxis();
+        private readonly DateTimeAxis _timeAxis = new DateTimeAxis();
+        private bool _isFirst = true;
+        private double _max;
+        private double _min;
 
         /// <summary>
         /// 构造函数：基础的折线图表, 横轴表示时间，纵轴代表测量值
@@ -32,45 +32,45 @@ namespace MeterKnife.Plots
         {
             PlotTheme = plotTheme;
 
-            _PlotModel.PlotAreaBackground = PlotTheme.ToOxyColor(plotTheme.AreaBackground);
-            _PlotModel.Title = title;
-            _PlotModel.TitleFontSize = 12F;
+            _plotModel.PlotAreaBackground = PlotTheme.ToOxyColor(plotTheme.AreaBackground);
+            _plotModel.Title = title;
+            _plotModel.TitleFontSize = 12F;
 
-            _LeftAxis.TextColor = PlotTheme.ToOxyColor(Color.Lavender);
-            _LeftAxis.MajorGridlineColor = PlotTheme.ToOxyColor(plotTheme.LeftAxisGridLineColors.Major);
-            _LeftAxis.MinorGridlineColor = PlotTheme.ToOxyColor(plotTheme.LeftAxisGridLineColors.Minor);
-            _LeftAxis.MajorGridlineStyle = LineStyle.Dash;
-            _LeftAxis.MinorGridlineStyle = LineStyle.Dot;
-            _LeftAxis.MaximumPadding = 0;
-            _LeftAxis.MinimumPadding = 0;
-            _LeftAxis.Angle = LeftAxisAngle;
-            _LeftAxis.Maximum = 220;
-            _LeftAxis.Minimum = -220;
-            _LeftAxis.Position = AxisPosition.Left;
+            _leftAxis.TextColor = PlotTheme.ToOxyColor(Color.Lavender);
+            _leftAxis.MajorGridlineColor = PlotTheme.ToOxyColor(plotTheme.LeftAxisGridLineColors.Major);
+            _leftAxis.MinorGridlineColor = PlotTheme.ToOxyColor(plotTheme.LeftAxisGridLineColors.Minor);
+            _leftAxis.MajorGridlineStyle = LineStyle.Dash;
+            _leftAxis.MinorGridlineStyle = LineStyle.Dot;
+            _leftAxis.MaximumPadding = 0;
+            _leftAxis.MinimumPadding = 0;
+            _leftAxis.Angle = LeftAxisAngle;
+            _leftAxis.Maximum = 220;
+            _leftAxis.Minimum = -220;
+            _leftAxis.Position = AxisPosition.Left;
 
-            _TimeAxis.TextColor = PlotTheme.ToOxyColor(Color.Lavender);
-            _TimeAxis.MajorGridlineColor = PlotTheme.ToOxyColor(plotTheme.BottomAxisGridLineColors.Major);
-            _TimeAxis.MinorGridlineColor = PlotTheme.ToOxyColor(plotTheme.BottomAxisGridLineColors.Minor);
-            _TimeAxis.MajorGridlineStyle = LineStyle.Dash;
-            _TimeAxis.MinorGridlineStyle = LineStyle.Dot;
-            _TimeAxis.MaximumPadding = 0;
-            _TimeAxis.MinimumPadding = 0;
-            _TimeAxis.Position = AxisPosition.Bottom;
-            _TimeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
+            _timeAxis.TextColor = PlotTheme.ToOxyColor(Color.Lavender);
+            _timeAxis.MajorGridlineColor = PlotTheme.ToOxyColor(plotTheme.BottomAxisGridLineColors.Major);
+            _timeAxis.MinorGridlineColor = PlotTheme.ToOxyColor(plotTheme.BottomAxisGridLineColors.Minor);
+            _timeAxis.MajorGridlineStyle = LineStyle.Dash;
+            _timeAxis.MinorGridlineStyle = LineStyle.Dot;
+            _timeAxis.MaximumPadding = 0;
+            _timeAxis.MinimumPadding = 0;
+            _timeAxis.Position = AxisPosition.Bottom;
+            _timeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
 
-            _PlotModel.Axes.Add(_LeftAxis);
-            _PlotModel.Axes.Add(_TimeAxis);
+            _plotModel.Axes.Add(_leftAxis);
+            _plotModel.Axes.Add(_timeAxis);
         }
 
         public PlotModel GetPlotModel()
         {
-            return _PlotModel;
+            return _plotModel;
         }
 
         public string Title
         {
-            get => _PlotModel.Title;
-            set => _PlotModel.Title = value;
+            get => _plotModel.Title;
+            set => _plotModel.Title = value;
         }
 
         public double LeftAxisAngle => 0;
@@ -85,16 +85,16 @@ namespace MeterKnife.Plots
         public void AddValues(int number, params double[] values)
         {
             //先根据测量数据调整纵轴的值的范围
-            var pair = UpdateRange(values, ref _IsFirst, ref _Max, ref _Min);
-            _LeftAxis.Minimum = pair.First;
-            _LeftAxis.Maximum = pair.Second;
+            var pair = UpdateRange(values, ref _isFirst, ref _max, ref _min);
+            _leftAxis.Minimum = pair.First;
+            _leftAxis.Maximum = pair.Second;
             //向数据线上添加测量数据点
             DataPoint[] points = new DataPoint[values.Length];
             for (int i = 0; i < values.Length; i++)
             {
                 points[i] = DateTimeAxis.CreateDataPoint(DateTime.Now, values[i]);
             }
-            ((LineSeries)_PlotModel.Series[number]).Points.AddRange(points);
+            ((LineSeries)_plotModel.Series[number]).Points.AddRange(points);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace MeterKnife.Plots
         /// <param name="styles">数据线的样式</param>
         public void SetSeries(params PlotSeriesStyleSolution.ExhibitSeriesStyle[] styles)
         {
-            _PlotModel.Series.Clear();
+            _plotModel.Series.Clear();
             foreach (var style in styles)
             {
                 var series = new LineSeries
@@ -112,8 +112,8 @@ namespace MeterKnife.Plots
                     StrokeThickness = style.SeriesStyle.Thickness,
                     TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}"
                 };
-                _PlotModel.Series.Add(series);
-                _logger.Trace($"{_PlotModel.Series.Count}:{series.Color}");
+                _plotModel.Series.Add(series);
+                Logger.Trace($"{_plotModel.Series.Count}:{series.Color}");
             }
         }
 

@@ -19,8 +19,8 @@ namespace MeterKnife.MiscDemo
 {
     public partial class MiscDemoMainForm : SimpleForm
     {
-        private readonly DockPanel _DockPanel = new DockPanel();
-        private readonly UtilityRandom _Random = new UtilityRandom();
+        private readonly DockPanel _dockPanel = new DockPanel();
+        private readonly UtilityRandom _random = new UtilityRandom();
 
         public MiscDemoMainForm()
         {
@@ -30,13 +30,13 @@ namespace MeterKnife.MiscDemo
 
         private void InitializeDockPanel()
         {
-            _DockPanel.Theme = new VS2015BlueTheme();
-            _DockPanel.Dock = DockStyle.Fill;
-            Controls.Add(_DockPanel);
-            _DockPanel.BringToFront();
+            _dockPanel.Theme = new VS2015BlueTheme();
+            _dockPanel.Dock = DockStyle.Fill;
+            Controls.Add(_dockPanel);
+            _dockPanel.BringToFront();
 
             var view = DI.Get<LoggerView>();
-            view.Show(_DockPanel, DockState.DockBottomAutoHide);
+            view.Show(_dockPanel, DockState.DockBottomAutoHide);
         }
 
         private void _MainPlotTestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace MeterKnife.MiscDemo
             }
 
             var measureView = new MeasureView();
-            measureView.Show(_DockPanel, DockState.Document);
+            measureView.Show(_dockPanel, DockState.Document);
 
             var startButton = new ToolStripMenuItem("Demo数据");
             startButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
@@ -64,7 +64,7 @@ namespace MeterKnife.MiscDemo
             measureView.AddDataToolStripItem(startButton);
 
             var pview = new PropertyGridView();
-            pview.Show(_DockPanel, DockState.DockRightAutoHide);
+            pview.Show(_dockPanel, DockState.DockRightAutoHide);
             pview.SetObject1(measureView.GetMainPlotModel());
         }
 
@@ -77,15 +77,15 @@ namespace MeterKnife.MiscDemo
         private void _KeysightToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var view = DI.Get<LoggerView>();
-            view.Show(_DockPanel, DockState.DockBottom);
+            view.Show(_dockPanel, DockState.DockBottom);
             var ksView = new KeysightChannelToolView();
-            ksView.Show(_DockPanel, DockState.Document);
+            ksView.Show(_dockPanel, DockState.Document);
         }
 
         private void _InstrumentsDiscoveryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ksView = new InstrumentsDiscoveryView();
-            ksView.Show(_DockPanel, DockState.Document);
+            ksView.Show(_dockPanel, DockState.Document);
         }
 
         private void _InstrumentCellToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace MeterKnife.MiscDemo
             var cell = new InstrumentCell(new Instrument("HP", "34401", "HP34401", 23));
             cell.Location = new Point(head.Location.X, head.Location.Y + head.Height + 5);
             view.Controls.Add(cell);
-            view.Show(_DockPanel, DockState.Document);
+            view.Show(_dockPanel, DockState.Document);
             cell.CellMouseClicked += (s, x) =>
             {
                 _TipStatusLabel.Text = $"{cell.Instrument.Address} -- {++clickCount} -- {Guid.NewGuid().ToString("N").Substring(0, 3)}";
@@ -115,9 +115,9 @@ namespace MeterKnife.MiscDemo
             view.Controls.Add(button);
             button.Click += (s, x) =>
             {
-                var m = _Random.GetString(4, UtilityRandom.RandomCharType.Uppercased);
-                var model = _Random.Next(1000, 99999);
-                cell.Instrument = new Instrument(m, $"{model}", $"{m}{model}", _Random.Next(10, 99));
+                var m = _random.GetString(4, UtilityRandom.RandomCharType.Uppercased);
+                var model = _random.Next(1000, 99999);
+                cell.Instrument = new Instrument(m, $"{model}", $"{m}{model}", _random.Next(10, 99));
             };
 
         }

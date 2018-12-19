@@ -10,20 +10,20 @@ namespace MeterKnife.Views
 {
     public partial class MeasureView : DockContent
     {
-        private readonly MeasureViewModel _ViewModel = new MeasureViewModel();
+        private readonly MeasureViewModel _viewModel = new MeasureViewModel();
 
         public MeasureView()
         {
             InitializeComponent();
-            _PlotView.Model = _ViewModel.Plot.GetPlotModel();
-            _PlotView.BackColor = _ViewModel.Plot.PlotTheme.ViewBackground;
-            _ViewModel.PlotModelUpdated += (s, e) => { _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true)); };
+            _PlotView.Model = _viewModel.Plot.GetPlotModel();
+            _PlotView.BackColor = _viewModel.Plot.PlotTheme.ViewBackground;
+            _viewModel.PlotModelUpdated += (s, e) => { _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true)); };
             _OriginalToolStripButton.Click += (s, e) => { _PlotView.Model.ResetAllAxes(); };
             _ZoomInToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(1.3); };
             _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(0.7); };
         }
 
-        public MeasureViewModel ViewModel => _ViewModel;
+        public MeasureViewModel ViewModel => _viewModel;
 
         public PlotModel GetMainPlotModel()
         {
@@ -52,10 +52,10 @@ namespace MeterKnife.Views
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
             var dialog = new DataSeriesListDialog();
-            dialog.Solution = _ViewModel.SeriesStyleSolution;
+            dialog.Solution = _viewModel.SeriesStyleSolution;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _ViewModel.SeriesStyleSolution = dialog.Solution;
+                _viewModel.SeriesStyleSolution = dialog.Solution;
             }
         }
     }
