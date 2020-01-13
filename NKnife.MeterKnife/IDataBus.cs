@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NKnife.MeterKnife.Slots;
 
 namespace NKnife.MeterKnife
 {
@@ -14,5 +15,7 @@ namespace NKnife.MeterKnife
         /// <param name="uutId"></param>
         /// <returns></returns>
         IEnumerable<float> GetUutData(string uutId);
+
+        void Bind(ISlot slot);
     }
 }

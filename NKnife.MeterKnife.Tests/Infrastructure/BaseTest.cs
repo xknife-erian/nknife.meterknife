@@ -16,9 +16,9 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
             {
                 var app = mock.Create<App>();
 
-                IStatement prepare = new Statement();
-                IStatement sustainable = new Statement();
-                IStatement maintain = new Statement();
+                IStatement prepare = new WordStatement();
+                IStatement sustainable = new WordStatement();
+                IStatement maintain = new WordStatement();
 
                 app.Slot.AttachToDataBus(app.DataBus);
                 app.Slot.Setup(prepare,sustainable,maintain);

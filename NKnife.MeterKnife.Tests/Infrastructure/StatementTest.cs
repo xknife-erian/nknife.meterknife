@@ -19,41 +19,43 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
                 var slot = app.Slot;
                 slot.AttachToDataBus(app.DataBus);
 
-                IStatement prepare = BuildPrepareStatementLeader();
-                IStatement sustainable = new Statement();
-                IStatement maintain = new Statement();
+                IStatementQueue prepare = BuildPrepareStatementLeader();
+                IStatementQueue sustainable = BuildPrepareStatementLeader();
+                IStatementQueue maintain = BuildPrepareStatementLeader();
                 slot.Setup(prepare, sustainable, maintain);
                 slot.StartAsync();
             }
         }
 
-        private IStatement BuildPrepareStatementLeader()
+        private IStatementQueue BuildPrepareStatementLeader()
         {
+            var queue = new StatementQueue();
+
             var leader = new Statement();
             leader.StatementKind = StatementKind.Setup;
             leader.CommandMode = CommandMode.Hex;
-            leader.HexBody = new byte[] {0x01, 0x02, 0xAA, 0x55};
+            leader.Body = "hello volcano.";
             leader.Delay = 300;
             leader.Timeout = 200;
 
             var second = new Statement();
             second.StatementKind = StatementKind.Ask;
             second.CommandMode = CommandMode.Hex;
-            second.HexBody = new byte[] {0x01, 0x02, 0xAA, 0x55};
+            second.Body = "hello volcano.";
             second.Delay = 1000;
             second.Timeout = 500;
-        
+
             var third = new Statement();
             third.StatementKind = StatementKind.Ask;
             third.CommandMode = CommandMode.Hex;
-            third.HexBody = new byte[] {0x01, 0x02, 0xAA, 0x55};
+            third.Body = "hello volcano.";
             third.Delay = 1000;
             third.Timeout = 500;
 
             var fourth = new Statement();
             fourth.StatementKind = StatementKind.Ask;
             fourth.CommandMode = CommandMode.Hex;
-            fourth.HexBody = new byte[] {0x01, 0x02, 0xAA, 0x55};
+            fourth.Body = "hello volcano.";
             fourth.Delay = 1000;
             fourth.Timeout = 500;
             fourth.NeedToLoop = true;
@@ -61,18 +63,19 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
             var fifty = new Statement();
             fifty.StatementKind = StatementKind.Ask;
             fifty.CommandMode = CommandMode.Hex;
-            fifty.HexBody = new byte[] {0x01, 0x02, 0xAA, 0x55};
+            fifty.Body = "hello volcano.";
             fifty.Delay = 1000;
             fifty.Timeout = 500;
             fifty.NeedToLoop = true;
             fifty.LoopCount = 30;
 
-            leader.Add(second);
-            second.Add(third);
-            third.Add(fourth);
-            fourth.Add(fifty);
+            queue.Enqueue(leader);
+            queue.Enqueue(second);
+            queue.Enqueue(third);
+            queue.Enqueue(fourth);
+            queue.Enqueue(fifty);
 
-            return leader;
+            return queue;
         }
     }
 }

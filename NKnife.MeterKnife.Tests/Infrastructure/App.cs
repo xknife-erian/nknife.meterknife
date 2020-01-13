@@ -1,8 +1,10 @@
+using NKnife.MeterKnife.Slots;
+
 namespace NKnife.MeterKnife.Tests.Infrastructure
 {
     public class App
     {
-        public App(ISlot slot, IDataBus dataBus, IStatementQueue statements)
+        public App(ISlot slot, IDataBus dataBus, IInstrument instrument)
         {
             Slot = slot;
             DataBus = dataBus;

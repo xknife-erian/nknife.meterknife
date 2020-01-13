@@ -1,16 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace NKnife.MeterKnife
 {
     /// <summary>
     ///     描述一条控制语句
     /// </summary>
-    public interface IStatement : IQueueNode
+    public interface IStatement : IEquatable<IStatement>, ICloneable
     {
-        string WordBody { get; set; }
-        byte[] HexBody { get; set; }
-        string UutId { get; set; }
+        /// <summary>
+        /// 当前控制语句
+        /// </summary>
+        string Body { get; set; }
+
+        /// <summary>
+        ///     当前控制语句绑定的测量设备
+        /// </summary>
+        IInstrument Instrument { get; set; }
+
+        /// <summary>
+        ///     当前控制语句绑定的待测单元
+        /// </summary>
+        IUnitUnderTest Uut { get; set; }
+
+        /// <summary>
+        /// 当前控制语句的分类
+        /// </summary>
         StatementKind StatementKind { get; set; }
+
         CommandMode CommandMode { get; set; }
 
         #region 循环指令的特征
@@ -38,66 +55,6 @@ namespace NKnife.MeterKnife
         ///     在<see cref="Delay" />配置的时长内，如果还没有收到数据，继续等待的时间（毫秒）。
         /// </summary>
         uint Timeout { get; set; }
-
-        #endregion
-    }
-
-    public enum CommandMode
-    {
-        Hex,
-        Word
-    }
-
-    /// <summary>
-    ///     语句的分类
-    /// </summary>
-    public enum StatementKind : byte
-    {
-        Ask = 0,
-        Setup = 1,
-        Test = 2
-    }
-
-
-    public interface IStatementQueue : IQueue<IStatement>
-    {
-        /// <summary>
-        ///     是否对时序要求严格。当为True时，仅<see cref="IStatement.Delay" />属性有效，其他相关时间属性设置将被忽略。
-        /// </summary>
-        bool IsTimeCritical { get; set; }
-    }
-
-    public interface IQueue<T> where T : IQueueNode
-    {
-    }
-
-    public interface IQueueNode
-    {
-        IQueueNode Last { get; set; }
-        IQueueNode Next { get; set; }
-    }
-
-    public class BaseQueue : Queue<IStatement>, IQueue<IStatement>
-    {
-    }
-
-    public class BaseStatementQueue : BaseQueue, IStatementQueue
-    {
-        #region Implementation of IStatementQueue
-
-        public void AddJobsLeader(IStatement prepare, IStatement sustainable, IStatement maintain)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        #endregion
-
-        #region Implementation of IStatementQueue
-
-        /// <summary>
-        ///     是否对时序要求严格。当为True时，仅<see cref="IStatement.Delay" />属性有效，其他相关时间属性设置将被忽略。
-        /// </summary>
-        public bool IsTimeCritical { get; set; }
 
         #endregion
     }
