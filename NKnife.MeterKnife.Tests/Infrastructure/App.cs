@@ -8,13 +8,13 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
         {
             Slot = slot;
             DataBus = dataBus;
-            Statements = statements;
+            Instrument = instrument;
         }
 
         public ISlot Slot { get; }
 
         public IDataBus DataBus { get; }
 
-        public IStatementQueue Statements { get; }
+        public IInstrument Instrument { get; }
     }
 }

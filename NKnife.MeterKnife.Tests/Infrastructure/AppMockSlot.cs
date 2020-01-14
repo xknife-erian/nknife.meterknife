@@ -16,6 +16,9 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
         private int _maintainIndex = 0;
         private StatementQueue _maintainQueue;
 
+        private IRunner _runner;
+        private IPackager _packager;
+
         #region Implementation of IRouteEnable
 
         /// <summary>
@@ -34,6 +37,12 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
             bus.Bind(this);
         }
 
+        public void Setup(IPackager packager, IRunner runner)
+        {
+            _packager = packager;
+            _runner = runner;
+        }
+
         public void Setup(StatementQueue prepare, StatementQueue sustainable, StatementQueue maintain)
         {
             _prepareQueue = prepare;
@@ -46,7 +55,7 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
             for (_prepareIndex = 0; _prepareIndex < _prepareQueue.Count; _prepareIndex++)
             {
                 var statement = _prepareQueue[_prepareIndex];
-
+                _runner.Run(_packager, statement.CommandMode, statement.Body);
             }
             for (_sustainableIndex = 0; _sustainableIndex < _sustainableQueue.Count; _sustainableIndex++)
             {

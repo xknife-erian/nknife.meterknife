@@ -16,12 +16,12 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
             {
                 var app = mock.Create<App>();
 
-                IStatement prepare = new WordStatement();
-                IStatement sustainable = new WordStatement();
-                IStatement maintain = new WordStatement();
+                StatementQueue prepare = new StatementQueue();
+                StatementQueue sustainable = new StatementQueue();
+                StatementQueue maintain = new StatementQueue();
 
                 app.Slot.AttachToDataBus(app.DataBus);
-                app.Slot.Setup(prepare,sustainable,maintain);
+                app.Slot.Setup(prepare, sustainable, maintain);
                 app.Slot.WorkNodeCompleted += (s, e) =>
                 {
                     var data = app.DataBus.GetUutData(e.UutId);

@@ -19,15 +19,25 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
                 var slot = app.Slot;
                 slot.AttachToDataBus(app.DataBus);
 
-                IStatementQueue prepare = BuildPrepareStatementLeader();
-                IStatementQueue sustainable = BuildPrepareStatementLeader();
-                IStatementQueue maintain = BuildPrepareStatementLeader();
+                StatementQueue prepare = BuildPrepareStatementLeader();
+                StatementQueue sustainable = BuildSustainableStatementLeader();
+                StatementQueue maintain = BuildMaintainStatementLeader();
                 slot.Setup(prepare, sustainable, maintain);
                 slot.StartAsync();
             }
         }
 
-        private IStatementQueue BuildPrepareStatementLeader()
+        private StatementQueue BuildMaintainStatementLeader()
+        {
+            throw new NotImplementedException();
+        }
+
+        private StatementQueue BuildSustainableStatementLeader()
+        {
+            throw new NotImplementedException();
+        }
+
+        private StatementQueue BuildPrepareStatementLeader()
         {
             var queue = new StatementQueue();
 
@@ -69,11 +79,7 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
             fifty.NeedToLoop = true;
             fifty.LoopCount = 30;
 
-            queue.Enqueue(leader);
-            queue.Enqueue(second);
-            queue.Enqueue(third);
-            queue.Enqueue(fourth);
-            queue.Enqueue(fifty);
+            queue.AddRange(new[] {leader, second, third, fourth, fifty});
 
             return queue;
         }

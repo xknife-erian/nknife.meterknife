@@ -12,10 +12,23 @@ namespace NKnife.MeterKnife.Slots
         string Id { get; set; }
 
         void AttachToDataBus(IDataBus bus);
+        void Setup(IPackager packager, IRunner runner);
         void Setup(StatementQueue prepare, StatementQueue sustainable, StatementQueue maintain);
         void StartAsync();
         void PauseAsync();
         void StopAsync();
         event EventHandler<SlotWorkingEventArgs> WorkNodeCompleted;
     }
+
+    public interface IPackager
+    {
+        void Build(CommandMode commandMode, string body);
+    }
+
+    public interface IRunner
+    {
+        void Run(IPackager packager, CommandMode commandMode, string body);
+    }
+
+
 }
