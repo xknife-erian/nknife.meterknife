@@ -11,8 +11,8 @@
 - 近几日，将时间规划了一下，决定今年认真升级MeterKnife平台。
   1. MeterKnife Lite版在Gitee上保持开源，主要面向仪器数据的基础采集与数据简单处理；
   2. MeterKnife Lite仍采用.Net Framework4.0做为开发平台，以适应XP操作系统；
-  3. MeterKnife Professional（简称 MeterKnife）将定义为一个自动化工业采集平台，仪器采集将是其重要的一部份，但会更加深入的面向各种通讯手段的数据采集，例如485总线、MBUS总结、RTU/DTU、Socket主从、自定义设备等等……。作者希望平台能为仪器仪表、工业设备、自控集成、MES实施等等，以及最终用户提供实时数据采集平台、生产监控平台、数据存储平台。
-  4. MeterKnife Professional 有想法实现一套基于Web的组态，但是想法还不成熟，待定；
+  3. MeterKnife Professional（简称 MeterKnife）将定义为一个自动化工业采集平台，仪器采集将是其重要的一部份，但会更加深入的面向各种通讯手段的数据采集，例如485总线、MBUS总结、RTU/DTU、Socket主从、自定义设备等等……。作者希望MeterKnife平台能为仪器仪表、工业设备、自控集成、以及最终用户提供实时的物联网数据采集平台、生产运行监控平台、实时数据存储平台。
+  4. MeterKnife Professional 有想法实现一套更高级的基于Web的组态，但是想法还不成熟，待定；
   5. MeterKnife Professional 将采用.Net Core3做为开发平台，采用BS的方式；采集将作为一个后台服务存在于系统中；可以运行在包括树莓派等Linux/Windows主机里；多进程；数据采用ZeroMQ进行发布与订阅处理；先期面向局域网内部，后期会考虑作为一个互联网应用；
 
 ### 2015.11.28
