@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!--
+    1. Trace - 最常见的记录信息，一般用于普通输出
+    2. Debug - 同样是记录信息，不过出现的频率要比Trace少一些，一般用来调试程序
+    3. Info  - 信息类型的消息
+    4. Warn  - 警告信息，一般用于比较重要的场合
+    5. Error - 错误信息
+    6. Fatal - 致命异常信息。一般来讲，发生致命异常之后程序将无法继续执行。 
+  -->
+  <variable name="logdir" value="${basedir}/Data/Logs/${date:format=yyyyMM}" />
+  <extensions>
+    <add assembly="NKnife" />
+  </extensions>
+  <targets async="true">
+    <!--在主程序的界面上显示日志-->
+    <target name="logpanel" xsi:type="LogPanel" />
+    <!--记录详细日志彩色控制台-->
+    <target name="console" xsi:type="ColoredConsole" layout="${date:format=mm\:ss\.fff} : ${message}" />
+    <!--记录详细日志的目标文件-->
+    <target name="logcsv" xsi:type="File" fileName="${logdir}/${shortdate}.log.csv">
+      <layout xsi:type="CSVLayout">
+        <column name="time" layout="${date:format=yyMMdd HH\:mm\:ss\.fff}" />
+        <column name="message" layout="${message}" />
+        <column name="logger" layout="${logger}" />
+        <column name="level" layout="${level}" />
+      </layout>
+    </target>
+    <!--记录通讯详细日志的目标文件-->
+    <target name="commlogcsv" xsi:type="File" fileName="${logdir}/${shortdate}.communication.log.csv">
+      <layout xsi:type="CSVLayout">
+        <column name="time" layout="${date:format=yyMMdd HH\:mm\:ss\.fff}" />
+        <column name="message" layout="${message}" />
+        <column name="logger" layout="${logger}" />
+        <column name="level" layout="${level}" />
+      </layout>
+    </target>
+  </targets>
+  <rules>
+    <logger name="*" minLevel="Trace" appendTo="logpanel" />
+    <logger name="*" minlevel="Trace" writeTo="console" />
+    <logger name="*" minlevel="Trace" writeTo="logcsv">
+      <filters>
+        <!--不记录通讯相关的日志-->
+        <when condition="equals('${logger}','Pansoft.SerialManager.SerialCommunication') 
+              or equals('${logger}','Pansoft.Driver.Operator.PC03Digital') 
+              or equals('${logger}','Pansoft.Driver.Operator.PC05WirelessChinese') 
+              or equals('${logger}','Pansoft.Driver.Operator.PC05WirelessDigital') 
+              or equals('${logger}','Pansoft.Driver.Operator.PC06Chinese') 
+              or equals('${logger}','Pansoft.Driver.Operator.PC06Digital')" 
+              action="Ignore" />
+      </filters>
+    </logger>
+    <logger name="*" minlevel="Trace" writeTo="commlogcsv">
+      <filters>
+        <!--仅仅记录通讯相关的日志-->
+        <when condition="(not equals('${logger}','Pansoft.SerialManager.SerialCommunication'))
+              and (not equals('${logger}','Pansoft.Driver.Operator.PC03Digital')) 
+              and (not equals('${logger}','Pansoft.Driver.Operator.PC05WirelessChinese')) 
+              and (not equals('${logger}','Pansoft.Driver.Operator.PC05WirelessDigital')) 
+              and (not equals('${logger}','Pansoft.Driver.Operator.PC06Chinese')) 
+              and (not equals('${logger}','Pansoft.Driver.Operator.PC06Digital'))"
+              action="Ignore" />
+      </filters>
+    </logger>
+  </rules>
+</nlog>

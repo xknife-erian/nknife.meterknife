@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<options>
+  <option class="Gean.Data.DatabaseCoderSetting">
+    <Database Name="">
+      <pooling>true</pooling>
+      <version>3</version>
+      <file>database/operation_flow.sqlite3</file>
+      <password>Pansoft.Data.Database</password>
+      <Schema>
+        <table>
+          <![CDATA[
+              CREATE TABLE 'operationflow' (
+                'operationid' varchar(64)  NULL,
+                'lastflowid' varchar(64)  NULL,
+                'branchid' varchar(64)  NULL,
+                'personid' varchar(64)  NULL,
+                'counterid' varchar(64)  NULL,
+                'customercardinfo' varchar(64)  NULL,
+                'ticketnumber' varchar(32)  NULL,
+                'customerlevel' varchar(2)  NULL,
+                'gettickettype' varchar(32)  NULL,
+                'gettickettime' datetime  NULL,
+                'callcustomertime' datetime  NULL,
+                'askevaluationtime' datetime  NULL,
+                'operationendtime' datetime  NULL,
+                'operationstatus' int(4)  NULL,
+                'evaluationvalue' varchar(64)  NULL,
+                'timebywait' int(11)  NULL,
+                'timebyservice' int(11)  NULL,
+                'timebystayed' int(11)  NULL,
+                'day' int(11)  NULL,
+                'month' int(11)  NULL,
+                'week' int(11)  NULL,
+                'season' int(11)  NULL,
+                'year' int(11)  NULL,
+                'id' varchar(64) NOT NULL PRIMARY KEY
+              )
+          ]]>
+        </table>
+        <index>
+          <![CDATA[
+          CREATE INDEX [IDX_OPERATIONFLOW_] ON [operationflow](
+            [operationid]  DESC,
+            [branchid]  DESC,
+            [personid]  DESC,
+            [counterid]  DESC,
+            [customerlevel]  DESC,
+            [day]  DESC,
+            [month]  DESC,
+            [week]  DESC,
+            [season]  DESC,
+            [year]  DESC
+          )
+          ]]>
+        </index>
+      </Schema>
+  </Database>
+  </option>
+</options>

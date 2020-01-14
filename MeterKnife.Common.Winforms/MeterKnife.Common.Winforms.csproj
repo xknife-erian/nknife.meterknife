@@ -47,9 +47,6 @@
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife">
-      <HintPath>..\NKnife-DLL\NKnife.dll</HintPath>
-    </Reference>
     <Reference Include="NPOI, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.4.1\lib\net40\NPOI.dll</HintPath>
     </Reference>
@@ -69,12 +66,6 @@
     <Reference Include="OxyPlot.WindowsForms, Version=2014.1.546.0, Culture=neutral, PublicKeyToken=245eacd6b5d2d338, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\OxyPlot.WindowsForms.2014.1.546\lib\net40\OxyPlot.WindowsForms.dll</HintPath>
-    </Reference>
-    <Reference Include="ScpiKnife">
-      <HintPath>..\NKnife-DLL\ScpiKnife.dll</HintPath>
-    </Reference>
-    <Reference Include="SerialKnife">
-      <HintPath>..\NKnife-DLL\SerialKnife.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -214,6 +205,22 @@
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
       <Project>{572ecf0c-1b6d-4a7c-81f0-ee1326ef47d9}</Project>
       <Name>MeterKnife.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife.Serial\NKnife.Serial.csproj">
+      <Project>{3b1ba8e0-29dd-4cfc-8593-889b9d547ab7}</Project>
+      <Name>NKnife.Serial</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife.Socket\NKnife.Socket.csproj">
+      <Project>{f3299ac1-2d25-4b91-a4d9-f9c1ab6f0825}</Project>
+      <Name>NKnife.Socket</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife\NKnife.csproj">
+      <Project>{266fcf12-d8f4-402c-bd7e-fc1df5f6a0bf}</Project>
+      <Name>NKnife</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

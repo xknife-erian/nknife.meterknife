@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NKnife</RootNamespace>
+    <AssemblyName>NKnife</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\q-qms-csharp\trunk\CQMS\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Algrithm\AsyncOperation.cs" />
+    <Compile Include="Algrithm\AsyncOperationQueue.cs" />
+    <Compile Include="Algrithm\BubbleSort.cs" />
+    <Compile Include="Algrithm\IAsyncOperation.cs" />
+    <Compile Include="Algrithm\OperationResult.cs" />
+    <Compile Include="API\API.Kernel32.cs" />
+    <Compile Include="Attributes\EnvironmentItemAttribute.cs" />
+    <Compile Include="Collections\AsyncObservableCollection`.cs" />
+    <Compile Include="Converts\Converting.cs" />
+    <Compile Include="Converts\UtilityConvert.cs" />
+    <Compile Include="Databases\Common\DatabaseCoderSetting.cs" />
+    <Compile Include="Databases\Common\DatabaseHelper.cs" />
+    <Compile Include="Databases\Common\DatabaseParms.cs" />
+    <Compile Include="Databases\DbHelper\SqlDbHelper.cs" />
+    <Compile Include="Databases\Interface\IDbStore`.cs" />
+    <Compile Include="Databases\Interface\IDatabaseHelper.cs" />
+    <Compile Include="Databases\Interface\IDataBaseParameters.cs" />
+    <Compile Include="Databases\Interface\IDataReaderProcess.cs" />
+    <Compile Include="Databases\Interface\IDataSetProcess.cs" />
+    <Compile Include="Databases\PagerInfo.cs" />
+    <Compile Include="Databases\Process\ArrayProcess.cs" />
+    <Compile Include="Databases\Process\IntProcess.cs" />
+    <Compile Include="Domains\AppDomainProxy.cs" />
+    <Compile Include="Domains\AppDomainFirster.cs" />
+    <Compile Include="Domains\AppDomainDynamicLoader.cs" />
+    <Compile Include="Domains\AppDomainCommunicationMessages.cs" />
+    <Compile Include="Encrypt\FileMD5.cs" />
+    <Compile Include="Encrypt\RSACryption.cs" />
+    <Compile Include="Encrypt\SimpleCipher.cs" />
+    <Compile Include="Encrypt\SoftwareSN.cs" />
+    <Compile Include="Encrypt\TripleDESHelper.cs" />
+    <Compile Include="Encrypt\UtilityEncrypt.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="GUI\WinForm\CollapsibleSplitContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\ToolStripDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\Grouper\Constants.cs" />
+    <Compile Include="GUI\WinForm\Grouper\Grouper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\HorizontalLine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\ISplashForm.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\AntiAliasGraphics.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\ControlBoxManager.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\ControlBoxState.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\ControlBoxStyle.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\ControlPaintEx.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\GraphicsPathHelper.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\MouseOperate.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\NativeMethods.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\RenderHelper.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\RoundStyle.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\SkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\SkinForm\SkinFormBackgroundRenderEvent.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\SkinFormBorderRenderEvent.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\SkinFormCaptionRenderEvent.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\SkinFormColorTable.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\SkinFormControlBoxRenderEvent.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\SkinFormProfessionalRenderer.cs" />
+    <Compile Include="GUI\WinForm\SkinForm\SkinFormRenderer.cs" />
+    <Compile Include="GUI\WinForm\Splasher.cs" />
+    <Compile Include="GUI\WinForm\TabControlEx\Events.cs" />
+    <Compile Include="GUI\WinForm\TabControlEx\NativeMethods.cs" />
+    <Compile Include="GUI\WinForm\TabControlEx\TabControlEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\ToolStripCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\VirticalLine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\WinFormContainer\AppFileNameEditor.cs" />
+    <Compile Include="GUI\WinForm\WinFormContainer\WinFormContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\WinFormContainer\WinFormContainer.Designer.cs">
+      <DependentUpon>WinFormContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IInitializer.cs" />
+    <Compile Include="Interface\IParser.cs" />
+    <Compile Include="Maths\BigInteger.cs" />
+    <Compile Include="Maths\Combinations.cs" />
+    <Compile Include="Maths\Permutations.cs" />
+    <Compile Include="Maths\UtilityMath.cs" />
+    <Compile Include="Entities\AssemblyWrapper.cs" />
+    <Compile Include="Protocol\Generic\BytesProtocol.cs" />
+    <Compile Include="Protocol\Generic\BytesProtocolCommandParser.cs" />
+    <Compile Include="Protocol\Generic\BytesProtocolFamily.cs" />
+    <Compile Include="Protocol\Generic\BytesProtocolPacker.cs" />
+    <Compile Include="Protocol\Generic\BytesProtocolUnPacker.cs" />
+    <Compile Include="Tunnel\Base\BaseProtocolHandler`.cs" />
+    <Compile Include="Protocol\Generic\StringProtocol.cs" />
+    <Compile Include="Protocol\Generic\StringProtocolFamily.cs" />
+    <Compile Include="Protocol\Generic\StringProtocolPacker.cs" />
+    <Compile Include="Protocol\Generic\StringProtocolUnPacker.cs" />
+    <Compile Include="Protocol\Generic\TextPlain\TextPlainFirstFieldCommandParser.cs" />
+    <Compile Include="Protocol\Generic\TextPlain\TextPlainPacker.cs" />
+    <Compile Include="Protocol\Generic\TextPlain\TextPlainProtocolFlags.cs" />
+    <Compile Include="Protocol\Generic\TextPlain\TextPlainUnPacker.cs" />
+    <Compile Include="Protocol\Generic\Xml\XmlFirstElementCommandParser.cs" />
+    <Compile Include="Protocol\Generic\Xml\XmlPacker.cs" />
+    <Compile Include="Protocol\Generic\Xml\XmlProtocolNames.cs" />
+    <Compile Include="Protocol\Generic\Xml\XmlUnPacker.cs" />
+    <Compile Include="Protocol\IProtocol`.cs" />
+    <Compile Include="Protocol\IProtocolFamily`.cs" />
+    <Compile Include="Tunnel\Filters\BytesProtocolFilter.cs" />
+    <Compile Include="Tunnel\Generic\FixedTailDecoder.cs" />
+    <Compile Include="Tunnel\Generic\FixedTailEncoder.cs" />
+    <Compile Include="Tunnel\Generic\LengthHeadDecoder.cs" />
+    <Compile Include="Tunnel\Generic\LengthHeadEncoder.cs" />
+    <Compile Include="Tunnel\ITunnelProtocolHandler.cs" />
+    <Compile Include="Protocol\IProtocolPacker`.cs" />
+    <Compile Include="Protocol\IProtocolUnPacker`.cs" />
+    <Compile Include="Protocol\ProtocolExtension.cs" />
+    <Compile Include="Protocol\Generic\StringProtocolCommandParser.cs" />
+    <Compile Include="Tests\ITestCase.cs" />
+    <Compile Include="Tests\TestCaseAttribute.cs" />
+    <Compile Include="Tests\TestMode.cs" />
+    <Compile Include="Tunnel\Base\BaseDatagramDecoder`.cs" />
+    <Compile Include="Tunnel\Base\BaseDatagramEncoder`.cs" />
+    <Compile Include="Tunnel\Common\Heartbeat.cs" />
+    <Compile Include="Tunnel\Common\TunnelFilterChain.cs" />
+    <Compile Include="Tunnel\Common\TunnelSession.cs" />
+    <Compile Include="Tunnel\Filters\LogFilter.cs" />
+    <Compile Include="Tunnel\Events\SessionEventArgs.cs" />
+    <Compile Include="Protocol\IProtocolCommandParser.cs" />
+    <Compile Include="Tunnel\Filters\HeartbeatFilter.cs" />
+    <Compile Include="Tunnel\Base\BaseProtocolFilter`.cs" />
+    <Compile Include="Tunnel\Generic\BytesCodec.cs" />
+    <Compile Include="Tunnel\Generic\BytesDatagramDecoder.cs" />
+    <Compile Include="Tunnel\Generic\BytesDatagramEncoder.cs" />
+    <Compile Include="Tunnel\Generic\StringCodec.cs" />
+    <Compile Include="Tunnel\Generic\StringDatagramDecoder.cs" />
+    <Compile Include="Tunnel\Generic\StringDatagramEncoder.cs" />
+    <Compile Include="Tunnel\Common\KnifeTunnel.cs" />
+    <Compile Include="Tunnel\Base\BaseTunnelFilter.cs" />
+    <Compile Include="Tunnel\IDataConnector.cs" />
+    <Compile Include="Tunnel\IDatagramDecoder.cs" />
+    <Compile Include="Tunnel\IDatagramEncoder.cs" />
+    <Compile Include="Tunnel\ITunnelProtocolFilter`.cs" />
+    <Compile Include="Tunnel\ITunnel`.cs" />
+    <Compile Include="Tunnel\ITunnelConfig.cs" />
+    <Compile Include="Tunnel\ITunnelFilterChain`.cs" />
+    <Compile Include="Tunnel\ITunnelCodec`.cs" />
+    <Compile Include="Tunnel\ITunnelFilter`.cs" />
+    <Compile Include="Tunnel\ITunnelSession.cs" />
+    <Compile Include="Tunnel\ITunnelSessionMap.cs" />
+    <Compile Include="Tunnel\Common\ReceiveQueue.cs" />
+    <Compile Include="Utility\UtilityAssembly.cs" />
+    <Compile Include="Utility\UtilityConsole.cs" />
+    <Compile Include="Utility\UtilityWebService.cs" />
+    <Compile Include="Wrapper\ClassLoader.cs" />
+    <Compile Include="Attributes\EntityColumnAttribute.cs" />
+    <Compile Include="Chinese\IdCardChecker.cs" />
+    <Compile Include="Chinese\Rmb.cs" />
+    <Compile Include="Chinese\SbcAndDbc.cs" />
+    <Compile Include="Chinese\Spell.cs" />
+    <Compile Include="Chinese\SpellRandom.cs" />
+    <Compile Include="Chinese\SimplifyChineseChar.cs" />
+    <Compile Include="Configuring\Common\UtilityOption.cs" />
+    <Compile Include="Configuring\Interfaces\IOption.cs" />
+    <Compile Include="Extensions\WindowExtension.cs" />
+    <Compile Include="FTP\FtpFileListStyle.cs" />
+    <Compile Include="FTP\FtpFileStruct.cs" />
+    <Compile Include="FTP\FtpDelegates.cs" />
+    <Compile Include="FTP\FtpException.cs" />
+    <Compile Include="FTP\FtpWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\ImagesPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\XmlTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="API\API.Shell32.cs" />
+    <Compile Include="GUI\Wpf\DownButton.xaml.cs">
+      <DependentUpon>DownButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Wpf\RotateButton.xaml.cs">
+      <DependentUpon>RotateButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IoC\ConfiguringModule.cs" />
+    <Compile Include="Utility\UtilityWndMsg.cs" />
+    <Compile Include="Utility\UtilityReflection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Wrapper\About.cs" />
+    <Compile Include="Entities\ApplicationState.cs" />
+    <Compile Include="Base\CloneableObject.cs" />
+    <Compile Include="Entities\CommandList.cs" />
+    <Compile Include="Entities\MultiMachine.cs" />
+    <Compile Include="Entities\MultiMachineState.cs" />
+    <Compile Include="Base\Pair.cs" />
+    <Compile Include="Base\Triplet.cs" />
+    <Compile Include="Collections\Definition.cs" />
+    <Compile Include="Collections\DictionaryOrdered.cs" />
+    <Compile Include="Collections\IndexCollection.cs" />
+    <Compile Include="Collections\NotifySerializableMap.cs" />
+    <Compile Include="Collections\PairList.cs" />
+    <Compile Include="Collections\SerializableMap.cs" />
+    <Compile Include="Collections\SyncQueue.cs" />
+    <Compile Include="Interface\Patterns\ICommandPattern.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuring\Common\HasModifiedEventArgs.cs" />
+    <Compile Include="Configuring\Common\OptionItemAttribute.cs" />
+    <Compile Include="Configuring\Common\OptionLoadEventArgs.cs" />
+    <Compile Include="Configuring\Common\OptionPanelPrecondition.cs" />
+    <Compile Include="Configuring\Common\OptionTableChangedEventArgs.cs" />
+    <Compile Include="Configuring\Controls\AbstractOptionBoxItem.cs" />
+    <Compile Include="Configuring\Controls\AbstractOptionItemBase.cs" />
+    <Compile Include="Configuring\Controls\OptionControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Configuring\Delegates.cs" />
+    <Compile Include="Configuring\Interfaces\IOptionBoxItem.cs" />
+    <Compile Include="Configuring\Interfaces\IOptionCaseManager.cs" />
+    <Compile Include="Configuring\Interfaces\IOptionControl.cs" />
+    <Compile Include="Configuring\Interfaces\IOptionDataStore.cs" />
+    <Compile Include="Configuring\Interfaces\IOptionItemManager.cs" />
+    <Compile Include="Configuring\Interfaces\IOptionListItem.cs" />
+    <Compile Include="Configuring\Interfaces\IOptionManager.cs" />
+    <Compile Include="Configuring\Interfaces\IOptionPanelPrecondition.cs" />
+    <Compile Include="Configuring\Interfaces\IUserApplicationData.cs" />
+    <Compile Include="Configuring\OptionCase\AbstractOptionCaseManager.cs" />
+    <Compile Include="Configuring\OptionCase\OptionCaseItem.cs" />
+    <Compile Include="Configuring\OptionCase\OptionCaseMode.cs" />
+    <Compile Include="Configuring\OptionServiceCoderSetting.cs" />
+    <Compile Include="Configuring\Option\AbstractOptionManager.cs" />
+    <Compile Include="Configuring\Option\OptionDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Configuring\Option\XmlDataStore.cs" />
+    <Compile Include="Configuring\Option\ZipDataStore.cs" />
+    <Compile Include="Configuring\UserData\UserApplicationData.cs" />
+    <Compile Include="Electronics\CircuitType.cs" />
+    <Compile Include="Electronics\Collections\Resistances.cs" />
+    <Compile Include="Electronics\Exceptions\ResistanceCollectionException.cs" />
+    <Compile Include="Electronics\Helper\ResistanceValueResolve.cs" />
+    <Compile Include="Electronics\Helper\ResistanceValueResolveModel.cs" />
+    <Compile Include="Electronics\Resistance.cs" />
+    <Compile Include="Extensions\ExpressionExtension.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="GUI\Wpf\CircularPanel.cs" />
+    <Compile Include="Interface\IFileCompress.cs" />
+    <Compile Include="Interface\ITouchInput.cs" />
+    <Compile Include="IoC\DI.cs" />
+    <Compile Include="Events\ChangedEventArgs`.cs" />
+    <Compile Include="Events\EventArgs`.cs" />
+    <Compile Include="Exceptions\NKnifeException.cs" />
+    <Compile Include="Exceptions\TypeConvertingException.cs" />
+    <Compile Include="Extensions\RandomExtension.cs" />
+    <Compile Include="Extensions\ArraySegmentExtension.cs" />
+    <Compile Include="Extensions\BytesExtension.cs" />
+    <Compile Include="Extensions\ControlExtension.cs" />
+    <Compile Include="Extensions\DataExtension.cs" />
+    <Compile Include="Extensions\DateTimes\CountOfMonth.cs" />
+    <Compile Include="Extensions\DateTimes\DateTimeExtension.cs" />
+    <Compile Include="Extensions\DateTimes\FluentTimeSpan.cs" />
+    <Compile Include="Extensions\DateTimes\NumberExtension.cs" />
+    <Compile Include="Extensions\DateTimes\RoundTo.cs" />
+    <Compile Include="Extensions\DateTimes\TimeSpanExtension.cs" />
+    <Compile Include="Extensions\CollectionExtension.cs" />
+    <Compile Include="Extensions\IntegerExtension.cs" />
+    <Compile Include="Extensions\QueryExtension.cs" />
+    <Compile Include="Extensions\SocketExtension.cs" />
+    <Compile Include="Extensions\StringBuilderExtension.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="ShareResources\StringResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\UtilityData.cs" />
+    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoControlType.cs" />
+    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoLayoutPanelAttribute.cs" />
+    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoLayoutPanelComparer.cs" />
+    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoLayoutPanelXmlDocument.cs" />
+    <Compile Include="GUI\WinForm\AutoLayoutPanel\GroupBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\AutoLayoutPanel\ValueControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\BoundleMenuStripButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\CloudsControl\CloudCollection.cs" />
+    <Compile Include="GUI\WinForm\CloudsControl\CloudLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\CloudsControl\CloudsPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\Common\FileSelectControlStyle.cs" />
+    <Compile Include="GUI\WinForm\DataSelector\DataItemSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\DataSelector\DataItemSelector.Designer.cs">
+      <DependentUpon>DataItemSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WinForm\DataSelector\SelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\DockForm\BouncingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\DockForm\BouncingForm.Designer.cs">
+      <DependentUpon>BouncingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WinForm\DockForm\Common\FormAsyncUpdateDelegate.cs" />
+    <Compile Include="GUI\WinForm\ExceptionUI\ExceptionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\ExceptionUI\ExceptionDialog.designer.cs">
+      <DependentUpon>ExceptionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WinForm\ExceptionUI\InformationPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Extensions\ListViewExtension.cs" />
+    <Compile Include="GUI\WinForm\FileSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\Forms\IWelcomeForm.cs" />
+    <Compile Include="GUI\WinForm\Forms\WelcomerScreen.cs" />
+    <Compile Include="GUI\WinForm\GifBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\GroupboxPro\CheckGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\GroupboxPro\CheckGroupBox.Designer.cs">
+      <DependentUpon>CheckGroupBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WinForm\GroupboxPro\RadioButtonPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\GroupboxPro\RadioGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\GroupboxPro\RadioGroupBox.Designer.cs">
+      <DependentUpon>RadioGroupBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WinForm\ImageButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\IPAddressControl\DotControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\IPAddressControl\FieldChangedEventArgs.cs" />
+    <Compile Include="GUI\WinForm\IPAddressControl\FieldControl.cs" />
+    <Compile Include="GUI\WinForm\IPAddressControl\IPAddressControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\IPAddressControl\IPAddressControlDesigner.cs" />
+    <Compile Include="GUI\WinForm\IPAddressControl\NativeMethods.cs" />
+    <Compile Include="GUI\WinForm\LxLedControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\MarqueeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\MultipleImageToolStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\NumericLedBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\QuickTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\RegexTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\SelectGroup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\SexSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\SimpleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\SingleLine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\SingleRowCheckedListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\SpinnerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\TaskbarNotifier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\ToolStripNetVelocityLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\ToolTipPro.cs" />
+    <Compile Include="GUI\WinForm\TouchNumberBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\TouchNumberBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\WaitMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\WinForm\WaitMessageForm.Designer.cs">
+      <DependentUpon>WaitMessageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WinForm\WeekGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utility\UtilityResource.cs" />
+    <Compile Include="Interface\IConverting.cs" />
+    <Compile Include="Interface\IGenerator.cs" />
+    <Compile Include="Interface\IEnvironmentItem.cs" />
+    <Compile Include="Interface\IIDGenerator.cs" />
+    <Compile Include="Interface\IRegistry.cs" />
+    <Compile Include="Interface\IService.cs" />
+    <Compile Include="Interface\IItem.cs" />
+    <Compile Include="Interface\IXml.cs" />
+    <Compile Include="Interface\IParse.cs" />
+    <Compile Include="Interface\ITree.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShareResources\ArgumentValidationString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArgumentValidationString.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ShareResources\FilterString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FilterString.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ShareResources\GeneralString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeneralString.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ShareResources\RegexString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegexString.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ShareResources\SmartDateString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartDateString.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Wrapper\ByteClass.cs" />
+    <Compile Include="Databases\DbHelper\AccessHelper.cs" />
+    <Compile Include="Databases\DbHelper\MsSqlServerHelper.cs" />
+    <Compile Include="Utility\UtilityByte.cs" />
+    <Compile Include="Utility\UtilityClipboard.cs" />
+    <Compile Include="Utility\UtilityCollection.cs" />
+    <Compile Include="Utility\UtilityDateTime.cs" />
+    <Compile Include="Utility\UtilityEnums.cs" />
+    <Compile Include="Utility\UtilityEquals.cs" />
+    <Compile Include="Utility\UtilityGuid.cs" />
+    <Compile Include="Utility\UtilityHardware.cs" />
+    <Compile Include="Utility\UtilityKeys.cs" />
+    <Compile Include="Utility\UtilityNet.cs" />
+    <Compile Include="Utility\UtilityRandom.cs" />
+    <Compile Include="Utility\UtilityRegex.cs" />
+    <Compile Include="Utility\UtilityRegistry.cs" />
+    <Compile Include="Utility\UtilitySerialize.cs" />
+    <Compile Include="Utility\UtilitySorter.cs" />
+    <Compile Include="Utility\UtilityString.cs" />
+    <Compile Include="Utility\UtilityType.cs" />
+    <Compile Include="API\API.cs" />
+    <Compile Include="API\API.IMM32.cs" />
+    <Compile Include="API\API.Sounder.cs" />
+    <Compile Include="API\API.User32.cs" />
+    <Compile Include="API\API.Secur32.cs" />
+    <Compile Include="Wrapper\Checker.cs" />
+    <Compile Include="Wrapper\Computer.cs" />
+    <Compile Include="Entities\CPUInfo.cs" />
+    <Compile Include="Wrapper\CSVFile.cs" />
+    <Compile Include="Wrapper\Duration.cs" />
+    <Compile Include="FTP\FtpClient.cs" />
+    <Compile Include="Wrapper\Files\FileEnums.cs" />
+    <Compile Include="Wrapper\Files\FileSearching.cs" />
+    <Compile Include="Wrapper\Files\TextFileEncoding.cs" />
+    <Compile Include="Utility\UtilityFile.cs" />
+    <Compile Include="Wrapper\GlobalHotkey.cs" />
+    <Compile Include="Interface\IAbout.cs" />
+    <Compile Include="Wrapper\JWebs.cs" />
+    <Compile Include="Wrapper\PcInterfaces.cs" />
+    <Compile Include="Wrapper\ServiceForm.cs" />
+    <Compile Include="Zip\CompressHelper.cs" />
+    <Compile Include="Zip\GZip.cs" />
+    <Compile Include="Entities\IDCardData.cs" />
+    <Compile Include="Wrapper\IDGenerator.cs" />
+    <Compile Include="Wrapper\IniFile.cs" />
+    <Compile Include="Wrapper\LocalRegistry.cs" />
+    <Compile Include="Mail\MailSender.cs" />
+    <Compile Include="Zip\GZipCompressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Zip\GZipFileEntry.cs" />
+    <Compile Include="Mp3\Mp3Player.cs" />
+    <Compile Include="Mp3\Mp3Tag.cs" />
+    <Compile Include="Entities\PersonSex.cs" />
+    <Compile Include="Wrapper\SerialPorter.cs" />
+    <Compile Include="Wrapper\SmartDate.cs" />
+    <Compile Include="Wrapper\SnipScreen.cs" />
+    <Compile Include="Wrapper\SystemDateTime.cs" />
+    <Compile Include="Wrapper\TaskAlarm.cs" />
+    <Compile Include="Wrapper\WMI.cs" />
+    <Compile Include="XML\AbstractXmlAttribute.cs" />
+    <Compile Include="XML\AbstractXmlDocument.cs" />
+    <Compile Include="XML\AbstractXmlElement.cs" />
+    <Compile Include="XML\AbstractXmlNode.cs" />
+    <Compile Include="XML\XmlDatasetConvert.cs" />
+    <Compile Include="XML\XmlFormat.cs" />
+    <Compile Include="XML\XmlHelper.cs" />
+    <Compile Include="XML\XmlSchemaValidator.cs" />
+    <Compile Include="Xaml\XamlHelper.cs" />
+    <Compile Include="Zip\GZipFileInfo.cs" />
+    <Compile Include="Zip\GZipResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="GUI\Wpf\DownButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Wpf\RotateButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GUI\WinForm\DataSelector\DataItemSelector.resx">
+      <DependentUpon>DataItemSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WinForm\DockForm\BouncingForm.resx">
+      <DependentUpon>BouncingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WinForm\ExceptionUI\ExceptionDialog.resx">
+      <DependentUpon>ExceptionDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WinForm\ExceptionUI\InformationPanel.resx">
+      <DependentUpon>InformationPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WinForm\GroupboxPro\RadioGroupBox.resx">
+      <DependentUpon>RadioGroupBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WinForm\Grouper\Grouper.resx">
+      <DependentUpon>Grouper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WinForm\MarqueeControl.resx">
+      <DependentUpon>MarqueeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WinForm\SexSelector.resx">
+      <DependentUpon>SexSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WinForm\WaitMessageForm.resx">
+      <DependentUpon>WaitMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WinForm\WeekGroup.resx">
+      <DependentUpon>WeekGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShareResources\ArgumentValidationString.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ArgumentValidationString.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShareResources\FilterString.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FilterString.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShareResources\GeneralString.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GeneralString.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShareResources\RegexString.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegexString.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShareResources\SmartDateString.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SmartDateString.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShareResources\StringResource.en-US.resx" />
+    <EmbeddedResource Include="ShareResources\StringResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShareResources\StringResource.zh-CN.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Databases\Database.template" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuring\readme.txt" />
+    <EmbeddedResource Include="GUI\WinForm\Grouper\Grouper.bmp" />
+    <EmbeddedResource Include="GUI\WinForm\WinFormContainer\WinFormContainer.bmp" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

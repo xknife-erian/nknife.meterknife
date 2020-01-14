@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F3299AC1-2D25-4B91-A4D9-F9C1AB6F0825}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SocketKnife</RootNamespace>
+    <AssemblyName>SocketKnife</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\AsynListener.cs" />
+    <Compile Include="Common\BufferContainer.cs" />
+    <Compile Include="Common\BrokenCause.cs" />
+    <Compile Include="Events\ConnectionBrokenEventArgs.cs" />
+    <Compile Include="Events\ConnectedEventArgs.cs" />
+    <Compile Include="Events\ConnectingEventArgs.cs" />
+    <Compile Include="Common\SocketAsyncEventArgsPool.cs" />
+    <Compile Include="Generic\Filters\SocketBytesProtocolFilter.cs" />
+    <Compile Include="Generic\Filters\SocketProtocolFilter.cs" />
+    <Compile Include="Generic\Protocol\Jsons\JsonCommandParser.cs" />
+    <Compile Include="Generic\Protocol\Jsons\JsonDecoder.cs" />
+    <Compile Include="Generic\Protocol\Jsons\JsonEncoder.cs" />
+    <Compile Include="Generic\Protocol\Jsons\JsonPacker.cs" />
+    <Compile Include="Generic\Protocol\Jsons\JsonUnPacker.cs" />
+    <Compile Include="Generic\Protocol\Xmls\XmlProtocolDataTableDeserializeUnPacker.cs" />
+    <Compile Include="Generic\Protocol\Xmls\XmlProtocolDeserializeUnPacker.cs" />
+    <Compile Include="Interfaces\IHeartbeatFilter.cs" />
+    <Compile Include="Generic\SocketClientConfig.cs" />
+    <Compile Include="Generic\SocketConfig.cs" />
+    <Compile Include="Generic\SocketSession.cs" />
+    <Compile Include="Generic\SocketSessionMap.cs" />
+    <Compile Include="Generic\SocketServerConfig.cs" />
+    <Compile Include="Interfaces\ISocketClient.cs" />
+    <Compile Include="Interfaces\ISocketClientConfig.cs" />
+    <Compile Include="Interfaces\ISocketServerConfig.cs" />
+    <Compile Include="Interfaces\ISocketSessionMap.cs" />
+    <Compile Include="Interfaces\ISocketConfig.cs" />
+    <Compile Include="Interfaces\ISocketServer.cs" />
+    <Compile Include="IoC\DefaultModules.cs" />
+    <Compile Include="KnifeLongSocketClient.cs" />
+    <Compile Include="KnifeSocketServer.cs" />
+    <Compile Include="KnifeShortSocketClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NKnife\NKnife.csproj">
+      <Project>{266fcf12-d8f4-402c-bd7e-fc1df5f6a0bf}</Project>
+      <Name>NKnife</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

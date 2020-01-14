@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="NKnife.GUI.Wpf.RotateButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Width="200" Height="200">
+  <Grid>
+    <Image Margin="0" Name="imageBtn" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+      <Image.RenderTransform>
+        <RotateTransform x:Name="rotateImage" Angle="0"/>
+      </Image.RenderTransform>
+    </Image>
+    <Label Margin="0" Name="_LabelButton" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False"></Label>
+    <Ellipse Margin="0" Name="_EllipseButton" Fill="Black" Opacity="0.01" RenderTransformOrigin="0.5,0.5" MouseEnter="ellipseBtn_MouseEnter" MouseDown="ellipseBtn_MouseDown" MouseMove="ellipseBtn_MouseMove" MouseLeave="ellipseBtn_MouseLeave" MouseUp="ellipseBtn_MouseUp">
+      <Ellipse.RenderTransform>
+        <RotateTransform x:Name="_RotateEllipse" Angle="0"/>
+      </Ellipse.RenderTransform>
+    </Ellipse>
+  </Grid>
+</UserControl>

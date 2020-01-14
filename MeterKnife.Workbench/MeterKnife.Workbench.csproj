@@ -47,12 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife">
-      <HintPath>..\NKnife-DLL\NKnife.dll</HintPath>
-    </Reference>
-    <Reference Include="NKnife.NLog3">
-      <HintPath>..\NKnife-DLL\NKnife.NLog3.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -142,6 +136,18 @@
     <ProjectReference Include="..\MeterKnife.Instruments\MeterKnife.Instruments.csproj">
       <Project>{e70dc5a1-2900-4a24-937a-28c86100e077}</Project>
       <Name>MeterKnife.Instruments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife.NLog3\NKnife.NLog3.csproj">
+      <Project>{3d1d08d2-46b0-4c33-a214-a5a76a998102}</Project>
+      <Name>NKnife.NLog3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife\NKnife.csproj">
+      <Project>{266fcf12-d8f4-402c-bd7e-fc1df5f6a0bf}</Project>
+      <Name>NKnife</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

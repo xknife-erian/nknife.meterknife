@@ -41,19 +41,6 @@
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife, Version=17.5.5.1012, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NKnife-DLL\NKnife.dll</HintPath>
-    </Reference>
-    <Reference Include="ScpiKnife">
-      <HintPath>..\NKnife-DLL\ScpiKnife.dll</HintPath>
-    </Reference>
-    <Reference Include="SerialKnife">
-      <HintPath>..\NKnife-DLL\SerialKnife.dll</HintPath>
-    </Reference>
-    <Reference Include="SocketKnife">
-      <HintPath>..\NKnife-DLL\SocketKnife.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -84,6 +71,22 @@
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
       <Project>{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}</Project>
       <Name>MeterKnife.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife.Scpi\NKnife.Scpi.csproj">
+      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
+      <Name>NKnife.Scpi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife.Serial\NKnife.Serial.csproj">
+      <Project>{3b1ba8e0-29dd-4cfc-8593-889b9d547ab7}</Project>
+      <Name>NKnife.Serial</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife.Socket\NKnife.Socket.csproj">
+      <Project>{f3299ac1-2d25-4b91-a4d9-f9c1ab6f0825}</Project>
+      <Name>NKnife.Socket</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife\NKnife\NKnife.csproj">
+      <Project>{266fcf12-d8f4-402c-bd7e-fc1df5f6a0bf}</Project>
+      <Name>NKnife</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
