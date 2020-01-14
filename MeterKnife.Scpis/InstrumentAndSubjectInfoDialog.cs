@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Windows.Forms;
-using NKnife.ControlKnife;
+using MeterKnife.Common.DataModels;
+using NKnife.GUI.WinForm;
 using NKnife.IoC;
+using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {
     public partial class InstrumentAndSubjectInfoDialog : SimpleForm
     {
-        private readonly ManufacturerMap _manufacturerMap;
+        private readonly BrandCollection _BrandCollection;
 
         public InstrumentAndSubjectInfoDialog()
         {
             InitializeComponent();
             var list = DI.Get<IScpiInfoGetter>().GetMeterInfoList();
-            _manufacturerMap = new ManufacturerMap(list);
+            _BrandCollection = new BrandCollection(list);
 
-            foreach (var brand in _manufacturerMap.Brands)
+            foreach (var brand in _BrandCollection.Brands)
                 _BrandComboBox.Items.Add(brand);
 
             _BrandComboBox.SelectedIndex = 0;
@@ -65,7 +67,7 @@ namespace MeterKnife.Scpis
         private void UpdateNameAndDescription()
         {
             _NameComboBox.Items.Clear();
-            var names = _manufacturerMap.ByBrand(_BrandComboBox.SelectedItem.ToString());
+            var names = _BrandCollection.ByBrand(_BrandComboBox.SelectedItem.ToString());
             if (names != null && names.Count > 0)
             {
                 foreach (var name in names)
@@ -78,7 +80,7 @@ namespace MeterKnife.Scpis
 
         private void _NameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var t = _manufacturerMap.ByBrandAndName(_BrandComboBox.Text, _NameComboBox.Text);
+            var t = _BrandCollection.ByBrandAndName(_BrandComboBox.Text, _NameComboBox.Text);
             if (t != null)
                 _DescriptionTextBox.Text = t.Item3;
             else

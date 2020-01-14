@@ -3,45 +3,47 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using MeterKnife.Common.Interfaces;
+using NKnife.IoC;
+using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {
     public partial class CustomerScpiSubjectPanel : UserControl
     {
-        private readonly ListViewGroup _collectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
-        private readonly ListViewGroup _initGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
+        private readonly ListViewGroup _CollectGroup = new ListViewGroup("采集指令集", HorizontalAlignment.Left);
+        private readonly ListViewGroup _InitGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
 
-        private readonly string _scpiSubjectKey = Guid.NewGuid().ToString();
-        private ScpiSubject _currentScpiSubject;
-        private ScpiSubjectCollection _currentScpiSubjectCollection;
+        private readonly string _ScpiSubjectKey = Guid.NewGuid().ToString();
+        private ScpiSubject _CurrentScpiSubject;
+        private ScpiSubjectCollection _CurrentScpiSubjectCollection;
 
-        private bool _isModified;
+        private bool _IsModified;
 
         public CustomerScpiSubjectPanel()
         {
             InitializeComponent();
 
             _ListView.ShowItemToolTips = true;
-            _ListView.Groups.AddRange(new[] {_initGroup, _collectGroup});
+            _ListView.Groups.AddRange(new[] {_InitGroup, _CollectGroup});
             _ListView.LostFocus += (s, e) => _ListView.SelectedIndices.Clear();
 
-            //TODO:kernel
-            //var kernel = DI.Get<IMeterKernel>();
-            //kernel.Collected += (s, e) =>
-            //{
-            //    if (e.GpibAddress == GpibAddress)
-            //        SetToolStripState(e.IsCollected);
-            //};
+            var kernel = DI.Get<IMeterKernel>();
+            kernel.Collected += (s, e) =>
+            {
+                if (e.GpibAddress == GpibAddress)
+                    SetToolStripState(e.IsCollected);
+            };
             _SaveButton.Enabled = false;
             _AddButton.Enabled = false;
             _DeleteButton.Enabled = false;
             _EditButton.Enabled = false;
             _UpButton.Enabled = false;
             _DownButton.Enabled = false;
-            _initGroup.Header = "初始指令集";
-            _initGroup.Name = "INIT";
-            _collectGroup.Header = "采集指令集";
-            _collectGroup.Name = "COLLECT";
+            _InitGroup.Header = "初始指令集";
+            _InitGroup.Name = "INIT";
+            _CollectGroup.Header = "采集指令集";
+            _CollectGroup.Name = "COLLECT";
 
             _ListView.SelectedIndexChanged += _ListView_SelectedIndexChanged;
             _ListView.ItemChecked += _ListView_ItemChecked;
@@ -49,15 +51,15 @@ namespace MeterKnife.Scpis
 
         public string ScpiSubjectKey
         {
-            get { return _scpiSubjectKey; }
+            get { return _ScpiSubjectKey; }
         }
 
         public bool IsModified
         {
-            get { return _isModified; }
+            get { return _IsModified; }
             private set
             {
-                _isModified = value;
+                _IsModified = value;
                 _SaveButton.Enabled = value;
             }
         }
@@ -67,9 +69,9 @@ namespace MeterKnife.Scpis
         private void _ListView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             var scpiCommand = (ScpiCommand) e.Item.Tag;
-//            if (scpiCommand.Selected != e.Item.Checked)
-//                IsModified = true;
-//            scpiCommand.Selected = e.Item.Checked;
+            if (scpiCommand.Selected != e.Item.Checked)
+                IsModified = true;
+            scpiCommand.Selected = e.Item.Checked;
         }
 
         private void _ListView_SelectedIndexChanged(object s, EventArgs e)
@@ -114,15 +116,15 @@ namespace MeterKnife.Scpis
             var dialog = new InstrumentScpiGroupTreeDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _currentScpiSubject = null;
-                _currentScpiSubjectCollection = null;
+                _CurrentScpiSubject = null;
+                _CurrentScpiSubjectCollection = null;
                 if (dialog.CurrentIsSubject)
                 {
-                    _currentScpiSubject = dialog.SelectedScpiSubject;
+                    _CurrentScpiSubject = dialog.SelectedScpiSubject;
                 }
                 else
                 {
-                    _currentScpiSubjectCollection = dialog.SelectedScpiSubjectCollection;
+                    _CurrentScpiSubjectCollection = dialog.SelectedScpiSubjectCollection;
                 }
                 _AddButton.Enabled = true;
                 _StripLabel.Text = dialog.CurrentMeter;
@@ -135,15 +137,15 @@ namespace MeterKnife.Scpis
         {
             _ListView.BeginUpdate();
             _ListView.Items.Clear();
-            if (_currentScpiSubject != null)
+            if (_CurrentScpiSubject != null)
             {
-                foreach (var command in _currentScpiSubject.Initializtion)
+                foreach (var command in _CurrentScpiSubject.Initializtion)
                 {
                     AddListItem(ScpiCommandGroupCategory.Initializtion, command);
                 }
-                foreach (var command in _currentScpiSubject.Measure)
+                foreach (var command in _CurrentScpiSubject.Collect)
                 {
-                    AddListItem(ScpiCommandGroupCategory.Measure, command);
+                    AddListItem(ScpiCommandGroupCategory.Collect, command);
                 }
             }
             _ListView.EndUpdate();
@@ -153,7 +155,7 @@ namespace MeterKnife.Scpis
 
         private void _SaveButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_currentScpiSubject.Name) && _currentScpiSubjectCollection == null)
+            if (string.IsNullOrEmpty(_CurrentScpiSubject.Name) && _CurrentScpiSubjectCollection == null)
             {
                 var collection = new ScpiSubjectCollection();
                 var dialog = new InstrumentAndSubjectInfoDialog {ScpiSubjectCollection = collection};
@@ -164,9 +166,9 @@ namespace MeterKnife.Scpis
                     collection.Description = dialog.InstDescription;
                     var fileName = string.Format("{0}{1}.xml", collection.Brand, collection.Name);
                     collection.BuildScpiFile(Path.Combine(ScpiUtil.ScpisPath, fileName));
-                    _currentScpiSubject.OwnerCollection = collection;
-                    _currentScpiSubject.Name = dialog.GroupName;
-                    collection.Add(_currentScpiSubject);
+                    _CurrentScpiSubject.OwnerCollection = collection;
+                    _CurrentScpiSubject.Name = dialog.GroupName;
+                    collection.Add(_CurrentScpiSubject);
                 }
                 else
                 {
@@ -175,18 +177,18 @@ namespace MeterKnife.Scpis
                     return;
                 }
             }
-            else if (_currentScpiSubjectCollection != null)
+            else if (_CurrentScpiSubjectCollection != null)
             {
                 var dialog = new InstrumentAndSubjectInfoDialog
                 {
-                    ScpiSubjectCollection = _currentScpiSubjectCollection
+                    ScpiSubjectCollection = _CurrentScpiSubjectCollection
                 };
-                dialog.Initialize(_currentScpiSubjectCollection.Brand, _currentScpiSubjectCollection.Name, _currentScpiSubjectCollection.Description);
+                dialog.Initialize(_CurrentScpiSubjectCollection.Brand, _CurrentScpiSubjectCollection.Name, _CurrentScpiSubjectCollection.Description);
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    _currentScpiSubjectCollection.Add(_currentScpiSubject);
-                    _currentScpiSubject.OwnerCollection = _currentScpiSubjectCollection;
-                    _currentScpiSubject.Name = dialog.GroupName;
+                    _CurrentScpiSubjectCollection.Add(_CurrentScpiSubject);
+                    _CurrentScpiSubject.OwnerCollection = _CurrentScpiSubjectCollection;
+                    _CurrentScpiSubject.Name = dialog.GroupName;
                 }
                 else
                 {
@@ -195,19 +197,19 @@ namespace MeterKnife.Scpis
                     return;
                 }
             }
-            if (_currentScpiSubject.OwnerCollection != null && _currentScpiSubject.OwnerCollection.Save())
+            if (_CurrentScpiSubject.OwnerCollection != null && _CurrentScpiSubject.OwnerCollection.Save())
             {
-                var brand = _currentScpiSubject.OwnerCollection.Brand;
-                var name = _currentScpiSubject.OwnerCollection.Name;
-                var content = string.Format("{0}{1}: “{2}”SCPI指令集保存成功", brand, name, _currentScpiSubject.Name);
+                var brand = _CurrentScpiSubject.OwnerCollection.Brand;
+                var name = _CurrentScpiSubject.OwnerCollection.Name;
+                var content = string.Format("{0}{1}: “{2}”SCPI指令集保存成功", brand, name, _CurrentScpiSubject.Name);
                 MessageBox.Show(this, content, "保存", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void _AddInitButton_Click(object sender, EventArgs e)
         {
-            if (_currentScpiSubject == null)
-                _currentScpiSubject = new ScpiSubject();
+            if (_CurrentScpiSubject == null)
+                _CurrentScpiSubject = new ScpiSubject();
 
             var dialog = new ScpiCommandEditorDialog();
             dialog.Category = ScpiCommandGroupCategory.Initializtion;
@@ -227,11 +229,11 @@ namespace MeterKnife.Scpis
 
         private void _AddCollectButton_Click(object sender, EventArgs e)
         {
-            if (_currentScpiSubject == null)
-                _currentScpiSubject = new ScpiSubject();
+            if (_CurrentScpiSubject == null)
+                _CurrentScpiSubject = new ScpiSubject();
 
             var dialog = new ScpiCommandEditorDialog();
-            dialog.Category = ScpiCommandGroupCategory.Measure;
+            dialog.Category = ScpiCommandGroupCategory.Collect;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
@@ -242,7 +244,7 @@ namespace MeterKnife.Scpis
                     IsHex = dialog.IsHex,
                     IsReturn = true
                 };
-                AddListItem(ScpiCommandGroupCategory.Measure, command);
+                AddListItem(ScpiCommandGroupCategory.Collect, command);
             }
         }
 
@@ -252,20 +254,20 @@ namespace MeterKnife.Scpis
             switch (category)
             {
                 case ScpiCommandGroupCategory.Initializtion:
-                    listitem.Group = _initGroup;
-                    if (!_currentScpiSubject.Initializtion.Contains(command))
-                        _currentScpiSubject.Initializtion.Add(command);
+                    listitem.Group = _InitGroup;
+                    if (!_CurrentScpiSubject.Initializtion.Contains(command))
+                        _CurrentScpiSubject.Initializtion.Add(command);
                     break;
-                case ScpiCommandGroupCategory.Measure:
-                    listitem.Group = _collectGroup;
-                    if (!_currentScpiSubject.Measure.Contains(command))
-                        _currentScpiSubject.Measure.Add(command);
+                case ScpiCommandGroupCategory.Collect:
+                    listitem.Group = _CollectGroup;
+                    if (!_CurrentScpiSubject.Collect.Contains(command))
+                        _CurrentScpiSubject.Collect.Add(command);
                     break;
             }
             var subitem = new ListViewItem.ListViewSubItem {Text = command.Command};
             listitem.SubItems.Add(subitem);
             subitem = new ListViewItem.ListViewSubItem {Text = command.Interval.ToString()};
-//            listitem.Checked = command.Selected;
+            listitem.Checked = command.Selected;
             listitem.SubItems.Add(subitem);
             listitem.Tag = command;
             listitem.ToolTipText = command.ToString();
@@ -288,10 +290,10 @@ namespace MeterKnife.Scpis
                 switch (group.Name)
                 {
                     case "INIT":
-                        _currentScpiSubject.Initializtion.RemoveAt(n);
+                        _CurrentScpiSubject.Initializtion.RemoveAt(n);
                         break;
                     case "COLLECT":
-                        _currentScpiSubject.Measure.RemoveAt(n);
+                        _CurrentScpiSubject.Collect.RemoveAt(n);
                         break;
                 }
                 IsModified = true;
@@ -349,10 +351,10 @@ namespace MeterKnife.Scpis
             switch (group.Name)
             {
                 case "INIT":
-                    _currentScpiSubject.Initializtion.DownItem(n);
+                    _CurrentScpiSubject.Initializtion.DownItem(n);
                     break;
                 case "COLLECT":
-                    _currentScpiSubject.Measure.DownItem(n);
+                    _CurrentScpiSubject.Collect.DownItem(n);
                     break;
             }
             UpdateListView();
@@ -368,10 +370,10 @@ namespace MeterKnife.Scpis
             switch (group.Name)
             {
                 case "INIT":
-                    _currentScpiSubject.Initializtion.UpItem(n);
+                    _CurrentScpiSubject.Initializtion.UpItem(n);
                     break;
                 case "COLLECT":
-                    _currentScpiSubject.Measure.UpItem(n);
+                    _CurrentScpiSubject.Collect.UpItem(n);
                     break;
             }
             UpdateListView();
@@ -418,12 +420,12 @@ namespace MeterKnife.Scpis
 
         public KeyValuePair<string, ScpiCommandQueue.Item[]> GetCollectCommands()
         {
-            return new KeyValuePair<string, ScpiCommandQueue.Item[]>(_scpiSubjectKey, GetCommands("COLLECT"));
+            return new KeyValuePair<string, ScpiCommandQueue.Item[]>(_ScpiSubjectKey, GetCommands("COLLECT"));
         }
 
         public KeyValuePair<string, ScpiCommandQueue.Item[]> GetInitCommands()
         {
-            return new KeyValuePair<string, ScpiCommandQueue.Item[]>(_scpiSubjectKey, GetCommands("INIT"));
+            return new KeyValuePair<string, ScpiCommandQueue.Item[]>(_ScpiSubjectKey, GetCommands("INIT"));
         }
 
         #endregion

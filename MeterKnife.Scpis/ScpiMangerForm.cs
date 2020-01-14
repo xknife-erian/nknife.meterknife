@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Scpis.Properties;
 using NKnife;
-using NKnife.ControlKnife;
+using NKnife.GUI.WinForm;
 using NKnife.IoC;
 
 namespace MeterKnife.Scpis
@@ -30,6 +30,7 @@ namespace MeterKnife.Scpis
         [STAThread]
         private static void Main()
         {
+            Global.Culture = Common.Properties.Settings.Default.CultureInfoName;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

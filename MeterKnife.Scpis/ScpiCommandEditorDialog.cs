@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Text;
 using System.Windows.Forms;
-using NKnife.ControlKnife;
 using NKnife.Converts;
+using NKnife.GUI.WinForm;
+using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {
     public partial class ScpiCommandEditorDialog : SimpleForm
     {
-        private ScpiCommandGroupCategory _category;
+        private ScpiCommandGroupCategory _Category;
 
         public ScpiCommandGroupCategory Category
         {
-            get { return _category; }
+            get { return _Category; }
             set
             {
-                _category = value;
+                _Category = value;
                 switch (value)
                 {
-                    case ScpiCommandGroupCategory.Measure:
+                    case ScpiCommandGroupCategory.Collect:
                         _IntervalNumericUpDown.Value = 400;
                         _IsReturnCheckBox.Checked = true;
                         break;

@@ -4,18 +4,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ScpiKnife;
 
 namespace MeterKnife.Scpis.ScpiTree
 {
 
     public class SubjectCollectionTreeNode : TreeNode
     {
-        private readonly ScpiSubjectCollection _collection;
+        private readonly ScpiSubjectCollection _Collection;
 
         public SubjectCollectionTreeNode(ScpiSubjectCollection collection)
             : this(string.Format("{0}{1}", collection.Brand, collection.Name))
         {
-            _collection = collection;
+            _Collection = collection;
         }
 
         public SubjectCollectionTreeNode(string name)
@@ -27,7 +28,7 @@ namespace MeterKnife.Scpis.ScpiTree
 
         public ScpiSubjectCollection GetScpiSubjectCollection()
         {
-            return _collection;
+            return _Collection;
         }
     }
 }

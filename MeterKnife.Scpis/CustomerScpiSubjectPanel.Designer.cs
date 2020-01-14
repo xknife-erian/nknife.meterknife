@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MeterKnife.Scpis.Properties;
 
 namespace MeterKnife.Scpis
 {

@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9EDECD14-77FE-419C-9323-C00BDB6A07AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MeterKnife.Workbench</RootNamespace>
+    <AssemblyName>MeterKnife.Workbench</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife">
+      <HintPath>..\NKnife-DLL\NKnife.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife.NLog3">
+      <HintPath>..\NKnife-DLL\NKnife.NLog3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\MeterKnife.App.Lite\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="IoC\Modules.cs" />
+    <Compile Include="MainWorkbench.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWorkbench.Designer.cs">
+      <DependentUpon>MainWorkbench.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\OwnerAssemblyInfo.cs" />
+    <Compile Include="Views\DataMangerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DataMangerView.Designer.cs">
+      <DependentUpon>DataMangerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InterfaceTreeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\InterfaceTreeView.Designer.cs">
+      <DependentUpon>InterfaceTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoggerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoggerView.Designer.cs">
+      <DependentUpon>LoggerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandConsoleView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CommandConsoleView.Designer.cs">
+      <DependentUpon>CommandConsoleView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainWorkbench.resx">
+      <DependentUpon>MainWorkbench.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DataMangerView.resx">
+      <DependentUpon>DataMangerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\InterfaceTreeView.resx">
+      <DependentUpon>InterfaceTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoggerView.resx">
+      <DependentUpon>LoggerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandConsoleView.resx">
+      <DependentUpon>CommandConsoleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MeterKnife.Common.Winforms\MeterKnife.Common.Winforms.csproj">
+      <Project>{9F425D32-AEDC-489D-A7EE-140CCABD412B}</Project>
+      <Name>MeterKnife.Common.Winforms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
+      <Project>{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}</Project>
+      <Name>MeterKnife.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeterKnife.Instruments\MeterKnife.Instruments.csproj">
+      <Project>{e70dc5a1-2900-4a24-937a-28c86100e077}</Project>
+      <Name>MeterKnife.Instruments</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

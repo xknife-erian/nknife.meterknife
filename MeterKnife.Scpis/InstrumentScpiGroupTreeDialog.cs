@@ -2,8 +2,10 @@
 using System.IO;
 using System.Windows.Forms;
 using MeterKnife.Scpis.ScpiTree;
-using NKnife.ControlKnife;
+using NKnife.GUI.WinForm;
 using NKnife.IoC;
+using NKnife.Utility;
+using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {
@@ -23,7 +25,7 @@ namespace MeterKnife.Scpis
 
             _Tree.AfterSelect += (s, e) =>
             {
-                _ConfirmButton.Enabled = _Tree.SelectedNode is SubjectGroupTreeNode;
+                _ConfirmButton.Enabled = (_Tree.SelectedNode is SubjectGroupTreeNode);
                 if (_Tree.SelectedNode is SubjectCollectionTreeNode)
                 {
                     _NewSubjectToolStripButton.Enabled = true;
@@ -51,13 +53,12 @@ namespace MeterKnife.Scpis
                 return (ScpiSubject) treeNode.Tag;
             }
         }
-
         public ScpiSubjectCollection SelectedScpiSubjectCollection
         {
             get
             {
                 var node = _Tree.SelectedNode as SubjectCollectionTreeNode;
-                if (node != null)
+                if (node != null) 
                     return node.GetScpiSubjectCollection();
                 return null;
             }
@@ -92,7 +93,9 @@ namespace MeterKnife.Scpis
                 _Tree.Nodes.Add(treeNode);
             }
             if (_Tree.Nodes.Count > 0)
+            {
                 _Tree.Nodes[0].Expand();
+            }
         }
 
         private void _CancelButton_Click(object sender, EventArgs e)
@@ -116,7 +119,7 @@ namespace MeterKnife.Scpis
                 CurrentIsSubject = true;
                 collection = ((SubjectCollectionTreeNode) treeNode.Parent).GetScpiSubjectCollection();
             }
-            CurrentMeter = $"{collection.Brand}{collection.Name} {collection.Description}";
+            CurrentMeter = string.Format("{0}{1} {2}", collection.Brand, collection.Name, collection.Description);
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -125,22 +128,22 @@ namespace MeterKnife.Scpis
         {
             if (!(_Tree.SelectedNode is SubjectCollectionTreeNode))
                 return;
-            var tip = $"您选择的是 {_Tree.SelectedNode.Text} 的仪器SCPI指令集文件，您确认删除？";
+            var tip = string.Format("您选择的是 {0} 的仪器SCPI指令集文件，您确认删除？", _Tree.SelectedNode.Text);
             if (MessageBox.Show(this, tip, "删除", MessageBoxButtons.YesNo, MessageBoxIcon.Information,
-                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 var node = (SubjectCollectionTreeNode) _Tree.SelectedNode;
                 var file = node.GetScpiSubjectCollection().GetXmlFile();
                 try
                 {
                     File.Delete(file.FilePath);
-                    MessageBox.Show(this, $"{_Tree.SelectedNode.Text}仪器SCPI指令集文件删除。", "删除",
+                    MessageBox.Show(this, string.Format("{0}仪器SCPI指令集文件删除。", _Tree.SelectedNode.Text), "删除",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UpdateTreeNodes();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show(this, $"文件删除异常，您是否有其他软件打开该指令集文件。\r\n{ex.Message}", "无法删除",
+                    MessageBox.Show(this, "文件删除异常，您是否有其他软件打开该指令集文件。", "无法删除",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
@@ -214,7 +217,7 @@ namespace MeterKnife.Scpis
         {
             var tip = string.Format("功能主题 {1} 将要删除，您是否确认？\r\n({0})", _Tree.SelectedNode.Parent.Text, _Tree.SelectedNode.Text);
             if (MessageBox.Show(this, tip, "删除", MessageBoxButtons.YesNo, MessageBoxIcon.Information,
-                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 var node = _Tree.SelectedNode as SubjectGroupTreeNode;
                 if (node != null)
@@ -250,10 +253,12 @@ namespace MeterKnife.Scpis
 
         private void _ExportButton_Click(object sender, EventArgs e)
         {
+
         }
 
         private void _ImportButton_Click(object sender, EventArgs e)
         {
+
         }
     }
 }
