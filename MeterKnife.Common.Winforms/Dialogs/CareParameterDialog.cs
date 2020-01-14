@@ -19,8 +19,8 @@ namespace MeterKnife.Common.Winforms.Dialogs
     {
         private static readonly ILog _logger = LogManager.GetLogger<CareParameterDialog>();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
-        private readonly CommPort _Port;
         private readonly CareConfigHandler _Handler = new CareConfigHandler();
+        private readonly CommPort _Port;
 
         public CareParameterDialog(CommPort port)
         {
@@ -28,17 +28,12 @@ namespace MeterKnife.Common.Winforms.Dialogs
             InitializeComponent();
             _Usart1NumberBox.SelectedItem = "115200";
             _Usart2NumberBox.SelectedItem = "115200";
-            _DhcpDisableRadioButton.CheckedChanged += (s, e) =>
-            {
-                _DhcpGroupBox.Enabled = _DhcpDisableRadioButton.Checked;
-            };
+            _DhcpDisableRadioButton.CheckedChanged += (s, e) => { _DhcpGroupBox.Enabled = _DhcpDisableRadioButton.Checked; };
             _UsartSwitchCheckBox.CheckedChanged += (s, e) =>
             {
                 if (_UsartSwitchCheckBox.Checked)
-                {
                     MessageBox.Show(this, "WIFI透传模式说明：\r\n\r\nWIFI透传模式生效后，USB与仪器的连接将暂时失效，同时指示灯将快速闪烁……\r\n如果想退出透传模式时，请按住设备按键4秒以上，并重启本软件进行应用", "透传模式",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             };
             _Handler.CareConfigging += OnProtocolRecevied;
             _Comm.Bind(port, _Handler);
@@ -59,11 +54,11 @@ namespace MeterKnife.Common.Winforms.Dialogs
         }
 
         /// <summary>
-        /// 发出获取Care的参数指令
+        ///     发出获取Care的参数指令
         /// </summary>
         private void QueryCareParameter()
         {
-            for (int i = 0xD0; i <= 0xDF; i++)
+            for (var i = 0xD0; i <= 0xDF; i++)
             {
                 if (i == 0xD8)
                     continue;
@@ -80,7 +75,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
                 return;
             switch (talking.MainCommand)
             {
-                case 0xA0://查询Care的参数，解析，并填充到面板上显示
+                case 0xA0: //查询Care的参数，解析，并填充到面板上显示
                     ParseCareParameter(talking);
                     break;
                 case 0xB0:
@@ -90,7 +85,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
         }
 
         /// <summary>
-        /// 查询Care的参数，解析，并填充到面板上显示
+        ///     查询Care的参数，解析，并填充到面板上显示
         /// </summary>
         private void ParseCareParameter(CareTalking talking)
         {
@@ -99,17 +94,12 @@ namespace MeterKnife.Common.Winforms.Dialogs
                 switch (talking.SubCommand)
                 {
                     #region case
+
                     case 0xD0:
-                        this.ThreadSafeInvoke(() =>
-                        {
-                            Text = string.Format("{0}{1}", "Care Build:", talking.Scpi);
-                        });
+                        this.ThreadSafeInvoke(() => { Text = string.Format("{0}{1}", "Care Build:", talking.Scpi); });
                         break;
                     case 0xD2: //查询设备版本
-                        this.ThreadSafeInvoke(() =>
-                        {
-                            _MainGroupBox.Text = string.Format("Care.v{0}", talking.Scpi);
-                        });
+                        this.ThreadSafeInvoke(() => { _MainGroupBox.Text = string.Format("Care.v{0}", talking.Scpi); });
                         break;
                     case 0xD3: //查询DHCP是否激活（0x00:未激活;0x01:激活）
                         this.ThreadSafeInvoke(() =>
@@ -176,12 +166,15 @@ namespace MeterKnife.Common.Winforms.Dialogs
                     case 0xDB: //查询透明协议时仪器的GPIB地址；
                         this.ThreadSafeInvoke(() =>
                         {
-                            var bs = talking.ScpiBytes[0];
-                            _USBGpibNumericUpDown.Value = (int)bs;
+                            var bs = (int) talking.ScpiBytes[0];
+                            if (bs < _USBGpibNumericUpDown.Maximum && bs > _USBGpibNumericUpDown.Minimum)
+                                _USBGpibNumericUpDown.Value = bs;
                             bs = talking.ScpiBytes[2];
-                            _LANGpibNumericUpDown.Value = (int)bs;
+                            if (bs < _LANGpibNumericUpDown.Maximum && bs > _LANGpibNumericUpDown.Minimum)
+                                _LANGpibNumericUpDown.Value = bs;
                             bs = talking.ScpiBytes[1];
-                            _WifiGpibNumericUpDown.Value = (int)bs;
+                            if (bs < _WifiGpibNumericUpDown.Maximum && bs > _WifiGpibNumericUpDown.Minimum)
+                                _WifiGpibNumericUpDown.Value = bs;
                         });
                         break;
                     case 0xDC: //查询Care的MAC地址；
@@ -211,9 +204,10 @@ namespace MeterKnife.Common.Winforms.Dialogs
                         this.ThreadSafeInvoke(() =>
                         {
                             var bs = talking.ScpiBytes[0];
-                            _UsartSwitchCheckBox.Checked = (bs != 0x00);
+                            _UsartSwitchCheckBox.Checked = bs != 0x00;
                         });
                         break;
+
                     #endregion
                 }
             }
@@ -234,7 +228,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
         }
 
         /// <summary>
-        /// 根据用户设置的值进行设置
+        ///     根据用户设置的值进行设置
         /// </summary>
         private void _ConfirmButton_Click(object sender, EventArgs e)
         {
@@ -258,22 +252,22 @@ namespace MeterKnife.Common.Winforms.Dialogs
             }
 
             //TCP的端口
-            var tcpPort = BitConverter.GetBytes((Int16) _TcpNumericUpDown.Value).Reverse().ToArray();
+            var tcpPort = BitConverter.GetBytes((short) _TcpNumericUpDown.Value).Reverse().ToArray();
             config = CommandUtil.CareSetter(0xD7, tcpPort);
             _Comm.SendCommands(_Port, config);
 
             //默认的GPIB地址
-            var defaultGpibAddress = new byte[]
+            var defaultGpibAddress = new[]
             {
                 (byte) _USBGpibNumericUpDown.Value,
                 (byte) _WifiGpibNumericUpDown.Value,
-                (byte) _LANGpibNumericUpDown.Value,
+                (byte) _LANGpibNumericUpDown.Value
             };
             config = CommandUtil.CareSetter(0xDB, defaultGpibAddress);
             _Comm.SendCommands(_Port, config);
 
             //温度传感器设置
-            string temp = "DS18B20";
+            var temp = "DS18B20";
             if (_18b20RadioButton.Checked)
                 temp = "DS18B20";
             else if (_Dht11RadioButton.Checked)
@@ -284,13 +278,13 @@ namespace MeterKnife.Common.Winforms.Dialogs
             _Comm.SendCommands(_Port, config);
 
             //USB串口波特率
-            var usart1 = Int32.Parse(_Usart1NumberBox.SelectedItem.ToString());
+            var usart1 = int.Parse(_Usart1NumberBox.SelectedItem.ToString());
             var usbBaud = BitConverter.GetBytes(usart1).Reverse().ToArray();
             config = CommandUtil.CareSetter(0xDD, usbBaud);
             _Comm.SendCommands(_Port, config);
 
             //WIFI串口波特率
-            var usart2 = Int32.Parse(_Usart2NumberBox.SelectedItem.ToString());
+            var usart2 = int.Parse(_Usart2NumberBox.SelectedItem.ToString());
             var wifiBaud = BitConverter.GetBytes(usart2).Reverse().ToArray();
             config = CommandUtil.CareSetter(0xDE, wifiBaud);
             _Comm.SendCommands(_Port, config);
@@ -312,7 +306,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
         }
 
         /// <summary>
-        /// 恢复Care的默认值
+        ///     恢复Care的默认值
         /// </summary>
         private void _RestoreDefaultButton_Click(object sender, EventArgs e)
         {
@@ -323,7 +317,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
         }
 
         /// <summary>
-        /// 恢复Care的默认值的线程方法
+        ///     恢复Care的默认值的线程方法
         /// </summary>
         private void DefaultSetting()
         {

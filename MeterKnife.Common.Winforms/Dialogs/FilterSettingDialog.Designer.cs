@@ -152,8 +152,8 @@
             // FilterSettingDialog
             // 
             this.AcceptButton = this._AcceptButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
             this.ClientSize = new System.Drawing.Size(447, 286);
             this.ControlBox = false;

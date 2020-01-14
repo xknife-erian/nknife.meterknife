@@ -225,11 +225,8 @@ namespace MeterKnife.Common.Winforms.Controls
             // ScpiParamPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ScpiParamPanel";
-            this.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.Size = new System.Drawing.Size(1160, 887);
+            this.Size = new System.Drawing.Size(2841, 1967);
             this.ResumeLayout(false);
 
         }

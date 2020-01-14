@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BC6EF4B5-6803-4216-896B-58ABB72F4ACE}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MeterKnife.Scpis</RootNamespace>
     <AssemblyName>MeterKnife.Scpis</AssemblyName>
@@ -35,7 +35,8 @@
     <ApplicationIcon>Properties\scpi-manager.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
@@ -100,12 +101,6 @@
       <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="ScpiInfoGetter.cs" />
-    <Compile Include="ScpiMangerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ScpiMangerForm.Designer.cs">
-      <DependentUpon>ScpiMangerForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ScpiTree\SubjectCollectionTreeNode.cs" />
     <Compile Include="ScpiTree\SubjectFileTree.cs">
       <SubType>Component</SubType>
@@ -172,14 +167,15 @@
     <EmbeddedResource Include="ScpiCommandEditorDialog.resx">
       <DependentUpon>ScpiCommandEditorDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScpiMangerForm.resx">
-      <DependentUpon>ScpiMangerForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SubjectInfoDialog.resx">
       <DependentUpon>SubjectInfoDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MeterKnife.Common.Winforms\MeterKnife.Common.Winforms.csproj">
+      <Project>{9f425d32-aedc-489d-a7ee-140ccabd412b}</Project>
+      <Name>MeterKnife.Common.Winforms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
       <Project>{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}</Project>
       <Name>MeterKnife.Common</Name>

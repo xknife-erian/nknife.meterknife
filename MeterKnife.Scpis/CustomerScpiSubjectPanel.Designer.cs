@@ -67,7 +67,7 @@ namespace MeterKnife.Scpis
             this._UpButton});
             this._ToolStrip.Location = new System.Drawing.Point(0, 0);
             this._ToolStrip.Name = "_ToolStrip";
-            this._ToolStrip.Size = new System.Drawing.Size(251, 25);
+            this._ToolStrip.Size = new System.Drawing.Size(257, 25);
             this._ToolStrip.TabIndex = 0;
             // 
             // _OpenButton
@@ -182,7 +182,7 @@ namespace MeterKnife.Scpis
             this._ListView.Location = new System.Drawing.Point(0, 25);
             this._ListView.MultiSelect = false;
             this._ListView.Name = "_ListView";
-            this._ListView.Size = new System.Drawing.Size(251, 224);
+            this._ListView.Size = new System.Drawing.Size(257, 444);
             this._ListView.TabIndex = 1;
             this._ListView.UseCompatibleStateImageBehavior = false;
             this._ListView.View = System.Windows.Forms.View.Details;
@@ -206,9 +206,9 @@ namespace MeterKnife.Scpis
             // 
             this._StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._StripLabel});
-            this._StatusStrip.Location = new System.Drawing.Point(0, 249);
+            this._StatusStrip.Location = new System.Drawing.Point(0, 469);
             this._StatusStrip.Name = "_StatusStrip";
-            this._StatusStrip.Size = new System.Drawing.Size(251, 22);
+            this._StatusStrip.Size = new System.Drawing.Size(257, 22);
             this._StatusStrip.TabIndex = 2;
             // 
             // _StripLabel
@@ -225,7 +225,7 @@ namespace MeterKnife.Scpis
             this.Controls.Add(this._ToolStrip);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.Name = "CustomerScpiSubjectPanel";
-            this.Size = new System.Drawing.Size(251, 271);
+            this.Size = new System.Drawing.Size(257, 491);
             this._ToolStrip.ResumeLayout(false);
             this._ToolStrip.PerformLayout();
             this._StatusStrip.ResumeLayout(false);

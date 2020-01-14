@@ -351,7 +351,7 @@ namespace MeterKnife.Instruments
             // 
             this._LeftSplitContainer.Panel1.Controls.Add(this._FiguredDataPropertyGrid);
             this._LeftSplitContainer.Size = new System.Drawing.Size(251, 518);
-            this._LeftSplitContainer.SplitterDistance = 376;
+            this._LeftSplitContainer.SplitterDistance = 417;
             this._LeftSplitContainer.TabIndex = 0;
             // 
             // _FiguredDataPropertyGrid
@@ -359,7 +359,7 @@ namespace MeterKnife.Instruments
             this._FiguredDataPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(0, 0);
             this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";
-            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(251, 376);
+            this._FiguredDataPropertyGrid.Size = new System.Drawing.Size(251, 417);
             this._FiguredDataPropertyGrid.TabIndex = 0;
             // 
             // _MainSplitContainer
@@ -409,8 +409,8 @@ namespace MeterKnife.Instruments
             // 
             // DigitMultiMeterView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(964, 522);
             this.Controls.Add(this._MainSplitContainer);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);

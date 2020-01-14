@@ -227,8 +227,8 @@ namespace MeterKnife.Common.Winforms.Dialogs
             // OfflineCollectParameterDialog
             // 
             this.AcceptButton = this._ConfirmButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
             this.ClientSize = new System.Drawing.Size(654, 377);
             this.Controls.Add(this._CancelButton);

@@ -196,8 +196,8 @@
             // ScpiCommandEditorDialog
             // 
             this.AcceptButton = this._ConfirmButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
             this.ClientSize = new System.Drawing.Size(484, 336);
             this.Controls.Add(this._CancelButton);

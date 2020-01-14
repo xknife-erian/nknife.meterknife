@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Parameters;
@@ -30,7 +31,7 @@ namespace NKnife.IoC
         {
             if (_initialized) 
                 return;
-            var assems = UtilityAssembly.SearchAssemblyByDirectory(AppDomain.CurrentDomain.BaseDirectory, AssmeblyNameFilters);
+            var assems = UtilityAssembly.SearchAssemblyByDirectory(Application.StartupPath, AssmeblyNameFilters);
 
             _coreKernel = new CoreKernel();
             _coreKernel.Load(assems);

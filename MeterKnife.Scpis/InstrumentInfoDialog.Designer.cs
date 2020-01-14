@@ -55,7 +55,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(483, 194);
+            this.groupBox1.Size = new System.Drawing.Size(441, 177);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "仪器基本信息";
@@ -63,7 +63,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(35, 111);
+            this.label3.Location = new System.Drawing.Point(17, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 17);
             this.label3.TabIndex = 5;
@@ -72,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 75);
+            this.label2.Location = new System.Drawing.Point(17, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 17);
             this.label2.TabIndex = 4;
@@ -81,7 +81,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 41);
+            this.label1.Location = new System.Drawing.Point(17, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 3;
@@ -89,7 +89,7 @@
             // 
             // _DescriptionTextBox
             // 
-            this._DescriptionTextBox.Location = new System.Drawing.Point(79, 107);
+            this._DescriptionTextBox.Location = new System.Drawing.Point(58, 92);
             this._DescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._DescriptionTextBox.Multiline = true;
             this._DescriptionTextBox.Name = "_DescriptionTextBox";
@@ -100,7 +100,7 @@
             // _NameComboBox
             // 
             this._NameComboBox.FormattingEnabled = true;
-            this._NameComboBox.Location = new System.Drawing.Point(79, 71);
+            this._NameComboBox.Location = new System.Drawing.Point(58, 59);
             this._NameComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._NameComboBox.Name = "_NameComboBox";
             this._NameComboBox.Size = new System.Drawing.Size(228, 25);
@@ -109,7 +109,7 @@
             // _BrandComboBox
             // 
             this._BrandComboBox.FormattingEnabled = true;
-            this._BrandComboBox.Location = new System.Drawing.Point(79, 35);
+            this._BrandComboBox.Location = new System.Drawing.Point(58, 28);
             this._BrandComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._BrandComboBox.Name = "_BrandComboBox";
             this._BrandComboBox.Size = new System.Drawing.Size(228, 25);
@@ -119,7 +119,7 @@
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(387, 214);
+            this._CancelButton.Location = new System.Drawing.Point(345, 197);
             this._CancelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(110, 37);
@@ -131,7 +131,7 @@
             // _ConfirmButton
             // 
             this._ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._ConfirmButton.Location = new System.Drawing.Point(271, 214);
+            this._ConfirmButton.Location = new System.Drawing.Point(229, 197);
             this._ConfirmButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ConfirmButton.Name = "_ConfirmButton";
             this._ConfirmButton.Size = new System.Drawing.Size(110, 37);
@@ -143,10 +143,10 @@
             // InstrumentInfoDialog
             // 
             this.AcceptButton = this._ConfirmButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(511, 263);
+            this.ClientSize = new System.Drawing.Size(469, 246);
             this.ControlBox = false;
             this.Controls.Add(this._ConfirmButton);
             this.Controls.Add(this._CancelButton);

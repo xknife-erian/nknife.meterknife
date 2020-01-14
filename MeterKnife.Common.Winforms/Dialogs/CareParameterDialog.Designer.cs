@@ -566,8 +566,8 @@
             // 
             // CareParameterDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(697, 441);
             this.Controls.Add(this._RestoreDefaultButton);
             this.Controls.Add(this._CancelButton);

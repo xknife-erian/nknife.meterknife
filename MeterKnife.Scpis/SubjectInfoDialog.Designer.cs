@@ -47,7 +47,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(426, 65);
+            this.groupBox2.Size = new System.Drawing.Size(303, 65);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "功能主题信息";
@@ -63,19 +63,21 @@
             // 
             // _GroupNameTextBox
             // 
+            this._GroupNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._GroupNameTextBox.Location = new System.Drawing.Point(62, 24);
             this._GroupNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._GroupNameTextBox.Name = "_GroupNameTextBox";
-            this._GroupNameTextBox.Size = new System.Drawing.Size(340, 23);
+            this._GroupNameTextBox.Size = new System.Drawing.Size(220, 23);
             this._GroupNameTextBox.TabIndex = 0;
             // 
             // _ConfirmButton
             // 
             this._ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._ConfirmButton.Location = new System.Drawing.Point(215, 89);
+            this._ConfirmButton.Location = new System.Drawing.Point(134, 89);
             this._ConfirmButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ConfirmButton.Name = "_ConfirmButton";
-            this._ConfirmButton.Size = new System.Drawing.Size(110, 37);
+            this._ConfirmButton.Size = new System.Drawing.Size(89, 37);
             this._ConfirmButton.TabIndex = 5;
             this._ConfirmButton.Text = "确定";
             this._ConfirmButton.UseVisualStyleBackColor = true;
@@ -85,10 +87,10 @@
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(331, 89);
+            this._CancelButton.Location = new System.Drawing.Point(229, 89);
             this._CancelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._CancelButton.Name = "_CancelButton";
-            this._CancelButton.Size = new System.Drawing.Size(110, 37);
+            this._CancelButton.Size = new System.Drawing.Size(89, 37);
             this._CancelButton.TabIndex = 6;
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
@@ -96,9 +98,11 @@
             // 
             // SubjectInfoDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(455, 141);
+            this.AcceptButton = this._ConfirmButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.CancelButton = this._CancelButton;
+            this.ClientSize = new System.Drawing.Size(332, 141);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this._ConfirmButton);

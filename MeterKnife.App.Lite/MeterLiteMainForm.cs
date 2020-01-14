@@ -14,17 +14,17 @@ namespace MeterKnife.App.Lite
 {
     public partial class MeterLiteMainForm : Form
     {
-        private readonly DockPanel _DockPanel = new DockPanel();
-        private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
+        private readonly DockPanel _dockPanel = new DockPanel();
+        private readonly IMeterKernel _meterKernel = DI.Get<IMeterKernel>();
 
-        private CommPort _CarePort;
+        private CommPort _carePort;
 
         public MeterLiteMainForm()
         {
             InitializeComponent();
             InitializeDockPanel();
 
-            _MeterKernel.Collected += (s, e) =>
+            _meterKernel.Collected += (s, e) =>
             {
                 _CareOptionMenuItem.Enabled = !e.IsCollected;
                 _AddMeterMenuItem.Enabled = !e.IsCollected;
@@ -33,11 +33,13 @@ namespace MeterKnife.App.Lite
 
         private void InitializeDockPanel()
         {
-            _StripContainer.ContentPanel.Controls.Add(_DockPanel);
+            _StripContainer.ContentPanel.Controls.Add(_dockPanel);
 
-            _DockPanel.DocumentStyle = DocumentStyle.DockingWindow;
-            _DockPanel.Dock = DockStyle.Fill;
-            _DockPanel.BringToFront();
+            _dockPanel.DocumentStyle = DocumentStyle.DockingWindow;
+            _dockPanel.Dock = DockStyle.Fill;
+            _dockPanel.Theme = new VS2015BlueTheme();
+
+            _dockPanel.BringToFront();
         }
 
         protected override void OnShown(EventArgs e)
@@ -46,23 +48,21 @@ namespace MeterKnife.App.Lite
             var dialog = new InterfaceSelectorDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _CarePort = dialog.CarePort;
-                _PortLabel.Text = dialog.IsSerial ? 
-                    string.Format("COM{0}", dialog.CarePort) :
-                    string.Format("IPAddress:{0}", dialog.CarePort);
+                _carePort = dialog.CarePort;
+                _PortLabel.Text = dialog.IsSerial ? $"COM{dialog.CarePort}" : $"IPAddress:{dialog.CarePort}";
                 AddMeterView();
             }
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            foreach (var dockContent in _DockPanel.Documents)
+            foreach (var dockContent in _dockPanel.Documents)
             {
                 var collectView = dockContent as MeterView;
                 if (collectView != null && !collectView.IsSaved)
                 {
-                    var sr = MessageBox.Show(this, string.Format("{0}有数据未保存，是否仍然关闭？", collectView.Text),
-                        string.Format("{0}未保存", collectView.Text),
+                    var sr = MessageBox.Show(this, $"{collectView.Text}有数据未保存，是否仍然关闭？",
+                        $"{collectView.Text}未保存",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (sr == DialogResult.No)
                     {
@@ -89,29 +89,29 @@ namespace MeterKnife.App.Lite
         {
             Dictionary<CommPort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
             List<int> gpibList;
-            if (!dic.TryGetValue(_CarePort, out gpibList))
+            if (!dic.TryGetValue(_carePort, out gpibList))
             {
                 gpibList = new List<int>();
-                dic.Add(_CarePort, gpibList);
+                dic.Add(_carePort, gpibList);
             }
 
             var dialog = new AddMeterLiteDialog();
             dialog.GpibList.AddRange(gpibList);
-            dialog.Port = _CarePort;
+            dialog.Port = _carePort;
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var meterView = DI.Get<DigitMultiMeterView>();
                 meterView.SetMeter(dialog.Port, dialog.Meter);
                 meterView.Text = dialog.Meter.AbbrName;
-                meterView.Show(_DockPanel, DockState.Document);
-                dic[_CarePort].Add(dialog.GpibAddress);
+                meterView.Show(_dockPanel, DockState.Document);
+                dic[_carePort].Add(dialog.GpibAddress);
             }
         }
 
         private void _CareOptionMenuItem_Click(object sender, EventArgs e)
         {
-            var dialog = new CareParameterDialog(_CarePort);
+            var dialog = new CareParameterDialog(_carePort);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
             }

@@ -34,7 +34,6 @@ namespace MeterKnife.Scpis
             this._CancelButton = new System.Windows.Forms.Button();
             this._ConfirmButton = new System.Windows.Forms.Button();
             this._Panel = new System.Windows.Forms.Panel();
-            this._Tree = new MeterKnife.Scpis.ScpiTree.SubjectFileTree();
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
             this._NewInstrumentToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._NewSubjectToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -47,6 +46,7 @@ namespace MeterKnife.Scpis
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._ExportButton = new System.Windows.Forms.ToolStripButton();
             this._ImportButton = new System.Windows.Forms.ToolStripButton();
+            this._Tree = new MeterKnife.Scpis.ScpiTree.SubjectFileTree();
             this._Panel.SuspendLayout();
             this._ToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +55,7 @@ namespace MeterKnife.Scpis
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(266, 459);
+            this._CancelButton.Location = new System.Drawing.Point(163, 484);
             this._CancelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(87, 35);
@@ -67,7 +67,7 @@ namespace MeterKnife.Scpis
             // _ConfirmButton
             // 
             this._ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._ConfirmButton.Location = new System.Drawing.Point(171, 459);
+            this._ConfirmButton.Location = new System.Drawing.Point(68, 484);
             this._ConfirmButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ConfirmButton.Name = "_ConfirmButton";
             this._ConfirmButton.Size = new System.Drawing.Size(87, 35);
@@ -87,22 +87,8 @@ namespace MeterKnife.Scpis
             this._Panel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._Panel.Name = "_Panel";
             this._Panel.Padding = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this._Panel.Size = new System.Drawing.Size(364, 452);
+            this._Panel.Size = new System.Drawing.Size(261, 477);
             this._Panel.TabIndex = 3;
-            // 
-            // _Tree
-            // 
-            this._Tree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._Tree.FullRowSelect = true;
-            this._Tree.ImageIndex = 0;
-            this._Tree.ItemHeight = 22;
-            this._Tree.Location = new System.Drawing.Point(6, 32);
-            this._Tree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this._Tree.Name = "_Tree";
-            this._Tree.SelectedImageIndex = 0;
-            this._Tree.ShowLines = false;
-            this._Tree.Size = new System.Drawing.Size(352, 413);
-            this._Tree.TabIndex = 0;
             // 
             // _ToolStrip
             // 
@@ -120,7 +106,7 @@ namespace MeterKnife.Scpis
             this._ImportButton});
             this._ToolStrip.Location = new System.Drawing.Point(6, 7);
             this._ToolStrip.Name = "_ToolStrip";
-            this._ToolStrip.Size = new System.Drawing.Size(352, 25);
+            this._ToolStrip.Size = new System.Drawing.Size(249, 25);
             this._ToolStrip.TabIndex = 0;
             this._ToolStrip.Text = "toolStrip1";
             // 
@@ -221,13 +207,27 @@ namespace MeterKnife.Scpis
             this._ImportButton.Text = "导入";
             this._ImportButton.Click += new System.EventHandler(this._ImportButton_Click);
             // 
+            // _Tree
+            // 
+            this._Tree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._Tree.FullRowSelect = true;
+            this._Tree.ImageIndex = 0;
+            this._Tree.ItemHeight = 22;
+            this._Tree.Location = new System.Drawing.Point(6, 32);
+            this._Tree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._Tree.Name = "_Tree";
+            this._Tree.SelectedImageIndex = 0;
+            this._Tree.ShowLines = false;
+            this._Tree.Size = new System.Drawing.Size(249, 438);
+            this._Tree.TabIndex = 0;
+            // 
             // InstrumentScpiGroupTreeDialog
             // 
             this.AcceptButton = this._ConfirmButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(364, 505);
+            this.ClientSize = new System.Drawing.Size(261, 530);
             this.Controls.Add(this._Panel);
             this.Controls.Add(this._ConfirmButton);
             this.Controls.Add(this._CancelButton);
