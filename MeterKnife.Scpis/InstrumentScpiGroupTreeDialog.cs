@@ -141,7 +141,7 @@ namespace MeterKnife.Scpis
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UpdateTreeNodes();
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     MessageBox.Show(this, "文件删除异常，您是否有其他软件打开该指令集文件。", "无法删除",
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

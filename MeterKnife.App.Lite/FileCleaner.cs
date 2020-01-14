@@ -29,7 +29,7 @@ namespace MeterKnife.App.Lite
                         File.Delete(file);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Splasher.Status = ("删除过时程序文件异常:" + file);
             }
