@@ -62,6 +62,7 @@
             // _FiguredDataPropertyGrid
             // 
             this._FiguredDataPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._FiguredDataPropertyGrid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._FiguredDataPropertyGrid.HelpVisible = false;
             this._FiguredDataPropertyGrid.Location = new System.Drawing.Point(0, 25);
             this._FiguredDataPropertyGrid.Name = "_FiguredDataPropertyGrid";

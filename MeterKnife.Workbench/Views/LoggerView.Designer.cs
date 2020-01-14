@@ -34,10 +34,11 @@ namespace MeterKnife.Workbench.Views
             // 
             // LoggerView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 262);
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.ClientSize = new System.Drawing.Size(915, 343);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LoggerView";
             this.Text = "运行日志";
             this.ResumeLayout(false);

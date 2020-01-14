@@ -37,25 +37,29 @@
             // 
             // _ProgressBar
             // 
-            this._ProgressBar.Location = new System.Drawing.Point(15, 23);
+            this._ProgressBar.Location = new System.Drawing.Point(17, 30);
+            this._ProgressBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ProgressBar.Name = "_ProgressBar";
-            this._ProgressBar.Size = new System.Drawing.Size(297, 26);
+            this._ProgressBar.Size = new System.Drawing.Size(346, 34);
             this._ProgressBar.TabIndex = 0;
             // 
             // _GroupBox
             // 
             this._GroupBox.Controls.Add(this._ProgressBar);
-            this._GroupBox.Location = new System.Drawing.Point(31, 15);
+            this._GroupBox.Location = new System.Drawing.Point(36, 20);
+            this._GroupBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._GroupBox.Name = "_GroupBox";
-            this._GroupBox.Size = new System.Drawing.Size(327, 61);
+            this._GroupBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._GroupBox.Size = new System.Drawing.Size(381, 80);
             this._GroupBox.TabIndex = 2;
             this._GroupBox.TabStop = false;
             // 
             // _ConfirmButton
             // 
-            this._ConfirmButton.Location = new System.Drawing.Point(265, 127);
+            this._ConfirmButton.Location = new System.Drawing.Point(309, 166);
+            this._ConfirmButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ConfirmButton.Name = "_ConfirmButton";
-            this._ConfirmButton.Size = new System.Drawing.Size(93, 29);
+            this._ConfirmButton.Size = new System.Drawing.Size(108, 38);
             this._ConfirmButton.TabIndex = 0;
             this._ConfirmButton.Text = "确定";
             this._ConfirmButton.UseVisualStyleBackColor = true;
@@ -63,24 +67,27 @@
             // 
             // _PathTextBox
             // 
-            this._PathTextBox.Location = new System.Drawing.Point(31, 85);
+            this._PathTextBox.Location = new System.Drawing.Point(36, 111);
+            this._PathTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._PathTextBox.Multiline = true;
             this._PathTextBox.Name = "_PathTextBox";
             this._PathTextBox.ReadOnly = true;
             this._PathTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._PathTextBox.Size = new System.Drawing.Size(327, 36);
+            this._PathTextBox.Size = new System.Drawing.Size(381, 46);
             this._PathTextBox.TabIndex = 1;
             // 
             // ExportProgressDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 168);
+            this.ClientSize = new System.Drawing.Size(457, 220);
             this.ControlBox = false;
             this.Controls.Add(this._PathTextBox);
             this.Controls.Add(this._ConfirmButton);
             this.Controls.Add(this._GroupBox);
-            this.MinimumSize = new System.Drawing.Size(120, 149);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MinimumSize = new System.Drawing.Size(137, 183);
             this.Name = "ExportProgressDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

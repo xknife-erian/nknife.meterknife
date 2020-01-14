@@ -32,8 +32,9 @@ namespace MeterKnife.Workbench.Views
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            MeterKnife.Common.Winforms.Controls.Tree.PCNode pcNode1 = ((MeterKnife.Common.Winforms.Controls.Tree.PCNode)(new System.Windows.Forms.TreeNode("LUKAN-NotePC")));
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InterfaceTreeView));
-            this._MeterTree = new MeterTree();
+            this._MeterTree = new MeterKnife.Common.Winforms.Controls.Tree.MeterTree();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -48,17 +49,25 @@ namespace MeterKnife.Workbench.Views
             this._MeterTree.ImageIndex = 0;
             this._MeterTree.ItemHeight = 22;
             this._MeterTree.Location = new System.Drawing.Point(1, 26);
+            this._MeterTree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._MeterTree.Name = "_MeterTree";
+            pcNode1.ImageKey = "PC";
+            pcNode1.Name = "";
+            pcNode1.SelectedImageKey = "PC";
+            pcNode1.Text = "LUKAN-NotePC";
+            this._MeterTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            pcNode1});
             this._MeterTree.SelectedImageIndex = 0;
             this._MeterTree.ShowLines = false;
-            this._MeterTree.Size = new System.Drawing.Size(282, 313);
+            this._MeterTree.Size = new System.Drawing.Size(329, 424);
             this._MeterTree.TabIndex = 0;
             // 
             // _StatusStrip
             // 
-            this._StatusStrip.Location = new System.Drawing.Point(1, 339);
+            this._StatusStrip.Location = new System.Drawing.Point(1, 450);
             this._StatusStrip.Name = "_StatusStrip";
-            this._StatusStrip.Size = new System.Drawing.Size(282, 22);
+            this._StatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this._StatusStrip.Size = new System.Drawing.Size(329, 22);
             this._StatusStrip.TabIndex = 1;
             // 
             // toolStrip1
@@ -67,7 +76,7 @@ namespace MeterKnife.Workbench.Views
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(1, 1);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(282, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(329, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -82,13 +91,14 @@ namespace MeterKnife.Workbench.Views
             // 
             // InterfaceTreeView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 362);
+            this.ClientSize = new System.Drawing.Size(331, 473);
             this.Controls.Add(this._MeterTree);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this._StatusStrip);
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "InterfaceTreeView";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Text = "仪器列表";

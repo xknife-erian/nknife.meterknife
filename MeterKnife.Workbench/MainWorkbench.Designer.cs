@@ -49,11 +49,11 @@
             this._InterfaceTreeViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._DataManagerViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CommandConsoleViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._LoggerViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this._ResetViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._ResetViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StripContainer.BottomToolStripPanel.SuspendLayout();
             this._StripContainer.TopToolStripPanel.SuspendLayout();
             this._StripContainer.SuspendLayout();
@@ -70,11 +70,13 @@
             // _StripContainer.ContentPanel
             // 
             this._StripContainer.ContentPanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this._StripContainer.ContentPanel.Size = new System.Drawing.Size(784, 515);
+            this._StripContainer.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._StripContainer.ContentPanel.Size = new System.Drawing.Size(922, 665);
             this._StripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._StripContainer.Location = new System.Drawing.Point(0, 0);
+            this._StripContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._StripContainer.Name = "_StripContainer";
-            this._StripContainer.Size = new System.Drawing.Size(784, 562);
+            this._StripContainer.Size = new System.Drawing.Size(922, 712);
             this._StripContainer.TabIndex = 0;
             // 
             // _StripContainer.TopToolStripPanel
@@ -86,7 +88,7 @@
             this._StatusStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._StatusStrip.Location = new System.Drawing.Point(0, 0);
             this._StatusStrip.Name = "_StatusStrip";
-            this._StatusStrip.Size = new System.Drawing.Size(784, 22);
+            this._StatusStrip.Size = new System.Drawing.Size(922, 22);
             this._StatusStrip.TabIndex = 0;
             // 
             // _MenuStrip
@@ -100,7 +102,7 @@
             this._HelpMenuItem});
             this._MenuStrip.Location = new System.Drawing.Point(0, 0);
             this._MenuStrip.Name = "_MenuStrip";
-            this._MenuStrip.Size = new System.Drawing.Size(784, 25);
+            this._MenuStrip.Size = new System.Drawing.Size(922, 25);
             this._MenuStrip.TabIndex = 0;
             this._MenuStrip.Text = "menuStrip1";
             // 
@@ -221,7 +223,7 @@
             this._InterfaceTreeViewMenuItem.CheckOnClick = true;
             this._InterfaceTreeViewMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this._InterfaceTreeViewMenuItem.Name = "_InterfaceTreeViewMenuItem";
-            this._InterfaceTreeViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._InterfaceTreeViewMenuItem.Size = new System.Drawing.Size(136, 22);
             this._InterfaceTreeViewMenuItem.Text = "仪器列表";
             // 
             // _DataManagerViewMenuItem
@@ -230,7 +232,7 @@
             this._DataManagerViewMenuItem.CheckOnClick = true;
             this._DataManagerViewMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this._DataManagerViewMenuItem.Name = "_DataManagerViewMenuItem";
-            this._DataManagerViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._DataManagerViewMenuItem.Size = new System.Drawing.Size(136, 22);
             this._DataManagerViewMenuItem.Text = "数据管理器";
             // 
             // _CommandConsoleViewMenuItem
@@ -239,20 +241,26 @@
             this._CommandConsoleViewMenuItem.CheckOnClick = true;
             this._CommandConsoleViewMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this._CommandConsoleViewMenuItem.Name = "_CommandConsoleViewMenuItem";
-            this._CommandConsoleViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._CommandConsoleViewMenuItem.Size = new System.Drawing.Size(136, 22);
             this._CommandConsoleViewMenuItem.Text = "命令控制台";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // _LoggerViewMenuItem
             // 
             this._LoggerViewMenuItem.CheckOnClick = true;
             this._LoggerViewMenuItem.Name = "_LoggerViewMenuItem";
-            this._LoggerViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._LoggerViewMenuItem.Size = new System.Drawing.Size(136, 22);
             this._LoggerViewMenuItem.Text = "程序日志";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(133, 6);
+            // 
+            // _ResetViewMenuItem
+            // 
+            this._ResetViewMenuItem.Name = "_ResetViewMenuItem";
+            this._ResetViewMenuItem.Size = new System.Drawing.Size(136, 22);
+            this._ResetViewMenuItem.Text = "重置视图";
             // 
             // _HelpMenuItem
             // 
@@ -269,20 +277,15 @@
             this._AboutMenuItem.Text = "关于(&A)...";
             this._AboutMenuItem.Click += new System.EventHandler(this._AboutMenuItem_Click);
             // 
-            // _ResetViewMenuItem
-            // 
-            this._ResetViewMenuItem.Name = "_ResetViewMenuItem";
-            this._ResetViewMenuItem.Size = new System.Drawing.Size(152, 22);
-            this._ResetViewMenuItem.Text = "重置视图";
-            // 
             // MainWorkbench
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(922, 712);
             this.Controls.Add(this._StripContainer);
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.MainMenuStrip = this._MenuStrip;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainWorkbench";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainWorkbench";

@@ -37,23 +37,25 @@
             this._Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this._Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this._Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._Panel.Location = new System.Drawing.Point(8, 8);
+            this._Panel.Location = new System.Drawing.Point(9, 10);
+            this._Panel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._Panel.Name = "_Panel";
             this._Panel.RowCount = 1;
             this._Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this._Panel.Size = new System.Drawing.Size(254, 335);
+            this._Panel.Size = new System.Drawing.Size(297, 439);
             this._Panel.TabIndex = 0;
             // 
             // BaseParamPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._Panel);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "BaseParamPanel";
-            this.Padding = new System.Windows.Forms.Padding(8);
-            this.Size = new System.Drawing.Size(270, 351);
+            this.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.Size = new System.Drawing.Size(315, 459);
             this.ResumeLayout(false);
 
         }

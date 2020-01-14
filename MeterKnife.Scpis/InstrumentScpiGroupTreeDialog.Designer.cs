@@ -55,9 +55,10 @@ namespace MeterKnife.Scpis
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(228, 351);
+            this._CancelButton.Location = new System.Drawing.Point(266, 459);
+            this._CancelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._CancelButton.Name = "_CancelButton";
-            this._CancelButton.Size = new System.Drawing.Size(75, 27);
+            this._CancelButton.Size = new System.Drawing.Size(87, 35);
             this._CancelButton.TabIndex = 1;
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
@@ -66,9 +67,10 @@ namespace MeterKnife.Scpis
             // _ConfirmButton
             // 
             this._ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._ConfirmButton.Location = new System.Drawing.Point(147, 351);
+            this._ConfirmButton.Location = new System.Drawing.Point(171, 459);
+            this._ConfirmButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ConfirmButton.Name = "_ConfirmButton";
-            this._ConfirmButton.Size = new System.Drawing.Size(75, 27);
+            this._ConfirmButton.Size = new System.Drawing.Size(87, 35);
             this._ConfirmButton.TabIndex = 2;
             this._ConfirmButton.Text = "确定";
             this._ConfirmButton.UseVisualStyleBackColor = true;
@@ -82,9 +84,10 @@ namespace MeterKnife.Scpis
             this._Panel.Controls.Add(this._Tree);
             this._Panel.Controls.Add(this._ToolStrip);
             this._Panel.Location = new System.Drawing.Point(0, 0);
+            this._Panel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._Panel.Name = "_Panel";
-            this._Panel.Padding = new System.Windows.Forms.Padding(5);
-            this._Panel.Size = new System.Drawing.Size(312, 346);
+            this._Panel.Padding = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this._Panel.Size = new System.Drawing.Size(364, 452);
             this._Panel.TabIndex = 3;
             // 
             // _Tree
@@ -93,11 +96,12 @@ namespace MeterKnife.Scpis
             this._Tree.FullRowSelect = true;
             this._Tree.ImageIndex = 0;
             this._Tree.ItemHeight = 22;
-            this._Tree.Location = new System.Drawing.Point(5, 30);
+            this._Tree.Location = new System.Drawing.Point(6, 32);
+            this._Tree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._Tree.Name = "_Tree";
             this._Tree.SelectedImageIndex = 0;
             this._Tree.ShowLines = false;
-            this._Tree.Size = new System.Drawing.Size(302, 311);
+            this._Tree.Size = new System.Drawing.Size(352, 413);
             this._Tree.TabIndex = 0;
             // 
             // _ToolStrip
@@ -114,9 +118,9 @@ namespace MeterKnife.Scpis
             this.toolStripSeparator3,
             this._ExportButton,
             this._ImportButton});
-            this._ToolStrip.Location = new System.Drawing.Point(5, 5);
+            this._ToolStrip.Location = new System.Drawing.Point(6, 7);
             this._ToolStrip.Name = "_ToolStrip";
-            this._ToolStrip.Size = new System.Drawing.Size(302, 25);
+            this._ToolStrip.Size = new System.Drawing.Size(352, 25);
             this._ToolStrip.TabIndex = 0;
             this._ToolStrip.Text = "toolStrip1";
             // 
@@ -220,15 +224,18 @@ namespace MeterKnife.Scpis
             // InstrumentScpiGroupTreeDialog
             // 
             this.AcceptButton = this._ConfirmButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(312, 386);
+            this.ClientSize = new System.Drawing.Size(364, 505);
             this.Controls.Add(this._Panel);
             this.Controls.Add(this._ConfirmButton);
             this.Controls.Add(this._CancelButton);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(137, 171);
             this.Name = "InstrumentScpiGroupTreeDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

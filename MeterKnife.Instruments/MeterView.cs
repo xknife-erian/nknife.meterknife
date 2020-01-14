@@ -43,5 +43,18 @@ namespace MeterKnife.Instruments
                 map.Remove(_Meter);
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // MeterView
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Name = "MeterView";
+            this.ResumeLayout(false);
+
+        }
     }
 }

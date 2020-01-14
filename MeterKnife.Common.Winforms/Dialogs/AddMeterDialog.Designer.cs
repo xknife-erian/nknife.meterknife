@@ -56,23 +56,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._GroupBox.Controls.Add(this._NumberBox);
             this._GroupBox.Controls.Add(this.label1);
-            this._GroupBox.Location = new System.Drawing.Point(12, 13);
+            this._GroupBox.Location = new System.Drawing.Point(14, 17);
+            this._GroupBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._GroupBox.Name = "_GroupBox";
-            this._GroupBox.Size = new System.Drawing.Size(282, 61);
+            this._GroupBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._GroupBox.Size = new System.Drawing.Size(329, 80);
             this._GroupBox.TabIndex = 0;
             this._GroupBox.TabStop = false;
             // 
             // _NumberBox
             // 
             this._NumberBox.Font = new System.Drawing.Font("Tahoma", 11F);
-            this._NumberBox.Location = new System.Drawing.Point(109, 20);
+            this._NumberBox.Location = new System.Drawing.Point(127, 27);
+            this._NumberBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._NumberBox.Maximum = new decimal(new int[] {
             31,
             0,
             0,
             0});
             this._NumberBox.Name = "_NumberBox";
-            this._NumberBox.Size = new System.Drawing.Size(144, 25);
+            this._NumberBox.Size = new System.Drawing.Size(168, 25);
             this._NumberBox.TabIndex = 0;
             this._NumberBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._NumberBox.Value = new decimal(new int[] {
@@ -86,9 +89,9 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 26);
+            this.label1.Location = new System.Drawing.Point(26, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.Size = new System.Drawing.Size(91, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "GPIB Address:";
             // 
@@ -96,9 +99,10 @@
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(211, 275);
+            this._CancelButton.Location = new System.Drawing.Point(246, 345);
+            this._CancelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._CancelButton.Name = "_CancelButton";
-            this._CancelButton.Size = new System.Drawing.Size(83, 28);
+            this._CancelButton.Size = new System.Drawing.Size(97, 36);
             this._CancelButton.TabIndex = 5;
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
@@ -106,9 +110,10 @@
             // _AcceptButton
             // 
             this._AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._AcceptButton.Location = new System.Drawing.Point(122, 275);
+            this._AcceptButton.Location = new System.Drawing.Point(142, 345);
+            this._AcceptButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._AcceptButton.Name = "_AcceptButton";
-            this._AcceptButton.Size = new System.Drawing.Size(83, 28);
+            this._AcceptButton.Size = new System.Drawing.Size(97, 36);
             this._AcceptButton.TabIndex = 4;
             this._AcceptButton.Text = "确认";
             this._AcceptButton.UseVisualStyleBackColor = true;
@@ -121,9 +126,11 @@
             this.groupBox1.Controls.Add(this._Fluke8840Radiobox);
             this.groupBox1.Controls.Add(this._HP3478RadioBox);
             this.groupBox1.Controls.Add(this._StandardScpiRadiobox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 80);
+            this.groupBox1.Location = new System.Drawing.Point(14, 104);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 88);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(329, 115);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "语言选择";
@@ -132,9 +139,10 @@
             // 
             this._AdvantestRadiobox.AutoSize = true;
             this._AdvantestRadiobox.Enabled = false;
-            this._AdvantestRadiobox.Location = new System.Drawing.Point(148, 49);
+            this._AdvantestRadiobox.Location = new System.Drawing.Point(173, 64);
+            this._AdvantestRadiobox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._AdvantestRadiobox.Name = "_AdvantestRadiobox";
-            this._AdvantestRadiobox.Size = new System.Drawing.Size(75, 17);
+            this._AdvantestRadiobox.Size = new System.Drawing.Size(83, 21);
             this._AdvantestRadiobox.TabIndex = 3;
             this._AdvantestRadiobox.Text = "Advantest";
             this._AdvantestRadiobox.UseVisualStyleBackColor = true;
@@ -143,9 +151,10 @@
             // 
             this._Fluke8840Radiobox.AutoSize = true;
             this._Fluke8840Radiobox.Enabled = false;
-            this._Fluke8840Radiobox.Location = new System.Drawing.Point(25, 49);
+            this._Fluke8840Radiobox.Location = new System.Drawing.Point(29, 64);
+            this._Fluke8840Radiobox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._Fluke8840Radiobox.Name = "_Fluke8840Radiobox";
-            this._Fluke8840Radiobox.Size = new System.Drawing.Size(102, 17);
+            this._Fluke8840Radiobox.Size = new System.Drawing.Size(117, 21);
             this._Fluke8840Radiobox.TabIndex = 2;
             this._Fluke8840Radiobox.Text = "Fluke8840/8842";
             this._Fluke8840Radiobox.UseVisualStyleBackColor = true;
@@ -154,9 +163,10 @@
             // 
             this._HP3478RadioBox.AutoSize = true;
             this._HP3478RadioBox.Enabled = false;
-            this._HP3478RadioBox.Location = new System.Drawing.Point(148, 29);
+            this._HP3478RadioBox.Location = new System.Drawing.Point(173, 38);
+            this._HP3478RadioBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._HP3478RadioBox.Name = "_HP3478RadioBox";
-            this._HP3478RadioBox.Size = new System.Drawing.Size(62, 17);
+            this._HP3478RadioBox.Size = new System.Drawing.Size(70, 21);
             this._HP3478RadioBox.TabIndex = 1;
             this._HP3478RadioBox.Text = "HP3478";
             this._HP3478RadioBox.UseVisualStyleBackColor = true;
@@ -165,9 +175,10 @@
             // 
             this._StandardScpiRadiobox.AutoSize = true;
             this._StandardScpiRadiobox.Checked = true;
-            this._StandardScpiRadiobox.Location = new System.Drawing.Point(25, 29);
+            this._StandardScpiRadiobox.Location = new System.Drawing.Point(29, 38);
+            this._StandardScpiRadiobox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._StandardScpiRadiobox.Name = "_StandardScpiRadiobox";
-            this._StandardScpiRadiobox.Size = new System.Drawing.Size(72, 17);
+            this._StandardScpiRadiobox.Size = new System.Drawing.Size(76, 21);
             this._StandardScpiRadiobox.TabIndex = 0;
             this._StandardScpiRadiobox.TabStop = true;
             this._StandardScpiRadiobox.Text = "标准SCPI";
@@ -182,52 +193,57 @@
             this._MeterTypeGroupBox.Controls.Add(this.label2);
             this._MeterTypeGroupBox.Controls.Add(this._MeterBrandComboBox);
             this._MeterTypeGroupBox.Controls.Add(this._MeterTypeComboBox);
-            this._MeterTypeGroupBox.Location = new System.Drawing.Point(12, 179);
+            this._MeterTypeGroupBox.Location = new System.Drawing.Point(14, 234);
+            this._MeterTypeGroupBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._MeterTypeGroupBox.Name = "_MeterTypeGroupBox";
-            this._MeterTypeGroupBox.Size = new System.Drawing.Size(282, 87);
+            this._MeterTypeGroupBox.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._MeterTypeGroupBox.Size = new System.Drawing.Size(329, 103);
             this._MeterTypeGroupBox.TabIndex = 2;
             this._MeterTypeGroupBox.TabStop = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(136, 25);
+            this.label3.Location = new System.Drawing.Point(159, 33);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(35, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "型号:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 25);
+            this.label2.Location = new System.Drawing.Point(13, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(35, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "品牌:";
             // 
             // _MeterBrandComboBox
             // 
             this._MeterBrandComboBox.FormattingEnabled = true;
-            this._MeterBrandComboBox.Location = new System.Drawing.Point(11, 43);
+            this._MeterBrandComboBox.Location = new System.Drawing.Point(13, 56);
+            this._MeterBrandComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._MeterBrandComboBox.Name = "_MeterBrandComboBox";
-            this._MeterBrandComboBox.Size = new System.Drawing.Size(122, 21);
+            this._MeterBrandComboBox.Size = new System.Drawing.Size(142, 25);
             this._MeterBrandComboBox.TabIndex = 0;
             // 
             // _MeterTypeComboBox
             // 
             this._MeterTypeComboBox.FormattingEnabled = true;
-            this._MeterTypeComboBox.Location = new System.Drawing.Point(139, 43);
+            this._MeterTypeComboBox.Location = new System.Drawing.Point(162, 56);
+            this._MeterTypeComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._MeterTypeComboBox.Name = "_MeterTypeComboBox";
-            this._MeterTypeComboBox.Size = new System.Drawing.Size(135, 21);
+            this._MeterTypeComboBox.Size = new System.Drawing.Size(157, 25);
             this._MeterTypeComboBox.TabIndex = 1;
             // 
             // _AutoFindMeterCheckbox
             // 
             this._AutoFindMeterCheckbox.AutoSize = true;
-            this._AutoFindMeterCheckbox.Location = new System.Drawing.Point(23, 178);
+            this._AutoFindMeterCheckbox.Location = new System.Drawing.Point(27, 233);
+            this._AutoFindMeterCheckbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._AutoFindMeterCheckbox.Name = "_AutoFindMeterCheckbox";
-            this._AutoFindMeterCheckbox.Size = new System.Drawing.Size(122, 17);
+            this._AutoFindMeterCheckbox.Size = new System.Drawing.Size(123, 21);
             this._AutoFindMeterCheckbox.TabIndex = 3;
             this._AutoFindMeterCheckbox.Text = "自动确认仪器类型";
             this._AutoFindMeterCheckbox.UseVisualStyleBackColor = true;
@@ -235,17 +251,18 @@
             // AddMeterDialog
             // 
             this.AcceptButton = this._AcceptButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(306, 326);
+            this.ClientSize = new System.Drawing.Size(357, 394);
             this.Controls.Add(this._AutoFindMeterCheckbox);
             this.Controls.Add(this._MeterTypeGroupBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._AcceptButton);
             this.Controls.Add(this._CancelButton);
             this.Controls.Add(this._GroupBox);
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddMeterDialog";

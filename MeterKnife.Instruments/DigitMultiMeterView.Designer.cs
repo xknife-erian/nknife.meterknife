@@ -201,6 +201,7 @@ namespace MeterKnife.Instruments
             this._MainTabControl.Controls.Add(this._DataGridPage);
             this._MainTabControl.Controls.Add(this._FeaturesPage);
             this._MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._MainTabControl.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._MainTabControl.ItemSize = new System.Drawing.Size(100, 30);
             this._MainTabControl.Location = new System.Drawing.Point(0, 37);
             this._MainTabControl.Name = "_MainTabControl";
@@ -211,6 +212,7 @@ namespace MeterKnife.Instruments
             // 
             // _PlotPage
             // 
+            this._PlotPage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._PlotPage.Location = new System.Drawing.Point(4, 34);
             this._PlotPage.Name = "_PlotPage";
             this._PlotPage.Padding = new System.Windows.Forms.Padding(3);
@@ -313,6 +315,7 @@ namespace MeterKnife.Instruments
             // _TempFeaturesPanel
             // 
             this._TempFeaturesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._TempFeaturesPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._TempFeaturesPanel.Location = new System.Drawing.Point(0, 0);
             this._TempFeaturesPanel.Name = "_TempFeaturesPanel";
             this._TempFeaturesPanel.Size = new System.Drawing.Size(345, 200);
@@ -321,6 +324,7 @@ namespace MeterKnife.Instruments
             // _SdPanel
             // 
             this._SdPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._SdPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._SdPanel.Location = new System.Drawing.Point(0, 0);
             this._SdPanel.Name = "_SdPanel";
             this._SdPanel.Size = new System.Drawing.Size(326, 200);
@@ -329,6 +333,7 @@ namespace MeterKnife.Instruments
             // _TempTrendPanel
             // 
             this._TempTrendPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._TempTrendPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._TempTrendPanel.Location = new System.Drawing.Point(0, 0);
             this._TempTrendPanel.Name = "_TempTrendPanel";
             this._TempTrendPanel.Size = new System.Drawing.Size(675, 197);

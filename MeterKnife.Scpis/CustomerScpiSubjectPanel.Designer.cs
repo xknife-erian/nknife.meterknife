@@ -32,23 +32,23 @@ namespace MeterKnife.Scpis
         private void InitializeComponent()
         {
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
+            this._OpenButton = new System.Windows.Forms.ToolStripButton();
+            this._SaveButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this._AddButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this._AddInitButton = new System.Windows.Forms.ToolStripMenuItem();
+            this._AddCollectButton = new System.Windows.Forms.ToolStripMenuItem();
+            this._DeleteButton = new System.Windows.Forms.ToolStripButton();
+            this._EditButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._DownButton = new System.Windows.Forms.ToolStripButton();
+            this._UpButton = new System.Windows.Forms.ToolStripButton();
             this._ListView = new System.Windows.Forms.ListView();
             this._NumHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._CommandHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._TimeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._StripLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this._OpenButton = new System.Windows.Forms.ToolStripButton();
-            this._SaveButton = new System.Windows.Forms.ToolStripButton();
-            this._AddButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this._AddInitButton = new System.Windows.Forms.ToolStripMenuItem();
-            this._AddCollectButton = new System.Windows.Forms.ToolStripMenuItem();
-            this._DeleteButton = new System.Windows.Forms.ToolStripButton();
-            this._EditButton = new System.Windows.Forms.ToolStripButton();
-            this._DownButton = new System.Windows.Forms.ToolStripButton();
-            this._UpButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._ToolStrip.SuspendLayout();
             this._StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -70,53 +70,6 @@ namespace MeterKnife.Scpis
             this._ToolStrip.Size = new System.Drawing.Size(251, 25);
             this._ToolStrip.TabIndex = 0;
             // 
-            // _ListView
-            // 
-            this._ListView.CheckBoxes = true;
-            this._ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this._NumHeader,
-            this._CommandHeader,
-            this._TimeHeader});
-            this._ListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ListView.FullRowSelect = true;
-            this._ListView.GridLines = true;
-            this._ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this._ListView.Location = new System.Drawing.Point(0, 25);
-            this._ListView.MultiSelect = false;
-            this._ListView.Name = "_ListView";
-            this._ListView.Size = new System.Drawing.Size(251, 224);
-            this._ListView.TabIndex = 1;
-            this._ListView.UseCompatibleStateImageBehavior = false;
-            this._ListView.View = System.Windows.Forms.View.Details;
-            // 
-            // _NumHeader
-            // 
-            this._NumHeader.Text = "";
-            this._NumHeader.Width = 20;
-            // 
-            // _CommandHeader
-            // 
-            this._CommandHeader.Text = "指令";
-            this._CommandHeader.Width = 160;
-            // 
-            // _TimeHeader
-            // 
-            this._TimeHeader.Text = "时长(ms)";
-            // 
-            // _StatusStrip
-            // 
-            this._StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._StripLabel});
-            this._StatusStrip.Location = new System.Drawing.Point(0, 249);
-            this._StatusStrip.Name = "_StatusStrip";
-            this._StatusStrip.Size = new System.Drawing.Size(251, 22);
-            this._StatusStrip.TabIndex = 2;
-            // 
-            // _StripLabel
-            // 
-            this._StripLabel.Name = "_StripLabel";
-            this._StripLabel.Size = new System.Drawing.Size(0, 17);
-            // 
             // _OpenButton
             // 
             this._OpenButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -137,6 +90,11 @@ namespace MeterKnife.Scpis
             this._SaveButton.Text = "保存指令集";
             this._SaveButton.Click += new System.EventHandler(this._SaveButton_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // _AddButton
             // 
             this._AddButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -152,14 +110,14 @@ namespace MeterKnife.Scpis
             // _AddInitButton
             // 
             this._AddInitButton.Name = "_AddInitButton";
-            this._AddInitButton.Size = new System.Drawing.Size(152, 22);
+            this._AddInitButton.Size = new System.Drawing.Size(124, 22);
             this._AddInitButton.Text = "初始指令";
             this._AddInitButton.Click += new System.EventHandler(this._AddInitButton_Click);
             // 
             // _AddCollectButton
             // 
             this._AddCollectButton.Name = "_AddCollectButton";
-            this._AddCollectButton.Size = new System.Drawing.Size(152, 22);
+            this._AddCollectButton.Size = new System.Drawing.Size(124, 22);
             this._AddCollectButton.Text = "采集指令";
             this._AddCollectButton.Click += new System.EventHandler(this._AddCollectButton_Click);
             // 
@@ -183,6 +141,11 @@ namespace MeterKnife.Scpis
             this._EditButton.Text = "编辑指令";
             this._EditButton.Click += new System.EventHandler(this._EditButton_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // _DownButton
             // 
             this._DownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -203,15 +166,55 @@ namespace MeterKnife.Scpis
             this._UpButton.Text = "将指令上移";
             this._UpButton.Click += new System.EventHandler(this._UpButton_Click);
             // 
-            // toolStripSeparator1
+            // _ListView
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this._ListView.CheckBoxes = true;
+            this._ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._NumHeader,
+            this._CommandHeader,
+            this._TimeHeader});
+            this._ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ListView.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._ListView.FullRowSelect = true;
+            this._ListView.GridLines = true;
+            this._ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this._ListView.HideSelection = false;
+            this._ListView.Location = new System.Drawing.Point(0, 25);
+            this._ListView.MultiSelect = false;
+            this._ListView.Name = "_ListView";
+            this._ListView.Size = new System.Drawing.Size(251, 224);
+            this._ListView.TabIndex = 1;
+            this._ListView.UseCompatibleStateImageBehavior = false;
+            this._ListView.View = System.Windows.Forms.View.Details;
             // 
-            // toolStripSeparator2
+            // _NumHeader
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this._NumHeader.Text = "";
+            this._NumHeader.Width = 20;
+            // 
+            // _CommandHeader
+            // 
+            this._CommandHeader.Text = "指令";
+            this._CommandHeader.Width = 148;
+            // 
+            // _TimeHeader
+            // 
+            this._TimeHeader.Text = "时长(ms)";
+            this._TimeHeader.Width = 61;
+            // 
+            // _StatusStrip
+            // 
+            this._StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._StripLabel});
+            this._StatusStrip.Location = new System.Drawing.Point(0, 249);
+            this._StatusStrip.Name = "_StatusStrip";
+            this._StatusStrip.Size = new System.Drawing.Size(251, 22);
+            this._StatusStrip.TabIndex = 2;
+            // 
+            // _StripLabel
+            // 
+            this._StripLabel.Name = "_StripLabel";
+            this._StripLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // CustomerScpiSubjectPanel
             // 

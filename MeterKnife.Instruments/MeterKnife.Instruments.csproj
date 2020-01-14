@@ -118,6 +118,9 @@
     <EmbeddedResource Include="DigitMultiMeterView.resx">
       <DependentUpon>DigitMultiMeterView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MeterView.resx">
+      <DependentUpon>MeterView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
