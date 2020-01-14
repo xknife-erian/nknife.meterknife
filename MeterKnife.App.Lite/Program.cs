@@ -17,17 +17,6 @@ namespace MeterKnife.App.Lite
         [STAThread]
         private static void Main()
         {
-#if !DEBUG
-            // 得到正在运行的例程
-            bool createdNew;
-            var mutex = new System.Threading.Mutex(true, "MeterKnife", out createdNew);
-            if (!createdNew)
-            {
-                System.Windows.Forms.MessageBox.Show("在同一时间内仅支持一个MeterKnife程序进程。", "启动注意:",
-                    System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Hand);
-                return;
-            }
-#endif
             Global.Culture = Common.Properties.Settings.Default.CultureInfoName;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -41,9 +30,6 @@ namespace MeterKnife.App.Lite
 
             MeterKnifeEnvironment.Workbench = new MeterLiteMainForm();
             Application.Run(new MeterKnifeEnvironment());
-#if !DEBUG
-            mutex.ReleaseMutex();
-#endif
         }
     }
 }
