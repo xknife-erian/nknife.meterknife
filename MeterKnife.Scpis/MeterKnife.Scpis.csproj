@@ -38,16 +38,27 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife, Version=17.5.5.1012, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NKnife-DLL\NKnife.dll</HintPath>
+    </Reference>
+    <Reference Include="ScpiKnife">
+      <HintPath>..\NKnife-DLL\ScpiKnife.dll</HintPath>
+    </Reference>
+    <Reference Include="SerialKnife">
+      <HintPath>..\NKnife-DLL\SerialKnife.dll</HintPath>
+    </Reference>
+    <Reference Include="SocketKnife">
+      <HintPath>..\NKnife-DLL\SocketKnife.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -123,6 +134,7 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Scpis\Specified\AdvantestR6551.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -181,14 +193,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
-      <Project>{436E22B8-84A4-49E6-9810-E72FAD37313F}</Project>
-      <Name>NKnife.Scpi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\nknife\NKnife\NKnife.csproj">
-      <Project>{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}</Project>
-      <Name>NKnife</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
       <Project>{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}</Project>
       <Name>MeterKnife.Common</Name>
@@ -220,13 +224,6 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。启用“NuGet 程序包还原”可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

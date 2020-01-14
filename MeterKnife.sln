@@ -1,54 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.App.Professional", "MeterKnife.App.Professional\MeterKnife.App.Professional.csproj", "{3789A4E3-CEFB-415E-8149-CE4F617012D8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Workbench", "MeterKnife.Workbench\MeterKnife.Workbench.csproj", "{9EDECD14-77FE-419C-9323-C00BDB6A07AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Common", "MeterKnife.Common\MeterKnife.Common.csproj", "{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NKnife", "NKnife", "{2F108EA0-F2A3-461B-A9F4-7B8CAE6F1E38}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife", "..\nknife\NKnife\NKnife.csproj", "{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.NLog3", "..\nknife\NKnife.NLog3\NKnife.NLog3.csproj", "{3D1D08D2-46B0-4C33-A214-A5A76A998102}"
+	ProjectSection(SolutionItems) = preProject
+		NKnife-DLL\NKnife.dll = NKnife-DLL\NKnife.dll
+		NKnife-DLL\NKnife.NLog3.dll = NKnife-DLL\NKnife.NLog3.dll
+		NKnife-DLL\ScpiKnife.dll = NKnife-DLL\ScpiKnife.dll
+		NKnife-DLL\SerialKnife.dll = NKnife-DLL\SerialKnife.dll
+		NKnife-DLL\SocketKnife.dll = NKnife-DLL\SocketKnife.dll
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Instruments", "MeterKnife.Instruments\MeterKnife.Instruments.csproj", "{E70DC5A1-2900-4A24-937A-28C86100E077}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Kernel", "MeterKnife.Kernel\MeterKnife.Kernel.csproj", "{8C1D8987-383A-4E9C-B59C-3C3313FDEC3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Serial", "..\nknife\NKnife.Serial\NKnife.Serial.csproj", "{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{895F8B03-6F7D-406D-A730-5C29BB23049F}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Datas", "MeterKnife.Datas\MeterKnife.Datas.csproj", "{A1063F16-2485-4DA5-B0BF-F34F8BEBFFC2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApplication", "DemoApplication\DemoApplication.csproj", "{B5F074E1-0E59-4CC5-83CF-60A51D6C7072}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Scpi", "..\nknife\NKnife.Scpi\NKnife.Scpi.csproj", "{436E22B8-84A4-49E6-9810-E72FAD37313F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Socket", "..\nknife\NKnife.Socket\NKnife.Socket.csproj", "{F3299AC1-2D25-4B91-A4D9-F9C1AB6F0825}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.App.Lite", "MeterKnife.App.Lite\MeterKnife.App.Lite.csproj", "{9F9EC449-1BF5-4BA1-994D-FFEFC09B1528}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.UnitTests", "MeterKnife.UnitTests\MeterKnife.UnitTests.csproj", "{E7531172-7F03-4DEE-ABB9-CF85E9DF501C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Test", ".Test", "{398F045F-835A-4056-9999-4FB3464ACF15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Scpis", "MeterKnife.Scpis\MeterKnife.Scpis.csproj", "{BC6EF4B5-6803-4216-896B-58ABB72F4ACE}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup-Lite", "Setup-Lite\Setup-Lite.vdproj", "{2A7562E4-C2D4-49C8-B18E-A6DC7CF96202}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Common.Winforms", "MeterKnife.Common.Winforms\MeterKnife.Common.Winforms.csproj", "{9F425D32-AEDC-489D-A7EE-140CCABD412B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.UnitTest", "..\nknife\UnitTests\NKnife.UnitTest\NKnife.UnitTest.csproj", "{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,10 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3789A4E3-CEFB-415E-8149-CE4F617012D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3789A4E3-CEFB-415E-8149-CE4F617012D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3789A4E3-CEFB-415E-8149-CE4F617012D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3789A4E3-CEFB-415E-8149-CE4F617012D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9EDECD14-77FE-419C-9323-C00BDB6A07AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9EDECD14-77FE-419C-9323-C00BDB6A07AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EDECD14-77FE-419C-9323-C00BDB6A07AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,14 +40,6 @@ Global
 		{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D1D08D2-46B0-4C33-A214-A5A76A998102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D1D08D2-46B0-4C33-A214-A5A76A998102}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D1D08D2-46B0-4C33-A214-A5A76A998102}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D1D08D2-46B0-4C33-A214-A5A76A998102}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E70DC5A1-2900-4A24-937A-28C86100E077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E70DC5A1-2900-4A24-937A-28C86100E077}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E70DC5A1-2900-4A24-937A-28C86100E077}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -84,60 +48,23 @@ Global
 		{8C1D8987-383A-4E9C-B59C-3C3313FDEC3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C1D8987-383A-4E9C-B59C-3C3313FDEC3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C1D8987-383A-4E9C-B59C-3C3313FDEC3B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1063F16-2485-4DA5-B0BF-F34F8BEBFFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1063F16-2485-4DA5-B0BF-F34F8BEBFFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1063F16-2485-4DA5-B0BF-F34F8BEBFFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1063F16-2485-4DA5-B0BF-F34F8BEBFFC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5F074E1-0E59-4CC5-83CF-60A51D6C7072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5F074E1-0E59-4CC5-83CF-60A51D6C7072}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5F074E1-0E59-4CC5-83CF-60A51D6C7072}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5F074E1-0E59-4CC5-83CF-60A51D6C7072}.Release|Any CPU.Build.0 = Release|Any CPU
-		{436E22B8-84A4-49E6-9810-E72FAD37313F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{436E22B8-84A4-49E6-9810-E72FAD37313F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{436E22B8-84A4-49E6-9810-E72FAD37313F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{436E22B8-84A4-49E6-9810-E72FAD37313F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3299AC1-2D25-4B91-A4D9-F9C1AB6F0825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3299AC1-2D25-4B91-A4D9-F9C1AB6F0825}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3299AC1-2D25-4B91-A4D9-F9C1AB6F0825}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3299AC1-2D25-4B91-A4D9-F9C1AB6F0825}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F9EC449-1BF5-4BA1-994D-FFEFC09B1528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F9EC449-1BF5-4BA1-994D-FFEFC09B1528}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F9EC449-1BF5-4BA1-994D-FFEFC09B1528}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F9EC449-1BF5-4BA1-994D-FFEFC09B1528}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7531172-7F03-4DEE-ABB9-CF85E9DF501C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7531172-7F03-4DEE-ABB9-CF85E9DF501C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7531172-7F03-4DEE-ABB9-CF85E9DF501C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7531172-7F03-4DEE-ABB9-CF85E9DF501C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC6EF4B5-6803-4216-896B-58ABB72F4ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC6EF4B5-6803-4216-896B-58ABB72F4ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC6EF4B5-6803-4216-896B-58ABB72F4ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC6EF4B5-6803-4216-896B-58ABB72F4ACE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A7562E4-C2D4-49C8-B18E-A6DC7CF96202}.Debug|Any CPU.ActiveCfg = Debug
-		{2A7562E4-C2D4-49C8-B18E-A6DC7CF96202}.Release|Any CPU.ActiveCfg = Release
 		{9F425D32-AEDC-489D-A7EE-140CCABD412B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F425D32-AEDC-489D-A7EE-140CCABD412B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F425D32-AEDC-489D-A7EE-140CCABD412B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F425D32-AEDC-489D-A7EE-140CCABD412B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF} = {2F108EA0-F2A3-461B-A9F4-7B8CAE6F1E38}
-		{3D1D08D2-46B0-4C33-A214-A5A76A998102} = {2F108EA0-F2A3-461B-A9F4-7B8CAE6F1E38}
-		{3B1BA8E0-29DD-4CFC-8593-889B9D547AB7} = {2F108EA0-F2A3-461B-A9F4-7B8CAE6F1E38}
-		{B5F074E1-0E59-4CC5-83CF-60A51D6C7072} = {398F045F-835A-4056-9999-4FB3464ACF15}
-		{436E22B8-84A4-49E6-9810-E72FAD37313F} = {2F108EA0-F2A3-461B-A9F4-7B8CAE6F1E38}
-		{F3299AC1-2D25-4B91-A4D9-F9C1AB6F0825} = {2F108EA0-F2A3-461B-A9F4-7B8CAE6F1E38}
-		{E7531172-7F03-4DEE-ABB9-CF85E9DF501C} = {398F045F-835A-4056-9999-4FB3464ACF15}
-		{37E93CF1-6BDD-4ADF-94C7-0BF46AF71253} = {398F045F-835A-4056-9999-4FB3464ACF15}
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D98A22A-519B-463C-97E1-57C979C9754C}
 	EndGlobalSection
 EndGlobal

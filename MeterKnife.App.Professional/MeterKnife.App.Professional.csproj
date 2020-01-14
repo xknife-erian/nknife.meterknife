@@ -100,22 +100,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\nknife\NKnife.NLog3\NKnife.NLog3.csproj">
-      <Project>{3d1d08d2-46b0-4c33-a214-a5a76a998102}</Project>
-      <Name>NKnife.NLog3</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\nknife\NKnife.Scpi\NKnife.Scpi.csproj">
-      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
-      <Name>NKnife.Scpi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\nknife\NKnife.Serial\NKnife.Serial.csproj">
-      <Project>{3b1ba8e0-29dd-4cfc-8593-889b9d547ab7}</Project>
-      <Name>NKnife.Serial</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\nknife\NKnife\NKnife.csproj">
-      <Project>{266FCF12-D8F4-402C-BD7E-FC1DF5F6A0BF}</Project>
-      <Name>NKnife</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
       <Project>{572ecf0c-1b6d-4a7c-81f0-ee1326ef47d9}</Project>
       <Name>MeterKnife.Common</Name>
