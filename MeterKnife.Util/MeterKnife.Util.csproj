@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NKnife</RootNamespace>
     <AssemblyName>MeterKnife.Util</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
@@ -42,11 +45,11 @@
     <Reference Include="Common.Logging.NLog40, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.NLog40.3.4.1\lib\net40\Common.Logging.NLog40.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.5.11\lib\net40-client\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -55,12 +58,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Management.4.0.0\lib\System.Management.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Management.Instrumentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Management.4.0.0\lib\System.Management.Instrumentation.dll</HintPath>
-    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
@@ -97,6 +96,14 @@
     <Compile Include="Collections\PairList.cs" />
     <Compile Include="Collections\SerializableMap.cs" />
     <Compile Include="Collections\SyncQueue.cs" />
+    <Compile Include="Entities\ApplicationState.cs" />
+    <Compile Include="Entities\AssemblyWrapper.cs" />
+    <Compile Include="Entities\CommandList.cs" />
+    <Compile Include="Entities\CPUInfo.cs" />
+    <Compile Include="Entities\IDCardData.cs" />
+    <Compile Include="Entities\MultiMachine.cs" />
+    <Compile Include="Entities\MultiMachineState.cs" />
+    <Compile Include="Entities\PersonSex.cs" />
     <Compile Include="Maths\BigInteger.cs" />
     <Compile Include="Maths\Combinations.cs" />
     <Compile Include="Maths\Permutations.cs" />
@@ -129,24 +136,6 @@
     <Compile Include="NLog3\Controls\WPF\ObservableCollectionTarget.cs" />
     <Compile Include="Converts\Converting.cs" />
     <Compile Include="Converts\UtilityConvert.cs" />
-    <Compile Include="Databases\Common\DatabaseCoderSetting.cs" />
-    <Compile Include="Databases\Common\DatabaseHelper.cs" />
-    <Compile Include="Databases\Common\DatabaseParms.cs" />
-    <Compile Include="Databases\DbHelper\AccessHelper.cs" />
-    <Compile Include="Databases\DbHelper\MsSqlServerHelper.cs" />
-    <Compile Include="Databases\DbHelper\SqlDbHelper.cs" />
-    <Compile Include="Databases\Interface\IDatabaseHelper.cs" />
-    <Compile Include="Databases\Interface\IDataBaseParameters.cs" />
-    <Compile Include="Databases\Interface\IDataReaderProcess.cs" />
-    <Compile Include="Databases\Interface\IDataSetProcess.cs" />
-    <Compile Include="Databases\Interface\IDbStore`.cs" />
-    <Compile Include="Databases\PagerInfo.cs" />
-    <Compile Include="Databases\Process\ArrayProcess.cs" />
-    <Compile Include="Databases\Process\IntProcess.cs" />
-    <Compile Include="Domains\AppDomainCommunicationMessages.cs" />
-    <Compile Include="Domains\AppDomainDynamicLoader.cs" />
-    <Compile Include="Domains\AppDomainFirster.cs" />
-    <Compile Include="Domains\AppDomainProxy.cs" />
     <Compile Include="Electronics\CircuitType.cs" />
     <Compile Include="Electronics\Collections\Resistances.cs" />
     <Compile Include="Electronics\Exceptions\ResistanceCollectionException.cs" />
@@ -159,14 +148,6 @@
     <Compile Include="Encrypt\SoftwareSN.cs" />
     <Compile Include="Encrypt\TripleDESHelper.cs" />
     <Compile Include="Encrypt\UtilityEncrypt.cs" />
-    <Compile Include="Entities\ApplicationState.cs" />
-    <Compile Include="Entities\AssemblyWrapper.cs" />
-    <Compile Include="Entities\CommandList.cs" />
-    <Compile Include="Entities\CPUInfo.cs" />
-    <Compile Include="Entities\IDCardData.cs" />
-    <Compile Include="Entities\MultiMachine.cs" />
-    <Compile Include="Entities\MultiMachineState.cs" />
-    <Compile Include="Entities\PersonSex.cs" />
     <Compile Include="Events\ChangedEventArgs`.cs" />
     <Compile Include="Events\EventArgs`.cs" />
     <Compile Include="Exceptions\NKnifeException.cs" />
@@ -193,206 +174,126 @@
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\WindowExtension.cs" />
     <Compile Include="Global.cs" />
-    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoControlType.cs" />
-    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoLayoutPanel.cs">
+    <Compile Include="GUI\BoundleMenuStripButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoLayoutPanelAttribute.cs" />
-    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoLayoutPanelComparer.cs" />
-    <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoLayoutPanelXmlDocument.cs" />
-    <Compile Include="GUI\WinForm\AutoLayoutPanel\GroupBoxEx.cs">
+    <Compile Include="GUI\CollapsibleSplitContainer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\AutoLayoutPanel\ValueControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\BoundleMenuStripButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\CloudsControl\CloudCollection.cs" />
-    <Compile Include="GUI\WinForm\CloudsControl\CloudLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\CloudsControl\CloudsPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\CollapsibleSplitContainer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\Common\FileSelectControlStyle.cs" />
-    <Compile Include="GUI\WinForm\DataSelector\DataItemSelector.cs">
+    <Compile Include="GUI\Common\FileSelectControlStyle.cs" />
+    <Compile Include="GUI\DataSelector\DataItemSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\DataSelector\DataItemSelector.Designer.cs">
+    <Compile Include="GUI\DataSelector\DataItemSelector.Designer.cs">
       <DependentUpon>DataItemSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\WinForm\DataSelector\SelectForm.cs">
+    <Compile Include="GUI\DataSelector\SelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\DockForm\BouncingForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\DockForm\BouncingForm.Designer.cs">
-      <DependentUpon>BouncingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\WinForm\DockForm\Common\FormAsyncUpdateDelegate.cs" />
-    <Compile Include="GUI\WinForm\ExceptionUI\ExceptionDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\ExceptionUI\ExceptionDialog.designer.cs">
-      <DependentUpon>ExceptionDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\WinForm\ExceptionUI\InformationPanel.cs">
+    <Compile Include="GUI\FileSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\FileSelector.cs">
+    <Compile Include="GUI\Forms\IWelcomeForm.cs" />
+    <Compile Include="GUI\Forms\WelcomerScreen.cs" />
+    <Compile Include="GUI\GifBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\HorizontalLine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\ImageButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\ImagesPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\IPAddressControl\DotControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\IPAddressControl\FieldChangedEventArgs.cs" />
+    <Compile Include="GUI\IPAddressControl\FieldControl.cs" />
+    <Compile Include="GUI\IPAddressControl\IPAddressControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\IPAddressControl\IPAddressControlDesigner.cs" />
+    <Compile Include="GUI\IPAddressControl\NativeMethods.cs" />
+    <Compile Include="GUI\ISplashForm.cs" />
+    <Compile Include="GUI\LxLedControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\MarqueeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\Forms\IWelcomeForm.cs" />
-    <Compile Include="GUI\WinForm\Forms\WelcomerScreen.cs" />
-    <Compile Include="GUI\WinForm\GifBox.cs">
+    <Compile Include="GUI\MultipleImageToolStrip.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\GroupboxPro\CheckGroupBox.cs">
+    <Compile Include="GUI\NumericLedBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\GroupboxPro\CheckGroupBox.Designer.cs">
-      <DependentUpon>CheckGroupBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\WinForm\GroupboxPro\RadioButtonPanel.cs">
+    <Compile Include="GUI\QuickTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\GroupboxPro\RadioGroupBox.cs">
+    <Compile Include="GUI\RegexTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\GroupboxPro\RadioGroupBox.Designer.cs">
-      <DependentUpon>RadioGroupBox.cs</DependentUpon>
+    <Compile Include="GUI\SelectGroup.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\Grouper\Constants.cs" />
-    <Compile Include="GUI\WinForm\Grouper\Grouper.cs">
+    <Compile Include="GUI\SexSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\HorizontalLine.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\ImageButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\ImagesPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\IPAddressControl\DotControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\IPAddressControl\FieldChangedEventArgs.cs" />
-    <Compile Include="GUI\WinForm\IPAddressControl\FieldControl.cs" />
-    <Compile Include="GUI\WinForm\IPAddressControl\IPAddressControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\IPAddressControl\IPAddressControlDesigner.cs" />
-    <Compile Include="GUI\WinForm\IPAddressControl\NativeMethods.cs" />
-    <Compile Include="GUI\WinForm\ISplashForm.cs" />
-    <Compile Include="GUI\WinForm\LxLedControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\MarqueeControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\MultipleImageToolStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\NumericLedBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\QuickTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\RegexTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\SelectGroup.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\SexSelector.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\SimpleForm.cs">
+    <Compile Include="GUI\SimpleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\SingleLine.cs">
+    <Compile Include="GUI\SingleLine.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\SingleRowCheckedListView.cs">
+    <Compile Include="GUI\SingleRowCheckedListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\SkinForm\AntiAliasGraphics.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\ControlBoxManager.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\ControlBoxState.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\ControlBoxStyle.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\ControlPaintEx.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\GraphicsPathHelper.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\MouseOperate.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\NativeMethods.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\RenderHelper.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\RoundStyle.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\SkinForm.cs">
+    <Compile Include="GUI\SpinnerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\Splasher.cs" />
+    <Compile Include="GUI\TaskbarNotifier.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\SkinForm\SkinFormBackgroundRenderEvent.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\SkinFormBorderRenderEvent.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\SkinFormCaptionRenderEvent.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\SkinFormColorTable.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\SkinFormControlBoxRenderEvent.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\SkinFormProfessionalRenderer.cs" />
-    <Compile Include="GUI\WinForm\SkinForm\SkinFormRenderer.cs" />
-    <Compile Include="GUI\WinForm\SpinnerControl.cs">
+    <Compile Include="GUI\ToolStripCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\Splasher.cs" />
-    <Compile Include="GUI\WinForm\TabControlEx\Events.cs" />
-    <Compile Include="GUI\WinForm\TabControlEx\NativeMethods.cs" />
-    <Compile Include="GUI\WinForm\TabControlEx\TabControlEx.cs">
+    <Compile Include="GUI\ToolStripDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\TaskbarNotifier.cs">
+    <Compile Include="GUI\ToolStripNetVelocityLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\ToolTipPro.cs" />
+    <Compile Include="GUI\TouchNumberBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\TouchNumberBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\ToolStripCheckBox.cs">
+    <Compile Include="GUI\VirticalLine.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\ToolStripDateTimePicker.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\ToolStripNetVelocityLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\ToolTipPro.cs" />
-    <Compile Include="GUI\WinForm\TouchNumberBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\TouchNumberBoxForm.cs">
+    <Compile Include="GUI\WaitMessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\VirticalLine.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\WaitMessageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\WinForm\WaitMessageForm.Designer.cs">
+    <Compile Include="GUI\WaitMessageForm.Designer.cs">
       <DependentUpon>WaitMessageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\WinForm\WeekGroup.cs">
+    <Compile Include="GUI\WeekGroup.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\WinFormContainer\AppFileNameEditor.cs" />
-    <Compile Include="GUI\WinForm\WinFormContainer\WinFormContainer.cs">
+    <Compile Include="GUI\WinFormContainer\AppFileNameEditor.cs" />
+    <Compile Include="GUI\WinFormContainer\WinFormContainer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\WinForm\WinFormContainer\WinFormContainer.Designer.cs">
+    <Compile Include="GUI\WinFormContainer\WinFormContainer.Designer.cs">
       <DependentUpon>WinFormContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\WinForm\XmlTreeView.cs">
+    <Compile Include="GUI\XmlTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Interface\IAbout.cs" />
@@ -568,9 +469,6 @@
     <Compile Include="Socket\KnifeLongSocketClient.cs" />
     <Compile Include="Socket\KnifeShortSocketClient.cs" />
     <Compile Include="Socket\KnifeSocketServer.cs" />
-    <Compile Include="Tests\ITestCase.cs" />
-    <Compile Include="Tests\TestCaseAttribute.cs" />
-    <Compile Include="Tests\TestMode.cs" />
     <Compile Include="Tunnel\Base\BaseDatagramDecoder`.cs" />
     <Compile Include="Tunnel\Base\BaseDatagramEncoder`.cs" />
     <Compile Include="Tunnel\Base\BaseProtocolFilter`.cs" />
@@ -685,21 +583,17 @@
     <EmbeddedResource Include="NLog3\Controls\NLogForm.resx">
       <DependentUpon>NLogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\WinForm\WinFormContainer\WinFormContainer.bmp" />
-    <EmbeddedResource Include="GUI\WinForm\Grouper\Grouper.bmp" />
-    <EmbeddedResource Include="GUI\WinForm\Grouper\Grouper.resx">
-      <DependentUpon>Grouper.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\WinForm\MarqueeControl.resx">
+    <EmbeddedResource Include="GUI\WinFormContainer\WinFormContainer.bmp" />
+    <EmbeddedResource Include="GUI\MarqueeControl.resx">
       <DependentUpon>MarqueeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\WinForm\SexSelector.resx">
+    <EmbeddedResource Include="GUI\SexSelector.resx">
       <DependentUpon>SexSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\WinForm\WaitMessageForm.resx">
+    <EmbeddedResource Include="GUI\WaitMessageForm.resx">
       <DependentUpon>WaitMessageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\WinForm\WeekGroup.resx">
+    <EmbeddedResource Include="GUI\WeekGroup.resx">
       <DependentUpon>WeekGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\OwnResources.resx">
@@ -735,30 +629,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Databases\Database.template" />
     <None Include="NLog.config.template">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI\WinForm\DataSelector\DataItemSelector.resx">
+    <EmbeddedResource Include="GUI\DataSelector\DataItemSelector.resx">
       <DependentUpon>DataItemSelector.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\WinForm\DockForm\BouncingForm.resx">
-      <DependentUpon>BouncingForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\WinForm\ExceptionUI\ExceptionDialog.resx">
-      <DependentUpon>ExceptionDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\WinForm\ExceptionUI\InformationPanel.resx">
-      <DependentUpon>InformationPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\WinForm\GroupboxPro\RadioGroupBox.resx">
-      <DependentUpon>RadioGroupBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

@@ -75,13 +75,11 @@ namespace MeterKnife.Common.Winforms.Plots
             _PlotModel.Series.Add(_DataSeries);
 
             _QuadraticCurveFittingSeries.MarkerType = MarkerType.Circle;
-            _QuadraticCurveFittingSeries.Smooth = true;
             _QuadraticCurveFittingSeries.Color = OxyColor.FromArgb(255, 255, 120, 0);
             _QuadraticCurveFittingSeries.MarkerFill = OxyColor.FromArgb(255, 255, 120, 0);
             _PlotModel.Series.Add(_QuadraticCurveFittingSeries);
 
             _OnePolynomialSeries.MarkerType = MarkerType.Circle;
-            _OnePolynomialSeries.Smooth = true;
             _OnePolynomialSeries.Color = OxyColor.FromArgb(255, 160, 0, 160);
             _OnePolynomialSeries.MarkerFill = OxyColor.FromArgb(255, 160, 0, 160);
             _PlotModel.Series.Add(_OnePolynomialSeries);

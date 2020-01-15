@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 using System.Threading;
-using Ivi.Visa.Interop;
+using Ivi.Visa;
+using Ivi.Visa.FormattedIO;
+using Ivi.Visa.Interop; 
 
 namespace MeterKnife.VISAs
 {
@@ -10,7 +13,7 @@ namespace MeterKnife.VISAs
 
         public short GpibSelector { get; set; }
         public short Address { get; set; }
-        public string Option { get; set; }
+        public ResourceOpenStatus Option;
         public int OpenTimeout { get; set; }
 
 
@@ -21,12 +24,11 @@ namespace MeterKnife.VISAs
             try
             {
                 // create the formatted IO object
-                _Gpib = new FormattedIO488Class();
+                _Gpib = new MessageBasedFormattedIO();
 
                 //create the resource manager
-                var mgr = new ResourceManager();
 
-                _Gpib.IO = (IMessage)mgr.Open(fullAddress, AccessMode.NO_LOCK, OpenTimeout, Option);
+                _Gpib.IO = (IMessage)GlobalResourceManager.Open(fullAddress, AccessModes.ExclusiveLock, OpenTimeout, out Option);
 
                 _Gpib.WriteString("*CLS", true);
                 Thread.Sleep(500);
