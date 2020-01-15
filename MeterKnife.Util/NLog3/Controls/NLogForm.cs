@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using NKnife.IoC;
-using NKnife.NLog3.Properties;
+using NKnife.Properties;
 
 namespace NKnife.NLog3.Controls
 {

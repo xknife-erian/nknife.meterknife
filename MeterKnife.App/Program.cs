@@ -3,11 +3,10 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
-using MeterKnife.App.Professional;
 using NKnife;
 using NKnife.IoC;
 
-namespace MeterKnife.App.Lite
+namespace MeterKnife.App
 {
     class Program
     {
@@ -18,18 +17,16 @@ namespace MeterKnife.App.Lite
         private static void Main()
         {
             Global.Culture = Common.Properties.Settings.Default.CultureInfoName;
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Common.Properties.Settings.Default.CultureInfoName);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DI.AssmeblyNameFilters = new[] {"DirectX", "CommPort"};
             DI.Initialize();
             LogManager.GetLogger<Program>();
 
-            FileCleaner.Run();
-
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Common.Properties.Settings.Default.CultureInfoName);
-
-            MeterKnifeEnvironment.Workbench = new MeterLiteMainForm();
-            Application.Run(new MeterKnifeEnvironment());
+            Surroundings.Workbench = new Workbench();
+            Application.Run(new Surroundings());
         }
     }
 }

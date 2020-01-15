@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using MeterKnife.Common.Properties;
 using NKnife.GUI.WinForm;
 
-namespace MeterKnife.App.Professional
+namespace MeterKnife.App
 {
     internal sealed class SplashForm : Form, ISplashForm
     {

@@ -6,32 +6,31 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Kernel;
-using MeterKnife.Workbench;
 using NKnife.GUI.WinForm;
 using NKnife.Interface;
 using NKnife.IoC;
 using NKnife.Utility;
 
-namespace MeterKnife.App.Professional
+namespace MeterKnife.App
 {
-    internal class MeterKnifeEnvironment : ApplicationContext
+    internal class Surroundings : ApplicationContext
     {
-        private static readonly ILog _logger = LogManager.GetLogger<MeterKnifeEnvironment>();
+        private static readonly ILog _Logger = LogManager.GetLogger<Surroundings>();
 
         private static BaseCareCommunicationService _careComm;
 
         /// <summary>所有启动项的集合，将在 Initialize() 函数中被初始化
         /// </summary>
-        private static readonly List<IEnvironmentItem> _starterItems = new List<IEnvironmentItem>();
+        private static readonly List<IEnvironmentItem> _StarterItems = new List<IEnvironmentItem>();
 
         public static Form Workbench { get; set; }
 
-        public MeterKnifeEnvironment()
+        public Surroundings()
         {
             Initialize();
         }
 
-        public void Initialize()
+        private void Initialize()
         {
             // 应用程序退出
             Application.ApplicationExit += OnApplicationExit;
@@ -49,11 +48,11 @@ namespace MeterKnife.App.Professional
 
             //开启UI控制窗体
             if (Workbench == null)
-                Workbench = new MainWorkbench();
+                Workbench = new Workbench();
             Workbench.FormClosed += (s, e) => Application.Exit();
             Workbench.Activated += WorkbenchOnActivated;
             Workbench.Show();
-            _logger.Info("主窗体启动完成..");
+            _Logger.Info("主窗体启动完成..");
 
             var thread = new Thread(BeginInitializeServices) {IsBackground = true};
             thread.Start();
@@ -69,48 +68,48 @@ namespace MeterKnife.App.Professional
 
         private void BeginInitializeServices()
         {
-            _logger.Info("寻找启动时的应用程序服务项..");
+            _Logger.Info("寻找启动时的应用程序服务项..");
 
-            Assembly asse = typeof (MeterKernel).Assembly;
-            foreach (var type in asse.GetTypes())
+            Assembly ass = typeof (MeterKernel).Assembly;
+            foreach (var type in ass.GetTypes())
             {
                 if ((type.ContainsInterface(typeof(IEnvironmentItem)) && !type.IsAbstract))
                 {
                     try
                     {
                         object obj = Activator.CreateInstance(type);
-                        _starterItems.Add((IEnvironmentItem)obj);
+                        _StarterItems.Add((IEnvironmentItem)obj);
                     }
                     catch (Exception e)
                     {
-                        _logger.Warn(string.Format("寻找启动时的应用程序服务项异常.{0}", e.Message), e);
+                        _Logger.Warn($"寻找启动时的应用程序服务项异常.{e.Message}", e);
                     }
                 }
             }
-            string info = string.Format("找到应用程序环境服务项{0}个。", _starterItems.Count);
-            _logger.Info(info);
-            if (_starterItems.Count > 0)
+            string info = $"找到应用程序环境服务项{_StarterItems.Count}个。";
+            _Logger.Info(info);
+            if (_StarterItems.Count > 0)
             {
                 //按定义的顺序进行排序
-                _starterItems.Sort((a,b) => b.Order - a.Order);
-                _starterItems.TrimExcess();
+                _StarterItems.Sort((a,b) => b.Order - a.Order);
+                _StarterItems.TrimExcess();
                 //按顺序进行启动(初始化)
-                for (int i = 0; i < _starterItems.Count; i++)
+                for (int i = 0; i < _StarterItems.Count; i++)
                 {
                     try
                     {
-                        _starterItems[i].StartService();
-                        info = string.Format("启动\"{0}\"服务完成。-- {1}", _starterItems[i].Description, i);
-                        _logger.Info(info);
+                        _StarterItems[i].StartService();
+                        info = $"启动\"{_StarterItems[i].Description}\"服务完成。-- {i}";
+                        _Logger.Info(info);
                     }
                     catch (Exception e)
                     {
-                        _logger.Warn(string.Format("应用程序服务项初始化异常.{0}", e.Message), e);
+                        _Logger.Warn($"应用程序服务项初始化异常.{e.Message}", e);
                     }
                 }
             }
-            _logger.Info("应用程序环境的初始化完成。");
-            _logger.Info("启动Care通讯服务");
+            _Logger.Info("应用程序环境的初始化完成。");
+            _Logger.Info("启动Care通讯服务");
             _careComm = DI.Get<BaseCareCommunicationService>();
             _careComm.Initialize();
         }
@@ -123,7 +122,7 @@ namespace MeterKnife.App.Professional
             try
             {
                 //处理程序退出前要处理的东西
-                foreach (var item in _starterItems)
+                foreach (var item in _StarterItems)
                 {
                     item.CloseService();
                 }
@@ -132,7 +131,7 @@ namespace MeterKnife.App.Professional
             }
             catch (Exception e)
             {
-                _logger.Warn(e.Message);
+                _Logger.Warn(e.Message);
             }
         }
 

@@ -1,6 +1,6 @@
-﻿namespace MeterKnife.App.Lite
+﻿namespace MeterKnife.App
 {
-    partial class MeterLiteMainForm
+    partial class Workbench
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeterLiteMainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Workbench));
             this._StripContainer = new System.Windows.Forms.ToolStripContainer();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();

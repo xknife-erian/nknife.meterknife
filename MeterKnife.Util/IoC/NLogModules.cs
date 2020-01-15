@@ -6,7 +6,7 @@ using Common.Logging.NLog;
 using Ninject.Modules;
 using NKnife.NLog3.Controls;
 using NKnife.NLog3.Controls.WPF;
-using NKnife.NLog3.Properties;
+using NKnife.Properties;
 
 namespace NKnife.NLog3.IoC
 {

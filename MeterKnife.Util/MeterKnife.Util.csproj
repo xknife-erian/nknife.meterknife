@@ -415,7 +415,11 @@
     <Compile Include="IoC\NLogModules.cs" />
     <Compile Include="Mail\MailSender.cs" />
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
-    <Compile Include="Properties\OwnResources.Designer.cs" />
+    <Compile Include="Properties\OwnResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OwnResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Protocol\Generic\BytesProtocol.cs" />
     <Compile Include="Protocol\Generic\BytesProtocolCommandParser.cs" />
     <Compile Include="Protocol\Generic\BytesProtocolFamily.cs" />
@@ -698,7 +702,10 @@
     <EmbeddedResource Include="GUI\WinForm\WeekGroup.resx">
       <DependentUpon>WeekGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\OwnResources.resx" />
+    <EmbeddedResource Include="Properties\OwnResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OwnResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShareResources\ArgumentValidationString.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ArgumentValidationString.Designer.cs</LastGenOutput>

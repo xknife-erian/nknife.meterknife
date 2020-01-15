@@ -10,16 +10,16 @@ using NKnife.IoC;
 using NKnife.NLog3.Controls;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MeterKnife.App.Lite
+namespace MeterKnife.App
 {
-    public partial class MeterLiteMainForm : Form
+    public partial class Workbench : Form
     {
         private readonly DockPanel _dockPanel = new DockPanel();
         private readonly IMeterKernel _meterKernel = DI.Get<IMeterKernel>();
 
         private CommPort _carePort;
 
-        public MeterLiteMainForm()
+        public Workbench()
         {
             InitializeComponent();
             InitializeDockPanel();
