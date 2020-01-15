@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using Common.Logging;
 using NKnife;
 using NKnife.IoC;
 
@@ -21,12 +20,12 @@ namespace MeterKnife.App
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            DI.AssmeblyNameFilters = new[] {"DirectX", "CommPort"};
+            DI.AssmeblyNameFilters = new[] {"DirectX", "CommPort", "NPOI"};
             DI.Initialize();
-            LogManager.GetLogger<Program>();
+            DI.BindAppStartup<Surroundings>();
 
             Surroundings.Workbench = new Workbench();
-            Application.Run(new Surroundings());
+            Application.Run(DI.Get<Surroundings>());
         }
     }
 }

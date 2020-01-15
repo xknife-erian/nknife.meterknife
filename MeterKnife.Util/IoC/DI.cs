@@ -35,7 +35,6 @@ namespace NKnife.IoC
 
             _coreKernel = new CoreKernel();
             _coreKernel.Load(assems);
-
             _initialized = true;
         }
 
@@ -43,6 +42,11 @@ namespace NKnife.IoC
         {
             Initialize();
             _coreKernel.Load(module);
+        }
+
+        public static void BindAppStartup<T>()
+        {
+            _coreKernel.Bind<T>().To<T>().InSingletonScope();
         }
 
         /// <summary>

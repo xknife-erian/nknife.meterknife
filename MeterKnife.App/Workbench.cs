@@ -58,8 +58,7 @@ namespace MeterKnife.App
         {
             foreach (var dockContent in _dockPanel.Documents)
             {
-                var collectView = dockContent as MeterView;
-                if (collectView != null && !collectView.IsSaved)
+                if (dockContent is MeterView collectView && !collectView.IsSaved)
                 {
                     var sr = MessageBox.Show(this, $"{collectView.Text}有数据未保存，是否仍然关闭？",
                         $"{collectView.Text}未保存",
@@ -88,8 +87,7 @@ namespace MeterKnife.App
         private void AddMeterView()
         {
             Dictionary<CommPort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
-            List<int> gpibList;
-            if (!dic.TryGetValue(_carePort, out gpibList))
+            if (!dic.TryGetValue(_carePort, out var gpibList))
             {
                 gpibList = new List<int>();
                 dic.Add(_carePort, gpibList);
