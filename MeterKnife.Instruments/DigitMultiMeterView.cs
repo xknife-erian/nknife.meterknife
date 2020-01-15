@@ -180,15 +180,15 @@ namespace MeterKnife.Instruments
 
         private void _SaveStripButton_Click(object sender, EventArgs e)
         {
-            var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
-            var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), _Meter.Name, "db3");
-            var full = Path.Combine(DI.Get<MeterKnifeUserData>().GetValue(MeterKnifeUserData.DATA_PATH, string.Empty),
-                name);
-            if (_FiguredData.Save(full))
-            {
-                MessageBox.Show(string.Format("数据文件已保存:\r\n{0}", full));
-                _IsSaved = true;
-            }
+//            var start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
+//            var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), _Meter.Name, "db3");
+//            var full = Path.Combine(DI.Get<MeterKnifeUserData>().GetValue(MeterKnifeUserData.DATA_PATH, string.Empty),
+//                name);
+//            if (_FiguredData.Save(full))
+//            {
+//                MessageBox.Show(string.Format("数据文件已保存:\r\n{0}", full));
+//                _IsSaved = true;
+//            }
         }
 
         private void _ExportStripButton_Click(object sender, EventArgs e)

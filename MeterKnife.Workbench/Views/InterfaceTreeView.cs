@@ -13,7 +13,6 @@ using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Winforms.Controls.Tree;
 using MeterKnife.Instruments;
-using NKnife.Configuring.UserData;
 using NKnife.Events;
 using NKnife.IoC;
 using NKnife.Utility;

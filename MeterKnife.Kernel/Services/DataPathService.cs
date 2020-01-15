@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common;
 using MeterKnife.Common.Interfaces;
-using NKnife.Configuring.Interfaces;
 using NKnife.Interface;
 using NKnife.IoC;
 
@@ -15,10 +14,10 @@ namespace MeterKnife.Kernel.Services
 
         public bool StartService()
         {
-            var userdata = DI.Get<MeterKnifeUserData>();
-            var dataPath = userdata.GetValue(MeterKnifeUserData.DATA_PATH, string.Empty);
-            DI.Get<IMeterKernel>().DataPath = dataPath;
-            _logger.Info(string.Format("数据存储路径:{0}", dataPath));
+//            var userdata = DI.Get<MeterKnifeUserData>();
+//            var dataPath = userdata.GetValue(MeterKnifeUserData.DATA_PATH, string.Empty);
+//            DI.Get<IMeterKernel>().DataPath = dataPath;
+//            _logger.Info(string.Format("数据存储路径:{0}", dataPath));
             return true;
         }
 

@@ -97,39 +97,10 @@
     <Compile Include="Collections\PairList.cs" />
     <Compile Include="Collections\SerializableMap.cs" />
     <Compile Include="Collections\SyncQueue.cs" />
-    <Compile Include="Configuring\Common\HasModifiedEventArgs.cs" />
-    <Compile Include="Configuring\Common\OptionItemAttribute.cs" />
-    <Compile Include="Configuring\Common\OptionLoadEventArgs.cs" />
-    <Compile Include="Configuring\Common\OptionPanelPrecondition.cs" />
-    <Compile Include="Configuring\Common\OptionTableChangedEventArgs.cs" />
-    <Compile Include="Configuring\Common\UtilityOption.cs" />
-    <Compile Include="Configuring\Controls\AbstractOptionBoxItem.cs" />
-    <Compile Include="Configuring\Controls\AbstractOptionItemBase.cs" />
-    <Compile Include="Configuring\Controls\OptionControlBase.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Configuring\Delegates.cs" />
-    <Compile Include="Configuring\Interfaces\IOption.cs" />
-    <Compile Include="Configuring\Interfaces\IOptionBoxItem.cs" />
-    <Compile Include="Configuring\Interfaces\IOptionCaseManager.cs" />
-    <Compile Include="Configuring\Interfaces\IOptionControl.cs" />
-    <Compile Include="Configuring\Interfaces\IOptionDataStore.cs" />
-    <Compile Include="Configuring\Interfaces\IOptionItemManager.cs" />
-    <Compile Include="Configuring\Interfaces\IOptionListItem.cs" />
-    <Compile Include="Configuring\Interfaces\IOptionManager.cs" />
-    <Compile Include="Configuring\Interfaces\IOptionPanelPrecondition.cs" />
-    <Compile Include="Configuring\Interfaces\IUserApplicationData.cs" />
-    <Compile Include="Configuring\OptionCase\AbstractOptionCaseManager.cs" />
-    <Compile Include="Configuring\OptionCase\OptionCaseItem.cs" />
-    <Compile Include="Configuring\OptionCase\OptionCaseMode.cs" />
-    <Compile Include="Configuring\OptionServiceCoderSetting.cs" />
-    <Compile Include="Configuring\Option\AbstractOptionManager.cs" />
-    <Compile Include="Configuring\Option\OptionDataTable.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Configuring\Option\XmlDataStore.cs" />
-    <Compile Include="Configuring\Option\ZipDataStore.cs" />
-    <Compile Include="Configuring\UserData\UserApplicationData.cs" />
+    <Compile Include="Maths\BigInteger.cs" />
+    <Compile Include="Maths\Combinations.cs" />
+    <Compile Include="Maths\Permutations.cs" />
+    <Compile Include="Maths\UtilityMath.cs" />
     <Compile Include="NLog3\Controls\LoggerInfoDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,14 +192,6 @@
     <Compile Include="Extensions\StringBuilderExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\WindowExtension.cs" />
-    <Compile Include="FTP\FTPClient.cs" />
-    <Compile Include="FTP\FTPDelegates.cs" />
-    <Compile Include="FTP\FtpException.cs" />
-    <Compile Include="FTP\FtpFileListStyle.cs" />
-    <Compile Include="FTP\FTPFileStruct.cs" />
-    <Compile Include="FTP\FtpWebClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoControlType.cs" />
     <Compile Include="GUI\WinForm\AutoLayoutPanel\AutoLayoutPanel.cs">
@@ -448,16 +411,9 @@
     <Compile Include="Interface\ITree.cs" />
     <Compile Include="Interface\IXml.cs" />
     <Compile Include="Interface\Patterns\ICommandPattern.cs" />
-    <Compile Include="IoC\ConfiguringModule.cs" />
     <Compile Include="IoC\DI.cs" />
     <Compile Include="IoC\NLogModules.cs" />
     <Compile Include="Mail\MailSender.cs" />
-    <Compile Include="Maths\BigInteger.cs" />
-    <Compile Include="Maths\Combinations.cs" />
-    <Compile Include="Maths\Permutations.cs" />
-    <Compile Include="Maths\UtilityMath.cs" />
-    <Compile Include="Mp3\MP3Player.cs" />
-    <Compile Include="Mp3\Mp3Tag.cs" />
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
     <Compile Include="Properties\OwnResources.Designer.cs" />
     <Compile Include="Protocol\Generic\BytesProtocol.cs" />
@@ -489,6 +445,14 @@
     <Compile Include="Scpi\Parser\ScpiCommandCaller.cs" />
     <Compile Include="Scpi\Parser\ScpiException.cs" />
     <Compile Include="Scpi\Parser\ScpiMissingHandlerException.cs" />
+    <Compile Include="Zip\CompressHelper.cs" />
+    <Compile Include="Zip\GZip.cs" />
+    <Compile Include="Zip\GZipCompressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Zip\GZipFileEntry.cs" />
+    <Compile Include="Zip\GZipFileInfo.cs" />
+    <Compile Include="Zip\GZipResult.cs" />
     <None Include="packages.config" />
     <None Include="Properties\nlog_winform_config.config" />
     <None Include="Properties\nlog_wpf_config.config" />
@@ -684,7 +648,6 @@
     <Compile Include="Wrapper\SystemDateTime.cs" />
     <Compile Include="Wrapper\TaskAlarm.cs" />
     <Compile Include="Wrapper\WMI.cs" />
-    <Compile Include="Xaml\XamlHelper.cs" />
     <Compile Include="XML\AbstractXmlAttribute.cs" />
     <Compile Include="XML\AbstractXmlDocument.cs" />
     <Compile Include="XML\AbstractXmlElement.cs" />
@@ -693,17 +656,8 @@
     <Compile Include="XML\XmlFormat.cs" />
     <Compile Include="XML\XmlHelper.cs" />
     <Compile Include="XML\XmlSchemaValidator.cs" />
-    <Compile Include="Zip\CompressHelper.cs" />
-    <Compile Include="Zip\GZip.cs" />
-    <Compile Include="Zip\GZipCompressBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Zip\GZipFileEntry.cs" />
-    <Compile Include="Zip\GZipFileInfo.cs" />
-    <Compile Include="Zip\GZipResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuring\readme.txt" />
     <Content Include="Properties\NLogForm.ico" />
     <EmbeddedResource Include="NLog3\Controls\LoggerInfoDetailForm.en-US.resx">
       <DependentUpon>LoggerInfoDetailForm.cs</DependentUpon>

@@ -7,7 +7,7 @@
     <ProjectGuid>{9F9EC449-1BF5-4BA1-994D-FFEFC09B1528}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MeterKnife.App.Lite</RootNamespace>
+    <RootNamespace>MeterKnife.App</RootNamespace>
     <AssemblyName>MeterKnifeLite</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -114,6 +114,9 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="app.manifest" />
+    <None Include="nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

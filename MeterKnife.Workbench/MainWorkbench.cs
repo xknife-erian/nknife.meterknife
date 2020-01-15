@@ -95,26 +95,27 @@ namespace MeterKnife.Workbench
 
         private void CheckDataPath() // 检查数据路径是否设置,当第一次使本软件时是未设置的状态的.
         {
-            var userData = DI.Get<MeterKnifeUserData>();
-            object path;
-            if (!userData.TryGetValue(MeterKnifeUserData.DATA_PATH, out path))
-            {
-                var dialog = new DataPathSetterDialog();
-                if (dialog.ShowDialog(FindForm()) == DialogResult.OK)
-                {
-                    path = dialog.DataPath;
-                    userData.SetValue(MeterKnifeUserData.DATA_PATH, path);
-                    _Logger.Info($"设置用户数据路径:{path}");
-                }
-            }
-            else
-            {
-                if (!Directory.Exists(path.ToString()))
-                {
-                    UtilityFile.CreateDirectory(path.ToString());
-                    _Logger.Info($"用户数据路径丢失{path},重新创建");
-                }
-            }
+//            var userData = DI.Get<MeterKnifeUserData>();
+//            object path;
+//            if (!userData.TryGetValue(MeterKnifeUserData.DATA_PATH, out path))
+//            {
+//                var dialog = new DataPathSetterDialog();
+//                if (dialog.ShowDialog(FindForm()) == DialogResult.OK)
+//                {
+//                    path = dialog.DataPath;
+//                    userData.SetValue(MeterKnifeUserData.DATA_PATH, path);
+                    _Logger.Warn($"设置用户数据路径");
+                    //:{path}");
+//                }
+//            }
+//            else
+//            {
+//                if (!Directory.Exists(path.ToString()))
+//                {
+//                    UtilityFile.CreateDirectory(path.ToString());
+//                    _Logger.Info($"用户数据路径丢失{path},重新创建");
+//                }
+//            }
         }
 
         #region DockPanel
