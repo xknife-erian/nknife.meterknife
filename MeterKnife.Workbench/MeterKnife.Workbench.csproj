@@ -140,17 +140,9 @@
       <Project>{e70dc5a1-2900-4a24-937a-28c86100e077}</Project>
       <Name>MeterKnife.Instruments</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NKnife\NKnife.NLog3\NKnife.NLog3.csproj">
-      <Project>{3d1d08d2-46b0-4c33-a214-a5a76a998102}</Project>
-      <Name>NKnife.NLog3</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NKnife\NKnife.Scpi\NKnife.Scpi.csproj">
-      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
-      <Name>NKnife.Scpi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NKnife\NKnife\NKnife.csproj">
-      <Project>{266fcf12-d8f4-402c-bd7e-fc1df5f6a0bf}</Project>
-      <Name>NKnife</Name>
+    <ProjectReference Include="..\MeterKnife.Util\MeterKnife.Util.csproj">
+      <Project>{854E2CD7-CB1D-47A7-824C-34C9E2EF9FD4}</Project>
+      <Name>MeterKnife.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

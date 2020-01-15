@@ -180,21 +180,9 @@
       <Project>{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}</Project>
       <Name>MeterKnife.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NKnife\NKnife.Scpi\NKnife.Scpi.csproj">
-      <Project>{436e22b8-84a4-49e6-9810-e72fad37313f}</Project>
-      <Name>NKnife.Scpi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NKnife\NKnife.Serial\NKnife.Serial.csproj">
-      <Project>{3b1ba8e0-29dd-4cfc-8593-889b9d547ab7}</Project>
-      <Name>NKnife.Serial</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NKnife\NKnife.Socket\NKnife.Socket.csproj">
-      <Project>{f3299ac1-2d25-4b91-a4d9-f9c1ab6f0825}</Project>
-      <Name>NKnife.Socket</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NKnife\NKnife\NKnife.csproj">
-      <Project>{266fcf12-d8f4-402c-bd7e-fc1df5f6a0bf}</Project>
-      <Name>NKnife</Name>
+    <ProjectReference Include="..\MeterKnife.Util\MeterKnife.Util.csproj">
+      <Project>{854e2cd7-cb1d-47a7-824c-34c9e2ef9fd4}</Project>
+      <Name>MeterKnife.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
