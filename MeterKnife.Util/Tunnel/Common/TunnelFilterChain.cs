@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace NKnife.Tunnel.Common
+namespace MeterKnife.Util.Tunnel.Common
 {
     public class TunnelFilterChain : ITunnelFilterChain
     {

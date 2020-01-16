@@ -1,9 +1,9 @@
 ﻿using System;
-using NKnife.Exceptions;
-using NKnife.Interface;
-using NKnife.Utility;
+using MeterKnife.Util.Exceptions;
+using MeterKnife.Util.Interface;
+using MeterKnife.Util.Utility;
 
-namespace NKnife.Converts
+namespace MeterKnife.Util.Converts
 {
     /// <summary>
     /// 转换抽象类

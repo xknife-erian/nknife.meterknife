@@ -1,4 +1,4 @@
-﻿namespace NKnife.Interface
+﻿namespace MeterKnife.Util.Interface
 {
     /// <summary>
     /// 定义一个全局ID生成器的接口

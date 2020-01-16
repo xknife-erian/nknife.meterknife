@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using NKnife.Entities;
+using MeterKnife.Util.Entities;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     public class ClassLoader<T> where T:class 
     {

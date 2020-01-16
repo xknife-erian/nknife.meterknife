@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SocketKnife.Events
+namespace MeterKnife.Util.Socket.Events
 {
     /// <summary>
     ///     当Socket连接后事件发生时包含事件数据的类(根据IsConnSucceed判断是否连接成功)

@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Text;
 
-namespace NKnife.XML
+namespace MeterKnife.Util.XML
 {
     public abstract class AbstractXmlAttribute
     { 

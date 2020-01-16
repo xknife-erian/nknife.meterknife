@@ -1,7 +1,7 @@
 ﻿using Common.Logging;
-using NKnife.Tunnel.Events;
+using MeterKnife.Util.Tunnel.Events;
 
-namespace NKnife.Tunnel.Common
+namespace MeterKnife.Util.Tunnel.Common
 {
     public class KnifeTunnel : ITunnel
     {

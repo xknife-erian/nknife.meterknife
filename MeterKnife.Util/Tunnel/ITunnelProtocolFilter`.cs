@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NKnife.Protocol;
-using NKnife.Protocol.Generic;
-using NKnife.Tunnel.Common;
+﻿using MeterKnife.Util.Protocol;
 
-namespace NKnife.Tunnel
+namespace MeterKnife.Util.Tunnel
 {
     public interface ITunnelProtocolFilter<TData> : ITunnelFilter
     {

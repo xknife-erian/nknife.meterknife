@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm.Forms
+namespace MeterKnife.Util.GUI.Forms
 {
     public class WelcomerScreen
     {

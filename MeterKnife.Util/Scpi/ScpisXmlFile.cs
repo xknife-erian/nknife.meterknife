@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Xml;
-using NKnife.XML;
+﻿using System.Xml;
+using MeterKnife.Util.XML;
 
-namespace ScpiKnife
+namespace MeterKnife.Util.Scpi
 {
     public class ScpisXmlFile : AbstractXmlDocument
     {

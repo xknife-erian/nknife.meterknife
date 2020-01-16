@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using NKnife.Base;
+using MeterKnife.Util.Base;
 
-namespace NKnife.Collections
+namespace MeterKnife.Util.Collections
 {
     [Serializable]
     public class PairList<T, TK> : List<Pair<T, TK>>

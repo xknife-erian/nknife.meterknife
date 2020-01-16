@@ -2,7 +2,7 @@
 using System.Collections;
 using System.IO;
 
-namespace NKnife.Wrapper.Files
+namespace MeterKnife.Util.Wrapper.Files
 {
     /// <summary>
     ///     .Net/C# 实现磁盘目录文件搜索的工具类 (搜索事件)

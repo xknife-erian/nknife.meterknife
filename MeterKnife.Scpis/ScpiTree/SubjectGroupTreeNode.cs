@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ScpiKnife;
+using MeterKnife.Util.Scpi;
 
 namespace MeterKnife.Scpis.ScpiTree
 {

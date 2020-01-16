@@ -1,4 +1,4 @@
-namespace NKnife.GUI.WinForm.Forms
+namespace MeterKnife.Util.GUI.Forms
 {
     /// <summary>程序启动时的欢迎界面
     /// </summary>

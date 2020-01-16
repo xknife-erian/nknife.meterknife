@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NKnife.Interface
+namespace MeterKnife.Util.Interface
 {
     public interface ITree<T>
     {

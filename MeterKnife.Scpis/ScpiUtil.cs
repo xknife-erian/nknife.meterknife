@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using NKnife.Utility;
+using MeterKnife.Util.Utility;
 
 namespace MeterKnife.Scpis
 {

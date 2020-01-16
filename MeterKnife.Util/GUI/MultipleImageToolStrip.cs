@@ -5,9 +5,9 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
-using NKnife.Events;
+using MeterKnife.Util.Events;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     /// <summary>
     /// This toolstrip implements the multiple image provider interface and thus

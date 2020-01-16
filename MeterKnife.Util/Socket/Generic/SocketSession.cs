@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Net.Sockets;
-using NKnife.Tunnel.Common;
+using MeterKnife.Util.Tunnel.Common;
 
-namespace SocketKnife.Generic
+namespace MeterKnife.Util.Socket.Generic
 {
     /// <summary>
     ///     仅用于Socket协议
@@ -16,7 +15,7 @@ namespace SocketKnife.Generic
         }
 
         public int ReceiveBufferSize { get; set; }
-        public Socket AcceptSocket { get; set; }
+        public System.Net.Sockets.Socket AcceptSocket { get; set; }
         public SessionState State { get; set; }
         public DisconnectType DisconnectType { get; set; }
         public byte[] ReceiveBuffer { get; set; }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using NKnife.Converts;
-using NKnife.Protocol;
-using NKnife.Protocol.Generic;
+using MeterKnife.Util.Converts;
+using MeterKnife.Util.Protocol;
+using MeterKnife.Util.Protocol.Generic;
 
 namespace MeterKnife.Common.DataModels
 {

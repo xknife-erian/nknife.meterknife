@@ -2,7 +2,7 @@ using System.Collections;
 using System.Windows.Forms.Design;
 using System.Windows.Forms.Design.Behavior;
 
-namespace NKnife.GUI.WinForm.IPAddressControl
+namespace MeterKnife.Util.GUI.IPAddressControl
 {
    class IPAddressControlDesigner : ControlDesigner
    {
@@ -27,7 +27,7 @@ namespace NKnife.GUI.WinForm.IPAddressControl
       {
          get
          {
-            NKnife.GUI.WinForm.IPAddressControl.IpAddressControl control = (NKnife.GUI.WinForm.IPAddressControl.IpAddressControl)Control;
+            IpAddressControl control = (IpAddressControl)Control;
 
             IList snapLines = base.SnapLines;
 

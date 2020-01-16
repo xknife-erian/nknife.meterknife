@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public static class UtilitySerialize
     {

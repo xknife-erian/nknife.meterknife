@@ -1,4 +1,4 @@
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     /// <summary>
     /// interface for Splash Screen

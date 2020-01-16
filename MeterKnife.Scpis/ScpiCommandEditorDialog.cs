@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text;
 using System.Windows.Forms;
-using NKnife.Converts;
+using MeterKnife.Util.Converts;
+using MeterKnife.Util.GUI;
+using MeterKnife.Util.Scpi;
 using NKnife.GUI.WinForm;
-using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {

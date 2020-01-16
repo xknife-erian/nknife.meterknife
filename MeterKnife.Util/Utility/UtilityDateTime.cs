@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     /// <summary>
     /// 有关DateTime的扩展方法

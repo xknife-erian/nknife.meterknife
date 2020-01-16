@@ -8,7 +8,7 @@ using MathNet.Numerics.Statistics;
 using MeterKnife.Common.Enums;
 using MeterKnife.Common.EventParameters;
 using MeterKnife.Common.Interfaces;
-using NKnife.IoC;
+using MeterKnife.Util.IoC;
 
 namespace MeterKnife.Common.DataModels
 {

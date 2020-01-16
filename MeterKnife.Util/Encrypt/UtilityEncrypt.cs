@@ -2,9 +2,9 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using NKnife.Utility;
+using MeterKnife.Util.Utility;
 
-namespace NKnife.Encrypt
+namespace MeterKnife.Util.Encrypt
 {
     /// <summary>
     ///     针对加解密方法的扩展

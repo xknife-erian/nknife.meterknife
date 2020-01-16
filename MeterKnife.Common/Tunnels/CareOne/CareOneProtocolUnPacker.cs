@@ -5,10 +5,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Util.Converts;
+using MeterKnife.Util.Protocol;
+using MeterKnife.Util.Protocol.Generic;
 using MeterKnife.Util.ShareResources;
-using NKnife.Converts;
-using NKnife.Protocol;
-using NKnife.Protocol.Generic;
 
 namespace MeterKnife.Common.Tunnels.CareOne
 {

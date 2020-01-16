@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace NKnife.Interface
+namespace MeterKnife.Util.Interface
 {
     /// <summary>
     ///     描述一个屏幕输入界面的接口

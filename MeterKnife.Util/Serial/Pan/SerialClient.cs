@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading;
 using Common.Logging;
-using NKnife.IoC;
-using SerialKnife.Common;
-using SerialKnife.Interfaces;
-using SerialKnife.Pan.Common;
-using SerialKnife.Pan.Interfaces;
+using MeterKnife.Util.IoC;
+using MeterKnife.Util.Serial.Common;
+using MeterKnife.Util.Serial.Interfaces;
+using MeterKnife.Util.Serial.Pan.Common;
+using MeterKnife.Util.Serial.Pan.Interfaces;
 
-namespace SerialKnife.Pan
+namespace MeterKnife.Util.Serial.Pan
 {
     /// <summary>
     ///     串口通讯器。每个实例绑定一个端口。

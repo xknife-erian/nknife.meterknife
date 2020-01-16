@@ -1,4 +1,4 @@
-namespace NKnife.GUI.WinForm.Common
+namespace MeterKnife.Util.GUI.Common
 {
     /// <summary>
     /// 文件选择控件样式枚举

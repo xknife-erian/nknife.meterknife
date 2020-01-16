@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
 
 	[ToolboxBitmap(typeof(CollapsibleSplitContainer), "Resources.collapse.bmp")]

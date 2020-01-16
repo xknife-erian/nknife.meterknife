@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public class UtilityByte
     {

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using NKnife.Protocol;
-using NKnife.Tunnel;
-using SocketKnife.Generic;
+﻿using System.Net;
+using MeterKnife.Util.Socket.Generic;
+using MeterKnife.Util.Tunnel;
 
-namespace SocketKnife.Interfaces
+namespace MeterKnife.Util.Socket.Interfaces
 {
     public interface ISocketServer : IDataConnector
     {

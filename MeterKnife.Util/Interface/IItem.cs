@@ -1,4 +1,4 @@
-﻿namespace NKnife.Interface
+﻿namespace MeterKnife.Util.Interface
 {
     public interface IItem
     {

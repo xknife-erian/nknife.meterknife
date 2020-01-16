@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm.DataSelector
+namespace MeterKnife.Util.GUI.DataSelector
 {
     internal class SelectForm<T> : SimpleForm where T : class
     {

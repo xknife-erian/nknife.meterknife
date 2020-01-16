@@ -4,8 +4,9 @@ using System.Net;
 using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
+using MeterKnife.Util.GUI;
+using MeterKnife.Util.Utility;
 using NKnife.GUI.WinForm;
-using NKnife.Utility;
 
 namespace MeterKnife.Common.Winforms.Dialogs
 {

@@ -1,4 +1,6 @@
-﻿namespace MeterKnife.Common.Winforms.Dialogs
+﻿using MeterKnife.Util.GUI.IPAddressControl;
+
+namespace MeterKnife.Common.Winforms.Dialogs
 {
     partial class InterfaceSelectorDialog
     {
@@ -31,7 +33,7 @@
             this._SerialRadioButton = new System.Windows.Forms.RadioButton();
             this._LanRadioButton = new System.Windows.Forms.RadioButton();
             this._SerialComboBox = new System.Windows.Forms.ComboBox();
-            this._IpAddressControl = new NKnife.GUI.WinForm.IPAddressControl.IpAddressControl();
+            this._IpAddressControl = new IpAddressControl();
             this._AcceptButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._PortNumberBox = new System.Windows.Forms.ComboBox();
@@ -232,7 +234,7 @@
         private System.Windows.Forms.RadioButton _SerialRadioButton;
         private System.Windows.Forms.RadioButton _LanRadioButton;
         private System.Windows.Forms.ComboBox _SerialComboBox;
-        private NKnife.GUI.WinForm.IPAddressControl.IpAddressControl _IpAddressControl;
+        private IpAddressControl _IpAddressControl;
         private System.Windows.Forms.Button _AcceptButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown _PortNumericUpDown;

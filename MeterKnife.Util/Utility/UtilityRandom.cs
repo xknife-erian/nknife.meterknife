@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using NKnife.Maths;
+using MeterKnife.Util.Maths;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     /// <summary>
     /// 针对.net的Random随机数生成器的扩展。

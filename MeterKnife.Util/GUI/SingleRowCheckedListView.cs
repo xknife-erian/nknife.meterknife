@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     public class SingleRowCheckedListView : ListView
     {

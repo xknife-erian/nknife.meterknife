@@ -1,6 +1,6 @@
 ﻿using System.Xml;
 
-namespace NKnife.XML
+namespace MeterKnife.Util.XML
 {
     /// <summary>
     /// 对XmlElement的封装类

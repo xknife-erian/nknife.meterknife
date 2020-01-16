@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using MeterKnife.Common.Properties;
+using MeterKnife.Util.GUI;
 using NKnife.GUI.WinForm;
 
 namespace MeterKnife.App

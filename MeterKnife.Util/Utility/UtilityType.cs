@@ -6,10 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Xml;
-using NKnife.Base;
-using NKnife.Wrapper.Files;
+using MeterKnife.Util.Base;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public static class UtilityType
     {

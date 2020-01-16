@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using Common.Logging;
 using MeterKnife.Common.Interfaces;
-using NKnife.Base;
-using NKnife.Utility;
+using MeterKnife.Util.Base;
+using MeterKnife.Util.Utility;
 
 namespace MeterKnife.Common.Util
 {

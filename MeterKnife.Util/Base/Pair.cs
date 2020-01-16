@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace NKnife.Base
+namespace MeterKnife.Util.Base
 {
     /// <summary>
     /// 一个存储了一对值（非键值对类型）的类型。

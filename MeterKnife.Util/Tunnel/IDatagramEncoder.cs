@@ -1,4 +1,4 @@
-﻿namespace NKnife.Tunnel
+﻿namespace MeterKnife.Util.Tunnel
 {
     /// <summary>
     /// 一个编码器接口。结果码是将被传输的数据类型，比如Socket与Serial的byte[]。

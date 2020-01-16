@@ -2,7 +2,7 @@
 using System.Data;
 using System.Reflection;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     /// <summary>  
     /// 排序帮助类（包括对string[],int[],datatable,T[]进行排序）  

@@ -1,4 +1,4 @@
-﻿namespace NKnife.Utility
+﻿namespace MeterKnife.Util.Utility
 {
     public class UtilityRegistry
     {

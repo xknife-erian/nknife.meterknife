@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MeterKnife.Util.Utility;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Parameters;
 using Ninject.Planning.Bindings;
-using NKnife.Utility;
 
-namespace NKnife.IoC
+namespace MeterKnife.Util.IoC
 {
     public static class DI
     {

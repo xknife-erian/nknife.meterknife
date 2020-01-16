@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NKnife.Protocol;
-
-namespace NKnife.Tunnel
+﻿namespace MeterKnife.Util.Tunnel
 {
     /// <summary>
     /// 协议的编解码器

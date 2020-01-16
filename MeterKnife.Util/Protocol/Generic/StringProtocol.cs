@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using Ninject;
-using Common.Logging;
-using NKnife.Interface;
-using NKnife.IoC;
+﻿using System.Collections.Generic;
+using MeterKnife.Util.IoC;
 
-namespace NKnife.Protocol.Generic
+namespace MeterKnife.Util.Protocol.Generic
 {
     /// <summary>协议的抽象实现
     /// </summary>

@@ -1,6 +1,6 @@
-﻿using NKnife.Tunnel.Base;
+﻿using MeterKnife.Util.Tunnel.Base;
 
-namespace SocketKnife.Generic.Filters
+namespace MeterKnife.Util.Socket.Generic.Filters
 {
     public class SocketProtocolFilter : BaseProtocolFilter<string>
     {

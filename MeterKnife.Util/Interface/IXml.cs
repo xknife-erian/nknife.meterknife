@@ -1,6 +1,6 @@
 ﻿using System.Xml;
 
-namespace NKnife.Interface
+namespace MeterKnife.Util.Interface
 {
     /// <summary>
     /// 描述一个可以序列化与反序列化为XML节点的接口

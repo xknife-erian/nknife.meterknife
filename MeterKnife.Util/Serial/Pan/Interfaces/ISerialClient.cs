@@ -1,6 +1,4 @@
-﻿using SerialKnife.Interfaces;
-
-namespace SerialKnife.Pan.Interfaces
+﻿namespace MeterKnife.Util.Serial.Pan.Interfaces
 {
     /// <summary>描述一个串口操作的接口
     /// </summary>

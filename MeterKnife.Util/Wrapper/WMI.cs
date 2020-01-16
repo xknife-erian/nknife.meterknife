@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Management;
 using System.Text;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     /// <summary>
     ///     获取系统信息

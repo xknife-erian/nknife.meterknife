@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Text;
+﻿using System.Resources;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public class UtilityResource
     {

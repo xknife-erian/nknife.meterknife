@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Net;
-using NKnife.Protocol;
 
-namespace NKnife.Tunnel
+namespace MeterKnife.Util.Tunnel
 {
     public interface ITunnel : IDisposable
     {

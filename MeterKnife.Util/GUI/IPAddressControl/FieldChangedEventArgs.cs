@@ -1,7 +1,7 @@
 
 using System;
 
-namespace NKnife.GUI.WinForm.IPAddressControl
+namespace MeterKnife.Util.GUI.IPAddressControl
 {
    public class FieldChangedEventArgs : EventArgs
    {

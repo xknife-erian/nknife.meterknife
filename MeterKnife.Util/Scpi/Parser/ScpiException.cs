@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace ScpiKnife.Parser
+namespace MeterKnife.Util.Scpi.Parser
 {
     public class ScpiException : Exception
     {

@@ -1,4 +1,6 @@
-﻿namespace NKnife.NLog3.Controls
+﻿using MeterKnife.Util.NLog3.Controls;
+
+namespace NKnife.NLog3.Controls
 {
     sealed partial class LogPanel
     {

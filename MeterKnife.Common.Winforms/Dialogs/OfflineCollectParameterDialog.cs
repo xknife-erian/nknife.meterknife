@@ -1,4 +1,5 @@
-﻿using NKnife.GUI.WinForm;
+﻿using MeterKnife.Util.GUI;
+using NKnife.GUI.WinForm;
 
 namespace MeterKnife.Common.Winforms.Dialogs
 {

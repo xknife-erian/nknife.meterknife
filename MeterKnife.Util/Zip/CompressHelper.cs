@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
-using NKnife.Utility;
+using MeterKnife.Util.Utility;
 
-namespace NKnife.Zip
+namespace MeterKnife.Util.Zip
 {
     /// <summary>对一些压缩方法的封装
     /// </summary>

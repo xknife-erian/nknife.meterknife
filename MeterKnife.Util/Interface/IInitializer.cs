@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.Interface
+namespace MeterKnife.Util.Interface
 {
     /// <summary>当一个类型需要初始化时
     /// </summary>

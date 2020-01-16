@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using ScpiKnife;
+using MeterKnife.Util.Scpi;
 
 namespace MeterKnife.Common.Winforms.Controls
 {

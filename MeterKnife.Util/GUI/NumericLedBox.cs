@@ -29,7 +29,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     /// <summary>
     /// A control that acts like a LED displayer

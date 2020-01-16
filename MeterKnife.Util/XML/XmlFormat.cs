@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace NKnife.XML
+namespace MeterKnife.Util.XML
 {
     /// <summary>
     /// 一个快速格式化XML文件的工具类型

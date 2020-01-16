@@ -7,7 +7,7 @@ using System.Threading;
 
 [assembly: CLSCompliant(true)]
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     /// <summary>
     ///     高精度计时器，主要为衡量“持续时间”而封装的类

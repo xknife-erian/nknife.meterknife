@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     /// <summary>
     /// 一个仿照ForeFox的UI的旋转进度表示控件

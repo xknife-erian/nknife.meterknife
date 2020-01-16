@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SerialKnife.Pan.Common
+namespace MeterKnife.Util.Serial.Pan.Common
 {
     /// <summary>发送接收信息包（双向）
     /// </summary>

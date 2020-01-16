@@ -3,15 +3,14 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
+using MeterKnife.Util.Protocol.Generic;
+using MeterKnife.Util.Serial;
+using MeterKnife.Util.Socket;
+using MeterKnife.Util.Tunnel;
+using MeterKnife.Util.Tunnel.Common;
+using MeterKnife.Util.Tunnel.Generic;
 using Ninject.Activation;
 using Ninject.Modules;
-using NKnife.Protocol.Generic;
-using NKnife.Tunnel;
-using NKnife.Tunnel.Common;
-using NKnife.Tunnel.Generic;
-using SerialKnife;
-using SerialKnife.Interfaces;
-using SocketKnife;
 
 namespace MeterKnife.Common.IoC
 {

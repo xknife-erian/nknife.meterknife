@@ -4,7 +4,6 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using Common.Logging;
-using MathNet.Numerics;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Util;
 using OxyPlot;

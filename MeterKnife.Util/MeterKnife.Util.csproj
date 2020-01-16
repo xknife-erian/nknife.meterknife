@@ -172,7 +172,6 @@
     <Compile Include="Extensions\SocketExtension.cs" />
     <Compile Include="Extensions\StringBuilderExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
-    <Compile Include="Extensions\WindowExtension.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="GUI\BoundleMenuStripButton.cs">
       <SubType>Component</SubType>

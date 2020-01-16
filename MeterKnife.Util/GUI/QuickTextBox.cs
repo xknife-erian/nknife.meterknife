@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     /// <summary>
     ///     一个已设置为多行显示的TextBox，有简单的copy,paste等右键菜单

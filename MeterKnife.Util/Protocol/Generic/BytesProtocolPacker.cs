@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NKnife.Protocol.Generic
+﻿namespace MeterKnife.Util.Protocol.Generic
 {
     public abstract class BytesProtocolPacker : IProtocolPacker<byte[]>
     {

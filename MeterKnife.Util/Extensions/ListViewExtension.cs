@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Windows.Forms;
 
+// ReSharper disable once CheckNamespace
 namespace System
 {
     public static class ListViewExtension

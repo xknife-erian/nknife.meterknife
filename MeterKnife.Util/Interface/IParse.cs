@@ -1,4 +1,4 @@
-﻿namespace NKnife.Interface
+﻿namespace MeterKnife.Util.Interface
 {
     /// <summary>
     /// 一个描述能够针对字符串解析类型的接口。

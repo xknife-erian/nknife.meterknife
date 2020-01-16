@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
 using Common.Logging;
-using NKnife.Interface;
-using NKnife.Utility;
+using MeterKnife.Util.Interface;
+using MeterKnife.Util.Utility;
 
-namespace NKnife.Protocol.Generic.Xml
+namespace MeterKnife.Util.Protocol.Generic.Xml
 {
     public class XmlProtocolUnPacker : StringProtocolUnPacker
     {

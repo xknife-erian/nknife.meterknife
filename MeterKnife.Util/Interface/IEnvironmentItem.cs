@@ -1,4 +1,4 @@
-﻿namespace NKnife.Interface
+﻿namespace MeterKnife.Util.Interface
 {
     /// <summary>应用程序启动时需加载的各种服务(环境)
     /// </summary>

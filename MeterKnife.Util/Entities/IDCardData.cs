@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace NKnife.Entities
+namespace MeterKnife.Util.Entities
 {
     /// <summary>中华人民共和国第2代身份证信息结构体
     /// </summary>

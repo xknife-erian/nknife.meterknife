@@ -1,10 +1,6 @@
-using System;
-using NKnife.Base;
-using NKnife.Events;
-using NKnife.Tunnel.Common;
-using SocketKnife.Common;
+using MeterKnife.Util.Tunnel.Common;
 
-namespace SocketKnife.Interfaces
+namespace MeterKnife.Util.Socket.Interfaces
 {
     public interface IHeartbeatFilter
     {

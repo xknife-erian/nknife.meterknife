@@ -1,4 +1,4 @@
-﻿namespace NKnife.Electronics
+﻿namespace MeterKnife.Util.Electronics
 {
     /// <summary>电路类型
     /// </summary>

@@ -1,9 +1,9 @@
 ﻿using System;
-using NKnife.IoC;
+using NKnife.NLog3.Controls;
 using NLog;
 using NLog.Targets;
 
-namespace NKnife.NLog3.Controls
+namespace MeterKnife.Util.NLog3.Controls
 {
     /// <summary>
     /// 这是一个基于NLog的自定义的输出目标（Target），这个输出目标是一个ListView控件

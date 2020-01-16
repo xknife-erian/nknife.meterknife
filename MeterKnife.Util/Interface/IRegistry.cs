@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 
-namespace NKnife.Interface
+namespace MeterKnife.Util.Interface
 {
     public interface IRegistry
     {

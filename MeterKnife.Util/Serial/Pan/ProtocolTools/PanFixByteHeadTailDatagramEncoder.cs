@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NKnife.Tunnel.Generic;
+using MeterKnife.Util.Tunnel.Generic;
 
-namespace SerialKnife.Pan.ProtocolTools
+namespace MeterKnife.Util.Serial.Pan.ProtocolTools
 {
     public class PanFixByteHeadTailDatagramEncoder : BytesDatagramEncoder
     {

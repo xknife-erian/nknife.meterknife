@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NKnife.Exceptions;
+﻿using MeterKnife.Util.Exceptions;
 
-namespace ScpiKnife
+namespace MeterKnife.Util.Scpi
 {
     public class ScpiParseException : NKnifeException
     {

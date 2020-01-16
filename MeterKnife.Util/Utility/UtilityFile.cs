@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using MeterKnife.Util.ShareResources;
 using Microsoft.Win32;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     /// <summary>
     ///     文件与目录等System.IO下的类的扩展

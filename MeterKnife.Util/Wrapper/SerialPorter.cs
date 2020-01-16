@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.IO.Ports;
 using System.Text;
 using Common.Logging;
-using Microsoft.Win32;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     public class SerialPorter
     {

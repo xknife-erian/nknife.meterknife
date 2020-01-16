@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using NKnife.Tunnel;
+using MeterKnife.Util.Tunnel;
 
-namespace SocketKnife.Generic
+namespace MeterKnife.Util.Socket.Generic
 {
     public abstract class SocketConfig : ITunnelConfig
     {

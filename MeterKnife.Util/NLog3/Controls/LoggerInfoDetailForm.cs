@@ -2,12 +2,12 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using MeterKnife.Util.IoC;
 using MeterKnife.Util.ShareResources;
-using NKnife.IoC;
-using NKnife.Utility;
+using MeterKnife.Util.Utility;
 using NLog;
 
-namespace NKnife.NLog3.Controls
+namespace MeterKnife.Util.NLog3.Controls
 {
     /// <summary>日志详细信息展现窗体
     /// </summary>

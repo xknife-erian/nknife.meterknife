@@ -1,4 +1,4 @@
-﻿namespace NKnife.Interface
+﻿namespace MeterKnife.Util.Interface
 {
     /// <summary>
     /// 一个描述应用程序服务的接口

@@ -3,12 +3,12 @@ using System.IO;
 using Common.Logging;
 using Common.Logging.Configuration;
 using Common.Logging.NLog;
+using MeterKnife.Util.NLog3.Controls;
+using MeterKnife.Util.NLog3.Controls.WPF;
 using MeterKnife.Util.Properties;
 using Ninject.Modules;
-using NKnife.NLog3.Controls;
-using NKnife.NLog3.Controls.WPF;
 
-namespace NKnife.NLog3.IoC
+namespace MeterKnife.Util.IoC
 {
     public class NLogModules : NinjectModule
     {

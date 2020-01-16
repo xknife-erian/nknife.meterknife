@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     /// <summary>
     /// 相关Guid的封装类

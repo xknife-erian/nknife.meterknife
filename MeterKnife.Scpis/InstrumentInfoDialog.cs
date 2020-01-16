@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using MeterKnife.Util.GUI;
+using MeterKnife.Util.Scpi;
 using NKnife.GUI.WinForm;
-using ScpiKnife;
 
 namespace MeterKnife.Scpis
 {

@@ -1,7 +1,7 @@
-﻿using NKnife.Events;
-using NKnife.Tunnel.Common;
+﻿using MeterKnife.Util.Events;
+using MeterKnife.Util.Tunnel.Common;
 
-namespace NKnife.Tunnel.Events
+namespace MeterKnife.Util.Tunnel.Events
 {
     public class SessionEventArgs : EventArgs<TunnelSession>
     {

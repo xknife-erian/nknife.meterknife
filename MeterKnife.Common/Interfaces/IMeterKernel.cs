@@ -5,7 +5,6 @@ using System.Text;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.EventParameters;
-using NKnife.Events;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.Common.Interfaces

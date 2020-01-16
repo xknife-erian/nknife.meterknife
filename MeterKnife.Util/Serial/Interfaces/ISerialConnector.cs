@@ -1,7 +1,7 @@
-﻿using NKnife.Tunnel;
-using SerialKnife.Common;
+﻿using MeterKnife.Util.Serial.Common;
+using MeterKnife.Util.Tunnel;
 
-namespace SerialKnife.Interfaces
+namespace MeterKnife.Util.Serial.Interfaces
 {
     public interface ISerialConnector : IDataConnector
     {

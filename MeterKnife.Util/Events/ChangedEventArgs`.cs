@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.Events
+namespace MeterKnife.Util.Events
 {
     public class ChangedEventArgs<T> : EventArgs
     {

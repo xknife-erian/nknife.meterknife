@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Common.Logging;
-using NKnife.Utility;
-using ScpiKnife;
+using MeterKnife.Util.Scpi;
+using MeterKnife.Util.Utility;
 
 namespace MeterKnife.Common.DataModels
 {

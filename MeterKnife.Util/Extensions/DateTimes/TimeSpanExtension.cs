@@ -1,4 +1,7 @@
-﻿namespace System
+﻿using System;
+
+// ReSharper disable once CheckNamespace
+namespace System
 {
     /// <summary>
     /// Static class containing Fluent <see cref="DateTime"/> extension methods.

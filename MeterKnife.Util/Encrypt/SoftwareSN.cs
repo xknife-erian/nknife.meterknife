@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace NKnife.Encrypt
+namespace MeterKnife.Util.Encrypt
 {
     public class SoftwareSN
     {

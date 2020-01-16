@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NKnife.Interface
+﻿namespace MeterKnife.Util.Interface
 {
     public interface IFileCompress
     {

@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using System.Text;
 using MeterKnife.Common.DataModels;
-using NKnife.Converts;
-using NKnife.Protocol.Generic;
+using MeterKnife.Util.Converts;
+using MeterKnife.Util.Protocol.Generic;
 
 namespace MeterKnife.Common.Tunnels.CareOne
 {

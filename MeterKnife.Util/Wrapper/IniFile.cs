@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     /// <summary>
     /// 一个描述通过系统方法读写INI文件的类型

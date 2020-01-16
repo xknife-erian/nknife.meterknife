@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Common.Logging;
-using NKnife.Utility;
-using NKnife.Zip;
+using MeterKnife.Util.Utility;
+using MeterKnife.Util.Zip;
 
-namespace NKnife.Tunnel.Generic
+namespace MeterKnife.Util.Tunnel.Generic
 {
     /// <summary>
     ///     一个最常用的 字符数组 => 字符串 转换器。

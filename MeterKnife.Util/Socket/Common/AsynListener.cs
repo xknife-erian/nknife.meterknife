@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using Common.Logging;
 
-namespace SocketKnife.Common
+namespace MeterKnife.Util.Socket.Common
 {
     /// <summary>
     ///     一个应用在较简单场景且压力较小情况下的SocketServer。
@@ -66,7 +66,7 @@ namespace SocketKnife.Common
 
         #region 开始、关闭监听
 
-        private Socket _Listener;
+        private System.Net.Sockets.Socket _Listener;
         private Thread _Thread;
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace SocketKnife.Common
         {
             try
             {
-                _Listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                _Listener = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 var ipAddress = _TcpIpServerIp.Trim() == "" ? IPAddress.Any : IPAddress.Parse(_TcpIpServerIp);
                 var localEndPoint = new IPEndPoint(ipAddress, _TcpIpServerPort);
@@ -133,10 +133,10 @@ namespace SocketKnife.Common
         /// <param name="ar"></param>
         private void AcceptCallback(IAsyncResult ar)
         {
-            Socket client = null;
+            System.Net.Sockets.Socket client = null;
             try
             {
-                var listener = (Socket) ar.AsyncState;
+                var listener = (System.Net.Sockets.Socket) ar.AsyncState;
                 client = listener.EndAccept(ar);
                 _logger.Trace(string.Format("监听到客户端连接：{0}", client.RemoteEndPoint));
                 var state = new StateObject(_BufferSize, client) {Client = client};
@@ -160,7 +160,7 @@ namespace SocketKnife.Common
         /// <param name="ar">异步结果</param>
         private void ReadCallback(IAsyncResult ar)
         {
-            Socket client = null;
+            System.Net.Sockets.Socket client = null;
             try
             {
                 lock (ar)
@@ -220,14 +220,14 @@ namespace SocketKnife.Common
         /// </summary>
         /// <param name="client">指定的客户端</param>
         /// <param name="data">数据</param>
-        public virtual void Send(Socket client, string data)
+        public virtual void Send(System.Net.Sockets.Socket client, string data)
         {
             _logger.Trace(string.Format("Send:{0}", data));
             var byteData = Encoding.Default.GetBytes(data);
             client.BeginSend(byteData, 0, byteData.Length, 0, SendCallback, client);
         }
 
-        public virtual void Send(Socket client, byte[] data)
+        public virtual void Send(System.Net.Sockets.Socket client, byte[] data)
         {
             client.BeginSend(data, 0, data.Length, 0, SendCallback, client);
         }
@@ -239,7 +239,7 @@ namespace SocketKnife.Common
         /// <param name="ar">异步结果</param>
         private void SendCallback(IAsyncResult ar)
         {
-            var client = (Socket) ar.AsyncState;
+            var client = (System.Net.Sockets.Socket) ar.AsyncState;
             try
             {
                 var bytesSent = client.EndSend(ar);
@@ -309,9 +309,9 @@ namespace SocketKnife.Common
         public class ListenerExceptionEventArgs : EventArgs
         {
             private readonly Exception _Exception;
-            private readonly Socket _ServerSocket;
+            private readonly System.Net.Sockets.Socket _ServerSocket;
 
-            public ListenerExceptionEventArgs(Exception exception, Socket serverSocket)
+            public ListenerExceptionEventArgs(Exception exception, System.Net.Sockets.Socket serverSocket)
             {
                 _Exception = exception;
                 _ServerSocket = serverSocket;
@@ -322,7 +322,7 @@ namespace SocketKnife.Common
                 get { return _Exception; }
             }
 
-            public Socket ServerSocket
+            public System.Net.Sockets.Socket ServerSocket
             {
                 get { return _ServerSocket; }
             }
@@ -330,16 +330,16 @@ namespace SocketKnife.Common
 
         public class ReceivedDataEventArgs : EventArgs
         {
-            private readonly Socket _Client;
+            private readonly System.Net.Sockets.Socket _Client;
             private readonly string _Data;
 
-            public ReceivedDataEventArgs(string data, Socket client)
+            public ReceivedDataEventArgs(string data, System.Net.Sockets.Socket client)
             {
                 _Data = data;
                 _Client = client;
             }
 
-            public Socket Client
+            public System.Net.Sockets.Socket Client
             {
                 get { return _Client; }
             }
@@ -352,7 +352,7 @@ namespace SocketKnife.Common
 
         protected class StateObject
         {
-            public StateObject(int bufferSize, Socket workSocket)
+            public StateObject(int bufferSize, System.Net.Sockets.Socket workSocket)
             {
                 Buffer = new byte[bufferSize];
                 Client = workSocket;
@@ -360,7 +360,7 @@ namespace SocketKnife.Common
             }
 
             public byte[] Buffer { get; private set; }
-            public Socket Client { get; set; }
+            public System.Net.Sockets.Socket Client { get; set; }
             public StringBuilder StringBuilder { get; private set; }
 
             public void Reset()

@@ -1,4 +1,4 @@
-﻿namespace NKnife.Encrypt
+﻿namespace MeterKnife.Util.Encrypt
 {
     /// <summary>
     ///     简单加密类

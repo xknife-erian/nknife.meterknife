@@ -1,7 +1,7 @@
-using SerialKnife.Common;
-using SerialKnife.Pan.Common;
+using MeterKnife.Util.Serial.Common;
+using MeterKnife.Util.Serial.Pan.Common;
 
-namespace SerialKnife.Pan.Interfaces
+namespace MeterKnife.Util.Serial.Pan.Interfaces
 {
     /// <summary>串口通讯管理器
     /// </summary>

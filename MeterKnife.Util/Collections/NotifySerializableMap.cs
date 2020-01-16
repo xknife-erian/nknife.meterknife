@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace NKnife.Collections
+namespace MeterKnife.Util.Collections
 {
     /// <summary>描述一个可序列化，且集合的内容发生改变时会发出通知的KeyValue的集合
     /// </summary>

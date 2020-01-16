@@ -7,9 +7,9 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
-using NKnife.Events;
-using NKnife.IoC;
-using ScpiKnife;
+using MeterKnife.Util.Events;
+using MeterKnife.Util.IoC;
+using MeterKnife.Util.Scpi;
 
 namespace MeterKnife.Common.Winforms.Dialogs
 {

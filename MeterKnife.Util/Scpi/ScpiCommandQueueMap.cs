@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace ScpiKnife
+namespace MeterKnife.Util.Scpi
 {
     public class ScpiCommandQueueMap : IDictionary<string, ScpiCommandQueue.Item[]>
     {

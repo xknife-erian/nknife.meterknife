@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Sockets;
-using NKnife.Events;
-using NKnife.Tunnel;
-using SocketKnife.Generic;
+using MeterKnife.Util.Events;
+using MeterKnife.Util.Socket.Generic;
+using MeterKnife.Util.Tunnel;
 
-namespace SocketKnife.Interfaces
+namespace MeterKnife.Util.Socket.Interfaces
 {
     public interface ISocketSessionMap : ITunnelSessionMap
     {

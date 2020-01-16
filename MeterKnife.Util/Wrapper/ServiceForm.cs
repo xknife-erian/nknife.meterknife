@@ -2,9 +2,8 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Common.Logging;
-using NKnife.Interface;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     /// <summary>
     /// Windows服务因没有UI主线程，无法用一般的办法显示窗体。本类的静态方法呼叫系统的功能，来实现打开窗体。

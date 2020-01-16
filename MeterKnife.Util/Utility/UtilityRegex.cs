@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using MeterKnife.Util.ShareResources;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public class UtilityRegex
     {

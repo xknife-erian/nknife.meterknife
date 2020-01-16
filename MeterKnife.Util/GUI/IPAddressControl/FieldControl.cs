@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm.IPAddressControl
+namespace MeterKnife.Util.GUI.IPAddressControl
 {
    internal enum Direction
    {

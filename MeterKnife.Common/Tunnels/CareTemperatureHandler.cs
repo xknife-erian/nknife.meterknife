@@ -6,7 +6,7 @@ using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels.CareOne;
-using NKnife.IoC;
+using MeterKnife.Util.IoC;
 
 namespace MeterKnife.Common.Tunnels
 {

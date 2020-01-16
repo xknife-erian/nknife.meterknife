@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Xml;
 
-namespace ScpiKnife
+namespace MeterKnife.Util.Scpi
 {
     /// <summary>
     ///     指令主题集合

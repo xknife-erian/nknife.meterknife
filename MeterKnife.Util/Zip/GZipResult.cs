@@ -1,4 +1,4 @@
-namespace NKnife.Zip
+namespace MeterKnife.Util.Zip
 {
     public class GZipResult
     {

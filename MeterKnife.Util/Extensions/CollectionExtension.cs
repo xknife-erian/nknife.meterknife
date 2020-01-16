@@ -1,8 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 
-namespace System.Collections.Generic
+// ReSharper disable once CheckNamespace
+namespace System
 {
     public static class CollectionExtension
     {

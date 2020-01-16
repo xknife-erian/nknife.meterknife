@@ -3,13 +3,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Common.Logging;
-using NKnife.IoC;
-using NKnife.Tunnel.Common;
-using NKnife.Tunnel.Events;
-using SocketKnife.Generic;
-using SocketKnife.Interfaces;
+using MeterKnife.Util.IoC;
+using MeterKnife.Util.Socket.Generic;
+using MeterKnife.Util.Socket.Interfaces;
+using MeterKnife.Util.Tunnel.Common;
+using MeterKnife.Util.Tunnel.Events;
 
-namespace SocketKnife
+namespace MeterKnife.Util.Socket
 {
     public class KnifeLongSocketClient : ISocketClient, IDisposable
     {
@@ -310,7 +310,7 @@ namespace SocketKnife
 
                 if (_SocketSession.AcceptSocket == null || !_SocketSession.AcceptSocket.Connected)
                 {
-                    _SocketSession.AcceptSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+                    _SocketSession.AcceptSocket = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
                     {
                         SendTimeout = Config.SendTimeout,
                         ReceiveTimeout = Config.ReceiveTimeout,

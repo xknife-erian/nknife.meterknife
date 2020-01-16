@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
-using SocketKnife.Common;
+using MeterKnife.Util.Socket.Common;
 
-namespace SocketKnife.Events
+namespace MeterKnife.Util.Socket.Events
 {
     public class ConnectionBrokenEventArgs : EventArgs
     {

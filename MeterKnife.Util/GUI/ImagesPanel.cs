@@ -6,9 +6,9 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using NKnife.Events;
+using MeterKnife.Util.Events;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     public sealed class ImagesPanel : FlowLayoutPanel
     {

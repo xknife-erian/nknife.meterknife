@@ -3,10 +3,10 @@ using System.IO;
 using System.IO.Ports;
 using System.Threading;
 using Common.Logging;
-using SerialKnife.Common;
-using SerialKnife.Interfaces;
+using MeterKnife.Util.Serial.Common;
+using MeterKnife.Util.Serial.Interfaces;
 
-namespace SerialKnife.Wrappers
+namespace MeterKnife.Util.Serial.Wrappers
 {
     /// <summary>
     ///     通过.net实现的串口操作类

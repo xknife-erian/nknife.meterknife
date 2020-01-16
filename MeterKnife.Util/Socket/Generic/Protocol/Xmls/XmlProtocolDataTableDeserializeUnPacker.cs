@@ -4,10 +4,10 @@ using System.Data;
 using System.IO;
 using System.Xml;
 using Common.Logging;
-using NKnife.Protocol.Generic;
-using NKnife.Protocol.Generic.Xml;
+using MeterKnife.Util.Protocol.Generic;
+using MeterKnife.Util.Protocol.Generic.Xml;
 
-namespace SocketKnife.Generic.Protocol.Xmls
+namespace MeterKnife.Util.Socket.Generic.Protocol.Xmls
 {
     /// <summary>含有序列化对象(DataTable)的解析器
     /// </summary>

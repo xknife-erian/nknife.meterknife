@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
-using NKnife.Converts;
+using MeterKnife.Util.Converts;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public static class UtilityEnums
     {

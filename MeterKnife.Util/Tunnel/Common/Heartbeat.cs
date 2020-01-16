@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace NKnife.Tunnel.Common
+namespace MeterKnife.Util.Tunnel.Common
 {
     public class Heartbeat
     {

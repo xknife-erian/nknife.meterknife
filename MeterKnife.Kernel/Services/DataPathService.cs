@@ -3,8 +3,7 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common;
 using MeterKnife.Common.Interfaces;
-using NKnife.Interface;
-using NKnife.IoC;
+using MeterKnife.Util.Interface;
 
 namespace MeterKnife.Kernel.Services
 {

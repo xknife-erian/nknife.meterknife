@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace NKnife.Interface
+namespace MeterKnife.Util.Interface
 {
     public interface IAbout
     {

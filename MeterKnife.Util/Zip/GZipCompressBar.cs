@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
 using System.Windows.Forms;
-using NKnife.Encrypt;
+using MeterKnife.Util.Encrypt;
 
-namespace NKnife.Zip
+namespace MeterKnife.Util.Zip
 {
     public class GZipCompressBar : ProgressBar
     {

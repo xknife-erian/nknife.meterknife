@@ -1,4 +1,6 @@
-﻿namespace NKnife.GUI.WinForm
+﻿using MeterKnife.Util.GUI;
+
+namespace NKnife.GUI.WinForm
 {
     public partial class WaitMessageForm : SimpleForm
     {

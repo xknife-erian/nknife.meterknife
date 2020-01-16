@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Schema;
-using NKnife.Base;
-using NKnife.Utility;
-using NKnife.Wrapper.Files;
+using MeterKnife.Util.Base;
+using MeterKnife.Util.Utility;
 
-namespace System.Xml
+namespace MeterKnife.Util.XML
 {
     /// <summary>
     ///     针对XmlDocument的一些扩展操作方法。静态类。

@@ -1,7 +1,7 @@
 ﻿using System;
 using MeterKnife.Util.ShareResources;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     /// <summary>
     /// 智能日期类型,能够理解"空"日期,能够在日期和空日期之间进行比较。

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using Common.Logging;
-using SerialKnife.Common;
-using SerialKnife.Interfaces;
-using SerialKnife.Pan.Interfaces;
+using MeterKnife.Util.Serial.Pan.Interfaces;
 
-namespace SerialKnife.Pan.Common
+namespace MeterKnife.Util.Serial.Pan.Common
 {
     /// <summary>向串口即将发送的指令包的集合
     /// TODO:这里分成三类包，双向包，单向包，巡查包，三类包的优先级不同，其实三类包没有必要，下一步引入包优先级的概念

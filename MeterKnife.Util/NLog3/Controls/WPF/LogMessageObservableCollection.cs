@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
-namespace NKnife.NLog3.Controls.WPF
+namespace MeterKnife.Util.NLog3.Controls.WPF
 {
     internal sealed class LogMessageObservableCollection : ObservableCollection<LogMessage>
     {

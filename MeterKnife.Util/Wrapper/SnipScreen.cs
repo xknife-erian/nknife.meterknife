@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     public class SnipScreen
     {

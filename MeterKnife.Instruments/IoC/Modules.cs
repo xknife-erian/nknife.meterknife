@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Ninject.Activation;
 using Ninject.Modules;
-using NKnife.IoC;
 
 namespace MeterKnife.Instruments.IoC
 {

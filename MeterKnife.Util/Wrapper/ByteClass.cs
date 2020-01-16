@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     [Flags]
     public enum BytePosition : byte

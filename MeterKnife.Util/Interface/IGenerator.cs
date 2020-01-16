@@ -1,4 +1,4 @@
-﻿namespace NKnife.Interface
+﻿namespace MeterKnife.Util.Interface
 {
     /// <summary>
     /// 一个描述该类型能够生成指定字符串的接口。

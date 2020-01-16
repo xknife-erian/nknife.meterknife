@@ -5,13 +5,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Common.Logging;
-using NKnife.IoC;
-using NKnife.Tunnel.Common;
-using NKnife.Tunnel.Events;
-using SocketKnife.Generic;
-using SocketKnife.Interfaces;
+using MeterKnife.Util.IoC;
+using MeterKnife.Util.Socket.Generic;
+using MeterKnife.Util.Socket.Interfaces;
+using MeterKnife.Util.Tunnel.Common;
+using MeterKnife.Util.Tunnel.Events;
 
-namespace SocketKnife
+namespace MeterKnife.Util.Socket
 {
     public class KnifeSocketServer : ISocketServer, IDisposable
     {
@@ -27,7 +27,7 @@ namespace SocketKnife
         private bool _IsDisposed;
         private bool _IsServerClosed = true;
         private bool _IsServerListenPaused;
-        private Socket _ListenSocket;
+        private System.Net.Sockets.Socket _ListenSocket;
         private int _Port;
         private int _SessionCount;
 
@@ -179,7 +179,7 @@ namespace SocketKnife
             try
             {
                 var ipEndPoint = new IPEndPoint(_IpAddress, _Port);
-                _ListenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                _ListenSocket = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 _ListenSocket.Bind(ipEndPoint);
                 _ListenSocket.ReceiveBufferSize = Config.ReceiveBufferSize;
                 _ListenSocket.SendBufferSize = Config.SendBufferSize;
@@ -230,7 +230,7 @@ namespace SocketKnife
         private void StartServerListen()
         {
             _CheckAcceptListenResetEvent.Reset();
-            Socket clientSocket = null;
+            System.Net.Sockets.Socket clientSocket = null;
 
             while (!_IsServerClosed)
             {
@@ -375,7 +375,7 @@ namespace SocketKnife
         /// <summary>
         ///     强制关闭客户端请求时的 Socket
         /// </summary>
-        private void CloseClientSocket(Socket socket)
+        private void CloseClientSocket(System.Net.Sockets.Socket socket)
         {
             if (socket != null)
             {
@@ -398,7 +398,7 @@ namespace SocketKnife
         /// <summary>
         ///     增加一个会话对象
         /// </summary>
-        private void AddSession(Socket clientSocket)
+        private void AddSession(System.Net.Sockets.Socket clientSocket)
         {
             var remoteEndPoint = clientSocket.RemoteEndPoint;
             var session = DI.Get<SocketSession>();

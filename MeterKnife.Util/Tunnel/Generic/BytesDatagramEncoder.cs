@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NKnife.Tunnel.Base;
-using NKnife.Tunnel.Common;
+﻿using MeterKnife.Util.Tunnel.Base;
 
-namespace NKnife.Tunnel.Generic
+namespace MeterKnife.Util.Tunnel.Generic
 {
     public abstract class BytesDatagramEncoder : BaseDatagramEncoder<byte[]>
     {

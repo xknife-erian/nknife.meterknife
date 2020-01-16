@@ -2,7 +2,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     /// <summary>一个显示XML的树
     /// </summary>

@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Text;
-using NKnife.Encrypt;
+using MeterKnife.Util.Encrypt;
 
-namespace NKnife.Zip
+namespace MeterKnife.Util.Zip
 {
     /// <summary>
     ///     File entry class.

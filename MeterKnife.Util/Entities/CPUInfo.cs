@@ -1,4 +1,4 @@
-﻿namespace NKnife.Entities
+﻿namespace MeterKnife.Util.Entities
 {
     public class CPUInfo
     {

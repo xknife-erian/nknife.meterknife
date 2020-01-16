@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace NKnife.Protocol
+namespace MeterKnife.Util.Protocol
 {
     /// <summary>
     /// 描述一个通讯会话中一次交易的内容的封装。

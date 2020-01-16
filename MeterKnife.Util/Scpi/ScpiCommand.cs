@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Data;
 using System.Text;
 using System.Xml;
-using NKnife.Converts;
+using MeterKnife.Util.Converts;
+using MeterKnife.Util.XML;
 
-namespace ScpiKnife
+namespace MeterKnife.Util.Scpi
 {
     /// <summary>
     /// 针对SCPI标准命令的封装。

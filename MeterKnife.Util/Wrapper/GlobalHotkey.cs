@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     /// <summary>
     /// 由于.net并没有提供全局快捷键的库，所以要使用该功能得通过api实现。
@@ -18,10 +18,10 @@ namespace NKnife.Wrapper
         /// <param name="fsModifiers">组合键</param> 
         /// <param name="vk">快捷键的虚拟键码</param> 
         /// <param name="callBack">回调函数</param> 
-        public static void Regist(IntPtr hWnd, NKnife.API.API.User32.GlobalHotkeyModifiers fsModifiers, Keys vk, HotKeyCallBackHanlder callBack)
+        public static void Regist(IntPtr hWnd, API.API.User32.GlobalHotkeyModifiers fsModifiers, Keys vk, HotKeyCallBackHanlder callBack)
         {
             int id = keyid++;
-            if (!NKnife.API.API.User32.RegisterHotKey(hWnd, id, fsModifiers, vk))
+            if (!API.API.User32.RegisterHotKey(hWnd, id, fsModifiers, vk))
                 throw new Exception("regist hotkey fail.");
             keymap[id] = callBack;
         }
@@ -36,7 +36,7 @@ namespace NKnife.Wrapper
             foreach (KeyValuePair<int, HotKeyCallBackHanlder> var in keymap)
             {
                 if (var.Value == callBack)
-                    NKnife.API.API.User32.UnregisterHotKey(hWnd, var.Key);
+                    API.API.User32.UnregisterHotKey(hWnd, var.Key);
             }
         }
 

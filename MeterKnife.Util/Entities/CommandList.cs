@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.Windows.Input;
-using NKnife.Interface.Patterns;
+using MeterKnife.Util.Interface.Patterns;
 
-namespace NKnife.Entities
+namespace MeterKnife.Util.Entities
 {
     /// <summary>
     ///     命令模式中命令接口的集合类

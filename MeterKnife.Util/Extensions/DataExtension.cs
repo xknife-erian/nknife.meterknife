@@ -2,10 +2,10 @@
 using System.Data;
 using System.Linq;
 using Common.Logging;
-using NKnife.Attributes;
-using NKnife.Interface;
+using MeterKnife.Util.Attributes;
 
-namespace System.Data
+// ReSharper disable once CheckNamespace
+namespace System
 {
     public static class DataExtensions
     {

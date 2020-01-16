@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace NKnife.API
+namespace MeterKnife.Util.API
 {
     public sealed partial class API
     {

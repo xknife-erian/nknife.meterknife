@@ -11,19 +11,19 @@ using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
 using MeterKnife.Common.Util;
-using NKnife.IoC;
-using NKnife.Protocol.Generic;
-using NKnife.Tunnel;
-using NKnife.Tunnel.Filters;
-using NKnife.Tunnel.Generic;
-using NKnife.Utility;
-using ScpiKnife;
-using SerialKnife.Common;
-using SerialKnife.Generic.Filters;
-using SerialKnife.Interfaces;
-using SocketKnife.Generic;
-using SocketKnife.Generic.Filters;
-using SocketKnife.Interfaces;
+using MeterKnife.Util.IoC;
+using MeterKnife.Util.Protocol.Generic;
+using MeterKnife.Util.Scpi;
+using MeterKnife.Util.Serial.Common;
+using MeterKnife.Util.Serial.Generic.Filters;
+using MeterKnife.Util.Serial.Interfaces;
+using MeterKnife.Util.Socket.Generic;
+using MeterKnife.Util.Socket.Generic.Filters;
+using MeterKnife.Util.Socket.Interfaces;
+using MeterKnife.Util.Tunnel;
+using MeterKnife.Util.Tunnel.Filters;
+using MeterKnife.Util.Tunnel.Generic;
+using MeterKnife.Util.Utility;
 
 namespace MeterKnife.Kernel.Services
 {

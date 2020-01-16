@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace NKnife.Interface.Patterns
+namespace MeterKnife.Util.Interface.Patterns
 {
     /// <summary>
     /// 面向设计模式中的命令模式的命令接口。

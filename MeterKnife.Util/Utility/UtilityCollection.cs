@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public class UtilityCollection
     {

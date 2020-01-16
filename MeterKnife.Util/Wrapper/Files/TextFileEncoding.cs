@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace NKnife.Wrapper.Files
+namespace MeterKnife.Util.Wrapper.Files
 {
     /// <summary>
     ///     用于取得一个文本文件的编码方式(Encoding)。来自国际象棋项目时的设计,lukan。

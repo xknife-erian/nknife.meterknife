@@ -1,4 +1,4 @@
-﻿namespace NKnife.Interface
+﻿namespace MeterKnife.Util.Interface
 {
     /// <summary>
     /// 一个描述解析器的接口，一般情况下，实现类通常做为某种解析器使用。

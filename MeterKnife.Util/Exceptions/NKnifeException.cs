@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.Exceptions
+namespace MeterKnife.Util.Exceptions
 {
     /// <summary>
     ///     NKnife的的基础异常类，所有的异常从本类派生

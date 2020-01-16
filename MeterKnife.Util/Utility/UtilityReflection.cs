@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Reflection;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public class UtilityReflection
     {

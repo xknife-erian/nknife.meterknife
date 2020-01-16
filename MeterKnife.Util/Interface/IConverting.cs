@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.Interface
+namespace MeterKnife.Util.Interface
 {
     /// <summary>
     /// 值转换成特定类型的接口

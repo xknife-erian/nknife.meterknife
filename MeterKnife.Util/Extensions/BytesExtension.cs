@@ -4,8 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using NKnife.Utility;
+using MeterKnife.Util.Utility;
 
+// ReSharper disable once CheckNamespace
 namespace System
 {
     public static class BytesExtension
@@ -178,7 +179,7 @@ namespace System
         /// <param name="target">指定的字节数组</param>
         /// <param name="position">开始匹配的位置</param>
         /// <returns>索引值。为-1时，指无匹配项。</returns>
-        public static int Find(this byte[] data, byte[] target, int position = 0)
+        public static int GetIndex(this byte[] data, byte[] target, int position = 0)
         {
             if (UtilityCollection.IsNullOrEmpty(target))
                 return -1;

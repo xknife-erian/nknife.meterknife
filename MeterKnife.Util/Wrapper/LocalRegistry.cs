@@ -1,8 +1,8 @@
 ﻿using System;
+using MeterKnife.Util.Interface;
 using Microsoft.Win32;
-using NKnife.Interface;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     public class LocalRegistry : IRegistry
     {

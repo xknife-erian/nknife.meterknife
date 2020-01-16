@@ -4,11 +4,9 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
-namespace NKnife.Collections
+namespace MeterKnife.Util.Collections
 {
     public class AsyncObservableCollection<T> : ObservableCollection<T>
     {

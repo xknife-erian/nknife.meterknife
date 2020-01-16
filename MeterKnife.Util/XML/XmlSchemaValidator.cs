@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Schema;
 
-namespace NKnife.XML
+namespace MeterKnife.Util.XML
 {
     /// <summary>
     /// This class validates an xml string or xml document against an xml schema.

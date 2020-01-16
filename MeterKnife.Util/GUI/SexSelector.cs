@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using NKnife.Entities;
+using MeterKnife.Util.Entities;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     public class SexSelector : UserControl
     {

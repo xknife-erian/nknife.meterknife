@@ -1,5 +1,4 @@
 ﻿using MeterKnife.Common.DataModels;
-using NKnife.Interface;
 
 namespace MeterKnife.Common.Interfaces
 {

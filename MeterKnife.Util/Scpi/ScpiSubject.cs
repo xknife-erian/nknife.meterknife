@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.Xml;
 
-namespace ScpiKnife
+namespace MeterKnife.Util.Scpi
 {
     /// <summary>
     /// 面向一个工作指令主题的指令集合

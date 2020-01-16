@@ -4,9 +4,9 @@ using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
-using NKnife.Utility;
+using MeterKnife.Util.Utility;
 
-namespace NKnife.Entities
+namespace MeterKnife.Util.Entities
 {
     /// <summary>对应用程序的运行在整个平台中隶属于何种位置的相关信息的封装。eg: 单机，多机中主机，多机中从机等。
     /// </summary>

@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using NKnife.Events;
-using NKnife.Tunnel;
-using NKnife.Tunnel.Common;
-using SocketKnife.Interfaces;
+using MeterKnife.Util.Events;
+using MeterKnife.Util.Socket.Interfaces;
+using MeterKnife.Util.Tunnel;
 
-namespace SocketKnife.Generic
+namespace MeterKnife.Util.Socket.Generic
 {
     public class SocketSessionMap : ISocketSessionMap
     {

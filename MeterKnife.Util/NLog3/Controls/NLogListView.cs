@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using MeterKnife.Util.ShareResources;
-using NKnife.Utility;
+using MeterKnife.Util.Utility;
 using NLog;
 
-namespace NKnife.NLog3.Controls
+namespace MeterKnife.Util.NLog3.Controls
 {
     /// <summary>展示日志的具体ListView，同时双缓冲解决闪烁
     /// </summary>

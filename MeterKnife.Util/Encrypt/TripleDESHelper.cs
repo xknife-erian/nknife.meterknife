@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace NKnife.Encrypt
+namespace MeterKnife.Util.Encrypt
 {
     public class TripleDESHelper
     {

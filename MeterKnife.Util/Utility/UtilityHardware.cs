@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Management;
+using MeterKnife.Util.Entities;
 using Microsoft.Win32;
-using NKnife.Entities;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public class UtilityHardware
     {

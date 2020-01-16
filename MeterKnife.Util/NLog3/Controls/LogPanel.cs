@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using MeterKnife.Util;
 using NLog;
 
 namespace NKnife.NLog3.Controls

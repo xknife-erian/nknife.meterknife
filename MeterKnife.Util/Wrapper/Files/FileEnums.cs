@@ -1,4 +1,4 @@
-﻿namespace NKnife.Wrapper.Files
+﻿namespace MeterKnife.Util.Wrapper.Files
 {
     public enum FileErrorPolicy
     {

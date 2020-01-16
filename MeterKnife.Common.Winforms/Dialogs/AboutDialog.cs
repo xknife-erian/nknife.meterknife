@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using NKnife.Interface;
-using NKnife.IoC;
+using MeterKnife.Util.Interface;
+using MeterKnife.Util.IoC;
 
 namespace MeterKnife.Common.Winforms.Dialogs
 {

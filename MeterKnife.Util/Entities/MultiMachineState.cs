@@ -1,4 +1,4 @@
-﻿namespace NKnife.Entities
+﻿namespace MeterKnife.Util.Entities
 {
     /// <summary>
     /// 应用程序状态

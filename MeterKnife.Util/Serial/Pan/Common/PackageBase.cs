@@ -1,8 +1,7 @@
 ﻿using System;
 using Common.Logging;
-using SerialKnife.Common;
 
-namespace SerialKnife.Pan.Common
+namespace MeterKnife.Util.Serial.Pan.Common
 {
     /// <summary>数据包的基类，包含指令及信息与事件的封装
     /// </summary>

@@ -4,7 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace NKnife.Encrypt
+namespace MeterKnife.Util.Encrypt
 {
     public class FileMD5
     {

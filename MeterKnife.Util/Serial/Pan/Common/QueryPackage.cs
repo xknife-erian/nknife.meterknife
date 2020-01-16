@@ -1,6 +1,4 @@
-﻿using SerialKnife.Common;
-
-namespace SerialKnife.Pan.Common
+﻿namespace MeterKnife.Util.Serial.Pan.Common
 {
     /// <summary>轮询数据包
     /// </summary>

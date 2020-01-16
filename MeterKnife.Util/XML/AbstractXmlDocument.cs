@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml;
 
-namespace NKnife.XML
+namespace MeterKnife.Util.XML
 {
     /// <summary>
     /// 对XmlDocument的类的封装

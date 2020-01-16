@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.Protocol.Generic.TextPlain
+namespace MeterKnife.Util.Protocol.Generic.TextPlain
 {
     public class TextPlainFirstFieldCommandParser : StringProtocolCommandParser
     {

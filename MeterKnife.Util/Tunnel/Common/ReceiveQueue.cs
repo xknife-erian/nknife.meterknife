@@ -1,6 +1,6 @@
-﻿using NKnife.Collections;
+﻿using MeterKnife.Util.Collections;
 
-namespace NKnife.Tunnel.Common
+namespace MeterKnife.Util.Tunnel.Common
 {
     public class ReceiveQueue : SyncQueue<byte[]>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace NKnife.Entities
+namespace MeterKnife.Util.Entities
 {
     [Serializable]
     public class AssemblyWrapper<T>

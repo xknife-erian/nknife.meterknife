@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Timers;
 
-namespace NKnife.Mail
+namespace MeterKnife.Util.Mail
 {
     /// <summary>
     /// 邮件发送工具，支持认证发送

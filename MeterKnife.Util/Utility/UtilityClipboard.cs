@@ -2,10 +2,10 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
 	/// <summary>
-	/// System.Windows.Forms.ClipboardµÄÀ©Õ¹
+	/// System.Windows.Forms.Clipboardï¿½ï¿½ï¿½ï¿½Õ¹
 	/// </summary>
     public class UtilityClipboard
     {

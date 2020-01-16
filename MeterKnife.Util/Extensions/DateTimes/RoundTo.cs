@@ -1,4 +1,5 @@
-﻿namespace System
+﻿// ReSharper disable once CheckNamespace
+namespace System
 {
 	public enum RoundTo
 	{

@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     public class Splasher
     {

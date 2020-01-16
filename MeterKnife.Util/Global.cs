@@ -1,4 +1,4 @@
-﻿namespace NKnife
+﻿namespace MeterKnife.Util
 {
     public static class Global
     {

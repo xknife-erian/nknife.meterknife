@@ -12,10 +12,10 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Scpis;
-using NKnife.Events;
-using NKnife.IoC;
+using MeterKnife.Util.Events;
+using MeterKnife.Util.IoC;
+using MeterKnife.Util.Scpi;
 using OxyPlot;
-using ScpiKnife;
 
 namespace MeterKnife.Instruments
 {

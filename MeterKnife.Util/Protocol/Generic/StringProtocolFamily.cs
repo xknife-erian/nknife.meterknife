@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using MeterKnife.Util.IoC;
 using Ninject;
-using NKnife.IoC;
 
-namespace NKnife.Protocol.Generic
+namespace MeterKnife.Util.Protocol.Generic
 {
     /// <summary>
     ///     协议族

@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace NKnife.XML
+namespace MeterKnife.Util.XML
 {
     public class XmlDatasetConvert
     {

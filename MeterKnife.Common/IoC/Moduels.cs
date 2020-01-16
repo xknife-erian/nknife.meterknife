@@ -1,5 +1,4 @@
 ﻿using Ninject.Modules;
-using NKnife.IoC;
 
 namespace MeterKnife.Common.IoC
 {

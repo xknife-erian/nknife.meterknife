@@ -5,11 +5,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.Logging;
-using NKnife.Protocol;
-using NKnife.Tunnel.Common;
-using NKnife.Utility;
+using MeterKnife.Util.Protocol;
+using MeterKnife.Util.Tunnel.Common;
+using MeterKnife.Util.Utility;
 
-namespace NKnife.Tunnel.Base
+namespace MeterKnife.Util.Tunnel.Base
 {
     public abstract class BaseProtocolFilter<T> : BaseTunnelFilter, ITunnelProtocolFilter<T>
     {

@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm.IPAddressControl
+namespace MeterKnife.Util.GUI.IPAddressControl
 {
    [Designer( typeof( IPAddressControlDesigner ) )]
    public class IpAddressControl : Control

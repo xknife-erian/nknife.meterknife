@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public static class UtilityEquals
     {

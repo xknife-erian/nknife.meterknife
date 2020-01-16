@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using NKnife.Interface;
+using MeterKnife.Util.Interface;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     public class About : IAbout
     {

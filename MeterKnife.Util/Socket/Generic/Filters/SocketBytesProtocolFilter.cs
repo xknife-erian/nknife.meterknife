@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using NKnife.Tunnel.Filters;
-using NKnife.Utility;
+using MeterKnife.Util.Tunnel.Filters;
+using MeterKnife.Util.Utility;
 
-namespace SocketKnife.Generic.Filters
+namespace MeterKnife.Util.Socket.Generic.Filters
 {
     public class SocketBytesProtocolFilter : BytesProtocolFilter
     {

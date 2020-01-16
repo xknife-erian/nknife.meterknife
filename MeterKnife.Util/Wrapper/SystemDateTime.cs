@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using NKnife.API;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     /// <summary>
     /// 系统时间的修改。

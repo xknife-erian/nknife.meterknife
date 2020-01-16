@@ -6,10 +6,11 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Kernel;
+using MeterKnife.Util.GUI;
+using MeterKnife.Util.Interface;
+using MeterKnife.Util.IoC;
+using MeterKnife.Util.Utility;
 using NKnife.GUI.WinForm;
-using NKnife.Interface;
-using NKnife.IoC;
-using NKnife.Utility;
 
 namespace MeterKnife.App
 {

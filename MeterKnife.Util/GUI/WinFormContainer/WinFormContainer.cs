@@ -6,6 +6,7 @@ using System.Drawing.Design;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using MeterKnife.Util.GUI.WinFormContainer;
 
 namespace NKnife.GUI.WinForm.WinFormContainer
 {

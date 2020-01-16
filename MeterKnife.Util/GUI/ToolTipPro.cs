@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Windows.Forms;
 
-namespace NKnife.GUI.WinForm
+namespace MeterKnife.Util.GUI
 {
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     public class ToolTipPro : NativeWindow

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SerialKnife.Pan.Common
+namespace MeterKnife.Util.Serial.Pan.Common
 {
     /// <summary>双向数据包发送后，收到回复的事件参数
     /// </summary>

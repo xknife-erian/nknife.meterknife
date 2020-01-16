@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 
-namespace System.Linq.Expressions
+// ReSharper disable once CheckNamespace
+namespace System
 {
     /// <summary>
     /// linq 表达式创建类

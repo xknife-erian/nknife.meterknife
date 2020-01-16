@@ -7,10 +7,10 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using MeterKnife.Util.ShareResources;
-using NKnife.Utility;
-using NKnife.Wrapper;
+using MeterKnife.Util.Utility;
+using MeterKnife.Util.Wrapper;
 
-namespace NKnife.Converts
+namespace MeterKnife.Util.Converts
 {
     /// <summary>
     ///     定义一些基础的转换方法(对系统方法的一些扩展)

@@ -4,7 +4,7 @@ using System.Drawing.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace NKnife.GUI.WinForm.WinFormContainer
+namespace MeterKnife.Util.GUI.WinFormContainer
 {
     public class AppFileNameEditor : UITypeEditor
     {

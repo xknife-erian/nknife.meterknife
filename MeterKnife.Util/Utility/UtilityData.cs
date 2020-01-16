@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using NKnife.Attributes;
+using MeterKnife.Util.Attributes;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public static class UtilityData
     {

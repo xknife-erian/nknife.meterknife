@@ -5,7 +5,7 @@ using System.Text;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels.CareOne;
-using NKnife.Events;
+using MeterKnife.Util.Events;
 
 namespace MeterKnife.Common.Tunnels
 {

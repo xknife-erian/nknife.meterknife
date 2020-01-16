@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace NKnife.API
+namespace MeterKnife.Util.API
 {
     public sealed partial class API
     {

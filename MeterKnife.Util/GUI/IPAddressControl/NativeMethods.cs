@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace NKnife.GUI.WinForm.IPAddressControl
+namespace MeterKnife.Util.GUI.IPAddressControl
 {
    internal class NativeMethods
    {

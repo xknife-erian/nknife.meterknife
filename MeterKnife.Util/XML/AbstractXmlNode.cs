@@ -1,6 +1,6 @@
 ﻿using System.Xml;
 
-namespace NKnife.XML
+namespace MeterKnife.Util.XML
 {
     /// <summary>
     /// 对.net的Xml常使用的XmlNode, XmlDocument, XmlElement类的基类的封装

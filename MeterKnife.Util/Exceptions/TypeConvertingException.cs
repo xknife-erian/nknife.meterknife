@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.Exceptions
+namespace MeterKnife.Util.Exceptions
 {
     /// <summary>
     /// 类型转换异常

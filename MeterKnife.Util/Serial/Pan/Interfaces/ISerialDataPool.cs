@@ -1,6 +1,6 @@
-﻿using SerialKnife.Pan.Common;
+﻿using MeterKnife.Util.Serial.Pan.Common;
 
-namespace SerialKnife.Pan.Interfaces
+namespace MeterKnife.Util.Serial.Pan.Interfaces
 {
     /// <summary>向串口即将发送的指令包的集合
     /// </summary>

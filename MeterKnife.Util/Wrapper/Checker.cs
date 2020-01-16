@@ -1,7 +1,7 @@
 ﻿using System;
 using MeterKnife.Util.ShareResources;
 
-namespace NKnife.Wrapper
+namespace MeterKnife.Util.Wrapper
 {
     public class Checker
     {

@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace NKnife.Utility
+namespace MeterKnife.Util.Utility
 {
     public class UtilityAssembly
     {

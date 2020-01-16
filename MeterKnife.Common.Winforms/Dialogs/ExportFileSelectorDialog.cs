@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MeterKnife.Util.GUI;
 using NKnife.GUI.WinForm;
 
 namespace MeterKnife.Common.Winforms.Dialogs
