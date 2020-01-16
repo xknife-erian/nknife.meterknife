@@ -10,7 +10,7 @@ namespace MeterKnife.Util.Tunnel.Generic
         private bool _HasSetDecoder;
         private bool _HasSetEncoder;
 
-        public BytesCodec(BytesDatagramDecoder decoder,BytesDatagramEncoder encoder)
+        public BytesCodec(BytesDatagramDecoder decoder, BytesDatagramEncoder encoder)
         {
             _bytesDecoder = decoder;
             _bytesEncoder = encoder;
@@ -25,18 +25,7 @@ namespace MeterKnife.Util.Tunnel.Generic
 
         public virtual BytesDatagramDecoder BytesDecoder
         {
-            get
-            {
-//                if (!_HasSetDecoder)
-//                {
-//                    _bytesDecoder = string.IsNullOrEmpty(CodecName)
-//                        ? DI.Get<BytesDatagramDecoder>()
-//                        : DI.Get<BytesDatagramDecoder>(CodecName);
-//                    _HasSetDecoder = true;
-//                    return _bytesDecoder;
-//                }
-                return _bytesDecoder;
-            }
+            get => _bytesDecoder;
             set
             {
                 _bytesDecoder = value;
@@ -49,13 +38,11 @@ namespace MeterKnife.Util.Tunnel.Generic
             get
             {
                 if (!_HasSetEncoder)
-                {
-//                    _bytesEncoder = string.IsNullOrEmpty(CodecName)
+                    //                    _bytesEncoder = string.IsNullOrEmpty(CodecName)
 //                        ? DI.Get<BytesDatagramEncoder>()
 //                        : DI.Get<BytesDatagramEncoder>(CodecName);
 //                    _HasSetEncoder = true;
                     return _bytesEncoder;
-                }
                 return _bytesEncoder;
             }
             set
@@ -67,7 +54,7 @@ namespace MeterKnife.Util.Tunnel.Generic
 
         IDatagramDecoder<byte[]> ITunnelCodec<byte[]>.Decoder
         {
-            get { return BytesDecoder; }
+            get => BytesDecoder;
             set
             {
                 BytesDecoder = (BytesDatagramDecoder) value;
@@ -77,7 +64,7 @@ namespace MeterKnife.Util.Tunnel.Generic
 
         IDatagramEncoder<byte[]> ITunnelCodec<byte[]>.Encoder
         {
-            get { return BytesEncoder; }
+            get => BytesEncoder;
             set
             {
                 BytesEncoder = (BytesDatagramEncoder) value;

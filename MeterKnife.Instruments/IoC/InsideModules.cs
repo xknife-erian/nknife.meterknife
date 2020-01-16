@@ -6,11 +6,11 @@ using Autofac;
 
 namespace MeterKnife.Instruments.IoC
 {
-    public class Modules : Module
+    public class InsideModules : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<DigitMultiMeterView>().As<DigitMultiMeterView>();
+            builder.RegisterType<DigitMultiMeterView>().AsSelf();
         }
 
     }

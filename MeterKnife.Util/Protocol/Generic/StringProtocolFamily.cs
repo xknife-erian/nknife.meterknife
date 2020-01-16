@@ -11,52 +11,43 @@ namespace MeterKnife.Util.Protocol.Generic
     public class StringProtocolFamily : IProtocolFamily<string>
     {
         private StringProtocolCommandParser _commandParser;
-        private StringProtocol _stringProtocol;
-        private StringProtocolPacker _stringProtocolPacker;
-        private StringProtocolUnPacker _stringProtocolUnPacker;
         protected Func<string, StringProtocol> _defaultProtocolBuilder;
         protected Func<string, StringProtocolPacker> _defaultProtocolPackerGetter;
         protected Func<string, StringProtocolUnPacker> _defaultProtocolUnPackerGetter;
         private bool _hasSetCommandParser;
-        protected Dictionary<string, Func<string, StringProtocol>> _protocolBuilderMap 
+
+        protected Dictionary<string, Func<string, StringProtocol>> _protocolBuilderMap
             = new Dictionary<string, Func<string, StringProtocol>>();
-        protected Dictionary<string, Func<string, StringProtocolPacker>> _protocolPackerGetterMap 
+
+        protected Dictionary<string, Func<string, StringProtocolPacker>> _protocolPackerGetterMap
             = new Dictionary<string, Func<string, StringProtocolPacker>>();
+
         protected Dictionary<string, Func<string, StringProtocolUnPacker>> _protocolUnPackerGetterMap
             = new Dictionary<string, Func<string, StringProtocolUnPacker>>();
 
-        public StringProtocolFamily(StringProtocolCommandParser stringProtocolCommandParser, StringProtocol stringProtocol)
+        private StringProtocol _stringProtocol;
+        private StringProtocolPacker _stringProtocolPacker;
+        private StringProtocolUnPacker _stringProtocolUnPacker;
+
+        public StringProtocolFamily(StringProtocolCommandParser stringProtocolCommandParser, StringProtocol stringProtocol, StringProtocolPacker stringProtocolPacker,
+            StringProtocolUnPacker stringProtocolUnPacker)
         {
             _commandParser = stringProtocolCommandParser;
             _stringProtocol = stringProtocol;
+            _stringProtocolPacker = stringProtocolPacker;
+            _stringProtocolUnPacker = stringProtocolUnPacker;
         }
 
-        public StringProtocolFamily(string name, StringProtocolCommandParser stringProtocolCommandParser, StringProtocol stringProtocol)
-        :this(stringProtocolCommandParser, stringProtocol)
+        public StringProtocolFamily(string name, StringProtocolCommandParser stringProtocolCommandParser, StringProtocol stringProtocol, StringProtocolPacker stringProtocolPacker,
+            StringProtocolUnPacker stringProtocolUnPacker)
+            : this(stringProtocolCommandParser, stringProtocol, stringProtocolPacker, stringProtocolUnPacker)
         {
             FamilyName = name;
         }
 
         public StringProtocolCommandParser CommandParser
         {
-            get
-            {
-//                if (!_HasSetCommandParser)
-//                {
-//                    try
-//                    {
-//                        _CommandParser = string.IsNullOrEmpty(FamilyName)
-//                            ? DI.Get<StringProtocolCommandParser>()
-//                            : DI.Get<StringProtocolCommandParser>(FamilyName);
-//                    }
-//                    catch (Exception ex)
-//                    {
-//                        _CommandParser = DI.Get<StringProtocolCommandParser>();
-//                    }
-//                    _HasSetCommandParser = true;
-//                }
-                return _commandParser;
-            }
+            get => _commandParser;
             set
             {
                 _commandParser = value;
@@ -74,13 +65,9 @@ namespace MeterKnife.Util.Protocol.Generic
 
             StringProtocol result;
             if (_protocolBuilderMap.ContainsKey(command))
-            {
                 result = _protocolBuilderMap[command].Invoke(command);
-            }
             else
-            {
                 result = _defaultProtocolBuilder == null ? _stringProtocol : _defaultProtocolBuilder.Invoke(command);
-            }
             result.Family = FamilyName;
             result.Command = command;
             return result;
@@ -94,13 +81,9 @@ namespace MeterKnife.Util.Protocol.Generic
         public void AddProtocolBuilder(string command, Func<string, StringProtocol> func)
         {
             if (_protocolBuilderMap.ContainsKey(command))
-            {
                 _protocolBuilderMap[command] = func;
-            }
             else
-            {
                 _protocolBuilderMap.Add(command, func);
-            }
         }
 
         /// <summary>
@@ -111,10 +94,7 @@ namespace MeterKnife.Util.Protocol.Generic
         public StringProtocol Parse(string command, string datagram)
         {
             var protocol = Build(command);
-            if (string.IsNullOrWhiteSpace(datagram))
-            {
-                Debug.Fail("空数据无法进行协议的解析");
-            }
+            if (string.IsNullOrWhiteSpace(datagram)) Debug.Fail("空数据无法进行协议的解析");
             try
             {
                 if (_protocolUnPackerGetterMap.ContainsKey(command))
@@ -124,19 +104,16 @@ namespace MeterKnife.Util.Protocol.Generic
                 else
                 {
                     if (_defaultProtocolUnPackerGetter == null)
-                    {
                         _stringProtocolUnPacker.Execute(protocol, datagram, command);
-                    }
                     else
-                    {
                         _defaultProtocolUnPackerGetter.Invoke(command).Execute(protocol, datagram, command);
-                    }
                 }
             }
             catch (Exception e)
             {
                 Debug.Fail(string.Format("协议字符串无法解析.{0}..{1}", e.Message, datagram));
             }
+
             return protocol;
         }
 
@@ -148,10 +125,7 @@ namespace MeterKnife.Util.Protocol.Generic
         public string Generate(StringProtocol protocol)
         {
             var command = protocol.Command;
-            if (_protocolPackerGetterMap.ContainsKey(command))
-            {
-                return _protocolPackerGetterMap[command].Invoke(command).Combine(protocol);
-            }
+            if (_protocolPackerGetterMap.ContainsKey(command)) return _protocolPackerGetterMap[command].Invoke(command).Combine(protocol);
             return _defaultProtocolPackerGetter == null
                 ? _stringProtocolPacker.Combine(protocol)
                 : _defaultProtocolPackerGetter.Invoke(command).Combine(protocol);
@@ -166,10 +140,7 @@ namespace MeterKnife.Util.Protocol.Generic
         public string Generate(StringProtocol protocol, string param)
         {
             var command = protocol.Command;
-            if (_protocolPackerGetterMap.ContainsKey(command))
-            {
-                return _protocolPackerGetterMap[command].Invoke(param).Combine(protocol);
-            }
+            if (_protocolPackerGetterMap.ContainsKey(command)) return _protocolPackerGetterMap[command].Invoke(param).Combine(protocol);
             return _defaultProtocolPackerGetter == null
                 ? _stringProtocolPacker.Combine(protocol)
                 : _defaultProtocolPackerGetter.Invoke(param).Combine(protocol);
@@ -183,13 +154,9 @@ namespace MeterKnife.Util.Protocol.Generic
         public void AddPackerGetter(string command, Func<string, StringProtocolPacker> func)
         {
             if (_protocolPackerGetterMap.ContainsKey(command))
-            {
                 _protocolPackerGetterMap[command] = func;
-            }
             else
-            {
                 _protocolPackerGetterMap.Add(command, func);
-            }
         }
 
         public void AddUnPackerGetter(Func<string, StringProtocolUnPacker> func)
@@ -200,21 +167,17 @@ namespace MeterKnife.Util.Protocol.Generic
         public void AddUnPackerGetter(string command, Func<string, StringProtocolUnPacker> func)
         {
             if (_protocolUnPackerGetterMap.ContainsKey(command))
-            {
                 _protocolUnPackerGetterMap[command] = func;
-            }
             else
-            {
                 _protocolUnPackerGetterMap.Add(command, func);
-            }
         }
 
         #region 隐式实现
 
         IProtocolCommandParser<string> IProtocolFamily<string>.CommandParser
         {
-            get { return CommandParser; }
-            set { CommandParser = (StringProtocolCommandParser) value; }
+            get => CommandParser;
+            set => CommandParser = (StringProtocolCommandParser) value;
         }
 
         IProtocol<string> IProtocolFamily<string>.Build(string command)

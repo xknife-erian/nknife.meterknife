@@ -28,10 +28,10 @@ namespace MeterKnife.Common.Tunnels.CareOne
                 _logger.Warn("Protocol类型有误, 不是CareSaying类型");
                 return;
             }
-            Recevied((CareTalking)protocol);
+            Received((CareTalking)protocol);
         }
 
-        public abstract void Recevied(CareTalking protocol);
+        public abstract void Received(CareTalking protocol);
 
         private readonly Guid _Id;
 

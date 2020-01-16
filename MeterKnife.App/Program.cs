@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using Autofac;
@@ -21,8 +23,16 @@ namespace MeterKnife.App
             Application.SetCompatibleTextRenderingDefault(false);
             
             var builder = new ContainerBuilder();
-            var assemblies = UtilAssembly.SearchAssemblyByDirectory(Application.StartupPath);
-            builder.RegisterAssemblyModules(assemblies);
+            var sources = UtilAssembly.SearchAssemblyByDirectory(Application.StartupPath);
+            var assemblies = new List<Assembly>();
+            foreach (var assembly in sources)
+            {
+                if(assembly.FullName.Contains("MeterKnife"))
+                    assemblies.Add(assembly);
+            }
+            builder.RegisterAssemblyModules(assemblies.ToArray());
+            builder.RegisterType<Surroundings>().AsSelf().SingleInstance();
+            builder.RegisterType<Workbench>().AsSelf().SingleInstance();
 
             using (var container = builder.Build())
             {

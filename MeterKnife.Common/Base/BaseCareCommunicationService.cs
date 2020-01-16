@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
-using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
-using MeterKnife.Common.Util;
 using MeterKnife.Util.Scpi;
 using MeterKnife.Util.Tunnel.Base;
 using NKnife.Events;
@@ -17,20 +15,13 @@ namespace MeterKnife.Common.Base
         protected BaseCareCommunicationService()
         {
             IsInitialized = false;
-            //ScpiCommandQueue = new ScpiQueue();
         }
 
         public bool IsInitialized { get; protected set; }
 
-        public int Order
-        {
-            get { return 100; }
-        }
+        public int Order => 100;
 
-        public string Description
-        {
-            get { return "Care通讯服务"; }
-        }
+        public string Description => "Care通讯服务";
 
         /// <summary>
         ///     是连接Care的串口
@@ -44,7 +35,7 @@ namespace MeterKnife.Common.Base
 
         //public ScpiQueue ScpiCommandQueue { get; set; }
         /// <summary>
-        /// 销毁服务
+        ///     销毁服务
         /// </summary>
         public abstract void Destroy();
 
@@ -62,6 +53,9 @@ namespace MeterKnife.Common.Base
         /// <param name="commandArrayKey">命令组的Key</param>
         /// <param name="careItems">即将发送的命令组</param>
         public abstract void SendLoopCommands(CommPort carePort, string commandArrayKey, params ScpiCommandQueue.Item[] careItems);
+
+        public abstract bool Start(CommPort carePort);
+        public abstract bool Stop(CommPort carePort);
 
         public bool StartService()
         {
@@ -83,17 +77,14 @@ namespace MeterKnife.Common.Base
             }
         }
 
-        public abstract bool Start(CommPort carePort);
-        public abstract bool Stop(CommPort carePort);
         public abstract bool Initialize();
 
         public event EventHandler<EventArgs<CommPort>> SerialInitialized;
 
         public virtual void OnSerialInitialized(CommPort carePort)
         {
-            EventHandler<EventArgs<CommPort>> handler = SerialInitialized;
-            if (handler != null)
-                handler(this, new EventArgs<CommPort>(carePort));
+            var handler = SerialInitialized;
+            handler?.Invoke(this, new EventArgs<CommPort>(carePort));
         }
 
         public abstract void Bind(CommPort carePort, params CareOneProtocolHandler[] handlers);

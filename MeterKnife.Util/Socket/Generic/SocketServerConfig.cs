@@ -11,11 +11,8 @@ namespace MeterKnife.Util.Socket.Generic
 
         public int MaxSessionTimeout
         {
-            get { return int.Parse(_Map["MaxSessionTimeout"].ToString()); }
-            set
-            {
-                _Map["MaxSessionTimeout"] = value;
-            }
+            get => int.Parse(_Map["MaxSessionTimeout"].ToString());
+            set => _Map["MaxSessionTimeout"] = value;
         }
     }
 }

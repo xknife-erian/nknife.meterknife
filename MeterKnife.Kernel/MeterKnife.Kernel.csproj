@@ -72,7 +72,7 @@
     <Compile Include="..\MeterKnife.App\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="IoC\Modules.cs" />
+    <Compile Include="IoC\InsideModules.cs" />
     <Compile Include="MeterKernel.cs" />
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
     <Compile Include="Services\CareCommunicationService.cs" />

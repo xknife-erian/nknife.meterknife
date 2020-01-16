@@ -6,11 +6,11 @@ using Autofac;
 
 namespace MeterKnife.Scpis.IoC
 {
-    public class Modules : Module
+    public class InsideModules : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<IScpiInfoGetter>().As<ScpiInfoGetter>().SingleInstance();
+            builder.RegisterType<ScpiInfoGetter>().As<IScpiInfoGetter>().SingleInstance();
         }
     }
 }

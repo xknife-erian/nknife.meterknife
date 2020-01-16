@@ -19,7 +19,7 @@ namespace MeterKnife.Common.Tunnels
             Commands.Add(new byte[] { 0xAA, 0x01 });
         }
 
-        public override void Recevied(CareTalking protocol)
+        public override void Received(CareTalking protocol)
         {
             if (!string.IsNullOrEmpty(protocol.Scpi))
             {

@@ -184,7 +184,7 @@
     <Compile Include="Socket\Interfaces\ISocketServer.cs" />
     <Compile Include="Socket\Interfaces\ISocketServerConfig.cs" />
     <Compile Include="Socket\Interfaces\ISocketSessionMap.cs" />
-    <Compile Include="IoC\UtilModules.cs" />
+    <Compile Include="IoC\InsideModules.cs" />
     <Compile Include="Socket\KnifeLongSocketClient.cs" />
     <Compile Include="Socket\KnifeShortSocketClient.cs" />
     <Compile Include="Socket\KnifeSocketServer.cs" />

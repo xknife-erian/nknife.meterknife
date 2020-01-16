@@ -11,11 +11,8 @@ namespace MeterKnife.Util.Socket.Generic
 
         public int ReconnectInterval
         {
-            get { return int.Parse(_Map["ReconnectInterval"].ToString()); }
-            set
-            {
-                _Map["ReconnectInterval"] = value;
-            }
+            get => int.Parse(_Map["ReconnectInterval"].ToString());
+            set => _Map["ReconnectInterval"] = value;
         }
     }
 }

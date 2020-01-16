@@ -33,7 +33,7 @@ namespace MeterKnife.Common.Tunnels
             Commands.Add(new byte[] { 0xA0, 0xDF });
         }
 
-        public override void Recevied(CareTalking protocol)
+        public override void Received(CareTalking protocol)
         {
             _logger.Trace(string.Format("{1}^{2}:{0}", protocol.Scpi, protocol.MainCommand.ToHexString(), protocol.SubCommand.ToHexString()));
             if (!string.IsNullOrEmpty(protocol.Scpi))

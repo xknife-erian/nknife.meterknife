@@ -9,13 +9,14 @@ namespace MeterKnife.Util.Serial
 {
     public class SerialPortDataConnector : ISerialConnector
     {
-        private static readonly ILog _logger = LogManager.GetLogger<SerialPortDataConnector>();
-        private ISerialPortWrapper _Serial;
+        private static readonly ILog _Logger = LogManager.GetLogger<SerialPortDataConnector>();
+        private readonly ISerialPortWrapper _serial;
 
-        public SerialPortDataConnector()
+        public SerialPortDataConnector(ISerialPortWrapper serial)
         {
+            _serial = serial;
             IsInitialized = false;
-            SerialType = SerialType.DotNet; //默认使用winapi实现
+            SerialType = SerialType.DotNet;
         }
 
         public SerialType SerialType { get; set; }
@@ -34,8 +35,7 @@ namespace MeterKnife.Util.Serial
         protected virtual void OnSessionBuilt(SessionEventArgs e)
         {
             var handler = SessionBuilt;
-            if (handler != null)
-                handler(this, e);
+            handler?.Invoke(this, e);
         }
 
         protected virtual void OnSessionBuilt()
@@ -49,8 +49,7 @@ namespace MeterKnife.Util.Serial
         protected virtual void OnSessionBroken(SessionEventArgs e)
         {
             var handler = SessionBroken;
-            if (handler != null)
-                handler(this, e);
+            handler?.Invoke(this, e);
         }
 
         protected virtual void OnSessionBroken()
@@ -64,8 +63,7 @@ namespace MeterKnife.Util.Serial
         protected virtual void OnDataReceived(SessionEventArgs e)
         {
             var handler = DataReceived;
-            if (handler != null)
-                handler(this, e);
+            handler?.Invoke(this, e);
         }
 
         protected virtual void OnDataReceived(byte[] data)
@@ -81,8 +79,7 @@ namespace MeterKnife.Util.Serial
         protected virtual void OnDataSent(SessionEventArgs e)
         {
             var handler = DataSent;
-            if (handler != null)
-                handler(this, e);
+            handler?.Invoke(this, e);
         }
 
         protected virtual void OnDataSent(byte[] data)
@@ -103,89 +100,61 @@ namespace MeterKnife.Util.Serial
 
         public void Send(long id, byte[] data)
         {
-            if (_Serial == null)
+            if (_serial == null)
                 return;
-            byte[] received;
-            _Serial.SendReceived(data, out received);
+            _serial.SendReceived(data, out var received);
             OnDataSent(data);
             if (received != null)
-            {
                 OnDataReceived(received);
-            }
         }
 
         public void SendAll(byte[] data)
         {
-            if (_Serial == null)
+            if (_serial == null)
                 return;
-            byte[] received;
-            _Serial.SendReceived(data, out received);
-            OnDataSent(data);//激发发放完成事件
+            _serial.SendReceived(data, out var received);
+            OnDataSent(data); //激发发放完成事件
             if (received != null)
-            {
-                OnDataReceived(received);//激发接收到数据的事件
-            }
+                OnDataReceived(received); //激发接收到数据的事件
         }
 
         public void KillSession(long id)
         {
-            if (_Serial.IsOpen)
-            {
-                _Serial.Close();
-            }
-        }
-
-        public bool SessionExist(long id)
-        {
-            CheckAndInitiate();
-            return _Serial.IsOpen;
+            if (_serial.IsOpen) _serial.Close();
         }
 
         public bool Stop()
         {
-            CheckAndInitiate();
-            if (!_Serial.IsOpen)
-            {
+            if (!_serial.IsOpen) 
                 return true;
-            }
-            var result = _Serial.Close();
-            if (result)
-            {
-                OnSessionBroken();
-            }
+            var result = _serial.Close();
+            if (result) OnSessionBroken();
             IsInitialized = false;
             return result;
         }
 
         public bool Start()
         {
-            CheckAndInitiate();
-            if (_Serial.IsOpen)
-            {
+            if (_serial.IsOpen) 
                 return true;
-            }
-            var port = string.Format("COM{0}", PortNumber);
+            var port = $"COM{PortNumber}";
             if (SerialConfig == null)
                 SerialConfig = new SerialConfig();
-            var result = _Serial.Initialize(port, SerialConfig);
+            var result = _serial.Initialize(port, SerialConfig);
             if (result)
             {
-                _logger.Info(string.Format("串口{0}初始化完成：{1}", port, true));
+                _Logger.Info($"串口{port}初始化完成：{true}");
                 OnSessionBuilt();
             }
             else
             {
-                _logger.Warn(string.Format("串口{0}初始化完成：{1}", port, false));
+                _Logger.Warn($"串口{port}初始化完成：{false}");
             }
+
             IsInitialized = true;
             return result;
         }
 
-        protected virtual void CheckAndInitiate()
-        {
-        }
-
         #endregion
-
     }
 }

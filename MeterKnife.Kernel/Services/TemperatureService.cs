@@ -12,11 +12,11 @@ namespace MeterKnife.Kernel.Services
 {
     public class CareTemperatureService : ITemperatureService
     {
-        private static readonly ILog _logger = LogManager.GetLogger<DataPathService>();
+        private static readonly ILog _Logger = LogManager.GetLogger<DataPathService>();
 
         private readonly BaseCareCommunicationService _Comm;
-        private readonly CareTemperatureHandler _TemperatureHandler;
         private readonly Dictionary<CommPort, bool> _PortStartMap = new Dictionary<CommPort, bool>();
+        private readonly CareTemperatureHandler _TemperatureHandler;
 
         public CareTemperatureService(BaseCareCommunicationService comm, CareTemperatureHandler temperatureHandler)
         {
@@ -25,10 +25,7 @@ namespace MeterKnife.Kernel.Services
             TemperatureValues = new double[1];
         }
 
-        public int Interval
-        {
-            get { return 5000; }
-        }
+        public int Interval => 5000;
 
         public double[] TemperatureValues { get; private set; }
 
@@ -37,10 +34,7 @@ namespace MeterKnife.Kernel.Services
             Task.Factory.StartNew(() =>
             {
                 var isStart = true;
-                if (!_PortStartMap.TryGetValue(carePort, out isStart))
-                {
-                    _PortStartMap.Add(carePort, true);
-                }
+                if (!_PortStartMap.TryGetValue(carePort, out isStart)) _PortStartMap.Add(carePort, true);
                 _PortStartMap[carePort] = true;
                 if (_PortStartMap.Count > 1) //如果采集值的数量（多路温度采集）大于1时
                 {
@@ -48,6 +42,7 @@ namespace MeterKnife.Kernel.Services
                     TemperatureValues = new double[_PortStartMap.Count];
                     TemperatureValues[0] = v;
                 }
+
                 _Comm.Bind(carePort, _TemperatureHandler);
                 //初始化完成,进入采集循环
                 while (_PortStartMap[carePort])

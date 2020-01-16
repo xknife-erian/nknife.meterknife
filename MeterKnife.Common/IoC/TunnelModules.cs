@@ -25,19 +25,22 @@ namespace MeterKnife.Common.IoC
         /// registered.</param>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ITunnel>().As<KnifeTunnel>().SingleInstance();
+            builder.RegisterType<KnifeTunnel>().As<ITunnel>().SingleInstance();
 
-            builder.RegisterType<IDataConnector>().Named<SerialPortDataConnector>("Serial");
-            builder.RegisterType<IDataConnector>().Named<KnifeLongSocketClient>("Tcpip");
+            builder.RegisterType<SerialPortDataConnector>().As<IDataConnector>();
+            builder.RegisterType<SerialPortDataConnector>().Named<IDataConnector>("Serial");
+            builder.RegisterType<KnifeLongSocketClient>().Named<IDataConnector>("Tcpip");
 
-            builder.RegisterType<BytesCodec>().As<CareOneCodec>();
-            builder.RegisterType<BytesProtocolCommandParser>().As<CareOneProtocolCommandParser>().SingleInstance();
-            builder.RegisterType<BytesDatagramDecoder>().Named<CareOneDatagramDecoder>("careone").SingleInstance();
-            builder.RegisterType<BytesDatagramEncoder>().Named<CareOneDatagramEncoder>("careone").SingleInstance();
-            builder.RegisterType<BytesProtocol>().As<CareTalking>();
+            builder.RegisterType<CareOneCodec>().As<BytesCodec>();
+            builder.RegisterType<CareOneProtocolCommandParser>().As<BytesProtocolCommandParser>().SingleInstance();
+            builder.RegisterType<CareOneDatagramDecoder>().Named<BytesDatagramDecoder>("careone").SingleInstance();
+            builder.RegisterType<CareOneDatagramEncoder>().Named<BytesDatagramEncoder>("careone").SingleInstance();
+            builder.RegisterType<CareTalking>().As<BytesProtocol>();
 
-            builder.RegisterType<BytesProtocolPacker>().As<CareOneProtocolPacker>().SingleInstance();
-            builder.RegisterType<BytesProtocolUnPacker>().As<CareOneProtocolUnPacker>().SingleInstance();
+            builder.RegisterType<CareOneProtocolPacker>().As<BytesProtocolPacker>().SingleInstance();
+            builder.RegisterType<CareOneProtocolUnPacker>().As<BytesProtocolUnPacker>().SingleInstance();
+
+            builder.RegisterType<CareTemperatureHandler>().As<CareTemperatureHandler>().SingleInstance();
         }
 
         #endregion

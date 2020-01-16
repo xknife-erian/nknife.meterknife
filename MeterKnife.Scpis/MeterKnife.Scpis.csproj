@@ -100,7 +100,7 @@
     <Compile Include="InstrumentScpiGroupTreeDialog.Designer.cs">
       <DependentUpon>InstrumentScpiGroupTreeDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="IoC\Modules.cs" />
+    <Compile Include="IoC\InsideModules.cs" />
     <Compile Include="IScpiInfoGetter.cs" />
     <Compile Include="InstrumentAndSubjectInfoDialog.cs">
       <SubType>Form</SubType>

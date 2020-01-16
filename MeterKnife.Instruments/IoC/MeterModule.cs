@@ -13,8 +13,8 @@ namespace MeterKnife.Instruments.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<BaseMeter>().Named<DigitalMultimeter>("DigitalMultimeter".ToLower());
-            builder.RegisterType<BaseMeter>().Named<DcPowerSupply>("DcPowerSupply".ToLower());
+            builder.RegisterType<DigitalMultimeter>().Named<BaseMeter>("DigitalMultimeter".ToLower());
+            builder.RegisterType<DcPowerSupply>().Named<BaseMeter>("DcPowerSupply".ToLower());
         }
     }
 }
