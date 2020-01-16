@@ -7,7 +7,7 @@
     <ProjectGuid>{854E2CD7-CB1D-47A7-824C-34C9E2EF9FD4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NKnife</RootNamespace>
+    <RootNamespace>MeterKnife.Util</RootNamespace>
     <AssemblyName>MeterKnife.Util</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

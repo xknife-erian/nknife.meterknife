@@ -10,8 +10,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using MeterKnife.Util.ShareResources;
 using Microsoft.Win32;
-using NKnife.ShareResources;
 
 namespace NKnife.Utility
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using NKnife.ShareResources;
+using MeterKnife.Util.ShareResources;
 
 namespace NKnife.Wrapper
 {

@@ -6,7 +6,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using NKnife.ShareResources;
+using MeterKnife.Util.ShareResources;
 using NKnife.Utility;
 using NKnife.Wrapper;
 

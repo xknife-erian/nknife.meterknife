@@ -2,8 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using NKnife.IoC;
-using NKnife.Properties;
+using MeterKnife.Util.Properties;
 
 namespace NKnife.NLog3.Controls
 {

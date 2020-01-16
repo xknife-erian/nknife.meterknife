@@ -3,10 +3,10 @@ using System.IO;
 using Common.Logging;
 using Common.Logging.Configuration;
 using Common.Logging.NLog;
+using MeterKnife.Util.Properties;
 using Ninject.Modules;
 using NKnife.NLog3.Controls;
 using NKnife.NLog3.Controls.WPF;
-using NKnife.Properties;
 
 namespace NKnife.NLog3.IoC
 {

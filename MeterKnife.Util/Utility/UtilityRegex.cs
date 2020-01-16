@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using NKnife.ShareResources;
+using MeterKnife.Util.ShareResources;
 
 namespace NKnife.Utility
 {

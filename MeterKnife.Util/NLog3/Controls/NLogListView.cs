@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using NKnife.ShareResources;
+using MeterKnife.Util.ShareResources;
 using NKnife.Utility;
 using NLog;
 

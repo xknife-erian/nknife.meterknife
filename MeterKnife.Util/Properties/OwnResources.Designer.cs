@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NKnife.Properties {
+namespace MeterKnife.Util.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace NKnife.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NKnife.Properties.OwnResources", typeof(OwnResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MeterKnife.Util.Properties.OwnResources", typeof(OwnResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

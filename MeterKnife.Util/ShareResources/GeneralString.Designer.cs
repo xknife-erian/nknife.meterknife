@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NKnife.ShareResources {
+namespace MeterKnife.Util.ShareResources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace NKnife.ShareResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NKnife.ShareResources.GeneralString", typeof(GeneralString).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MeterKnife.Util.ShareResources.GeneralString", typeof(GeneralString).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

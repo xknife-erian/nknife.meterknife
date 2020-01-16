@@ -2,8 +2,8 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using MeterKnife.Util.ShareResources;
 using NKnife.IoC;
-using NKnife.ShareResources;
 using NKnife.Utility;
 using NLog;
 
