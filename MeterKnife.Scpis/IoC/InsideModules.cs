@@ -11,6 +11,7 @@ namespace MeterKnife.Scpis.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ScpiInfoGetter>().As<IScpiInfoGetter>().SingleInstance();
+            builder.RegisterType<CustomerScpiSubjectPanel>().AsSelf();
         }
     }
 }

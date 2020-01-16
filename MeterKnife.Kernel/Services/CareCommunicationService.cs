@@ -198,7 +198,7 @@ namespace MeterKnife.Kernel.Services
                             }
                             catch (Exception e)
                             {
-                                _Logger.Warn(string.Format("集合循环停止:{0}", e.Message), e);
+                                _Logger.Warn(string.Format("集合循环停止:{0}", e.Message));
                                 break;
                             }
 
@@ -242,7 +242,7 @@ namespace MeterKnife.Kernel.Services
             }
             catch (Exception e)
             {
-                _Logger.Warn(string.Format("向采集器发送指令(SendCommand)时出现异常:{0}", e.Message), e);
+                _Logger.Warn(string.Format("向采集器发送指令(SendCommand)时出现异常:{0}", e.Message));
             }
         }
 

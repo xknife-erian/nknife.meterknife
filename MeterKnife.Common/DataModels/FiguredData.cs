@@ -19,7 +19,6 @@ namespace MeterKnife.Common.DataModels
         private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         protected readonly ITemperatureService _TempService;
-        private IMeterDataService _dataService;
         protected double _CurrentTemperature;
         protected DataSet _DataSet = new DataSet();
         protected string _DecimalDigit = "f6";
@@ -29,10 +28,9 @@ namespace MeterKnife.Common.DataModels
         protected RunningStatistics _TemperatureRunningStatistics = new RunningStatistics();
         protected List<double> _Values = new List<double>();
 
-        public FiguredData(ITemperatureService tempService, IMeterDataService dataService)
+        public FiguredData(ITemperatureService tempService)
         {
             _TempService = tempService;
-            _dataService = dataService;
             MeterRange = MeterRange.None;
             Filter = new FiguredDataFilter();
             Clear();
@@ -114,7 +112,7 @@ namespace MeterKnife.Common.DataModels
 
         public bool Save(string fileFullName)
         {
-            return _dataService.Save(fileFullName, DataSet);
+            return true; //_dataService.Save(fileFullName, DataSet);
         }
 
         public event EventHandler<CollectDataEventArgs> ReceviedCollectData;

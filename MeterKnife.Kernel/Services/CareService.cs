@@ -33,7 +33,7 @@ namespace MeterKnife.Kernel.Services
 
                 bool onFindCare = true;
                 var handler = new CareConfigHandler();
-                handler.CareConfigging += (s, e) =>
+                handler.CareSetting += (s, e) =>
                 {
                     if (onFindCare)
                     {

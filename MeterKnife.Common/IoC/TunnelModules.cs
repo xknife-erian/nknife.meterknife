@@ -33,7 +33,9 @@ namespace MeterKnife.Common.IoC
 
             builder.RegisterType<CareOneCodec>().As<BytesCodec>();
             builder.RegisterType<CareOneProtocolCommandParser>().As<BytesProtocolCommandParser>().SingleInstance();
+            builder.RegisterType<CareOneDatagramDecoder>().As<BytesDatagramDecoder>().SingleInstance();
             builder.RegisterType<CareOneDatagramDecoder>().Named<BytesDatagramDecoder>("careone").SingleInstance();
+            builder.RegisterType<CareOneDatagramEncoder>().As<BytesDatagramEncoder>().SingleInstance();
             builder.RegisterType<CareOneDatagramEncoder>().Named<BytesDatagramEncoder>("careone").SingleInstance();
             builder.RegisterType<CareTalking>().As<BytesProtocol>();
 

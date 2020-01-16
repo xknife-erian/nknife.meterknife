@@ -36,8 +36,8 @@ namespace MeterKnife.App
 
             using (var container = builder.Build())
             {
-                var surroundings = container.Resolve<Surroundings>();
                 Surroundings.Workbench = container.Resolve<Workbench>();
+                var surroundings = container.Resolve<Surroundings>();
                 //开启当前程序作用域下的 ApplicationContext 实例
                 Application.Run(surroundings);
             }

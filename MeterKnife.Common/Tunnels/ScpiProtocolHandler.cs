@@ -8,7 +8,7 @@ namespace MeterKnife.Common.Tunnels
 {
     public class ScpiProtocolHandler : CareOneProtocolHandler
     {
-        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public ScpiProtocolHandler()
         {
@@ -22,15 +22,15 @@ namespace MeterKnife.Common.Tunnels
         {
             if (!string.IsNullOrEmpty(protocol.Scpi))
             {
-                OnProtocolRecevied(new EventArgs<CareTalking>(protocol));
+                OnProtocolReceived(new EventArgs<CareTalking>(protocol));
             }
         }
 
-        public event EventHandler<EventArgs<CareTalking>> ProtocolRecevied;
+        public event EventHandler<EventArgs<CareTalking>> ProtocolReceived;
 
-        protected virtual void OnProtocolRecevied(EventArgs<CareTalking> e)
+        protected virtual void OnProtocolReceived(EventArgs<CareTalking> e)
         {
-            EventHandler<EventArgs<CareTalking>> handler = ProtocolRecevied;
+            EventHandler<EventArgs<CareTalking>> handler = ProtocolReceived;
             if (handler != null)
             {
                 handler(this, e);

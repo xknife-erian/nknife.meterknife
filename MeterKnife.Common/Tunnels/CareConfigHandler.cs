@@ -10,7 +10,7 @@ namespace MeterKnife.Common.Tunnels
 {
     public class CareConfigHandler : CareOneProtocolHandler
     {
-        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public CareConfigHandler()
         {
@@ -34,18 +34,18 @@ namespace MeterKnife.Common.Tunnels
 
         public override void Received(CareTalking protocol)
         {
-            _logger.Trace(string.Format("{1}^{2}:{0}", protocol.Scpi, protocol.MainCommand.ToHexString(), protocol.SubCommand.ToHexString()));
+            _Logger.Trace(string.Format("{1}^{2}:{0}", protocol.Scpi, protocol.MainCommand.ToHexString(), protocol.SubCommand.ToHexString()));
             if (!string.IsNullOrEmpty(protocol.Scpi))
             {
                 OnCareConfigging(new EventArgs<CareTalking>(protocol));
             }
         }
 
-        public event EventHandler<EventArgs<CareTalking>> CareConfigging;
+        public event EventHandler<EventArgs<CareTalking>> CareSetting;
 
         protected virtual void OnCareConfigging(EventArgs<CareTalking> e)
         {
-            EventHandler<EventArgs<CareTalking>> handler = CareConfigging;
+            EventHandler<EventArgs<CareTalking>> handler = CareSetting;
             if (handler != null)
                 handler(this, e);
         }

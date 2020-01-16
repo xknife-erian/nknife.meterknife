@@ -16,14 +16,12 @@ namespace MeterKnife.App
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
-        private static BaseCareCommunicationService _careComm;
-
         /// <summary>所有启动项的集合，将在 Initialize() 函数中被初始化
         /// </summary>
         private static readonly List<IEnvironmentItem> _StarterItems = new List<IEnvironmentItem>();
 
         public static Form Workbench { get; set; }
-        private BaseCareCommunicationService _commService;
+        private readonly BaseCareCommunicationService _commService;
 
         public Surroundings(BaseCareCommunicationService commService)
         {
@@ -81,7 +79,7 @@ namespace MeterKnife.App
                     }
                     catch (Exception e)
                     {
-                        _Logger.Warn($"寻找启动时的应用程序服务项异常.{e.Message}", e);
+                        _Logger.Warn($"寻找启动时的应用程序服务项异常.{e.Message}");
                     }
                 }
             }
@@ -103,7 +101,7 @@ namespace MeterKnife.App
                     }
                     catch (Exception e)
                     {
-                        _Logger.Warn($"应用程序服务项初始化异常.{e.Message}", e);
+                        _Logger.Warn($"应用程序服务项初始化异常.{e.Message}");
                     }
                 }
             }
@@ -115,7 +113,7 @@ namespace MeterKnife.App
         /// <summary>
         ///     应用程序退出
         /// </summary>
-        private static void OnApplicationExit(object sender, EventArgs ex)
+        private void OnApplicationExit(object sender, EventArgs ex)
         {
             try
             {
@@ -124,7 +122,7 @@ namespace MeterKnife.App
                 {
                     item.CloseService();
                 }
-                _careComm.Destroy();
+                _commService.Destroy();
                 Environment.Exit(0);
             }
             catch (Exception e)

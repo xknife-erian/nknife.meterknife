@@ -12,32 +12,32 @@ namespace MeterKnife.Util.Serial.Wrappers
     /// </summary>
     public class SerialPortWrapperDotNet : ISerialPortWrapper
     {
-        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        protected readonly AutoResetEvent _Reset = new AutoResetEvent(false);
+        protected readonly AutoResetEvent _reset = new AutoResetEvent(false);
 
-        protected int _CurrReadLength;
-        protected bool _OnReceive;
+        protected int _currReadLength;
+        protected bool _onReceive;
 
-        protected string _PortName;
-        protected SerialConfig _SerialConfig;
+        protected string _portName;
+        protected SerialConfig _serialConfig;
 
         /// <summary>
         ///     串口操作类（通过.net 类库）
         /// </summary>
-        protected SerialPort _SerialPort;
+        protected SerialPort _serialPort;
 
-        protected byte[] _SyncBuffer = new byte[512]; //当同步读取时的Buffer
-        protected byte _Tail = 0xFF;
+        protected byte[] _syncBuffer = new byte[512]; //当同步读取时的Buffer
+        protected byte _tail = 0xFF;
 
-        protected int _TimeOut = 150;
+        protected int _timeOut = 150;
 
         #region ISerialPortWrapper Members
 
         public byte Tail
         {
-            get { return _Tail; }
-            set { _Tail = value; }
+            get { return _tail; }
+            set { _tail = value; }
         }
 
         /// <summary>
@@ -53,9 +53,9 @@ namespace MeterKnife.Util.Serial.Wrappers
         /// <returns></returns>
         public bool Initialize(string portName, SerialConfig config)
         {
-            _PortName = portName;
-            _SerialConfig = config;
-            _SerialPort = new SerialPort
+            _portName = portName;
+            _serialConfig = config;
+            _serialPort = new SerialPort
             {
                 PortName = portName,
                 BaudRate = config.BaudRate, //9600,
@@ -68,31 +68,30 @@ namespace MeterKnife.Util.Serial.Wrappers
                 RtsEnable = config.RtsEnable
             };
 
-            _SerialPort.DataReceived += SerialPortDataReceived;
-            _SerialPort.ErrorReceived += SerialPortErrorReceived;
+            _serialPort.DataReceived += SerialPortDataReceived;
+            _serialPort.ErrorReceived += SerialPortErrorReceived;
 
             try
             {
-                if (_SerialPort.IsOpen)
+                if (_serialPort.IsOpen)
                 {
-                    _SerialPort.Close();
-                    _SerialPort.Open();
+                    _serialPort.Close();
+                    _serialPort.Open();
                 }
                 else
                 {
-                    _SerialPort.Open();
+                    _serialPort.Open();
                 }
-                IsOpen = _SerialPort.IsOpen;
+                IsOpen = _serialPort.IsOpen;
                 if (IsOpen)
                 {
-                    _logger.Info(string.Format("通讯:成功打开串口:{0}。{1},{2},{3}", portName, _SerialPort.BaudRate,
-                        _SerialPort.ReceivedBytesThreshold, _SerialPort.ReadTimeout));
+                    _Logger.Info($"通讯:成功打开串口:{portName}。{_serialPort.BaudRate},{_serialPort.ReceivedBytesThreshold},{_serialPort.ReadTimeout}");
                 }
-                return _SerialPort.IsOpen;
+                return _serialPort.IsOpen;
             }
             catch (Exception e)
             {
-                _logger.Warn("无法打开串口:" + portName, e);
+                _Logger.Warn($"无法打开串口:{portName}::{e}");
                 IsOpen = false;
                 return false;
             }
@@ -106,17 +105,17 @@ namespace MeterKnife.Util.Serial.Wrappers
         {
             try
             {
-                if (_SerialPort.IsOpen)
+                if (_serialPort.IsOpen)
                 {
-                    _SerialPort.Close();
-                    _logger.Info(string.Format("通讯:成功关闭串口:{0}。", _SerialPort.PortName));
+                    _serialPort.Close();
+                    _Logger.Info(string.Format("通讯:成功关闭串口:{0}。", _serialPort.PortName));
                 }
                 IsOpen = false;
                 return true;
             }
             catch (Exception e)
             {
-                _logger.Warn("关闭串口异常:" + _SerialPort.PortName, e);
+                _Logger.Warn("关闭串口异常:" + _serialPort.PortName, e);
                 return false;
             }
         }
@@ -129,8 +128,8 @@ namespace MeterKnife.Util.Serial.Wrappers
         {
             if (!IsOpen)
                 return;
-            _SerialPort.ReadTimeout = timeout;
-            _TimeOut = timeout;
+            _serialPort.ReadTimeout = timeout;
+            _timeOut = timeout;
         }
 
         /// <summary>
@@ -143,16 +142,16 @@ namespace MeterKnife.Util.Serial.Wrappers
         {
             try
             {
-                _CurrReadLength = 0;
-                _OnReceive = true;
-                _SerialPort.Write(cmd, 0, cmd.Length);
-                if (_Reset.WaitOne(_TimeOut))
+                _currReadLength = 0;
+                _onReceive = true;
+                _serialPort.Write(cmd, 0, cmd.Length);
+                if (_reset.WaitOne(_timeOut))
                 {
                     //收到返回
-                    recv = new byte[_SyncBuffer.Length];
+                    recv = new byte[_syncBuffer.Length];
                     if (recv.Length > 0)
-                        Buffer.BlockCopy(_SyncBuffer, 0, recv, 0, _SyncBuffer.Length);
-                    _SyncBuffer = new byte[0];
+                        Buffer.BlockCopy(_syncBuffer, 0, recv, 0, _syncBuffer.Length);
+                    _syncBuffer = new byte[0];
                     return recv.Length;
                 }
                 //未收到返回，超时
@@ -161,7 +160,7 @@ namespace MeterKnife.Util.Serial.Wrappers
             }
             catch (Exception e)
             {
-                _logger.Warn(string.Format("串口发送与接收时底层异常:{0}", e));
+                _Logger.Warn($"串口发送与接收时底层异常:{e}");
                 recv = new byte[0];
                 return 0;
             }
@@ -176,19 +175,19 @@ namespace MeterKnife.Util.Serial.Wrappers
         /// <param name="e"></param>
         protected virtual void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            if (!_OnReceive)
+            if (!_onReceive)
             {
-                _SerialPort.DiscardInBuffer();
+                _serialPort.DiscardInBuffer();
                 return;
             }
             try
             {
-                var readedBuffer = new byte[_SerialConfig.ReadBufferSize];
-                int recvCount = _SerialPort.Read(readedBuffer, 0, readedBuffer.Length);
-                _SyncBuffer = new byte[recvCount];
-                Buffer.BlockCopy(readedBuffer, 0, _SyncBuffer, 0, recvCount);
-                _OnReceive = false;
-                _Reset.Set();
+                var readedBuffer = new byte[_serialConfig.ReadBufferSize];
+                int recvCount = _serialPort.Read(readedBuffer, 0, readedBuffer.Length);
+                _syncBuffer = new byte[recvCount];
+                Buffer.BlockCopy(readedBuffer, 0, _syncBuffer, 0, recvCount);
+                _onReceive = false;
+                _reset.Set();
             }
             catch (TimeoutException ex)
             {
@@ -196,13 +195,13 @@ namespace MeterKnife.Util.Serial.Wrappers
             }
             catch (IOException ex)
             {
-                _logger.Warn(string.Format("串口读取异常：{0}", ex.Message), ex);
+                _Logger.Warn(string.Format("串口读取异常：{0}", ex.Message), ex);
             }
         }
 
         protected virtual void SerialPortErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            _SerialPort.DiscardInBuffer();
+            _serialPort.DiscardInBuffer();
         }
     }
 }

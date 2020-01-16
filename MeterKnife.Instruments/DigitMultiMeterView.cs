@@ -239,7 +239,7 @@ namespace MeterKnife.Instruments
 
         protected virtual void StartCollect()
         {
-            _handler.ProtocolRecevied += OnProtocolRecevied;
+            _handler.ProtocolReceived += OnProtocolReceived;
             _meterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true, _scpiCommandPanel.ScpiSubjectKey);
 
             var thread = new Thread(SendRead);
@@ -255,7 +255,7 @@ namespace MeterKnife.Instruments
         {
             Thread.Sleep(50);
             if (_meterKernel != null && _Meter != null) _meterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false, _scpiCommandPanel.ScpiSubjectKey);
-            _handler.ProtocolRecevied -= OnProtocolRecevied;
+            _handler.ProtocolReceived -= OnProtocolReceived;
         }
 
         private void SendRead(object obj)
@@ -265,7 +265,7 @@ namespace MeterKnife.Instruments
             _comm.SendLoopCommands(Port, cmd.Key, cmd.Value);
         }
 
-        private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
+        private void OnProtocolReceived(object sender, EventArgs<CareTalking> e)
         {
             var talking = e.Item;
             if (talking.GpibAddress != _Meter.GpibAddress || talking.Scpi.Length < 6)

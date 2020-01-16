@@ -9,7 +9,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
 {
     public abstract class CareOneProtocolHandler : BaseProtocolHandler<byte[]>
     {
-        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         protected CareOneProtocolHandler()
         {
@@ -17,14 +17,14 @@ namespace MeterKnife.Common.Tunnels.CareOne
             Commands = new List<byte[]>();
         }
 
-        public override sealed List<byte[]> Commands { get; set; }
+        public sealed override List<byte[]> Commands { get; set; }
 
         public override void Recevied(long sessionId, IProtocol<byte[]> protocol)
         {
             if (!(protocol is CareTalking))
             {
                 Debug.Assert(false, "Protocol类型有误, 不是CareSaying类型");
-                _logger.Warn("Protocol类型有误, 不是CareSaying类型");
+                _Logger.Warn("Protocol类型有误, 不是CareSaying类型");
                 return;
             }
             Received((CareTalking)protocol);

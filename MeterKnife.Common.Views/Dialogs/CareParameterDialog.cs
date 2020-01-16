@@ -33,13 +33,13 @@ namespace MeterKnife.Common.Winforms.Dialogs
                     MessageBox.Show(this, "WIFI透传模式说明：\r\n\r\nWIFI透传模式生效后，USB与仪器的连接将暂时失效，同时指示灯将快速闪烁……\r\n如果想退出透传模式时，请按住设备按键4秒以上，并重启本软件进行应用", "透传模式",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             };
-            _Handler.CareConfigging += OnProtocolRecevied;
+            _Handler.CareSetting += OnProtocolRecevied;
             _Comm.Bind(port, _Handler);
         }
 
         protected override void OnClosed(EventArgs e)
         {
-            _Handler.CareConfigging -= OnProtocolRecevied;
+            _Handler.CareSetting -= OnProtocolRecevied;
             base.OnClosed(e);
             _Comm.Remove(_Port, _Handler);
         }

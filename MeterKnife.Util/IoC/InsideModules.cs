@@ -27,6 +27,7 @@ namespace MeterKnife.Util.IoC
             builder.RegisterType<StringProtocol>().AsSelf();
             builder.RegisterType<StringProtocolFamily>().AsSelf();
 
+            builder.RegisterType<SerialPortWrapperDotNet>().As<ISerialPortWrapper>();
             builder.RegisterType<SerialPortWrapperDotNet>().Named<ISerialPortWrapper>(SerialType.DotNet.ToString());
             builder.RegisterType<SerialPortWrapperWinApi>().Named<ISerialPortWrapper>(SerialType.WinApi.ToString());
 

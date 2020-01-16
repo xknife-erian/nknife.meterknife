@@ -11,6 +11,7 @@ namespace MeterKnife.Instruments.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<DigitMultiMeterView>().AsSelf();
+            builder.RegisterType<MeterView>().AsSelf();
         }
 
     }
