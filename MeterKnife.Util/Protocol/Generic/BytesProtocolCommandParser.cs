@@ -1,4 +1,4 @@
-﻿namespace NKnife.Protocol.Generic
+﻿namespace MeterKnife.Util.Protocol.Generic
 {
     public abstract class BytesProtocolCommandParser : IProtocolCommandParser<byte[]>
     {

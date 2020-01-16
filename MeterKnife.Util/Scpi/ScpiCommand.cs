@@ -3,7 +3,7 @@ using System.Text;
 using System.Xml;
 using NKnife.Util;
 
-namespace NKnife.Scpi
+namespace MeterKnife.Util.Scpi
 {
     /// <summary>
     /// 针对SCPI标准命令的封装。

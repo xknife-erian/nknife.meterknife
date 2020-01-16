@@ -9,7 +9,6 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
-using NKnife.IoC;
 using NKnife.Events;
 
 namespace MeterKnife.Common.Winforms.Dialogs

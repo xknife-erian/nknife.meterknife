@@ -4,12 +4,12 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
-using NKnife.Protocol.Generic;
-using NKnife.Serial;
-using NKnife.Socket;
-using NKnife.Tunnel;
-using NKnife.Tunnel.Common;
-using NKnife.Tunnel.Generic;
+using MeterKnife.Util.Protocol.Generic;
+using MeterKnife.Util.Serial;
+using MeterKnife.Util.Socket;
+using MeterKnife.Util.Tunnel;
+using MeterKnife.Util.Tunnel.Common;
+using MeterKnife.Util.Tunnel.Generic;
 
 namespace MeterKnife.Common.IoC
 {

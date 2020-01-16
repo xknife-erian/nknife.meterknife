@@ -1,4 +1,4 @@
-﻿namespace NKnife.Scpi.Parser
+﻿namespace MeterKnife.Util.Scpi.Parser
 {
     /**
      * Interface to define a handler for a SCPI command. Implementations of this

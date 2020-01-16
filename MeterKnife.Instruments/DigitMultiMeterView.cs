@@ -11,8 +11,8 @@ using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Winforms.Dialogs;
 using MeterKnife.Common.Winforms.Plots;
 using MeterKnife.Scpis;
+using MeterKnife.Util.Scpi;
 using NKnife.Events;
-using NKnife.Scpi;
 
 namespace MeterKnife.Instruments
 {

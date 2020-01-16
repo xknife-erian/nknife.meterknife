@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Management;
 
-namespace NKnife.Serial
+namespace MeterKnife.Util.Serial
 {
     public static class SerialHelper
     {

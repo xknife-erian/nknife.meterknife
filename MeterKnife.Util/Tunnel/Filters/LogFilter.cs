@@ -1,8 +1,8 @@
 ﻿using System.Text;
 using Common.Logging;
-using NKnife.Tunnel.Base;
+using MeterKnife.Util.Tunnel.Base;
 
-namespace NKnife.Tunnel.Filters
+namespace MeterKnife.Util.Tunnel.Filters
 {
     public class LogFilter : BaseTunnelFilter
     {

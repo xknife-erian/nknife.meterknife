@@ -79,7 +79,6 @@
     <Compile Include="..\MeterKnife.App\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="IoC\Class1.cs" />
     <Compile Include="Maths\BigInteger.cs" />
     <Compile Include="Maths\Combinations.cs" />
     <Compile Include="Maths\Permutations.cs" />
@@ -153,7 +152,6 @@
     <Compile Include="Serial\Generic\Tools\FirstByteCommandParser.cs" />
     <Compile Include="Serial\Interfaces\ISerialConnector.cs" />
     <Compile Include="Serial\Interfaces\ISerialPortWrapper.cs" />
-    <Compile Include="Serial\IoC\DefaultModules.cs" />
     <Compile Include="Serial\SerialPortDataConnector.cs" />
     <Compile Include="Serial\Wrappers\SerialPortWin32.cs" />
     <Compile Include="Serial\Wrappers\SerialPortWrapperDotNet.cs" />
@@ -186,7 +184,7 @@
     <Compile Include="Socket\Interfaces\ISocketServer.cs" />
     <Compile Include="Socket\Interfaces\ISocketServerConfig.cs" />
     <Compile Include="Socket\Interfaces\ISocketSessionMap.cs" />
-    <Compile Include="Socket\IoC\DefaultModules.cs" />
+    <Compile Include="IoC\UtilModules.cs" />
     <Compile Include="Socket\KnifeLongSocketClient.cs" />
     <Compile Include="Socket\KnifeShortSocketClient.cs" />
     <Compile Include="Socket\KnifeSocketServer.cs" />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NKnife.Scpi;
+using MeterKnife.Util.Scpi;
 
 namespace MeterKnife.Scpis
 {

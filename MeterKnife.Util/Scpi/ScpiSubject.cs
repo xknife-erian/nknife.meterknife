@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Xml;
 
-namespace NKnife.Scpi
+namespace MeterKnife.Util.Scpi
 {
     /// <summary>
     /// 面向一个工作指令主题的指令集合

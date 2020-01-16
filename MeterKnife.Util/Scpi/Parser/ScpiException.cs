@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.Scpi.Parser
+namespace MeterKnife.Util.Scpi.Parser
 {
     public class ScpiException : Exception
     {

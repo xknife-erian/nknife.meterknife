@@ -1,4 +1,4 @@
-﻿namespace NKnife.Tunnel
+﻿namespace MeterKnife.Util.Tunnel
 {
     public interface ITunnelSession
     {

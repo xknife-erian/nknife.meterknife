@@ -1,7 +1,7 @@
 ﻿using System;
-using NKnife.Tunnel.Common;
+using MeterKnife.Util.Tunnel.Common;
 
-namespace NKnife.Socket.Generic
+namespace MeterKnife.Util.Socket.Generic
 {
     /// <summary>
     ///     仅用于Socket协议

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NKnife.Tunnel
+namespace MeterKnife.Util.Tunnel
 {
     public interface ITunnelFilterChain : ICollection<ITunnelFilter>
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Common.Logging;
-using NKnife.Tunnel.Generic;
+using MeterKnife.Util.Tunnel.Generic;
 using NKnife.Util;
 
 namespace MeterKnife.Common.Tunnels.CareOne

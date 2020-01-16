@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace NKnife.Protocol.Generic
+namespace MeterKnife.Util.Protocol.Generic
 {
     [Serializable]
     public class BytesProtocolFamily : IProtocolFamily<byte[]>

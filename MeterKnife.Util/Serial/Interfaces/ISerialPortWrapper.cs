@@ -1,6 +1,6 @@
-using NKnife.Serial.Common;
+using MeterKnife.Util.Serial.Common;
 
-namespace NKnife.Serial.Interfaces
+namespace MeterKnife.Util.Serial.Interfaces
 {
     /// <summary>串口操作类接口
     /// </summary>

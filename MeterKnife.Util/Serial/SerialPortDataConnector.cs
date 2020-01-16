@@ -1,12 +1,11 @@
 ﻿using System;
 using Common.Logging;
-using NKnife.IoC;
-using NKnife.Serial.Common;
-using NKnife.Serial.Interfaces;
-using NKnife.Tunnel.Common;
-using NKnife.Tunnel.Events;
+using MeterKnife.Util.Serial.Common;
+using MeterKnife.Util.Serial.Interfaces;
+using MeterKnife.Util.Tunnel.Common;
+using MeterKnife.Util.Tunnel.Events;
 
-namespace NKnife.Serial
+namespace MeterKnife.Util.Serial
 {
     public class SerialPortDataConnector : ISerialConnector
     {

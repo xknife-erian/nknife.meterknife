@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NKnife.Tunnel.Generic
+namespace MeterKnife.Util.Tunnel.Generic
 {
     /// <summary>
     /// 以固定结尾符为规则的解码器

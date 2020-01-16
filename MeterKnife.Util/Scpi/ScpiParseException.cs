@@ -1,6 +1,6 @@
 ﻿using NKnife.Exceptions;
 
-namespace NKnife.Scpi
+namespace MeterKnife.Util.Scpi
 {
     public class ScpiParseException : NKnifeException
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace NKnife.Protocol.Generic
+namespace MeterKnife.Util.Protocol.Generic
 {
     /// <summary>
     ///     协议族

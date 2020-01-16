@@ -1,4 +1,4 @@
-﻿namespace NKnife.Tunnel
+﻿namespace MeterKnife.Util.Tunnel
 {
     /// <summary>
     /// 协议的编解码器

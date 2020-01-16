@@ -3,14 +3,13 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Common.Logging;
-using NKnife.Protocol;
-using NKnife.Tunnel.Common;
+using MeterKnife.Util.Protocol;
+using MeterKnife.Util.Tunnel.Common;
 using NKnife.Util;
 
-namespace NKnife.Tunnel.Base
+namespace MeterKnife.Util.Tunnel.Base
 {
     public abstract class BaseProtocolFilter<T> : BaseTunnelFilter, ITunnelProtocolFilter<T>
     {

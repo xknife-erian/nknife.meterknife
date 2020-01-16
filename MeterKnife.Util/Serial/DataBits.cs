@@ -1,4 +1,4 @@
-﻿namespace NKnife.WinTool.SerialProtocolDebugger.Common.Serial
+﻿namespace MeterKnife.Util.Serial
 {
     /// <summary>
     /// DataBits enum.

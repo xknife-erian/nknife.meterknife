@@ -1,6 +1,6 @@
-﻿using NKnife.Tunnel.Generic;
+﻿using MeterKnife.Util.Tunnel.Generic;
 
-namespace NKnife.Socket.Generic.Protocol.Jsons
+namespace MeterKnife.Util.Socket.Generic.Protocol.Jsons
 {
     public class JsonEncoder : StringDatagramEncoder
     {

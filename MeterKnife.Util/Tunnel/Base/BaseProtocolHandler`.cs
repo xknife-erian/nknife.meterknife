@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common.Logging;
-using NKnife.Protocol;
-using NKnife.Tunnel.Common;
-using NKnife.Tunnel.Events;
+using MeterKnife.Util.Protocol;
+using MeterKnife.Util.Tunnel.Common;
+using MeterKnife.Util.Tunnel.Events;
 
-namespace NKnife.Tunnel.Base
+namespace MeterKnife.Util.Tunnel.Base
 {
     public abstract class BaseProtocolHandler<TData> : ITunnelProtocolHandler<TData>
     {

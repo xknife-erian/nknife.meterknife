@@ -7,7 +7,6 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
-using NKnife.IoC;
 
 namespace MeterKnife.Kernel.Services
 {

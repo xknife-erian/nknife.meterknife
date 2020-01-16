@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 
-namespace NKnife.Tunnel.Generic
+namespace MeterKnife.Util.Tunnel.Generic
 {
     public class FixedTailEncoder : StringDatagramEncoder
     {

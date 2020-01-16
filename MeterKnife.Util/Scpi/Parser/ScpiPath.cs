@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace NKnife.Scpi.Parser
+namespace MeterKnife.Util.Scpi.Parser
 {
     public class ScpiPath
     {

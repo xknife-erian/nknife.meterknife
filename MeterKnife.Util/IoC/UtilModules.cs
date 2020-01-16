@@ -1,9 +1,13 @@
 ﻿using Autofac;
-using NKnife.Protocol.Generic;
-using NKnife.Socket.Generic;
-using NKnife.Socket.Interfaces;
+using MeterKnife.Util.Protocol.Generic;
+using MeterKnife.Util.Serial.Common;
+using MeterKnife.Util.Serial.Interfaces;
+using MeterKnife.Util.Serial.Wrappers;
+using MeterKnife.Util.Socket;
+using MeterKnife.Util.Socket.Generic;
+using MeterKnife.Util.Socket.Interfaces;
 
-namespace NKnife.Socket.IoC
+namespace MeterKnife.Util.IoC
 {
     public class DefaultModules : Module
     {
@@ -20,7 +24,9 @@ namespace NKnife.Socket.IoC
 
             builder.RegisterType<StringProtocol>().As<StringProtocol>();
             builder.RegisterType<StringProtocolFamily>().As<StringProtocolFamily>();
-        }
 
+            builder.RegisterType<ISerialPortWrapper>().Named<SerialPortWrapperDotNet>(SerialType.DotNet.ToString());
+            builder.RegisterType<ISerialPortWrapper>().Named<SerialPortWrapperWinApi>(SerialType.WinApi.ToString());
+        }
     }
 }

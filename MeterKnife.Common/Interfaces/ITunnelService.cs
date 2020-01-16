@@ -1,7 +1,7 @@
 ﻿using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
-using NKnife.Scpi;
-using NKnife.Tunnel.Base;
+using MeterKnife.Util.Scpi;
+using MeterKnife.Util.Tunnel.Base;
 
 namespace MeterKnife.Common.Interfaces
 {

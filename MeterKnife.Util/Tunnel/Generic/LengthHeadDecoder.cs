@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Common.Logging;
 using NKnife.Util;
-using NKnife.Zip;
 
-namespace NKnife.Tunnel.Generic
+namespace MeterKnife.Util.Tunnel.Generic
 {
     /// <summary>
     ///     一个最常用的 字符数组 => 字符串 转换器。

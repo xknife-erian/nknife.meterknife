@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading;
-using NKnife.Base;
 using NKnife.Collections;
 
-namespace NKnife.Scpi
+namespace MeterKnife.Util.Scpi
 {
     /// <summary>
     ///     面向指定的CarePort的命令队列

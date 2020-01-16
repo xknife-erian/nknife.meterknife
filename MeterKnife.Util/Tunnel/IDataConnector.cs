@@ -1,7 +1,7 @@
 ﻿using System;
-using NKnife.Tunnel.Events;
+using MeterKnife.Util.Tunnel.Events;
 
-namespace NKnife.Tunnel
+namespace MeterKnife.Util.Tunnel
 {
     public interface IDataConnector
     {

@@ -1,4 +1,4 @@
-﻿namespace NKnife.Tunnel.Common
+﻿namespace MeterKnife.Util.Tunnel.Common
 {
     /// <summary>
     ///     数据类型为byte[]，

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.Tunnel
+namespace MeterKnife.Util.Tunnel
 {
     public interface ITunnel : IDisposable
     {

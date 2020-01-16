@@ -1,6 +1,6 @@
-﻿using NKnife.Tunnel.Base;
+﻿using MeterKnife.Util.Tunnel.Base;
 
-namespace NKnife.Tunnel.Generic
+namespace MeterKnife.Util.Tunnel.Generic
 {
     public abstract class StringDatagramEncoder : BaseDatagramEncoder<string>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using MeterKnife.Common.Tunnels;
+using MeterKnife.Util.Scpi;
 using NKnife.Base;
-using NKnife.Scpi;
 using NKnife.Util;
 
 namespace MeterKnife.Common.Util

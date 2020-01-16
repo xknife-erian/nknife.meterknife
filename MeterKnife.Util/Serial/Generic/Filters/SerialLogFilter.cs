@@ -1,9 +1,9 @@
 ﻿using System;
 using Common.Logging;
-using NKnife.Tunnel;
-using NKnife.Tunnel.Base;
+using MeterKnife.Util.Tunnel;
+using MeterKnife.Util.Tunnel.Base;
 
-namespace NKnife.Serial.Generic.Filters
+namespace MeterKnife.Util.Serial.Generic.Filters
 {
     public class SerialLogFilter : BaseTunnelFilter
     {

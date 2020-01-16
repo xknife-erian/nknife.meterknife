@@ -1,4 +1,4 @@
-﻿namespace NKnife.Socket.Common
+﻿namespace MeterKnife.Util.Socket.Common
 {
     /// <summary>
     /// 连接中断原因

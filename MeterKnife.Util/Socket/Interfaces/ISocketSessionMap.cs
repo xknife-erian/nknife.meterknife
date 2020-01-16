@@ -1,9 +1,9 @@
 ﻿using System;
+using MeterKnife.Util.Socket.Generic;
+using MeterKnife.Util.Tunnel;
 using NKnife.Events;
-using NKnife.Socket.Generic;
-using NKnife.Tunnel;
 
-namespace NKnife.Socket.Interfaces
+namespace MeterKnife.Util.Socket.Interfaces
 {
     public interface ISocketSessionMap : ITunnelSessionMap
     {

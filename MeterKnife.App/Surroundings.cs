@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Kernel;
-using NKnife.IoC;
 using NKnife.Interface;
 using NKnife.Util;
 using NKnife.Win.Forms.Forms;

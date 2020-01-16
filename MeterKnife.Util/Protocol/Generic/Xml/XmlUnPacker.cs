@@ -7,7 +7,7 @@ using Common.Logging;
 using NKnife.Interface;
 using NKnife.Util;
 
-namespace NKnife.Protocol.Generic.Xml
+namespace MeterKnife.Util.Protocol.Generic.Xml
 {
     public class XmlProtocolUnPacker : StringProtocolUnPacker
     {

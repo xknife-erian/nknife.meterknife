@@ -1,8 +1,7 @@
 ﻿using System.Linq;
-using NKnife.Tunnel.Filters;
-using NKnife.Util;
+using MeterKnife.Util.Tunnel.Filters;
 
-namespace NKnife.Serial.Generic.Filters
+namespace MeterKnife.Util.Serial.Generic.Filters
 {
     public class SerialProtocolFilter : BytesProtocolFilter
     {

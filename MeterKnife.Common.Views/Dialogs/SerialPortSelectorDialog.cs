@@ -1,7 +1,6 @@
 ﻿using System.Windows.Forms;
-using NKnife.Serial;
+using MeterKnife.Util.Serial;
 using NKnife.Win.Forms;
-using NKnife.WinTool.SerialProtocolDebugger.Common.Serial;
 
 namespace NKnife.WinTool.SerialProtocolDebugger.Views.Dialogs
 {

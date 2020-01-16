@@ -5,8 +5,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
-using NKnife.Protocol;
-using NKnife.Protocol.Generic;
+using MeterKnife.Util.Protocol;
+using MeterKnife.Util.Protocol.Generic;
 using NKnife.ShareResources;
 using NKnife.Util;
 

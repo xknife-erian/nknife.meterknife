@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using NKnife.Electronics.Collections;
-using NKnife.Electronics.Exceptions;
+using MeterKnife.Util.Electronics.Collections;
+using MeterKnife.Util.Electronics.Exceptions;
 
-namespace NKnife.Electronics.Helper
+namespace MeterKnife.Util.Electronics.Helper
 {
     /// <summary>一个面向电阻值分解的助手类
     /// </summary>

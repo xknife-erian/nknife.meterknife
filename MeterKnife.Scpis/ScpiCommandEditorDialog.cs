@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Windows.Forms;
-using NKnife.Scpi;
+using MeterKnife.Util.Scpi;
 using NKnife.Util;
 using NKnife.Win.Forms;
 

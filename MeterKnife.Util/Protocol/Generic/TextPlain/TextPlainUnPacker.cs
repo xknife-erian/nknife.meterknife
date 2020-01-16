@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace NKnife.Protocol.Generic.TextPlain
+namespace MeterKnife.Util.Protocol.Generic.TextPlain
 {
     public class TextPlainUnPacker : StringProtocolUnPacker
     {
