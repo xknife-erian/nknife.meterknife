@@ -5,11 +5,11 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using Common.Logging;
-using MeterKnife.Util.Protocol.Generic;
-using MeterKnife.Util.Protocol.Generic.Xml;
-using MeterKnife.Util.Utility;
+using NKnife.Protocol.Generic;
+using NKnife.Protocol.Generic.Xml;
+using NKnife.Util;
 
-namespace MeterKnife.Util.Socket.Generic.Protocol.Xmls
+namespace NKnife.Socket.Generic.Protocol.Xmls
 {
     /// <summary>含有序列化对象的解析器
     /// </summary>
@@ -26,7 +26,7 @@ namespace MeterKnife.Util.Socket.Generic.Protocol.Xmls
                     continue;
                 var itemElement = (XmlCDataSection) node;
                 object obj = null;
-                Type type = UtilityType.FindType(tagsElement.GetAttribute("type"));
+                Type type = UtilType.FindType(tagsElement.GetAttribute("type"));
                 try
                 {
                     var xs = new XmlSerializer(type);

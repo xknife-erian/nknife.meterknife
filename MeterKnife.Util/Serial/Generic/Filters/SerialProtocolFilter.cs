@@ -1,14 +1,16 @@
 ﻿using System.Linq;
-using MeterKnife.Util.Tunnel.Filters;
-using MeterKnife.Util.Utility;
+using NKnife.Tunnel.Filters;
+using NKnife.Util;
 
-namespace MeterKnife.Util.Serial.Generic.Filters
+namespace NKnife.Serial.Generic.Filters
 {
     public class SerialProtocolFilter : BytesProtocolFilter
     {
         public SerialProtocolFilter()
         {
-            CommandCompareFunc = (list, command) => list.Any(item => UtilityByte.Compare(item, command));
+            CommandCompareFunc = (list, command) => list.Any(item => SerialHelper.BytesCompare(item, command));
         }
+
+        
     }
 }

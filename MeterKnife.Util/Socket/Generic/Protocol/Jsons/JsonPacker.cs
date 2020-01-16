@@ -1,7 +1,7 @@
 ﻿using System;
-using MeterKnife.Util.Protocol.Generic;
+using NKnife.Protocol.Generic;
 
-namespace MeterKnife.Util.Socket.Generic.Protocol.Jsons
+namespace NKnife.Socket.Generic.Protocol.Jsons
 {
     public class JsonPacker : StringProtocolPacker
     {

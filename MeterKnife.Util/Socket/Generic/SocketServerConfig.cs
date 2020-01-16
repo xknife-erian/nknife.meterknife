@@ -1,6 +1,6 @@
-﻿using MeterKnife.Util.Socket.Interfaces;
+﻿using NKnife.Socket.Interfaces;
 
-namespace MeterKnife.Util.Socket.Generic
+namespace NKnife.Socket.Generic
 {
     public class SocketServerConfig : SocketConfig, ISocketServerConfig
     {

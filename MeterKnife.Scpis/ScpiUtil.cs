@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MeterKnife.Util.Utility;
+using NKnife.Util;
 
 namespace MeterKnife.Scpis
 {
@@ -18,7 +18,7 @@ namespace MeterKnife.Scpis
             get
             {
                 if (!Directory.Exists(_scpisPath))
-                    UtilityFile.CreateDirectory(_scpisPath);
+                    UtilFile.CreateDirectory(_scpisPath);
                 return _scpisPath;
             }
         }

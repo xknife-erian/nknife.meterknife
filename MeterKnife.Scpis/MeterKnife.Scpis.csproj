@@ -51,6 +51,15 @@
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="NKnife, Version=19.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.19.2.0\lib\netstandard2.0\NKnife.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife.Win, Version=19.0.0.1119, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.Win.Forms.19.0.0.1119\lib\net462\NKnife.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="NKnife.Win.Forms, Version=19.0.0.1119, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.Win.Forms.19.0.0.1119\lib\net462\NKnife.Win.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

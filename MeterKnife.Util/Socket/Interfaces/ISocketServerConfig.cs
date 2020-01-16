@@ -1,4 +1,4 @@
-namespace MeterKnife.Util.Socket.Interfaces
+namespace NKnife.Socket.Interfaces
 {
     public interface ISocketServerConfig : ISocketConfig
     {

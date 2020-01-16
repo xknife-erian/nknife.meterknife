@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Tunnel.Base
+﻿namespace NKnife.Tunnel.Base
 {
     public abstract class BaseDatagramEncoder<TData> : IDatagramEncoder<TData>
     {

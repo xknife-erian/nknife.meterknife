@@ -1,7 +1,7 @@
 ﻿using System;
-using MeterKnife.Util.Tunnel.Generic;
+using NKnife.Tunnel.Generic;
 
-namespace MeterKnife.Util.Socket.Generic.Protocol.Jsons
+namespace NKnife.Socket.Generic.Protocol.Jsons
 {
     public class JsonDecoder : StringDatagramDecoder
     {

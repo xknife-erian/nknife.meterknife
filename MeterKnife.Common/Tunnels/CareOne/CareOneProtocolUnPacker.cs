@@ -5,10 +5,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
-using MeterKnife.Util.Converts;
-using MeterKnife.Util.Protocol;
-using MeterKnife.Util.Protocol.Generic;
-using MeterKnife.Util.ShareResources;
+using NKnife.Protocol;
+using NKnife.Protocol.Generic;
+using NKnife.ShareResources;
+using NKnife.Util;
 
 namespace MeterKnife.Common.Tunnels.CareOne
 {
@@ -34,7 +34,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
         protected virtual void Execute(CareTalking talking, byte[] data, byte[] command)
         {
             ((IProtocol<byte[]>) talking).Command = command;
-            talking.GpibAddress = UtilityConvert.ConvertTo<short>(data[1]);
+            talking.GpibAddress = UtilConvert.ConvertTo<short>(data[1]);
             //_logger.Trace(string.Format("UnPack:{0}", data.ToHexString()));
 
             var contentBytes = new byte[data.Length - 5];

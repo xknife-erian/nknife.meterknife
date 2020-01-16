@@ -1,6 +1,6 @@
-﻿using MeterKnife.Util.Tunnel.Base;
+﻿using NKnife.Tunnel.Base;
 
-namespace MeterKnife.Util.Tunnel.Filters
+namespace NKnife.Tunnel.Filters
 {
     public abstract class BytesProtocolFilter : BaseProtocolFilter<byte[]>
     {

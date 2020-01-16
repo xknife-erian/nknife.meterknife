@@ -1,4 +1,4 @@
-﻿using MeterKnife.Util.Protocol.Generic;
+﻿using NKnife.Protocol.Generic;
 
 namespace MeterKnife.Common.Tunnels.CareOne
 {

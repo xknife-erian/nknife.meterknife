@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.Windows.Forms;
-using MeterKnife.Util.Converts;
-using MeterKnife.Util.GUI;
-using MeterKnife.Util.Scpi;
-using NKnife.GUI.WinForm;
+using NKnife.Scpi;
+using NKnife.Util;
+using NKnife.Win.Forms;
 
 namespace MeterKnife.Scpis
 {
@@ -92,7 +91,7 @@ namespace MeterKnife.Scpis
             else
             {
                 var t = _CommandTextBox.Text;
-                var bs = UtilityConvert.HexToBytes(t);
+                var bs = UtilByte.ConvertToBytes(t);
                 _CommandTextBox.Text = Encoding.ASCII.GetString(bs);
             }
             _CommandTextBox.Focus();

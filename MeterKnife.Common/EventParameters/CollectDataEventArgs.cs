@@ -1,6 +1,6 @@
 ﻿using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
-using MeterKnife.Util.Events;
+using NKnife.Events;
 
 namespace MeterKnife.Common.EventParameters
 {

@@ -1,10 +1,10 @@
-﻿using MeterKnife.Util.Serial.Common;
-using MeterKnife.Util.Serial.Interfaces;
-using MeterKnife.Util.Serial.Wrappers;
+﻿using NKnife.Serial.Common;
+using NKnife.Serial.Interfaces;
+using NKnife.Serial.Wrappers;
 using Ninject.Activation;
 using Ninject.Modules;
 
-namespace MeterKnife.Util.Serial.IoC
+namespace NKnife.Serial.IoC
 {
     public class DefaultModules : NinjectModule
     {

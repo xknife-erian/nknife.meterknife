@@ -3,13 +3,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Common.Logging;
-using MeterKnife.Util.IoC;
-using MeterKnife.Util.Socket.Generic;
-using MeterKnife.Util.Socket.Interfaces;
-using MeterKnife.Util.Tunnel.Common;
-using MeterKnife.Util.Tunnel.Events;
+using NKnife.IoC;
+using NKnife.Socket.Generic;
+using NKnife.Socket.Interfaces;
+using NKnife.Tunnel.Common;
+using NKnife.Tunnel.Events;
 
-namespace MeterKnife.Util.Socket
+namespace NKnife.Socket
 {
     /// <summary>
     /// 实现了socket短连接客户端，使用异步事件模型，

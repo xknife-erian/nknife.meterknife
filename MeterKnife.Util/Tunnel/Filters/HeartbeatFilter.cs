@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Common.Logging;
-using MeterKnife.Util.Tunnel.Base;
-using MeterKnife.Util.Tunnel.Common;
-using MeterKnife.Util.Tunnel.Events;
+using NKnife.Tunnel.Base;
+using NKnife.Tunnel.Common;
+using NKnife.Tunnel.Events;
 using Timer = System.Timers.Timer;
 
-namespace MeterKnife.Util.Tunnel.Filters
+namespace NKnife.Tunnel.Filters
 {
     public class HeartbeatFilter : BaseTunnelFilter
     {
@@ -259,7 +259,7 @@ namespace MeterKnife.Util.Tunnel.Filters
         protected bool Compare(ref byte[] data, byte[] toCompare)
         {
             var srcLength = data.Length;
-            var index = data.GetIndex(toCompare);
+            var index = data.Find(toCompare);
             if (index < 0)
                 return false;
             if (toCompare.Length < data.Length) //当源数据中包含待比较数据以外的数据时，将待比较数据移除

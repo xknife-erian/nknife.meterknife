@@ -11,19 +11,19 @@ using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
 using MeterKnife.Common.Util;
-using MeterKnife.Util.IoC;
-using MeterKnife.Util.Protocol.Generic;
-using MeterKnife.Util.Scpi;
-using MeterKnife.Util.Serial.Common;
-using MeterKnife.Util.Serial.Generic.Filters;
-using MeterKnife.Util.Serial.Interfaces;
-using MeterKnife.Util.Socket.Generic;
-using MeterKnife.Util.Socket.Generic.Filters;
-using MeterKnife.Util.Socket.Interfaces;
-using MeterKnife.Util.Tunnel;
-using MeterKnife.Util.Tunnel.Filters;
-using MeterKnife.Util.Tunnel.Generic;
-using MeterKnife.Util.Utility;
+using NKnife.IoC;
+using NKnife.Protocol.Generic;
+using NKnife.Scpi;
+using NKnife.Serial.Common;
+using NKnife.Serial.Generic.Filters;
+using NKnife.Serial.Interfaces;
+using NKnife.Socket.Generic;
+using NKnife.Socket.Generic.Filters;
+using NKnife.Socket.Interfaces;
+using NKnife.Tunnel;
+using NKnife.Tunnel.Filters;
+using NKnife.Tunnel.Generic;
+using NKnife.Util;
 
 namespace MeterKnife.Kernel.Services
 {
@@ -207,14 +207,14 @@ namespace MeterKnife.Kernel.Services
 
         public override void SendCommands(CommPort commPort, params ScpiCommandQueue.Item[] careItems)
         {
-            if (UtilityCollection.IsNullOrEmpty(careItems))
+            if (UtilCollection.IsNullOrEmpty(careItems))
                 return;
             Task.Factory.StartNew(() => EnqueueCommand(commPort, careItems));
         }
 
         public override void SendLoopCommands(CommPort commPort, string commandArrayKey, params ScpiCommandQueue.Item[] careItems)
         {
-            if (UtilityCollection.IsNullOrEmpty(careItems))
+            if (UtilCollection.IsNullOrEmpty(careItems))
                 return;
             Task.Factory.StartNew(() =>
             {
@@ -269,9 +269,11 @@ namespace MeterKnife.Kernel.Services
                             if (queue.Count > 0)
                                 break;
                         }
-                        queue.AutoResetEvent.WaitOne();
+                        queue.AddEvent.WaitOne();
                     }
-                    ScpiCommandQueue.Item cmd = queue.Dequeue();
+
+                    if (!queue.TryDequeue(out ScpiCommandQueue.Item cmd))
+                        continue;
                     if (cmd == null || cmd.GpibAddress < 0)
                         continue;
                     SendCommand(dataConnector, cmd);

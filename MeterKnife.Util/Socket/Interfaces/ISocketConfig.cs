@@ -1,6 +1,6 @@
-using MeterKnife.Util.Tunnel;
+using NKnife.Tunnel;
 
-namespace MeterKnife.Util.Socket.Interfaces
+namespace NKnife.Socket.Interfaces
 {
     public interface ISocketConfig : ITunnelConfig
     {

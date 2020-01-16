@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Scpi.Parser
+﻿namespace NKnife.Scpi.Parser
 {
     public class ScpiMissingHandlerException : ScpiException
     {

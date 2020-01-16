@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
 using Common.Logging;
-using MeterKnife.Util.Interface;
-using MeterKnife.Util.Utility;
+using NKnife.Interface;
+using NKnife.Util;
 
-namespace MeterKnife.Util.Protocol.Generic.Xml
+namespace NKnife.Protocol.Generic.Xml
 {
     public class XmlProtocolUnPacker : StringProtocolUnPacker
     {
@@ -85,7 +85,7 @@ namespace MeterKnife.Util.Protocol.Generic.Xml
                 var typeName = itemElement.GetAttribute("type");
                 if(string.IsNullOrEmpty(typeName))
                     typeName= itemElement.GetAttribute("class");
-                Type type = UtilityType.FindType(typeName);
+                Type type = UtilType.FindType(typeName);
                 try
                 {
                     if (node.FirstChild.NodeType == XmlNodeType.Element)
@@ -103,7 +103,7 @@ namespace MeterKnife.Util.Protocol.Generic.Xml
                     }
                     if (node.FirstChild.NodeType == XmlNodeType.CDATA)
                     {
-                        object e = UtilitySerialize.Deserialize(node.InnerText, type);
+                        object e = UtilSerialize.Deserialize(node.InnerText, type);
                         content.Tags.Add(e);
                     }
                 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MeterKnife.Util.Protocol
+namespace NKnife.Protocol
 {
     /// <summary>
     /// 一个描述协议的集合，协议族

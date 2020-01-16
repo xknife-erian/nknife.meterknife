@@ -25,7 +25,7 @@ namespace MeterKnife.Common.Base
         /// </summary>
         public string AbbrName
         {
-            get { return MeterUtil.SimplifyName(Name).Second; }
+            get { return MeterUtil.SimplifyName(Name).Item2; }
         }
 
         public override bool Equals(object obj)

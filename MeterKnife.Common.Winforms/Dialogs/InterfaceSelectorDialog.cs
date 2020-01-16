@@ -4,13 +4,11 @@ using System.Net;
 using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
-using MeterKnife.Util.GUI;
-using MeterKnife.Util.Utility;
-using NKnife.GUI.WinForm;
+using NKnife.Util;
 
 namespace MeterKnife.Common.Winforms.Dialogs
 {
-    public partial class InterfaceSelectorDialog : SimpleForm
+    public partial class InterfaceSelectorDialog : Form
     {
         public InterfaceSelectorDialog()
         {
@@ -44,7 +42,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
             {
                 _SerialComboBox.Items.Add(s);
             }
-            if (!UtilityCollection.IsNullOrEmpty(list))
+            if (!UtilCollection.IsNullOrEmpty(list))
             {
                 _SerialComboBox.SelectedItem = list[list.Length - 1];
             }

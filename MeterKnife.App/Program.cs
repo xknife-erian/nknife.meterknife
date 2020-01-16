@@ -2,9 +2,7 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using MeterKnife.Util;
-using MeterKnife.Util.IoC;
-using NKnife;
+using NKnife.IoC;
 
 namespace MeterKnife.App
 {
@@ -16,7 +14,6 @@ namespace MeterKnife.App
         [STAThread]
         private static void Main()
         {
-            Global.Culture = Common.Properties.Settings.Default.CultureInfoName;
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Common.Properties.Settings.Default.CultureInfoName);
 
             Application.EnableVisualStyles();

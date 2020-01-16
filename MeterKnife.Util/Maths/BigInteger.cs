@@ -134,9 +134,8 @@
 #endregion
 
 using System;
-using MeterKnife.Util.Wrapper;
 
-namespace MeterKnife.Util.Maths
+namespace NKnife.Maths
 {
     /// <summary>
     ///     一个描述超出int,long范围的“大数”的类型
@@ -404,7 +403,7 @@ namespace MeterKnife.Util.Maths
 
         public override bool Equals(object obj)
         {
-            if (Checker.IsNullOrEmpty(obj))
+            if (obj == null)
             {
                 return false;
             }

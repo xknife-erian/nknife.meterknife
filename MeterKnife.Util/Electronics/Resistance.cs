@@ -1,7 +1,7 @@
 ﻿using System;
-using MeterKnife.Util.Electronics.Collections;
+using NKnife.Electronics.Collections;
 
-namespace MeterKnife.Util.Electronics
+namespace NKnife.Electronics
 {
     /// <summary>描述一个电阻
     /// </summary>

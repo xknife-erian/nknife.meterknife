@@ -6,9 +6,9 @@ using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Tunnels.CareOne;
 using MeterKnife.Common.Util;
-using MeterKnife.Util.Events;
-using MeterKnife.Util.Scpi;
-using MeterKnife.Util.Tunnel.Base;
+using NKnife.Events;
+using NKnife.Scpi;
+using NKnife.Tunnel.Base;
 
 namespace MeterKnife.Common.Base
 {

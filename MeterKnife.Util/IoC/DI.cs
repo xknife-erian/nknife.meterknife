@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MeterKnife.Util.Utility;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Parameters;
 using Ninject.Planning.Bindings;
+using NKnife.Util;
 
-namespace MeterKnife.Util.IoC
+namespace NKnife.IoC
 {
     public static class DI
     {
@@ -31,7 +31,7 @@ namespace MeterKnife.Util.IoC
         {
             if (_initialized) 
                 return;
-            var assems = UtilityAssembly.SearchAssemblyByDirectory(Application.StartupPath, AssmeblyNameFilters);
+            var assems = UtilAssembly.SearchAssemblyByDirectory(Application.StartupPath, AssmeblyNameFilters);
 
             _coreKernel = new CoreKernel();
             _coreKernel.Load(assems);

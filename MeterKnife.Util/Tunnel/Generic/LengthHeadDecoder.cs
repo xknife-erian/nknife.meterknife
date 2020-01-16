@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Common.Logging;
-using MeterKnife.Util.Utility;
-using MeterKnife.Util.Zip;
+using NKnife.Util;
+using NKnife.Zip;
 
-namespace MeterKnife.Util.Tunnel.Generic
+namespace NKnife.Tunnel.Generic
 {
     /// <summary>
     ///     一个最常用的 字符数组 => 字符串 转换器。
@@ -64,7 +64,7 @@ namespace MeterKnife.Util.Tunnel.Generic
 
         private bool ExecuteSubMethod(byte[] data, int start, ref List<string> results, ref int finishedIndex)
         {
-            if (UtilityCollection.IsNullOrEmpty(data))
+            if (UtilCollection.IsNullOrEmpty(data))
                 return false;
             if (data.Length <= 4)
                 return false;
@@ -88,7 +88,7 @@ namespace MeterKnife.Util.Tunnel.Generic
                 _logger.Error("解码异常", e);
             }
 
-            if (!UtilityCollection.IsNullOrEmpty(protocol))
+            if (!UtilCollection.IsNullOrEmpty(protocol))
             {
                 string tidyString = TidyString(EnabelCompress ? CompressHelper.Decompress(protocol) : protocol);
                 results.Add(tidyString);

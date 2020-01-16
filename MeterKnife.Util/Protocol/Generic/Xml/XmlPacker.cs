@@ -7,9 +7,9 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using Common.Logging;
-using MeterKnife.Util.Utility;
+using NKnife.Util;
 
-namespace MeterKnife.Util.Protocol.Generic.Xml
+namespace NKnife.Protocol.Generic.Xml
 {
     /// <summary>
     /// 描述一个将协议内容按指定的格式组装成一个指定类型(一般是字符串，但也可以是任何，如文件)
@@ -107,13 +107,13 @@ namespace MeterKnife.Util.Protocol.Generic.Xml
                     }
                     else if (tag is ISerializable)
                     {
-                        string serializeString = UtilitySerialize.Serialize(tag);
+                        string serializeString = UtilSerialize.Serialize(tag);
                         writer.WriteAttributeString(XmlProtocolNames.Type, tag.GetType().FullName);
                         writer.WriteCData(serializeString);
                     }
                     else if (tag.GetType().IsSerializable)
                     {
-                        string serializeString = UtilitySerialize.Serialize(tag);
+                        string serializeString = UtilSerialize.Serialize(tag);
                         writer.WriteAttributeString(XmlProtocolNames.Type, tag.GetType().FullName);
                         writer.WriteCData(serializeString);
                     }

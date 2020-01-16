@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 
-namespace MeterKnife.Util.Socket.Events
+namespace NKnife.Socket.Events
 {
     /// <summary>
     ///     当Socket即将启动连接包含事件数据的类

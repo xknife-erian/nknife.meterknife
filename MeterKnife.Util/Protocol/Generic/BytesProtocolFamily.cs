@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using MeterKnife.Util.IoC;
+using NKnife.IoC;
 using Ninject;
 
-namespace MeterKnife.Util.Protocol.Generic
+namespace NKnife.Protocol.Generic
 {
     [Serializable]
     public class BytesProtocolFamily : IProtocolFamily<byte[]>

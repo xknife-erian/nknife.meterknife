@@ -1,6 +1,6 @@
 using System.IO.Ports;
 
-namespace MeterKnife.Util.Serial.Common
+namespace NKnife.Serial.Common
 {
     public class SerialConfig
     {

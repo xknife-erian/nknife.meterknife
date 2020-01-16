@@ -7,7 +7,6 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
-using MeterKnife.Util.Wrapper;
 
 namespace MeterKnife.Kernel.Services
 {
@@ -21,7 +20,7 @@ namespace MeterKnife.Kernel.Services
         public virtual void SerialFinder(BaseCareCommunicationService careComm)
         {
             var resetEvent = new AutoResetEvent(true);
-            StringCollection serialList = PcInterfaces.GetSerialList();
+            StringCollection serialList = new StringCollection();//PcInterfaces.GetSerialList();
             foreach (string serial in serialList)
             {
                 resetEvent.Set();

@@ -6,8 +6,7 @@ using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Winforms.Dialogs;
 using MeterKnife.Instruments;
-using MeterKnife.Util.IoC;
-using NKnife.NLog3.Controls;
+using NKnife.IoC;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace MeterKnife.App
@@ -123,8 +122,8 @@ namespace MeterKnife.App
 
         private void _LoggerMenuItem_Click(object sender, EventArgs e)
         {
-            var loggerForm = new NLogForm {TopMost = true};
-            loggerForm.Show();
+//            var loggerForm = new NLogForm {TopMost = true};
+//            loggerForm.Show();
         }
     }
 }

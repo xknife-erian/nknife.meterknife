@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
-using MeterKnife.Util.Serial.Common;
-using MeterKnife.Util.Serial.Interfaces;
+using NKnife.Serial.Common;
+using NKnife.Serial.Interfaces;
 
-namespace MeterKnife.Util.Serial.Wrappers
+namespace NKnife.Serial.Wrappers
 {
     public class SerialPortWrapperWinApi : ISerialPortWrapper
     {

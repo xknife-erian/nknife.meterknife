@@ -1,7 +1,8 @@
-﻿using MeterKnife.Common.Tunnels;
-using MeterKnife.Util.Base;
-using MeterKnife.Util.Scpi;
-using MeterKnife.Util.Utility;
+﻿using System;
+using MeterKnife.Common.Tunnels;
+using NKnife.Base;
+using NKnife.Scpi;
+using NKnife.Util;
 
 namespace MeterKnife.Common.Util
 {
@@ -40,8 +41,8 @@ namespace MeterKnife.Common.Util
 
         public static byte[] GenerateProtocol(ScpiCommandQueue.Item item)
         {
-            var head = new byte[] { 0x08, 0x00, 0x02, item.Heads.First, item.Heads.Second };
-            var newbs = UtilityCollection.MergerArray(head, item.Content);
+            var head = new byte[] { 0x08, 0x00, 0x02, item.Heads.Item1, item.Heads.Item2 };
+            var newbs = UtilCollection.MergerArray(head, item.Content);
             newbs[2] = (byte)(newbs.Length - 3);
             return newbs;
         }
@@ -57,7 +58,7 @@ namespace MeterKnife.Common.Util
                 IsCare = true,
                 GpibAddress = 0,
                 Interval = 30,
-                Heads = Pair<byte, byte>.Build(0xAE, 0x00)
+                Heads = new Tuple<byte, byte>(0xAE, 0x00)
             };
             return item;
         }
@@ -72,7 +73,7 @@ namespace MeterKnife.Common.Util
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = Pair<byte, byte>.Build(0xA0, subcommand)
+                Heads = new Tuple<byte, byte>(0xA0, subcommand)
             };
             return item;
         }
@@ -88,7 +89,7 @@ namespace MeterKnife.Common.Util
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = Pair<byte, byte>.Build(0xB0, subcommand),
+                Heads = new Tuple<byte, byte>(0xB0, subcommand),
                 Content = content
             };
             return item;
@@ -103,7 +104,7 @@ namespace MeterKnife.Common.Util
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = Pair<byte, byte>.Build(0xB1, 0x00),
+                Heads = new Tuple<byte, byte>(0xB1, 0x00),
             };
             return item;
         }
@@ -117,7 +118,7 @@ namespace MeterKnife.Common.Util
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = Pair<byte, byte>.Build(0xB0, 0xD8),
+                Heads = new Tuple<byte, byte>(0xB0, 0xD8),
             };
             return item;
         }

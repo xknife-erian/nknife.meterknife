@@ -1,10 +1,10 @@
-﻿using MeterKnife.Util.Protocol.Generic;
-using MeterKnife.Util.Socket.Generic;
-using MeterKnife.Util.Socket.Interfaces;
+﻿using NKnife.Protocol.Generic;
+using NKnife.Socket.Generic;
+using NKnife.Socket.Interfaces;
 using Ninject.Activation;
 using Ninject.Modules;
 
-namespace MeterKnife.Util.Socket.IoC
+namespace NKnife.Socket.IoC
 {
     public class DefaultModules : NinjectModule
     {

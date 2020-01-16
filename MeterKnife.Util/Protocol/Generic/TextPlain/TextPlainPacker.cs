@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MeterKnife.Util.Protocol.Generic.TextPlain
+namespace NKnife.Protocol.Generic.TextPlain
 {
     public class TextPlainPacker : StringProtocolPacker
     {

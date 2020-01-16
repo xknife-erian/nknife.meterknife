@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using System.Text;
 using MeterKnife.Common.DataModels;
-using MeterKnife.Util.Converts;
-using MeterKnife.Util.Protocol.Generic;
+using NKnife.Protocol.Generic;
+using NKnife.Util;
 
 namespace MeterKnife.Common.Tunnels.CareOne
 {
@@ -25,8 +25,8 @@ namespace MeterKnife.Common.Tunnels.CareOne
             var p = Encoding.ASCII.GetBytes(content.Scpi);
             var bs = new byte[5 + p.Length];
             bs[0] = 0x80;
-            bs[1] = UtilityConvert.ConvertTo<byte>(content.GpibAddress);
-            bs[2] = UtilityConvert.ConvertTo<byte>(2 + p.Length);
+            bs[1] = UtilConvert.ConvertTo<byte>(content.GpibAddress);
+            bs[2] = UtilConvert.ConvertTo<byte>(2 + p.Length);
             Buffer.BlockCopy(p, 0, bs, 3, p.Length);
             return bs;
         }

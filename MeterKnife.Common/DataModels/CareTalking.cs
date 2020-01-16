@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using MeterKnife.Util.Converts;
-using MeterKnife.Util.Protocol;
-using MeterKnife.Util.Protocol.Generic;
+using NKnife.Protocol;
+using NKnife.Protocol.Generic;
+using NKnife.Util;
 
 namespace MeterKnife.Common.DataModels
 {
@@ -30,7 +30,7 @@ namespace MeterKnife.Common.DataModels
 
         public override string ToString()
         {
-            return string.Format("Command:{0} {1},GPIB:{2},Content:{3}", MainCommand.ToHexString(), SubCommand.ToHexString(), GpibAddress, Scpi);
+            return $"Command:{MainCommand.ToHexString()} {SubCommand.ToHexString()},GPIB:{GpibAddress},Content:{Scpi}";
         }
 
         #region 基本属性
@@ -58,8 +58,8 @@ namespace MeterKnife.Common.DataModels
         /// </summary>
         public short GpibAddress
         {
-            get { return UtilityConvert.ConvertTo<short>(((IProtocol<byte[]>) this).CommandParam[0]); }
-            set { ((IProtocol<byte[]>) this).CommandParam[0] = UtilityConvert.ConvertTo<byte>(value); }
+            get { return UtilConvert.ConvertTo<short>(((IProtocol<byte[]>) this).CommandParam[0]); }
+            set { ((IProtocol<byte[]>) this).CommandParam[0] = UtilConvert.ConvertTo<byte>(value); }
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Winforms.Dialogs;
-using MeterKnife.Util.IoC;
+using NKnife.IoC;
 
 namespace MeterKnife.Common.Winforms.Controls.Tree
 {

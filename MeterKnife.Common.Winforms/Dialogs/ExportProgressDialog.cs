@@ -5,8 +5,7 @@ using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Util;
-using MeterKnife.Util.GUI;
-using NKnife.GUI.WinForm;
+using NKnife.Win.Forms;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 

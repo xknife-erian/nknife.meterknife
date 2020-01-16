@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 
-namespace MeterKnife.Util.Socket.Common
+namespace NKnife.Socket.Common
 {
     /// <summary>
     ///     Based on example from:

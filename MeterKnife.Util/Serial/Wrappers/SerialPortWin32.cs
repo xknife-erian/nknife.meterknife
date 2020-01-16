@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace MeterKnife.Util.Serial.Wrappers
+namespace NKnife.Serial.Wrappers
 {
     ///<summary>串口类操作类，通过windows api实现
     ///</summary>

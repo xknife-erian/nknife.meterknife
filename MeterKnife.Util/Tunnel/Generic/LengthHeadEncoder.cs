@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text;
 using Common.Logging;
-using MeterKnife.Util.Zip;
+using NKnife.Zip;
 
-namespace MeterKnife.Util.Tunnel.Generic
+namespace NKnife.Tunnel.Generic
 {
     /// <summary>
     ///     一个最常用的回复消息的字节数组生成器

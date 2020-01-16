@@ -1,6 +1,6 @@
-﻿using MeterKnife.Util.Tunnel.Base;
+﻿using NKnife.Tunnel.Base;
 
-namespace MeterKnife.Util.Tunnel.Generic
+namespace NKnife.Tunnel.Generic
 {
     /// <summary>
     /// 解码器

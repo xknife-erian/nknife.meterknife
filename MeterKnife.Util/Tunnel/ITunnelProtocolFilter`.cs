@@ -1,6 +1,6 @@
-﻿using MeterKnife.Util.Protocol;
+﻿using NKnife.Protocol;
 
-namespace MeterKnife.Util.Tunnel
+namespace NKnife.Tunnel
 {
     public interface ITunnelProtocolFilter<TData> : ITunnelFilter
     {

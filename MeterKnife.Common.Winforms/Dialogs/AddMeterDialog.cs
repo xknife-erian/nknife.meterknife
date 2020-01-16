@@ -7,9 +7,9 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
-using MeterKnife.Util.Events;
-using MeterKnife.Util.IoC;
-using MeterKnife.Util.Scpi;
+using NKnife.Events;
+using NKnife.IoC;
+using NKnife.Scpi;
 
 namespace MeterKnife.Common.Winforms.Dialogs
 {
@@ -102,7 +102,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
             {
                 Meter = DI.Get<BaseMeter>(meterName);
                 Meter.Name = idnName;
-                Meter.Brand = simpleName.First;
+                Meter.Brand = simpleName.Item1;
             }
             catch (Exception ex)
             {

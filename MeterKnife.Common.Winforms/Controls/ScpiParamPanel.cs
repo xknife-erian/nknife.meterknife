@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Common.Logging;
 using MeterKnife.Common.Base;
-using MeterKnife.Util.Scpi;
+using NKnife.Scpi;
 
 namespace MeterKnife.Common.Winforms.Controls
 {

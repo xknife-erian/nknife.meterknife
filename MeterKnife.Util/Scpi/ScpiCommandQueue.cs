@@ -1,8 +1,9 @@
-﻿using System.Threading;
-using MeterKnife.Util.Base;
-using MeterKnife.Util.Collections;
+﻿using System;
+using System.Threading;
+using NKnife.Base;
+using NKnife.Collections;
 
-namespace MeterKnife.Util.Scpi
+namespace NKnife.Scpi
 {
     /// <summary>
     ///     面向指定的CarePort的命令队列
@@ -56,7 +57,7 @@ namespace MeterKnife.Util.Scpi
             /// <summary>
             ///     当是Care的专属协议时的主命令字与子命令字
             /// </summary>
-            public Pair<byte, byte> Heads { get; set; }
+            public Tuple<byte, byte> Heads { get; set; }
 
             /// <summary>
             ///     当是Care的专属协议时的协议主体内容

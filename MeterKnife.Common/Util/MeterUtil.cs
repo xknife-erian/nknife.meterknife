@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using Common.Logging;
 using MeterKnife.Common.Interfaces;
-using MeterKnife.Util.Base;
-using MeterKnife.Util.Utility;
+using NKnife.Base;
+using NKnife.Util;
 
 namespace MeterKnife.Common.Util
 {
@@ -13,25 +13,25 @@ namespace MeterKnife.Common.Util
     {
         private static readonly ILog _logger = LogManager.GetLogger<MeterUtil>();
 
-        public static Pair<string, string> SimplifyName(string fullname)
+        public static Tuple<string, string> SimplifyName(string fullname)
         {
             var nd = fullname.Split(new[] {','});
-            if (UtilityCollection.IsNullOrEmpty(nd) || nd.Length < 2)
+            if (UtilCollection.IsNullOrEmpty(nd) || nd.Length < 2)
             {
-                return Pair<string, string>.Build(fullname, fullname);
+                return new Tuple<string, string>(fullname, fullname);
             }
-            var pair = Pair<string, string>.Build(nd[0].Trim(), nd[1].Trim());
+            var pair = new Tuple<string, string>(nd[0].Trim(), nd[1].Trim());
             return pair;
         }
 
-        public static string Named(Pair<string, string> namePair)
+        public static string Named(Tuple<string, string> namePair)
         {
-            var name = namePair.Second;
+            var name = namePair.Item1;
             if (name.Contains("344"))
-                return namePair.Second;
+                return namePair.Item2;
             if (name.Contains("2000"))
                 return "K2000";
-            _logger.Info(string.Format("仪器{0}无映射", namePair));
+            _logger.Info($"仪器{namePair}无映射");
             return "ScpiMeter";
         }
     }

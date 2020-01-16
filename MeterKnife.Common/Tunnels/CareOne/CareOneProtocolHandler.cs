@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
-using MeterKnife.Util.Protocol;
-using MeterKnife.Util.Tunnel.Base;
+using NKnife.Protocol;
+using NKnife.Tunnel.Base;
 
 namespace MeterKnife.Common.Tunnels.CareOne
 {

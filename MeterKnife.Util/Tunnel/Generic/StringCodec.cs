@@ -1,7 +1,7 @@
 ﻿using Common.Logging;
-using MeterKnife.Util.IoC;
+using NKnife.IoC;
 
-namespace MeterKnife.Util.Tunnel.Generic
+namespace NKnife.Tunnel.Generic
 {
     public class StringCodec : ITunnelCodec<string>
     {

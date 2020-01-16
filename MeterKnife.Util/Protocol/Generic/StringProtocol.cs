@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using MeterKnife.Util.IoC;
+using NKnife.IoC;
 
-namespace MeterKnife.Util.Protocol.Generic
+namespace NKnife.Protocol.Generic
 {
     /// <summary>协议的抽象实现
     /// </summary>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MeterKnife.Util.Tunnel
+namespace NKnife.Tunnel
 {
     public interface ITunnelSessionMap : IDictionary<long, ITunnelSession>
     {

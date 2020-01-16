@@ -1,4 +1,4 @@
-namespace MeterKnife.Util.Protocol.Generic
+namespace NKnife.Protocol.Generic
 {
     public abstract class StringProtocolUnPacker : IProtocolUnPacker<string>
     {

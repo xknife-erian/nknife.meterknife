@@ -3,13 +3,14 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Common.Logging;
-using MeterKnife.Util.Protocol;
-using MeterKnife.Util.Tunnel.Common;
-using MeterKnife.Util.Utility;
+using NKnife.Protocol;
+using NKnife.Tunnel.Common;
+using NKnife.Util;
 
-namespace MeterKnife.Util.Tunnel.Base
+namespace NKnife.Tunnel.Base
 {
     public abstract class BaseProtocolFilter<T> : BaseTunnelFilter, ITunnelProtocolFilter<T>
     {
@@ -37,7 +38,7 @@ namespace MeterKnife.Util.Tunnel.Base
             if (_DataMonitors.TryGetValue(id, out monitor))
             {
                 monitor.IsMonitor = false;
-                monitor.ReceiveQueue.AutoResetEvent.Set();
+                monitor.ReceiveQueue.AddEvent.Set();
             }
         }
 
@@ -114,7 +115,7 @@ namespace MeterKnife.Util.Tunnel.Base
         /// <returns>未处理完成,待下个数据包到达时将要继续处理的数据(半包)</returns>
         public virtual IEnumerable<IProtocol<T>> ProcessDataPacket(byte[] dataPacket, ref byte[] unFinished)
         {
-            if (!UtilityCollection.IsNullOrEmpty(unFinished))
+            if (!UtilCollection.IsNullOrEmpty(unFinished))
             {
                 // 当有半包数据时，进行接包操作
                 int srcLen = dataPacket.Length;
@@ -127,7 +128,7 @@ namespace MeterKnife.Util.Tunnel.Base
 
             IEnumerable<IProtocol<T>> protocols = null;
 
-            if (UtilityCollection.IsNullOrEmpty(datagram))
+            if (UtilCollection.IsNullOrEmpty(datagram))
             {
                 _logger.Trace(string.Format("{1}处理协议无内容。{0}", dataPacket.Length, GetType().Name));
             }
@@ -214,7 +215,7 @@ namespace MeterKnife.Util.Tunnel.Base
         {
             var id = (long) obj;
             DataMonitor dataMonitor;
-            _logger.Debug(string.Format("启动基于{0}的ReceiveQueue队列的监听。", id));
+            _logger.Debug($"启动基于{id}的ReceiveQueue队列的监听。");
             var unFinished = new byte[] {};
 
             try
@@ -227,8 +228,9 @@ namespace MeterKnife.Util.Tunnel.Base
                         {
                             //_TempCount += 1;
                             //_logger.Debug(string.Format("dataMonitor 处理数据{0}",_TempCount));
-                            byte[] data = dataMonitor.ReceiveQueue.Dequeue();
-                            if (UtilityCollection.IsNullOrEmpty(data))
+                            if(!dataMonitor.ReceiveQueue.TryDequeue(out var data))
+                                continue;
+                            if (UtilCollection.IsNullOrEmpty(data))
                                 continue;
                             IEnumerable<IProtocol<T>> protocols = ProcessDataPacket(data, ref unFinished);
                             //_logger.Debug(string.Format("dataMonitor 处理数据{0}完成", _TempCount));
@@ -243,7 +245,7 @@ namespace MeterKnife.Util.Tunnel.Base
                         }
                         else
                         {
-                            dataMonitor.ReceiveQueue.AutoResetEvent.WaitOne();
+                            dataMonitor.ReceiveQueue.AddEvent.WaitOne();
                         }
                     }
                 }

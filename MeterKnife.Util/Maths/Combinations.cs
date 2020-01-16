@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MeterKnife.Util.Maths
+namespace NKnife.Maths
 {
     /// <summary>
     /// 描述数学中的“组合”概念

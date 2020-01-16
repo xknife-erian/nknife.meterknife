@@ -3,12 +3,10 @@ using System.IO;
 using Common.Logging;
 using Common.Logging.Configuration;
 using Common.Logging.NLog;
-using MeterKnife.Util.NLog3.Controls;
-using MeterKnife.Util.NLog3.Controls.WPF;
-using MeterKnife.Util.Properties;
+using NKnife.Properties;
 using Ninject.Modules;
 
-namespace MeterKnife.Util.IoC
+namespace NKnife.IoC
 {
     public class NLogModules : NinjectModule
     {
@@ -57,8 +55,8 @@ namespace MeterKnife.Util.IoC
             properties["configFile"] = "~/NLog.config";//string.Format("~/{0}", CONFIG_FILE_NAME);
             LogManager.Adapter = new NLogLoggerFactoryAdapter(properties);
 
-            Bind<LoggerInfoDetailForm>().To<LoggerInfoDetailForm>().InSingletonScope();
-            Bind<LogMessageFilter>().ToSelf().InSingletonScope();
+//            Bind<LoggerInfoDetailForm>().To<LoggerInfoDetailForm>().InSingletonScope();
+//            Bind<LogMessageFilter>().ToSelf().InSingletonScope();
         }
     }
 }

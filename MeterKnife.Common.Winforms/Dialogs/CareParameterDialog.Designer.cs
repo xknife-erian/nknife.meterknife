@@ -1,6 +1,4 @@
-﻿using MeterKnife.Util.GUI;
-using MeterKnife.Util.GUI.IPAddressControl;
-
+﻿
 namespace MeterKnife.Common.Winforms.Dialogs
 {
     partial class CareParameterDialog
@@ -32,7 +30,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
         private void InitializeComponent()
         {
             this._MainGroupBox = new System.Windows.Forms.GroupBox();
-            this.singleLine1 = new SingleLine();
+            this.singleLine1 = new NKnife.Win.Forms.SingleLine();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -58,11 +56,11 @@ namespace MeterKnife.Common.Winforms.Dialogs
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this._MacTextBox = new System.Windows.Forms.TextBox();
-            this._MaskAddressControl = new IpAddressControl();
+            this._MaskAddressControl = new NKnife.Win.Forms.IPAddressControl.IpAddressControl();
             this.label3 = new System.Windows.Forms.Label();
-            this._GatwayAddressControl = new IpAddressControl();
+            this._GatwayAddressControl = new NKnife.Win.Forms.IPAddressControl.IpAddressControl();
             this.label4 = new System.Windows.Forms.Label();
-            this._IpAddressControl = new IpAddressControl();
+            this._IpAddressControl = new NKnife.Win.Forms.IPAddressControl.IpAddressControl();
             this._ConfirmButton = new System.Windows.Forms.Button();
             this._CancelButton = new System.Windows.Forms.Button();
             this._RestoreDefaultButton = new System.Windows.Forms.Button();
@@ -610,9 +608,9 @@ namespace MeterKnife.Common.Winforms.Dialogs
         private System.Windows.Forms.GroupBox _DhcpGroupBox;
         private System.Windows.Forms.RadioButton _DhcpEnableRadioButton;
         private System.Windows.Forms.RadioButton _DhcpDisableRadioButton;
-        private IpAddressControl _MaskAddressControl;
-        private IpAddressControl _GatwayAddressControl;
-        private IpAddressControl _IpAddressControl;
+        private NKnife.Win.Forms.IPAddressControl.IpAddressControl _MaskAddressControl;
+        private NKnife.Win.Forms.IPAddressControl.IpAddressControl _GatwayAddressControl;
+        private NKnife.Win.Forms.IPAddressControl.IpAddressControl _IpAddressControl;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -632,7 +630,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
         private System.Windows.Forms.GroupBox _UsartGroupBox;
         private System.Windows.Forms.CheckBox _UsartSwitchCheckBox;
         private System.Windows.Forms.Button _RestoreDefaultButton;
-        private SingleLine singleLine1;
+        private NKnife.Win.Forms.SingleLine singleLine1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;

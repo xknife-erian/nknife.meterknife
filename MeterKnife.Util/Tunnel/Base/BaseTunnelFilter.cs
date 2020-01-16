@@ -1,7 +1,7 @@
 ﻿using System;
-using MeterKnife.Util.Tunnel.Events;
+using NKnife.Tunnel.Events;
 
-namespace MeterKnife.Util.Tunnel.Base
+namespace NKnife.Tunnel.Base
 {
     public abstract class BaseTunnelFilter : ITunnelFilter
     {

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Common.Logging;
-using MeterKnife.Util.Scpi;
-using MeterKnife.Util.Utility;
+using NKnife.Scpi;
+using NKnife.Util;
 
 namespace MeterKnife.Common.DataModels
 {
@@ -159,7 +159,7 @@ namespace MeterKnife.Common.DataModels
                     ICollection<ScpiCommandQueue.Item[]> values = _Map[commPort].Values;
                     foreach (var careItems in values)
                     {
-                        if (UtilityCollection.IsNullOrEmpty(careItems))
+                        if (UtilCollection.IsNullOrEmpty(careItems))
                             continue;
                         var its = new List<ScpiCommandQueue.Item>();
                         foreach (ScpiCommandQueue.Item careItem in careItems)

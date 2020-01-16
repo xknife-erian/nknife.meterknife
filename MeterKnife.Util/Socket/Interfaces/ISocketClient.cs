@@ -1,8 +1,8 @@
 ﻿using System.Net;
-using MeterKnife.Util.Socket.Generic;
-using MeterKnife.Util.Tunnel;
+using NKnife.Socket.Generic;
+using NKnife.Tunnel;
 
-namespace MeterKnife.Util.Socket.Interfaces
+namespace NKnife.Socket.Interfaces
 {
     public interface ISocketClient : IDataConnector
     {

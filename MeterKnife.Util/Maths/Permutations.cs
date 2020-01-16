@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MeterKnife.Util.Maths
+namespace NKnife.Maths
 {
     /// <summary>
     ///     描述数学中的“排列”概念

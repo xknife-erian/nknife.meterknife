@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using MeterKnife.Util.IoC;
+using NKnife.IoC;
 
-namespace MeterKnife.Util.Protocol.Generic
+namespace NKnife.Protocol.Generic
 {
     public class BytesProtocol : IProtocol<byte[]>
     {

@@ -3,7 +3,7 @@ using System.Threading;
 using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels.CareOne;
-using MeterKnife.Util.Events;
+using NKnife.Events;
 
 namespace MeterKnife.Common.Tunnels
 {

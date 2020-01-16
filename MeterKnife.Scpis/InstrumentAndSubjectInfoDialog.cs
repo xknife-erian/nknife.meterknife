@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
-using MeterKnife.Util.GUI;
-using MeterKnife.Util.IoC;
-using MeterKnife.Util.Scpi;
-using NKnife.GUI.WinForm;
+using NKnife.IoC;
+using NKnife.Scpi;
+using NKnife.Win.Forms;
 
 namespace MeterKnife.Scpis
 {

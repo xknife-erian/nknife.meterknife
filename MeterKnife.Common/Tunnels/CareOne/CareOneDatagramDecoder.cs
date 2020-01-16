@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Common.Logging;
-using MeterKnife.Util.Converts;
-using MeterKnife.Util.Tunnel.Generic;
+using NKnife.Tunnel.Generic;
+using NKnife.Util;
 
 namespace MeterKnife.Common.Tunnels.CareOne
 {
@@ -61,7 +61,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
         {
             try
             {
-                var sl = UtilityConvert.ConvertTo<short>(data[index + 2]);
+                var sl = UtilConvert.ConvertTo<short>(data[index + 2]);
                 length = 3 + sl;
                 cs = new byte[length];
                 Buffer.BlockCopy(data, index, cs, 0, length);

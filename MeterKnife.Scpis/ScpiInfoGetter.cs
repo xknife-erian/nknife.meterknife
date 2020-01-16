@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using MeterKnife.Util.Scpi;
+using NKnife.Scpi;
 
 namespace MeterKnife.Scpis
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MeterKnife.Util.Tunnel.Generic
+namespace NKnife.Tunnel.Generic
 {
     /// <summary>
     /// 以固定结尾符为规则的解码器
@@ -31,7 +31,7 @@ namespace MeterKnife.Util.Tunnel.Generic
         public override string[] Execute(byte[] data, out int finishedIndex)
         {
             var start = 0;
-            var end = data.GetIndex(_Tail);
+            var end = data.Find(_Tail);
             if (end < 0)//空数据内容
             {
                 finishedIndex = 0;
@@ -50,7 +50,7 @@ namespace MeterKnife.Util.Tunnel.Generic
                 start = end;
                 if (end + _Tail.Length <= data.Length)
                 {
-                    end = data.GetIndex(_Tail, end + _Tail.Length);
+                    end = data.Find(_Tail, end + _Tail.Length);
                 }
             }
             finishedIndex = start + _Tail.Length;

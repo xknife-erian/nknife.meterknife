@@ -2,10 +2,9 @@
 using System.IO;
 using System.Windows.Forms;
 using MeterKnife.Scpis.ScpiTree;
-using MeterKnife.Util.GUI;
-using MeterKnife.Util.IoC;
-using MeterKnife.Util.Scpi;
-using NKnife.GUI.WinForm;
+using NKnife.IoC;
+using NKnife.Scpi;
+using NKnife.Win.Forms;
 
 namespace MeterKnife.Scpis
 {

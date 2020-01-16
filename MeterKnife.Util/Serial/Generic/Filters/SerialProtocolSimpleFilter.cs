@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Common.Logging;
-using MeterKnife.Util.Events;
-using MeterKnife.Util.Protocol;
-using MeterKnife.Util.Tunnel;
-using MeterKnife.Util.Tunnel.Filters;
+using NKnife.Events;
+using NKnife.Protocol;
+using NKnife.Tunnel;
+using NKnife.Tunnel.Filters;
 
-namespace MeterKnife.Util.Serial.Generic.Filters
+namespace NKnife.Serial.Generic.Filters
 {
     /// <summary>
     /// 一个最简单的协议处理Filter,不进入Handler进行协议分发,直接抛出协议收到事件

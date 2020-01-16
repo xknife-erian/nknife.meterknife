@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using NKnife.GUI.WinForm;
 
 namespace MeterKnife.Instruments
 {

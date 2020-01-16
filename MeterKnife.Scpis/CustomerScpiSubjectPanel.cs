@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using MeterKnife.Common.Interfaces;
-using MeterKnife.Util.IoC;
-using MeterKnife.Util.Scpi;
+using NKnife.IoC;
+using NKnife.Scpi;
 
 namespace MeterKnife.Scpis
 {

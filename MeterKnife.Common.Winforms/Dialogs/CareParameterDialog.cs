@@ -9,14 +9,12 @@ using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
 using MeterKnife.Common.Util;
-using MeterKnife.Util.Events;
-using MeterKnife.Util.GUI;
-using MeterKnife.Util.IoC;
-using NKnife.GUI.WinForm;
+using NKnife.IoC;
+using NKnife.Events;
 
 namespace MeterKnife.Common.Winforms.Dialogs
 {
-    public partial class CareParameterDialog : SimpleForm
+    public partial class CareParameterDialog : Form
     {
         private static readonly ILog _logger = LogManager.GetLogger<CareParameterDialog>();
         private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();

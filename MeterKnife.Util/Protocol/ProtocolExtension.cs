@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Protocol
+﻿namespace NKnife.Protocol
 {
     public static class ProtocolExtension
     {

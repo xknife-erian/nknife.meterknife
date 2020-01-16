@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Sockets;
 
-namespace MeterKnife.Util.Socket.Common
+namespace NKnife.Socket.Common
 {
     /// <summary>
     ///     一个数据包容器, 将SocketAsyncEventArgs的缓存预先打开备用。
