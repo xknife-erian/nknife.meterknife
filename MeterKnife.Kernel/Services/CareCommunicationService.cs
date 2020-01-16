@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
@@ -28,7 +27,7 @@ namespace MeterKnife.Kernel.Services
     public class CareCommunicationService : BaseCareCommunicationService
     {
         private const string FAMILY_NAME = "careone";
-        private static readonly ILog _Logger = LogManager.GetLogger<CareCommunicationService>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly List<CommPort> _carePortList = new List<CommPort>();
 
         private readonly BytesCodec _codec;

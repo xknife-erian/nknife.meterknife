@@ -6,7 +6,6 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using Common.Logging;
 using NKnife.Util;
 
 namespace MeterKnife.Util.Protocol.Generic.Xml
@@ -16,7 +15,7 @@ namespace MeterKnife.Util.Protocol.Generic.Xml
     /// </summary>
     public class XmlProtocolPacker : StringProtocolPacker
     {
-        private static readonly ILog _logger = LogManager.GetCurrentClassLogger();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// 是否快速封包,当快速封包时,Tags中的对象默认为String对象,而不考虑序列化

@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using Common.Logging;
 using MeterKnife.Util.Protocol.Generic;
 using MeterKnife.Util.Protocol.Generic.Xml;
 using NKnife.Util;
@@ -15,7 +14,7 @@ namespace MeterKnife.Util.Socket.Generic.Protocol.Xmls
     /// </summary>
     public class XmlProtocolDeserializeUnPacker : XmlProtocolUnPacker
     {
-        private static readonly ILog _logger = LogManager.GetLogger<XmlProtocolDeserializeUnPacker>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         protected override void ParseTags(StringProtocol content, XmlElement tagsElement)
         {

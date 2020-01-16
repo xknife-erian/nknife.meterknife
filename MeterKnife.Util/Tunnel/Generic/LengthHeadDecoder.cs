@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Common.Logging;
 using NKnife.Util;
 
 namespace MeterKnife.Util.Tunnel.Generic
@@ -11,7 +10,7 @@ namespace MeterKnife.Util.Tunnel.Generic
     /// </summary>
     public class LengthHeadDecoder : StringDatagramDecoder
     {
-        private static readonly ILog _logger = LogManager.GetLogger<LengthHeadDecoder>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public LengthHeadDecoder()
         {

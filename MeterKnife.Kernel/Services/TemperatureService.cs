@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
@@ -12,7 +11,7 @@ namespace MeterKnife.Kernel.Services
 {
     public class CareTemperatureService : ITemperatureService
     {
-        private static readonly ILog _Logger = LogManager.GetLogger<DataPathService>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         private readonly BaseCareCommunicationService _Comm;
         private readonly Dictionary<CommPort, bool> _PortStartMap = new Dictionary<CommPort, bool>();

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using Common.Logging;
 using MeterKnife.Util.Socket.Generic;
 using MeterKnife.Util.Socket.Interfaces;
 using MeterKnife.Util.Tunnel.Common;
@@ -18,7 +17,7 @@ namespace MeterKnife.Util.Socket
         private const int CHECK_SESSION_TABLE_TIME_INTERVAL = 100; // 清理Timer的时间间隔(ms)
         //private const int MAX_SESSION_TIMEOUT = 60; // 1 minutes，不是心跳间隔，但针对长连接也需要有个时间限制，太长时间无动作也要清除，如果为0表示不超时清除
 
-        private static readonly ILog _logger = LogManager.GetLogger<KnifeSocketServer>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         private readonly ManualResetEvent _CheckAcceptListenResetEvent;
         private readonly ManualResetEvent _CheckSessionTableResetEvent;
@@ -406,7 +405,7 @@ namespace MeterKnife.Util.Socket
             _session.AcceptSocket = clientSocket;
             _session.LastSessionTime = DateTime.Now;
             _SessionMap.Add(_session);
-            _logger.InfoFormat("Server: IP地址:{0}的连接已放入客户端池中。池中:{1}", remoteEndPoint, _SessionMap.Count);
+            _logger.Info($"Server: IP地址:{remoteEndPoint}的连接已放入客户端池中。池中:{_SessionMap.Count}");
 
             ReceiveDatagram(_session);
 
@@ -425,7 +424,7 @@ namespace MeterKnife.Util.Socket
                 session.DisconnectType = DisconnectType.Timeout;
                 SetSessionInactive(session); // 标记为将关闭、准备断开
 
-                _logger.Info(string.Format("Session{0}长期没有通讯，状态设置为InActive", session.Id));
+                _logger.Info($"Session{session.Id}长期没有通讯，状态设置为InActive");
             }
         }
 

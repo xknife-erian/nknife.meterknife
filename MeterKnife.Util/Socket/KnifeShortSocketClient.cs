@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using Common.Logging;
 using MeterKnife.Util.Socket.Generic;
 using MeterKnife.Util.Socket.Interfaces;
 using MeterKnife.Util.Tunnel.Common;
@@ -18,7 +17,7 @@ namespace MeterKnife.Util.Socket
     /// </summary>
     public class KnifeShortSocketClient : ISocketClient, IDisposable 
     {
-        private static readonly ILog _logger = LogManager.GetLogger<KnifeShortSocketClient>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         #region 成员变量
         protected IPAddress _IpAddress;

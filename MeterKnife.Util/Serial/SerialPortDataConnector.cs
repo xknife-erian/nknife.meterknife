@@ -1,5 +1,4 @@
 ﻿using System;
-using Common.Logging;
 using MeterKnife.Util.Serial.Common;
 using MeterKnife.Util.Serial.Interfaces;
 using MeterKnife.Util.Tunnel.Common;
@@ -9,7 +8,7 @@ namespace MeterKnife.Util.Serial
 {
     public class SerialPortDataConnector : ISerialConnector
     {
-        private static readonly ILog _Logger = LogManager.GetLogger<SerialPortDataConnector>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly ISerialPortWrapper _serial;
 
         public SerialPortDataConnector(ISerialPortWrapper serial)

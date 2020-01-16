@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common.Base;
 
 namespace MeterKnife.Common.Winforms.Dialogs
 {
     public class AddMeterLiteDialog : AddMeterDialog
     {
-        private static readonly ILog _logger = LogManager.GetLogger<AddMeterDialog>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         private readonly BaseCareCommunicationService _commService;
 

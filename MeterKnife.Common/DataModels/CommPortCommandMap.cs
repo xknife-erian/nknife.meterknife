@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Logging;
 using MeterKnife.Util.Scpi;
 using NKnife.Util;
 
@@ -15,7 +14,7 @@ namespace MeterKnife.Common.DataModels
     /// </summary>
     public class CommPortCommandMap : IDictionary<CommPort, ScpiCommandQueueMap>
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CommPortCommandMap>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly object _Lock = new object();
 
         #region IDictionary

@@ -1,11 +1,10 @@
-﻿using Common.Logging;
-using MeterKnife.Util.Tunnel.Events;
+﻿using MeterKnife.Util.Tunnel.Events;
 
 namespace MeterKnife.Util.Tunnel.Common
 {
     public class KnifeTunnel : ITunnel
     {
-        private static readonly ILog _logger = LogManager.GetLogger<KnifeTunnel>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         protected IDataConnector _DataConnector;
         protected ITunnelFilterChain _FilterChain;
         private bool _IsDataConnectedBound;

@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using Common.Logging;
 
 namespace MeterKnife.Util.Socket.Common
 {
@@ -12,7 +11,7 @@ namespace MeterKnife.Util.Socket.Common
     /// </summary>
     public class AsynListener : IDisposable
     {
-        private static readonly ILog _logger = LogManager.GetLogger<AsynListener>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly ManualResetEvent _AllDone = new ManualResetEvent(false);
         private readonly ManualResetEvent _SendDone = new ManualResetEvent(false);
         private int _BufferSize = 128;

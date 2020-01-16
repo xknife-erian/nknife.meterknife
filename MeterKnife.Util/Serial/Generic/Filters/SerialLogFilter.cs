@@ -1,5 +1,4 @@
 ﻿using System;
-using Common.Logging;
 using MeterKnife.Util.Tunnel;
 using MeterKnife.Util.Tunnel.Base;
 
@@ -7,7 +6,7 @@ namespace MeterKnife.Util.Serial.Generic.Filters
 {
     public class SerialLogFilter : BaseTunnelFilter
     {
-        private static readonly ILog _logger = LogManager.GetLogger<SerialLogFilter>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public override bool PrcoessReceiveData(ITunnelSession session)
         {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
@@ -18,7 +17,7 @@ namespace MeterKnife.Instruments
 {
     public partial class DigitMultiMeterView : MeterView
     {
-        private static readonly ILog _Logger = LogManager.GetLogger<DigitMultiMeterView>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         protected readonly BaseCareCommunicationService _comm;
 

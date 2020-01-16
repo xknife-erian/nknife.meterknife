@@ -6,15 +6,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Enums;
+using NLog;
 
 namespace MeterKnife.Common.Winforms.Controls
 {
     public partial class FiguredDataGrid : UserControl
     {
-        private static readonly ILog _logger = LogManager.GetLogger<FiguredDataGrid>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         private FiguredData _FiguredData;
 
@@ -79,7 +79,7 @@ namespace MeterKnife.Common.Winforms.Controls
             var range = 100;
             if (!int.TryParse(_SampleRangeDropMenu.Text, out range))
             {
-                _logger.Warn(string.Format("{0}解析错误", _SampleRangeDropMenu.Text));
+                _Logger.Warn(string.Format("{0}解析错误", _SampleRangeDropMenu.Text));
             }
             if (range < 10)
                 return;

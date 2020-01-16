@@ -1,10 +1,9 @@
-﻿using Common.Logging;
-
+﻿
 namespace MeterKnife.Util.Tunnel.Generic
 {
     public class BytesCodec : ITunnelCodec<byte[]>
     {
-        private static readonly ILog _logger = LogManager.GetLogger<BytesCodec>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         private BytesDatagramDecoder _bytesDecoder;
         private BytesDatagramEncoder _bytesEncoder;
         private bool _HasSetDecoder;

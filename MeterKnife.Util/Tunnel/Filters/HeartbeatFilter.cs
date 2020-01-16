@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Common.Logging;
 using MeterKnife.Util.Tunnel.Base;
 using MeterKnife.Util.Tunnel.Common;
 using MeterKnife.Util.Tunnel.Events;
@@ -12,7 +11,7 @@ namespace MeterKnife.Util.Tunnel.Filters
 {
     public class HeartbeatFilter : BaseTunnelFilter
     {
-        private static readonly ILog _logger = LogManager.GetLogger<HeartbeatFilter>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly Dictionary<long, HeartBeatSession> _HeartBeartSessionMap = new Dictionary<long, HeartBeatSession>();
         private readonly ManualResetEvent _ReceiveProcessingResetEvent = new ManualResetEvent(false);
         private Timer _BeatingTimer;
@@ -156,7 +155,7 @@ namespace MeterKnife.Util.Tunnel.Filters
                 //非严格模式，收到任何数据，均认为心跳正常
                 heartSession.SetWaitForReply(false);
 #if DEBUG
-                _logger.TraceFormat("{0}收到{1}信息,关闭心跳等待（非严格模式）.", Heartbeat.LocalHeartDescription, session.Id);
+                _logger.Trace($"{Heartbeat.LocalHeartDescription}收到{session.Id}信息,关闭心跳等待（非严格模式）.");
 #endif
             }
 
@@ -170,7 +169,7 @@ namespace MeterKnife.Util.Tunnel.Filters
                 }
                 ProcessHeartBeatRequestOrReply(session.Id, Heartbeat.ReplyToRemote);
 #if DEBUG
-                _logger.TraceFormat("{0}收到{1}心跳请求.回复完成.", Heartbeat.LocalHeartDescription, session.Id);
+                _logger.Trace($"{Heartbeat.LocalHeartDescription}收到{session.Id}心跳请求.回复完成.");
 #endif
                 _OnReceiveProcessing = false;
                 _ReceiveProcessingResetEvent.Set();
@@ -186,7 +185,7 @@ namespace MeterKnife.Util.Tunnel.Filters
                     heartSession.SetWaitForReply(false);
                 }
 #if DEBUG
-                _logger.TraceFormat("{0}收到{1}心跳回复.", Heartbeat.LocalHeartDescription, session.Id);
+                _logger.Trace($"{Heartbeat.LocalHeartDescription}收到{session.Id}心跳回复.");
 #endif
                 _OnReceiveProcessing = false;
                 _ReceiveProcessingResetEvent.Set();

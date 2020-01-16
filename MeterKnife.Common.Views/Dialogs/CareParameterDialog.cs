@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
@@ -15,7 +14,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class CareParameterDialog : Form
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CareParameterDialog>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly BaseCareCommunicationService _Comm;
         private readonly CareConfigHandler _Handler = new CareConfigHandler();
         private readonly CommPort _Port;
@@ -212,7 +211,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
             }
             catch (Exception e)
             {
-                _logger.Warn("解析Care参数协议填充到面板上显示异常", e);
+                _Logger.Warn("解析Care参数协议填充到面板上显示异常");
             }
         }
 

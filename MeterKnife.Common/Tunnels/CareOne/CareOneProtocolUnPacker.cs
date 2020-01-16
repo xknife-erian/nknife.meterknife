@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Util.Protocol;
 using MeterKnife.Util.Protocol.Generic;
@@ -14,7 +13,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
 {
     public class CareOneProtocolUnPacker : BytesProtocolUnPacker
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CareOneProtocolUnPacker>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// 科学计数法正则

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Xml;
-using Common.Logging;
 using MeterKnife.Util.Protocol.Generic;
 using MeterKnife.Util.Protocol.Generic.Xml;
 
@@ -13,7 +12,7 @@ namespace MeterKnife.Util.Socket.Generic.Protocol.Xmls
     /// </summary>
     public class XmlProtocolDataTableDeserializeUnPacker : XmlProtocolUnPacker
     {
-        private static readonly ILog _logger = LogManager.GetLogger<XmlProtocolDataTableDeserializeUnPacker>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         protected override void ParseTags(StringProtocol content, XmlElement tagsElement)
         {

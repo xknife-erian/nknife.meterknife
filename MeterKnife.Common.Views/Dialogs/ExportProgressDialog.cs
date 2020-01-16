@@ -2,7 +2,6 @@
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Util;
 using NKnife.Win.Forms;
@@ -13,7 +12,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class ExportProgressDialog : SimpleForm
     {
-        private static readonly ILog _logger = LogManager.GetLogger<ExportProgressDialog>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
         private FiguredData _FiguredData;
 
         private string _FileFullPath;

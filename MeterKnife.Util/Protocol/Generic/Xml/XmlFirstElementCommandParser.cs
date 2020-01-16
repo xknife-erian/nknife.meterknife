@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Xml;
-using Common.Logging;
 
 namespace MeterKnife.Util.Protocol.Generic.Xml
 {
@@ -10,7 +9,7 @@ namespace MeterKnife.Util.Protocol.Generic.Xml
     /// </summary>
     public class XmlFirstElementCommandParser : StringProtocolCommandParser
     {
-        private static readonly ILog _logger = LogManager.GetLogger<XmlFirstElementCommandParser>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         
         public override string GetCommand(string protocol)
         {

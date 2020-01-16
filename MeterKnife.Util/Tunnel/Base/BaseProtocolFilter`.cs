@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Logging;
 using MeterKnife.Util.Protocol;
 using MeterKnife.Util.Tunnel.Common;
 using NKnife.Util;
@@ -13,7 +12,7 @@ namespace MeterKnife.Util.Tunnel.Base
 {
     public abstract class BaseProtocolFilter<T> : BaseTunnelFilter, ITunnelProtocolFilter<T>
     {
-        private static readonly ILog _logger = LogManager.GetLogger<BaseProtocolFilter<T>>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         protected readonly ConcurrentDictionary<long, DataMonitor> _DataMonitors = new ConcurrentDictionary<long, DataMonitor>();
         protected ITunnelCodec<T> _Codec;
         protected IProtocolFamily<T> _Family;

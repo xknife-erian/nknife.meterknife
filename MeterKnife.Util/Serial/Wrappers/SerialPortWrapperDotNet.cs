@@ -2,7 +2,6 @@
 using System.IO;
 using System.IO.Ports;
 using System.Threading;
-using Common.Logging;
 using MeterKnife.Util.Serial.Common;
 using MeterKnife.Util.Serial.Interfaces;
 
@@ -13,7 +12,7 @@ namespace MeterKnife.Util.Serial.Wrappers
     /// </summary>
     public class SerialPortWrapperDotNet : ISerialPortWrapper
     {
-        private static readonly ILog _logger = LogManager.GetLogger<SerialPortWrapperDotNet>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         protected readonly AutoResetEvent _Reset = new AutoResetEvent(false);
 

@@ -1,12 +1,11 @@
 ﻿using System.Text;
-using Common.Logging;
 using MeterKnife.Util.Tunnel.Base;
 
 namespace MeterKnife.Util.Tunnel.Filters
 {
     public class LogFilter : BaseTunnelFilter
     {
-        private static readonly ILog _logger = LogManager.GetLogger<LogFilter>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public override bool PrcoessReceiveData(ITunnelSession session)
         {

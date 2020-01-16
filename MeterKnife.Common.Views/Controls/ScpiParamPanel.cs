@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
-using Common.Logging;
-using MeterKnife.Common.Base;
 using MeterKnife.Util.Scpi;
 
 namespace MeterKnife.Common.Winforms.Controls
 {
     public class ScpiParamPanel : BaseParamPanel
     {
-        private static readonly ILog _logger = LogManager.GetLogger<ScpiParamPanel>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
         protected readonly List<ComboBox> _ComboBoxList = new List<ComboBox>();
         protected ScpiGroup _Commandlist;
 

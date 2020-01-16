@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Common.Logging;
 using MeterKnife.Common.Interfaces;
 using NKnife.Base;
 using NKnife.Util;
@@ -11,7 +10,7 @@ namespace MeterKnife.Common.Util
 {
     public class MeterUtil
     {
-        private static readonly ILog _logger = LogManager.GetLogger<MeterUtil>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public static Tuple<string, string> SimplifyName(string fullname)
         {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using Common.Logging;
 using MathNet.Numerics.Statistics;
 using MeterKnife.Common.Enums;
 using MeterKnife.Common.EventParameters;
@@ -17,7 +16,7 @@ namespace MeterKnife.Common.DataModels
         public const string VALUE = "value";
         public const string TEMPERATURE = "temperature";
         public const string STANDARD_DEVIATION = "standard_deviation";
-        private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         protected readonly ITemperatureService _TempService;
         private IMeterDataService _dataService;

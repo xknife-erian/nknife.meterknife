@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Util;
 using OxyPlot;
@@ -15,7 +14,7 @@ namespace MeterKnife.Common.Winforms.Plots
 {
     public sealed class TemperatureFeaturesPlot : UserControl
     {
-        private static readonly ILog _logger = LogManager.GetLogger<TemperatureFeaturesPlot>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         private readonly LinearAxis _DataAxis = new LinearAxis();
         private readonly ScatterSeries _DataSeries = new ScatterSeries();

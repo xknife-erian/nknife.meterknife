@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.Logging;
 using MeterKnife.Util.Protocol;
 using MeterKnife.Util.Tunnel.Common;
 using MeterKnife.Util.Tunnel.Events;
@@ -9,7 +8,7 @@ namespace MeterKnife.Util.Tunnel.Base
 {
     public abstract class BaseProtocolHandler<TData> : ITunnelProtocolHandler<TData>
     {
-        private static readonly ILog _logger = LogManager.GetLogger<BaseProtocolHandler<TData>>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         #region Codec
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels.CareOne;
 using NKnife.Events;
@@ -9,7 +8,7 @@ namespace MeterKnife.Common.Tunnels
 {
     public class ScpiProtocolHandler : CareOneProtocolHandler
     {
-        private static readonly ILog _logger = LogManager.GetLogger<ScpiProtocolHandler>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public ScpiProtocolHandler()
         {

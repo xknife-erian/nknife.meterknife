@@ -2,7 +2,6 @@
 using System.Collections.Specialized;
 using System.Text;
 using System.Threading;
-using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels;
@@ -12,7 +11,7 @@ namespace MeterKnife.Kernel.Services
 {
     public class CareService
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CareService>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
         ///     在串口中寻找Care

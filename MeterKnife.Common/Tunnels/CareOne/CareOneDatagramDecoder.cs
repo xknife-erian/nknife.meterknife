@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Common.Logging;
 using MeterKnife.Util.Tunnel.Generic;
 using NKnife.Util;
 
@@ -12,7 +11,7 @@ namespace MeterKnife.Common.Tunnels.CareOne
     /// </summary>
     public class CareOneDatagramDecoder : BytesDatagramDecoder
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CareOneDatagramDecoder>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public const byte LEAD = 0x09;
 

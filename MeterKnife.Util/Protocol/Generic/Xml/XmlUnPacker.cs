@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
-using Common.Logging;
 using NKnife.Interface;
 using NKnife.Util;
 
@@ -11,7 +10,7 @@ namespace MeterKnife.Util.Protocol.Generic.Xml
 {
     public class XmlProtocolUnPacker : StringProtocolUnPacker
     {
-        private static readonly ILog _logger = LogManager.GetLogger<XmlProtocolUnPacker>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         #region IProtocolParser Members
 

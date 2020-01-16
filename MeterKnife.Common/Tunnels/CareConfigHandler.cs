@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Tunnels.CareOne;
 using NKnife.Events;
@@ -11,7 +10,7 @@ namespace MeterKnife.Common.Tunnels
 {
     public class CareConfigHandler : CareOneProtocolHandler
     {
-        private static readonly ILog _logger = LogManager.GetLogger<CareConfigHandler>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public CareConfigHandler()
         {

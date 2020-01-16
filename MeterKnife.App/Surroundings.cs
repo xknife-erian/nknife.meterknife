@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Kernel;
 using NKnife.Interface;
 using NKnife.Util;
 using NKnife.Win.Forms.Forms;
+using NLog;
 
 namespace MeterKnife.App
 {
     internal class Surroundings : ApplicationContext
     {
-        private static readonly ILog _Logger = LogManager.GetLogger<Surroundings>();
+        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
         private static BaseCareCommunicationService _careComm;
 

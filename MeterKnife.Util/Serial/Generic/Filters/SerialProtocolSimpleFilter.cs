@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Common.Logging;
 using MeterKnife.Util.Protocol;
 using MeterKnife.Util.Tunnel;
 using MeterKnife.Util.Tunnel.Filters;
@@ -13,7 +12,7 @@ namespace MeterKnife.Util.Serial.Generic.Filters
     /// </summary>
     public class SerialProtocolSimpleFilter : BytesProtocolFilter
     {
-        private static readonly ILog _logger = LogManager.GetLogger<SerialProtocolFilter>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly byte[] _CurrentReceiveBuffer = new byte[1024];
         private int _CurrentReceiveByteLength;
 

@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common;
 using MeterKnife.Common.Interfaces;
 using NKnife.Interface;
@@ -9,7 +8,7 @@ namespace MeterKnife.Kernel.Services
 {
     public class DataPathService : IEnvironmentItem
     {
-        private static readonly ILog _logger = LogManager.GetLogger<DataPathService>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public bool StartService()
         {

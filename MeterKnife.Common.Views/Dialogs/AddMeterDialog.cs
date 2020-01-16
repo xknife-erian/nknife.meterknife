@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
-using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 
@@ -9,7 +8,7 @@ namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class AddMeterDialog : Form
     {
-        private static readonly ILog _Logger = LogManager.GetLogger<AddMeterDialog>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly AutoResetEvent _autoResetEvent = new AutoResetEvent(false);
 
         private readonly BaseCareCommunicationService _commService;

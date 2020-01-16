@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using Common.Logging;
 using MeterKnife.Util.Socket.Generic;
 using MeterKnife.Util.Socket.Interfaces;
 using MeterKnife.Util.Tunnel.Common;
@@ -12,7 +11,7 @@ namespace MeterKnife.Util.Socket
 {
     public class KnifeLongSocketClient : ISocketClient, IDisposable
     {
-        private static readonly ILog _logger = LogManager.GetLogger<KnifeLongSocketClient>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
         public KnifeLongSocketClient(bool reconnectFlag, bool isConnecting, 
             SocketClientConfig config, SocketSession socketSession)
         {
@@ -464,7 +463,7 @@ namespace MeterKnife.Util.Socket
             }
             catch (Exception e)
             {
-                _logger.WarnFormat("结束挂起的异步发送异常.{0}", e.Message);
+                _logger.Warn($"结束挂起的异步发送异常.{e}");
             }
         }
 

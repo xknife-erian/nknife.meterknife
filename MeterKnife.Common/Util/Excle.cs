@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
-using Common.Logging;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
@@ -11,7 +10,7 @@ namespace MeterKnife.Common.Util
     {
         public const int SINGLE_SHEET_ROWS = 65536*4;
         public const int SINGLE_MAX_ROWS = 1048576;
-        private static readonly ILog _logger = LogManager.GetLogger<Excle>();
+        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public static bool BuildWorkbook(DataSet dataSet, Action<int> uiAction, out XSSFWorkbook book)
         {

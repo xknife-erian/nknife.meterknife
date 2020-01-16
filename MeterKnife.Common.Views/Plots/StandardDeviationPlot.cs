@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using Common.Logging;
 using MathNet.Numerics.Statistics;
 using MeterKnife.Common.DataModels;
 using OxyPlot;
@@ -17,7 +16,7 @@ namespace MeterKnife.Common.Winforms.Plots
     /// </summary>
     public class StandardDeviationPlot : DataPlot
     {
-        private static readonly ILog _logger = LogManager.GetLogger<StandardDeviationPlot>();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public override string ValueHead
         {
@@ -117,7 +116,7 @@ namespace MeterKnife.Common.Winforms.Plots
 
             var offset = (Math.Abs(max - min))/6;
 
-            _logger.Debug(string.Format("Max:{0}, Min:{1}, offset:{2}", max, min, offset));
+            _Logger.Debug(string.Format("Max:{0}, Min:{1}, offset:{2}", max, min, offset));
             if (Math.Abs(offset) > 0)
             {
                 _DataAxis.Maximum = max + offset;

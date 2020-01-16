@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Logging;
 using MathNet.Numerics.Statistics;
 using MeterKnife.Common.Base;
 
