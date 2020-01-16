@@ -4,64 +4,64 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
-using MeterKnife.Common.Winforms.Dialogs;
-using MeterKnife.Common.Winforms.Plots;
-using MeterKnife.Common;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
+using MeterKnife.Common.Winforms.Dialogs;
+using MeterKnife.Common.Winforms.Plots;
 using MeterKnife.Scpis;
 using NKnife.Events;
-using NKnife.IoC;
 using NKnife.Scpi;
-using OxyPlot;
 
 namespace MeterKnife.Instruments
 {
     public partial class DigitMultiMeterView : MeterView
     {
-        private static readonly ILog _logger = LogManager.GetLogger<DigitMultiMeterView>();
-        private bool _IsDispose;
+        private static readonly ILog _Logger = LogManager.GetLogger<DigitMultiMeterView>();
 
-        protected readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
+        protected readonly BaseCareCommunicationService _comm;
 
-        private readonly FiguredData _FiguredData = new FiguredData();
-        private readonly ScpiProtocolHandler _Handler = new ScpiProtocolHandler();
-        private readonly IMeterKernel _MeterKernel = DI.Get<IMeterKernel>();
-        private readonly CustomerScpiSubjectPanel _ScpiCommandPanel = new CustomerScpiSubjectPanel();
+        private readonly FiguredData _figuredData;
+        private readonly ScpiProtocolHandler _handler = new ScpiProtocolHandler();
 
-        protected FiguredDataAndTemperaturePlot _MainPlot = new FiguredDataAndTemperaturePlot();
+        protected readonly FiguredDataAndTemperaturePlot _mainPlot = new FiguredDataAndTemperaturePlot();
+        private readonly IMeterKernel _meterKernel;
+        private readonly CustomerScpiSubjectPanel _scpiCommandPanel = new CustomerScpiSubjectPanel();
 
-        protected StandardDeviationPlot _SdPlot = new StandardDeviationPlot();
-        protected TemperatureFeaturesPlot _TempFeaturesPlot = new TemperatureFeaturesPlot();
-        protected TemperatureTrendPlot _TempTrendPlot = new TemperatureTrendPlot();
+        protected readonly StandardDeviationPlot _sdPlot = new StandardDeviationPlot();
+        protected readonly TemperatureFeaturesPlot _tempFeaturesPlot = new TemperatureFeaturesPlot();
+        protected readonly TemperatureTrendPlot _tempTrendPlot = new TemperatureTrendPlot();
+        private bool _isDispose;
 
-        public DigitMultiMeterView()
+        public DigitMultiMeterView(BaseCareCommunicationService comm, IMeterKernel meterKernel, FiguredData figuredData)
         {
+            _comm = comm;
+            _meterKernel = meterKernel;
+            _figuredData = figuredData;
             InitializeComponent();
 
-            _ScpiCommandPanel.Dock = DockStyle.Fill;
+            _scpiCommandPanel.Dock = DockStyle.Fill;
             _LeftSplitContainer.Panel2.Padding = new Padding(3, 2, 3, 2);
-            _LeftSplitContainer.Panel2.Controls.Add(_ScpiCommandPanel);
+            _LeftSplitContainer.Panel2.Controls.Add(_scpiCommandPanel);
 
-            _PlotPage.Controls.Add(_MainPlot);
-            _TempFeaturesPanel.Controls.Add(_TempFeaturesPlot);
-            _TempTrendPanel.Controls.Add(_TempTrendPlot);
-            _SdPanel.Controls.Add(_SdPlot);
+            _PlotPage.Controls.Add(_mainPlot);
+            _TempFeaturesPanel.Controls.Add(_tempFeaturesPlot);
+            _TempTrendPanel.Controls.Add(_tempTrendPlot);
+            _SdPanel.Controls.Add(_sdPlot);
 
             SetStripButtonState(false);
             SetFiguredDataGrid();
-            _MeterKernel.Collected += (s, e) =>
+            _meterKernel.Collected += (s, e) =>
             {
                 if (e.GpibAddress == _Meter.GpibAddress)
                     SetStripButtonState(e.IsCollected);
             };
 
-            _FiguredData.ReceviedCollectData += (sender, args) => this.ThreadSafeInvoke(() =>
+            _figuredData.ReceviedCollectData += (sender, args) => this.ThreadSafeInvoke(() =>
             {
                 _FiguredDataGridView.DataSource = null;
-                _FiguredDataGridView.DataSource = _FiguredData.DataSet.Tables[1];
+                _FiguredDataGridView.DataSource = _figuredData.DataSet.Tables[1];
             });
 
             //TODO:未完成功能
@@ -80,39 +80,37 @@ namespace MeterKnife.Instruments
                     return;
                 }
             }
-            _IsDispose = true;
+
+            _isDispose = true;
             base.OnFormClosing(e);
 
             StopProtocolRecevied();
-            _Comm.Remove(_CarePort, _Handler);
-            var dic = DI.Get<IMeterKernel>().GpibDictionary;
+            _comm.Remove(_CarePort, _handler);
+            var dic = _meterKernel.GpibDictionary;
             dic[_CarePort].Remove(_Meter.GpibAddress);
         }
 
         public override void SetMeter(CommPort port, BaseMeter meter)
         {
             base.SetMeter(port, meter);
-            _ScpiCommandPanel.GpibAddress = meter.GpibAddress;
-            _Comm.Bind(port, _Handler);
-            _FiguredData.Meter = _Meter;
-            _FiguredDataPropertyGrid.BindFigureData(_FiguredData);
+            _scpiCommandPanel.GpibAddress = meter.GpibAddress;
+            _comm.Bind(port, _handler);
+            _figuredData.Meter = _Meter;
+            _FiguredDataPropertyGrid.BindFigureData(_figuredData);
 
-            if (!_Comm.IsInitialized)
-            {
-                _Comm.Start(port);
-            }
+            if (!_comm.IsInitialized) _comm.Start(port);
 
-            _logger.Info("面板初始化仪器完成..");
+            _Logger.Info("面板初始化仪器完成..");
         }
 
         protected void SetFiguredDataGrid()
         {
-            _FiguredDataGridView.DataSource = _FiguredData.DataSet.Tables[1];
+            _FiguredDataGridView.DataSource = _figuredData.DataSet.Tables[1];
         }
 
         protected void SetStripButtonState(bool isCollected)
         {
-            if (_IsDispose)
+            if (_isDispose)
                 return;
             _StartStripButton.Enabled = !isCollected;
             _ExportStripButton.Enabled = !isCollected;
@@ -126,24 +124,24 @@ namespace MeterKnife.Instruments
 
         protected virtual ScpiCommandQueue.Item[] GetInitCommands()
         {
-            var commands = _ScpiCommandPanel.GetInitCommands();
+            var commands = _scpiCommandPanel.GetInitCommands();
             return commands.Value;
         }
 
         protected virtual KeyValuePair<string, ScpiCommandQueue.Item[]> GetCollectCommands()
         {
-            var commands = _ScpiCommandPanel.GetCollectCommands();
+            var commands = _scpiCommandPanel.GetCollectCommands();
             return commands;
         }
 
         private void PlotsClear()
         {
-            _FiguredData.Clear();
+            _figuredData.Clear();
 
-            _MainPlot.Clear();
-            _TempFeaturesPlot.Clear();
-            _TempTrendPlot.Clear();
-            _SdPlot.Clear();
+            _mainPlot.Clear();
+            _tempFeaturesPlot.Clear();
+            _tempTrendPlot.Clear();
+            _sdPlot.Clear();
 
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
@@ -152,15 +150,13 @@ namespace MeterKnife.Instruments
 
         private void _StartStripButton_Click(object sender, EventArgs e)
         {
-            if (_FiguredData.HasData)
+            if (_figuredData.HasData)
             {
                 var rs = MessageBox.Show(this, "是否延续采集?\r\n点击“是”延续采集数据并记录；\r\n点击“否”将清空原有数据重新开始记录。",
                     "数据采集", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-                if (rs == DialogResult.No)
-                {
-                    PlotsClear();
-                }
+                if (rs == DialogResult.No) PlotsClear();
             }
+
             _IsSaved = false;
             StartCollect();
         }
@@ -169,13 +165,13 @@ namespace MeterKnife.Instruments
         {
             StopCollect();
 
-            _TempFeaturesPlot.Clear();
-            _TempTrendPlot.Clear();
-            _SdPlot.Clear();
+            _tempFeaturesPlot.Clear();
+            _tempTrendPlot.Clear();
+            _sdPlot.Clear();
 
-            _TempFeaturesPlot.Update(_FiguredData);
-            _TempTrendPlot.Update(_FiguredData);
-            _SdPlot.Update(_FiguredData);
+            _tempFeaturesPlot.Update(_figuredData);
+            _tempTrendPlot.Update(_figuredData);
+            _sdPlot.Update(_figuredData);
         }
 
         private void _SaveStripButton_Click(object sender, EventArgs e)
@@ -198,16 +194,16 @@ namespace MeterKnife.Instruments
             {
                 var dir = dialog.SelectedPath;
                 DateTime start;
-                if (_FiguredData.DataSet.Tables[1].Rows.Count > 0)
-                    start = (DateTime) _FiguredData.DataSet.Tables[1].Rows[0][0];
+                if (_figuredData.DataSet.Tables[1].Rows.Count > 0)
+                    start = (DateTime) _figuredData.DataSet.Tables[1].Rows[0][0];
                 else
                     start = DateTime.Now;
-                var name = string.Format("{0}-{1}.{2}", start.ToString("yyyyMMddHHmmss"), _Meter.Name, "xls");
+                var name = $"{start:yyyyMMddHHmmss}-{_Meter.Name}.{"xls"}";
                 var full = Path.Combine(dir, name);
 
                 var progressDialog = new ExportProgressDialog();
                 progressDialog.SetPath(full);
-                progressDialog.SetFigureData(_FiguredData);
+                progressDialog.SetFigureData(_figuredData);
                 Cursor = Cursors.WaitCursor;
                 progressDialog.ShowDialog(this);
                 Cursor = Cursors.Default;
@@ -219,21 +215,18 @@ namespace MeterKnife.Instruments
         {
             var rs = MessageBox.Show(this, "是否清除已采集的数据?\r\n点击“是”将清空已采集的数据，\r\n点击“否”取消操作",
                 "清除", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (rs == DialogResult.Yes)
-            {
-                PlotsClear();
-            }
+            if (rs == DialogResult.Yes) PlotsClear();
             _IsSaved = false;
         }
 
         private void _FilterToolStripButton_Click(object sender, EventArgs e)
         {
             var dialog = new FilterSettingDialog();
-            dialog.SetFilter(_FiguredData.Filter);
+            dialog.SetFilter(_figuredData.Filter);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _FiguredData.Filter.Update(dialog.FiguredDataFilter);
-                _logger.Debug(string.Format("过滤参数：倍数{0},统计{1},保存{2}", dialog.FiguredDataFilter.Multiple, dialog.FiguredDataFilter.InStatistical, dialog.FiguredDataFilter.IsSave));
+                _figuredData.Filter.Update(dialog.FiguredDataFilter);
+                _Logger.Debug($"过滤参数：倍数{dialog.FiguredDataFilter.Multiple},统计{dialog.FiguredDataFilter.InStatistical},保存{dialog.FiguredDataFilter.IsSave}");
             }
         }
 
@@ -243,8 +236,8 @@ namespace MeterKnife.Instruments
 
         protected virtual void StartCollect()
         {
-            _Handler.ProtocolRecevied += OnProtocolRecevied;
-            _MeterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true, _ScpiCommandPanel.ScpiSubjectKey);
+            _handler.ProtocolRecevied += OnProtocolRecevied;
+            _meterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, true, _scpiCommandPanel.ScpiSubjectKey);
 
             var thread = new Thread(SendRead);
             thread.Start();
@@ -258,41 +251,33 @@ namespace MeterKnife.Instruments
         private void StopProtocolRecevied()
         {
             Thread.Sleep(50);
-            var kernel = DI.Get<IMeterKernel>();
-            if (kernel != null && _Meter != null)
-            {
-                kernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false, _ScpiCommandPanel.ScpiSubjectKey);
-            }
-            _Handler.ProtocolRecevied -= OnProtocolRecevied;
+            if (_meterKernel != null && _Meter != null) _meterKernel.UpdateCollectState(_CarePort, _Meter.GpibAddress, false, _scpiCommandPanel.ScpiSubjectKey);
+            _handler.ProtocolRecevied -= OnProtocolRecevied;
         }
 
         private void SendRead(object obj)
         {
-            _Comm.SendCommands(Port, GetInitCommands());
+            _comm.SendCommands(Port, GetInitCommands());
             var cmd = GetCollectCommands();
-            _Comm.SendLoopCommands(Port, cmd.Key, cmd.Value);
+            _comm.SendLoopCommands(Port, cmd.Key, cmd.Value);
         }
 
         private void OnProtocolRecevied(object sender, EventArgs<CareTalking> e)
         {
             var talking = e.Item;
-            if ((talking.GpibAddress != _Meter.GpibAddress) || (talking.Scpi.Length < 6))
+            if (talking.GpibAddress != _Meter.GpibAddress || talking.Scpi.Length < 6)
                 return;
             var data = talking.Scpi;
-            _logger.Debug(string.Format("Recevied:{0}", data));
+            _Logger.Debug($"Recevied:{data}");
             double yzl = 0;
             if (double.TryParse(data, out yzl))
-            {
-                if (_FiguredData.Add(yzl))
-                {
+                if (_figuredData.Add(yzl))
                     this.ThreadSafeInvoke(() =>
                     {
-                        if (uint.Parse(_FiguredData.Count) <= 1)
+                        if (uint.Parse(_figuredData.Count) <= 1)
                             return;
-                        _MainPlot.Update(_FiguredData);
+                        _mainPlot.Update(_figuredData);
                     });
-                }
-            }
             this.ThreadSafeInvoke(() => _FiguredDataPropertyGrid.Refresh());
         }
 

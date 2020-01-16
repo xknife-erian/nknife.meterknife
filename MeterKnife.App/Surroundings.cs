@@ -24,9 +24,11 @@ namespace MeterKnife.App
         private static readonly List<IEnvironmentItem> _StarterItems = new List<IEnvironmentItem>();
 
         public static Form Workbench { get; set; }
+        private BaseCareCommunicationService _commService;
 
-        public Surroundings()
+        public Surroundings(BaseCareCommunicationService commService)
         {
+            _commService = commService;
             Initialize();
         }
 
@@ -47,8 +49,6 @@ namespace MeterKnife.App
             Thread.Sleep(200);
 
             //开启UI控制窗体
-            if (Workbench == null)
-                Workbench = new Workbench();
             Workbench.FormClosed += (s, e) => Application.Exit();
             Workbench.Activated += WorkbenchOnActivated;
             Workbench.Show();
@@ -110,8 +110,7 @@ namespace MeterKnife.App
             }
             _Logger.Info("应用程序环境的初始化完成。");
             _Logger.Info("启动Care通讯服务");
-            _careComm = DI.Get<BaseCareCommunicationService>();
-            _careComm.Initialize();
+            _commService.Initialize();
         }
 
         /// <summary>

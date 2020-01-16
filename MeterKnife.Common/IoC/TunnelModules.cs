@@ -1,4 +1,5 @@
-﻿using MeterKnife.Common.Base;
+﻿using Autofac;
+using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Tunnels;
@@ -9,34 +10,37 @@ using NKnife.Socket;
 using NKnife.Tunnel;
 using NKnife.Tunnel.Common;
 using NKnife.Tunnel.Generic;
-using Ninject.Activation;
-using Ninject.Modules;
 
 namespace MeterKnife.Common.IoC
 {
-    public class TunnelModules : NinjectModule
+    public class TunnelModules : Module
     {
-        public override void Load()
+        #region Overrides of Module
+
+        /// <summary>Override to add registrations to the container.</summary>
+        /// <remarks>
+        /// Note that the ContainerBuilder parameter is unique to this module.
+        /// </remarks>
+        /// <param name="builder">The builder through which components can be
+        /// registered.</param>
+        protected override void Load(ContainerBuilder builder)
         {
-            Bind<ITunnel>().To<KnifeTunnel>().When(Request);
+            builder.RegisterType<ITunnel>().As<KnifeTunnel>().SingleInstance();
 
-            Bind<IDataConnector>().To<SerialPortDataConnector>().Named("Serial");
-            Bind<IDataConnector>().To<KnifeLongSocketClient>().Named("Tcpip");
+            builder.RegisterType<IDataConnector>().Named<SerialPortDataConnector>("Serial");
+            builder.RegisterType<IDataConnector>().Named<KnifeLongSocketClient>("Tcpip");
 
-            Bind<BytesCodec>().To<CareOneCodec>();
-            Bind<BytesProtocolCommandParser>().To<CareOneProtocolCommandParser>().InSingletonScope();
-            Bind<BytesDatagramDecoder>().To<CareOneDatagramDecoder>().InSingletonScope().Named("careone");
-            Bind<BytesDatagramEncoder>().To<CareOneDatagramEncoder>().InSingletonScope().Named("careone");
-            Bind<BytesProtocol>().To<CareTalking>();
+            builder.RegisterType<BytesCodec>().As<CareOneCodec>();
+            builder.RegisterType<BytesProtocolCommandParser>().As<CareOneProtocolCommandParser>().SingleInstance();
+            builder.RegisterType<BytesDatagramDecoder>().Named<CareOneDatagramDecoder>("careone").SingleInstance();
+            builder.RegisterType<BytesDatagramEncoder>().Named<CareOneDatagramEncoder>("careone").SingleInstance();
+            builder.RegisterType<BytesProtocol>().As<CareTalking>();
 
-            Bind<BytesProtocolPacker>().To<CareOneProtocolPacker>().InSingletonScope();
-            Bind<BytesProtocolUnPacker>().To<CareOneProtocolUnPacker>().InSingletonScope();
+            builder.RegisterType<BytesProtocolPacker>().As<CareOneProtocolPacker>().SingleInstance();
+            builder.RegisterType<BytesProtocolUnPacker>().As<CareOneProtocolUnPacker>().SingleInstance();
         }
 
-        private bool Request(IRequest request)
-        {
-            return request.IsUnique;
-        }
+        #endregion
 
     }
 }

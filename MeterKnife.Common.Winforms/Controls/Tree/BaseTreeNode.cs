@@ -1,9 +1,17 @@
 ﻿using System.Windows.Forms;
+using MeterKnife.Common.Interfaces;
+using MeterKnife.Common.Winforms.Dialogs;
 
 namespace MeterKnife.Common.Winforms.Controls.Tree
 {
     public abstract class BaseTreeNode : TreeNode
     {
+        protected readonly IMeterKernel _meterKernel;
+
+        protected BaseTreeNode(IMeterKernel meterKernel)
+        {
+        }
+
 //        public virtual void SetTag(IProjectItem item)
 //        {
 //            Text = item != null ? item.Name : string.Empty;

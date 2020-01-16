@@ -1,36 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.DataModels;
-using MeterKnife.Common.Tunnels;
-using MeterKnife.Common.Util;
-using NKnife.Events;
-using NKnife.IoC;
-using NKnife.Scpi;
 
 namespace MeterKnife.Common.Winforms.Dialogs
 {
     public partial class AddMeterDialog : Form
     {
-        private static readonly ILog _logger = LogManager.GetLogger<AddMeterDialog>();
+        private static readonly ILog _Logger = LogManager.GetLogger<AddMeterDialog>();
+        private readonly AutoResetEvent _autoResetEvent = new AutoResetEvent(false);
 
-        protected readonly BaseCareCommunicationService _CommService = DI.Get<BaseCareCommunicationService>();
-        private readonly AutoResetEvent _AutoResetEvent = new AutoResetEvent(false);
+        private readonly BaseCareCommunicationService _commService;
 
-        public AddMeterDialog()
+        public AddMeterDialog(BaseCareCommunicationService commService)
         {
+            _commService = commService;
             GpibList = new List<int>();
             InitializeComponent();
 
             _MeterTypeGroupBox.Enabled = !_AutoFindMeterCheckbox.Checked;
             _AutoFindMeterCheckbox.CheckedChanged += (s, e) => _MeterTypeGroupBox.Enabled = !_AutoFindMeterCheckbox.Checked;
-            _AcceptButton.Click += OnAcceptButtonClick;
+            //_AcceptButton.Click += OnAcceptButtonClick;
             _CancelButton.Click += (s, e) => DialogResult = DialogResult.Cancel;
         }
 
+        public List<int> GpibList { get; set; }
+        public CommPort Port { get; set; }
+        public int GpibAddress => (int) _NumberBox.Value;
+        public BaseMeter Meter { get; set; }
+
+        /*
         protected virtual void OnAcceptButtonClick(object s, EventArgs e)
         {
             var address = (short)_NumberBox.Value;
@@ -86,11 +87,6 @@ namespace MeterKnife.Common.Winforms.Dialogs
             DialogResult = DialogResult.OK;
         }
 
-        public List<int> GpibList { get; set; }
-        public CommPort Port { get; set; }
-        public int GpibAddress { get { return (int) _NumberBox.Value; } }
-        public BaseMeter Meter { get; set; }
-
         private void OnCareConfigging(object sender, EventArgs<CareTalking> e)
         {
             var idnName = e.Item.Scpi.Trim();
@@ -134,5 +130,6 @@ namespace MeterKnife.Common.Winforms.Dialogs
                 return GpibLanguage.SCPI;
             }
         }
+        */
     }
 }

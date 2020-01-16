@@ -14,16 +14,23 @@ namespace MeterKnife.App
     public partial class Workbench : Form
     {
         private readonly DockPanel _dockPanel = new DockPanel();
-        private readonly IMeterKernel _meterKernel = DI.Get<IMeterKernel>();
 
         private CommPort _carePort;
+        private readonly IMeterKernel _meterKernel;
+        private readonly DigitMultiMeterView _meterView;
+        private readonly AboutDialog _aboutDialog;
+        private AddMeterLiteDialog _addMeterLiteDialog;
 
-        public Workbench()
+        public Workbench(IMeterKernel meterKernel, DigitMultiMeterView meterView, AboutDialog aboutDialog, AddMeterLiteDialog addMeterLiteDialog)
         {
+            this._meterKernel = meterKernel;
+            this._meterView = meterView;
+            _aboutDialog = aboutDialog;
+            _addMeterLiteDialog = addMeterLiteDialog;
             InitializeComponent();
             InitializeDockPanel();
 
-            _meterKernel.Collected += (s, e) =>
+            meterKernel.Collected += (s, e) =>
             {
                 _CareOptionMenuItem.Enabled = !e.IsCollected;
                 _AddMeterMenuItem.Enabled = !e.IsCollected;
@@ -85,24 +92,22 @@ namespace MeterKnife.App
 
         private void AddMeterView()
         {
-            Dictionary<CommPort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
+            Dictionary<CommPort, List<int>> dic = _meterKernel.GpibDictionary;
             if (!dic.TryGetValue(_carePort, out var gpibList))
             {
                 gpibList = new List<int>();
                 dic.Add(_carePort, gpibList);
             }
 
-            var dialog = new AddMeterLiteDialog();
-            dialog.GpibList.AddRange(gpibList);
-            dialog.Port = _carePort;
+            _addMeterLiteDialog.GpibList.AddRange(gpibList);
+            _addMeterLiteDialog.Port = _carePort;
 
-            if (dialog.ShowDialog(this) == DialogResult.OK)
+            if (_addMeterLiteDialog.ShowDialog(this) == DialogResult.OK)
             {
-                var meterView = DI.Get<DigitMultiMeterView>();
-                meterView.SetMeter(dialog.Port, dialog.Meter);
-                meterView.Text = dialog.Meter.AbbrName;
-                meterView.Show(_dockPanel, DockState.Document);
-                dic[_carePort].Add(dialog.GpibAddress);
+                _meterView.SetMeter(_addMeterLiteDialog.Port, _addMeterLiteDialog.Meter);
+                _meterView.Text = _addMeterLiteDialog.Meter.AbbrName;
+                _meterView.Show(_dockPanel, DockState.Document);
+                dic[_carePort].Add(_addMeterLiteDialog.GpibAddress);
             }
         }
 
@@ -116,8 +121,7 @@ namespace MeterKnife.App
 
         private void _AboutMenuItem_Click(object sender, EventArgs e)
         {
-            var dialog = new AboutDialog();
-            dialog.ShowDialog(this);
+            _aboutDialog.ShowDialog(this);
         }
 
         private void _LoggerMenuItem_Click(object sender, EventArgs e)

@@ -5,7 +5,6 @@ using Common.Logging;
 using MeterKnife.Common.DataModels;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Winforms.Dialogs;
-using NKnife.IoC;
 
 namespace MeterKnife.Common.Winforms.Controls.Tree
 {
@@ -15,9 +14,11 @@ namespace MeterKnife.Common.Winforms.Controls.Tree
 
         protected readonly ToolStripMenuItem _AddMeterMenu;
         protected readonly ContextMenuStrip _RightMenu;
+        private AddMeterDialog _addMeterDialog;
 
-        protected InterfaceNode()
+        protected InterfaceNode(IMeterKernel meterKernel, AddMeterDialog addMeterDialog) : base(meterKernel)
         {
+            _addMeterDialog = addMeterDialog;
             _RightMenu = new ContextMenuStrip();
             _AddMeterMenu = new ToolStripMenuItem("新建仪器");
             _AddMeterMenu.Click += AddMeterMenuOnClick;
@@ -37,28 +38,27 @@ namespace MeterKnife.Common.Winforms.Controls.Tree
 
         private void AddMeterMenuOnClick(object sender, EventArgs eventArgs)
         {
-            Dictionary<CommPort, List<int>> dic = DI.Get<IMeterKernel>().GpibDictionary;
+            Dictionary<CommPort, List<int>> dic = _meterKernel.GpibDictionary;
             List<int> gpibList;
             if (!dic.TryGetValue(Port, out gpibList))
             {
                 gpibList = new List<int>();
                 dic.Add(Port, gpibList);
             }
-            var dialog = new AddMeterDialog();
-            dialog.GpibList.AddRange(gpibList);
-            dialog.Port = Port;
+            _addMeterDialog.GpibList.AddRange(gpibList);
+            _addMeterDialog.Port = Port;
 
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (_addMeterDialog.ShowDialog() == DialogResult.OK)
             {
                 var meterNode = new MeterNode();
-                meterNode.Text = !string.IsNullOrEmpty(dialog.Meter.Brand) 
-                    ? string.Format("[{0}] {1},{2}", dialog.GpibAddress, dialog.Meter.Brand, dialog.Meter.Name) 
-                    : string.Format("[{0}] {1}", dialog.GpibAddress, dialog.Meter.Name);
-                meterNode.Meter = dialog.Meter;
+                meterNode.Text = !string.IsNullOrEmpty(_addMeterDialog.Meter.Brand) 
+                    ? string.Format("[{0}] {1},{2}", _addMeterDialog.GpibAddress, _addMeterDialog.Meter.Brand, _addMeterDialog.Meter.Name) 
+                    : string.Format("[{0}] {1}", _addMeterDialog.GpibAddress, _addMeterDialog.Meter.Name);
+                meterNode.Meter = _addMeterDialog.Meter;
                 
                 TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
                 TreeView.ThreadSafeInvoke(Expand);
-                gpibList.Add(dialog.GpibAddress);
+                gpibList.Add(_addMeterDialog.GpibAddress);
             }
         }
 

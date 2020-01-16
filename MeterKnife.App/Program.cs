@@ -2,7 +2,9 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using Autofac;
 using NKnife.IoC;
+using NKnife.Util;
 
 namespace MeterKnife.App
 {
@@ -18,12 +20,18 @@ namespace MeterKnife.App
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            DI.AssmeblyNameFilters = new[] {"DirectX", "CommPort", "NPOI"};
-            DI.Initialize();
-            DI.BindAppStartup<Surroundings>();
+            
+            var builder = new ContainerBuilder();
+            var assemblies = UtilAssembly.SearchAssemblyByDirectory(Application.StartupPath);
+            builder.RegisterAssemblyModules(assemblies);
 
-            Surroundings.Workbench = new Workbench();
-            Application.Run(DI.Get<Surroundings>());
+            using (var container = builder.Build())
+            {
+                var surroundings = container.Resolve<Surroundings>();
+                Surroundings.Workbench = container.Resolve<Workbench>();
+                //开启当前程序作用域下的 ApplicationContext 实例
+                Application.Run(surroundings);
+            }
         }
     }
 }

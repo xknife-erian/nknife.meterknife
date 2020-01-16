@@ -17,13 +17,14 @@ namespace MeterKnife.Common.Winforms.Dialogs
     public partial class CareParameterDialog : Form
     {
         private static readonly ILog _logger = LogManager.GetLogger<CareParameterDialog>();
-        private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
+        private readonly BaseCareCommunicationService _Comm;
         private readonly CareConfigHandler _Handler = new CareConfigHandler();
         private readonly CommPort _Port;
 
-        public CareParameterDialog(CommPort port)
+        public CareParameterDialog(CommPort port, BaseCareCommunicationService comm)
         {
             _Port = port;
+            _Comm = comm;
             InitializeComponent();
             _Usart1NumberBox.SelectedItem = "115200";
             _Usart2NumberBox.SelectedItem = "115200";

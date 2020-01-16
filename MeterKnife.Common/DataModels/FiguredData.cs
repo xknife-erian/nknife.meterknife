@@ -20,7 +20,8 @@ namespace MeterKnife.Common.DataModels
         public const string STANDARD_DEVIATION = "standard_deviation";
         private static readonly ILog _logger = LogManager.GetLogger<FiguredData>();
 
-        protected readonly ITemperatureService _TempService = DI.Get<ITemperatureService>();
+        protected readonly ITemperatureService _TempService;
+        private IMeterDataService _dataService;
         protected double _CurrentTemperature;
         protected DataSet _DataSet = new DataSet();
         protected string _DecimalDigit = "f6";
@@ -30,8 +31,10 @@ namespace MeterKnife.Common.DataModels
         protected RunningStatistics _TemperatureRunningStatistics = new RunningStatistics();
         protected List<double> _Values = new List<double>();
 
-        public FiguredData()
+        public FiguredData(ITemperatureService tempService, IMeterDataService dataService)
         {
+            _TempService = tempService;
+            _dataService = dataService;
             MeterRange = MeterRange.None;
             Filter = new FiguredDataFilter();
             Clear();
@@ -113,7 +116,7 @@ namespace MeterKnife.Common.DataModels
 
         public bool Save(string fileFullName)
         {
-            return DI.Get<IMeterDataService>().Save(fileFullName, DataSet);
+            return _dataService.Save(fileFullName, DataSet);
         }
 
         public event EventHandler<CollectDataEventArgs> ReceviedCollectData;

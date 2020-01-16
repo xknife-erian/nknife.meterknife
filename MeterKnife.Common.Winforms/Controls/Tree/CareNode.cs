@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using MeterKnife.Common.DataModels;
+using MeterKnife.Common.Interfaces;
 using MeterKnife.Common.Winforms.Dialogs;
 
 namespace MeterKnife.Common.Winforms.Controls.Tree
@@ -9,7 +10,7 @@ namespace MeterKnife.Common.Winforms.Controls.Tree
         protected ToolStripMenuItem _OfflineCollectSettingMenu;
         protected ToolStripMenuItem _CareSettingMenu;
 
-        public CareNode()
+        public CareNode(IMeterKernel meterKernel, AddMeterDialog dialog) : base(meterKernel, dialog)
         {
             ImageKey = MeterTreeElement.Care;
             SelectedImageKey = MeterTreeElement.Care;

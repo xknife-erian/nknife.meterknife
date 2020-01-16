@@ -10,11 +10,15 @@ namespace MeterKnife.Common.Winforms.Dialogs
     {
         private static readonly ILog _logger = LogManager.GetLogger<AddMeterDialog>();
 
-        public AddMeterLiteDialog()
+        private readonly BaseCareCommunicationService _commService;
+
+        public AddMeterLiteDialog(BaseCareCommunicationService commService)
+            : base(commService)
         {
             _AutoFindMeterCheckbox.Visible = false;
         }
 
+        /*
         protected override void OnAcceptButtonClick(object s, EventArgs e)
         {
             var address = (int) _NumberBox.Value;
@@ -32,6 +36,6 @@ namespace MeterKnife.Common.Winforms.Dialogs
             Meter.GpibAddress = address;
             DialogResult = DialogResult.OK;
         }
-
+        */
     }
 }
