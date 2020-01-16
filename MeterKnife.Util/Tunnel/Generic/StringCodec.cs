@@ -8,11 +8,13 @@ namespace NKnife.Tunnel.Generic
         private static readonly ILog _logger = LogManager.GetLogger<StringCodec>();
         private bool _HasSetDecoder;
         private bool _HasSetEncoder;
-        private StringDatagramDecoder _StringDecoder;
-        private StringDatagramEncoder _StringEncoder;
+        private StringDatagramDecoder _stringDecoder;
+        private StringDatagramEncoder _stringEncoder;
 
-        public StringCodec()
+        public StringCodec(StringDatagramDecoder stringDecoder,StringDatagramEncoder stringEncoder)
         {
+            _stringDecoder = stringDecoder;
+            _stringEncoder = stringEncoder;
         }
 
         public StringCodec(string codecName)
@@ -26,17 +28,17 @@ namespace NKnife.Tunnel.Generic
         {
             get
             {
-                if (!_HasSetDecoder)
-                {
-                    _StringDecoder = string.IsNullOrEmpty(CodecName) ? DI.Get<StringDatagramDecoder>() : DI.Get<StringDatagramDecoder>(CodecName);
-                    _HasSetDecoder = true;
-                    return _StringDecoder;
-                }
-                return _StringDecoder;
+//                if (!_HasSetDecoder)
+//                {
+//                    _stringDecoder = string.IsNullOrEmpty(CodecName) ? DI.Get<StringDatagramDecoder>() : DI.Get<StringDatagramDecoder>(CodecName);
+//                    _HasSetDecoder = true;
+//                    return _stringDecoder;
+//                }
+                return _stringDecoder;
             }
             set
             {
-                _StringDecoder = value;
+                _stringDecoder = value;
                 _HasSetDecoder = true;
             }
         }
@@ -45,17 +47,17 @@ namespace NKnife.Tunnel.Generic
         {
             get
             {
-                if (!_HasSetEncoder)
-                {
-                    _StringEncoder = string.IsNullOrEmpty(CodecName) ? DI.Get<StringDatagramEncoder>() : DI.Get<StringDatagramEncoder>(CodecName);
-                    _HasSetEncoder = true;
-                    return _StringEncoder;
-                }
-                return _StringEncoder;
+//                if (!_HasSetEncoder)
+//                {
+//                    _stringEncoder = string.IsNullOrEmpty(CodecName) ? DI.Get<StringDatagramEncoder>() : DI.Get<StringDatagramEncoder>(CodecName);
+//                    _HasSetEncoder = true;
+//                    return _stringEncoder;
+//                }
+                return _stringEncoder;
             }
             set
             {
-                _StringEncoder = value;
+                _stringEncoder = value;
                 _HasSetEncoder = true;
             }
         }

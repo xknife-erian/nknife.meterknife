@@ -10,8 +10,10 @@ namespace MeterKnife.Scpis
 {
     public partial class InstrumentScpiGroupTreeDialog : SimpleForm
     {
-        public InstrumentScpiGroupTreeDialog()
+        private IScpiInfoGetter _scpiInfoGetter;
+        public InstrumentScpiGroupTreeDialog(IScpiInfoGetter scpiInfoGetter)
         {
+            _scpiInfoGetter = scpiInfoGetter;
             InitializeComponent();
 
             _NewSubjectToolStripButton.Enabled = false;
@@ -76,7 +78,7 @@ namespace MeterKnife.Scpis
         private void UpdateTreeNodes()
         {
             _Tree.Nodes.Clear();
-            var collections = DI.Get<IScpiInfoGetter>().GetScpiSubjectCollections();
+            var collections = _scpiInfoGetter.GetScpiSubjectCollections();
             foreach (var collection in collections)
             {
                 var treeNode = new SubjectCollectionTreeNode(collection);

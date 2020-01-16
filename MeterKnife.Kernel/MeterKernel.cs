@@ -13,8 +13,15 @@ namespace MeterKnife.Kernel
 {
     public class MeterKernel : IMeterKernel
     {
-        protected bool _OnCollected;
-        private readonly ITemperatureService _TemperatureService = DI.Get<ITemperatureService>();
+        protected bool _onCollected;
+        private readonly ITemperatureService _temperatureService;
+
+        public MeterKernel(ITemperatureService temperatureService)
+        {
+            _temperatureService = temperatureService;
+            GpibDictionary = new Dictionary<CommPort, List<int>>();
+            MeterContents = new Dictionary<BaseMeter, DockContent>();
+        }
 
         public string DataPath { get; set; }
 
@@ -33,11 +40,11 @@ namespace MeterKnife.Kernel
         /// </summary>
         public void UpdateCollectState(CommPort carePort, int address, bool value, string scpiGroupKey)
         {
-            _OnCollected = value;
-            if (_OnCollected)
-                _TemperatureService.StartCollect(carePort);
+            _onCollected = value;
+            if (_onCollected)
+                _temperatureService.StartCollect(carePort);
             else
-                _TemperatureService.CloseCollect(carePort);
+                _temperatureService.CloseCollect(carePort);
             OnCollectedEvent(new CollectedEventArgs(carePort, address, value, scpiGroupKey));
         }
 
@@ -50,10 +57,5 @@ namespace MeterKnife.Kernel
                 handler(this, e);
         }
 
-        public MeterKernel()
-        {
-            GpibDictionary = new Dictionary<CommPort, List<int>>();
-            MeterContents = new Dictionary<BaseMeter, DockContent>();
-        }
     }
 }

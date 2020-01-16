@@ -6,13 +6,15 @@ namespace NKnife.Tunnel.Generic
     public class BytesCodec : ITunnelCodec<byte[]>
     {
         private static readonly ILog _logger = LogManager.GetLogger<BytesCodec>();
-        private BytesDatagramDecoder _BytesDecoder;
-        private BytesDatagramEncoder _BytesEncoder;
+        private BytesDatagramDecoder _bytesDecoder;
+        private BytesDatagramEncoder _bytesEncoder;
         private bool _HasSetDecoder;
         private bool _HasSetEncoder;
 
-        public BytesCodec()
+        public BytesCodec(BytesDatagramDecoder decoder,BytesDatagramEncoder encoder)
         {
+            _bytesDecoder = decoder;
+            _bytesEncoder = encoder;
         }
 
         public BytesCodec(string codecName)
@@ -26,19 +28,19 @@ namespace NKnife.Tunnel.Generic
         {
             get
             {
-                if (!_HasSetDecoder)
-                {
-                    _BytesDecoder = string.IsNullOrEmpty(CodecName)
-                        ? DI.Get<BytesDatagramDecoder>()
-                        : DI.Get<BytesDatagramDecoder>(CodecName);
-                    _HasSetDecoder = true;
-                    return _BytesDecoder;
-                }
-                return _BytesDecoder;
+//                if (!_HasSetDecoder)
+//                {
+//                    _bytesDecoder = string.IsNullOrEmpty(CodecName)
+//                        ? DI.Get<BytesDatagramDecoder>()
+//                        : DI.Get<BytesDatagramDecoder>(CodecName);
+//                    _HasSetDecoder = true;
+//                    return _bytesDecoder;
+//                }
+                return _bytesDecoder;
             }
             set
             {
-                _BytesDecoder = value;
+                _bytesDecoder = value;
                 _HasSetDecoder = true;
             }
         }
@@ -49,17 +51,17 @@ namespace NKnife.Tunnel.Generic
             {
                 if (!_HasSetEncoder)
                 {
-                    _BytesEncoder = string.IsNullOrEmpty(CodecName)
-                        ? DI.Get<BytesDatagramEncoder>()
-                        : DI.Get<BytesDatagramEncoder>(CodecName);
-                    _HasSetEncoder = true;
-                    return _BytesEncoder;
+//                    _bytesEncoder = string.IsNullOrEmpty(CodecName)
+//                        ? DI.Get<BytesDatagramEncoder>()
+//                        : DI.Get<BytesDatagramEncoder>(CodecName);
+//                    _HasSetEncoder = true;
+                    return _bytesEncoder;
                 }
-                return _BytesEncoder;
+                return _bytesEncoder;
             }
             set
             {
-                _BytesEncoder = value;
+                _bytesEncoder = value;
                 _HasSetEncoder = true;
             }
         }

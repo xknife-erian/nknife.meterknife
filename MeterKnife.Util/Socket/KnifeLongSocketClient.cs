@@ -14,10 +14,13 @@ namespace NKnife.Socket
     public class KnifeLongSocketClient : ISocketClient, IDisposable
     {
         private static readonly ILog _logger = LogManager.GetLogger<KnifeLongSocketClient>();
-        public KnifeLongSocketClient(bool reconnectFlag, bool isConnecting)
+        public KnifeLongSocketClient(bool reconnectFlag, bool isConnecting, 
+            SocketClientConfig config, SocketSession socketSession)
         {
             _ReconnectFlag = reconnectFlag;
             _IsConnecting = isConnecting;
+            _config = config;
+            _socketSession = socketSession;
         }
 
         /// <summary>
@@ -43,8 +46,8 @@ namespace NKnife.Socket
             try
             {
                 _logger.Debug("KnifeSocketClient执行主动断开");
-                _SocketSession.AcceptSocket.Shutdown(SocketShutdown.Both);
-                _SocketSession.AcceptSocket.Close();
+                _socketSession.AcceptSocket.Shutdown(SocketShutdown.Both);
+                _socketSession.AcceptSocket.Close();
             }
             catch (Exception e)
             {
@@ -67,16 +70,16 @@ namespace NKnife.Socket
         {
             lock (_lockObj)
             {
-                _SocketSession.ResetBuffer();
+                _socketSession.ResetBuffer();
 
                 try
                 {
-                    _SocketSession.State = SessionState.Closed;
-                    if (_SocketSession.AcceptSocket != null)
+                    _socketSession.State = SessionState.Closed;
+                    if (_socketSession.AcceptSocket != null)
                     {
-                        _SocketSession.AcceptSocket.Shutdown(SocketShutdown.Both);
-                        _SocketSession.AcceptSocket.Disconnect(true);
-                        _SocketSession.AcceptSocket.Close();
+                        _socketSession.AcceptSocket.Shutdown(SocketShutdown.Both);
+                        _socketSession.AcceptSocket.Disconnect(true);
+                        _socketSession.AcceptSocket.Close();
                     }
                 }
                 catch (Exception e)
@@ -102,7 +105,7 @@ namespace NKnife.Socket
         /// </summary>
         private readonly ManualResetEvent _ReconnectResetEvent = new ManualResetEvent(false);
 
-        protected SocketClientConfig _Config = DI.Get<SocketClientConfig>();
+        protected SocketClientConfig _config;
         protected EndPoint _EndPoint;
 
         private bool _IsConnecting; //true 正在进行连接, false表示连接动作完成
@@ -114,13 +117,9 @@ namespace NKnife.Socket
         /// <summary>
         ///     SOCKET对象
         /// </summary>
-        protected SocketSession _SocketSession;
+        protected SocketSession _socketSession;
 
         private static readonly object _lockObj = new object();
-
-        public KnifeLongSocketClient()
-        {
-        }
 
         #endregion 成员变量
 
@@ -128,8 +127,8 @@ namespace NKnife.Socket
 
         public SocketConfig Config
         {
-            get { return _Config; }
-            set { _Config = (SocketClientConfig) value; }
+            get { return _config; }
+            set { _config = (SocketClientConfig) value; }
         }
 
         public void Configure(IPAddress ipAddress, int port)
@@ -171,9 +170,9 @@ namespace NKnife.Socket
 
             try
             {
-                _SocketSession.AcceptSocket.Shutdown(SocketShutdown.Both);
+                _socketSession.AcceptSocket.Shutdown(SocketShutdown.Both);
                 //_SocketSession.AcceptSocket.Disconnect(true);
-                _SocketSession.AcceptSocket.Close();
+                _socketSession.AcceptSocket.Close();
                 return true;
             }
             catch (Exception e)
@@ -214,8 +213,6 @@ namespace NKnife.Socket
             }
 
             var ipPoint = new IPEndPoint(_IpAddress, _Port);
-            _SocketSession = DI.Get<SocketSession>();
-
             _ReconnectFlag = true;
             _ReconnectedThread = new Thread(ReconnectedLoop);
         }
@@ -236,7 +233,7 @@ namespace NKnife.Socket
                         _logger.Debug("Client发起重连尝试");
                         AsyncConnect(_IpAddress, _Port);
                         _ReconnectResetEvent.Reset(); //阻塞
-                        _ReconnectResetEvent.WaitOne(_Config.ReconnectInterval);
+                        _ReconnectResetEvent.WaitOne(_config.ReconnectInterval);
                     }
                     else //已连接，则不需要重连了
                     {
@@ -247,7 +244,7 @@ namespace NKnife.Socket
                 {
                     //阻塞
                     _ReconnectResetEvent.Reset();
-                    _ReconnectResetEvent.WaitOne(_Config.ReconnectInterval);
+                    _ReconnectResetEvent.WaitOne(_config.ReconnectInterval);
                 }
             }
             _logger.Debug("SocketClient退出重连循环");
@@ -308,9 +305,9 @@ namespace NKnife.Socket
             {
                 //Close();
 
-                if (_SocketSession.AcceptSocket == null || !_SocketSession.AcceptSocket.Connected)
+                if (_socketSession.AcceptSocket == null || !_socketSession.AcceptSocket.Connected)
                 {
-                    _SocketSession.AcceptSocket = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+                    _socketSession.AcceptSocket = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
                     {
                         SendTimeout = Config.SendTimeout,
                         ReceiveTimeout = Config.ReceiveTimeout,
@@ -322,7 +319,7 @@ namespace NKnife.Socket
                 _IsConnecting = true;
 
                 _SynConnectWaitEventReset.Reset();
-                _SocketSession.AcceptSocket.BeginConnect(ipAddress, port, EndAsyncConnect, this);
+                _socketSession.AcceptSocket.BeginConnect(ipAddress, port, EndAsyncConnect, this);
 
                 _SynConnectWaitEventReset.WaitOne();
             }
@@ -355,12 +352,12 @@ namespace NKnife.Socket
             try // 一个客户端连续做连接 或连接后立即断开，容易在该处产生错误，系统不认为是错误
             {
                 // 开始接受来自该客户端的数据
-                _SocketSession.AcceptSocket.BeginReceive(_SocketSession.ReceiveBuffer, 0, _SocketSession.ReceiveBufferSize, SocketFlags.None, EndReceiveDatagram, this);
+                _socketSession.AcceptSocket.BeginReceive(_socketSession.ReceiveBuffer, 0, _socketSession.ReceiveBufferSize, SocketFlags.None, EndReceiveDatagram, this);
             }
             catch (Exception err) // 读 Socket 异常，准备关闭该会话
             {
-                _SocketSession.DisconnectType = DisconnectType.Exception;
-                _SocketSession.State = SessionState.Inactive;
+                _socketSession.DisconnectType = DisconnectType.Exception;
+                _socketSession.State = SessionState.Inactive;
 
                 OnSessionReceiveException();
             }
@@ -368,7 +365,7 @@ namespace NKnife.Socket
 
         private void EndReceiveDatagram(IAsyncResult iar)
         {
-            if (!_SocketSession.AcceptSocket.Connected)
+            if (!_socketSession.AcceptSocket.Connected)
             {
                 OnSessionReceiveException();
                 return;
@@ -377,30 +374,30 @@ namespace NKnife.Socket
             try
             {
                 // Shutdown 时将调用 ReceiveData，此时也可能收到 0 长数据包
-                var readBytesLength = _SocketSession.AcceptSocket.EndReceive(iar);
+                var readBytesLength = _socketSession.AcceptSocket.EndReceive(iar);
                 iar.AsyncWaitHandle.Close();
 
                 if (readBytesLength == 0)
                 {
-                    _SocketSession.DisconnectType = DisconnectType.Normal;
-                    _SocketSession.State = SessionState.Inactive;
+                    _socketSession.DisconnectType = DisconnectType.Normal;
+                    _socketSession.State = SessionState.Inactive;
                 }
                 else // 正常数据包
                 {
-                    _SocketSession.LastSessionTime = DateTime.Now;
+                    _socketSession.LastSessionTime = DateTime.Now;
                     // 合并报文，按报文头、尾字符标志抽取报文，将包交给数据处理器
                     var data = new byte[readBytesLength];
-                    Array.Copy(_SocketSession.ReceiveBuffer, 0, data, 0, readBytesLength);
+                    Array.Copy(_socketSession.ReceiveBuffer, 0, data, 0, readBytesLength);
                     PrcessReceiveData(data);
                     ReceiveDatagram();
                 }
             }
             catch (Exception err) // 读 socket 异常，关闭该会话，系统不认为是错误（这种错误可能太多）
             {
-                if (_SocketSession.State == SessionState.Active)
+                if (_socketSession.State == SessionState.Active)
                 {
-                    _SocketSession.DisconnectType = DisconnectType.Exception;
-                    _SocketSession.State = SessionState.Inactive;
+                    _socketSession.DisconnectType = DisconnectType.Exception;
+                    _socketSession.State = SessionState.Inactive;
 
                     OnSessionReceiveException();
                 }
@@ -418,8 +415,8 @@ namespace NKnife.Socket
             if (handler != null)
             {
 //                _SocketSession.Id = _EndPoint;
-                _SocketSession.Data = data;
-                handler.Invoke(this, new SessionEventArgs(_SocketSession));
+                _socketSession.Data = data;
+                handler.Invoke(this, new SessionEventArgs(_socketSession));
             }
         }
 
@@ -431,8 +428,8 @@ namespace NKnife.Socket
         {
             try
             {
-                if (_SocketSession.AcceptSocket != null && _SocketSession.AcceptSocket.Connected)
-                    _SocketSession.AcceptSocket.BeginSend(data, 0, data.Length, SocketFlags.None, AsynEndSend, data);
+                if (_socketSession.AcceptSocket != null && _socketSession.AcceptSocket.Connected)
+                    _socketSession.AcceptSocket.BeginSend(data, 0, data.Length, SocketFlags.None, AsynEndSend, data);
             }
             catch (SocketException e)
             {
@@ -454,7 +451,7 @@ namespace NKnife.Socket
             try
             {
                 var data = result.AsyncState as byte[];
-                _SocketSession.AcceptSocket.EndSend(result);
+                _socketSession.AcceptSocket.EndSend(result);
 
                 var dataSentHandler = DataSent;
                 if (dataSentHandler != null)

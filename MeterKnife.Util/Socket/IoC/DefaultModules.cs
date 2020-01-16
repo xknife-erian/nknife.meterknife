@@ -1,31 +1,26 @@
-﻿using NKnife.Protocol.Generic;
+﻿using Autofac;
+using NKnife.Protocol.Generic;
 using NKnife.Socket.Generic;
 using NKnife.Socket.Interfaces;
-using Ninject.Activation;
-using Ninject.Modules;
 
 namespace NKnife.Socket.IoC
 {
-    public class DefaultModules : NinjectModule
+    public class DefaultModules : Module
     {
-        public override void Load()
+        protected override void Load(ContainerBuilder builder)
         {
-            Bind<ISocketServer>().To<KnifeSocketServer>();
-            Bind<ISocketClient>().To<KnifeLongSocketClient>();
+            builder.RegisterType<ISocketServer>().As<KnifeSocketServer>();
+            builder.RegisterType<ISocketClient>().As<KnifeLongSocketClient>();
 
-            Bind<SocketConfig>().To<SocketServerConfig>().Named("Server");
-            Bind<SocketConfig>().To<SocketClientConfig>().Named("Client");
+            builder.RegisterType<SocketConfig>().Named<SocketServerConfig>("Server");
+            builder.RegisterType<SocketConfig>().Named<SocketClientConfig>("Client");
 
-            Bind<SocketSessionMap>().To<SocketSessionMap>().When(Request);
-            Bind<SocketSession>().To<SocketSession>().When(Request);
+            builder.RegisterType<SocketSessionMap>().As<SocketSessionMap>();
+            builder.RegisterType<SocketSession>().As<SocketSession>();
 
-            Bind<StringProtocol>().To<StringProtocol>().When(Request);
-            Bind<StringProtocolFamily>().To<StringProtocolFamily>().When(Request);
+            builder.RegisterType<StringProtocol>().As<StringProtocol>();
+            builder.RegisterType<StringProtocolFamily>().As<StringProtocolFamily>();
         }
 
-        private bool Request(IRequest request)
-        {
-            return request.IsUnique;
-        }
     }
 }

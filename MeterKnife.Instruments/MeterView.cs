@@ -15,6 +15,13 @@ namespace MeterKnife.Instruments
         protected CommPort _CarePort;
         protected bool _IsSaved = true;
 
+        private IMeterKernel _meterKernel;
+
+        public MeterView(IMeterKernel meterKernel)
+        {
+            _meterKernel = meterKernel;
+        }
+
         public virtual void SetMeter(CommPort port, BaseMeter meter)
         {
             _CarePort = port;
@@ -36,7 +43,7 @@ namespace MeterKnife.Instruments
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             base.OnFormClosed(e);
-            var map = DI.Get<IMeterKernel>().MeterContents;
+            var map = _meterKernel.MeterContents;
             if (_Meter!= null && map.ContainsKey(_Meter))
             {
                 map.Remove(_Meter);

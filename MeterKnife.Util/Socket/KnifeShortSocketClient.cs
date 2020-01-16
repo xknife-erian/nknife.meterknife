@@ -25,7 +25,7 @@ namespace NKnife.Socket
         protected IPAddress _IpAddress;
         protected int _Port;
 
-        protected SocketClientConfig _Config = DI.Get<SocketClientConfig>();
+        protected SocketClientConfig _config;
         protected EndPoint EndPoint;
 
         private bool _OnSending; //true 正在进行发送操作, false表示发送动作完成
@@ -38,14 +38,20 @@ namespace NKnife.Socket
 
         private SocketAsyncEventArgs _SocketAsyncEventArgs;
 
+        public KnifeShortSocketClient(SocketClientConfig config, SocketSession session)
+        {
+            this._config = config;
+            SocketSession = session;
+        }
+
         #endregion 成员变量
 
         #region IKnifeSocketClient接口
 
         public SocketConfig Config
         {
-            get { return _Config; }
-            set { _Config = (SocketClientConfig)value; }
+            get { return _config; }
+            set { _config = (SocketClientConfig)value; }
         }
 
         public void Configure(IPAddress ipAddress, int port)
@@ -111,8 +117,6 @@ namespace NKnife.Socket
                 throw new ObjectDisposedException(GetType().FullName + " is Disposed");
 
             var ipPoint = new IPEndPoint(_IpAddress, _Port);
-            SocketSession = DI.Get<SocketSession>();
-//            SocketSession.Id = ipPoint;
             _SocketAsyncEventArgs = new SocketAsyncEventArgs{RemoteEndPoint = ipPoint};
             _SocketAsyncEventArgs.Completed += AsynCompleted;
         }

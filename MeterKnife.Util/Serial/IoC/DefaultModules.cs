@@ -1,17 +1,16 @@
-﻿using NKnife.Serial.Common;
+﻿using Autofac;
+using NKnife.Serial.Common;
 using NKnife.Serial.Interfaces;
 using NKnife.Serial.Wrappers;
-using Ninject.Activation;
-using Ninject.Modules;
 
 namespace NKnife.Serial.IoC
 {
-    public class DefaultModules : NinjectModule
+    public class DefaultModules : Module
     {
-        public override void Load()
+        protected override void Load(ContainerBuilder builder)
         {
-            Bind<ISerialPortWrapper>().To<SerialPortWrapperDotNet>().Named(SerialType.DotNet.ToString());
-            Bind<ISerialPortWrapper>().To<SerialPortWrapperWinApi>().Named(SerialType.WinApi.ToString());
+            builder.RegisterType<ISerialPortWrapper>().Named<SerialPortWrapperDotNet>(SerialType.DotNet.ToString());
+            builder.RegisterType<ISerialPortWrapper>().Named<SerialPortWrapperWinApi>(SerialType.WinApi.ToString());
 
 //            Bind<BytesProtocolCommandParser>().To<FirstByteCommandParser>().When(Request).InSingletonScope();
 //
@@ -20,10 +19,6 @@ namespace NKnife.Serial.IoC
 //
 //            Bind<BytesProtocolPacker>().To<PanBytesProtocolSimplePacker>().When(Request).InSingletonScope();
 //            Bind<BytesProtocolUnPacker>().To<PanBytesProtocolSimpleUnPacker>().When(Request).InSingletonScope();
-        }
-        private bool Request(IRequest request)
-        {
-            return request.IsUnique;
         }
     }
 }

@@ -2,21 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ninject.Activation;
-using Ninject.Modules;
+using Autofac;
 
 namespace MeterKnife.Instruments.IoC
 {
-    public class Modules : NinjectModule
+    public class Modules : Module
     {
-        public override void Load()
+        protected override void Load(ContainerBuilder builder)
         {
-            Bind<DigitMultiMeterView>().To<DigitMultiMeterView>().When(Request);
+            builder.RegisterType<DigitMultiMeterView>().As<DigitMultiMeterView>();
         }
 
-        private bool Request(IRequest request)
-        {
-            return request.IsUnique;
-        }
     }
 }

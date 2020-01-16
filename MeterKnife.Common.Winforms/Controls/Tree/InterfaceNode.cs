@@ -15,10 +15,12 @@ namespace MeterKnife.Common.Winforms.Controls.Tree
         protected readonly ToolStripMenuItem _AddMeterMenu;
         protected readonly ContextMenuStrip _RightMenu;
         private AddMeterDialog _addMeterDialog;
+        private readonly MeterNode _meterNode;
 
-        protected InterfaceNode(IMeterKernel meterKernel, AddMeterDialog addMeterDialog) : base(meterKernel)
+        protected InterfaceNode(IMeterKernel meterKernel, AddMeterDialog addMeterDialog, MeterNode meterNode) : base(meterKernel)
         {
             _addMeterDialog = addMeterDialog;
+            this._meterNode = meterNode;
             _RightMenu = new ContextMenuStrip();
             _AddMeterMenu = new ToolStripMenuItem("新建仪器");
             _AddMeterMenu.Click += AddMeterMenuOnClick;
@@ -50,13 +52,12 @@ namespace MeterKnife.Common.Winforms.Controls.Tree
 
             if (_addMeterDialog.ShowDialog() == DialogResult.OK)
             {
-                var meterNode = new MeterNode();
-                meterNode.Text = !string.IsNullOrEmpty(_addMeterDialog.Meter.Brand) 
+                _meterNode.Text = !string.IsNullOrEmpty(_addMeterDialog.Meter.Brand) 
                     ? string.Format("[{0}] {1},{2}", _addMeterDialog.GpibAddress, _addMeterDialog.Meter.Brand, _addMeterDialog.Meter.Name) 
                     : string.Format("[{0}] {1}", _addMeterDialog.GpibAddress, _addMeterDialog.Meter.Name);
-                meterNode.Meter = _addMeterDialog.Meter;
+                _meterNode.Meter = _addMeterDialog.Meter;
                 
-                TreeView.ThreadSafeInvoke(() => Nodes.Add(meterNode));
+                TreeView.ThreadSafeInvoke(() => Nodes.Add(_meterNode));
                 TreeView.ThreadSafeInvoke(Expand);
                 gpibList.Add(_addMeterDialog.GpibAddress);
             }

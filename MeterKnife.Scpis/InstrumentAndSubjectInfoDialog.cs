@@ -10,11 +10,13 @@ namespace MeterKnife.Scpis
     public partial class InstrumentAndSubjectInfoDialog : SimpleForm
     {
         private readonly BrandCollection _BrandCollection;
+        private IScpiInfoGetter _scpiInfoGetter;
 
-        public InstrumentAndSubjectInfoDialog()
+        public InstrumentAndSubjectInfoDialog(IScpiInfoGetter scpiInfoGetter)
         {
+            _scpiInfoGetter = scpiInfoGetter;
             InitializeComponent();
-            var list = DI.Get<IScpiInfoGetter>().GetMeterInfoList();
+            var list = _scpiInfoGetter.GetMeterInfoList();
             _BrandCollection = new BrandCollection(list);
 
             foreach (var brand in _BrandCollection.Brands)

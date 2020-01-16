@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ninject.Modules;
+using Autofac;
 
 namespace MeterKnife.Scpis.IoC
 {
-    public class Modules : NinjectModule
+    public class Modules : Module
     {
-        public override void Load()
+        protected override void Load(ContainerBuilder builder)
         {
-            Bind<IScpiInfoGetter>().To<ScpiInfoGetter>().InSingletonScope();
+            builder.RegisterType<IScpiInfoGetter>().As<ScpiInfoGetter>().SingleInstance();
         }
     }
 }

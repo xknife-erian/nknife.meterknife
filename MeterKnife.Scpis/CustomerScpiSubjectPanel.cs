@@ -19,17 +19,22 @@ namespace MeterKnife.Scpis
         private ScpiSubjectCollection _CurrentScpiSubjectCollection;
 
         private bool _IsModified;
+        private IMeterKernel _meterKernel;
+        private InstrumentScpiGroupTreeDialog _instrumentScpiGroupTreeDialog;
+        private InstrumentAndSubjectInfoDialog _instrumentAndSubjectInfoDialog;
 
-        public CustomerScpiSubjectPanel()
+        public CustomerScpiSubjectPanel(IMeterKernel meterKernel, InstrumentScpiGroupTreeDialog instrumentScpiGroupTreeDialog, InstrumentAndSubjectInfoDialog instrumentAndSubjectInfoDialog)
         {
+            _meterKernel = meterKernel;
+            _instrumentScpiGroupTreeDialog = instrumentScpiGroupTreeDialog;
+            _instrumentAndSubjectInfoDialog = instrumentAndSubjectInfoDialog;
             InitializeComponent();
 
             _ListView.ShowItemToolTips = true;
             _ListView.Groups.AddRange(new[] {_InitGroup, _CollectGroup});
             _ListView.LostFocus += (s, e) => _ListView.SelectedIndices.Clear();
 
-            var kernel = DI.Get<IMeterKernel>();
-            kernel.Collected += (s, e) =>
+            meterKernel.Collected += (s, e) =>
             {
                 if (e.GpibAddress == GpibAddress)
                     SetToolStripState(e.IsCollected);
@@ -113,21 +118,20 @@ namespace MeterKnife.Scpis
 
         private void _OpenButton_Click(object sender, EventArgs e)
         {
-            var dialog = new InstrumentScpiGroupTreeDialog();
-            if (dialog.ShowDialog(this) == DialogResult.OK)
+            if (_instrumentScpiGroupTreeDialog.ShowDialog(this) == DialogResult.OK)
             {
                 _CurrentScpiSubject = null;
                 _CurrentScpiSubjectCollection = null;
-                if (dialog.CurrentIsSubject)
+                if (_instrumentScpiGroupTreeDialog.CurrentIsSubject)
                 {
-                    _CurrentScpiSubject = dialog.SelectedScpiSubject;
+                    _CurrentScpiSubject = _instrumentScpiGroupTreeDialog.SelectedScpiSubject;
                 }
                 else
                 {
-                    _CurrentScpiSubjectCollection = dialog.SelectedScpiSubjectCollection;
+                    _CurrentScpiSubjectCollection = _instrumentScpiGroupTreeDialog.SelectedScpiSubjectCollection;
                 }
                 _AddButton.Enabled = true;
-                _StripLabel.Text = dialog.CurrentMeter;
+                _StripLabel.Text = _instrumentScpiGroupTreeDialog.CurrentMeter;
                 UpdateListView();
             }
             IsModified = false;
@@ -158,16 +162,16 @@ namespace MeterKnife.Scpis
             if (string.IsNullOrEmpty(_CurrentScpiSubject.Name) && _CurrentScpiSubjectCollection == null)
             {
                 var collection = new ScpiSubjectCollection();
-                var dialog = new InstrumentAndSubjectInfoDialog {ScpiSubjectCollection = collection};
-                if (dialog.ShowDialog(this) == DialogResult.OK)
+                _instrumentAndSubjectInfoDialog.ScpiSubjectCollection = collection;
+                if (_instrumentAndSubjectInfoDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    collection.Brand = dialog.InstBrand;
-                    collection.Name = dialog.InstName;
-                    collection.Description = dialog.InstDescription;
-                    var fileName = string.Format("{0}{1}.xml", collection.Brand, collection.Name);
+                    collection.Brand = _instrumentAndSubjectInfoDialog.InstBrand;
+                    collection.Name = _instrumentAndSubjectInfoDialog.InstName;
+                    collection.Description = _instrumentAndSubjectInfoDialog.InstDescription;
+                    var fileName = $"{collection.Brand}{collection.Name}.xml";
                     collection.BuildScpiFile(Path.Combine(ScpiUtil.ScpisPath, fileName));
                     _CurrentScpiSubject.OwnerCollection = collection;
-                    _CurrentScpiSubject.Name = dialog.GroupName;
+                    _CurrentScpiSubject.Name = _instrumentAndSubjectInfoDialog.GroupName;
                     collection.Add(_CurrentScpiSubject);
                 }
                 else
@@ -179,16 +183,13 @@ namespace MeterKnife.Scpis
             }
             else if (_CurrentScpiSubjectCollection != null)
             {
-                var dialog = new InstrumentAndSubjectInfoDialog
-                {
-                    ScpiSubjectCollection = _CurrentScpiSubjectCollection
-                };
-                dialog.Initialize(_CurrentScpiSubjectCollection.Brand, _CurrentScpiSubjectCollection.Name, _CurrentScpiSubjectCollection.Description);
-                if (dialog.ShowDialog(this) == DialogResult.OK)
+                _instrumentAndSubjectInfoDialog.ScpiSubjectCollection = _CurrentScpiSubjectCollection;
+                _instrumentAndSubjectInfoDialog.Initialize(_CurrentScpiSubjectCollection.Brand, _CurrentScpiSubjectCollection.Name, _CurrentScpiSubjectCollection.Description);
+                if (_instrumentAndSubjectInfoDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     _CurrentScpiSubjectCollection.Add(_CurrentScpiSubject);
                     _CurrentScpiSubject.OwnerCollection = _CurrentScpiSubjectCollection;
-                    _CurrentScpiSubject.Name = dialog.GroupName;
+                    _CurrentScpiSubject.Name = _instrumentAndSubjectInfoDialog.GroupName;
                 }
                 else
                 {

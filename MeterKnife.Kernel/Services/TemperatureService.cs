@@ -15,12 +15,14 @@ namespace MeterKnife.Kernel.Services
     {
         private static readonly ILog _logger = LogManager.GetLogger<DataPathService>();
 
-        private readonly BaseCareCommunicationService _Comm = DI.Get<BaseCareCommunicationService>();
-        private readonly CareTemperatureHandler _TemperatureHandler = new CareTemperatureHandler();
+        private readonly BaseCareCommunicationService _Comm;
+        private readonly CareTemperatureHandler _TemperatureHandler;
         private readonly Dictionary<CommPort, bool> _PortStartMap = new Dictionary<CommPort, bool>();
 
-        public CareTemperatureService()
+        public CareTemperatureService(BaseCareCommunicationService comm, CareTemperatureHandler temperatureHandler)
         {
+            _Comm = comm;
+            _TemperatureHandler = temperatureHandler;
             TemperatureValues = new double[1];
         }
 

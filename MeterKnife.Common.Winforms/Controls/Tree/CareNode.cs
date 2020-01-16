@@ -9,9 +9,12 @@ namespace MeterKnife.Common.Winforms.Controls.Tree
     {
         protected ToolStripMenuItem _OfflineCollectSettingMenu;
         protected ToolStripMenuItem _CareSettingMenu;
+        private CareParameterDialog _careParameterDialog;
 
-        public CareNode(IMeterKernel meterKernel, AddMeterDialog dialog) : base(meterKernel, dialog)
+        public CareNode(IMeterKernel meterKernel, AddMeterDialog dialog, CareParameterDialog careParameterDialog) 
+            : base(meterKernel, dialog)
         {
+            _careParameterDialog = careParameterDialog;
             ImageKey = MeterTreeElement.Care;
             SelectedImageKey = MeterTreeElement.Care;
         }
@@ -29,8 +32,7 @@ namespace MeterKnife.Common.Winforms.Controls.Tree
             _CareSettingMenu = new ToolStripMenuItem("Care属性");
             _CareSettingMenu.Click += (s, e) =>
             {
-                var dialog = new CareParameterDialog(Port);
-                dialog.ShowDialog(TreeView.FindForm());
+                _careParameterDialog.ShowDialog(TreeView.FindForm());
             };
             _RightMenu.Items.Add(_CareSettingMenu);
         }

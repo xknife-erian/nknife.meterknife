@@ -184,10 +184,6 @@ namespace NKnife.Serial
 
         protected virtual void CheckAndInitiate()
         {
-            if (_Serial == null)
-            {
-                _Serial = DI.Get<ISerialPortWrapper>(SerialType.ToString());
-            }
         }
 
         #endregion

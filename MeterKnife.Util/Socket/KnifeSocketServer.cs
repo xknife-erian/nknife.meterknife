@@ -32,12 +32,15 @@ namespace NKnife.Socket
         private int _SessionCount;
 
         protected SocketSessionMap _SessionMap = new SocketSessionMap();
-        protected SocketServerConfig _Config = DI.Get<SocketServerConfig>();
+        protected SocketServerConfig _Config;
+        private SocketSession _session;
 
         #region 构造
 
-        public KnifeSocketServer()
+        public KnifeSocketServer(SocketServerConfig config, SocketSession session)
         {
+            _Config = config;
+            this._session = session;
             _CheckAcceptListenResetEvent = new ManualResetEvent(true);
             _CheckSessionTableResetEvent = new ManualResetEvent(true);
         }
@@ -401,15 +404,14 @@ namespace NKnife.Socket
         private void AddSession(System.Net.Sockets.Socket clientSocket)
         {
             var remoteEndPoint = clientSocket.RemoteEndPoint;
-            var session = DI.Get<SocketSession>();
-            session.AcceptSocket = clientSocket;
-            session.LastSessionTime = DateTime.Now;
-            _SessionMap.Add(session);
+            _session.AcceptSocket = clientSocket;
+            _session.LastSessionTime = DateTime.Now;
+            _SessionMap.Add(_session);
             _logger.InfoFormat("Server: IP地址:{0}的连接已放入客户端池中。池中:{1}", remoteEndPoint, _SessionMap.Count);
 
-            ReceiveDatagram(session);
+            ReceiveDatagram(_session);
 
-            OnSessionConnected(session);
+            OnSessionConnected(_session);
         }
 
         public void CheckSessionTimeout(SocketSession session)

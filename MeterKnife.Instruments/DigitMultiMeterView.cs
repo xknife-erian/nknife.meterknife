@@ -27,18 +27,22 @@ namespace MeterKnife.Instruments
 
         protected readonly FiguredDataAndTemperaturePlot _mainPlot = new FiguredDataAndTemperaturePlot();
         private readonly IMeterKernel _meterKernel;
-        private readonly CustomerScpiSubjectPanel _scpiCommandPanel = new CustomerScpiSubjectPanel();
+        private readonly CustomerScpiSubjectPanel _scpiCommandPanel;
 
         protected readonly StandardDeviationPlot _sdPlot = new StandardDeviationPlot();
         protected readonly TemperatureFeaturesPlot _tempFeaturesPlot = new TemperatureFeaturesPlot();
         protected readonly TemperatureTrendPlot _tempTrendPlot = new TemperatureTrendPlot();
         private bool _isDispose;
 
-        public DigitMultiMeterView(BaseCareCommunicationService comm, IMeterKernel meterKernel, FiguredData figuredData)
+        public DigitMultiMeterView(BaseCareCommunicationService comm, 
+            IMeterKernel meterKernel, 
+            FiguredData figuredData, 
+            CustomerScpiSubjectPanel scpiCommandPanel):base(meterKernel)
         {
             _comm = comm;
             _meterKernel = meterKernel;
             _figuredData = figuredData;
+            _scpiCommandPanel = scpiCommandPanel;
             InitializeComponent();
 
             _scpiCommandPanel.Dock = DockStyle.Fill;

@@ -5,7 +5,8 @@ namespace MeterKnife.Common.Winforms.Controls.Tree
 {
     public class LanNode : InterfaceNode
     {
-        public LanNode(IMeterKernel meterKernel, AddMeterDialog dialog) : base(meterKernel, dialog)
+        public LanNode(IMeterKernel meterKernel, AddMeterDialog dialog) 
+            : base(meterKernel, dialog)
         {
         }
 

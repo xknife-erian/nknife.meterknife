@@ -2,25 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Autofac;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Instruments.Specified;
-using Ninject.Activation;
-using Ninject.Modules;
 
 namespace MeterKnife.Instruments.IoC
 {
-    public class MeterModule : NinjectModule
+    public class MeterModule : Module
     {
-        public override void Load()
+        protected override void Load(ContainerBuilder builder)
         {
-            Bind<BaseMeter>().To<DigitalMultimeter>().Named("DigitalMultimeter".ToLower());
-            Bind<BaseMeter>().To<DcPowerSupply>().Named("DcPowerSupply".ToLower());
-        }
-
-        private bool Request(IRequest request)
-        {
-            return request.IsUnique;
+            builder.RegisterType<BaseMeter>().Named<DigitalMultimeter>("DigitalMultimeter".ToLower());
+            builder.RegisterType<BaseMeter>().Named<DcPowerSupply>("DcPowerSupply".ToLower());
         }
     }
 }

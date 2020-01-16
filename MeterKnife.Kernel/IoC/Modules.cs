@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Autofac;
 using MeterKnife.Common.Base;
 using MeterKnife.Common.Interfaces;
 using MeterKnife.Kernel.Services;
-using Ninject.Modules;
 
 namespace MeterKnife.Kernel.IoC
 {
-    public class Modules : NinjectModule
+    public class Modules : Module
     {
-        public override void Load()
+        protected override void Load(ContainerBuilder builder)
         {
-            Bind<IMeterKernel>().To<MeterKernel>().InSingletonScope();
-            Bind<BaseCareCommunicationService>().To<CareCommunicationService>().InSingletonScope();
-            Bind<ITemperatureService>().To<CareTemperatureService>().InSingletonScope();
+            builder.RegisterType<IMeterKernel>().As<MeterKernel>().SingleInstance();
+            builder.RegisterType<BaseCareCommunicationService>().As<CareCommunicationService>().SingleInstance();
+            builder.RegisterType<ITemperatureService>().As<CareTemperatureService>().SingleInstance();
         }
     }
 }

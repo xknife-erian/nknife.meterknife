@@ -20,13 +20,16 @@ namespace MeterKnife.App
         private readonly DigitMultiMeterView _meterView;
         private readonly AboutDialog _aboutDialog;
         private AddMeterLiteDialog _addMeterLiteDialog;
+        private CareParameterDialog _careParameterDialog;
 
-        public Workbench(IMeterKernel meterKernel, DigitMultiMeterView meterView, AboutDialog aboutDialog, AddMeterLiteDialog addMeterLiteDialog)
+        public Workbench(IMeterKernel meterKernel, DigitMultiMeterView meterView,
+            AboutDialog aboutDialog, AddMeterLiteDialog addMeterLiteDialog, CareParameterDialog careParameterDialog)
         {
             this._meterKernel = meterKernel;
             this._meterView = meterView;
             _aboutDialog = aboutDialog;
             _addMeterLiteDialog = addMeterLiteDialog;
+            _careParameterDialog = careParameterDialog;
             InitializeComponent();
             InitializeDockPanel();
 
@@ -113,8 +116,7 @@ namespace MeterKnife.App
 
         private void _CareOptionMenuItem_Click(object sender, EventArgs e)
         {
-            var dialog = new CareParameterDialog(_carePort);
-            if (dialog.ShowDialog(this) == DialogResult.OK)
+            if (_careParameterDialog.ShowDialog(this) == DialogResult.OK)
             {
             }
         }
