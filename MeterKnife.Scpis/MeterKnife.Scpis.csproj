@@ -192,9 +192,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MeterKnife.Common.Winforms\MeterKnife.Common.Winforms.csproj">
+    <ProjectReference Include="..\MeterKnife.Common.Views\MeterKnife.Common.Views.csproj">
       <Project>{9f425d32-aedc-489d-a7ee-140ccabd412b}</Project>
-      <Name>MeterKnife.Common.Winforms</Name>
+      <Name>MeterKnife.Common.Views</Name>
     </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
       <Project>{572ECF0C-1B6D-4A7C-81F0-EE1326EF47D9}</Project>

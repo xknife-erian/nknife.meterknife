@@ -141,9 +141,9 @@
     <Content Include="main-icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MeterKnife.Common.Winforms\MeterKnife.Common.Winforms.csproj">
+    <ProjectReference Include="..\MeterKnife.Common.Views\MeterKnife.Common.Views.csproj">
       <Project>{9F425D32-AEDC-489D-A7EE-140CCABD412B}</Project>
-      <Name>MeterKnife.Common.Winforms</Name>
+      <Name>MeterKnife.Common.Views</Name>
     </ProjectReference>
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj">
       <Project>{572ecf0c-1b6d-4a7c-81f0-ee1326ef47d9}</Project>
