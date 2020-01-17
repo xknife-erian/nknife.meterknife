@@ -14,7 +14,7 @@ namespace MeterKnife.Util.Tunnel
     {
         List<TData> Commands { get; set; }
         ITunnelCodec<TData> Codec { get; set; }
-        void Recevied(long session, IProtocol<TData> protocol);
+        void Received(long session, IProtocol<TData> protocol);
 
         event EventHandler<SessionEventArgs> SendToSession;
 

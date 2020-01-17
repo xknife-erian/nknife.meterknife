@@ -277,7 +277,7 @@ namespace MeterKnife.Util.Tunnel.Base
                 }
                 if (_Handlers.Count == 1)
                 {
-                    _Handlers[0].Recevied(id, protocol);
+                    _Handlers[0].Received(id, protocol);
                 }
                 else
                 {
@@ -287,7 +287,7 @@ namespace MeterKnife.Util.Tunnel.Base
                         //handler Commands.Count为0时，接收处理所有的协议，否则，处理Commands指定的协议
                         if (handler.Commands.Count == 0 || ContainsCommand(handler.Commands, protocol.Command))
                         {
-                            handler.Recevied(id, protocol);
+                            handler.Received(id, protocol);
                         }
                         //else
                         //{

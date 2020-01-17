@@ -1,6 +1,6 @@
 using MeterKnife.Util.Serial.Common;
 
-namespace MeterKnife.Util
+namespace MeterKnife.Util.Serial
 {
     /// <summary>串口操作类接口
     /// </summary>
