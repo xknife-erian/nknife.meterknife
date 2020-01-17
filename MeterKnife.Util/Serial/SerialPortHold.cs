@@ -7,7 +7,7 @@ using MeterKnife.Util.Serial.Common;
 namespace MeterKnife.Util.Serial
 {
     /// <summary>
-    ///     通过.net实现的串口操作类
+    ///     串口操作类
     /// </summary>
     public class SerialPortHold : ISerialPortHold
     {

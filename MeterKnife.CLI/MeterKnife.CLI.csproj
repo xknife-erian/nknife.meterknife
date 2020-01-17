@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj" />
+    <ProjectReference Include="..\MeterKnife.Util\MeterKnife.Util.csproj" />
+  </ItemGroup>
+
+</Project>
