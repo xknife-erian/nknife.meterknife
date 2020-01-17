@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Logging;
-using NKnife.Protocol;
-using NKnife.Utility;
+using MeterKnife.Util.Protocol;
+using NKnife.Util;
+using NLog;
 
-namespace NKnife.Tunnel.Base
+namespace MeterKnife.Util.Tunnel.Base
 {
 
     /// <summary>
@@ -14,7 +14,7 @@ namespace NKnife.Tunnel.Base
     /// </summary>
     public abstract class KnifeProtocolProcessorBase<TData>// : IProtocolProcessor<TOriginal>
     {
-        private static readonly ILog _logger = LogManager.GetLogger<KnifeProtocolProcessorBase<TData>>();
+        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
         protected ITunnelCodec<TData> _Codec;
         protected IProtocolFamily<TData> _Family;
@@ -22,10 +22,10 @@ namespace NKnife.Tunnel.Base
         public virtual void Bind(ITunnelCodec<TData> codec, IProtocolFamily<TData> protocolFamily)
         {
             _Codec = codec;
-            _logger.Info(string.Format("绑定Codec成功。{0},{1}", _Codec.Decoder.GetType().Name, _Codec.Encoder.GetType().Name));
+            _logger.Info($"绑定Codec成功。{_Codec.Decoder.GetType().Name},{_Codec.Encoder.GetType().Name}");
 
             _Family = protocolFamily;
-            _logger.Info(string.Format("协议族[{0}]绑定成功。", _Family.FamilyName));
+            _logger.Info($"协议族[{_Family.FamilyName}]绑定成功。");
         }
 
         /// <summary>
@@ -36,12 +36,12 @@ namespace NKnife.Tunnel.Base
         /// <returns>未处理完成,待下个数据包到达时将要继续处理的数据(半包)</returns>
         public virtual IEnumerable<IProtocol<TData>> ProcessDataPacket(byte[] dataPacket, byte[] unFinished)
         {
-            if (!UtilityCollection.IsNullOrEmpty(unFinished))
+            if (!UtilCollection.IsNullOrEmpty(unFinished))
             {
                 // 当有半包数据时，进行接包操作
                 int srcLen = dataPacket.Length;
                 dataPacket = unFinished.Concat(dataPacket).ToArray();
-                _logger.Trace(string.Format("接包操作:半包:{0},原始包:{1},接包后:{2}", unFinished.Length, srcLen, dataPacket.Length));
+                _logger.Trace($"接包操作:半包:{unFinished.Length},原始包:{srcLen},接包后:{dataPacket.Length}");
             }
 
             int done;
@@ -49,7 +49,7 @@ namespace NKnife.Tunnel.Base
 
             IEnumerable<IProtocol<TData>> protocols = null;
 
-            if (UtilityCollection.IsNullOrEmpty(datagram))
+            if (UtilCollection.IsNullOrEmpty(datagram))
             {
                 _logger.Debug("协议消息无内容。");
             }
@@ -63,7 +63,7 @@ namespace NKnife.Tunnel.Base
                 // 暂存半包数据，留待下条队列数据接包使用
                 unFinished = new byte[dataPacket.Length - done];
                 Buffer.BlockCopy(dataPacket, done, unFinished, 0, unFinished.Length);
-                _logger.Trace(string.Format("半包数据暂存,数据长度:{0}", unFinished.Length));
+                _logger.Trace($"半包数据暂存,数据长度:{unFinished.Length}");
             }
 
             return protocols;
@@ -82,10 +82,10 @@ namespace NKnife.Tunnel.Base
                 }
                 catch (Exception e)
                 {
-                    _logger.Error(string.Format("命令字解析异常:{0},Data:{1}", e.Message, dg), e);
+                    _logger.Error($"命令字解析异常:{e.Message},Data:{dg}");
                     continue;
                 }
-                _logger.Trace(string.Format("开始协议解析::命令字:{0},数据包:{1}", command, dg));
+                _logger.Trace($"开始协议解析::命令字:{command},数据包:{dg}");
 
                 IProtocol<TData> protocol;
                 try
@@ -94,12 +94,12 @@ namespace NKnife.Tunnel.Base
                 }
                 catch (ArgumentNullException ex)
                 {
-                    _logger.Warn(string.Format("协议分装异常。内容:{0};命令字:{1}。{2}", dg, command, ex.Message), ex);
+                    _logger.Warn($"协议分装异常。内容:{dg};命令字:{command}。{ex.Message}", ex);
                     continue;
                 }
                 catch (Exception ex)
                 {
-                    _logger.Warn(string.Format("协议分装异常。{0}", ex.Message), ex);
+                    _logger.Warn($"协议分装异常。{ex.Message}");
                     continue;
                 }
                 protocols.Add(protocol);

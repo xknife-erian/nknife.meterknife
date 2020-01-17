@@ -10,12 +10,12 @@ namespace MeterKnife.Util.Tunnel.Generic
     /// </summary>
     public class LengthHeadDecoder : StringDatagramDecoder
     {
-        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public LengthHeadDecoder()
         {
             NeedReverse = false;
-            EnabelCompress = false;
+            EnableCompress = false;
             Encoding = Encoding.UTF8;
         }
 
@@ -27,7 +27,7 @@ namespace MeterKnife.Util.Tunnel.Generic
         /// <summary>
         ///     是否启用Gzip压缩
         /// </summary>
-        public bool EnabelCompress { get; set; }
+        public bool EnableCompress { get; set; }
 
         public Encoding Encoding { get; set; }
 
@@ -47,15 +47,15 @@ namespace MeterKnife.Util.Tunnel.Generic
                 while (inComplete)
                 {
                     if (results.Count > 1)
-                        _logger.Trace(string.Format("粘包处理,总长度:{0},已解析:{1},得到结果:{2}", data.Length, finishedIndex, results.Count));
+                        _Logger.Trace($"粘包处理,总长度:{data.Length},已解析:{finishedIndex},得到结果:{results.Count}");
                     int start = finishedIndex; //finishedIndex不等于0时，代表有粘包
                     inComplete = ExecuteSubMethod(data, start, ref results, ref finishedIndex);
                 }
                 return results.ToArray();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                _logger.Warn("解码转换异常", e);
+                _Logger.Warn("解码转换异常");
                 return new string[0];
             }
         }
@@ -74,21 +74,21 @@ namespace MeterKnife.Util.Tunnel.Generic
                 int protocolLength = GetLengthHead(lengthHead);
                 if (start + 4 + protocolLength > data.Length) //这时又出现了半包现象
                 {
-                    _logger.Trace(string.Format("处理粘包时出现半包:起点:{0},计算得到的长度:{1},源数据长度:{2}", start, protocolLength, data.Length));
+                    _Logger.Trace($"处理粘包时出现半包:起点:{start},计算得到的长度:{protocolLength},源数据长度:{data.Length}");
                     return false;
                 }
 
                 protocol = new byte[protocolLength];
                 Buffer.BlockCopy(data, start + 4, protocol, 0, protocolLength);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                _logger.Error("解码异常", e);
+                _Logger.Error("解码异常");
             }
 
             if (!UtilCollection.IsNullOrEmpty(protocol))
             {
-                string tidyString = TidyString(EnabelCompress ? CompressHelper.Decompress(protocol) : protocol);
+                string tidyString = TidyString(EnableCompress ? protocol.Decompress() : protocol);
                 results.Add(tidyString);
             }
             finishedIndex = start + 4 + protocol.Length;
@@ -106,9 +106,9 @@ namespace MeterKnife.Util.Tunnel.Generic
 
         protected virtual string TidyString(byte[] protocol)
         {
-            if (CompressHelper.IsCompressed(protocol)) //采用Gzip进行了压缩
+            if (protocol.IsCompressed()) //采用Gzip进行了压缩
             {
-                byte[] decompress = CompressHelper.Decompress(protocol);
+                byte[] decompress = protocol.Decompress();
                 return Encoding.GetString(decompress);
                 //return UtilityString.TidyUTF8(decompress);
             }

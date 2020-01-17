@@ -46,9 +46,9 @@ namespace MeterKnife.Util.Protocol.Generic.Xml
                         WriteTags(protocol, writer);
                         WriteInformation(protocol, writer);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-                        _logger.Warn("协议生成字符流时异常", e);
+                        _logger.Warn("协议生成字符流时异常");
                     }
                     writer.WriteEndElement();//关闭ROOT节点
                     writer.Flush();

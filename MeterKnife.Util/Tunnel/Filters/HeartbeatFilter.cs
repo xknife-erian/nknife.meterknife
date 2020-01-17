@@ -134,7 +134,7 @@ namespace MeterKnife.Util.Tunnel.Filters
             }
         }
 
-        public override bool PrcoessReceiveData(ITunnelSession session)
+        public override bool ProcessReceiveData(ITunnelSession session)
         {
             _OnReceiveProcessing = true;
 

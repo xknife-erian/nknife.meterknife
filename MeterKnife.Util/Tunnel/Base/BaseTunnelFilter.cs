@@ -5,7 +5,7 @@ namespace MeterKnife.Util.Tunnel.Base
 {
     public abstract class BaseTunnelFilter : ITunnelFilter
     {
-        public abstract bool PrcoessReceiveData(ITunnelSession session);
+        public abstract bool ProcessReceiveData(ITunnelSession session);
 
         public abstract void ProcessSessionBroken(long id);
 

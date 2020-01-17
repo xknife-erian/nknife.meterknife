@@ -116,7 +116,7 @@ namespace MeterKnife.Util.Tunnel.Common
         {
             foreach (var filter in _FilterChain)
             {
-                var continueNextFilter = filter.PrcoessReceiveData(e.Item); // 调用filter对数据进行处理
+                var continueNextFilter = filter.ProcessReceiveData(e.Item); // 调用filter对数据进行处理
 
                 if (!continueNextFilter)
                     break;

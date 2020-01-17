@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NKnife.Protocol.Generic
+namespace MeterKnife.Util.Protocol.Generic
 {
     /// <summary>
     ///     一个协议的具体内容。其中：

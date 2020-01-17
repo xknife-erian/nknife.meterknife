@@ -12,20 +12,18 @@ namespace MeterKnife.Util.Serial.Generic.Filters
     /// </summary>
     public class SerialProtocolSimpleFilter : BytesProtocolFilter
     {
-        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly byte[] _CurrentReceiveBuffer = new byte[1024];
-        private int _CurrentReceiveByteLength;
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
+        private readonly byte[] _currentReceiveBuffer = new byte[1024];
+        private int _currentReceiveByteLength;
 
         public event EventHandler<EventArgs<IEnumerable<IProtocol<byte[]>>>> ProtocolsReceived;
 
         protected virtual void OnProtocolsReceived(EventArgs<IEnumerable<IProtocol<byte[]>>> e)
         {
-            EventHandler<EventArgs<IEnumerable<IProtocol<byte[]>>>> handler = ProtocolsReceived;
-            if (handler != null)
-                handler(this, e);
+            ProtocolsReceived?.Invoke(this, e);
         }
 
-        public override bool PrcoessReceiveData(ITunnelSession session)
+        public override bool ProcessReceiveData(ITunnelSession session)
         {
             byte[] data = session.Data;
             int len = data.Length;
@@ -34,16 +32,16 @@ namespace MeterKnife.Util.Serial.Generic.Filters
                 return false;
             }
 
-            if (_CurrentReceiveByteLength + len > 1024) //缓冲区溢出了，只保留后1024位
+            if (_currentReceiveByteLength + len > 1024) //缓冲区溢出了，只保留后1024位
             {
                 //暂时不做处理，直接抛弃
-                _logger.Warn("收到的数据超出1024，缓冲区溢出，该条数据抛弃");
+                _Logger.Warn("收到的数据超出1024，缓冲区溢出，该条数据抛弃");
                 return false;
             }
 
-            var tempData = new byte[_CurrentReceiveByteLength + len];
-            Array.Copy(_CurrentReceiveBuffer, 0, tempData, 0, _CurrentReceiveByteLength);
-            Array.Copy(data, 0, tempData, _CurrentReceiveByteLength, data.Length);
+            var tempData = new byte[_currentReceiveByteLength + len];
+            Array.Copy(_currentReceiveBuffer, 0, tempData, 0, _currentReceiveByteLength);
+            Array.Copy(data, 0, tempData, _currentReceiveByteLength, data.Length);
 
             //交由父类的处理函数处理
             var unfinished = new byte[] {};
@@ -52,12 +50,12 @@ namespace MeterKnife.Util.Serial.Generic.Filters
             //将未完成解析的数据暂存，待下次收到数据后进行处理
             if (unfinished.Length > 0)
             {
-                Array.Copy(unfinished, 0, _CurrentReceiveBuffer, 0, unfinished.Length);
-                _CurrentReceiveByteLength = unfinished.Length;
+                Array.Copy(unfinished, 0, _currentReceiveBuffer, 0, unfinished.Length);
+                _currentReceiveByteLength = unfinished.Length;
             }
             else
             {
-                _CurrentReceiveByteLength = 0;
+                _currentReceiveByteLength = 0;
             }
 
             if (protocols != null)

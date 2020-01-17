@@ -16,7 +16,7 @@ namespace MeterKnife.Util.Tunnel
         ///     返回true，允许filter链表中下一个filter继续执行接收数据处理，
         ///     返回false则tunnel中断数据接收处理动作
         /// </returns>
-        bool PrcoessReceiveData(ITunnelSession session);
+        bool ProcessReceiveData(ITunnelSession session);
 
         /// <summary>
         ///     tunnel接收到来自dataconnector的会话中断消息时，通过该方法通知filter链表中所有filter会话中断，

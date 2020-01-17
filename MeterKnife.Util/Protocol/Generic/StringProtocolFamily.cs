@@ -111,7 +111,7 @@ namespace MeterKnife.Util.Protocol.Generic
             }
             catch (Exception e)
             {
-                Debug.Fail(string.Format("协议字符串无法解析.{0}..{1}", e.Message, datagram));
+                Debug.Fail($"协议字符串无法解析.{e.Message}..{datagram}");
             }
 
             return protocol;

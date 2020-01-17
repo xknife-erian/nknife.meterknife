@@ -7,7 +7,7 @@ namespace MeterKnife.Util.Serial.Generic.Tools
     {
         public override byte[] GetCommand(byte[] datagram)
         {
-            if (datagram != null && datagram.Count() > 0)
+            if (datagram != null && datagram.Any())
             {
                 return new[] {datagram[0]};
             }

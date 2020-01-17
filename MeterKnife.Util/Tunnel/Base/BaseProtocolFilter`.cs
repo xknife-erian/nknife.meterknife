@@ -61,7 +61,7 @@ namespace MeterKnife.Util.Tunnel.Base
             //什么也不做
         }
 
-        public override bool PrcoessReceiveData(ITunnelSession session)
+        public override bool ProcessReceiveData(ITunnelSession session)
         {
             byte[] data = session.Data;
             long id = session.Id;
@@ -164,7 +164,7 @@ namespace MeterKnife.Util.Tunnel.Base
                 }
                 catch (Exception e)
                 {
-                    _logger.Error(string.Format("命令字解析异常:{0},Data:{1}", e.Message, dg), e);
+                    _logger.Error($"命令字解析异常:{e.Message},Data:{dg}");
                     continue;
                 }
 
@@ -177,12 +177,12 @@ namespace MeterKnife.Util.Tunnel.Base
                 }
                 catch (ArgumentNullException ex)
                 {
-                    _logger.Warn(string.Format("协议分装异常。内容:{0};命令字:{1}。{2}", dg, command, ex.Message), ex);
+                    _logger.Warn($"协议分装异常。内容:{dg};命令字:{command}。{ex.Message}");
                     continue;
                 }
                 catch (Exception ex)
                 {
-                    _logger.Warn(string.Format("协议分装异常。{0}", ex.Message), ex);
+                    _logger.Warn($"协议分装异常。{ex.Message}");
                     continue;
                 }
 
@@ -298,7 +298,7 @@ namespace MeterKnife.Util.Tunnel.Base
             }
             catch (Exception e)
             {
-                _logger.Error(string.Format("handler调用异常:{0}", e.Message), e);
+                _logger.Error($"handler调用异常:{e.Message}");
             }
         }
 

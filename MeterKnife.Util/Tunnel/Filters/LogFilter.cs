@@ -7,7 +7,7 @@ namespace MeterKnife.Util.Tunnel.Filters
     {
         private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public override bool PrcoessReceiveData(ITunnelSession session)
+        public override bool ProcessReceiveData(ITunnelSession session)
         {
             _logger.Debug(string.Format("收到数据，来自{0}：{1}", session.Id, Encoding.Default.GetString(session.Data)));
             return true;

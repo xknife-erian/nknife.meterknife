@@ -9,7 +9,5 @@ namespace MeterKnife.Util.Serial.Generic.Filters
         {
             CommandCompareFunc = (list, command) => list.Any(item => SerialHelper.BytesCompare(item, command));
         }
-
-        
     }
 }

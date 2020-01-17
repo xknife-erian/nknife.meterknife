@@ -1,6 +1,5 @@
 ﻿using System;
 using MeterKnife.Util.Serial.Common;
-using MeterKnife.Util.Serial.Interfaces;
 using MeterKnife.Util.Tunnel.Common;
 using MeterKnife.Util.Tunnel.Events;
 
@@ -9,16 +8,13 @@ namespace MeterKnife.Util.Serial
     public class SerialPortDataConnector : ISerialConnector
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly ISerialPortWrapper _serial;
+        private readonly ISerialPortHold _serial;
 
-        public SerialPortDataConnector(ISerialPortWrapper serial)
+        public SerialPortDataConnector(ISerialPortHold serial)
         {
             _serial = serial;
             IsInitialized = false;
-            SerialType = SerialType.DotNet;
         }
-
-        public SerialType SerialType { get; set; }
 
         #region IKnifeSerialConnector
 
