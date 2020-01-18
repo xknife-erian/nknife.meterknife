@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
-using MeterKnife.Common.DataModels;
 using MeterKnife.Util.Protocol.Generic;
 using NKnife.Util;
 
-namespace MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.CareOne
 {
     public class CareOneProtocolPacker : BytesProtocolPacker
     {

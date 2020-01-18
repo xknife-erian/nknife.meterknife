@@ -8,9 +8,9 @@ using MeterKnife.Util.Serial;
 using MeterKnife.Util.Serial.Common;
 using NKnife.Util;
 
-namespace MeterKnife.CLI.Commands
+namespace NKnife.MeterKnife.CLI.Commands
 {
-    [Command("care", Description = "连接MeterCare，读取配置")]
+    [Command("care", Description = "连接MeterCare，尝试发送数据")]
     public class CareOneCliCommand : ICommand
     {
         private readonly ISerialPortHold _serial;
@@ -25,10 +25,6 @@ namespace MeterKnife.CLI.Commands
 
         #region Implementation of ICommand
 
-        /// <summary>
-        ///     Executes command using specified implementation of <see cref="T:CliFx.Services.IConsole" />.
-        ///     This method is called when the command is invoked by a user through command line interface.
-        /// </summary>
         public async Task ExecuteAsync(IConsole console)
         {
             var b = (int) SerialHelper.BaudRates[SerialHelper.BaudRates.Length - 2];

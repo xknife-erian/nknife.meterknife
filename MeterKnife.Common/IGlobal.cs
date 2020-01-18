@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.DataModels;
 
-namespace MeterKnife.Common
+namespace NKnife.MeterKnife.Common
 {
-    public interface IMeterKernel
+    /// <summary>
+    /// 软件全局的一些数据
+    /// </summary>
+    public interface IGlobal
     {
         string DataPath { get; set; }
 

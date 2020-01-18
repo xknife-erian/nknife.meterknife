@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using MeterKnife.Common;
-using MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Common.DataModels;
 
-namespace MeterKnife.Kernel
+namespace NKnife.MeterKnife.Logic
 {
-    public class MeterKernel : IMeterKernel
+    public class Global : IGlobal
     {
         //private readonly ITemperatureService _temperatureService;
         private bool _onCollected;
 
-        public MeterKernel()//(ITemperatureService temperatureService))
+        public Global()//(ITemperatureService temperatureService))
         {
             //_temperatureService = temperatureService;
             GpibDictionary = new Dictionary<Slot, List<int>>();

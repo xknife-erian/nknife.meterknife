@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Common.Tunnels
+﻿namespace NKnife.MeterKnife.Common.Tunnels
 {
     public enum TunnelType
     {

@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using MeterKnife.Common.DataModels;
 using MeterKnife.Util.Protocol;
 using MeterKnife.Util.Tunnel.Base;
 
-namespace MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.CareOne
 {
     public abstract class CareOneProtocolHandler : BaseProtocolHandler<byte[]>
     {

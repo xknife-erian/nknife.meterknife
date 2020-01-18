@@ -1,7 +1,7 @@
 ﻿using System;
-using MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.DataModels;
 
-namespace MeterKnife.Common
+namespace NKnife.MeterKnife.Common
 {
     public class CollectedEventArgs : EventArgs
     {

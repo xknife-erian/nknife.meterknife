@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.Text;
-using System.Threading;
-using MeterKnife.Common;
-using MeterKnife.Common.DataModels;
-using MeterKnife.Common.Tunnels;
-using MeterKnife.Util;
+﻿using NKnife.MeterKnife.Common;
 
-namespace MeterKnife.Kernel.Services
+namespace NKnife.MeterKnife.Logic
 {
-    public class CareFinderService
+    public class CareFinder
     {
         /// <summary>
         ///     在串口中寻找Care

@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using MeterKnife.CLI.Commands;
+using NKnife.MeterKnife.CLI.Commands;
 
-namespace MeterKnife.CLI.IoC
+namespace NKnife.MeterKnife.CLI.IoC
 {
     public class InsideModule : Module
     {

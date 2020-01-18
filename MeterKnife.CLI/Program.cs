@@ -1,15 +1,10 @@
-﻿using System;
-using System.Net.Mime;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Autofac;
 using CliFx;
-using CliFx.Attributes;
-using CliFx.Services;
-using MeterKnife.CLI.Commands;
 using MeterKnife.Util.Serial;
-using NKnife.Util;
+using NKnife.MeterKnife.CLI.Commands;
 
-namespace MeterKnife.CLI
+namespace NKnife.MeterKnife.CLI
 {
     class Program
     {

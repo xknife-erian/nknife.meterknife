@@ -1,15 +1,16 @@
-﻿using MeterKnife.Common.Tunnels.CareOne;
+﻿using System;
+using NKnife.MeterKnife.Common.Tunnels.CareOne;
 
-namespace MeterKnife.Common.Tunnels
+namespace NKnife.MeterKnife.Common.Tunnels
 {
     public class CareTemperatureHandler : CareOneProtocolHandler
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly ITemperatureService _tempService;
+        private readonly IPerformStorageLogic _TempStorage;
 
-        public CareTemperatureHandler(ITemperatureService tempService)
+        public CareTemperatureHandler(IPerformStorageLogic tempStorage)
         {
-            _tempService = tempService;
+            _TempStorage = tempStorage;
             Commands.Add(new byte[] {0xAE, 0x00});
         }
 
@@ -18,7 +19,7 @@ namespace MeterKnife.Common.Tunnels
             var data = protocol.Scpi;
             _Logger.Debug($"Received TEMP:{data}");
             if (double.TryParse(data, out var yzl))
-                _tempService.TemperatureValues[0] = yzl;
+                _TempStorage.ProcessCurrentTemperature(new Temperature() {Time = DateTime.Now, Value = yzl});
         }
     }
 }

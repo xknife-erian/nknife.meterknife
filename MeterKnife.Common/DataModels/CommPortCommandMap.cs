@@ -6,7 +6,7 @@ using MeterKnife.Util.Scpi;
 using NKnife.Util;
 using NLog;
 
-namespace MeterKnife.Common.DataModels
+namespace NKnife.MeterKnife.Common.DataModels
 {
     /// <summary>
     ///     一个端口可以有多个指令组等待循环；多个指令组由指令组的字符串Key进行管理。

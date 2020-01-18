@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using MeterKnife.Common;
-using MeterKnife.Common.DataModels;
-using MeterKnife.Common.Tunnels;
-using MeterKnife.Common.Tunnels.CareOne;
-using MeterKnife.Util;
 using MeterKnife.Util.Protocol.Generic;
 using MeterKnife.Util.Scpi;
 using MeterKnife.Util.Serial;
@@ -16,9 +11,13 @@ using MeterKnife.Util.Serial.Generic.Filters;
 using MeterKnife.Util.Tunnel;
 using MeterKnife.Util.Tunnel.Filters;
 using MeterKnife.Util.Tunnel.Generic;
+using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Tunnels;
+using NKnife.MeterKnife.Common.Tunnels.CareOne;
 using NKnife.Util;
 
-namespace MeterKnife.Kernel.Services
+namespace NKnife.MeterKnife.Logic.Services
 {
     public class CareCommService : BaseAntCommService
     {
@@ -35,15 +34,15 @@ namespace MeterKnife.Kernel.Services
             new Dictionary<Slot, BytesProtocolFilter>();
 
         private readonly Dictionary<Slot, bool> _isTaskContinue = new Dictionary<Slot, bool>();
-        private readonly IMeterKernel _kernel;
+        private readonly IGlobal _global;
         private readonly CommPortCommandMap _loopCommandMap = new CommPortCommandMap();
         private readonly Dictionary<Slot, ScpiCommandQueue> _queues = new Dictionary<Slot, ScpiCommandQueue>();
         private readonly ITunnel _tunnel;
 
-        public CareCommService(IMeterKernel kernel, ITunnel tunnel,
+        public CareCommService(IGlobal global, ITunnel tunnel,
             BytesCodec codec, BytesProtocolFamily family, IDataConnector dataConnector)
         {
-            _kernel = kernel;
+            _global = global;
             _tunnel = tunnel;
             _codec = codec;
             _family = family;
@@ -53,9 +52,9 @@ namespace MeterKnife.Kernel.Services
 
         private void Initialize()
         {
-            var careService = new CareFinderService();
+            var careService = new CareFinder();
             careService.SerialFinder(this);
-            _kernel.Collected += (s, e) =>
+            _global.Collected += (s, e) =>
             {
                 if (!e.IsCollected && _loopCommandMap.ContainsKey(e.CarePort)) 
                     _loopCommandMap.Remove(e.CarePort, e.ScpiGroupKey);
@@ -228,7 +227,7 @@ namespace MeterKnife.Kernel.Services
             try
             {
                 var data = cmd.IsCare
-                    ? CommandUtil.GenerateProtocol(cmd)
+                    ? CareScpiHelper.GenerateProtocol(cmd)
                     : cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
 
                 _Logger.Trace($"SendCommand:{data.ToHexString()}");

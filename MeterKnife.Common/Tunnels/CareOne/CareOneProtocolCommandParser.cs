@@ -1,6 +1,6 @@
 ﻿using MeterKnife.Util.Protocol.Generic;
 
-namespace MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.CareOne
 {
     public class CareOneProtocolCommandParser : BytesProtocolCommandParser
     {

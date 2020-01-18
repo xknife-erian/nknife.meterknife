@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using MeterKnife.Common.DataModels;
-using MeterKnife.Common.Tunnels.CareOne;
 using MeterKnife.Util.Scpi;
 using MeterKnife.Util.Tunnel.Base;
+using NKnife.MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Tunnels.CareOne;
 
-namespace MeterKnife.Common
+namespace NKnife.MeterKnife.Common
 {
     /// <summary>
     /// Ant版提供的通讯服务

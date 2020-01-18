@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Threading;
-using MeterKnife.Common.DataModels;
-using MeterKnife.Common.Tunnels.CareOne;
 using NKnife.Events;
+using NKnife.MeterKnife.Common.Tunnels.CareOne;
 
-namespace MeterKnife.Common.Tunnels
+namespace NKnife.MeterKnife.Common.Tunnels
 {
     public class ScpiProtocolHandler : CareOneProtocolHandler
     {

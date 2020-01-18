@@ -4,7 +4,7 @@ using MeterKnife.Util.Protocol;
 using MeterKnife.Util.Protocol.Generic;
 using NKnife.Util;
 
-namespace MeterKnife.Common.Tunnels
+namespace NKnife.MeterKnife.Common.Tunnels
 {
     /// <summary>
     ///     面向Care制定的协议的封装

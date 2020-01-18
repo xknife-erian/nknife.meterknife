@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeterKnife.Util\MeterKnife.Util.csproj" />
+    <ProjectReference Include="..\MeterKnife.Util\NKnife.MeterKnife.Util.csproj" />
   </ItemGroup>
 
 </Project>

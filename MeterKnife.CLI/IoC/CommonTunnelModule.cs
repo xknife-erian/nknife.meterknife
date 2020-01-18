@@ -1,9 +1,9 @@
 ﻿using Autofac;
-using MeterKnife.Common.Tunnels.CareOne;
 using MeterKnife.Util.Serial;
 using MeterKnife.Util.Tunnel;
+using NKnife.MeterKnife.Common.Tunnels.CareOne;
 
-namespace MeterKnife.CLI.IoC
+namespace NKnife.MeterKnife.CLI.IoC
 {
     public class CommonTunnelModule : Module
     {

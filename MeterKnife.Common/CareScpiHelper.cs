@@ -2,12 +2,12 @@
 using MeterKnife.Util.Scpi;
 using NKnife.Util;
 
-namespace MeterKnife.Util
+namespace NKnife.MeterKnife.Common
 {
     /// <summary>
-    ///     面向Command的帮助方法
+    ///     Care组装SCPI指令的帮助方法
     /// </summary>
-    public static class CommandUtil
+    public static class CareScpiHelper
     {
         public static ScpiCommand BuildScpiCommand(string scpi, bool isReturn = true)
         {

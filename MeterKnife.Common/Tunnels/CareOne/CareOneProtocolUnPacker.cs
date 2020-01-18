@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using MeterKnife.Common.DataModels;
 using MeterKnife.Util.Protocol;
 using MeterKnife.Util.Protocol.Generic;
 using NKnife.ShareResources;
 using NKnife.Util;
 
-namespace MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.CareOne
 {
     public class CareOneProtocolUnPacker : BytesProtocolUnPacker
     {

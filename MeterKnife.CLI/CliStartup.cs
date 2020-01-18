@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MeterKnife.CLI
+﻿namespace NKnife.MeterKnife.CLI
 {
     public class CliStartup
     {

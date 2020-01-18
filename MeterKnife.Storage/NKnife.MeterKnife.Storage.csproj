@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="NKnife" Version="19.2.0" />
+    <PackageReference Include="NLog" Version="4.6.8" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.112" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeterKnife.Common\NKnife.MeterKnife.Common.csproj" />
+    <ProjectReference Include="..\MeterKnife.Util\NKnife.MeterKnife.Util.csproj" />
+  </ItemGroup>
+
+</Project>

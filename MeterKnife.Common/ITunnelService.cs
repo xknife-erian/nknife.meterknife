@@ -1,8 +1,8 @@
-﻿using MeterKnife.Common.DataModels;
-using MeterKnife.Util.Scpi;
+﻿using MeterKnife.Util.Scpi;
 using MeterKnife.Util.Tunnel.Base;
+using NKnife.MeterKnife.Common.DataModels;
 
-namespace MeterKnife.Common
+namespace NKnife.MeterKnife.Common
 {
     /// <summary>
     ///     为应用程序提供管道服务

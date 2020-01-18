@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Common
+﻿namespace NKnife.MeterKnife.Common
 {
     /// <summary>
     ///     一个描述仪器的接口

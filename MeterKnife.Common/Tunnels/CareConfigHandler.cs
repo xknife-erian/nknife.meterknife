@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MeterKnife.Common.DataModels;
-using MeterKnife.Common.Tunnels.CareOne;
 using NKnife.Events;
+using NKnife.MeterKnife.Common.Tunnels.CareOne;
 
-namespace MeterKnife.Common.Tunnels
+namespace NKnife.MeterKnife.Common.Tunnels
 {
     public class CareConfigHandler : CareOneProtocolHandler
     {

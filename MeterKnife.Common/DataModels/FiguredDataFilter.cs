@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MeterKnife.Common.DataModels
+﻿namespace NKnife.MeterKnife.Common.DataModels
 {
     public class FiguredDataFilter
     {

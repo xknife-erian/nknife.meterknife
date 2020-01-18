@@ -1,17 +1,18 @@
 ﻿using Autofac;
-using MeterKnife.Common;
-using MeterKnife.Kernel;
-using MeterKnife.Kernel.Services;
+using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Logic;
+using NKnife.MeterKnife.Logic.Services;
 
-namespace MeterKnife.CLI.IoC
+namespace NKnife.MeterKnife.CLI.IoC
 {
     public class InsideModules : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<MeterKernel>().As<IMeterKernel>().SingleInstance();
-            builder.RegisterType<CareTemperatureService>().As<ITemperatureService>().SingleInstance();
+            builder.RegisterType<Logic.Global>().As<IGlobal>().SingleInstance();
+
             builder.RegisterType<CareCommService>().As<BaseAntCommService>();
+            builder.RegisterType<CareTemperatureGetter>().As<ITemperatureGetter>().SingleInstance();
         }
     }
 }
