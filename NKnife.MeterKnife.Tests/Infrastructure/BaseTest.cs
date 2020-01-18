@@ -14,7 +14,7 @@ namespace NKnife.MeterKnife.Tests.Infrastructure
         {
             using (var mock = AutoMock.GetLoose())
             {
-                var app = mock.Create<App>();
+                var app = mock.Create<AppMock>();
 
                 StatementQueue prepare = new StatementQueue();
                 StatementQueue sustainable = new StatementQueue();
