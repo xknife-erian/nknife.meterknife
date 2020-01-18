@@ -1,9 +1,8 @@
 ﻿using System;
 using MeterKnife.Util.Scpi;
-using NKnife.Base;
 using NKnife.Util;
 
-namespace MeterKnife.Common.Util
+namespace MeterKnife.Util
 {
     /// <summary>
     ///     面向Command的帮助方法

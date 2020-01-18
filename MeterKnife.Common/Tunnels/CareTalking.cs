@@ -4,14 +4,14 @@ using MeterKnife.Util.Protocol;
 using MeterKnife.Util.Protocol.Generic;
 using NKnife.Util;
 
-namespace MeterKnife.Common.DataModels
+namespace MeterKnife.Common.Tunnels
 {
     /// <summary>
     ///     面向Care制定的协议的封装
     /// </summary>
     public class CareTalking : BytesProtocol
     {
-        private string _Scpi = string.Empty;
+        private string _scpi = string.Empty;
 
         public CareTalking()
         {
@@ -30,7 +30,7 @@ namespace MeterKnife.Common.DataModels
 
         public override string ToString()
         {
-            return $"Command:{MainCommand.ToHexString()} {SubCommand.ToHexString()},GPIB:{GpibAddress},Content:{Scpi}";
+            return $"GPIB:{GpibAddress},\r\nCommand:{MainCommand.ToHexString()} {SubCommand.ToHexString()},\r\nContent:{Scpi}";
         }
 
         #region 基本属性
@@ -76,22 +76,22 @@ namespace MeterKnife.Common.DataModels
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(_Scpi) && ScpiBytes != null && ScpiBytes.Length > 0)
-                    _Scpi = Encoding.ASCII.GetString(ScpiBytes);
-                return _Scpi;
+                if (string.IsNullOrWhiteSpace(_scpi) && ScpiBytes != null && ScpiBytes.Length > 0)
+                    _scpi = Encoding.ASCII.GetString(ScpiBytes);
+                return _scpi;
             }
             set
             {
                 if (!string.IsNullOrEmpty(value))
                 {
                     if (value.Length > 1 && value[value.Length - 1] != '\n')
-                        _Scpi = $"{value}{'\n'}";
+                        _scpi = $"{value}{'\n'}";
                     else
-                        _Scpi = value;
+                        _scpi = value;
                 }
                 else
                 {
-                    _Scpi = string.Empty;
+                    _scpi = string.Empty;
                 }
             }
         }

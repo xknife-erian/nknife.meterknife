@@ -13,42 +13,42 @@ namespace MeterKnife.Common.DataModels
     ///     当在仪器监控面板中，每个面板会拥有一个唯一的字符串Key，这样，面板开始采信与停止采集只需添加和移除该Key所
     ///     映射的指令组即可
     /// </summary>
-    public class CommPortCommandMap : IDictionary<CommPort, ScpiCommandQueueMap>
+    public class CommPortCommandMap : IDictionary<Slot, ScpiCommandQueueMap>
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
         private readonly object _Lock = new object();
 
         private List<List<ScpiCommandQueue.Item>> _CloneItems = new List<List<ScpiCommandQueue.Item>>();
 
-        public ScpiCommandQueue.Item[] this[CommPort commPort, string key] => _Map[commPort][key];
+        public ScpiCommandQueue.Item[] this[Slot slot, string key] => _Map[slot][key];
 
-        public void Add(CommPort commPort, string key, ScpiCommandQueue.Item[] careItems)
+        public void Add(Slot slot, string key, ScpiCommandQueue.Item[] careItems)
         {
-            if (!_Map.TryGetValue(commPort, out var queueMap))
+            if (!_Map.TryGetValue(slot, out var queueMap))
             {
                 queueMap = new ScpiCommandQueueMap();
-                _Map.Add(commPort, queueMap);
+                _Map.Add(slot, queueMap);
             }
 
             queueMap.Add(key, careItems);
         }
 
-        public bool HasCommand(CommPort commPort)
+        public bool HasCommand(Slot slot)
         {
             var hasCommand = false;
             lock (_Lock)
             {
-                hasCommand = _Map.ContainsKey(commPort) && _Map[commPort].Values.Count > 0;
+                hasCommand = _Map.ContainsKey(slot) && _Map[slot].Values.Count > 0;
             }
 
             return hasCommand;
         }
 
-        public void Remove(CommPort commPort, string scpiGroupKey)
+        public void Remove(Slot slot, string scpiGroupKey)
         {
             lock (_Lock)
             {
-                if (!_Map.TryGetValue(commPort, out var map))
+                if (!_Map.TryGetValue(slot, out var map))
                     return;
                 //根据指定端口的指令组的Key停止采集指令循环
                 if (map.ContainsKey(scpiGroupKey))
@@ -59,14 +59,14 @@ namespace MeterKnife.Common.DataModels
             }
         }
 
-        public IEnumerable<IEnumerable<ScpiCommandQueue.Item>> GetItems(CommPort commPort)
+        public IEnumerable<IEnumerable<ScpiCommandQueue.Item>> GetItems(Slot slot)
         {
             if (_CloneItems == null || _CloneItems.Count <= 0)
             {
                 _CloneItems = new List<List<ScpiCommandQueue.Item>>();
                 try
                 {
-                    var values = _Map[commPort].Values;
+                    var values = _Map[slot].Values;
                     foreach (var careItems in values)
                     {
                         if (UtilCollection.IsNullOrEmpty(careItems))
@@ -86,21 +86,21 @@ namespace MeterKnife.Common.DataModels
             return _CloneItems;
         }
 
-        public string[] GetScpiGroupKeys(CommPort commPort)
+        public string[] GetScpiGroupKeys(Slot slot)
         {
-            return _Map[commPort].Select(pair => pair.Key).ToArray();
+            return _Map[slot].Select(pair => pair.Key).ToArray();
         }
 
-        public bool ContainsKey(CommPort commPort, string key)
+        public bool ContainsKey(Slot slot, string key)
         {
-            return _Map.ContainsKey(commPort) && _Map[commPort].ContainsKey(key);
+            return _Map.ContainsKey(slot) && _Map[slot].ContainsKey(key);
         }
 
         #region IDictionary
 
-        protected readonly Dictionary<CommPort, ScpiCommandQueueMap> _Map = new Dictionary<CommPort, ScpiCommandQueueMap>();
+        protected readonly Dictionary<Slot, ScpiCommandQueueMap> _Map = new Dictionary<Slot, ScpiCommandQueueMap>();
 
-        IEnumerator<KeyValuePair<CommPort, ScpiCommandQueueMap>> IEnumerable<KeyValuePair<CommPort, ScpiCommandQueueMap>>.GetEnumerator()
+        IEnumerator<KeyValuePair<Slot, ScpiCommandQueueMap>> IEnumerable<KeyValuePair<Slot, ScpiCommandQueueMap>>.GetEnumerator()
         {
             return _Map.GetEnumerator();
         }
@@ -110,64 +110,64 @@ namespace MeterKnife.Common.DataModels
             return _Map.GetEnumerator();
         }
 
-        void ICollection<KeyValuePair<CommPort, ScpiCommandQueueMap>>.Add(KeyValuePair<CommPort, ScpiCommandQueueMap> item)
+        void ICollection<KeyValuePair<Slot, ScpiCommandQueueMap>>.Add(KeyValuePair<Slot, ScpiCommandQueueMap> item)
         {
-            ((IDictionary<CommPort, ScpiCommandQueueMap>) _Map).Add(item);
+            ((IDictionary<Slot, ScpiCommandQueueMap>) _Map).Add(item);
         }
 
-        void ICollection<KeyValuePair<CommPort, ScpiCommandQueueMap>>.Clear()
+        void ICollection<KeyValuePair<Slot, ScpiCommandQueueMap>>.Clear()
         {
             _Map.Clear();
         }
 
-        bool ICollection<KeyValuePair<CommPort, ScpiCommandQueueMap>>.Contains(KeyValuePair<CommPort, ScpiCommandQueueMap> item)
+        bool ICollection<KeyValuePair<Slot, ScpiCommandQueueMap>>.Contains(KeyValuePair<Slot, ScpiCommandQueueMap> item)
         {
-            return ((IDictionary<CommPort, ScpiCommandQueueMap>) _Map).Contains(item);
+            return ((IDictionary<Slot, ScpiCommandQueueMap>) _Map).Contains(item);
         }
 
-        void ICollection<KeyValuePair<CommPort, ScpiCommandQueueMap>>.CopyTo(KeyValuePair<CommPort, ScpiCommandQueueMap>[] array, int arrayIndex)
+        void ICollection<KeyValuePair<Slot, ScpiCommandQueueMap>>.CopyTo(KeyValuePair<Slot, ScpiCommandQueueMap>[] array, int arrayIndex)
         {
-            ((IDictionary<CommPort, ScpiCommandQueueMap>) _Map).CopyTo(array, arrayIndex);
+            ((IDictionary<Slot, ScpiCommandQueueMap>) _Map).CopyTo(array, arrayIndex);
         }
 
-        bool ICollection<KeyValuePair<CommPort, ScpiCommandQueueMap>>.Remove(KeyValuePair<CommPort, ScpiCommandQueueMap> item)
+        bool ICollection<KeyValuePair<Slot, ScpiCommandQueueMap>>.Remove(KeyValuePair<Slot, ScpiCommandQueueMap> item)
         {
-            return ((IDictionary<CommPort, ScpiCommandQueueMap>) _Map).Remove(item);
+            return ((IDictionary<Slot, ScpiCommandQueueMap>) _Map).Remove(item);
         }
 
-        int ICollection<KeyValuePair<CommPort, ScpiCommandQueueMap>>.Count => _Map.Count;
+        int ICollection<KeyValuePair<Slot, ScpiCommandQueueMap>>.Count => _Map.Count;
 
-        bool ICollection<KeyValuePair<CommPort, ScpiCommandQueueMap>>.IsReadOnly => ((IDictionary<CommPort, ScpiCommandQueueMap>) _Map).IsReadOnly;
+        bool ICollection<KeyValuePair<Slot, ScpiCommandQueueMap>>.IsReadOnly => ((IDictionary<Slot, ScpiCommandQueueMap>) _Map).IsReadOnly;
 
-        public bool ContainsKey(CommPort key)
+        public bool ContainsKey(Slot key)
         {
             return _Map.ContainsKey(key);
         }
 
-        void IDictionary<CommPort, ScpiCommandQueueMap>.Add(CommPort key, ScpiCommandQueueMap value)
+        void IDictionary<Slot, ScpiCommandQueueMap>.Add(Slot key, ScpiCommandQueueMap value)
         {
             _Map.Add(key, value);
         }
 
-        bool IDictionary<CommPort, ScpiCommandQueueMap>.Remove(CommPort key)
+        bool IDictionary<Slot, ScpiCommandQueueMap>.Remove(Slot key)
         {
             return _Map.Remove(key);
         }
 
-        bool IDictionary<CommPort, ScpiCommandQueueMap>.TryGetValue(CommPort key, out ScpiCommandQueueMap value)
+        bool IDictionary<Slot, ScpiCommandQueueMap>.TryGetValue(Slot key, out ScpiCommandQueueMap value)
         {
             return _Map.TryGetValue(key, out value);
         }
 
-        ScpiCommandQueueMap IDictionary<CommPort, ScpiCommandQueueMap>.this[CommPort key]
+        ScpiCommandQueueMap IDictionary<Slot, ScpiCommandQueueMap>.this[Slot key]
         {
             get => _Map[key];
             set => _Map[key] = value;
         }
 
-        ICollection<CommPort> IDictionary<CommPort, ScpiCommandQueueMap>.Keys => _Map.Keys;
+        ICollection<Slot> IDictionary<Slot, ScpiCommandQueueMap>.Keys => _Map.Keys;
 
-        ICollection<ScpiCommandQueueMap> IDictionary<CommPort, ScpiCommandQueueMap>.Values => _Map.Values;
+        ICollection<ScpiCommandQueueMap> IDictionary<Slot, ScpiCommandQueueMap>.Values => _Map.Values;
 
         #endregion
     }

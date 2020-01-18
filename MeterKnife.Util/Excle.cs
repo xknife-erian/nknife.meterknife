@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
-namespace MeterKnife.Common.Util
+namespace MeterKnife.Util
 {
     public class Excle
     {

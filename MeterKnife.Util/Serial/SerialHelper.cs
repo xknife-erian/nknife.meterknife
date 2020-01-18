@@ -20,7 +20,8 @@ namespace MeterKnife.Util.Serial
             list.Add(57600);
             list.Add(128000);
             list.Add(256000);
-            for (var i = 1; i < 16; i = i + 2) list.Add(115200 * i);
+            for (var i = 1; i < 8; i = i + 2) 
+                list.Add(115200 * i);
             list.Sort();
             DefaultBaudRate = (ushort) list.IndexOf(9600);
             BaudRates = new object[list.Count];

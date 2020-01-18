@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MeterKnife.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": " care -p 3"
+    }
+  }
+}

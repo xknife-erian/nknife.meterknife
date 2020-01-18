@@ -6,8 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="CliFx" Version="0.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MeterKnife.Common\MeterKnife.Common.csproj" />
+    <ProjectReference Include="..\MeterKnife.Kernel\MeterKnife.Kernel.csproj" />
     <ProjectReference Include="..\MeterKnife.Util\MeterKnife.Util.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

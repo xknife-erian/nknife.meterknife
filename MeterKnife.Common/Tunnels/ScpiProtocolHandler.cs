@@ -30,11 +30,7 @@ namespace MeterKnife.Common.Tunnels
 
         protected virtual void OnProtocolReceived(EventArgs<CareTalking> e)
         {
-            EventHandler<EventArgs<CareTalking>> handler = ProtocolReceived;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            ProtocolReceived?.Invoke(this, e);
         }
 
     }

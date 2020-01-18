@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MeterKnife.Common.Enums;
-
-namespace MeterKnife.Common.Util
+﻿namespace MeterKnife.Util
 {
     /// <summary>
     /// 量程计算器

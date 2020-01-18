@@ -11,9 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{2D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeterKnife.Util", "MeterKnife.Util\MeterKnife.Util.csproj", "{C089E4A3-9545-441A-8E43-9FA1C2586C08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Common", "MeterKnife.Common\MeterKnife.Common.csproj", "{179BF1B0-6FB7-4A63-8023-2BDFE44AD7EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeterKnife.Common", "MeterKnife.Common\MeterKnife.Common.csproj", "{179BF1B0-6FB7-4A63-8023-2BDFE44AD7EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.CLI", "MeterKnife.CLI\MeterKnife.CLI.csproj", "{41DD80C9-456C-45B7-B443-F16C3D9AF41C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeterKnife.CLI", "MeterKnife.CLI\MeterKnife.CLI.csproj", "{41DD80C9-456C-45B7-B443-F16C3D9AF41C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterKnife.Kernel", "MeterKnife.Kernel\MeterKnife.Kernel.csproj", "{D4840DA6-A26F-4EB4-B9A0-A15139709496}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{41DD80C9-456C-45B7-B443-F16C3D9AF41C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41DD80C9-456C-45B7-B443-F16C3D9AF41C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41DD80C9-456C-45B7-B443-F16C3D9AF41C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4840DA6-A26F-4EB4-B9A0-A15139709496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4840DA6-A26F-4EB4-B9A0-A15139709496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4840DA6-A26F-4EB4-B9A0-A15139709496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4840DA6-A26F-4EB4-B9A0-A15139709496}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

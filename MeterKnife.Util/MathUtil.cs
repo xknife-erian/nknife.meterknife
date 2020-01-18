@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using MathNet.Numerics;
 
-namespace MeterKnife.Common.Util
+namespace MeterKnife.Util
 {
     public class MathUtil
     {
