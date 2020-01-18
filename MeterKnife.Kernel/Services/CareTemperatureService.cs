@@ -13,11 +13,11 @@ namespace MeterKnife.Kernel.Services
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly BaseCareCommunicationService _comm;
+        private readonly BaseAntCommService _comm;
         private readonly Dictionary<Slot, bool> _portStartMap = new Dictionary<Slot, bool>();
         private readonly CareTemperatureHandler _temperatureHandler;
 
-        public CareTemperatureService(BaseCareCommunicationService comm, CareTemperatureHandler temperatureHandler)
+        public CareTemperatureService(BaseAntCommService comm, CareTemperatureHandler temperatureHandler)
         {
             _comm = comm;
             _temperatureHandler = temperatureHandler;

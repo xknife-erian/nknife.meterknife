@@ -20,7 +20,7 @@ using NKnife.Util;
 
 namespace MeterKnife.Kernel.Services
 {
-    public class CareCommunicationService : BaseCareCommunicationService
+    public class CareCommService : BaseAntCommService
     {
         private const string FAMILY_NAME = "careone";
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -40,7 +40,7 @@ namespace MeterKnife.Kernel.Services
         private readonly Dictionary<Slot, ScpiCommandQueue> _queues = new Dictionary<Slot, ScpiCommandQueue>();
         private readonly ITunnel _tunnel;
 
-        public CareCommunicationService(IMeterKernel kernel, ITunnel tunnel,
+        public CareCommService(IMeterKernel kernel, ITunnel tunnel,
             BytesCodec codec, BytesProtocolFamily family, IDataConnector dataConnector)
         {
             _kernel = kernel;
@@ -48,25 +48,29 @@ namespace MeterKnife.Kernel.Services
             _codec = codec;
             _family = family;
             _dataConnector = dataConnector;
+            Initialize();
         }
 
-        public override bool Initialize()
+        private void Initialize()
         {
-            Cares = new List<Slot>();
-            var careService = new CareService();
+            var careService = new CareFinderService();
             careService.SerialFinder(this);
             _kernel.Collected += (s, e) =>
             {
-                if (!e.IsCollected && _loopCommandMap.ContainsKey(e.CarePort)) _loopCommandMap.Remove(e.CarePort, e.ScpiGroupKey);
+                if (!e.IsCollected && _loopCommandMap.ContainsKey(e.CarePort)) 
+                    _loopCommandMap.Remove(e.CarePort, e.ScpiGroupKey);
             };
-            IsInitialized = true;
-            return true;
         }
 
+
+        /// <summary>
+        ///     绑定一个指定端口的通讯服务
+        /// </summary>
+        /// <param name="slot">指定的端口</param>
+        /// <param name="handlers">协议处理的handler</param>
         public override void Bind(Slot slot, params CareOneProtocolHandler[] handlers)
         {
-            BytesProtocolFilter filter = null;
-            if (!_filters.TryGetValue(slot, out filter))
+            if (!_filters.TryGetValue(slot, out var filter))
             {
                 switch (slot.TunnelType)
                 {
@@ -182,14 +186,17 @@ namespace MeterKnife.Kernel.Services
                             try
                             {
                                 foreach (var key in keys)
+                                {
                                     //一个端口可能有多个指令组，一般是多台仪器（每仪器有一个GPIB地址）
                                     //每仪器对应一个指令组
                                     //一个指令组下的多条指令，指令的延迟在SendCommand函数中发生
                                     if (_loopCommandMap.ContainsKey(slot, key))
                                     {
                                         var items = _loopCommandMap[slot, key];
-                                        foreach (var careItem in items) SendCommand(dataConnector, careItem);
+                                        foreach (var careItem in items) 
+                                            SendCommand(dataConnector, careItem);
                                     }
+                                }
                             }
                             catch (Exception e)
                             {
@@ -216,7 +223,7 @@ namespace MeterKnife.Kernel.Services
             });
         }
 
-        protected static void SendCommand(IDataConnector dataConnector, ScpiCommandQueue.Item cmd)
+        private static void SendCommand(IDataConnector dataConnector, ScpiCommandQueue.Item cmd)
         {
             try
             {

@@ -11,7 +11,7 @@ namespace MeterKnife.CLI.IoC
         {
             builder.RegisterType<MeterKernel>().As<IMeterKernel>().SingleInstance();
             builder.RegisterType<CareTemperatureService>().As<ITemperatureService>().SingleInstance();
-            builder.RegisterType<CareCommunicationService>().As<BaseCareCommunicationService>().SingleInstance();
+            builder.RegisterType<CareCommService>().As<BaseAntCommService>();
         }
     }
 }
