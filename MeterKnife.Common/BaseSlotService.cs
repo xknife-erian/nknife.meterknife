@@ -9,14 +9,13 @@ namespace NKnife.MeterKnife.Common
     /// <summary>
     /// Ant版提供的通讯服务
     /// </summary>
-    public abstract class BaseAntCommService : ITunnelService<byte[]>
+    public abstract class BaseSlotService : ITunnelService<byte[]>
     {
         void ITunnelService<byte[]>.Bind(Slot slot, params BaseProtocolHandler<byte[]>[] handlers)
         {
             Bind(slot, handlers.Cast<CareOneProtocolHandler>().ToArray());
         }
 
-        //public ScpiQueue ScpiCommandQueue { get; set; }
         /// <summary>
         ///     销毁服务
         /// </summary>

@@ -11,7 +11,7 @@ namespace NKnife.MeterKnife.CLI.IoC
         {
             builder.RegisterType<Logic.Global>().As<IGlobal>().SingleInstance();
 
-            builder.RegisterType<CareCommService>().As<BaseAntCommService>();
+            builder.RegisterType<CareService>().As<BaseSlotService>();
             builder.RegisterType<CareTemperatureGetter>().As<ITemperatureGetter>().SingleInstance();
         }
     }

@@ -19,7 +19,10 @@ using NKnife.Util;
 
 namespace NKnife.MeterKnife.Logic.Services
 {
-    public class CareCommService : BaseAntCommService
+    /// <summary>
+    /// 面向MeterCare一代持续各个版本的服务
+    /// </summary>
+    public class CareService : BaseSlotService
     {
         private const string FAMILY_NAME = "careone";
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -39,7 +42,7 @@ namespace NKnife.MeterKnife.Logic.Services
         private readonly Dictionary<Slot, ScpiCommandQueue> _queues = new Dictionary<Slot, ScpiCommandQueue>();
         private readonly ITunnel _tunnel;
 
-        public CareCommService(IGlobal global, ITunnel tunnel,
+        public CareService(IGlobal global, ITunnel tunnel,
             BytesCodec codec, BytesProtocolFamily family, IDataConnector dataConnector)
         {
             _global = global;
@@ -60,7 +63,6 @@ namespace NKnife.MeterKnife.Logic.Services
                     _loopCommandMap.Remove(e.CarePort, e.ScpiGroupKey);
             };
         }
-
 
         /// <summary>
         ///     绑定一个指定端口的通讯服务

@@ -8,15 +8,15 @@ using NKnife.MeterKnife.Common.Tunnels;
 namespace NKnife.MeterKnife.Logic
 {
     /// <summary>
-    /// Care获取温度值的获取器
+    /// MeterCare专用的获取温度值的获取器
     /// </summary>
     public class CareTemperatureGetter : ITemperatureGetter
     {
-        private readonly BaseAntCommService _comm;
+        private readonly BaseSlotService _comm;
         private readonly Dictionary<Slot, bool> _portStartMap = new Dictionary<Slot, bool>();
         private readonly CareTemperatureHandler _temperatureHandler;
 
-        public CareTemperatureGetter(BaseAntCommService comm, CareTemperatureHandler temperatureHandler)
+        public CareTemperatureGetter(BaseSlotService comm, CareTemperatureHandler temperatureHandler)
         {
             _comm = comm;
             _temperatureHandler = temperatureHandler;
