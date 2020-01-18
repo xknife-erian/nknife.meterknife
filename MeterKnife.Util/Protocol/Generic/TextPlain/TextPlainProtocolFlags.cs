@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Protocol.Generic.TextPlain
+﻿namespace NKnife.MeterKnife.Util.Protocol.Generic.TextPlain
 {
     class TextPlainProtocolFlags
     {

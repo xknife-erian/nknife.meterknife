@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using MeterKnife.Util.Tunnel.Base;
+using NKnife.MeterKnife.Util.Tunnel.Base;
 
-namespace MeterKnife.Util.Tunnel.Filters
+namespace NKnife.MeterKnife.Util.Tunnel.Filters
 {
     public class LogFilter : BaseTunnelFilter
     {

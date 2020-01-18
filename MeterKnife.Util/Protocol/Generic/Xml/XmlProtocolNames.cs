@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Protocol.Generic.Xml
+﻿namespace NKnife.MeterKnife.Util.Protocol.Generic.Xml
 {
     public class XmlProtocolNames
     {

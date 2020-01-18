@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Tunnel.Base
+﻿namespace NKnife.MeterKnife.Util.Tunnel.Base
 {
     /// <summary>
     /// 解码器

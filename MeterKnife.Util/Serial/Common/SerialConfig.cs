@@ -1,6 +1,6 @@
 using System.IO.Ports;
 
-namespace MeterKnife.Util.Serial.Common
+namespace NKnife.MeterKnife.Util.Serial.Common
 {
     public class SerialConfig
     {
@@ -21,7 +21,7 @@ namespace MeterKnife.Util.Serial.Common
         public int DataBits { get; set; }
         public int ReadTimeout { get; set; }
         /// <summary>
-        /// µ±½«´®¿ÚÄ£ÄâÎªÍ¬²½Ä£Ê½Ê±(Ò»ÎÊÒ»´ð)£¬µÈ´ý»Ø´ðµÄ³¬Ê±Ê±¼ä¡£
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ÎªÍ¬ï¿½ï¿½Ä£Ê½Ê±(Ò»ï¿½ï¿½Ò»ï¿½ï¿½)ï¿½ï¿½ï¿½È´ï¿½ï¿½Ø´ï¿½Ä³ï¿½Ê±Ê±ï¿½ä¡£
         /// </summary>
         public int SyncModelWaitTimeout { get; set; }
         public int ReceivedBytesThreshold { get; set; }

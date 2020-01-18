@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
-using MeterKnife.Util.Protocol;
-using MeterKnife.Util.Protocol.Generic;
+using NKnife.MeterKnife.Util.Protocol;
+using NKnife.MeterKnife.Util.Protocol.Generic;
 using NKnife.ShareResources;
 using NKnife.Util;
 

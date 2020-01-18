@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using MeterKnife.Util.Scpi;
-using MeterKnife.Util.Tunnel.Base;
 using NKnife.MeterKnife.Common.DataModels;
 using NKnife.MeterKnife.Common.Tunnels.CareOne;
+using NKnife.MeterKnife.Util.Scpi;
+using NKnife.MeterKnife.Util.Tunnel.Base;
 
 namespace NKnife.MeterKnife.Common
 {

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using MeterKnife.Util.Protocol.Generic;
+using NKnife.MeterKnife.Util.Protocol.Generic;
 
-namespace MeterKnife.Util.Serial.Generic.Tools
+namespace NKnife.MeterKnife.Util.Serial.Generic.Tools
 {
     public class FirstByteCommandParser : BytesProtocolCommandParser
     {

@@ -1,4 +1,4 @@
-namespace MeterKnife.Util
+namespace NKnife.MeterKnife.Util
 {
     public enum MeterRange
     {

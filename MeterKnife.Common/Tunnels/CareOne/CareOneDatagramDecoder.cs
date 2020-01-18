@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using MeterKnife.Util.Tunnel.Generic;
+using NKnife.MeterKnife.Util.Tunnel.Generic;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Common.Tunnels.CareOne

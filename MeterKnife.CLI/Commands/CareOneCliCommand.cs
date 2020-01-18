@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Services;
-using MeterKnife.Util.Serial;
-using MeterKnife.Util.Serial.Common;
+using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.CLI.Commands
@@ -13,11 +14,18 @@ namespace NKnife.MeterKnife.CLI.Commands
     [Command("care", Description = "连接MeterCare，尝试发送数据")]
     public class CareOneCliCommand : ICommand
     {
-        private readonly ISerialPortHold _serial;
+        private readonly BaseSlotService _service;
+        private CareConfigHandler _configHandler;
+        private CareTemperatureHandler _tempHandler;
+        private ScpiProtocolHandler _protocolHandler;
 
-        public CareOneCliCommand(ISerialPortHold serial)
+        public CareOneCliCommand(BaseSlotService service, 
+            CareConfigHandler configHandler, CareTemperatureHandler tempHandler, ScpiProtocolHandler protocolHandler)
         {
-            _serial = serial;
+            _service = service;
+            _configHandler = configHandler;
+            _tempHandler = tempHandler;
+            _protocolHandler = protocolHandler;
         }
 
         [CommandOption("port", 'p', IsRequired = true)]
@@ -27,16 +35,9 @@ namespace NKnife.MeterKnife.CLI.Commands
 
         public async Task ExecuteAsync(IConsole console)
         {
-            var b = (int) SerialHelper.BaudRates[SerialHelper.BaudRates.Length - 2];
-            _serial.Initialize($"COM{Port}", new SerialConfig {BaudRate = b});
-            var bs = new List<byte>();
-            for (var i = 0; i < 1000; i++) 
-                bs.AddRange(new byte[] {0xAA, 0x55});
-
-            _serial.SendReceived(bs.ToArray(), out var recv);
-
-            if (!UtilCollection.IsNullOrEmpty(recv))
-                console.Output.WriteLine(recv.ToHexString());
+            var solt = Slot.Build(TunnelType.Serial, "3");
+            _service.Bind(solt, _configHandler, _tempHandler, _protocolHandler);
+            _service.Start(solt);
         }
 
         #endregion

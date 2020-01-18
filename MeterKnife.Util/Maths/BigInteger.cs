@@ -135,7 +135,7 @@
 
 using System;
 
-namespace MeterKnife.Util.Maths
+namespace NKnife.MeterKnife.Util.Maths
 {
     /// <summary>
     ///     一个描述超出int,long范围的“大数”的类型

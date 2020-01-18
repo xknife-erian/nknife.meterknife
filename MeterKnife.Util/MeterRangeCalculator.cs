@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util
+﻿namespace NKnife.MeterKnife.Util
 {
     /// <summary>
     /// 量程计算器

@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Protocol
+﻿namespace NKnife.MeterKnife.Util.Protocol
 {
     /// <summary>
     /// 从原生消息体中获取命令字

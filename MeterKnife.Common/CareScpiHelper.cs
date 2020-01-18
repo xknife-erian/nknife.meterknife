@@ -1,5 +1,5 @@
 ﻿using System;
-using MeterKnife.Util.Scpi;
+using NKnife.MeterKnife.Util.Scpi;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Common

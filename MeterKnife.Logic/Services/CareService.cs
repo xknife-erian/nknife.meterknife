@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using MeterKnife.Util.Protocol.Generic;
-using MeterKnife.Util.Scpi;
-using MeterKnife.Util.Serial;
-using MeterKnife.Util.Serial.Common;
-using MeterKnife.Util.Serial.Generic.Filters;
-using MeterKnife.Util.Tunnel;
-using MeterKnife.Util.Tunnel.Filters;
-using MeterKnife.Util.Tunnel.Generic;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.DataModels;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.CareOne;
+using NKnife.MeterKnife.Util.Protocol.Generic;
+using NKnife.MeterKnife.Util.Scpi;
+using NKnife.MeterKnife.Util.Serial;
+using NKnife.MeterKnife.Util.Serial.Common;
+using NKnife.MeterKnife.Util.Serial.Generic.Filters;
+using NKnife.MeterKnife.Util.Tunnel;
+using NKnife.MeterKnife.Util.Tunnel.Filters;
+using NKnife.MeterKnife.Util.Tunnel.Generic;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Logic.Services

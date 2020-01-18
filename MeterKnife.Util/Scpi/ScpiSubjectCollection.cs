@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Xml;
 
-namespace MeterKnife.Util.Scpi
+namespace NKnife.MeterKnife.Util.Scpi
 {
     /// <summary>
     ///     指令主题集合

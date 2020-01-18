@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
-using MeterKnife.Util.Protocol;
-using MeterKnife.Util.Protocol.Generic;
+using NKnife.MeterKnife.Util.Protocol;
+using NKnife.MeterKnife.Util.Protocol.Generic;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Common.Tunnels

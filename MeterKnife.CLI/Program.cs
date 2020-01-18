@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Autofac;
 using CliFx;
-using MeterKnife.Util.Serial;
 using NKnife.MeterKnife.CLI.Commands;
+using NKnife.MeterKnife.Util.Serial;
 
 namespace NKnife.MeterKnife.CLI
 {
@@ -14,6 +14,8 @@ namespace NKnife.MeterKnife.CLI
 
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyModules(typeof(Program).Assembly);
+
+            builder.RegisterType<CareOneCliCommand>().AsSelf().SingleInstance();
             builder.RegisterType<CliStartup>();
 
             var container = builder.Build();

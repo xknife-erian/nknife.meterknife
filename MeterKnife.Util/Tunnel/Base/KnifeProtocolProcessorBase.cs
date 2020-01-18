@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MeterKnife.Util.Protocol;
+using NKnife.MeterKnife.Util.Protocol;
 using NKnife.Util;
 using NLog;
 
-namespace MeterKnife.Util.Tunnel.Base
+namespace NKnife.MeterKnife.Util.Tunnel.Base
 {
 
     /// <summary>

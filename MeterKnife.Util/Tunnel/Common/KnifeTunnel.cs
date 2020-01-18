@@ -1,6 +1,6 @@
-﻿using MeterKnife.Util.Tunnel.Events;
+﻿using NKnife.MeterKnife.Util.Tunnel.Events;
 
-namespace MeterKnife.Util.Tunnel.Common
+namespace NKnife.MeterKnife.Util.Tunnel.Common
 {
     public class KnifeTunnel : ITunnel
     {

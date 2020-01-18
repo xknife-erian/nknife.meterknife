@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml;
 
-namespace MeterKnife.Util.Protocol.Generic.Xml
+namespace NKnife.MeterKnife.Util.Protocol.Generic.Xml
 {
     /// <summary>
     /// 定义协议XML节点中，根节点的节点名是协议的命令字

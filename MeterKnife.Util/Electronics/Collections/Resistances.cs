@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MeterKnife.Util.Electronics.Collections
+namespace NKnife.MeterKnife.Util.Electronics.Collections
 {
     /// <summary>电阻对象的集合。
     /// 本集合实现了排序，当新的电阻对象被添加进集合后，集合会自动按阻值大小进行排序。

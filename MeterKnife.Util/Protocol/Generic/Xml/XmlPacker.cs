@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using NKnife.Util;
 
-namespace MeterKnife.Util.Protocol.Generic.Xml
+namespace NKnife.MeterKnife.Util.Protocol.Generic.Xml
 {
     /// <summary>
     /// 描述一个将协议内容按指定的格式组装成一个指定类型(一般是字符串，但也可以是任何，如文件)

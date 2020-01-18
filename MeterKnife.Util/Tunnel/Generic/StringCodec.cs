@@ -1,5 +1,5 @@
 ﻿
-namespace MeterKnife.Util.Tunnel.Generic
+namespace NKnife.MeterKnife.Util.Tunnel.Generic
 {
     public class StringCodec : ITunnelCodec<string>
     {

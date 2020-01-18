@@ -2,9 +2,9 @@
 using System.IO;
 using System.IO.Ports;
 using System.Threading;
-using MeterKnife.Util.Serial.Common;
+using NKnife.MeterKnife.Util.Serial.Common;
 
-namespace MeterKnife.Util.Serial
+namespace NKnife.MeterKnife.Util.Serial
 {
     /// <summary>
     ///     串口操作类

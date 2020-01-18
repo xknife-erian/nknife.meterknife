@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Serial
+﻿namespace NKnife.MeterKnife.Util.Serial
 {
     /// <summary>
     /// DataBits enum.

@@ -1,7 +1,7 @@
 ﻿using System;
 using NKnife.Util;
 
-namespace MeterKnife.Util
+namespace NKnife.MeterKnife.Util
 {
     public class MeterUtil
     {

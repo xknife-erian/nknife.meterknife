@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MeterKnife.Util.Electronics.Helper
+namespace NKnife.MeterKnife.Util.Electronics.Helper
 {
     /// <summary>非标电阻值分解模式
     /// </summary>

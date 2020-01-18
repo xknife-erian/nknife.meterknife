@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using MeterKnife.Util.Scpi;
+using NKnife.MeterKnife.Util.Scpi;
 using NKnife.Util;
 using NLog;
 

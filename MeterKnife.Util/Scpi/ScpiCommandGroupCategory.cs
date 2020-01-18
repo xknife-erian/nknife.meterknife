@@ -1,4 +1,4 @@
-namespace MeterKnife.Util.Scpi
+namespace NKnife.MeterKnife.Util.Scpi
 {
     public enum ScpiCommandGroupCategory
     {

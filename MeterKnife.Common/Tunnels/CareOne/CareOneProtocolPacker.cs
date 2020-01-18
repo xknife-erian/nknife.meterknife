@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
-using MeterKnife.Util.Protocol.Generic;
+using NKnife.MeterKnife.Util.Protocol.Generic;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Common.Tunnels.CareOne

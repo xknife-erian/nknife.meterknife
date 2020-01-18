@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using MeterKnife.Util.Protocol;
-using MeterKnife.Util.Tunnel.Events;
+using NKnife.MeterKnife.Util.Protocol;
+using NKnife.MeterKnife.Util.Tunnel.Events;
 
-namespace MeterKnife.Util.Tunnel
+namespace NKnife.MeterKnife.Util.Tunnel
 {
     /// <summary>
     /// Tunnel与Protocol的交互。

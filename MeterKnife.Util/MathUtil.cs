@@ -2,7 +2,7 @@
 using System.Globalization;
 using MathNet.Numerics;
 
-namespace MeterKnife.Util
+namespace NKnife.MeterKnife.Util
 {
     public class MathUtil
     {

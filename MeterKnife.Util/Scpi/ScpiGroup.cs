@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Xml;
 
-namespace MeterKnife.Util.Scpi
+namespace NKnife.MeterKnife.Util.Scpi
 {
     /// <summary>
     ///     一组指令，将按顺序执行

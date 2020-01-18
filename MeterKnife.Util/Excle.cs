@@ -3,7 +3,7 @@ using System.Data;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
-namespace MeterKnife.Util
+namespace NKnife.MeterKnife.Util
 {
     public class Excle
     {

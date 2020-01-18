@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using MeterKnife.Util.Protocol;
-using MeterKnife.Util.Tunnel.Common;
+using NKnife.MeterKnife.Util.Protocol;
+using NKnife.MeterKnife.Util.Tunnel.Common;
 using NKnife.Util;
 
-namespace MeterKnife.Util.Tunnel.Base
+namespace NKnife.MeterKnife.Util.Tunnel.Base
 {
     public abstract class BaseProtocolFilter<T> : BaseTunnelFilter, ITunnelProtocolFilter<T>
     {

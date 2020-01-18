@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using MeterKnife.Util.Tunnel.Base;
-using MeterKnife.Util.Tunnel.Common;
-using MeterKnife.Util.Tunnel.Events;
+using NKnife.MeterKnife.Util.Tunnel.Base;
+using NKnife.MeterKnife.Util.Tunnel.Common;
+using NKnife.MeterKnife.Util.Tunnel.Events;
 using Timer = System.Timers.Timer;
 
-namespace MeterKnife.Util.Tunnel.Filters
+namespace NKnife.MeterKnife.Util.Tunnel.Filters
 {
     public class HeartbeatFilter : BaseTunnelFilter
     {

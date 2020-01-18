@@ -1,7 +1,8 @@
 ﻿using Autofac;
-using MeterKnife.Util.Serial;
-using MeterKnife.Util.Tunnel;
+using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.CareOne;
+using NKnife.MeterKnife.Util.Serial;
+using NKnife.MeterKnife.Util.Tunnel;
 
 namespace NKnife.MeterKnife.CLI.IoC
 {
@@ -20,6 +21,10 @@ namespace NKnife.MeterKnife.CLI.IoC
             base.Load(builder);
             builder.RegisterType<SerialPortHold>().As<ISerialPortHold>();
             builder.RegisterType<CareOneDatagramDecoder>().As<IDatagramDecoder<byte[]>>().SingleInstance();
+
+            builder.RegisterType<CareConfigHandler>().AsSelf().SingleInstance();
+            builder.RegisterType<CareTemperatureHandler>().AsSelf().SingleInstance();
+            builder.RegisterType<ScpiProtocolHandler>().AsSelf().SingleInstance();
         }
 
         #endregion

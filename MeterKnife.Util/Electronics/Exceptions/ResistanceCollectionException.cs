@@ -1,6 +1,6 @@
 ﻿using NKnife.Exceptions;
 
-namespace MeterKnife.Util.Electronics.Exceptions
+namespace NKnife.MeterKnife.Util.Electronics.Exceptions
 {
     public class ResistanceCollectionException : NKnifeException
     {

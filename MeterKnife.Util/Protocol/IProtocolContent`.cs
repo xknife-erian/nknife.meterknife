@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Protocol
+﻿namespace NKnife.MeterKnife.Util.Protocol
 {
     /// <summary>
     ///     一个协议的具体内容。其中：

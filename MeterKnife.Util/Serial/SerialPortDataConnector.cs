@@ -1,9 +1,9 @@
 ﻿using System;
-using MeterKnife.Util.Serial.Common;
-using MeterKnife.Util.Tunnel.Common;
-using MeterKnife.Util.Tunnel.Events;
+using NKnife.MeterKnife.Util.Serial.Common;
+using NKnife.MeterKnife.Util.Tunnel.Common;
+using NKnife.MeterKnife.Util.Tunnel.Events;
 
-namespace MeterKnife.Util.Serial
+namespace NKnife.MeterKnife.Util.Serial
 {
     public class SerialPortDataConnector : ISerialConnector
     {

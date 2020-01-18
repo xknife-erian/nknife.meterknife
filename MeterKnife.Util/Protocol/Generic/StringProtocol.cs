@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MeterKnife.Util.Protocol.Generic
+namespace NKnife.MeterKnife.Util.Protocol.Generic
 {
     /// <summary>协议的抽象实现
     /// </summary>

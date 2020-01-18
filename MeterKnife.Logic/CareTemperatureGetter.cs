@@ -14,12 +14,12 @@ namespace NKnife.MeterKnife.Logic
     {
         private readonly BaseSlotService _comm;
         private readonly Dictionary<Slot, bool> _portStartMap = new Dictionary<Slot, bool>();
-        private readonly CareTemperatureHandler _temperatureHandler;
+        private readonly CareTemperatureHandler _tempHandler;
 
-        public CareTemperatureGetter(BaseSlotService comm, CareTemperatureHandler temperatureHandler)
+        public CareTemperatureGetter(BaseSlotService comm, CareTemperatureHandler tempHandler)
         {
             _comm = comm;
-            _temperatureHandler = temperatureHandler;
+            _tempHandler = tempHandler;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace NKnife.MeterKnife.Logic
                 if (!_portStartMap.TryGetValue(slot, out _))
                     _portStartMap.Add(slot, true);
                 _portStartMap[slot] = true;
-                _comm.Bind(slot, _temperatureHandler);
+                _comm.Bind(slot, _tempHandler);
                 //初始化完成,进入采集循环
                 while (_portStartMap[slot])
                 {
@@ -56,7 +56,7 @@ namespace NKnife.MeterKnife.Logic
         public bool CloseCollect(Slot slot)
         {
             _portStartMap[slot] = false;
-            _comm.Remove(slot, _temperatureHandler);
+            _comm.Remove(slot, _tempHandler);
             return true;
         }
     }
