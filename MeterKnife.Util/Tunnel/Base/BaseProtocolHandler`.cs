@@ -8,7 +8,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
 {
     public abstract class BaseProtocolHandler<TData> : ITunnelProtocolHandler<TData>
     {
-        private static readonly NLog.ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         #region Codec
 
@@ -16,19 +16,19 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
 
         public ITunnelCodec<TData> Codec
         {
-            get { return _CodecBase; }
-            set { _CodecBase = value; }
+            get => _CodecBase;
+            set => _CodecBase = value;
         }
 
         ITunnelCodec<TData> ITunnelProtocolHandler<TData>.Codec
         {
-            get { return _CodecBase; }
-            set { _CodecBase = value; }
+            get => _CodecBase;
+            set => _CodecBase = value;
         }
 
         #endregion
 
-        protected IProtocolFamily<TData> _Family;
+        private IProtocolFamily<TData> _family;
         public abstract List<TData> Commands { get; set; }
         public abstract void Received(long sessionId, IProtocol<TData> protocol);
         public event EventHandler<SessionEventArgs> SendToSession;
@@ -37,7 +37,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
         public virtual void Bind(ITunnelCodec<TData> codec, IProtocolFamily<TData> protocolFamily)
         {
             _CodecBase = codec;
-            _Family = protocolFamily;
+            _family = protocolFamily;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
         {
             try
             {
-                TData original = _Family.Generate(protocol);
+                TData original = _family.Generate(protocol);
                 byte[] data = _CodecBase.Encoder.Execute(original);
                 EventHandler<SessionEventArgs> handler = SendToSession;
                 if (handler != null)
@@ -61,7 +61,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
             }
             catch (Exception ex)
             {
-                _logger.Warn(string.Format("发送protocol异常,{0}", ex));
+                _Logger.Warn($"发送protocol异常,{ex}");
             }
         }
 
@@ -84,7 +84,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
             }
             catch (Exception ex)
             {
-                _logger.Warn(string.Format("发送data异常,{0}", ex));
+                _Logger.Warn($"发送data异常,{ex}");
             }
         }
 
@@ -92,7 +92,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
         {
             try
             {
-                TData str = _Family.Generate(protocol);
+                TData str = _family.Generate(protocol);
                 byte[] data = _CodecBase.Encoder.Execute(str);
                 EventHandler<SessionEventArgs> handler = SendToAll;
                 if (handler != null)
@@ -103,7 +103,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
             }
             catch (Exception ex)
             {
-                _logger.Warn(string.Format("发送protocol异常,{0}", ex));
+                _Logger.Warn($"发送protocol异常,{ex}");
             }
         }
 
@@ -120,7 +120,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
             }
             catch (Exception ex)
             {
-                _logger.Warn(string.Format("发送data异常,{0}", ex));
+                _Logger.Warn($"发送data异常,{ex}");
             }
         }
     }

@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.CareOne
             return Equals((CareProtocolHandler) obj);
         }
 
-        protected bool Equals(CareProtocolHandler other)
+        private bool Equals(CareProtocolHandler other)
         {
             return _Id.Equals(other._Id);
         }

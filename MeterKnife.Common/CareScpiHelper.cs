@@ -64,14 +64,14 @@ namespace NKnife.MeterKnife.Common
         /// <summary>
         ///     查询Care的参数
         /// </summary>
-        /// <param name="subcommand">子命令</param>
-        public static ScpiCommandQueue.Item CareGetter(byte subcommand = 0xD1)
+        /// <param name="subCommand">子命令</param>
+        public static ScpiCommandQueue.Item CareGetter(byte subCommand = 0xD1)
         {
             var item = new ScpiCommandQueue.Item
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = new Tuple<byte, byte>(0xA0, subcommand)
+                Heads = new Tuple<byte, byte>(0xA0, subCommand)
             };
             return item;
         }
@@ -79,15 +79,15 @@ namespace NKnife.MeterKnife.Common
         /// <summary>
         ///     设置Care的参数
         /// </summary>
-        /// <param name="subcommand">子命令</param>
+        /// <param name="subCommand">子命令</param>
         /// <param name="content">设置的参数内容</param>
-        public static ScpiCommandQueue.Item CareSetter(byte subcommand, params byte[] content)
+        public static ScpiCommandQueue.Item CareSetter(byte subCommand, params byte[] content)
         {
             var item = new ScpiCommandQueue.Item
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = new Tuple<byte, byte>(0xB0, subcommand),
+                Heads = new Tuple<byte, byte>(0xB0, subCommand),
                 Content = content
             };
             return item;

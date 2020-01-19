@@ -5,12 +5,11 @@ namespace NKnife.MeterKnife.Util.Scpi
 {
     public class ScpiCommandQueueMap : IDictionary<string, ScpiCommandQueue.Item[]>
     {
-        protected Dictionary<string, ScpiCommandQueue.Item[]> _Itemses =
-            new Dictionary<string, ScpiCommandQueue.Item[]>();
+        private readonly Dictionary<string, ScpiCommandQueue.Item[]> _items = new Dictionary<string, ScpiCommandQueue.Item[]>();
 
         public IEnumerator<KeyValuePair<string, ScpiCommandQueue.Item[]>> GetEnumerator()
         {
-            return _Itemses.GetEnumerator();
+            return _items.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -20,73 +19,61 @@ namespace NKnife.MeterKnife.Util.Scpi
 
         public void Add(KeyValuePair<string, ScpiCommandQueue.Item[]> item)
         {
-            ((IDictionary<string, ScpiCommandQueue.Item[]>) _Itemses).Add(item);
+            ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Add(item);
         }
 
         public void Clear()
         {
-            _Itemses.Clear();
+            _items.Clear();
         }
 
         public bool Contains(KeyValuePair<string, ScpiCommandQueue.Item[]> item)
         {
-            return ((IDictionary<string, ScpiCommandQueue.Item[]>) _Itemses).Contains(item);
+            return ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Contains(item);
         }
 
         public void CopyTo(KeyValuePair<string, ScpiCommandQueue.Item[]>[] array, int arrayIndex)
         {
-            ((IDictionary<string, ScpiCommandQueue.Item[]>) _Itemses).CopyTo(array, arrayIndex);
+            ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).CopyTo(array, arrayIndex);
         }
 
         public bool Remove(KeyValuePair<string, ScpiCommandQueue.Item[]> item)
         {
-            return ((IDictionary<string, ScpiCommandQueue.Item[]>) _Itemses).Remove(item);
+            return ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Remove(item);
         }
 
-        public int Count
-        {
-            get { return _Itemses.Count; }
-        }
+        public int Count => _items.Count;
 
-        public bool IsReadOnly
-        {
-            get { return ((IDictionary<string, ScpiCommandQueue.Item[]>) _Itemses).IsReadOnly; }
-        }
+        public bool IsReadOnly => ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).IsReadOnly;
 
         public bool ContainsKey(string key)
         {
-            return _Itemses.ContainsKey(key);
+            return _items.ContainsKey(key);
         }
 
         public void Add(string key, ScpiCommandQueue.Item[] value)
         {
-            ((IDictionary<string, ScpiCommandQueue.Item[]>) _Itemses).Add(key, value);
+            ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Add(key, value);
         }
 
         public bool Remove(string key)
         {
-            return _Itemses.Remove(key);
+            return _items.Remove(key);
         }
 
         public bool TryGetValue(string key, out ScpiCommandQueue.Item[] value)
         {
-            return _Itemses.TryGetValue(key, out value);
+            return _items.TryGetValue(key, out value);
         }
 
         public ScpiCommandQueue.Item[] this[string key]
         {
-            get { return _Itemses[key]; }
-            set { _Itemses[key] = value; }
+            get => _items[key];
+            set => _items[key] = value;
         }
 
-        public ICollection<string> Keys
-        {
-            get { return ((IDictionary<string, ScpiCommandQueue.Item[]>) _Itemses).Keys; }
-        }
+        public ICollection<string> Keys => ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Keys;
 
-        public ICollection<ScpiCommandQueue.Item[]> Values
-        {
-            get { return ((IDictionary<string, ScpiCommandQueue.Item[]>) _Itemses).Values; }
-        }
+        public ICollection<ScpiCommandQueue.Item[]> Values => ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Values;
     }
 }

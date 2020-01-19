@@ -22,7 +22,7 @@ namespace NKnife.MeterKnife.Common
         void UpdateCollectState(Slot carePort, int address, bool isCollected, string scpiGroupKey);
 
         /// <summary>
-        /// 当应用程序的采集状态发生改变时
+        /// 当采集状态完成时发生
         /// </summary>
         event EventHandler<CollectedEventArgs> Collected;
     }
