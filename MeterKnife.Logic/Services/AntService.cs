@@ -23,27 +23,29 @@ using NLog;
 namespace NKnife.MeterKnife.Logic.Services
 {
     /// <summary>
-    ///     面向MeterCare一代硬件各个版本的服务
+    ///     软件整体的硬件插槽的管理服务器
     /// </summary>
-    public class CareService : ISlotService
+    public class AntService : ISlotService
     {
         private const string FAMILY_NAME = "careone";
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
+
+        private readonly IGlobal _global;
+        private readonly ITunnel _tunnel;
+        private readonly IDataConnector _dataConnector;
+
+        private readonly BytesProtocolFamily _family;
         private readonly BytesCodec _codec;
 
         private readonly Dictionary<Slot, IDataConnector> _connectors = new Dictionary<Slot, IDataConnector>();
-        private readonly IDataConnector _dataConnector;
-        private readonly BytesProtocolFamily _family;
         private readonly Dictionary<Slot, BytesProtocolFilter> _filters = new Dictionary<Slot, BytesProtocolFilter>();
 
-        private readonly IGlobal _global;
         private readonly Dictionary<Slot, bool> _isTaskContinue = new Dictionary<Slot, bool>();
-        private readonly CommPortCommandMap _loopCommandMap = new CommPortCommandMap();
+        private readonly SlotCommandMap _loopCommandMap = new SlotCommandMap();
         private readonly Dictionary<Slot, ScpiCommandQueue> _queues = new Dictionary<Slot, ScpiCommandQueue>();
         private readonly List<Slot> _slotList = new List<Slot>();
-        private readonly ITunnel _tunnel;
 
-        public CareService(IGlobal global, ITunnel tunnel,
+        public AntService(IGlobal global, ITunnel tunnel,
             BytesCodec codec, BytesProtocolFamily family, IDataConnector dataConnector)
         {
             _global = global;
@@ -200,7 +202,8 @@ namespace NKnife.MeterKnife.Logic.Services
 
         private void EnqueueCommand(Slot slot, params ScpiCommandQueue.Item[] careItems)
         {
-            foreach (var careItem in careItems) _queues[slot].Enqueue(careItem);
+            foreach (var careItem in careItems)
+                _queues[slot].Enqueue(careItem);
         }
 
         protected virtual void StartQueueTask(Slot slot, IDataConnector dataConnector, ScpiCommandQueue queue)

@@ -11,7 +11,7 @@ namespace NKnife.MeterKnife.Logic.IoC
             builder.RegisterType<Logic.Global>().As<IGlobal>().SingleInstance();
             builder.RegisterType<PerformStorageLogic>().As<IPerformStorageLogic>().SingleInstance();
 
-            builder.RegisterType<CareService>().As<ISlotService>();
+            builder.RegisterType<AntService>().As<ISlotService>();
             builder.RegisterType<CareTemperatureGetter>().As<ITemperatureGetter>().SingleInstance();
         }
     }
