@@ -2,9 +2,9 @@
 
 namespace NKnife.MeterKnife.Common.Tunnels.CareOne
 {
-    public class CareOneCodec : BytesCodec
+    public class CareCodec : BytesCodec
     {
-        public CareOneCodec(BytesDatagramDecoder decoder, BytesDatagramEncoder encoder)
+        public CareCodec(BytesDatagramDecoder decoder, BytesDatagramEncoder encoder)
             : base(decoder, encoder)
         {
         }

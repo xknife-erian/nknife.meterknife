@@ -8,10 +8,11 @@ namespace NKnife.MeterKnife.Util.Serial
     public class SerialPortDataConnector : ISerialConnector
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly ISerialPortHold _serial = new SerialPortHold();
+        private readonly ISerialPortHold _serial;
 
-        public SerialPortDataConnector()
+        public SerialPortDataConnector(ISerialPortHold serial)
         {
+            _serial = serial;
             IsInitialized = false;
         }
 

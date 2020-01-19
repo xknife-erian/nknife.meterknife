@@ -17,7 +17,6 @@ namespace NKnife.MeterKnife.Util.Protocol.Generic
             Command = command;
         }
 
-
         #region IProtocol Members
 
         /// <summary>协议族名称

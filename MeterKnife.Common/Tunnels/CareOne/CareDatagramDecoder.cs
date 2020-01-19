@@ -9,7 +9,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.CareOne
     /// 基于CareOne的协议规则的解码器。
     /// 实现将接收到的字节数组进行分解成单条协议数据的能力。
     /// </summary>
-    public class CareOneDatagramDecoder : BytesDatagramDecoder
+    public class CareDatagramDecoder : BytesDatagramDecoder
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 

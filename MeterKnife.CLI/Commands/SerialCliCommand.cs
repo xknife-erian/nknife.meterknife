@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CliFx;
 using CliFx.Attributes;
 using CliFx.Services;
 using NKnife.MeterKnife.Util.Serial;
@@ -11,7 +10,7 @@ using NKnife.Util;
 namespace NKnife.MeterKnife.CLI.Commands
 {
     [Command("serial", Description = "连接串口，并尝试发送数据以检查连接性。")]
-    public class SerialCliCommand : ICommand
+    public class SerialCliCommand : BaseCommand
     {
         private readonly ISerialPortHold _serialPort;
 
@@ -20,12 +19,9 @@ namespace NKnife.MeterKnife.CLI.Commands
             _serialPort = serialPort;
         }
 
-        [CommandOption("port", 'p', IsRequired = true, Description = "串口的数字编号")]
-        public ushort Port { get; set; }
-
         #region Implementation of ICommand
 
-        public async Task ExecuteAsync(IConsole console)
+        public override async Task ExecuteAsync(IConsole console)
         {
             _serialPort.Initialize($"COM{Port}", new SerialConfig {BaudRate = 512000});
             var bs = new List<byte>();

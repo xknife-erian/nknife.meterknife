@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,32 +14,34 @@ using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.MeterKnife.Util.Serial.Generic.Filters;
 using NKnife.MeterKnife.Util.Tunnel;
+using NKnife.MeterKnife.Util.Tunnel.Base;
 using NKnife.MeterKnife.Util.Tunnel.Filters;
 using NKnife.MeterKnife.Util.Tunnel.Generic;
 using NKnife.Util;
+using NLog;
 
 namespace NKnife.MeterKnife.Logic.Services
 {
     /// <summary>
-    /// 面向MeterCare一代硬件各个版本的服务
+    ///     面向MeterCare一代硬件各个版本的服务
     /// </summary>
-    public class CareService : BaseSlotService
+    public class CareService : ISlotService
     {
         private const string FAMILY_NAME = "careone";
-        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly List<Slot> _slotList = new List<Slot>();
-
-        private readonly IGlobal _global;
-        private readonly ITunnel _tunnel;
-        private readonly IDataConnector _dataConnector;
+        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
         private readonly BytesCodec _codec;
-        private readonly BytesProtocolFamily _family;
 
         private readonly Dictionary<Slot, IDataConnector> _connectors = new Dictionary<Slot, IDataConnector>();
+        private readonly IDataConnector _dataConnector;
+        private readonly BytesProtocolFamily _family;
         private readonly Dictionary<Slot, BytesProtocolFilter> _filters = new Dictionary<Slot, BytesProtocolFilter>();
+
+        private readonly IGlobal _global;
         private readonly Dictionary<Slot, bool> _isTaskContinue = new Dictionary<Slot, bool>();
         private readonly CommPortCommandMap _loopCommandMap = new CommPortCommandMap();
         private readonly Dictionary<Slot, ScpiCommandQueue> _queues = new Dictionary<Slot, ScpiCommandQueue>();
+        private readonly List<Slot> _slotList = new List<Slot>();
+        private readonly ITunnel _tunnel;
 
         public CareService(IGlobal global, ITunnel tunnel,
             BytesCodec codec, BytesProtocolFamily family, IDataConnector dataConnector)
@@ -55,9 +58,32 @@ namespace NKnife.MeterKnife.Logic.Services
         {
             _global.Collected += (s, e) =>
             {
-                if (!e.IsCollected && _loopCommandMap.ContainsKey(e.CarePort)) 
+                if (!e.IsCollected && _loopCommandMap.ContainsKey(e.CarePort))
                     _loopCommandMap.Remove(e.CarePort, e.ScpiGroupKey);
             };
+        }
+
+        #region ISlotService
+
+        /// <summary>
+        ///     绑定一个指定端口的通讯服务
+        /// </summary>
+        /// <param name="slot">指定的Care端口</param>
+        /// <param name="handlers">协议处理的handler</param>
+        void ISlotService.Bind(Slot slot, params BaseProtocolHandler<byte[]>[] handlers)
+        {
+            Bind(slot, handlers.Cast<CareProtocolHandler>().ToArray());
+        }
+
+        /// <summary>
+        /// 移除指定插槽的一个处理器
+        /// </summary>
+        /// <param name="slot">指定的插槽</param>
+        /// <param name="handler">处理器</param>
+        public void Remove(Slot slot, BaseProtocolHandler<byte[]> handler)
+        {
+            if (_filters.TryGetValue(slot, out var filter))
+                filter.RemoveHandler(handler);
         }
 
         /// <summary>
@@ -65,7 +91,7 @@ namespace NKnife.MeterKnife.Logic.Services
         /// </summary>
         /// <param name="slot">指定的端口</param>
         /// <param name="handlers">协议处理的handler</param>
-        public override void Bind(Slot slot, params CareOneProtocolHandler[] handlers)
+        protected virtual void Bind(Slot slot, params CareProtocolHandler[] handlers)
         {
             if (!_filters.TryGetValue(slot, out var filter))
             {
@@ -109,10 +135,8 @@ namespace NKnife.MeterKnife.Logic.Services
                 filter = _filters[slot];
             }
 
-            foreach (var handler in handlers)
-            {
+            foreach (var handler in handlers) 
                 filter?.AddHandlers(handler);
-            }
         }
 
         protected virtual void BuildConnector(Slot slot, BytesProtocolFilter filter)
@@ -145,14 +169,25 @@ namespace NKnife.MeterKnife.Logic.Services
             _Logger.Info($"PortList:{_slotList.Count},Filters:{_filters.Count},Connectors:{_connectors.Count}");
         }
 
-        public override void SendCommands(Slot slot, params ScpiCommandQueue.Item[] careItems)
+        /// <summary>
+        ///     向指定端口发送Scpi命令组
+        /// </summary>
+        /// <param name="slot">指定端口</param>
+        /// <param name="careItems">即将发送的命令组</param>
+        public void SendCommands(Slot slot, params ScpiCommandQueue.Item[] careItems)
         {
             if (UtilCollection.IsNullOrEmpty(careItems))
                 return;
             Task.Factory.StartNew(() => EnqueueCommand(slot, careItems));
         }
 
-        public override void SendLoopCommands(Slot slot, string commandArrayKey, params ScpiCommandQueue.Item[] careItems)
+        /// <summary>
+        ///     向指定端口发送将要循环使用的Scpi命令组
+        /// </summary>
+        /// <param name="slot">指定端口</param>
+        /// <param name="commandArrayKey">命令组的Key</param>
+        /// <param name="careItems">即将发送的命令组</param>
+        public void SendLoopCommands(Slot slot, string commandArrayKey, params ScpiCommandQueue.Item[] careItems)
         {
             if (UtilCollection.IsNullOrEmpty(careItems))
                 return;
@@ -183,17 +218,15 @@ namespace NKnife.MeterKnife.Logic.Services
                             try
                             {
                                 foreach (var key in keys)
-                                {
                                     //一个端口可能有多个指令组，一般是多台仪器（每仪器有一个GPIB地址）
                                     //每仪器对应一个指令组
                                     //一个指令组下的多条指令，指令的延迟在SendCommand函数中发生
                                     if (_loopCommandMap.ContainsKey(slot, key))
                                     {
                                         var items = _loopCommandMap[slot, key];
-                                        foreach (var careItem in items) 
+                                        foreach (var careItem in items)
                                             SendCommand(dataConnector, careItem);
                                     }
-                                }
                             }
                             catch (Exception e)
                             {
@@ -215,6 +248,7 @@ namespace NKnife.MeterKnife.Logic.Services
                         continue;
                     SendCommand(dataConnector, cmd);
                 }
+
                 _Logger.Debug($"退出{slot}命令队列循环");
             });
         }
@@ -246,32 +280,12 @@ namespace NKnife.MeterKnife.Logic.Services
 
         #region Remove,Destroy,Start,Stop
 
-        public override void Remove(Slot tunnelPort, CareOneProtocolHandler handler)
-        {
-            if (_filters.TryGetValue(tunnelPort, out var filter))
-                filter.RemoveHandler(handler);
-        }
-
         /// <summary>
-        ///     销毁服务中的所有对象
+        ///     启动指定端口的串口服务
         /// </summary>
-        public override void Destroy()
-        {
-            foreach (var port in _slotList)
-            {
-                if (_connectors.TryGetValue(port, out var connector))
-                {
-                    connector.Stop();
-                    _connectors.Remove(port);
-                    _filters.Remove(port);
-                    _queues.Remove(port);
-                }
-            }
-
-            _slotList.Clear();
-        }
-
-        public override bool Start(Slot slot)
+        /// <param name="slot">指定端口</param>
+        /// <returns>启动是否成功</returns>
+        public bool Start(Slot slot)
         {
             if (_connectors.TryGetValue(slot, out var dataConnector))
                 try
@@ -282,14 +296,19 @@ namespace NKnife.MeterKnife.Logic.Services
                 }
                 catch (Exception e)
                 {
-                    _Logger.Error(message: $"Tunnel服务失败:{e}");
+                    _Logger.Error($"Tunnel服务失败:{e}");
                     return false;
                 }
 
             return false;
         }
 
-        public override bool Stop(Slot slot)
+        /// <summary>
+        ///     停止批定端口的串口服务
+        /// </summary>
+        /// <param name="slot">指定端口</param>
+        /// <returns>停止是否成功</returns>
+        public bool Stop(Slot slot)
         {
             _isTaskContinue[slot] = false;
             Thread.Sleep(200);
@@ -301,6 +320,26 @@ namespace NKnife.MeterKnife.Logic.Services
 
             return true;
         }
+
+        
+        /// <summary>
+        ///     销毁服务中的所有对象
+        /// </summary>
+        public void Destroy()
+        {
+            foreach (var port in _slotList)
+                if (_connectors.TryGetValue(port, out var connector))
+                {
+                    connector.Stop();
+                    _connectors.Remove(port);
+                    _filters.Remove(port);
+                    _queues.Remove(port);
+                }
+
+            _slotList.Clear();
+        }
+
+        #endregion
 
         #endregion
     }

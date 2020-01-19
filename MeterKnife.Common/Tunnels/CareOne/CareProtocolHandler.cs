@@ -5,11 +5,11 @@ using NKnife.MeterKnife.Util.Tunnel.Base;
 
 namespace NKnife.MeterKnife.Common.Tunnels.CareOne
 {
-    public abstract class CareOneProtocolHandler : BaseProtocolHandler<byte[]>
+    public abstract class CareProtocolHandler : BaseProtocolHandler<byte[]>
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        protected CareOneProtocolHandler()
+        protected CareProtocolHandler()
         {
             _Id = Guid.NewGuid();
             Commands = new List<byte[]>();
@@ -35,12 +35,12 @@ namespace NKnife.MeterKnife.Common.Tunnels.CareOne
         {
             if (obj == null) 
                 return false;
-            if (!(obj is CareOneProtocolHandler))
+            if (!(obj is CareProtocolHandler))
                 return false;
-            return Equals((CareOneProtocolHandler) obj);
+            return Equals((CareProtocolHandler) obj);
         }
 
-        protected bool Equals(CareOneProtocolHandler other)
+        protected bool Equals(CareProtocolHandler other)
         {
             return _Id.Equals(other._Id);
         }

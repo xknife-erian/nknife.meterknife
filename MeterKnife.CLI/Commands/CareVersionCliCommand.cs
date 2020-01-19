@@ -5,23 +5,28 @@ using System.Threading.Tasks;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Services;
+using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Tunnels;
 
 namespace NKnife.MeterKnife.CLI.Commands
 {
     [Command("cv", Description = "连接Care，读取Care版本。")]
-    public class CareVersionCliCommand : ICommand
+    public class CareVersionCliCommand : BaseCommand
     {
-        #region Implementation of ICommand
+        private readonly ISlotService _slotService;
+        private readonly ScpiProtocolHandler _handler;
 
-        /// <summary>
-        /// Executes command using specified implementation of <see cref="T:CliFx.Services.IConsole" />.
-        /// This method is called when the command is invoked by a user through command line interface.
-        /// </summary>
-        public async Task ExecuteAsync(IConsole console)
+        public CareVersionCliCommand(ISlotService slotService, ScpiProtocolHandler handler)
         {
-            throw new NotImplementedException();
+            _slotService = slotService;
+            _handler = handler;
         }
 
-        #endregion
+        public override async Task ExecuteAsync(IConsole console)
+        {
+            var slot = Slot.Build(TunnelType.Serial, $"{Port}");
+            _slotService.Bind(slot, _handler);
+        }
     }
 }

@@ -2,7 +2,7 @@
   "profiles": {
     "MeterKnife.CLI": {
       "commandName": "Project",
-      "commandLineArgs": "serial -p 3"
+      "commandLineArgs": "cv -p 3"
     }
   }
 }

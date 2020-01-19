@@ -4,7 +4,7 @@ using NKnife.MeterKnife.Common.Tunnels.CareOne;
 
 namespace NKnife.MeterKnife.Common.Tunnels
 {
-    public class CareConfigHandler : CareOneProtocolHandler
+    public class CareConfigHandler : CareProtocolHandler
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
 

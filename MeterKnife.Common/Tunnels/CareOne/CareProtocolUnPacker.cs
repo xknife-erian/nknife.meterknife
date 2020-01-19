@@ -10,7 +10,7 @@ using NKnife.Util;
 
 namespace NKnife.MeterKnife.Common.Tunnels.CareOne
 {
-    public class CareOneProtocolUnPacker : BytesProtocolUnPacker
+    public class CareProtocolUnPacker : BytesProtocolUnPacker
     {
         /// <summary>
         /// 科学计数法正则

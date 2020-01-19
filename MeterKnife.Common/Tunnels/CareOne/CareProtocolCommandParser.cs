@@ -2,7 +2,7 @@
 
 namespace NKnife.MeterKnife.Common.Tunnels.CareOne
 {
-    public class CareOneProtocolCommandParser : BytesProtocolCommandParser
+    public class CareProtocolCommandParser : BytesProtocolCommandParser
     {
         public override byte[] GetCommand(byte[] datagram)
         {

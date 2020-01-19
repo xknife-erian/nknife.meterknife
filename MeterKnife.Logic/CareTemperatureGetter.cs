@@ -12,11 +12,11 @@ namespace NKnife.MeterKnife.Logic
     /// </summary>
     public class CareTemperatureGetter : ITemperatureGetter
     {
-        private readonly BaseSlotService _comm;
+        private readonly ISlotService _comm;
         private readonly Dictionary<Slot, bool> _portStartMap = new Dictionary<Slot, bool>();
         private readonly CareTemperatureHandler _tempHandler;
 
-        public CareTemperatureGetter(BaseSlotService comm, CareTemperatureHandler tempHandler)
+        public CareTemperatureGetter(ISlotService comm, CareTemperatureHandler tempHandler)
         {
             _comm = comm;
             _tempHandler = tempHandler;

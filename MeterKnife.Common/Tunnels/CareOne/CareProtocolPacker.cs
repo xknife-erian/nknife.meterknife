@@ -6,7 +6,7 @@ using NKnife.Util;
 
 namespace NKnife.MeterKnife.Common.Tunnels.CareOne
 {
-    public class CareOneProtocolPacker : BytesProtocolPacker
+    public class CareProtocolPacker : BytesProtocolPacker
     {
         public override byte[] Combine(BytesProtocol content)
         {

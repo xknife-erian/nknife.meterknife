@@ -1,4 +1,5 @@
 ﻿using NKnife.MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Util.Scpi;
 using NKnife.MeterKnife.Util.Tunnel.Base;
 
@@ -7,14 +8,21 @@ namespace NKnife.MeterKnife.Common
     /// <summary>
     ///     为应用程序提供管道服务
     /// </summary>
-    public interface ITunnelService<T>
+    public interface ISlotService
     {
         /// <summary>
         ///     绑定一个指定端口的通讯服务
         /// </summary>
         /// <param name="slot">指定的Care端口</param>
         /// <param name="handlers">协议处理的handler</param>
-        void Bind(Slot slot, params BaseProtocolHandler<T>[] handlers);
+        void Bind(Slot slot, params BaseProtocolHandler<byte[]>[] handlers);
+
+        /// <summary>
+        /// 移除指定插槽的一个处理器
+        /// </summary>
+        /// <param name="slot">指定的插槽</param>
+        /// <param name="handler">处理器</param>
+        void Remove(Slot slot, BaseProtocolHandler<byte[]> handler);
 
         /// <summary>
         ///     销毁服务
@@ -49,5 +57,6 @@ namespace NKnife.MeterKnife.Common
         /// <param name="commandArrayKey">命令组的Key</param>
         /// <param name="careItems">即将发送的命令组</param>
         void SendLoopCommands(Slot carePort, string commandArrayKey, params ScpiCommandQueue.Item[] careItems);
+
     }
 }

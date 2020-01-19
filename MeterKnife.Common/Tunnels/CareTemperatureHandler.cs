@@ -3,7 +3,7 @@ using NKnife.MeterKnife.Common.Tunnels.CareOne;
 
 namespace NKnife.MeterKnife.Common.Tunnels
 {
-    public class CareTemperatureHandler : CareOneProtocolHandler
+    public class CareTemperatureHandler : CareProtocolHandler
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly IPerformStorageLogic _TempStorage;
