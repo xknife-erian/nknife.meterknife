@@ -13,10 +13,13 @@ namespace NKnife.MeterKnife.CLI
             SerialHelper.RefreshSerialPorts();
 
             var builder = new ContainerBuilder();
-            builder.RegisterAssemblyModules(typeof(Program).Assembly);
+            builder.RegisterAssemblyModules(typeof(Logic.Global).Assembly);
 
-            builder.RegisterType<CareOneCliCommand>().AsSelf().SingleInstance();
-            builder.RegisterType<CliStartup>();
+            builder.RegisterType<SerialCliCommand>().Named<ICommand>("serial").SingleInstance();
+            builder.RegisterType<CareConfigCliCommand>().Named<ICommand>("cc").SingleInstance();
+            builder.RegisterType<CareVersionCliCommand>().Named<ICommand>("cv").SingleInstance();
+            
+            builder.RegisterType<CliStartup>().AsSelf().SingleInstance();
 
             var container = builder.Build();
             var startup = container.Resolve<CliStartup>();
@@ -24,7 +27,7 @@ namespace NKnife.MeterKnife.CLI
 
             await new CliApplicationBuilder()
                 .AddCommandsFromThisAssembly()
-                .UseCommandFactory(schema => container.Resolve<CareOneCliCommand>() as ICommand)
+                .UseCommandFactory(schema => container.ResolveNamed<ICommand>(schema.Name))
                 .Build()
                 .RunAsync(args);
         }

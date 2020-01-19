@@ -1,11 +1,10 @@
 ﻿using Autofac;
 using NKnife.MeterKnife.Common;
-using NKnife.MeterKnife.Logic;
 using NKnife.MeterKnife.Logic.Services;
 
-namespace NKnife.MeterKnife.CLI.IoC
+namespace NKnife.MeterKnife.Logic.IoC
 {
-    public class LogicModules : Module
+    public class InsideModules : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

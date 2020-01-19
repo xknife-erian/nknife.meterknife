@@ -10,18 +10,21 @@ namespace NKnife.MeterKnife.Util.Serial
         static SerialHelper()
         {
             var list = new List<int>();
-            var n = 600;
+            var n = 300;
             for (var i = 1; i <= 10; i++)
             {
                 n = n + n;
                 list.Add(n);
             }
 
+            list.Add(28800);
             list.Add(57600);
-            list.Add(128000);
-            list.Add(256000);
-            for (var i = 1; i < 8; i = i + 2) 
+            for (var i = 1; i <= 4; i++)
                 list.Add(115200 * i);
+            for (var i = 1; i <= 5; i++)
+                list.Add(128000 * i);
+            list.Add(115200 * 10);
+            list.Add(1500 * 1000);
             list.Sort();
             DefaultBaudRate = (ushort) list.IndexOf(9600);
             BaudRates = new object[list.Count];

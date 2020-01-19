@@ -20,27 +20,25 @@ using NKnife.Util;
 namespace NKnife.MeterKnife.Logic.Services
 {
     /// <summary>
-    /// 面向MeterCare一代持续各个版本的服务
+    /// 面向MeterCare一代硬件各个版本的服务
     /// </summary>
     public class CareService : BaseSlotService
     {
         private const string FAMILY_NAME = "careone";
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly List<Slot> _carePortList = new List<Slot>();
+        private readonly List<Slot> _slotList = new List<Slot>();
 
+        private readonly IGlobal _global;
+        private readonly ITunnel _tunnel;
+        private readonly IDataConnector _dataConnector;
         private readonly BytesCodec _codec;
-        private readonly Dictionary<Slot, IDataConnector> _connectors = new Dictionary<Slot, IDataConnector>();
-        private readonly IDataConnector _dataConnector; // = DI.Get<IDataConnector>(slot.TunnelType.ToString());
         private readonly BytesProtocolFamily _family;
 
-        private readonly Dictionary<Slot, BytesProtocolFilter> _filters =
-            new Dictionary<Slot, BytesProtocolFilter>();
-
+        private readonly Dictionary<Slot, IDataConnector> _connectors = new Dictionary<Slot, IDataConnector>();
+        private readonly Dictionary<Slot, BytesProtocolFilter> _filters = new Dictionary<Slot, BytesProtocolFilter>();
         private readonly Dictionary<Slot, bool> _isTaskContinue = new Dictionary<Slot, bool>();
-        private readonly IGlobal _global;
         private readonly CommPortCommandMap _loopCommandMap = new CommPortCommandMap();
         private readonly Dictionary<Slot, ScpiCommandQueue> _queues = new Dictionary<Slot, ScpiCommandQueue>();
-        private readonly ITunnel _tunnel;
 
         public CareService(IGlobal global, ITunnel tunnel,
             BytesCodec codec, BytesProtocolFamily family, IDataConnector dataConnector)
@@ -55,8 +53,6 @@ namespace NKnife.MeterKnife.Logic.Services
 
         private void Initialize()
         {
-            var careService = new CareFinder();
-            careService.SerialFinder(this);
             _global.Collected += (s, e) =>
             {
                 if (!e.IsCollected && _loopCommandMap.ContainsKey(e.CarePort)) 
@@ -96,14 +92,14 @@ namespace NKnife.MeterKnife.Logic.Services
                         BuildConnector(slot, new SerialProtocolFilter());
                         if (_connectors[slot] is ISerialConnector dataConnector)
                         {
-                            var serialport = slot.GetSerialPortInfo();
+                            var portInfo = slot.GetSerialPortInfo();
                             dataConnector.SerialConfig = new SerialConfig
                             {
-                                BaudRate = serialport[1],
+                                BaudRate = portInfo[1],
                                 ReadBufferSize = 258,
                                 ReadTimeout = 100 * 10
                             };
-                            dataConnector.PortNumber = serialport[0]; //串口
+                            dataConnector.PortNumber = portInfo[0]; //串口
                         }
 
                         break;
@@ -121,11 +117,11 @@ namespace NKnife.MeterKnife.Logic.Services
 
         protected virtual void BuildConnector(Slot slot, BytesProtocolFilter filter)
         {
-            if (_carePortList.Contains(slot))
+            if (_slotList.Contains(slot))
                 return;
-            _carePortList.Add(slot);
+            _slotList.Add(slot);
             var sb = new StringBuilder("PortList:");
-            foreach (var port in _carePortList)
+            foreach (var port in _slotList)
                 sb.Append(port).Append(';');
             _Logger.Info(sb);
 
@@ -146,7 +142,7 @@ namespace NKnife.MeterKnife.Logic.Services
             StartQueueTask(slot, _dataConnector, queue);
 
             _tunnel.BindDataConnector(_dataConnector); //dataConnector是数据流动的动力
-            _Logger.Info($"PortList:{_carePortList.Count},Filters:{_filters.Count},Connectors:{_connectors.Count}");
+            _Logger.Info($"PortList:{_slotList.Count},Filters:{_filters.Count},Connectors:{_connectors.Count}");
         }
 
         public override void SendCommands(Slot slot, params ScpiCommandQueue.Item[] careItems)
@@ -219,7 +215,6 @@ namespace NKnife.MeterKnife.Logic.Services
                         continue;
                     SendCommand(dataConnector, cmd);
                 }
-
                 _Logger.Debug($"退出{slot}命令队列循环");
             });
         }
@@ -262,7 +257,7 @@ namespace NKnife.MeterKnife.Logic.Services
         /// </summary>
         public override void Destroy()
         {
-            foreach (var port in _carePortList)
+            foreach (var port in _slotList)
             {
                 if (_connectors.TryGetValue(port, out var connector))
                 {
@@ -273,7 +268,7 @@ namespace NKnife.MeterKnife.Logic.Services
                 }
             }
 
-            _carePortList.Clear();
+            _slotList.Clear();
         }
 
         public override bool Start(Slot slot)

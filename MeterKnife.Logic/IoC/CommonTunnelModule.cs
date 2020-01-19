@@ -4,7 +4,7 @@ using NKnife.MeterKnife.Common.Tunnels.CareOne;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Tunnel;
 
-namespace NKnife.MeterKnife.CLI.IoC
+namespace NKnife.MeterKnife.Logic.IoC
 {
     public class CommonTunnelModule : Module
     {
@@ -19,6 +19,7 @@ namespace NKnife.MeterKnife.CLI.IoC
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
+            builder.RegisterType<CareTunnel>().As<ITunnel>();
             builder.RegisterType<SerialPortHold>().As<ISerialPortHold>();
             builder.RegisterType<CareOneDatagramDecoder>().As<IDatagramDecoder<byte[]>>().SingleInstance();
 
