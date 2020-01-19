@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Autofac;
 using CliFx;
 using NKnife.MeterKnife.CLI.Commands;
@@ -30,6 +31,8 @@ namespace NKnife.MeterKnife.CLI
                 .UseCommandFactory(schema => container.ResolveNamed<ICommand>(schema.Name))
                 .Build()
                 .RunAsync(args);
+
+            Console.ReadLine();
         }
     }
 }

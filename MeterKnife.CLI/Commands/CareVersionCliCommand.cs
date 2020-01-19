@@ -36,8 +36,8 @@ namespace NKnife.MeterKnife.CLI.Commands
             var cmdPair = GetLoopCommands();
             var slot = Slot.Build(TunnelType.Serial, $"{Port}");
             _slotService.Bind(slot, _connector, _handler, _tempHandler);
-            _slotService.Start(slot);
             _slotService.SendLoopCommands(slot, cmdPair.Key, cmdPair.Value);
+            _slotService.Start(slot);
         }
 
         private KeyValuePair<string, ScpiCommandQueue.Item[]> GetLoopCommands()
@@ -47,14 +47,15 @@ namespace NKnife.MeterKnife.CLI.Commands
 
         private ScpiCommandQueue.Item[] GetCommands()
         {
-            var item = new ScpiCommandQueue.Item();
-            item.Content = new byte[] {0xf0, 0xf1, 0xf2};
-            item.GpibAddress = 23;
-            item.Heads = new Tuple<byte, byte>(0x10, 0x20);
-            item.Interval = 50;
-            item.IsCare = true;
-            item.ScpiCommand = new ScpiCommand();
-            item.ScpiCommand.Command = "READ?";
+            var item = new ScpiCommandQueue.Item
+            {
+                Content = new byte[] {0xf0, 0xf1, 0xf2},
+                GpibAddress = 23,
+                Heads = new Tuple<byte, byte>(0x10, 0x20),
+                Interval = 500,
+                IsCare = true,
+                ScpiCommand = new ScpiCommand {Command = "READ?"}
+            };
             return new[] {item};
         }
     }

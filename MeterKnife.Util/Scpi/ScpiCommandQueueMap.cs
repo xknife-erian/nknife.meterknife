@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace NKnife.MeterKnife.Util.Scpi
 {
+    /// <summary>
+    /// 仪器命令队列的字典。Key是队列名，Value是命令封装的数组。
+    /// </summary>
     public class ScpiCommandQueueMap : IDictionary<string, ScpiCommandQueue.Item[]>
     {
         private readonly Dictionary<string, ScpiCommandQueue.Item[]> _items = new Dictionary<string, ScpiCommandQueue.Item[]>();

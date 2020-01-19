@@ -29,25 +29,20 @@ namespace NKnife.MeterKnife.Logic.Services
     {
         private const string FAMILY_NAME = "care";
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
+
+        private readonly IGlobal _global;
+        private readonly ITunnel _tunnel;
         private readonly BytesCodec _codec;
         private readonly BytesProtocolFamily _family;
 
-        private readonly SlotCommandMap _loopCommandMap = new SlotCommandMap();
-
         private readonly Dictionary<Slot, SlotBox> _boxMap = new Dictionary<Slot, SlotBox>(1);
-
-        private readonly ITunnel _tunnel;
 
         public AntService(IGlobal global, ITunnel tunnel, BytesCodec codec, BytesProtocolFamily family)
         {
+            _global = global;
             _codec = codec;
             _family = family;
             _tunnel = tunnel;
-            global.Collected += (s, e) =>
-            {
-                if (!e.IsCollected && _loopCommandMap.ContainsKey(e.Slot))
-                    _loopCommandMap.Remove(e.Slot, e.ScpiGroupKey);
-            };
         }
 
         #region ISlotService
@@ -108,7 +103,8 @@ namespace NKnife.MeterKnife.Logic.Services
                 }
             }
 
-            foreach (var handler in handlers) _boxMap[slot].Filter.AddHandlers(handler);
+            foreach (var handler in handlers) 
+                _boxMap[slot].Filter.AddHandlers(handler);
         }
 
         private void BuildConnector(Slot slot, IDataConnector dataConnector, BytesProtocolFilter filter)
@@ -117,12 +113,16 @@ namespace NKnife.MeterKnife.Logic.Services
                 return;
             var box = new SlotBox
             {
-                Filter = filter,//增加协议过滤器
+                Filter = filter, //增加协议过滤器
                 Connector = dataConnector, //建立针对端口的指令队列
                 Queue = new ScpiCommandQueue(), //队列循环监听
                 QueueListenState = true
             };
-
+            _global.Collected += (s, e) =>
+            {
+                if (!e.IsCollected && box.LoopQueueMap.ContainsKey(e.Slot))
+                    box.LoopQueueMap.Remove(e.Slot, e.ScpiGroupKey);
+            };
             _boxMap.Add(slot, box);
             _codec.CodecName = FAMILY_NAME;
             _family.FamilyName = FAMILY_NAME;
@@ -156,7 +156,10 @@ namespace NKnife.MeterKnife.Logic.Services
         {
             if (UtilCollection.IsNullOrEmpty(careItems))
                 return;
-            Task.Factory.StartNew(() => { _loopCommandMap.Add(slot, commandArrayKey, careItems); });
+            Task.Factory.StartNew(() =>
+            {
+                _boxMap[slot].LoopQueueMap.Add(slot, commandArrayKey, careItems);
+            });
         }
 
         private void EnqueueCommand(Slot slot, params ScpiCommandQueue.Item[] cmdItems)
@@ -171,15 +174,16 @@ namespace NKnife.MeterKnife.Logic.Services
         {
             void Function()
             {
-                _Logger.Info($"{_boxMap[slot]} QueueListen启动...");
-                while (_boxMap[slot].QueueListenState)
+                var slotBox = _boxMap[slot];
+                _Logger.Info($"SlotBox-LoopQueue 监听启动...");
+                while (slotBox.QueueListenState)
                 {
                     if (queue.Count <= 0)
                     {
                         //当队列中无指令时，监测是否有循环指令等待发送
-                        while (_loopCommandMap.HasCommand(slot))
+                        while (slotBox.LoopQueueMap.HasCommand(slot))
                         {
-                            var keys = _loopCommandMap.GetScpiGroupKeys(slot);
+                            var keys = slotBox.LoopQueueMap.GetScpiGroupKeys(slot);
                             try
                             {
                                 foreach (var key in keys)
@@ -187,9 +191,9 @@ namespace NKnife.MeterKnife.Logic.Services
                                     //一个端口可能有多个指令组，一般是多台仪器（每仪器有一个GPIB地址）
                                     //每仪器对应一个指令组
                                     //一个指令组下的多条指令，指令的延迟在SendCommand函数中发生
-                                    if (_loopCommandMap.ContainsKey(slot, key))
+                                    if (slotBox.LoopQueueMap.ContainsKey(slot, key))
                                     {
-                                        var items = _loopCommandMap[slot, key];
+                                        var items = slotBox.LoopQueueMap[slot, key];
                                         foreach (var queueItem in items)
                                             SendCommand(dataConnector, queueItem);
                                     }
@@ -200,20 +204,27 @@ namespace NKnife.MeterKnife.Logic.Services
                                 _Logger.Warn($"集合循环停止:{e.Message}");
                                 break;
                             }
+
                             //当WaitOne时进入了循环，虽然Queue里有了数据，但信号未接收到，需判断
                             if (queue.Count > 0)
                                 break;
                         }
+
+                        _Logger.Trace("1------");
                         queue.AddEvent.WaitOne();
+                        _Logger.Trace("2------");
                     }
+
                     if (!queue.TryDequeue(out var scpiCmd))
                         continue;
                     if (scpiCmd == null || scpiCmd.GpibAddress < 0)
                         continue;
                     SendCommand(dataConnector, scpiCmd);
                 }
+
                 _Logger.Debug($"退出{slot}命令队列循环");
             }
+
             Task.Factory.StartNew(Function);
         }
 
@@ -256,6 +267,7 @@ namespace NKnife.MeterKnife.Logic.Services
                 _Logger.Warn($"硬件插槽{slot}未准备好...");
                 return false;
             }
+
             var dataConnector = _boxMap[slot].Connector;
             try
             {
@@ -311,15 +323,14 @@ namespace NKnife.MeterKnife.Logic.Services
         #endregion
 
         #endregion
-    }
 
-
-    public class SlotBox
-    {
-        public bool QueueListenState { get; set; }
-        public IDataConnector Connector { get; set; }
-        public BytesProtocolFilter Filter { get; set; } = new SerialProtocolFilter();
-        public ScpiCommandQueue Queue { get; set; }
-        //public ScpiCommandQueueMap CommandQueueMap { get; set; }
+        private class SlotBox
+        {
+            public bool QueueListenState { get; set; }
+            public IDataConnector Connector { get; set; }
+            public BytesProtocolFilter Filter { get; set; } = new SerialProtocolFilter();
+            public ScpiCommandQueue Queue { get; set; }
+            public SlotCommandMap LoopQueueMap { get; set; } = new SlotCommandMap();
+        }
     }
 }
