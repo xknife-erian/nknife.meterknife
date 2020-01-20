@@ -29,7 +29,7 @@ namespace NKnife.MeterKnife.Logic
 //                {
 //                    if (onFindCare)
 //                    {
-//                        if (e.Item.Scpi.ToLower().StartsWith("care"))
+//                        if (e.CareCommand.Scpi.ToLower().StartsWith("care"))
 //                        {
 //                            careComm.OnSerialInitialized(carePort);
 //                            careComm.Solts.Add(carePort);

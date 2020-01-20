@@ -91,7 +91,7 @@ namespace NKnife.MeterKnife.Common.DataModels
                     var ports = GetSerialPortInfo();
                     var sb = new StringBuilder();
                     foreach (var port in ports)
-                        sb.Append(port).Append(':');
+                        sb.Append($"COM{port}").Append(':');
                     return sb.ToString().TrimEnd(':');
                 }
             }

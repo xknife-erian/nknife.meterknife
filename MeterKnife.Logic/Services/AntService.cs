@@ -4,19 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using NKnife.Jobs;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.DataModels;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.CareOne;
-using NKnife.MeterKnife.Util.Protocol.Generic;
 using NKnife.MeterKnife.Util.Scpi;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.MeterKnife.Util.Serial.Generic.Filters;
 using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.MeterKnife.Util.Tunnel.Base;
-using NKnife.MeterKnife.Util.Tunnel.Filters;
-using NKnife.MeterKnife.Util.Tunnel.Generic;
 using NKnife.Util;
 using NLog;
 
@@ -27,6 +25,147 @@ namespace NKnife.MeterKnife.Logic.Services
     /// </summary>
     public sealed class AntService : ISlotService
     {
+        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
+
+        private readonly IGlobal _global;
+        private readonly ITunnel _tunnel;
+
+        private readonly Dictionary<Slot, SlotProcessor> _processorMap = new Dictionary<Slot, SlotProcessor>(1);
+
+        public AntService(IGlobal global, ITunnel tunnel)
+        {
+            _global = global;
+            _tunnel = tunnel;
+            _global.Collected += (s, e) =>
+            {
+                // if (!e.IsCollected && _processorMap.ContainsKey(e.Slot))
+                //     _processorMap.Remove(e.Slot);
+            };
+        }
+
+        #region Implementation of ISlotService
+
+        /// <summary>
+        ///     绑定一个指定插槽的通讯服务（在本软件里仅考虑多台Care的情况）
+        /// </summary>
+        /// <param name="slot">指定的插槽</param>
+        /// <param name="processor">指定的插槽连接器</param>
+        /// <param name="handlers">协议处理的handler</param>
+        public void Bind(Slot slot, SlotProcessor processor, params CareProtocolHandler[] handlers)
+        {
+            _processorMap.Add(slot, processor);
+            switch (slot.TunnelType)
+            {
+                case TunnelType.Tcpip:
+                {
+                    //TODO: socket 暂时未移植
+                    //BuildConnector(slot, new SocketBytesProtocolFilter());
+                    //var connector = _connectors[slot] as ISocketClient;
+                    //if (connector != null)
+                    //{
+                    //    connector.Config = new SocketClientConfig();
+                    //    var ip = slot.GetIpEndPoint();
+                    //    connector.Configure(ip.Address, ip.Port);
+                    //    Start(slot);
+                    //}
+                    break;
+                }
+                case TunnelType.Serial:
+                default:
+                {
+                    _tunnel.AddFilters(processor.Filter);
+                    _tunnel.BindDataConnector(processor.Connector); //dataConnector是数据流动的动力
+                    if (processor.Connector is ISerialConnector c)
+                    {
+                        var portInfo = slot.GetSerialPortInfo();
+                        c.SerialConfig = new SerialConfig
+                        {
+                            BaudRate = portInfo[1],
+                            ReadBufferSize = 258,
+                            ReadTimeout = 100 * 10
+                        };
+                        c.PortNumber = portInfo[0]; //串口
+                    }
+
+                    break;
+                }
+            }
+            foreach (var handler in handlers)
+                processor.Filter.AddHandlers(handler);
+        }
+
+        /// <summary>
+        ///     移除指定插槽的一个处理器
+        /// </summary>
+        /// <param name="slot">指定的插槽</param>
+        /// <param name="handler">处理器</param>
+        public void Remove(Slot slot, CareProtocolHandler handler)
+        {
+            var processor = _processorMap[slot];
+            processor.Filter.RemoveHandler(handler);
+        }
+
+        /// <summary>
+        ///     销毁服务
+        /// </summary>
+        public void Destroy()
+        {
+            foreach (var slotProcessor in _processorMap)
+            {
+                slotProcessor.Value.JobManager.Break();
+                slotProcessor.Value.Connector.Stop();
+            }
+            _processorMap.Clear();
+        }
+
+        /// <summary>
+        ///     启动指定插槽的服务
+        /// </summary>
+        /// <param name="slot">指定端口</param>
+        /// <returns>启动是否成功</returns>
+        public bool Start(Slot slot)
+        {
+            var processor = _processorMap[slot];
+            processor.JobManager.Run();
+            return true;
+        }
+
+        /// <summary>
+        ///     停止指定插槽的服务
+        /// </summary>
+        /// <param name="slot">指定端口</param>
+        /// <returns>停止是否成功</returns>
+        public bool Stop(Slot slot)
+        {
+            var processor = _processorMap[slot];
+            processor.JobManager.Break();
+            return true;
+        }
+
+        /// <summary>
+        ///     向指定插槽发送Scpi命令组
+        /// </summary>
+        /// <param name="slot">指定插槽</param>
+        /// <param name="cmdArray">即将发送的命令组</param>
+        public void SendCommands(Slot slot, params CareCommand[] cmdArray)
+        {
+            var processor = _processorMap[slot];
+            processor.JobManager.Pool.AddRange(cmdArray);
+        }
+
+        /// <summary>
+        ///     向指定插槽发送将要循环使用的Scpi命令组
+        /// </summary>
+        /// <param name="slot">指定的插槽</param>
+        /// <param name="cmdArray">即将发送的命令组</param>
+        public void SendLoopCommands(Slot slot, params CareCommand[] cmdArray)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion        
+        
+        /*
         private const string FAMILY_NAME = "care";
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
@@ -35,7 +174,7 @@ namespace NKnife.MeterKnife.Logic.Services
         private readonly BytesCodec _codec;
         private readonly BytesProtocolFamily _family;
 
-        private readonly Dictionary<Slot, SlotBox> _boxMap = new Dictionary<Slot, SlotBox>(1);
+        private readonly Dictionary<Slot, SlotProcessor> _boxMap = new Dictionary<Slot, SlotProcessor>(1);
 
         public AntService(IGlobal global, ITunnel tunnel, BytesCodec codec, BytesProtocolFamily family)
         {
@@ -51,20 +190,20 @@ namespace NKnife.MeterKnife.Logic.Services
         ///     绑定一个指定端口的通讯服务
         /// </summary>
         /// <param name="slot">指定的端口</param>
-        /// <param name="dataConnector">端口连接器</param>
+        /// <param name="connector">端口连接器</param>
         /// <param name="handlers">协议处理的handler</param>
-        void ISlotService.Bind(Slot slot, IDataConnector dataConnector, params BaseProtocolHandler<byte[]>[] handlers)
+        void ISlotService.Bind(Slot slot, IDataConnector connector, params BaseProtocolHandler<byte[]>[] handlers)
         {
-            Bind(slot, dataConnector, handlers.Cast<CareProtocolHandler>().ToArray());
+            Bind(slot, connector, handlers.Cast<CareProtocolHandler>().ToArray());
         }
 
         /// <summary>
         ///     绑定一个指定端口的通讯服务。可以多次绑定。
         /// </summary>
         /// <param name="slot">指定的端口</param>
-        /// <param name="dataConnector">端口连接器</param>
+        /// <param name="connector">端口连接器</param>
         /// <param name="handlers">协议处理的handler</param>
-        private void Bind(Slot slot, IDataConnector dataConnector, params CareProtocolHandler[] handlers)
+        private void Bind(Slot slot, IDataConnector connector, params CareProtocolHandler[] handlers)
         {
             switch (slot.TunnelType)
             {
@@ -72,12 +211,12 @@ namespace NKnife.MeterKnife.Logic.Services
                 {
                     //TODO: socket 暂时未移植
 //                        BuildConnector(slot, new SocketBytesProtocolFilter());
-//                        var dataConnector = _connectors[slot] as ISocketClient;
-//                        if (dataConnector != null)
+//                        var connector = _connectors[slot] as ISocketClient;
+//                        if (connector != null)
 //                        {
-//                            dataConnector.Config = new SocketClientConfig();
+//                            connector.Config = new SocketClientConfig();
 //                            var ip = slot.GetIpEndPoint();
-//                            dataConnector.Configure(ip.Address, ip.Port);
+//                            connector.Configure(ip.Address, ip.Port);
 //                            Start(slot);
 //                        }
 //
@@ -86,8 +225,8 @@ namespace NKnife.MeterKnife.Logic.Services
                 case TunnelType.Serial:
                 default:
                 {
-                    BuildConnector(slot, dataConnector, new SerialProtocolFilter());
-                    if (dataConnector is ISerialConnector con)
+                    BuildConnector(slot, connector, new SerialProtocolFilter());
+                    if (connector is ISerialConnector con)
                     {
                         var portInfo = slot.GetSerialPortInfo();
                         con.SerialConfig = new SerialConfig
@@ -111,7 +250,7 @@ namespace NKnife.MeterKnife.Logic.Services
         {
             if (_boxMap.ContainsKey(slot))
                 return;
-            var box = new SlotBox
+            var box = new SlotProcessor
             {
                 Filter = filter, //增加协议过滤器
                 Connector = dataConnector, //建立针对端口的指令队列
@@ -138,27 +277,27 @@ namespace NKnife.MeterKnife.Logic.Services
         ///     向指定端口发送Scpi命令组
         /// </summary>
         /// <param name="slot">指定端口</param>
-        /// <param name="careItems">即将发送的命令组</param>
-        public void SendCommands(Slot slot, params ScpiCommandQueue.Item[] careItems)
+        /// <param name="cmdArray">即将发送的命令组</param>
+        public void SendCommands(Slot slot, params ScpiCommandQueue.Item[] cmdArray)
         {
-            if (UtilCollection.IsNullOrEmpty(careItems))
+            if (UtilCollection.IsNullOrEmpty(cmdArray))
                 return;
-            Task.Factory.StartNew(() => EnqueueCommand(slot, careItems));
+            Task.Factory.StartNew(() => EnqueueCommand(slot, cmdArray));
         }
 
         /// <summary>
         ///     向指定端口发送将要循环使用的Scpi命令组
         /// </summary>
         /// <param name="slot">指定端口</param>
-        /// <param name="commandArrayKey">命令组的Key</param>
-        /// <param name="careItems">即将发送的命令组</param>
-        public void SendLoopCommands(Slot slot, string commandArrayKey, params ScpiCommandQueue.Item[] careItems)
+        /// <param name="cmdArrayKey">命令组的Key</param>
+        /// <param name="cmdArray">即将发送的命令组</param>
+        public void SendLoopCommands(Slot slot, string cmdArrayKey, params ScpiCommandQueue.Item[] cmdArray)
         {
-            if (UtilCollection.IsNullOrEmpty(careItems))
+            if (UtilCollection.IsNullOrEmpty(cmdArray))
                 return;
             Task.Factory.StartNew(() =>
             {
-                _boxMap[slot].LoopQueueMap.Add(slot, commandArrayKey, careItems);
+                _boxMap[slot].LoopQueueMap.Add(slot, cmdArrayKey, cmdArray);
             });
         }
 
@@ -175,7 +314,7 @@ namespace NKnife.MeterKnife.Logic.Services
             void Function()
             {
                 var slotBox = _boxMap[slot];
-                _Logger.Info($"SlotBox-LoopQueue 监听启动...");
+                _Logger.Info($"SlotProcessor-LoopQueue 监听启动...");
                 while (slotBox.QueueListenState)
                 {
                     if (queue.Count <= 0)
@@ -324,13 +463,15 @@ namespace NKnife.MeterKnife.Logic.Services
 
         #endregion
 
-        private class SlotBox
+        private class SlotProcessor
         {
+            public JobManager JobManager { get; set; }
             public bool QueueListenState { get; set; }
             public IDataConnector Connector { get; set; }
             public BytesProtocolFilter Filter { get; set; } = new SerialProtocolFilter();
             public ScpiCommandQueue Queue { get; set; }
             public SlotCommandMap LoopQueueMap { get; set; } = new SlotCommandMap();
         }
+        */
     }
 }

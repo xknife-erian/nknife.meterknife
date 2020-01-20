@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Xml;
+using NKnife.Interface;
 
 namespace NKnife.MeterKnife.Util.Scpi
 {
     /// <summary>
     ///     一组指令，将按顺序执行
     /// </summary>
-    public class ScpiGroup : List<ScpiCommand>
+    public class ScpiPool : List<Scpi>
     {
-        public ScpiCommandGroupCategory Category { get; set; }
+        public PoolCategory Category { get; set; }
 
         public bool UpItem(int index)
         {
@@ -31,30 +33,32 @@ namespace NKnife.MeterKnife.Util.Scpi
             return true;
         }
 
-        public static ScpiGroup Prase(XmlElement groupElement)
+        public static ScpiPool Prase(XmlElement groupElement)
         {
-            var group = new ScpiGroup();
-            group.Category = ScpiCommandGroupCategory.None;
+            var group = new ScpiPool();
+            group.Category = PoolCategory.None;
             if (groupElement.HasAttribute("way"))
             {
                 var way = groupElement.GetAttribute("way");
                 switch (way)
                 {
                     case "init":
-                        group.Category = ScpiCommandGroupCategory.Initializtion;
+                        group.Category = PoolCategory.Initializtion;
                         break;
                     case "collect":
-                        group.Category = ScpiCommandGroupCategory.Collect;
+                        group.Category = PoolCategory.Collect;
                         break;
                 }
             }
+
             foreach (XmlElement scpiElement in groupElement.ChildNodes)
             {
-                var scpiCommand = ScpiCommand.Parse(scpiElement);
+                var scpiCommand = Scpi.Parse(scpiElement);
                 if (scpiCommand == null)
                     continue;
                 group.Add(scpiCommand);
             }
+
             return group;
         }
 
@@ -63,16 +67,17 @@ namespace NKnife.MeterKnife.Util.Scpi
             element.RemoveAll();
             switch (Category)
             {
-                case ScpiCommandGroupCategory.Collect:
+                case PoolCategory.Collect:
                     element.SetAttribute("way", "collect");
                     break;
-                case ScpiCommandGroupCategory.Initializtion:
+                case PoolCategory.Initializtion:
                     element.SetAttribute("way", "init");
                     break;
-                case ScpiCommandGroupCategory.None:
+                case PoolCategory.None:
                     element.SetAttribute("way", "none");
                     break;
             }
+
             foreach (var scpiCommand in this)
             {
                 Debug.Assert(element.OwnerDocument != null, "element.OwnerDocument != null");

@@ -1,27 +1,22 @@
 ﻿using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.MeterKnife.Util.Tunnel.Common;
 using NKnife.MeterKnife.Util.Tunnel.Events;
+using NLog;
 
 namespace NKnife.MeterKnife.Common.Tunnels
 {
     public class CareTunnel : ITunnel
     {
-        private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
         protected IDataConnector _dataConnector;
-        protected ITunnelFilterChain _filterChain;
+        protected ITunnelFilterChain _filterChain = new TunnelFilterChain();
         private bool _IsDataConnectedBound;
         public ITunnelConfig Config { get; set; }
 
         public virtual void AddFilters(params ITunnelFilter[] filters)
         {
-            if (_filterChain == null)
-            {
-                SetFilterChain();
-            }
-            foreach (var filter in filters)
-            {
+            foreach (var filter in filters) 
                 _filterChain?.AddLast(filter);
-            }
         }
 
         public void RemoveFilter(ITunnelFilter filter)
@@ -43,6 +38,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
                     filter.SendToAll += OnFilterSendToAll;
                     filter.KillSession += OnFilterKillSession;
                 }
+
                 _Logger.Debug($"DataConnector[{dataConnector.GetType()}]绑定成功");
                 _IsDataConnectedBound = true;
             }
@@ -50,11 +46,6 @@ namespace NKnife.MeterKnife.Common.Tunnels
             {
                 _Logger.Debug($"DataConnector[{dataConnector.GetType()}]已经绑定，不需重复绑定");
             }
-        }
-
-        protected virtual void SetFilterChain()
-        {
-            _filterChain = new TunnelFilterChain();
         }
 
         public virtual void Dispose()
@@ -92,16 +83,10 @@ namespace NKnife.MeterKnife.Common.Tunnels
         {
             //取得上一个（靠近dataconnector的）filter
             var currentFilter = sender as ITunnelFilter;
-            if (currentFilter == null)
-            {
-                return;
-            }
+            if (currentFilter == null) return;
 
             var node = _filterChain.Find(currentFilter);
-            if (node == null)
-            {
-                return;
-            }
+            if (node == null) return;
 
             var previous = node.Previous;
             while (previous != null)
@@ -126,18 +111,12 @@ namespace NKnife.MeterKnife.Common.Tunnels
 
         private void OnSessionBroken(object sender, SessionEventArgs e)
         {
-            foreach (var filter in _filterChain)
-            {
-                filter.ProcessSessionBroken(e.Item.Id);
-            }
+            foreach (var filter in _filterChain) filter.ProcessSessionBroken(e.Item.Id);
         }
 
         private void OnSessionBuilt(object sender, SessionEventArgs e)
         {
-            foreach (var filter in _filterChain)
-            {
-                filter.ProcessSessionBuilt(e.Item.Id);
-            }
+            foreach (var filter in _filterChain) filter.ProcessSessionBuilt(e.Item.Id);
         }
     }
 }

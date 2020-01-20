@@ -22,7 +22,7 @@ namespace NKnife.MeterKnife.Logic
         /// <summary>
         ///     被测单元
         /// </summary>
-        public UUT Uut { get; set; }
+        public DUT Dut { get; set; }
 
         /// <summary>
         ///     处理当前的温度数据

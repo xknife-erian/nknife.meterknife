@@ -19,11 +19,11 @@ namespace NKnife.MeterKnife.Common.DataModels
         private readonly Dictionary<Slot, ScpiCommandQueueMap> _map = new Dictionary<Slot, ScpiCommandQueueMap>();
         private readonly object _Lock = new object();
 
-        private List<List<ScpiCommandQueue.Item>> _CloneItems = new List<List<ScpiCommandQueue.Item>>();
+        private List<List<CareCommand>> _CloneItems = new List<List<CareCommand>>();
 
-        public ScpiCommandQueue.Item[] this[Slot slot, string key] => _map[slot][key];
+        public CareCommand[] this[Slot slot, string key] => _map[slot][key];
 
-        public void Add(Slot slot, string key, ScpiCommandQueue.Item[] careItems)
+        public void Add(Slot slot, string key, CareCommand[] careItems)
         {
             if (!_map.TryGetValue(slot, out var queueMap))
             {
@@ -60,11 +60,11 @@ namespace NKnife.MeterKnife.Common.DataModels
             }
         }
 
-        public IEnumerable<IEnumerable<ScpiCommandQueue.Item>> GetItems(Slot slot)
+        public IEnumerable<IEnumerable<CareCommand>> GetItems(Slot slot)
         {
             if (_CloneItems == null || _CloneItems.Count <= 0)
             {
-                _CloneItems = new List<List<ScpiCommandQueue.Item>>();
+                _CloneItems = new List<List<CareCommand>>();
                 try
                 {
                     var values = _map[slot].Values;
@@ -72,7 +72,7 @@ namespace NKnife.MeterKnife.Common.DataModels
                     {
                         if (UtilCollection.IsNullOrEmpty(careItems))
                             continue;
-                        var its = new List<ScpiCommandQueue.Item>();
+                        var its = new List<CareCommand>();
                         foreach (var careItem in careItems) its.Add(careItem.Clone());
                         if (its.Count > 0)
                             _CloneItems.Add(its);

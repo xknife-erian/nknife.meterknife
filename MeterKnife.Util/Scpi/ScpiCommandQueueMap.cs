@@ -6,11 +6,11 @@ namespace NKnife.MeterKnife.Util.Scpi
     /// <summary>
     /// 仪器命令队列的字典。Key是队列名，Value是命令封装的数组。
     /// </summary>
-    public class ScpiCommandQueueMap : IDictionary<string, ScpiCommandQueue.Item[]>
+    public class ScpiCommandQueueMap : IDictionary<string, CareCommand[]>
     {
-        private readonly Dictionary<string, ScpiCommandQueue.Item[]> _items = new Dictionary<string, ScpiCommandQueue.Item[]>();
+        private readonly Dictionary<string, CareCommand[]> _items = new Dictionary<string, CareCommand[]>();
 
-        public IEnumerator<KeyValuePair<string, ScpiCommandQueue.Item[]>> GetEnumerator()
+        public IEnumerator<KeyValuePair<string, CareCommand[]>> GetEnumerator()
         {
             return _items.GetEnumerator();
         }
@@ -20,9 +20,9 @@ namespace NKnife.MeterKnife.Util.Scpi
             return GetEnumerator();
         }
 
-        public void Add(KeyValuePair<string, ScpiCommandQueue.Item[]> item)
+        public void Add(KeyValuePair<string, CareCommand[]> item)
         {
-            ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Add(item);
+            ((IDictionary<string, CareCommand[]>) _items).Add(item);
         }
 
         public void Clear()
@@ -30,33 +30,33 @@ namespace NKnife.MeterKnife.Util.Scpi
             _items.Clear();
         }
 
-        public bool Contains(KeyValuePair<string, ScpiCommandQueue.Item[]> item)
+        public bool Contains(KeyValuePair<string, CareCommand[]> item)
         {
-            return ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Contains(item);
+            return ((IDictionary<string, CareCommand[]>) _items).Contains(item);
         }
 
-        public void CopyTo(KeyValuePair<string, ScpiCommandQueue.Item[]>[] array, int arrayIndex)
+        public void CopyTo(KeyValuePair<string, CareCommand[]>[] array, int arrayIndex)
         {
-            ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).CopyTo(array, arrayIndex);
+            ((IDictionary<string, CareCommand[]>) _items).CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(KeyValuePair<string, ScpiCommandQueue.Item[]> item)
+        public bool Remove(KeyValuePair<string, CareCommand[]> item)
         {
-            return ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Remove(item);
+            return ((IDictionary<string, CareCommand[]>) _items).Remove(item);
         }
 
         public int Count => _items.Count;
 
-        public bool IsReadOnly => ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).IsReadOnly;
+        public bool IsReadOnly => ((IDictionary<string, CareCommand[]>) _items).IsReadOnly;
 
         public bool ContainsKey(string key)
         {
             return _items.ContainsKey(key);
         }
 
-        public void Add(string key, ScpiCommandQueue.Item[] value)
+        public void Add(string key, CareCommand[] value)
         {
-            ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Add(key, value);
+            ((IDictionary<string, CareCommand[]>) _items).Add(key, value);
         }
 
         public bool Remove(string key)
@@ -64,19 +64,19 @@ namespace NKnife.MeterKnife.Util.Scpi
             return _items.Remove(key);
         }
 
-        public bool TryGetValue(string key, out ScpiCommandQueue.Item[] value)
+        public bool TryGetValue(string key, out CareCommand[] value)
         {
             return _items.TryGetValue(key, out value);
         }
 
-        public ScpiCommandQueue.Item[] this[string key]
+        public CareCommand[] this[string key]
         {
             get => _items[key];
             set => _items[key] = value;
         }
 
-        public ICollection<string> Keys => ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Keys;
+        public ICollection<string> Keys => ((IDictionary<string, CareCommand[]>) _items).Keys;
 
-        public ICollection<ScpiCommandQueue.Item[]> Values => ((IDictionary<string, ScpiCommandQueue.Item[]>) _items).Values;
+        public ICollection<CareCommand[]> Values => ((IDictionary<string, CareCommand[]>) _items).Values;
     }
 }

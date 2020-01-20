@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Xml;
+using NKnife.Interface;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Util.Scpi
@@ -11,37 +12,34 @@ namespace NKnife.MeterKnife.Util.Scpi
     /// 并遵循了IEEE754 标准中浮点运算规则、ISO646 信息交换7位编码符号（相当于Ascii编
     /// 程）等多种标准的标准化仪器编程语言。
     /// </summary>
-    public class ScpiCommand
+    public class Scpi
     {
         /// <summary>
         /// 从一个XML节点解析SCPI命令
         /// </summary>
         /// <param name="element">一个按照规则制定描述SCPI命令的XML节点元素</param>
         /// <returns>SCPI命令类型</returns>
-        public static ScpiCommand Parse(XmlElement element)
+        public static Scpi Parse(XmlElement element)
         {
             //样本
             //<scpi interval="200" hex="true" return="true" selected="false" description="读取万用表读数">
             //  <![CDATA[READ?]]>
             //</scpi>
-            var command = new ScpiCommand();
+            var command = new Scpi();
             var cdata = element.GetCDataElement();
             if (cdata != null)
             {
                 command.Command = cdata.InnerText;
             }
-            int interval;
-            if (!int.TryParse(element.GetAttribute("interval"), out interval))
+
+            if (!int.TryParse(element.GetAttribute("interval"), out var interval))
                 command.Interval = 200;
             command.Interval = interval;
-            bool isHex;
-            if (bool.TryParse(element.GetAttribute("hex"), out isHex))
+            if (bool.TryParse(element.GetAttribute("hex"), out var isHex))
                 command.IsHex = isHex;
-            bool selected;
-            if (bool.TryParse(element.GetAttribute("selected"), out selected))
+            if (bool.TryParse(element.GetAttribute("selected"), out var selected))
                 command.Selected = selected;
-            bool isReturn;
-            if (bool.TryParse(element.GetAttribute("return"), out isReturn))
+            if (bool.TryParse(element.GetAttribute("return"), out var isReturn))
                 command.IsReturn = isReturn;
             if (element.HasAttribute("description"))
                 command.Description = element.GetAttribute("description");
@@ -66,7 +64,7 @@ namespace NKnife.MeterKnife.Util.Scpi
             element.SetCDataElement(Command);
         }
 
-        public ScpiCommand()
+        public Scpi()
         {
             Interval = 200;
             IsHex = false;
@@ -125,7 +123,8 @@ namespace NKnife.MeterKnife.Util.Scpi
 
         public override string ToString()
         {
-            return string.Format("{0}\r\n{1}\r\n{2}", Command, Interval, Description);
+            return $"{Command}\r\n{Interval}\r\n{Description}";
         }
+
     }
 }

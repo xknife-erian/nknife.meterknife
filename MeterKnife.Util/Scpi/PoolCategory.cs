@@ -1,6 +1,6 @@
 namespace NKnife.MeterKnife.Util.Scpi
 {
-    public enum ScpiCommandGroupCategory
+    public enum PoolCategory
     {
         Initializtion,
         Collect,

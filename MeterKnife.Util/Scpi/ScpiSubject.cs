@@ -11,8 +11,8 @@ namespace NKnife.MeterKnife.Util.Scpi
     {
         public ScpiSubject()
         {
-            Collect = new ScpiGroup {Category = ScpiCommandGroupCategory.Collect};
-            Initializtion = new ScpiGroup {Category = ScpiCommandGroupCategory.Initializtion};
+            Collect = new ScpiPool {Category = PoolCategory.Collect};
+            Initializtion = new ScpiPool {Category = PoolCategory.Initializtion};
         }
 
         /// <summary>
@@ -22,11 +22,11 @@ namespace NKnife.MeterKnife.Util.Scpi
         /// <summary>
         /// 初始化指令集合
         /// </summary>
-        public ScpiGroup Initializtion { get; set; }
+        public ScpiPool Initializtion { get; set; }
         /// <summary>
         /// 采集指令集合
         /// </summary>
-        public ScpiGroup Collect { get; set; }
+        public ScpiPool Collect { get; set; }
 
         /// <summary>
         /// 指令集合所在的主题集合
@@ -79,10 +79,10 @@ namespace NKnife.MeterKnife.Util.Scpi
                         switch (way)
                         {
                             case "init":
-                                scpiSubject.Initializtion = ScpiGroup.Prase(groupElement);
+                                scpiSubject.Initializtion = ScpiPool.Prase(groupElement);
                                 break;
                             case "collect":
-                                scpiSubject.Collect = ScpiGroup.Prase(groupElement);
+                                scpiSubject.Collect = ScpiPool.Prase(groupElement);
                                 break;
                         }
                     }

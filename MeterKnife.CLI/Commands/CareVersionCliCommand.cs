@@ -18,43 +18,36 @@ namespace NKnife.MeterKnife.CLI.Commands
     public class CareVersionCliCommand : BaseCommand
     {
         private readonly ISlotService _slotService;
-        private readonly IDataConnector _connector;
         private readonly ScpiProtocolHandler _handler;
         private readonly CareTemperatureHandler _tempHandler;
+        private readonly SlotProcessor _slotProcessor;
 
-        public CareVersionCliCommand(ISlotService slotService, IDataConnector connector, 
-            ScpiProtocolHandler handler, CareTemperatureHandler tempHandler)
+        public CareVersionCliCommand(ISlotService slotService, ScpiProtocolHandler handler, CareTemperatureHandler tempHandler, SlotProcessor slotProcessor)
         {
             _slotService = slotService;
             _handler = handler;
-            _connector = connector;
             _tempHandler = tempHandler;
+            _slotProcessor = slotProcessor;
         }
 
         public override async Task ExecuteAsync(IConsole console)
         {
-            var cmdPair = GetLoopCommands();
             var slot = Slot.Build(TunnelType.Serial, $"{Port}");
-            _slotService.Bind(slot, _connector, _handler, _tempHandler);
-            _slotService.SendLoopCommands(slot, cmdPair.Key, cmdPair.Value);
+            _slotService.Bind(slot, _slotProcessor, _handler, _tempHandler);
+            _slotService.SendCommands(slot, GetCommands());
             _slotService.Start(slot);
         }
 
-        private KeyValuePair<string, ScpiCommandQueue.Item[]> GetLoopCommands()
+        private CareCommand[] GetCommands()
         {
-            return new KeyValuePair<string, ScpiCommandQueue.Item[]>("abc", GetCommands());
-        }
-
-        private ScpiCommandQueue.Item[] GetCommands()
-        {
-            var item = new ScpiCommandQueue.Item
+            var item = new CareCommand
             {
                 Content = new byte[] {0xf0, 0xf1, 0xf2},
                 GpibAddress = 23,
                 Heads = new Tuple<byte, byte>(0x10, 0x20),
                 Interval = 500,
                 IsCare = true,
-                ScpiCommand = new ScpiCommand {Command = "READ?"}
+                Scpi = new Scpi {Command = "READ?"}
             };
             return new[] {item};
         }

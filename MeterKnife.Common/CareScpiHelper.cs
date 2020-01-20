@@ -9,9 +9,9 @@ namespace NKnife.MeterKnife.Common
     /// </summary>
     public static class CareScpiHelper
     {
-        public static ScpiCommand BuildScpiCommand(string scpi, bool isReturn = true)
+        public static Scpi BuildScpiCommand(string scpi, bool isReturn = true)
         {
-            var careTalking = new ScpiCommand
+            var careTalking = new Scpi
             {
                 IsReturn = isReturn,
                 Command = scpi,
@@ -20,27 +20,27 @@ namespace NKnife.MeterKnife.Common
         }
 
         // ReSharper disable once InconsistentNaming
-        public static ScpiCommand IDN(int gpib)
+        public static Scpi IDN(int gpib)
         {
             return BuildScpiCommand("*IDN?");
         }
 
         // ReSharper disable once InconsistentNaming
-        public static ScpiCommand READ(int gpib)
+        public static Scpi READ(int gpib)
         {
             return BuildScpiCommand("READ?");
         }
 
         // ReSharper disable once InconsistentNaming
-        public static ScpiCommand FETC(int gpib)
+        public static Scpi FETC(int gpib)
         {
             return BuildScpiCommand("FETC?");
         }
 
-        public static byte[] GenerateProtocol(ScpiCommandQueue.Item item)
+        public static byte[] GenerateProtocol(CareCommand careCommand)
         {
-            var head = new byte[] { 0x08, 0x00, 0x02, item.Heads.Item1, item.Heads.Item2 };
-            var newbs = UtilCollection.MergerArray(head, item.Content);
+            var head = new byte[] { 0x08, 0x00, 0x02, careCommand.Heads.Item1, careCommand.Heads.Item2 };
+            var newbs = UtilCollection.MergerArray(head, careCommand.Content);
             newbs[2] = (byte)(newbs.Length - 3);
             return newbs;
         }
@@ -49,9 +49,9 @@ namespace NKnife.MeterKnife.Common
         ///     查询温度
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public static ScpiCommandQueue.Item TEMP()
+        public static CareCommand TEMP()
         {
-            var item = new ScpiCommandQueue.Item
+            var item = new CareCommand
             {
                 IsCare = true,
                 GpibAddress = 0,
@@ -65,9 +65,9 @@ namespace NKnife.MeterKnife.Common
         ///     查询Care的参数
         /// </summary>
         /// <param name="subCommand">子命令</param>
-        public static ScpiCommandQueue.Item CareGetter(byte subCommand = 0xD1)
+        public static CareCommand CareGetter(byte subCommand = 0xD1)
         {
-            var item = new ScpiCommandQueue.Item
+            var item = new CareCommand
             {
                 IsCare = true,
                 GpibAddress = 0,
@@ -81,9 +81,9 @@ namespace NKnife.MeterKnife.Common
         /// </summary>
         /// <param name="subCommand">子命令</param>
         /// <param name="content">设置的参数内容</param>
-        public static ScpiCommandQueue.Item CareSetter(byte subCommand, params byte[] content)
+        public static CareCommand CareSetter(byte subCommand, params byte[] content)
         {
-            var item = new ScpiCommandQueue.Item
+            var item = new CareCommand
             {
                 IsCare = true,
                 GpibAddress = 0,
@@ -96,9 +96,9 @@ namespace NKnife.MeterKnife.Common
         /// <summary>
         ///     重新启动Care
         /// </summary>
-        public static ScpiCommandQueue.Item CareReset()
+        public static CareCommand CareReset()
         {
-            var item = new ScpiCommandQueue.Item
+            var item = new CareCommand
             {
                 IsCare = true,
                 GpibAddress = 0,
@@ -110,9 +110,9 @@ namespace NKnife.MeterKnife.Common
         /// <summary>
         ///     恢复Care的默认参数
         /// </summary>
-        public static ScpiCommandQueue.Item CareRestoreDefault()
+        public static CareCommand CareRestoreDefault()
         {
-            var item = new ScpiCommandQueue.Item
+            var item = new CareCommand
             {
                 IsCare = true,
                 GpibAddress = 0,
