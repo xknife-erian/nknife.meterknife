@@ -1,8 +1,7 @@
 ﻿using System;
-using NKnife.MeterKnife.Util.Scpi;
 using NKnife.Util;
 
-namespace NKnife.MeterKnife.Common
+namespace NKnife.MeterKnife.Common.Scpi
 {
     /// <summary>
     ///     Care组装SCPI指令的帮助方法

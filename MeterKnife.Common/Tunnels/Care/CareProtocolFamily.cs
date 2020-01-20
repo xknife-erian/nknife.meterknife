@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NKnife.MeterKnife.Util.Protocol.Generic;
+﻿using NKnife.MeterKnife.Util.Protocol.Generic;
 
-namespace NKnife.MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
     public class CareProtocolFamily : BytesProtocolFamily
     {

@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Scpi\Parser\**" />
-    <EmbeddedResource Remove="Scpi\Parser\**" />
-    <None Remove="Scpi\Parser\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MathNet.Numerics" Version="4.9.0" />
     <PackageReference Include="NKnife" Version="19.2.0" />
     <PackageReference Include="NLog" Version="4.6.8" />

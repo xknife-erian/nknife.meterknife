@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.Xml;
-using NKnife.Interface;
 using NKnife.Util;
 
-namespace NKnife.MeterKnife.Util.Scpi
+namespace NKnife.MeterKnife.Common.Scpi
 {
     /// <summary>
     /// 针对SCPI标准命令的封装。

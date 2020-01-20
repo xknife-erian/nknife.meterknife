@@ -1,6 +1,6 @@
 using NKnife.MeterKnife.Util.Tunnel.Generic;
 
-namespace NKnife.MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
     public class CareDatagramEncoder : BytesDatagramEncoder
     {

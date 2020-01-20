@@ -1,4 +1,4 @@
-namespace NKnife.MeterKnife.Util.Scpi
+namespace NKnife.MeterKnife.Common.Scpi
 {
     public enum PoolCategory
     {

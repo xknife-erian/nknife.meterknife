@@ -1,6 +1,6 @@
 ﻿using System;
 using NKnife.Events;
-using NKnife.MeterKnife.Common.Tunnels.CareOne;
+using NKnife.MeterKnife.Common.Tunnels.Care;
 
 namespace NKnife.MeterKnife.Common.Tunnels
 {

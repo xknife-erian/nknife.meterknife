@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Xml;
 using NKnife.Interface;
 
-namespace NKnife.MeterKnife.Util.Scpi
+namespace NKnife.MeterKnife.Common.Scpi
 {
     public class CareCommandPool : List<CareCommand>, IJobPool
     {
@@ -113,5 +112,15 @@ namespace NKnife.MeterKnife.Util.Scpi
         }
 
         #endregion
+
+        public static CareCommandPool Prase(XmlElement groupElement)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Build(ref XmlElement groupElement)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

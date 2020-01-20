@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using NKnife.MeterKnife.Common.DataModels;
 using NKnife.MeterKnife.Common.Tunnels;
-using NKnife.MeterKnife.Common.Tunnels.CareOne;
+using NKnife.MeterKnife.Common.Tunnels.Care;
 using NKnife.MeterKnife.Util.Protocol.Generic;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Tunnel;

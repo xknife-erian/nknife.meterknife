@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using NKnife.XML;
 
-namespace NKnife.MeterKnife.Util.Scpi
+namespace NKnife.MeterKnife.Common.Scpi
 {
     public class ScpisXmlFile : AbstractXmlDocument
     {

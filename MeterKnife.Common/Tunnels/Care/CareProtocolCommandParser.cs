@@ -1,6 +1,6 @@
 ﻿using NKnife.MeterKnife.Util.Protocol.Generic;
 
-namespace NKnife.MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
     public class CareProtocolCommandParser : BytesProtocolCommandParser
     {

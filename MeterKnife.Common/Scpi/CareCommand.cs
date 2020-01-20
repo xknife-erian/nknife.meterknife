@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Threading;
-using NKnife.Collections;
 using NKnife.Interface;
 
-namespace NKnife.MeterKnife.Util.Scpi
+namespace NKnife.MeterKnife.Common.Scpi
 {
     /// <summary>
     ///     面向Care的命令封装
     /// </summary>
-    public class CareCommand : IJobPoolItem
+    public class CareCommand : IJob
     {
         public CareCommand()
         {
@@ -42,10 +40,14 @@ namespace NKnife.MeterKnife.Util.Scpi
         /// </summary>
         public byte[] Content { get; set; }
 
-        /// <summary>
-        ///     当是Care的专属协议时的等候周期
-        /// </summary>
         public int Interval { get; set; }
+        public int Timeout { get; set; }
+
+        public bool IsLoop { get; set; }
+        public int LoopNumber { get; set; }
+
+        public Func<IJob, bool> Run { get; set; }
+        public Func<IJob, bool> Verify { get; set; }
 
         #region Implementation of IJobPoolItem
 

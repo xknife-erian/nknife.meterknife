@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NKnife.MeterKnife.Util.Protocol;
 using NKnife.MeterKnife.Util.Tunnel.Base;
 
-namespace NKnife.MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
     public abstract class CareProtocolHandler : BaseProtocolHandler<byte[]>
     {

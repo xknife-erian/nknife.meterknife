@@ -8,7 +8,7 @@ using NKnife.MeterKnife.Util.Protocol.Generic;
 using NKnife.ShareResources;
 using NKnife.Util;
 
-namespace NKnife.MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
     public class CareProtocolUnPacker : BytesProtocolUnPacker
     {

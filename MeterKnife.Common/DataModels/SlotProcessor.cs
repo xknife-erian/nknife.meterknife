@@ -1,6 +1,6 @@
 ﻿using NKnife.Jobs;
+using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Util.Protocol.Generic;
-using NKnife.MeterKnife.Util.Scpi;
 using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.MeterKnife.Util.Tunnel.Filters;
 using NKnife.MeterKnife.Util.Tunnel.Generic;

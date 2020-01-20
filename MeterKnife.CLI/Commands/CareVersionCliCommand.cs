@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using CliFx;
 using CliFx.Attributes;
 using CliFx.Services;
+using NKnife.Interface;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
-using NKnife.MeterKnife.Util.Scpi;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Tunnel;
 
@@ -45,11 +46,21 @@ namespace NKnife.MeterKnife.CLI.Commands
                 Content = new byte[] {0xf0, 0xf1, 0xf2},
                 GpibAddress = 23,
                 Heads = new Tuple<byte, byte>(0x10, 0x20),
-                Interval = 500,
                 IsCare = true,
-                Scpi = new Scpi {Command = "READ?"}
+                Scpi = new Scpi {Command = "READ?"},
+
+                Interval = 500,
+                Timeout = 1000,
+                IsLoop = true,
+                Run = WriteLine
             };
             return new[] {item};
+        }
+
+        private bool WriteLine(IJob arg)
+        {
+            Console.WriteLine("+=+=+=...............");
+            return true;
         }
     }
 }

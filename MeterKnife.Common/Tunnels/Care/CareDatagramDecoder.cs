@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NKnife.MeterKnife.Util.Tunnel.Generic;
 using NKnife.Util;
 
-namespace NKnife.MeterKnife.Common.Tunnels.CareOne
+namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
     /// <summary>
     /// 基于CareOne的协议规则的解码器。

@@ -4,16 +4,16 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Xml;
 
-namespace NKnife.MeterKnife.Util.Scpi
+namespace NKnife.MeterKnife.Common.Scpi
 {
     /// <summary>
     ///     指令主题集合
     /// </summary>
-    public class ScpiSubjectCollection : List<ScpiSubject>
+    public class CareCommandSubjectList : List<CareCommandSubject>
     {
         protected ScpisXmlFile _ScpiFile;
 
-        public ScpiSubjectCollection()
+        public CareCommandSubjectList()
         {
             Version = new Version("1.0");
         }
@@ -110,10 +110,10 @@ namespace NKnife.MeterKnife.Util.Scpi
                 {
                     return false;
                 }
-                var array = ScpiSubject.Parse(scpigroups);
+                var array = CareCommandSubject.Parse(scpigroups);
                 foreach (var scpiSubject in array)
                 {
-                    scpiSubject.OwnerCollection = this;
+                    scpiSubject.OwnerList = this;
                     Add(scpiSubject);
                 }
             }

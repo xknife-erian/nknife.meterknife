@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MeterKnife.Util.Scpi.Parser
+namespace NKnife.MeterKnife.Common.Scpi.Parser
 {
     public class ScpiTokenType
     {

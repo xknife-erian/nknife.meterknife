@@ -1,4 +1,4 @@
-﻿namespace MeterKnife.Util.Scpi.Parser
+﻿namespace NKnife.MeterKnife.Common.Scpi.Parser
 {
     public class ScpiCommandCaller
     {
