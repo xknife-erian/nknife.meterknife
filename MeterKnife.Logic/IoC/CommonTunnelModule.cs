@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.Logic.IoC
             builder.RegisterType<CareTalking>().As<BytesProtocol>();
             builder.RegisterType<CareConfigHandler>().AsSelf();
             builder.RegisterType<CareTemperatureHandler>().AsSelf();
-            builder.RegisterType<ScpiProtocolHandler>().AsSelf();
+            builder.RegisterType<DUTProtocolHandler>().AsSelf();
         }
 
         #endregion

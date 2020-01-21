@@ -18,7 +18,7 @@ namespace NKnife.MeterKnife.CLI
 
             builder.RegisterType<SerialCliCommand>().Named<ICommand>("serial").SingleInstance();
             builder.RegisterType<CareConfigCliCommand>().Named<ICommand>("cc").SingleInstance();
-            builder.RegisterType<CareVersionCliCommand>().Named<ICommand>("cv").SingleInstance();
+            builder.RegisterType<CareCliCommand>().Named<ICommand>("ci").SingleInstance();
             
             builder.RegisterType<CliStartup>().AsSelf().SingleInstance();
 

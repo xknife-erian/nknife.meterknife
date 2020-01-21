@@ -46,7 +46,8 @@ namespace NKnife.MeterKnife.Common.Scpi
         public int Timeout { get; set; }
 
         public bool IsLoop { get; set; }
-        public int LoopNumber { get; set; }
+        public int LoopCount { get; set; }
+        public int CountOfCompleted { get; set; }
 
         public Func<IJob, bool> Run { get; set; }
         public Func<IJob, bool> Verify { get; set; }

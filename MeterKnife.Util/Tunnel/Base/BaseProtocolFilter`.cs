@@ -270,7 +270,6 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
         {
             try
             {
-                _Logger.Warn(protocol.ToString());
                 if (_Handlers.Count == 0)
                 {
                     _Logger.Warn("Handler集合不应为空.");

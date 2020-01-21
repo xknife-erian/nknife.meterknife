@@ -93,12 +93,14 @@ namespace NKnife.MeterKnife.Common.Scpi
 
         #region Implementation of IJobPoolItem
 
-        public bool IsPool { get; } = false;
+        public bool IsPool { get; } = true;
 
         void IJobPool.AddRange(IEnumerable<IJobPoolItem> jobs)
         {
             AddRange(jobs.Cast<CareCommand>());
         }
+
+        public bool IsOverall { get; set; }
 
         #endregion
 

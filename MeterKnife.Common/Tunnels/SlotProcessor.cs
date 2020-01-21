@@ -5,7 +5,7 @@ using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.MeterKnife.Util.Tunnel.Filters;
 using NKnife.MeterKnife.Util.Tunnel.Generic;
 
-namespace NKnife.MeterKnife.Common.DataModels
+namespace NKnife.MeterKnife.Common.Tunnels
 {
     /// <summary>
     ///     插槽的处理部件
@@ -23,7 +23,7 @@ namespace NKnife.MeterKnife.Common.DataModels
             Codec.CodecName = FAMILY_NAME;
             Filter = filter;
             Filter.Bind(Codec, Family);
-            JobManager = new JobManager {Pool = new CareCommandPool()};
+            JobManager = new JobManager {Pool = new CareCommandPool {IsOverall = true}};
         }
 
         public JobManager JobManager { get; set; }

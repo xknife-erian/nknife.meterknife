@@ -16,16 +16,16 @@ using NKnife.MeterKnife.Util.Tunnel;
 
 namespace NKnife.MeterKnife.CLI.Commands
 {
-    [Command("cv", Description = "连接Care，读取Care版本。")]
-    public class CareVersionCliCommand : BaseCommand
+    [Command("ci", Description = "连接Care，采集数据。")]
+    public class CareCliCommand : BaseCommand
     {
         private readonly ISlotService _slotService;
         private readonly SlotProcessor _slotProcessor;
-        private readonly ScpiProtocolHandler _handler;
+        private readonly DUTProtocolHandler _handler;
         private readonly CareTemperatureHandler _tempHandler;
         private readonly CareConfigHandler _configHandler;
 
-        public CareVersionCliCommand(ISlotService slotService, SlotProcessor slotProcessor, ScpiProtocolHandler handler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler)
+        public CareCliCommand(ISlotService slotService, SlotProcessor slotProcessor, DUTProtocolHandler handler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler)
         {
             _slotService = slotService;
             _slotProcessor = slotProcessor;
@@ -44,7 +44,7 @@ namespace NKnife.MeterKnife.CLI.Commands
 
         private CareCommand[] GetCommands()
         {
-            var item = new CareCommand
+            var item1 = new CareCommand
             {
                 GpibAddress = 23,
                 Scpi = new Scpi {Command = "FETC?"},
@@ -53,7 +53,18 @@ namespace NKnife.MeterKnife.CLI.Commands
                 Timeout = 2000,
                 IsLoop = true,
             };
-            return new[] {item};
+            var item2 = new CareCommand
+            {
+                GpibAddress = 24,
+                Scpi = new Scpi { Command = "READ?" },
+
+                Interval = 600,
+                Timeout = 2000,
+                IsLoop = true,
+            };
+            // return new[] { item2 };
+            // return new[] { item1 };
+            return new[] { item1, item2 };
         }
     }
 }

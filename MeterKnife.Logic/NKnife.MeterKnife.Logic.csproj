@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
-    <PackageReference Include="NKnife" Version="19.2.0" />
+    <PackageReference Include="NKnife" Version="20.0.0" />
     <PackageReference Include="NLog" Version="4.6.8" />
   </ItemGroup>
 

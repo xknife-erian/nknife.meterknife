@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NKnife" Version="20.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MeterKnife.Util\NKnife.MeterKnife.Util.csproj" />
   </ItemGroup>
 
