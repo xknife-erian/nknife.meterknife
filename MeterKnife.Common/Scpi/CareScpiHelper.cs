@@ -48,14 +48,14 @@ namespace NKnife.MeterKnife.Common.Scpi
         ///     查询温度
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public static CareCommand TEMP()
+        public static CareCommand TEMP(ushort index, int interval = 100)
         {
             var item = new CareCommand
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Interval = 30,
-                Heads = new Tuple<byte, byte>(0xAE, 0x00)
+                Interval = interval,
+                Heads = new Tuple<byte, byte>(0xAE, (byte)index)
             };
             return item;
         }

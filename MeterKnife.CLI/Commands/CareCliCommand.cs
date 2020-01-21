@@ -44,27 +44,29 @@ namespace NKnife.MeterKnife.CLI.Commands
 
         private CareCommand[] GetCommands()
         {
+            var interval = 500;
             var item1 = new CareCommand
             {
                 GpibAddress = 23,
                 Scpi = new Scpi {Command = "FETC?"},
 
-                Interval = 600,
+                Interval = interval,
                 Timeout = 2000,
                 IsLoop = true,
             };
             var item2 = new CareCommand
             {
                 GpibAddress = 24,
-                Scpi = new Scpi { Command = "READ?" },
+                Scpi = new Scpi {Command = "READ?"},
 
-                Interval = 600,
+                Interval = interval,
                 Timeout = 2000,
                 IsLoop = true,
             };
             // return new[] { item2 };
             // return new[] { item1 };
-            return new[] { item1, item2 };
+            //return new[] {CareScpiHelper.TEMP(1, 1000)};
+            return new[] {item1, item2, CareScpiHelper.TEMP(0), CareScpiHelper.TEMP(1)};
         }
     }
 }
