@@ -2,9 +2,7 @@
 {
     public class StoragesOption
     {
-        public string MysqlWriteString { get; set; }
-        public string MysqlReadString { get; set; }
-        public string SqliteWriteString { get; set; }
-        public string SqliteReadString { get; set; }
+        public string MysqlString { get; set; }
+        public string SqliteString { get; set; }
     }
 }

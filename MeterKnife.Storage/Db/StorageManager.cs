@@ -16,19 +16,14 @@ namespace NKnife.MeterKnife.Storage.Db
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        private readonly IDbService _dbService;
         private readonly StoragesOption _option;
 
         private IDbConnection _farReadConnection;
         private IDbConnection _farWriteConnection;
 
-        public StorageManager(IOptions<StoragesOption> options, IDbService dbService)
+        public StorageManager(IOptions<StoragesOption> options)
         {
             _option = options.Value;
-            _dbService = dbService;
-            CurrentDbType = dbService.CurrentDbType;
-            SqlSetMap = dbService.SqlSetMap;
-            dbService.SetConnections(new Func<IDbConnection>[] {OpenReadConnection, OpenWriteConnection});
             ConnectionParamChanged += (s, e) =>
             {
                 _logger.Info("Connection Param Changed.");
@@ -77,10 +72,10 @@ namespace NKnife.MeterKnife.Storage.Db
                 switch (_dbService.CurrentDbType)
                 {
                     case DatabaseType.MySql:
-                        _farWriteConnection = new MySqlConnection(_option.MysqlWriteString);
+                        _farWriteConnection = new MySqlConnection(_option.MysqlString);
                         break;
                     default:
-                        _farWriteConnection = new SQLiteConnection(_option.SqliteReadString);
+                        _farWriteConnection = new SQLiteConnection(_option.SqliteString);
                         break;
                 }
 
@@ -129,10 +124,10 @@ namespace NKnife.MeterKnife.Storage.Db
                 switch (_dbService.CurrentDbType)
                 {
                     case DatabaseType.MySql:
-                        _farReadConnection = new MySqlConnection(_option.MysqlReadString);
+                        _farReadConnection = new MySqlConnection(_option.MysqlString);
                         break;
                     default:
-                        _farReadConnection = new SQLiteConnection(_option.SqliteWriteString);
+                        _farReadConnection = new SQLiteConnection(_option.SqliteString);
                         break;
                 }
 

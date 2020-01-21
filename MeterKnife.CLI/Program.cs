@@ -30,11 +30,7 @@ namespace NKnife.MeterKnife.CLI
             builder.RegisterType<CareConfigCliCommand>().Named<ICommand>("cc").SingleInstance();
             builder.RegisterType<CareCliCommand>().Named<ICommand>("ci").SingleInstance();
             
-            builder.RegisterType<CliStartup>().AsSelf().SingleInstance();
-
             var container = builder.Build();
-            var startup = container.Resolve<CliStartup>();
-            startup.Initialize();
 
             await new CliApplicationBuilder()
                 .AddCommandsFromThisAssembly()

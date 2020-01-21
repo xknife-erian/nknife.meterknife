@@ -12,19 +12,22 @@ namespace NKnife.MeterKnife.CLI.Commands
     [Command("ci", Description = "连接Care，采集数据。")]
     public class CareCliCommand : BaseCommand
     {
+        private readonly ISlotService _slotService;
+        private readonly SlotProcessor _slotProcessor;
+        private readonly IDbService _dbService;
         private readonly CareConfigHandler _configHandler;
         private readonly DUTProtocolHandler _handler;
-        private readonly SlotProcessor _slotProcessor;
-        private readonly ISlotService _slotService;
         private readonly CareTemperatureHandler _tempHandler;
 
-        public CareCliCommand(ISlotService slotService, SlotProcessor slotProcessor, DUTProtocolHandler handler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler)
+        public CareCliCommand(ISlotService slotService, SlotProcessor slotProcessor, DUTProtocolHandler handler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler, IDbService dbService)
         {
             _slotService = slotService;
             _slotProcessor = slotProcessor;
             _handler = handler;
             _tempHandler = tempHandler;
             _configHandler = configHandler;
+            _dbService = dbService;
+            _dbService.SetConnections();
         }
 
         public override async Task ExecuteAsync(IConsole console)
