@@ -1,5 +1,5 @@
 ﻿using System;
-using NKnife.MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Common
 {

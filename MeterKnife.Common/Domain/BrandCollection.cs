@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NKnife.MeterKnife.Common.DataModels
+namespace NKnife.MeterKnife.Common.Domain
 {
     public class BrandCollection
     {

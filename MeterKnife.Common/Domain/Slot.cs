@@ -3,7 +3,7 @@ using System.Net;
 using System.Text;
 using NKnife.MeterKnife.Common.Tunnels;
 
-namespace NKnife.MeterKnife.Common.DataModels
+namespace NKnife.MeterKnife.Common.Domain
 {
     /// <summary>
     ///     描述一个数据端口，一般是只能打开一次的独占数据端口。比如串口，TCPIP端口等。

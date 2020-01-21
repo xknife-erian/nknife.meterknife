@@ -1,6 +1,5 @@
 ﻿using System;
 using NKnife.MeterKnife.Common;
-using NKnife.MeterKnife.Common.DataModels;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
@@ -10,6 +9,7 @@ using NKnife.MeterKnife.Util.Tunnel;
 using NLog;
 using System.Collections.Generic;
 using System.Threading;
+using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Logic.Services
 {

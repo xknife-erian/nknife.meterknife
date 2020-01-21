@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using NKnife.MeterKnife.Common.DataModels;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
 using NKnife.MeterKnife.Util.Protocol.Generic;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.MeterKnife.Common.DataModels
+namespace NKnife.MeterKnife.Common.Domain
 {
     /// <summary>
     /// 采集数据

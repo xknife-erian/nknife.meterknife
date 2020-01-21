@@ -1,4 +1,4 @@
-﻿namespace NKnife.MeterKnife.Common.DataModels
+﻿namespace NKnife.MeterKnife.Common.Domain
 {
     public class FiguredDataFilter
     {

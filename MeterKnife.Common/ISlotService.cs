@@ -1,4 +1,4 @@
-﻿using NKnife.MeterKnife.Common.DataModels;
+﻿using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;

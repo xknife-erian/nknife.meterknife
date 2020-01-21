@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NKnife.MeterKnife.Common.DataModels
+﻿namespace NKnife.MeterKnife.Common.Domain
 {
     /// <summary>
     /// 被测物
