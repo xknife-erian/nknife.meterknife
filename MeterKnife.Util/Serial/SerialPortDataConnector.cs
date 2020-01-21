@@ -73,8 +73,7 @@ namespace NKnife.MeterKnife.Util.Serial
 
         protected virtual void OnDataSent(SessionEventArgs e)
         {
-            var handler = DataSent;
-            handler?.Invoke(this, e);
+            DataSent?.Invoke(this, e);
         }
 
         protected virtual void OnDataSent(byte[] data)

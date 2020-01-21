@@ -3,17 +3,14 @@ using NKnife.XML;
 
 namespace NKnife.MeterKnife.Common.Scpi
 {
-    public class ScpisXmlFile : AbstractXmlDocument
+    public class ScpiXmlFile : AbstractXmlDocument
     {
-        public ScpisXmlFile(string fullName) 
+        public ScpiXmlFile(string fullName) 
             : base(fullName)
         {
         }
 
-        public override string RootNodeLocalName
-        {
-            get { return "instrument"; }
-        }
+        public override string RootNodeLocalName => "instrument";
 
         public XmlElement Groups()
         {

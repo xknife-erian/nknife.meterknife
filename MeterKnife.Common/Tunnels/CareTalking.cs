@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
 
         public override string ToString()
         {
-            return $"GPIB:{GpibAddress},\r\nCommand:{MainCommand.ToHexString()} {SubCommand.ToHexString()},\r\nContent:{Scpi}";
+            return $"GPIB:{GpibAddress}, Command:{MainCommand.ToHexString()}|{SubCommand.ToHexString()}, Content:{Scpi}".TrimEnd('\r', '\n');
         }
 
         #region 基本属性

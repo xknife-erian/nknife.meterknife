@@ -10,6 +10,7 @@ using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.DataModels;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
+using NKnife.MeterKnife.Common.Tunnels.Care;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Tunnel;
 
@@ -19,22 +20,24 @@ namespace NKnife.MeterKnife.CLI.Commands
     public class CareVersionCliCommand : BaseCommand
     {
         private readonly ISlotService _slotService;
+        private readonly SlotProcessor _slotProcessor;
         private readonly ScpiProtocolHandler _handler;
         private readonly CareTemperatureHandler _tempHandler;
-        private readonly SlotProcessor _slotProcessor;
+        private readonly CareConfigHandler _configHandler;
 
-        public CareVersionCliCommand(ISlotService slotService, ScpiProtocolHandler handler, CareTemperatureHandler tempHandler, SlotProcessor slotProcessor)
+        public CareVersionCliCommand(ISlotService slotService, SlotProcessor slotProcessor, ScpiProtocolHandler handler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler)
         {
             _slotService = slotService;
+            _slotProcessor = slotProcessor;
             _handler = handler;
             _tempHandler = tempHandler;
-            _slotProcessor = slotProcessor;
+            _configHandler = configHandler;
         }
 
         public override async Task ExecuteAsync(IConsole console)
         {
             var slot = Slot.Build(TunnelType.Serial, $"{Port}");
-            _slotService.Bind(slot, _slotProcessor, _handler, _tempHandler);
+            _slotService.Bind(slot, _slotProcessor, _handler, _tempHandler, _configHandler);
             _slotService.SendCommands(slot, GetCommands());
             _slotService.Start(slot);
         }
@@ -43,24 +46,14 @@ namespace NKnife.MeterKnife.CLI.Commands
         {
             var item = new CareCommand
             {
-                Content = new byte[] {0xf0, 0xf1, 0xf2},
                 GpibAddress = 23,
-                Heads = new Tuple<byte, byte>(0x10, 0x20),
-                IsCare = true,
-                Scpi = new Scpi {Command = "READ?"},
+                Scpi = new Scpi {Command = "FETC?"},
 
-                Interval = 500,
-                Timeout = 1000,
+                Interval = 600,
+                Timeout = 2000,
                 IsLoop = true,
-                Run = WriteLine
             };
             return new[] {item};
-        }
-
-        private bool WriteLine(IJob arg)
-        {
-            Console.WriteLine("+=+=+=...............");
-            return true;
         }
     }
 }

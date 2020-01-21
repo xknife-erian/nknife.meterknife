@@ -51,12 +51,5 @@ namespace NKnife.MeterKnife.Common
         /// <param name="slot">指定插槽</param>
         /// <param name="cmdArray">即将发送的命令组</param>
         void SendCommands(Slot slot, params CareCommand[] cmdArray);
-
-        /// <summary>
-        ///     向指定插槽发送将要循环使用的Scpi命令组
-        /// </summary>
-        /// <param name="slot">指定的插槽</param>
-        /// <param name="cmdArray">即将发送的命令组</param>
-        void SendLoopCommands(Slot slot, params CareCommand[] cmdArray);
     }
 }

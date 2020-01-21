@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using NKnife.Jobs;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.DataModels;
 using NKnife.MeterKnife.Common.Scpi;
@@ -12,11 +6,10 @@ using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Serial.Common;
-using NKnife.MeterKnife.Util.Serial.Generic.Filters;
 using NKnife.MeterKnife.Util.Tunnel;
-using NKnife.MeterKnife.Util.Tunnel.Base;
-using NKnife.Util;
 using NLog;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace NKnife.MeterKnife.Logic.Services
 {
@@ -86,7 +79,6 @@ namespace NKnife.MeterKnife.Logic.Services
                         };
                         c.PortNumber = portInfo[0]; //串口
                     }
-
                     break;
                 }
             }
@@ -126,6 +118,7 @@ namespace NKnife.MeterKnife.Logic.Services
         public bool Start(Slot slot)
         {
             var processor = _processorMap[slot];
+            processor.Connector.Start();
             processor.JobManager.Run();
             return true;
         }
@@ -150,21 +143,40 @@ namespace NKnife.MeterKnife.Logic.Services
         public void SendCommands(Slot slot, params CareCommand[] cmdArray)
         {
             var processor = _processorMap[slot];
+            foreach (var cmd in cmdArray)
+            {
+                cmd.Run += (job) =>
+                {
+                    SendCommand(processor.Connector, cmd);
+                    return true;
+                };
+            }
             processor.JobManager.Pool.AddRange(cmdArray);
         }
 
-        /// <summary>
-        ///     向指定插槽发送将要循环使用的Scpi命令组
-        /// </summary>
-        /// <param name="slot">指定的插槽</param>
-        /// <param name="cmdArray">即将发送的命令组</param>
-        public void SendLoopCommands(Slot slot, params CareCommand[] cmdArray)
+        private static void SendCommand(IDataConnector dataConnector, CareCommand cmd)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var data = cmd.IsCare
+                    ? CareScpiHelper.GenerateProtocol(cmd)
+                    : cmd.Scpi.GenerateProtocol(cmd.GpibAddress);
+
+                _Logger.Trace($"SendCommand:{data.ToHexString()}");
+
+                if (data.Length != 0)
+                {
+                    dataConnector.SendAll(data);
+                }
+            }
+            catch (Exception e)
+            {
+                _Logger.Warn($"向采集器发送指令(SendCommand)时出现异常:{e.Message}");
+            }
         }
 
-        #endregion        
-        
+        #endregion
+
         /*
         private const string FAMILY_NAME = "care";
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();

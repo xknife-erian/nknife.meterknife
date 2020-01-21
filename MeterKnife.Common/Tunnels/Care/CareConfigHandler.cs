@@ -1,8 +1,7 @@
 ﻿using System;
 using NKnife.Events;
-using NKnife.MeterKnife.Common.Tunnels.Care;
 
-namespace NKnife.MeterKnife.Common.Tunnels
+namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
     public class CareConfigHandler : CareProtocolHandler
     {
@@ -18,7 +17,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
             Commands.Add(new byte[] { 0xA0, 0xD5 });
             Commands.Add(new byte[] { 0xA0, 0xD6 });
             Commands.Add(new byte[] { 0xA0, 0xD7 });
-            //Commands.Add(new byte[] { 0xA0, 0xD8 });
+            Commands.Add(new byte[] { 0xA0, 0xD8 });
             Commands.Add(new byte[] { 0xA0, 0xD9 });
             Commands.Add(new byte[] { 0xA0, 0xDA });
             Commands.Add(new byte[] { 0xA0, 0xDB });
@@ -30,7 +29,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
 
         public override void Received(CareTalking protocol)
         {
-            _Logger.Trace(message: string.Format("{1}^{2}:{0}", protocol.Scpi, protocol.MainCommand.ToHexString(), protocol.SubCommand.ToHexString()));
+            _Logger.Trace(message: $"{protocol.MainCommand.ToHexString()}^{protocol.SubCommand.ToHexString()}:{protocol.Scpi}");
             if (!string.IsNullOrEmpty(protocol.Scpi))
             {
                 OnCareSetting(new EventArgs<CareTalking>(protocol));

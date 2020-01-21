@@ -11,7 +11,7 @@ namespace NKnife.MeterKnife.Common.Scpi
     /// </summary>
     public class CareCommandSubjectList : List<CareCommandSubject>
     {
-        protected ScpisXmlFile _ScpiFile;
+        protected ScpiXmlFile _ScpiFile;
 
         public CareCommandSubjectList()
         {
@@ -40,10 +40,10 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// </summary>
         public void BuildScpiFile(string fileFullName)
         {
-            _ScpiFile = new ScpisXmlFile(fileFullName); //如果文件不存在，会自动创建
+            _ScpiFile = new ScpiXmlFile(fileFullName); //如果文件不存在，会自动创建
         }
 
-        public ScpisXmlFile GetXmlFile()
+        public ScpiXmlFile GetXmlFile()
         {
             return _ScpiFile;
         }

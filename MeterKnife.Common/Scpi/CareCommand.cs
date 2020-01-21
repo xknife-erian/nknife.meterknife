@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Text;
 using NKnife.Interface;
+using NKnife.Util;
 
 namespace NKnife.MeterKnife.Common.Scpi
 {

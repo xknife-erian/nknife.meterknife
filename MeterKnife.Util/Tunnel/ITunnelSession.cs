@@ -1,5 +1,8 @@
 ﻿namespace NKnife.MeterKnife.Util.Tunnel
 {
+    /// <summary>
+    ///     通道内的数据包装
+    /// </summary>
     public interface ITunnelSession
     {
         long Id { get; }

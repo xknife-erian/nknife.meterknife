@@ -103,7 +103,6 @@ namespace NKnife.MeterKnife.Common.Tunnels
             foreach (var filter in _filterChain)
             {
                 var continueNextFilter = filter.ProcessReceiveData(e.Item); // 调用filter对数据进行处理
-
                 if (!continueNextFilter)
                     break;
             }

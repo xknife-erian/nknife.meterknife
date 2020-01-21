@@ -61,6 +61,7 @@ namespace NKnife.MeterKnife.Util.Protocol.Generic
                    Equals(Tags, other.Tags) &&
                    Equals(Infomations, other.Infomations);
         }
+
         public override int GetHashCode()
         {
             unchecked

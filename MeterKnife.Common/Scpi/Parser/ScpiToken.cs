@@ -6,10 +6,10 @@
         public ScpiTokenType _TokenType;
         public string _Data;
 
-        ScpiToken(ScpiTokenType tokenType, string data)
+        public ScpiToken(ScpiTokenType tokenType, string data)
         {
-            this._TokenType = tokenType;
-            this._Data = data;
+            _TokenType = tokenType;
+            _Data = data;
         }
     }
 }

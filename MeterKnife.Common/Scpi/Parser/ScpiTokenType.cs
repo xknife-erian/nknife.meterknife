@@ -9,57 +9,23 @@ namespace NKnife.MeterKnife.Common.Scpi.Parser
         static ScpiTokenType()
         {
             Values = new List<string>();
-            Values.Add(_COLON);
-            Values.Add(_SEMICOLON);
-            Values.Add(_QUOTEDstring);
-            Values.Add(_COMMAND);
-            Values.Add(_ARGUMENT);
-            Values.Add(_WHITESPACE);
-            Values.Add(_NEWLINE);
+            Values.Add(COLON);
+            Values.Add(SEMICOLON);
+            Values.Add(QUOTED_STRING);
+            Values.Add(COMMAND);
+            Values.Add(ARGUMENT);
+            Values.Add(WHITE_SPACE);
+            Values.Add(NEWLINE);
             Values.TrimExcess();
         }
 
-        private const string _COLON = (":");
-        private const string _SEMICOLON = (";");
-        private const string _QUOTEDstring = "\"[^\"]*?\"";
-        private const string _COMMAND = ("[a-zA-z*_?]+");
-        private const string _ARGUMENT = ("[a-zA-z0-9\\.]+");
-        private const string _WHITESPACE = ("[ \t]+");
-        private const string _NEWLINE = ("[\r\n]+");
+        public const string COLON = (":");
+        public const string SEMICOLON = (";");
+        public const string QUOTED_STRING = "\"[^\"]*?\"";
+        public const string COMMAND = ("[a-zA-z*_?]+");
+        public const string ARGUMENT = ("[a-zA-z0-9\\.]+");
+        public const string WHITE_SPACE = ("[ \t]+");
+        public const string NEWLINE = ("[\r\n]+");
 
-        public string COLON
-        {
-            get { return _COLON; }
-        }
-
-        public string SEMICOLON
-        {
-            get { return _SEMICOLON; }
-        }
-
-        public string QUOTEDstring
-        {
-            get { return _QUOTEDstring; }
-        }
-
-        public string COMMAND
-        {
-            get { return _COMMAND; }
-        }
-
-        public string ARGUMENT
-        {
-            get { return _ARGUMENT; }
-        }
-
-        public string WHITESPACE
-        {
-            get { return _WHITESPACE; }
-        }
-
-        public string NEWLINE
-        {
-            get { return _NEWLINE; }
-        }
     }
 }

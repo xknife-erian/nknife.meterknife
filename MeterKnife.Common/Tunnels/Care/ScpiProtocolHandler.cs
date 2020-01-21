@@ -1,8 +1,7 @@
 ﻿using System;
 using NKnife.Events;
-using NKnife.MeterKnife.Common.Tunnels.Care;
 
-namespace NKnife.MeterKnife.Common.Tunnels
+namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
     public class ScpiProtocolHandler : CareProtocolHandler
     {

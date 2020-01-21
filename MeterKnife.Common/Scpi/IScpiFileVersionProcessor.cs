@@ -5,6 +5,6 @@
     /// </summary>
     public interface IScpiFileVersionProcessor
     {
-        ScpisXmlFile Update(ScpisXmlFile scpiFile, bool isSave);
+        ScpiXmlFile Update(ScpiXmlFile scpiFile, bool isSave);
     }
 }
