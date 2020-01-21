@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKnife.MeterKnife.Common
+namespace NKnife.MeterKnife.Common.Domain
 {
     public class Temperature
     {

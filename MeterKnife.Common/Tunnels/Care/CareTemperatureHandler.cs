@@ -1,4 +1,5 @@
 ﻿using System;
+using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
@@ -14,12 +15,15 @@ namespace NKnife.MeterKnife.Common.Tunnels.Care
             Commands.Add(new byte[] { 0xAE, 0x01 });
             Commands.Add(new byte[] { 0xAE, 0x02 });
             Commands.Add(new byte[] { 0xAE, 0x03 });
+            Commands.Add(new byte[] { 0xAE, 0x04 });
+            Commands.Add(new byte[] { 0xAE, 0x05 });
+            Commands.Add(new byte[] { 0xAE, 0x06 });
         }
 
         public override void Received(CareTalking protocol)
         {
             var data = protocol.Scpi;
-            _Logger.Debug($"Received TEMP:{data.TrimEnd('\n')}");
+            _Logger.Debug($"Received TEMP: {protocol.MainCommand}|{protocol.SubCommand} {data.TrimEnd('\n')}");
             if (double.TryParse(data, out var yzl))
                 _TempStorage.ProcessCurrentTemperature(new Temperature() {Time = DateTime.Now, Value = yzl});
         }

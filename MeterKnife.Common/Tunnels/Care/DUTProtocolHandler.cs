@@ -7,11 +7,11 @@ namespace NKnife.MeterKnife.Common.Tunnels.Care
     public class DUTProtocolHandler : CareProtocolHandler
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly IPerformStorageLogic _tempStorage;
+        private readonly IPerformStorageLogic _storage;
 
-        public DUTProtocolHandler(IPerformStorageLogic tempStorage)
+        public DUTProtocolHandler(IPerformStorageLogic storage)
         {
-            _tempStorage = tempStorage;
+            _storage = storage;
             Commands.Add(new byte[] { 0xAA, 0x00 });
             Commands.Add(new byte[] { 0xAB, 0x00 });
             //---

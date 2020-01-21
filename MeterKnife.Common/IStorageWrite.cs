@@ -27,18 +27,6 @@ namespace NKnife.MeterKnife.Common
         Task<bool> UpdateAsync(T domain);
 
         /// <summary>
-        /// 根据记录ID，逻辑删除指定记录，即打上“已删除标记”，但并不从数据库中删除记录
-        /// </summary>
-        /// <param name="id">指定的记录ID</param>
-        Task<bool> LogicDeleteAsync(TId id);
-
-        /// <summary>
-        /// 根据记录ID集合，逻辑删除指定记录，即打上“已删除标记”，但并不从数据库中删除记录
-        /// </summary>
-        /// <param name="ids">指定的记录ID集合</param>
-        Task<bool> LogicDeleteMultiAsync(IEnumerable<TId> ids);
-
-        /// <summary>
         /// 根据记录ID，从数据库中移除该记录，该记录被移除后，不可恢复
         /// </summary>
         /// <param name="id">指定的记录ID</param>

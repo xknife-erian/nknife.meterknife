@@ -1,29 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using CliFx;
+﻿using System.Threading.Tasks;
 using CliFx.Attributes;
 using CliFx.Services;
-using NKnife.Interface;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
-using NKnife.MeterKnife.Util.Serial;
-using NKnife.MeterKnife.Util.Tunnel;
 
 namespace NKnife.MeterKnife.CLI.Commands
 {
     [Command("ci", Description = "连接Care，采集数据。")]
     public class CareCliCommand : BaseCommand
     {
-        private readonly ISlotService _slotService;
-        private readonly SlotProcessor _slotProcessor;
-        private readonly DUTProtocolHandler _handler;
-        private readonly CareTemperatureHandler _tempHandler;
         private readonly CareConfigHandler _configHandler;
+        private readonly DUTProtocolHandler _handler;
+        private readonly SlotProcessor _slotProcessor;
+        private readonly ISlotService _slotService;
+        private readonly CareTemperatureHandler _tempHandler;
 
         public CareCliCommand(ISlotService slotService, SlotProcessor slotProcessor, DUTProtocolHandler handler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler)
         {
@@ -44,7 +37,7 @@ namespace NKnife.MeterKnife.CLI.Commands
 
         private CareCommand[] GetCommands()
         {
-            var interval = 500;
+            var interval = 300;
             var item1 = new CareCommand
             {
                 GpibAddress = 23,
@@ -52,7 +45,7 @@ namespace NKnife.MeterKnife.CLI.Commands
 
                 Interval = interval,
                 Timeout = 2000,
-                IsLoop = true,
+                IsLoop = true
             };
             var item2 = new CareCommand
             {
@@ -61,12 +54,12 @@ namespace NKnife.MeterKnife.CLI.Commands
 
                 Interval = interval,
                 Timeout = 2000,
-                IsLoop = true,
+                IsLoop = true
             };
             // return new[] { item2 };
             // return new[] { item1 };
-            //return new[] {CareScpiHelper.TEMP(1, 1000)};
-            return new[] {item1, item2, CareScpiHelper.TEMP(0), CareScpiHelper.TEMP(1)};
+            // return new[] {CareScpiHelper.TEMP(1, 1000)};
+            return new[] {item1, item2, CareScpiHelper.TEMP(5), CareScpiHelper.TEMP(6) };
         }
     }
 }

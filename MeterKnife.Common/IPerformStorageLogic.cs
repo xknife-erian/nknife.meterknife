@@ -1,4 +1,6 @@
-﻿namespace NKnife.MeterKnife.Common
+﻿using NKnife.MeterKnife.Common.Domain;
+
+namespace NKnife.MeterKnife.Common
 {
     public interface IPerformStorageLogic
     {

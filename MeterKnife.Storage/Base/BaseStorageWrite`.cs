@@ -81,7 +81,7 @@ namespace NKnife.MeterKnife.Storage.Base
             var sql = _sqlSet.Update[GetSqlKey()];
             try
             {
-                IDomain d = (IDomain) domain;
+                IRecord<T> d = (IRecord<T>) domain;
                 sql = $"{sql} Where Id='{d.Id}'";//TODO:有巨大的问题，此处需要再好好构思一下。
                 var i = await conn.ExecuteAsync(sql, domain);
                 return i == 1;
@@ -94,51 +94,13 @@ namespace NKnife.MeterKnife.Storage.Base
         }
 
         /// <summary>
-        ///     根据记录ID，逻辑删除指定记录，即打上“已删除标记”，但并不从数据库中删除记录
-        /// </summary>
-        /// <param name="id">指定的记录ID</param>
-        public async Task<bool> LogicDeleteAsync(string id)
-        {
-            var conn = _storageManager.OpenWriteConnection();
-            var sql = $"UPDATE {TableName} SET {nameof(IDomain.State)}={(short) RecordState.Deleted} WHERE {nameof(IDomain.Id)}='{id}'";
-            var i = await conn.ExecuteAsync(sql);
-            return i == 1;
-        }
-
-        /// <summary>
-        /// 根据记录ID集合，逻辑删除指定记录，即打上“已删除标记”，但并不从数据库中删除记录
-        /// </summary>
-        /// <param name="ids">指定的记录ID集合</param>
-        public async Task<bool> LogicDeleteMultiAsync(IEnumerable<string> ids)
-        {
-            if (ids == null)
-                return await Task.Run((() => true));
-            var array = ids.ToArray();
-            if(array.Length<=0)
-                return await Task.Run((() => true));
-
-            var conn = _storageManager.OpenWriteConnection();
-            var sb = new StringBuilder($"UPDATE {TableName} SET {nameof(IDomain.State)}={(short) RecordState.Deleted} WHERE");
-            for (int j = 0; j < array.Count(); j++)
-            {
-                if (j > 0)
-                    sb.Append(" OR ");
-                else
-                    sb.Append(' ');
-                sb.Append($"{nameof(IDomain.Id)}='{array[j]}'");
-            }
-            var i = await conn.ExecuteAsync(sb.ToString());
-            return i == 1;
-        }
-
-        /// <summary>
         ///     根据记录ID，从数据库中移除该记录，该记录被移除后，不可恢复
         /// </summary>
         /// <param name="id">指定的记录ID</param>
         public async Task<bool> RemoveAsync(string id)
         {
             var conn = _storageManager.OpenWriteConnection();
-            var sql = $"DELETE FROM {TableName} WHERE {nameof(IDomain.Id)}='{id}'";
+            var sql = $"DELETE FROM {TableName} WHERE {nameof(IRecord<T>.Id)}='{id}'";
             var i = await conn.ExecuteAsync(sql);
             return i == 1;
         }
