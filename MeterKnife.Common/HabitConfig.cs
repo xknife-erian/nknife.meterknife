@@ -13,7 +13,7 @@ namespace NKnife.MeterKnife.Common
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
-        private const string OPTION_FILE = "option.xml";
+        private const string OPTION_FILE = "Habit.xml";
         private readonly string _optionFile;
         private readonly XmlDocument _optionXmlDocument;
 
@@ -29,25 +29,20 @@ namespace NKnife.MeterKnife.Common
                 _optionXmlDocument = new XmlDocument();
                 _optionXmlDocument.Load(_optionFile);
             }
-
-            if (!TryGetOptionValue("firstOpenApp", out bool firstOpenApp))
-            {
-                SetOptionValue("firstOpenApp", false);
-                firstOpenApp = true;
-            }
         }
 
         /// <summary>
         ///     尝试获取指定Key的选项的值
         /// </summary>
-        public bool TryGetOptionValue<T>(string key, out T value)
+        public T GetOptionValue<T>(string key, T defaultValue)
         {
-            value = default;
             var ele = _optionXmlDocument.DocumentElement?.SelectSingleNode(key);
             if (ele == null)
-                return false;
-            value = JsonConvert.DeserializeObject<T>(ele.GetCDataElement().Value);
-            return true;
+            {
+                SetOptionValue(key, defaultValue);
+                ele = _optionXmlDocument.DocumentElement?.SelectSingleNode(key);
+            }
+            return JsonConvert.DeserializeObject<T>(ele.GetCDataElement().Value);
         }
 
         /// <summary>
@@ -65,17 +60,5 @@ namespace NKnife.MeterKnife.Common
             _optionXmlDocument.Save(_optionFile);
         }
 
-
-        private static void Initialize(string resXml, string fileName, string rootPath)
-        {
-            var path = Path.Combine(rootPath, $"{fileName}.xml");
-            if (!File.Exists(path))
-            {
-                var xml = new XmlDocument();
-                xml.LoadXml(resXml);
-                xml.Save(path);
-                _Logger.Info($"首次运行，创建：{path}");
-            }
-        }
     }
 }

@@ -14,20 +14,17 @@ namespace NKnife.MeterKnife.CLI.Commands
     {
         private readonly ISlotService _slotService;
         private readonly SlotProcessor _slotProcessor;
-        private readonly IDbService _dbService;
         private readonly CareConfigHandler _configHandler;
         private readonly DUTProtocolHandler _handler;
         private readonly CareTemperatureHandler _tempHandler;
 
-        public CareCliCommand(ISlotService slotService, SlotProcessor slotProcessor, DUTProtocolHandler handler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler, IDbService dbService)
+        public CareCliCommand(ISlotService slotService, SlotProcessor slotProcessor, DUTProtocolHandler handler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler)
         {
             _slotService = slotService;
             _slotProcessor = slotProcessor;
             _handler = handler;
             _tempHandler = tempHandler;
             _configHandler = configHandler;
-            _dbService = dbService;
-            _dbService.SetConnections();
         }
 
         public override async Task ExecuteAsync(IConsole console)

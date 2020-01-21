@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Autofac;
 using NKnife.MeterKnife.Common;
-using NKnife.MeterKnife.Storage.Db;
 
 namespace NKnife.MeterKnife.Logic.IoC
 {
-    public class StorageModules : Module
+    public class CommonModule : Module
     {
         #region Overrides of Module
 
@@ -20,6 +19,8 @@ namespace NKnife.MeterKnife.Logic.IoC
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
+            builder.RegisterType<PathManager>().AsSelf().SingleInstance();
+            builder.RegisterType<HabitConfig>().AsSelf().SingleInstance();
         }
 
         #endregion
