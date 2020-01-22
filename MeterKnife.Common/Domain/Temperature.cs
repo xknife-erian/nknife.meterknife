@@ -1,10 +1,6 @@
-﻿using System;
-
-namespace NKnife.MeterKnife.Common.Domain
+﻿namespace NKnife.MeterKnife.Common.Domain
 {
-    public class Temperature
+    public class Temperature : MetricalData
     {
-        public DateTime Time { get; set; }
-        public double Value { get; set; }
     }
 }
