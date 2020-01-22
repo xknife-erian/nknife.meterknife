@@ -1,4 +1,4 @@
-﻿namespace NKnife.MeterKnife.Common.Base
+﻿namespace NKnife.MeterKnife.Common
 {
     public interface IRecord<T>
     {

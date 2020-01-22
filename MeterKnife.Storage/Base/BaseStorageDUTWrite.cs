@@ -7,20 +7,19 @@ using Dapper;
 using Newtonsoft.Json;
 using NKnife.Db;
 using NKnife.MeterKnife.Common;
-using NKnife.MeterKnife.Common.Base;
+using NKnife.MeterKnife.Common.Domain;
 using NLog;
 
 namespace NKnife.MeterKnife.Storage.Base
 {
-    public abstract class BaseStorageWrite<T> : IStorageWrite<T, string>
+    public class BaseStorageDUTWrite<T> : IStorageDUTWrite<T>
     {
-        // ReSharper disable once StaticMemberInGenericType
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
         protected readonly IStorageManager _storageManager;
         protected readonly SqlSet _sqlSet;
 
-        protected BaseStorageWrite(IStorageManager storageManager)
+        protected BaseStorageDUTWrite(IStorageManager storageManager)
         {
             _storageManager = storageManager;
             _sqlSet = storageManager.SqlSetMap[storageManager.CurrentDbType];
@@ -40,12 +39,13 @@ namespace NKnife.MeterKnife.Storage.Base
         /// <summary>
         ///     将指定的对象插入数据库中
         /// </summary>
+        /// <param name="dut">指定的被测试物</param>
         /// <param name="domain">指定的对象</param>
-        public async Task<bool> InsertAsync(T domain)
+        public async Task<bool> InsertAsync(DUT dut, T domain)
         {
             if (domain == null)
                 return false;
-            var conn = _storageManager.OpenWriteConnection();
+            var conn = _storageManager.OpenConnection(dut);
             var sql = _sqlSet.Insert[GetSqlKey()];
             int i = 0;
             try
@@ -62,10 +62,11 @@ namespace NKnife.MeterKnife.Storage.Base
         /// <summary>
         ///     将指定的对象批量插入数据库中
         /// </summary>
+        /// <param name="dut">指定的被测试物</param>
         /// <param name="domains">指定的对象</param>
-        public async Task<bool> InsertManyAsync(IEnumerable<T> domains)
+        public async Task<bool> InsertManyAsync(DUT dut, IEnumerable<T> domains)
         {
-            var conn = _storageManager.OpenWriteConnection();
+            var conn = _storageManager.OpenConnection(dut);
             var sql = _sqlSet.Insert[GetSqlKey()];
             var i = await conn.ExecuteAsync(sql, domains);
             return i == domains.Count();
@@ -74,10 +75,11 @@ namespace NKnife.MeterKnife.Storage.Base
         /// <summary>
         ///     更新指定的对象
         /// </summary>
+        /// <param name="dut">指定的被测试物</param>
         /// <param name="domain">指定的对象</param>
-        public async Task<bool> UpdateAsync(T domain)
+        public async Task<bool> UpdateAsync(DUT dut, T domain)
         {
-            var conn = _storageManager.OpenWriteConnection();
+            var conn = _storageManager.OpenConnection(dut);
             var sql = _sqlSet.Update[GetSqlKey()];
             try
             {
@@ -96,10 +98,11 @@ namespace NKnife.MeterKnife.Storage.Base
         /// <summary>
         ///     根据记录ID，从数据库中移除该记录，该记录被移除后，不可恢复
         /// </summary>
+        /// <param name="dut">指定的被测试物</param>
         /// <param name="id">指定的记录ID</param>
-        public async Task<bool> RemoveAsync(string id)
+        public async Task<bool> RemoveAsync(DUT dut, DateTime id)
         {
-            var conn = _storageManager.OpenWriteConnection();
+            var conn = _storageManager.OpenConnection(dut);
             var sql = $"DELETE FROM {TableName} WHERE {nameof(IRecord<T>.Id)}='{id}'";
             var i = await conn.ExecuteAsync(sql);
             return i == 1;

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
@@ -7,9 +9,6 @@ using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.MeterKnife.Util.Tunnel;
 using NLog;
-using System.Collections.Generic;
-using System.Threading;
-using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Logic.Services
 {
@@ -21,9 +20,9 @@ namespace NKnife.MeterKnife.Logic.Services
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
         private readonly IGlobal _global;
-        private readonly ITunnel _tunnel;
 
         private readonly Dictionary<Slot, SlotProcessor> _processorMap = new Dictionary<Slot, SlotProcessor>(1);
+        private readonly ITunnel _tunnel;
 
         public AntService(IGlobal global, ITunnel tunnel)
         {
@@ -79,9 +78,11 @@ namespace NKnife.MeterKnife.Logic.Services
                         };
                         c.PortNumber = portInfo[0]; //串口
                     }
+
                     break;
                 }
             }
+
             foreach (var handler in handlers)
                 processor.Filter.AddHandlers(handler);
         }
@@ -107,6 +108,7 @@ namespace NKnife.MeterKnife.Logic.Services
                 slotProcessor.Value.JobManager.Break();
                 slotProcessor.Value.Connector.Stop();
             }
+
             _processorMap.Clear();
         }
 
@@ -144,13 +146,11 @@ namespace NKnife.MeterKnife.Logic.Services
         {
             var processor = _processorMap[slot];
             foreach (var cmd in cmdArray)
-            {
-                cmd.Run += (job) =>
+                cmd.Run += job =>
                 {
                     SendCommand(processor.Connector, cmd);
                     return true;
                 };
-            }
             processor.JobManager.Pool.AddRange(cmdArray);
         }
 
@@ -164,10 +164,7 @@ namespace NKnife.MeterKnife.Logic.Services
 
                 _Logger.Trace($"< SendCommand:{data.ToHexString()}");
 
-                if (data.Length != 0)
-                {
-                    dataConnector.SendAll(data);
-                }
+                if (data.Length != 0) dataConnector.SendAll(data);
             }
             catch (Exception e)
             {

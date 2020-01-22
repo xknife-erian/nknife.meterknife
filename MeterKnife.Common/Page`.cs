@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NKnife.MeterKnife.Common.Base
+namespace NKnife.MeterKnife.Common
 {
     /// <summary>
     /// 一个描述分页时，一个页面里的对象集合

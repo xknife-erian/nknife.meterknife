@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 using NKnife.Db;
 using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Common.Domain;
 using NLog;
 
 namespace NKnife.MeterKnife.Storage.Db
@@ -16,20 +18,17 @@ namespace NKnife.MeterKnife.Storage.Db
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        private readonly StoragesOption _option;
+        private readonly StorageOption _option;
 
-        private IDbConnection _farReadConnection;
-        private IDbConnection _farWriteConnection;
+        private IDbConnection _platformConn = null;
+        private IDbConnection _dutMysqlConn = null;
+        private readonly Dictionary<string,IDbConnection> _dutSqliteConnMap = new Dictionary<string, IDbConnection>();
 
-        public StorageManager(IOptions<StoragesOption> options)
+        public StorageManager(IOptions<StorageOption> options)
         {
             _option = options.Value;
-            ConnectionParamChanged += (s, e) =>
-            {
-                _logger.Info("Connection Param Changed.");
-                _farReadConnection = null;
-                _farWriteConnection = null;
-            };
+            CurrentDbType = _option.CurrentDbType;
+            SqlSetMap = _option.SqlSetMap;
         }
 
         /// <summary>
@@ -43,115 +42,95 @@ namespace NKnife.MeterKnife.Storage.Db
         public SqlSetMap SqlSetMap { get; }
 
         /// <summary>
-        ///     当数据库连接参数发生变化时发生。一般在外界配置文件发生改变时变化。
+        ///     打开指定的被测物数据库连接，并返回该连接
         /// </summary>
-        public event EventHandler<EventArgs> ConnectionParamChanged;
-
-        /// <summary>
-        ///     打开“写”数据库连接，并返回该连接
-        /// </summary>
+        /// <param name="dut">指定的被测物</param>
         /// <returns>数据库连接</returns>
-        public IDbConnection OpenWriteConnection()
+        public IDbConnection OpenConnection(DUT dut)
         {
-            if (_farWriteConnection != null
-                && _farWriteConnection.State != ConnectionState.Broken
-                && _farWriteConnection.State != ConnectionState.Closed)
-                return _farWriteConnection;
-
-            if (_farWriteConnection != null && _farWriteConnection.State == ConnectionState.Broken)
-                _farWriteConnection.Close();
-
-            if (_farWriteConnection != null && _farWriteConnection.State == ConnectionState.Closed)
+            IDbConnection conn;
+            switch (CurrentDbType)
             {
-                _farWriteConnection.Open();
-                return _farWriteConnection;
+                case DatabaseType.MySql:
+                {
+                    conn = _dutMysqlConn;
+                    break;
+                }
+                default:
+                {
+                    if (!_dutSqliteConnMap.TryGetValue(dut.Id, out conn))
+                    {
+                        conn = new SQLiteConnection(BuildSqliteDutConnection(dut));
+                        _dutSqliteConnMap.Add(dut.Id, conn);
+                    }
+                    break;
+                }
             }
 
-            if (_farWriteConnection == null)
+            if (conn != null && conn.State != ConnectionState.Broken && conn.State != ConnectionState.Closed)
+                return conn;
+            if (conn != null && conn.State == ConnectionState.Broken)
+                conn.Close();
+            if (conn != null && conn.State == ConnectionState.Closed)
             {
-                switch (_dbService.CurrentDbType)
+                conn.Open();
+                return conn;
+            }
+            return conn;
+        }
+
+        private string BuildSqliteDutConnection(DUT dut)
+        {
+            return _option.SqliteDUTConnection;
+        }
+
+        /// <summary>
+        ///     关闭指定的被测物数据库连接
+        /// </summary>
+        /// <param name="dut">指定的被测物</param>
+        public void CloseConnection(DUT dut)
+        {
+            if (_dutSqliteConnMap.TryGetValue(dut.Id, out var conn))
+                conn?.Close();
+        }
+
+        /// <summary>
+        ///     打开本软件管理信息数据库连接，并返回该连接
+        /// </summary>
+        public IDbConnection OpenPlatformConnection()
+        {
+            var conn = _platformConn;
+            if (conn != null && conn.State != ConnectionState.Broken && conn.State != ConnectionState.Closed)
+                return conn;
+            if (conn != null && conn.State == ConnectionState.Broken)
+                conn.Close();
+            if (conn != null && conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+                return conn;
+            }
+            if (conn == null)
+            {
+                switch (CurrentDbType)
                 {
                     case DatabaseType.MySql:
-                        _farWriteConnection = new MySqlConnection(_option.MysqlString);
+                        conn = new MySqlConnection(_option.MysqlPlatformConnection);
                         break;
                     default:
-                        _farWriteConnection = new SQLiteConnection(_option.SqliteString);
+                        conn = new SQLiteConnection(_option.SqlitePlatformConnection);
                         break;
                 }
-
-                _farWriteConnection.Open();
+                conn.Open();
             }
-
-            return _farWriteConnection;
+            return conn;
         }
 
         /// <summary>
-        ///     关闭“写”数据库连接
+        ///     关闭管理信息数据库连接
         /// </summary>
-        public void CloseWriteConnection()
+        public void ClosePlatformConnection()
         {
-            if (_farWriteConnection == null)
-                return;
-            _farWriteConnection.Close();
-            _farWriteConnection.Dispose();
-            _farWriteConnection = null;
-        }
-
-        /// <summary>
-        ///     打开“读”数据库连接，并返回该连接
-        /// </summary>
-        /// <returns>数据库连接</returns>
-        public IDbConnection OpenReadConnection()
-        {
-            if (_farReadConnection != null
-                && _farReadConnection.State != ConnectionState.Broken
-                && _farReadConnection.State != ConnectionState.Closed)
-                return _farReadConnection;
-
-            if (_farReadConnection != null && _farReadConnection.State == ConnectionState.Broken)
-            {
-                _farReadConnection.Close();
-            }
-
-            if (_farReadConnection != null && _farReadConnection.State == ConnectionState.Closed)
-            {
-                _farReadConnection.Open();
-                return _farReadConnection;
-            }
-
-            if (_farReadConnection == null)
-            {
-                switch (_dbService.CurrentDbType)
-                {
-                    case DatabaseType.MySql:
-                        _farReadConnection = new MySqlConnection(_option.MysqlString);
-                        break;
-                    default:
-                        _farReadConnection = new SQLiteConnection(_option.SqliteString);
-                        break;
-                }
-
-                _farReadConnection.Open();
-            }
-
-            return _farReadConnection;
-        }
-
-        /// <summary>
-        ///     关闭“读”数据库连接
-        /// </summary>
-        public void CloseReadConnection()
-        {
-            if (_farReadConnection == null)
-                return;
-            _farReadConnection.Close();
-            _farReadConnection.Dispose();
-            _farReadConnection = null;
-        }
-
-        private void OnConnectionParamChanged()
-        {
-            ConnectionParamChanged?.Invoke(this, EventArgs.Empty);
+            _platformConn?.Close();
         }
     }
 }

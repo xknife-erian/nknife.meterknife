@@ -5,16 +5,16 @@ using NKnife.Db;
 namespace NKnife.MeterKnife.Common
 {
     /// <summary>
-    /// 针对存储层的查询方法封装, 并读写分离管理。
+    /// 针对存储层的增、删、改的方法封装, 并读写分离管理。
     /// </summary>
-    public interface IStorageRead<T, in TId>
-    {
+    public interface IStoragePlatform<T>
+    {   
         /// <summary>
         /// 指定ID的记录是否存在
         /// </summary>
         /// <param name="id">指定的记录ID</param>
         /// <returns>记录是否存在，true时存在指定ID的记录，false反之。</returns>
-        Task<bool> ExistAsync(TId id);
+        Task<bool> ExistAsync(string id);
 
         /// <summary>
         /// 分页查询方法
@@ -36,12 +36,36 @@ namespace NKnife.MeterKnife.Common
         /// </summary>
         /// <param name="id">指定的ID</param>
         /// <returns></returns>
-        Task<T> FindOneByIdAsync(TId id);
+        Task<T> FindOneByIdAsync(string id);
 
         /// <summary>
         /// 获取所有的记录
         /// </summary>
         /// <returns>所有的记录</returns>
         Task<IEnumerable<T>> FindAllAsync();
+
+        /// <summary>
+        /// 将指定的对象插入数据库中
+        /// </summary>
+        /// <param name="domain">指定的对象</param>
+        Task<bool> InsertAsync(T domain);
+
+        /// <summary>
+        /// 将指定的对象批量插入数据库中
+        /// </summary>
+        /// <param name="domains">指定的对象</param>
+        Task<bool> InsertManyAsync(IEnumerable<T> domains);
+
+        /// <summary>
+        /// 更新指定的对象
+        /// </summary>
+        /// <param name="domain">指定的对象</param>
+        Task<bool> UpdateAsync(T domain);
+
+        /// <summary>
+        /// 根据记录ID，从数据库中移除该记录，该记录被移除后，不可恢复
+        /// </summary>
+        /// <param name="id">指定的记录ID</param>
+        Task<bool> RemoveAsync(string id);
     }
 }
