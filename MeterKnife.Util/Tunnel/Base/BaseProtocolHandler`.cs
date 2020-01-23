@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
 
         private IProtocolFamily<TData> _family;
         public abstract List<TData> Commands { get; set; }
-        public abstract void Received(long sessionId, IProtocol<TData> protocol);
+        public abstract void Received(long sessionId, byte[] source, IProtocol<TData> protocol);
         public event EventHandler<SessionEventArgs> SendToSession;
         public event EventHandler<SessionEventArgs> SendToAll;
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using NKnife.Events;
+using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Common.Tunnels.Care
 {
@@ -18,21 +20,17 @@ namespace NKnife.MeterKnife.Common.Tunnels.Care
             Commands.Add(new byte[] { 0xAA, 0x01 });
         }
 
-        public override void Received(CareTalking protocol)
+        public override async void Received(CareTalking protocol)
         {
             if (!string.IsNullOrEmpty(protocol.Scpi))
             {
-                OnProtocolReceived(new EventArgs<CareTalking>(protocol));
+                var dut = _storage.GetDUT(protocol.Source);
+                if (double.TryParse(protocol.Scpi, out var value))
+                {
+                    _Logger.Debug($"{protocol.GpibAddress} | {value}");
+                    await _storage.ProcessAsync(dut, new MetricalData() { Time = DateTime.Now, Data = value });
+                }
             }
         }
-
-        public event EventHandler<EventArgs<CareTalking>> ProtocolReceived;
-
-        protected virtual void OnProtocolReceived(EventArgs<CareTalking> e)
-        {
-            _Logger.Debug($"> {e.Item}");
-            ProtocolReceived?.Invoke(this, e);
-        }
-
     }
 }

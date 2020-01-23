@@ -2,7 +2,8 @@
 using NKnife.Db;
 using NKnife.MeterKnife.Common.Domain;
 
-namespace NKnife.MeterKnife.Common
+// ReSharper disable once CheckNamespace
+namespace NKnife.MeterKnife.Base
 {
     /// <summary>
     ///     系统的数据库管理器

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 using NKnife.Db;
 using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NLog;
 

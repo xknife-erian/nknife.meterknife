@@ -57,15 +57,15 @@ namespace NKnife.MeterKnife.Util.Serial
 
         protected virtual void OnDataReceived(SessionEventArgs e)
         {
-            var handler = DataReceived;
-            handler?.Invoke(this, e);
+            DataReceived?.Invoke(this, e);
         }
 
-        protected virtual void OnDataReceived(byte[] data)
+        protected virtual void OnDataReceived(byte[] source, byte[] data)
         {
             var e = new SessionEventArgs(new TunnelSession
             {
                 Id = PortNumber,
+                Source = source,
                 Data = data
             });
             OnDataReceived(e);
@@ -99,7 +99,7 @@ namespace NKnife.MeterKnife.Util.Serial
             _serial.SendReceived(data, out var received);
             OnDataSent(data);
             if (received != null)
-                OnDataReceived(received);
+                OnDataReceived(data, received);
         }
 
         public void SendAll(byte[] data)
@@ -107,9 +107,9 @@ namespace NKnife.MeterKnife.Util.Serial
             if (_serial == null)
                 return;
             _serial.SendReceived(data, out var received);
-            OnDataSent(data); //激发发放完成事件
+            OnDataSent(data); //激发发送协议完成事件
             if (received != null)
-                OnDataReceived(received); //激发接收到数据的事件
+                OnDataReceived(data,received); //激发接收到数据的事件
         }
 
         public void KillSession(long id)

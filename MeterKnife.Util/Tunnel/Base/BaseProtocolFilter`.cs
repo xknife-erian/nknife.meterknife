@@ -66,6 +66,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
 
         public override bool ProcessReceiveData(ITunnelSession session)
         {
+            byte[] src = session.Source;
             byte[] data = session.Data;
             long id = session.Id;
             if (!_DataMonitors.TryGetValue(id, out var monitor))
@@ -74,7 +75,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                 monitor = new DataMonitor();
                 InitializeDataMonitor(id, monitor);
             }
-            monitor.ReceiveQueue.Enqueue(data);
+            monitor.ReceiveQueue.Enqueue(new Tuple<byte[], byte[]>(src, data));
             return true;
         }
 
@@ -114,22 +115,18 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
         /// <returns>未处理完成,待下个数据包到达时将要继续处理的数据(半包)</returns>
         public virtual IEnumerable<IProtocol<T>> ProcessDataPacket(byte[] dataPacket, ref byte[] unFinished)
         {
+            IEnumerable<IProtocol<T>> protocols = null;
             if (!UtilCollection.IsNullOrEmpty(unFinished))
             {
                 // 当有半包数据时，进行接包操作
                 int srcLen = dataPacket.Length;
                 dataPacket = unFinished.Concat(dataPacket).ToArray();
-                _Logger.Trace(string.Format("接包操作:半包:{0},原始包:{1},接包后:{2}", unFinished.Length, srcLen, dataPacket.Length));
+                _Logger.Trace($"接包操作:半包:{unFinished.Length},原始包:{srcLen},接包后:{dataPacket.Length}");
             }
-
-            int done;
-            T[] datagram = _Codec.Decoder.Execute(dataPacket, out done);
-
-            IEnumerable<IProtocol<T>> protocols = null;
-
+            T[] datagram = _Codec.Decoder.Execute(dataPacket, out var done);
             if (UtilCollection.IsNullOrEmpty(datagram))
             {
-                _Logger.Trace(string.Format("{1}处理协议无内容。{0}", dataPacket.Length, GetType().Name));
+                _Logger.Trace($"{GetType().Name}处理协议无内容。{dataPacket.Length}");
             }
             else
             {
@@ -143,11 +140,8 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                 // 暂存半包数据，留待下条队列数据接包使用
                 unFinished = new byte[dataPacket.Length - done];
                 Buffer.BlockCopy(dataPacket, done, unFinished, 0, unFinished.Length);
-                _Logger.Trace(string.Format("半包数据暂存,数据长度:{0}", unFinished.Length));
+                _Logger.Trace($"半包数据暂存,数据长度:{unFinished.Length}");
             }
-
-
-
             return protocols;
         }
 
@@ -228,16 +222,16 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                             //_logger.Debug(string.Format("dataMonitor 处理数据{0}",_TempCount));
                             if(!dataMonitor.ReceiveQueue.TryDequeue(out var data))
                                 continue;
-                            if (UtilCollection.IsNullOrEmpty(data))
+                            if (UtilCollection.IsNullOrEmpty(data.Item2))
                                 continue;
-                            IEnumerable<IProtocol<T>> protocols = ProcessDataPacket(data, ref unFinished);
+                            IEnumerable<IProtocol<T>> protocols = ProcessDataPacket(data.Item2, ref unFinished);
                             //_Logger.Debug($"dataMonitor 处理数据{data.ToHexString()}完成:{_TempCount}");
                             if (protocols != null)
                             {
                                 foreach (var protocol in protocols)
                                 {
                                     // 触发数据基础解析后发生的数据到达事件, 即触发handle
-                                    HandlerInvoke(id, protocol);
+                                    HandlerInvoke(id, data.Item1, protocol);
                                 }
                             }
                         }
@@ -266,7 +260,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
         /// <summary>
         ///     触发数据基础解析后发生的数据到达事件
         /// </summary>
-        protected virtual void HandlerInvoke(long id, IProtocol<T> protocol)
+        protected virtual void HandlerInvoke(long id, byte[] source, IProtocol<T> protocol)
         {
             try
             {
@@ -277,7 +271,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                 }
                 if (_Handlers.Count == 1)
                 {
-                    _Handlers[0].Received(id, protocol);
+                    _Handlers[0].Received(id, source, protocol);
                 }
                 else
                 {
@@ -287,7 +281,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                         //handler Commands.Count为0时，接收处理所有的协议，否则，处理Commands指定的协议
                         if (handler.Commands.Count == 0 || ContainsCommand(handler.Commands, protocol.Command))
                         {
-                            handler.Received(id, protocol);
+                            handler.Received(id, source, protocol);
                         }
                     }
                 }

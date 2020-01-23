@@ -7,6 +7,7 @@ using Dapper;
 using Newtonsoft.Json;
 using NKnife.Db;
 using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NLog;
 

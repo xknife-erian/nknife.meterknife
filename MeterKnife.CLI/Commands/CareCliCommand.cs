@@ -2,6 +2,7 @@
 using CliFx.Attributes;
 using CliFx.Services;
 using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
@@ -37,7 +38,7 @@ namespace NKnife.MeterKnife.CLI.Commands
 
         private CareCommand[] GetCommands()
         {
-            var interval = 300;
+            var interval = 2000;
             var item1 = new CareCommand
             {
                 GpibAddress = 23,

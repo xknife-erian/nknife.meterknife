@@ -1,4 +1,5 @@
 ﻿using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Base;
 
 namespace NKnife.MeterKnife.Logic
 {

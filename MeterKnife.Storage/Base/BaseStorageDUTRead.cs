@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Dapper;
 using NKnife.Db;
 using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Storage.Base

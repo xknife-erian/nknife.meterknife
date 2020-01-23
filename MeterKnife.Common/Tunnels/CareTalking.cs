@@ -19,6 +19,8 @@ namespace NKnife.MeterKnife.Common.Tunnels
             ((IProtocol<byte[]>) this).CommandParam = new byte[1];
         }
 
+        public byte[] Source { get; set; }
+
         public byte[] Generate()
         {
             var bs = new byte[] {0x08, (byte) GpibAddress, (byte) (ScpiBytes.Length + 2), MainCommand, SubCommand};

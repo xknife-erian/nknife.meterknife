@@ -2,10 +2,9 @@
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
-using NKnife.MeterKnife.Util.Tunnel;
-using NKnife.MeterKnife.Util.Tunnel.Base;
 
-namespace NKnife.MeterKnife.Common
+// ReSharper disable once CheckNamespace
+namespace NKnife.MeterKnife.Base
 {
     /// <summary>
     ///     为应用程序提供插槽的管理服务

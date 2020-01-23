@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
 
-namespace NKnife.MeterKnife.Common
+// ReSharper disable once CheckNamespace
+namespace NKnife.MeterKnife.Base
 {
     /// <summary>
     /// 软件全局的一些数据

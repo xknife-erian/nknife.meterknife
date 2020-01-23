@@ -17,14 +17,17 @@ namespace NKnife.MeterKnife.Common.Tunnels.Care
 
         public sealed override List<byte[]> Commands { get; set; }
 
-        public override void Received(long sessionId, IProtocol<byte[]> protocol)
+        public override void Received(long sessionId, byte[] source, IProtocol<byte[]> protocol)
         {
             if (!(protocol is CareTalking))
             {
                 _Logger.Warn("Protocol类型有误, 不是CareSaying类型");
                 return;
             }
-            Received((CareTalking)protocol);
+
+            var care = (CareTalking) protocol;
+            care.Source = source;
+            Received(care);
         }
 
         public abstract void Received(CareTalking protocol);

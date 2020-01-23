@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Logic.Services;
 
 namespace NKnife.MeterKnife.Logic.IoC

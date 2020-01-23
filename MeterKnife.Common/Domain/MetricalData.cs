@@ -33,9 +33,9 @@ namespace NKnife.MeterKnife.Common.Domain
         public short Flag { get; set; }
 
         /// <summary>
-        /// 当前测量时间的运算值
+        /// 当前测量时间的即时运算值
         /// </summary>
-        public double Ufunc { get; set; }
+        public double FuncValue { get; set; }
 
         /// <summary>
         /// 一些其他记录

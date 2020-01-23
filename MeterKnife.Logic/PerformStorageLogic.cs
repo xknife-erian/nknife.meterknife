@@ -1,4 +1,8 @@
-﻿using NKnife.MeterKnife.Common;
+﻿using System;
+using System.Threading.Tasks;
+using MathNet.Numerics.Financial;
+using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Logic
@@ -24,12 +28,39 @@ namespace NKnife.MeterKnife.Logic
         /// </summary>
         public DUT Dut { get; set; }
 
+        #region Implementation of IPerformStorageLogic
+
         /// <summary>
-        ///     处理当前的温度数据
+        ///     处理当前的被测物的测量数据
         /// </summary>
-        /// <param name="temp">温度数据</param>
-        public void ProcessCurrentTemperature(MetricalData temp)
+        /// <param name="dut">指定的被测物</param>
+        /// <param name="data">数据</param>
+        public async Task<bool> ProcessAsync(DUT dut, MetricalData data)
         {
+            return await Task.Factory.StartNew(() => true);
         }
+
+        /// <summary>
+        /// 根据协议的命令字获取被测物（通常是Care自带的数据采集）
+        /// </summary>
+        /// <param name="mainCommand">主命令字</param>
+        /// <param name="subCommand">子命令字</param>
+        /// <returns>被测物</returns>
+        public DUT GetDUT(byte mainCommand, byte subCommand)
+        {
+            return new DUT();
+        }
+
+        /// <summary>
+        /// 根据发送协议获取被测物
+        /// </summary>
+        /// <param name="sourceCommand">源命令</param>
+        /// <returns>被测物</returns>
+        public DUT GetDUT(byte[] sourceCommand)
+        {
+            return new DUT();
+        }
+
+        #endregion
     }
 }

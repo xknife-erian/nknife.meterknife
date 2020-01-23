@@ -1,4 +1,5 @@
-﻿namespace NKnife.MeterKnife.Common
+﻿// ReSharper disable once CheckNamespace
+namespace NKnife.MeterKnife.Base
 {
     /// <summary>
     ///     一个描述仪器的接口

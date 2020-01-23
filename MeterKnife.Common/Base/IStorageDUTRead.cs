@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using NKnife.Db;
 using NKnife.MeterKnife.Common.Domain;
 
-namespace NKnife.MeterKnife.Common
+// ReSharper disable once CheckNamespace
+namespace NKnife.MeterKnife.Base
 {
     /// <summary>
     /// 针对存储层的查询方法封装, 并读写分离管理。

@@ -1,4 +1,5 @@
 ﻿using NKnife.Events;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Common

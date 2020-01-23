@@ -32,15 +32,9 @@ namespace NKnife.MeterKnife.Common.Tunnels.Care
             _Logger.Trace(message: $"{protocol.MainCommand.ToHexString()}^{protocol.SubCommand.ToHexString()}:{protocol.Scpi}");
             if (!string.IsNullOrEmpty(protocol.Scpi))
             {
-                OnCareSetting(new EventArgs<CareTalking>(protocol));
+                
             }
         }
 
-        public event EventHandler<EventArgs<CareTalking>> CareSetting;
-
-        protected virtual void OnCareSetting(EventArgs<CareTalking> e)
-        {
-            CareSetting?.Invoke(this, e);
-        }
     }
 }

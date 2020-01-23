@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Logic
