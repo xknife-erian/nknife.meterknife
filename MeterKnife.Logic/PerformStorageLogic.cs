@@ -28,7 +28,7 @@ namespace NKnife.MeterKnife.Logic
         ///     处理当前的温度数据
         /// </summary>
         /// <param name="temp">温度数据</param>
-        public void ProcessCurrentTemperature(Temperature temp)
+        public void ProcessCurrentTemperature(MetricalData temp)
         {
         }
     }

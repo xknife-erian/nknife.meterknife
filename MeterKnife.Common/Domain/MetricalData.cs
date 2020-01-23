@@ -41,7 +41,5 @@ namespace NKnife.MeterKnife.Common.Domain
         /// 一些其他记录
         /// </summary>
         public string Note { get; set; }
-
-
     }
 }

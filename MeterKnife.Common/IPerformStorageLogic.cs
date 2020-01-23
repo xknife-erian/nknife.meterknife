@@ -8,6 +8,6 @@ namespace NKnife.MeterKnife.Common
         ///     处理当前的温度数据
         /// </summary>
         /// <param name="temp">温度数据</param>
-        void ProcessCurrentTemperature(Temperature temp);
+        void ProcessCurrentTemperature(MetricalData temp);
     }
 }

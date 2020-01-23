@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using NKnife.MeterKnife.Util.Electronics.Collections;
 
 namespace NKnife.MeterKnife.Util.Electronics
@@ -79,7 +80,7 @@ namespace NKnife.MeterKnife.Util.Electronics
         /// </returns>
         public override string ToString()
         {
-            return Value.ToString();
+            return Value.ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>Returns a <see cref="System.String" /> that represents this instance.

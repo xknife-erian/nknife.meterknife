@@ -25,7 +25,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Care
             var data = protocol.Scpi;
             _Logger.Debug($"Received TEMP: {protocol.MainCommand}|{protocol.SubCommand} {data.TrimEnd('\n')}");
             if (double.TryParse(data, out var yzl))
-                _TempStorage.ProcessCurrentTemperature(new Temperature() {Time = DateTime.Now, Data = yzl});
+                _TempStorage.ProcessCurrentTemperature(new MetricalData() {Time = DateTime.Now, Data = yzl});
         }
     }
 }
