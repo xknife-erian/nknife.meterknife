@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using MathNet.Numerics.Financial;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Util;
 
 namespace NKnife.MeterKnife.Logic
 {
@@ -26,7 +29,7 @@ namespace NKnife.MeterKnife.Logic
         /// <summary>
         ///     被测单元
         /// </summary>
-        public DUT Dut { get; set; }
+        public Dictionary<string, DUT> DUTMap { get; set; } = new Dictionary<string, DUT>();
 
         #region Implementation of IPerformStorageLogic
 
@@ -41,14 +44,16 @@ namespace NKnife.MeterKnife.Logic
         }
 
         /// <summary>
-        /// 根据协议的命令字获取被测物（通常是Care自带的数据采集）
+        /// 根据协议的命令字获取被测物（通常是Care自带的数据采集，例如温度）
         /// </summary>
         /// <param name="mainCommand">主命令字</param>
         /// <param name="subCommand">子命令字</param>
         /// <returns>被测物</returns>
         public DUT GetDUT(byte mainCommand, byte subCommand)
         {
-            return new DUT();
+            string key = $"{mainCommand:X2}{subCommand:X2}";
+            var dut = DUTMap[key];
+            return dut;
         }
 
         /// <summary>
@@ -58,7 +63,9 @@ namespace NKnife.MeterKnife.Logic
         /// <returns>被测物</returns>
         public DUT GetDUT(byte[] sourceCommand)
         {
-            return new DUT();
+            string key = sourceCommand.ToDUTKey();
+            var dut = DUTMap[key];
+            return dut;
         }
 
         #endregion
