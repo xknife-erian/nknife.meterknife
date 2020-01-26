@@ -1,39 +1,188 @@
 ﻿using System;
 using System.Collections.Generic;
-using NKnife.MeterKnife.Common;
+using NKnife.Jobs;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
-using NKnife.MeterKnife.Common.Tunnels.Care;
+using NKnife.MeterKnife.Common.Tunnels.Handlers;
+using NKnife.MeterKnife.Util.Protocol.Generic;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.MeterKnife.Util.Tunnel;
+using NKnife.MeterKnife.Util.Tunnel.Filters;
+using NKnife.MeterKnife.Util.Tunnel.Generic;
 using NLog;
 
 namespace NKnife.MeterKnife.Logic.Services
 {
-    /// <summary>
-    ///     软件整体的硬件插槽的管理服务器
-    /// </summary>
-    public sealed class AntService : ISlotService
+    public sealed class AntService : IAntService
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly IGlobal _global;
+        private readonly ITunnel _tunnel;
+        private readonly BytesProtocolFilter _filter;
+
+        private readonly Dictionary<Slot, IDataConnector> _connMap = new Dictionary<Slot, IDataConnector>(1);
+        private readonly Dictionary<string, JobManager> _jobMap = new Dictionary<string, JobManager>();
+
+        public AntService(ITunnel tunnel, BytesCodec codec, BytesProtocolFamily family, BytesProtocolFilter filter,
+            DUTProtocolHandler dutHandler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler)
+        {
+            _tunnel = tunnel;
+            _filter = filter;
+            _filter.Bind(codec, family);
+            _filter.AddHandlers(dutHandler, tempHandler, configHandler);
+        }
+
+        #region Implementation of IAntService
+
+        /// <summary>
+        ///     绑定一个指定插槽的通讯服务
+        /// </summary>
+        /// <param name="slots">指定的插槽与该插槽的连接器</param>
+        public void Bind(params (Slot, IDataConnector)[] slots)
+        {
+            foreach (var tuple in slots)
+            {
+                var slot = tuple.Item1;
+                var connector = tuple.Item2;
+                _connMap.Add(slot, connector);
+                switch (slot.TunnelType)
+                {
+                    case TunnelType.Tcpip:
+                        break;
+                    case TunnelType.Serial:
+                    {
+                        _tunnel.AddFilters(_filter);
+                        _tunnel.BindDataConnector(connector); //dataConnector是数据流动的动力
+                        if (connector is ISerialConnector c)
+                        {
+                            var portInfo = slot.GetSerialPortInfo();
+                            c.SerialConfig = new SerialConfig
+                            {
+                                BaudRate = portInfo[1],
+                                ReadBufferSize = 64,
+                                ReadTimeout = 100 * 10
+                            };
+                            c.PortNumber = portInfo[0]; //串口
+                        }
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///     移除指定的插槽
+        /// </summary>
+        /// <param name="slot">指定的插槽</param>
+        public void UnBind(Slot slot)
+        {
+            if (_connMap.ContainsKey(slot))
+            {
+                _connMap.Remove(slot);
+            }
+        }
+
+        /// <summary>
+        ///     启动指定的工程
+        /// </summary>
+        /// <param name="engineering">指定的工程</param>
+        /// <returns>启动是否成功</returns>
+        public bool Start(Engineering engineering)
+        {
+            if (!_jobMap.TryGetValue(engineering.Number, out var jobManager))
+            {
+                jobManager = new JobManager {Pool = new CareCommandPool {IsOverall = true}};
+                foreach (var command in engineering.Commands)
+                {
+                    if (!_connMap.ContainsKey(command.Slot))
+                    {
+                        _Logger.Warn($"未Binding的Slot和他的IDataConnector,跳过{command}\r\n{command.Slot}");
+                        continue;
+                    }
+                    var connector = _connMap[command.Slot];
+                    connector.Start();
+                    command.Run += job =>
+                    {
+                        SendCommand(connector, command);
+                        return true;
+                    };
+                    jobManager.Pool.Add(command);
+                }
+
+                _jobMap.Add(engineering.Number, jobManager);
+            }
+
+            jobManager.Run();
+            return true;
+        }
+
+        /// <summary>
+        ///     启动指定的工程
+        /// </summary>
+        /// <param name="engineering">指定的工程</param>
+        /// <returns>启动是否成功</returns>
+        public bool Pause(Engineering engineering)
+        {
+            if (_jobMap.ContainsKey(engineering.Number))
+                _jobMap[engineering.Number].Pause();
+            return true;
+        }
+
+        /// <summary>
+        ///     停止指定的工程
+        /// </summary>
+        /// <param name="engineering">指定的工程</param>
+        /// <returns>停止是否成功</returns>
+        public bool Stop(Engineering engineering)
+        {
+            if (_jobMap.ContainsKey(engineering.Number))
+                _jobMap[engineering.Number].Break();
+            return true;
+        }
+
+        #endregion
+
+        private static void SendCommand(IDataConnector connector, CareCommand cmd)
+        {
+            try
+            {
+                var data = cmd.IsCare
+                    ? CareScpiHelper.GenerateProtocol(cmd)
+                    : cmd.Scpi.GenerateProtocol(cmd.GpibAddress);
+
+                _Logger.Trace($"< SendCommand:{data.ToHexString()}");
+
+                if (data.Length != 0) 
+                    connector.SendAll(data);
+            }
+            catch (Exception e)
+            {
+                _Logger.Warn($"向采集器发送指令(SendCommand)时出现异常:{e.Message}");
+            }
+        }
+    }
+
+    /*
+    /// <summary>
+    ///     软件整体的硬件插槽的管理服务器
+    /// </summary>
+    public sealed class AntService1 : ISlotService
+    {
+        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
         private readonly Dictionary<Slot, SlotProcessor> _processorMap = new Dictionary<Slot, SlotProcessor>(1);
+
+        private readonly IGlobal _global;
         private readonly ITunnel _tunnel;
 
-        public AntService(IGlobal global, ITunnel tunnel)
+        public AntService1(IGlobal global, ITunnel tunnel)
         {
             _global = global;
             _tunnel = tunnel;
-            _global.Collected += (s, e) =>
-            {
-                // if (!e.IsCollected && _processorMap.ContainsKey(e.Slot))
-                //     _processorMap.Remove(e.Slot);
-            };
         }
 
         #region Implementation of ISlotService
@@ -50,19 +199,7 @@ namespace NKnife.MeterKnife.Logic.Services
             switch (slot.TunnelType)
             {
                 case TunnelType.Tcpip:
-                {
-                    //TODO: socket 暂时未移植
-                    //BuildConnector(slot, new SocketBytesProtocolFilter());
-                    //var connector = _connectors[slot] as ISocketClient;
-                    //if (connector != null)
-                    //{
-                    //    connector.Config = new SocketClientConfig();
-                    //    var ip = slot.GetIpEndPoint();
-                    //    connector.Configure(ip.Address, ip.Port);
-                    //    Start(slot);
-                    //}
                     break;
-                }
                 case TunnelType.Serial:
                 default:
                 {
@@ -79,7 +216,6 @@ namespace NKnife.MeterKnife.Logic.Services
                         };
                         c.PortNumber = portInfo[0]; //串口
                     }
-
                     break;
                 }
             }
@@ -147,11 +283,13 @@ namespace NKnife.MeterKnife.Logic.Services
         {
             var processor = _processorMap[slot];
             foreach (var cmd in cmdArray)
+            {
                 cmd.Run += job =>
                 {
                     SendCommand(processor.Connector, cmd);
                     return true;
                 };
+            }
             processor.JobManager.Pool.AddRange(cmdArray);
         }
 
@@ -186,7 +324,7 @@ namespace NKnife.MeterKnife.Logic.Services
 
         private readonly Dictionary<Slot, SlotProcessor> _boxMap = new Dictionary<Slot, SlotProcessor>(1);
 
-        public AntService(IGlobal global, ITunnel tunnel, BytesCodec codec, BytesProtocolFamily family)
+        public AntServiceOld(IGlobal global, ITunnel tunnel, BytesCodec codec, BytesProtocolFamily family)
         {
             _global = global;
             _codec = codec;
@@ -483,5 +621,7 @@ namespace NKnife.MeterKnife.Logic.Services
             public SlotCommandMap LoopQueueMap { get; set; } = new SlotCommandMap();
         }
         */
-    }
+    /*}
+    */
+
 }

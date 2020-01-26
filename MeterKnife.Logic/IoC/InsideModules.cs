@@ -12,7 +12,7 @@ namespace NKnife.MeterKnife.Logic.IoC
             builder.RegisterType<Logic.Global>().As<IGlobal>().SingleInstance();
             builder.RegisterType<PerformStorageLogic>().As<IPerformStorageLogic>().SingleInstance();
 
-            builder.RegisterType<AntService>().As<ISlotService>().SingleInstance();
+            builder.RegisterType<AntService>().As<IAntService>().SingleInstance();
         }
     }
 }

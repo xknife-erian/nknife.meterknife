@@ -8,7 +8,7 @@ namespace NKnife.MeterKnife.Logic
         /// <summary>
         ///     在串口中寻找Care
         /// </summary>
-        public virtual void SerialFinder(ISlotService careComm)
+        public virtual void SerialFinder()
         {
             //TODO:自动寻找Care暂时先搁下
 //            var resetEvent = new AutoResetEvent(true);

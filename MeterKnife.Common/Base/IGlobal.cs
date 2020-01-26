@@ -11,21 +11,9 @@ namespace NKnife.MeterKnife.Base
     /// </summary>
     public interface IGlobal
     {
-        string DataPath { get; set; }
-
         /// <summary>
         /// 串口下的Gpib地址
         /// </summary>
         Dictionary<Slot, List<int>> GpibDictionary { get; }
-
-        /// <summary>
-        /// 更新采集状态
-        /// </summary>
-        void UpdateCollectState(Slot carePort, int address, bool isCollected, string scpiGroupKey);
-
-        /// <summary>
-        /// 当采集状态完成时发生
-        /// </summary>
-        event EventHandler<CollectedEventArgs> Collected;
     }
 }

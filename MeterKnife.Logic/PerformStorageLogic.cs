@@ -52,7 +52,10 @@ namespace NKnife.MeterKnife.Logic
         public DUT GetDUT(byte mainCommand, byte subCommand)
         {
             string key = $"{mainCommand:X2}{subCommand:X2}";
-            var dut = DUTMap[key];
+            if (!DUTMap.TryGetValue(key, out var dut))
+            {
+                DUTMap.Add(key, new DUT());
+            }
             return dut;
         }
 
@@ -64,7 +67,10 @@ namespace NKnife.MeterKnife.Logic
         public DUT GetDUT(byte[] sourceCommand)
         {
             string key = sourceCommand.ToDUTKey();
-            var dut = DUTMap[key];
+            if (!DUTMap.TryGetValue(key, out var dut))
+            {
+                DUTMap.Add(key, new DUT());
+            }
             return dut;
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using NKnife.Interface;
+using NKnife.MeterKnife.Common.Domain;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Common.Scpi
@@ -16,6 +17,10 @@ namespace NKnife.MeterKnife.Common.Scpi
             Interval = 10;
             GpibAddress = 0;
         }
+
+        public DUT DUT { get; set; }
+
+        public Slot Slot { get; set; }
 
         /// <summary>
         ///     是否是Care的专属协议
@@ -58,12 +63,6 @@ namespace NKnife.MeterKnife.Common.Scpi
 
         #endregion
 
-        public static CareCommand NullCommand()
-        {
-            var ci = new CareCommand {GpibAddress = -1};
-            return ci;
-        }
-
         public CareCommand Clone()
         {
             var item = new CareCommand
@@ -77,5 +76,16 @@ namespace NKnife.MeterKnife.Common.Scpi
             };
             return item;
         }
+
+        #region Overrides of Object
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return $"{Slot} | {Scpi}";
+        }
+
+        #endregion
     }
 }

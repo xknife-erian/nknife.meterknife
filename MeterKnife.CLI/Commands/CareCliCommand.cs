@@ -7,33 +7,30 @@ using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
+using NKnife.MeterKnife.Util.Tunnel;
 
 namespace NKnife.MeterKnife.CLI.Commands
 {
     [Command("ci", Description = "连接Care，采集数据。")]
     public class CareCliCommand : BaseCommand
     {
-        private readonly ISlotService _slotService;
-        private readonly SlotProcessor _slotProcessor;
-        private readonly CareConfigHandler _configHandler;
-        private readonly DUTProtocolHandler _handler;
-        private readonly CareTemperatureHandler _tempHandler;
+        private readonly IAntService _antService;
+        private readonly IDataConnector _connector;
+        private Slot _slot;
 
-        public CareCliCommand(ISlotService slotService, SlotProcessor slotProcessor, DUTProtocolHandler handler, CareTemperatureHandler tempHandler, CareConfigHandler configHandler)
+        public CareCliCommand(IAntService antService, IDataConnector dataConnector)
         {
-            _slotService = slotService;
-            _slotProcessor = slotProcessor;
-            _handler = handler;
-            _tempHandler = tempHandler;
-            _configHandler = configHandler;
+            _antService = antService;
+            _connector = dataConnector;
         }
 
         public override async Task ExecuteAsync(IConsole console)
         {
-            var slot = Slot.Build(TunnelType.Serial, $"{Port}");
-            _slotService.Bind(slot, _slotProcessor, _handler, _tempHandler, _configHandler);
-            _slotService.SendCommands(slot, GetCommands());
-            _slotService.Start(slot);
+            _slot = Slot.Build(TunnelType.Serial, $"{Port}");
+            _antService.Bind((_slot, _connector));
+            var engineering = new Engineering();
+            engineering.Commands.AddRange(GetCommands());
+            _antService.Start(engineering);
         }
 
         private CareCommand[] GetCommands()
@@ -41,6 +38,8 @@ namespace NKnife.MeterKnife.CLI.Commands
             var interval = 2000;
             var item1 = new CareCommand
             {
+                Slot = _slot,
+                DUT = new DUT(),
                 GpibAddress = 23,
                 Scpi = new Scpi {Command = "FETC?"},
 
@@ -50,6 +49,8 @@ namespace NKnife.MeterKnife.CLI.Commands
             };
             var item2 = new CareCommand
             {
+                Slot = _slot,
+                DUT = new DUT(),
                 GpibAddress = 24,
                 Scpi = new Scpi {Command = "READ?"},
 
@@ -57,10 +58,16 @@ namespace NKnife.MeterKnife.CLI.Commands
                 Timeout = 2000,
                 IsLoop = true
             };
+            var temp5 = CareScpiHelper.TEMP(5);
+            temp5.Slot = _slot;
+            temp5.DUT = new DUT();
+            var temp6 = CareScpiHelper.TEMP(5);
+            temp6.Slot = _slot;
+            temp6.DUT = new DUT();
             // return new[] { item2 };
             // return new[] { item1 };
             // return new[] {CareScpiHelper.TEMP(1, 1000)};
-            return new[] {item1, item2, CareScpiHelper.TEMP(5), CareScpiHelper.TEMP(6) };
+            return new[] { item1, item2, item1, item2, temp5, temp6 };
         }
     }
 }

@@ -24,9 +24,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Care
             {
                 if (data.Length > 0 && data[finishedIndex] == LEAD)
                 {
-                    int length;
-                    byte[] cs;
-                    bool parseSuccess = Single(data, finishedIndex, out length, out cs); //提取单条数据
+                    bool parseSuccess = Single(data, finishedIndex, out var length, out var cs); //提取单条数据
                     if (!parseSuccess)
                     {
                         hasData = false;

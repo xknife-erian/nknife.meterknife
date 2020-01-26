@@ -1,19 +1,18 @@
 ﻿using System;
-using NKnife.Events;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
-namespace NKnife.MeterKnife.Common.Tunnels.Care
+namespace NKnife.MeterKnife.Common.Tunnels.Handlers
 {
     // ReSharper disable once InconsistentNaming
     public class DUTProtocolHandler : CareProtocolHandler
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly IPerformStorageLogic _storage;
+        private readonly IPerformStorageLogic _dataLogic;
 
-        public DUTProtocolHandler(IPerformStorageLogic storage)
+        public DUTProtocolHandler(IPerformStorageLogic dataLogic)
         {
-            _storage = storage;
+            _dataLogic = dataLogic;
             Commands.Add(new byte[] { 0xAA, 0x00 });
             Commands.Add(new byte[] { 0xAB, 0x00 });
             //---
@@ -24,11 +23,11 @@ namespace NKnife.MeterKnife.Common.Tunnels.Care
         {
             if (!string.IsNullOrEmpty(protocol.Scpi))
             {
-                var dut = _storage.GetDUT(protocol.Source);
+                var dut = _dataLogic.GetDUT(protocol.Source);
                 if (double.TryParse(protocol.Scpi, out var value))
                 {
                     _Logger.Debug($"{protocol.GpibAddress} | {value}");
-                    await _storage.ProcessAsync(dut, new MetricalData() { Time = DateTime.Now, Data = value });
+                    await _dataLogic.ProcessAsync(dut, new MetricalData() { Time = DateTime.Now, Data = value });
                 }
             }
         }

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
+using NKnife.MeterKnife.Common.Tunnels.Handlers;
 using NKnife.MeterKnife.Util.Protocol.Generic;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Tunnel;
@@ -24,7 +25,6 @@ namespace NKnife.MeterKnife.Logic.IoC
             base.Load(builder);
             builder.RegisterType<SerialPortHold>().As<ISerialPortHold>();
             builder.RegisterType<SerialPortDataConnector>().As<IDataConnector>();
-            builder.RegisterType<SlotProcessor>().AsSelf();
             
             builder.RegisterType<CareTunnel>().As<ITunnel>();
             builder.RegisterType<CareCodec>().As<BytesCodec>(); 

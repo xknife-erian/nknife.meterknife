@@ -10,7 +10,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
         protected IDataConnector _dataConnector;
         protected ITunnelFilterChain _filterChain = new TunnelFilterChain();
-        private bool _IsDataConnectedBound;
+        private bool _isDataConnectedBound;
         public ITunnelConfig Config { get; set; }
 
         public virtual void AddFilters(params ITunnelFilter[] filters)
@@ -26,7 +26,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
 
         public void BindDataConnector(IDataConnector dataConnector)
         {
-            if (!_IsDataConnectedBound)
+            if (!_isDataConnectedBound)
             {
                 _dataConnector = dataConnector;
                 _dataConnector.SessionBuilt += OnSessionBuilt;
@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
                 }
 
                 _Logger.Debug($"DataConnector[{dataConnector.GetType()}]绑定成功");
-                _IsDataConnectedBound = true;
+                _isDataConnectedBound = true;
             }
             else
             {
@@ -60,7 +60,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
 
         private void OnFilterSendToAll(object sender, SessionEventArgs e)
         {
-            //取得上一个（靠近dataconnector的）filter
+            //取得上一个（靠近dataConnector的）filter
             var currentFilter = sender as ITunnelFilter;
             if (currentFilter == null)
                 return;
@@ -81,7 +81,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
 
         private void OnFilterSendToSession(object sender, SessionEventArgs e)
         {
-            //取得上一个（靠近dataconnector的）filter
+            //取得上一个（靠近dataConnector的）filter
             var currentFilter = sender as ITunnelFilter;
             if (currentFilter == null) return;
 

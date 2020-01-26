@@ -12,7 +12,7 @@ namespace NKnife.MeterKnife.Util.Serial
 
         public SerialPortDataConnector(ISerialPortHold serial)
         {
-            _serial = serial;
+            _serial = serial;//非单例注入
             IsInitialized = false;
         }
 

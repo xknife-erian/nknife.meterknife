@@ -7,6 +7,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Care
         public CareCodec(BytesDatagramDecoder decoder, BytesDatagramEncoder encoder)
             : base(decoder, encoder)
         {
+            CodecName = CareProtocolFamily.FAMILY_NAME;
         }
     }
 }
