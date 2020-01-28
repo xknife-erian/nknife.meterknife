@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Newtonsoft.Json;
 using NKnife.Db;
-using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NLog;
@@ -42,11 +40,11 @@ namespace NKnife.MeterKnife.Storage.Base
         /// </summary>
         /// <param name="dut">指定的被测试物</param>
         /// <param name="domain">指定的对象</param>
-        public async Task<bool> InsertAsync(DUT dut, T domain)
+        public async Task<bool> InsertAsync((Engineering, DUT) dut, T domain)
         {
             if (domain == null)
                 return false;
-            var conn = _storageManager.OpenConnection(dut);
+            var conn = _storageManager.OpenConnection(dut.Item1);
             var sql = _sqlSet.Insert[GetSqlKey()];
             int i = 0;
             try
@@ -65,9 +63,9 @@ namespace NKnife.MeterKnife.Storage.Base
         /// </summary>
         /// <param name="dut">指定的被测试物</param>
         /// <param name="domains">指定的对象</param>
-        public async Task<bool> InsertManyAsync(DUT dut, IEnumerable<T> domains)
+        public async Task<bool> InsertManyAsync((Engineering, DUT) dut, IEnumerable<T> domains)
         {
-            var conn = _storageManager.OpenConnection(dut);
+            var conn = _storageManager.OpenConnection(dut.Item1);
             var sql = _sqlSet.Insert[GetSqlKey()];
             var i = await conn.ExecuteAsync(sql, domains);
             return i == domains.Count();
@@ -78,9 +76,9 @@ namespace NKnife.MeterKnife.Storage.Base
         /// </summary>
         /// <param name="dut">指定的被测试物</param>
         /// <param name="domain">指定的对象</param>
-        public async Task<bool> UpdateAsync(DUT dut, T domain)
+        public async Task<bool> UpdateAsync((Engineering, DUT) dut, T domain)
         {
-            var conn = _storageManager.OpenConnection(dut);
+            var conn = _storageManager.OpenConnection(dut.Item1);
             var sql = _sqlSet.Update[GetSqlKey()];
             try
             {
@@ -101,9 +99,9 @@ namespace NKnife.MeterKnife.Storage.Base
         /// </summary>
         /// <param name="dut">指定的被测试物</param>
         /// <param name="id">指定的记录ID</param>
-        public async Task<bool> RemoveAsync(DUT dut, DateTime id)
+        public async Task<bool> RemoveAsync((Engineering, DUT) dut, DateTime id)
         {
-            var conn = _storageManager.OpenConnection(dut);
+            var conn = _storageManager.OpenConnection(dut.Item1);
             var sql = $"DELETE FROM {TableName} WHERE {nameof(IRecord<T>.Id)}='{id}'";
             var i = await conn.ExecuteAsync(sql);
             return i == 1;

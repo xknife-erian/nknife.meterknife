@@ -1,4 +1,5 @@
-﻿using NKnife.MeterKnife.Common.Domain;
+﻿using System.Threading.Tasks;
+using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
@@ -27,7 +28,7 @@ namespace NKnife.MeterKnife.Base
         /// </summary>
         /// <param name="engineering">指定的工程</param>
         /// <returns>启动是否成功</returns>
-        bool Start(Engineering engineering);
+        Task<bool> StartAsync(Engineering engineering);
 
         /// <summary>
         ///     启动指定的工程

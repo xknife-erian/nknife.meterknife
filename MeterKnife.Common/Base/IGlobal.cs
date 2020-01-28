@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NKnife.Db;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
 
@@ -11,6 +12,10 @@ namespace NKnife.MeterKnife.Base
     /// </summary>
     public interface IGlobal
     {
+        /// <summary>
+        /// 软件使用的数据库模式
+        /// </summary>
+        DatabaseType DatabaseType { get; set; }
         /// <summary>
         /// 串口下的Gpib地址
         /// </summary>

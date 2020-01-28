@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using NKnife.Db;
 using NKnife.MeterKnife.Common.Domain;
 
@@ -21,17 +22,17 @@ namespace NKnife.MeterKnife.Base
         SqlSetMap SqlSetMap { get; }
 
         /// <summary>
-        ///     打开指定的被测物数据库连接，并返回该连接
+        ///     打开指定的工程数据库连接，并返回该连接
         /// </summary>
-        /// <param name="dut">指定的被测物</param>
+        /// <param name="engineering">指定的工程</param>
         /// <returns>数据库连接</returns>
-        IDbConnection OpenConnection(DUT dut);
+        IDbConnection OpenConnection(Engineering engineering);
 
         /// <summary>
-        ///     关闭指定的被测物数据库连接
+        ///     关闭指定的工程数据库连接
         /// </summary>
-        /// <param name="dut">指定的被测物</param>
-        void CloseConnection(DUT dut);
+        /// <param name="engineering">指定的工程</param>
+        void CloseConnection(Engineering engineering);
 
         /// <summary>
         ///     打开本软件管理信息数据库连接，并返回该连接
@@ -42,5 +43,11 @@ namespace NKnife.MeterKnife.Base
         ///     关闭管理信息数据库连接
         /// </summary>
         void ClosePlatformConnection();
+
+        /// <summary>
+        ///     创建工程存储
+        /// </summary>
+        /// <param name="engineeringName">用来建立工程存储的名称</param>
+        void CreateEngineering(Engineering engineeringName);
     }
 }

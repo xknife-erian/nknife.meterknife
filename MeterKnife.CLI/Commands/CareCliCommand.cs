@@ -28,12 +28,14 @@ namespace NKnife.MeterKnife.CLI.Commands
         {
             _slot = Slot.Build(TunnelType.Serial, $"{Port}");
             _antService.Bind((_slot, _connector));
-            var engineering = new Engineering();
-            engineering.Commands.AddRange(GetCommands());
-            _antService.Start(engineering);
+            var engineering = new Engineering
+            {
+                Commands = GetCommands()
+            };
+            await _antService.StartAsync(engineering);
         }
 
-        private CareCommand[] GetCommands()
+        private CareCommandPool GetCommands()
         {
             var interval = 2000;
             var item1 = new CareCommand
@@ -64,10 +66,10 @@ namespace NKnife.MeterKnife.CLI.Commands
             var temp6 = CareScpiHelper.TEMP(5);
             temp6.Slot = _slot;
             temp6.DUT = new DUT();
-            // return new[] { item2 };
-            // return new[] { item1 };
-            // return new[] {CareScpiHelper.TEMP(1, 1000)};
-            return new[] { item1, item2, item1, item2, temp5, temp6 };
+
+            var pool = new CareCommandPool();
+            pool.AddRange(new[] {item1, item2, item1, item2, temp5, temp6});
+            return pool;
         }
     }
 }

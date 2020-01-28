@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using NKnife.MeterKnife.Common.Domain;
 
 // ReSharper disable once CheckNamespace
@@ -12,6 +13,6 @@ namespace NKnife.MeterKnife.Base
         /// 新建一个测量工程
         /// </summary>
         /// <returns>是否创建成功</returns>
-        bool CreateEngineering(Engineering engineering);
+        Task<bool> CreateEngineering(Engineering engineering);
     }
 }

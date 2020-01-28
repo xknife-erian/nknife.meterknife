@@ -31,6 +31,8 @@ namespace NKnife.MeterKnife.Common
             }
         }
 
+        public const string KEY_DATA_PATH = "data-path";
+
         /// <summary>
         ///     尝试获取指定Key的选项的值
         /// </summary>

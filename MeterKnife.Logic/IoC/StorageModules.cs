@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Autofac;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common;
+using NKnife.MeterKnife.Storage.Base;
 using NKnife.MeterKnife.Storage.Db;
 
 namespace NKnife.MeterKnife.Logic.IoC
@@ -19,7 +21,15 @@ namespace NKnife.MeterKnife.Logic.IoC
         /// registered.</param>
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
+            builder.RegisterGeneric(typeof(BaseStoragePlatform<>)).As(typeof(IStoragePlatform<>)).SingleInstance();
+            builder.RegisterGeneric(typeof(BaseStorageDUTRead<>)).As(typeof(IStorageDUTRead<>)).SingleInstance();
+            builder.RegisterGeneric(typeof(BaseStorageDUTWrite<>)).As(typeof(IStorageDUTWrite<>)).SingleInstance();
+
+            var assembly = typeof(StorageManager).Assembly;
+            builder.RegisterAssemblyTypes(assembly)
+                .Where(t => !t.IsAbstract && (t.Name.Contains("Storage")))
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
 
         #endregion

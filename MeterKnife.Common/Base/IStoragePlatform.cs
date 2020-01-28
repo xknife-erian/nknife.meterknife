@@ -1,15 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using NKnife.Db;
+using NKnife.MeterKnife.Common.Domain;
 
 // ReSharper disable once CheckNamespace
 namespace NKnife.MeterKnife.Base
 {
     /// <summary>
-    /// 针对存储层的增、删、改的方法封装, 并读写分离管理。
+    /// 针对软件整体相关数据的存储。
     /// </summary>
     public interface IStoragePlatform<T>
-    {   
+    {
+        /// <summary>
+        /// 根据指定的数据库类型创建相应的工程存储
+        /// </summary>
+        /// <param name="engineering">相应的工程</param>
+        void Create(Engineering engineering);
+
         /// <summary>
         /// 指定ID的记录是否存在
         /// </summary>

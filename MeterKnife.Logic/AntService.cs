@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NKnife.Jobs;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
@@ -91,7 +92,7 @@ namespace NKnife.MeterKnife.Logic.Services
         /// </summary>
         /// <param name="engineering">指定的工程</param>
         /// <returns>启动是否成功</returns>
-        public bool Start(Engineering engineering)
+        public Task<bool> StartAsync(Engineering engineering)
         {
             if (!_jobMap.TryGetValue(engineering.Number, out var jobManager))
             {
@@ -103,6 +104,7 @@ namespace NKnife.MeterKnife.Logic.Services
                         _Logger.Warn($"未Binding的Slot和他的IDataConnector,跳过{command}\r\n{command.Slot}");
                         continue;
                     }
+
                     var connector = _connMap[command.Slot];
                     connector.Start();
                     command.Run += job =>
@@ -116,8 +118,8 @@ namespace NKnife.MeterKnife.Logic.Services
                 _jobMap.Add(engineering.Number, jobManager);
             }
 
-            jobManager.Run();
-            return true;
+            Task.Factory.StartNew(() => jobManager.Run());
+            return Task.Factory.StartNew(() => true);
         }
 
         /// <summary>
@@ -254,10 +256,10 @@ namespace NKnife.MeterKnife.Logic.Services
         /// </summary>
         /// <param name="slot">指定端口</param>
         /// <returns>启动是否成功</returns>
-        public bool Start(Slot slot)
+        public bool StartAsync(Slot slot)
         {
             var processor = _processorMap[slot];
-            processor.Connector.Start();
+            processor.Connector.StartAsync();
             processor.JobManager.Run();
             return true;
         }
@@ -365,7 +367,7 @@ namespace NKnife.MeterKnife.Logic.Services
 //                            connector.Config = new SocketClientConfig();
 //                            var ip = slot.GetIpEndPoint();
 //                            connector.Configure(ip.Address, ip.Port);
-//                            Start(slot);
+//                            StartAsync(slot);
 //                        }
 //
                     break;
@@ -540,14 +542,14 @@ namespace NKnife.MeterKnife.Logic.Services
             }
         }
 
-        #region Remove,Destroy,Start,Stop
+        #region Remove,Destroy,StartAsync,Stop
 
         /// <summary>
         ///     启动指定端口的串口服务
         /// </summary>
         /// <param name="slot">指定端口</param>
         /// <returns>启动是否成功</returns>
-        public bool Start(Slot slot)
+        public bool StartAsync(Slot slot)
         {
             if (!_boxMap.ContainsKey(slot))
             {
@@ -558,7 +560,7 @@ namespace NKnife.MeterKnife.Logic.Services
             var dataConnector = _boxMap[slot].Connector;
             try
             {
-                dataConnector.Start();
+                dataConnector.StartAsync();
                 _Logger.Info("Tunnel服务启动成功");
                 return true;
             }

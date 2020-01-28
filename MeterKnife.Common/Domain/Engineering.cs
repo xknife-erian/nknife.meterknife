@@ -22,7 +22,22 @@ namespace NKnife.MeterKnife.Common.Domain
         /// </summary>
         public string Number { get; set; }
 
-        public List<CareCommand> Commands { get; set; } = new List<CareCommand>();
+        /// <summary>
+        /// 创建工程的时间（一般是工程创建完成，保存工程的时间）
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 路径。当Sqlite时是文件路径及全名；当Mysql时是数据库与表名。
+        /// </summary>
+        public string Path { get; set; }
+
+        /// <summary>
+        /// 工程的命令集合
+        /// </summary>
+        public CareCommandPool Commands { get; set; } = new CareCommandPool();
 
         #region Implementation of ICloneable
 

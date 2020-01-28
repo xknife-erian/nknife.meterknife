@@ -41,7 +41,7 @@ namespace NKnife.MeterKnife.Logic
 //                };
 //
 //                careComm.Bind(carePort, handler);
-//                careComm.Start(carePort);
+//                careComm.StartAsync(carePort);
 //
 //                _logger.Info(string.Format("串口{0}启动完成,发送寻找Care指令", port));
 //                careComm.SendCommands(carePort, CommandUtil.CareGetter());
