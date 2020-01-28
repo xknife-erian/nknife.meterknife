@@ -12,11 +12,13 @@ namespace NKnife.MeterKnife.CLI.Commands
     [Command("d", Description = "模拟数据存储")]
     public class DataCommand : BaseCommand
     {
-        private readonly IPerformStorageLogic _logic;
+        private readonly IEngineeringLogic _engineeringLogic;
+        private readonly IPerformStorageLogic _performStorageLogic;
 
-        public DataCommand(IPerformStorageLogic logic)
+        public DataCommand(IEngineeringLogic engineeringLogic, IPerformStorageLogic performStorageLogic)
         {
-            _logic = logic;
+            _engineeringLogic = engineeringLogic;
+            _performStorageLogic = performStorageLogic;
         }
 
         #region Overrides of BaseCommand
@@ -27,9 +29,11 @@ namespace NKnife.MeterKnife.CLI.Commands
         /// </summary>
         public override async Task ExecuteAsync(IConsole console)
         {
+            var engineering = new Engineering();
             var dut = new DUT();
             var data = new MetricalData();
-            await _logic.ProcessAsync(dut, data);
+            await _engineeringLogic.CreateEngineering(engineering);
+            await _performStorageLogic.ProcessAsync((engineering, dut), data);
         }
 
         #endregion

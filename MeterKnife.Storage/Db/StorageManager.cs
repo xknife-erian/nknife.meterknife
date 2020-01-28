@@ -21,17 +21,18 @@ namespace NKnife.MeterKnife.Storage.Db
     {
         private static readonly Logger _Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly Dictionary<string, IDbConnection> _dutSqliteConnMap = new Dictionary<string, IDbConnection>();
-        private readonly StorageOption _option;
+        /// <summary>
+        /// 工程的数据库连接字典。Key是工程编号，Value是该工程的数据库连接。
+        /// </summary>
+        private readonly Dictionary<string, IDbConnection> _engineeringSqliteConnMap = new Dictionary<string, IDbConnection>();
         private readonly IDbConnection _dutMysqlConn = null;
         private readonly IDbConnection _platformConn = null;
-        private readonly HabitConfig _habitConfig;
-        private readonly PathManager _pathManager;
+        private readonly EngineeringFileBuilder _engineeringFileBuilder;
+        private readonly StorageOption _option;
 
-        public StorageManager(IOptions<StorageOption> options, HabitConfig habitConfig, PathManager pathManager)
+        public StorageManager(IOptions<StorageOption> options, EngineeringFileBuilder engineeringFileBuilder)
         {
-            _habitConfig = habitConfig;
-            _pathManager = pathManager;
+            _engineeringFileBuilder = engineeringFileBuilder;
             _option = options.Value;
             CurrentDbType = _option.CurrentDbType;
             SqlSetMap = _option.SqlSetMap;
@@ -64,10 +65,10 @@ namespace NKnife.MeterKnife.Storage.Db
                 }
                 default:
                 {
-                    if (!_dutSqliteConnMap.TryGetValue(engineering.Number, out conn))
+                    if (!_engineeringSqliteConnMap.TryGetValue(engineering.Number, out conn))
                     {
-                        conn = new SQLiteConnection(BuildSqliteEngineeringConnection(engineering));
-                        _dutSqliteConnMap.Add(engineering.Number, conn);
+                        conn = new SQLiteConnection(BuildEngineeringSqliteConnectionString(engineering));
+                        _engineeringSqliteConnMap.Add(engineering.Number, conn);
                     }
 
                     break;
@@ -93,7 +94,7 @@ namespace NKnife.MeterKnife.Storage.Db
         /// <param name="engineering">指定的工程</param>
         public void CloseConnection(Engineering engineering)
         {
-            if (_dutSqliteConnMap.TryGetValue(engineering.Number, out var conn))
+            if (_engineeringSqliteConnMap.TryGetValue(engineering.Number, out var conn))
                 conn?.Close();
         }
 
@@ -147,49 +148,18 @@ namespace NKnife.MeterKnife.Storage.Db
         {
             switch (CurrentDbType)
             {
+                case DatabaseType.MySql:
+                    //TODO:每个工程是否独立建库呢？这一块怎么整还没有想明白。
+                    break;
                 case DatabaseType.SqLite:
-                    CreateEngineeringSqliteFile(engineering);
+                    _engineeringFileBuilder.CreateEngineeringSqliteFile(this, engineering);
                     break;
             }
         }
 
-        private void CreateEngineeringSqliteFile(Engineering engineering)
+        private string BuildEngineeringSqliteConnectionString(Engineering engineering)
         {
-            var fileFullName = GetEngineeringSqliteFileName(engineering);
-            var dir = Path.GetDirectoryName(fileFullName);
-            UtilFile.CreateDirectory(dir);
-            using (var command = OpenConnection(engineering).CreateCommand())
-            {
-                DbUtil.CheckTable(command, CurrentDbType, GetTablesSqlMap(engineering));
-            }
-        }
-
-        private Dictionary<string, string> GetTablesSqlMap(Engineering engineering)
-        {
-            var dutList = new List<DUT>();
-            foreach (var command in engineering.Commands)
-            {
-                if (!dutList.Contains(command.DUT))
-                    dutList.Add(command.DUT);
-            }
-
-            return null;
-        }
-
-        private string GetEngineeringSqliteFileName(Engineering engineering)
-        {
-            var t = engineering.CreateTime;
-            var fileFullName = $"E-{t:yyMMdd-HHmmss}.mks";
-            var path = _habitConfig.GetOptionValue(HabitConfig.KEY_DATA_PATH, _pathManager.UserDocumentsPath);
-            if (path.EndsWith(Path.DirectorySeparatorChar.ToString()))
-                path = $"{path}{Path.DirectorySeparatorChar}";
-            fileFullName = Path.Combine(path, $"{t:yyyyMM}{Path.DirectorySeparatorChar}", fileFullName);
-            return fileFullName;
-        }
-
-        private string BuildSqliteEngineeringConnection(Engineering engineering)
-        {
-            var fileName = GetEngineeringSqliteFileName(engineering);
+            var fileName = _engineeringFileBuilder.GetEngineeringSqliteFileName(engineering);
             return string.Format(_option.SqliteEngineeringConnection, fileName);
         }
     }

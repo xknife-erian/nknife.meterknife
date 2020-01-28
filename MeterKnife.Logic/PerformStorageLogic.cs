@@ -16,20 +16,11 @@ namespace NKnife.MeterKnife.Logic
     /// </summary>
     public class PerformStorageLogic : IPerformStorageLogic
     {
-        /// <summary>
-        ///     采集编号
-        /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
-        ///     关于本次采集的描述
-        /// </summary>
-        public string Description { get; set; }
 
         /// <summary>
         ///     被测单元
         /// </summary>
-        public Dictionary<string, DUT> DUTMap { get; set; } = new Dictionary<string, DUT>();
+        public Dictionary<string, (Engineering,DUT)> DUTMap { get; set; } = new Dictionary<string, (Engineering, DUT)>();
 
         #region Implementation of IPerformStorageLogic
 
@@ -38,7 +29,7 @@ namespace NKnife.MeterKnife.Logic
         /// </summary>
         /// <param name="dut">指定的被测物</param>
         /// <param name="data">数据</param>
-        public async Task<bool> ProcessAsync(DUT dut, MetricalData data)
+        public async Task<bool> ProcessAsync((Engineering, DUT) dut, MetricalData data)
         {
             return await Task.Factory.StartNew(() => true);
         }
@@ -49,12 +40,12 @@ namespace NKnife.MeterKnife.Logic
         /// <param name="mainCommand">主命令字</param>
         /// <param name="subCommand">子命令字</param>
         /// <returns>被测物</returns>
-        public DUT GetDUT(byte mainCommand, byte subCommand)
+        public (Engineering, DUT) GetDUT(byte mainCommand, byte subCommand)
         {
             string key = $"{mainCommand:X2}{subCommand:X2}";
             if (!DUTMap.TryGetValue(key, out var dut))
             {
-                DUTMap.Add(key, new DUT());
+                DUTMap.Add(key, (new Engineering(),new DUT()));
             }
             return dut;
         }
@@ -64,12 +55,12 @@ namespace NKnife.MeterKnife.Logic
         /// </summary>
         /// <param name="sourceCommand">源命令</param>
         /// <returns>被测物</returns>
-        public DUT GetDUT(byte[] sourceCommand)
+        public (Engineering, DUT) GetDUT(byte[] sourceCommand)
         {
             string key = sourceCommand.ToDUTKey();
             if (!DUTMap.TryGetValue(key, out var dut))
             {
-                DUTMap.Add(key, new DUT());
+                DUTMap.Add(key, (new Engineering(), new DUT()));
             }
             return dut;
         }

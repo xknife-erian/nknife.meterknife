@@ -24,12 +24,14 @@ namespace NKnife.MeterKnife.CLI
 
             var builder = new ContainerBuilder();
             builder.RegisterModule(configModule);
+
             builder.RegisterAssemblyModules(typeof(Logic.Global).Assembly);
 
             builder.RegisterType<SerialCliCommand>().Named<ICommand>("serial").SingleInstance();
             builder.RegisterType<CareConfigCliCommand>().Named<ICommand>("cc").SingleInstance();
             builder.RegisterType<CareCliCommand>().Named<ICommand>("ci").SingleInstance();
-            
+            builder.RegisterType<DataCommand>().Named<ICommand>("d").SingleInstance();
+
             var container = builder.Build();
 
             await new CliApplicationBuilder()
