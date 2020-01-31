@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CliFx;
 using CliFx.Attributes;
-using CliFx.Services;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.Util;
@@ -21,7 +21,7 @@ namespace NKnife.MeterKnife.CLI.Commands
 
         #region Implementation of ICommand
 
-        public override async Task ExecuteAsync(IConsole console)
+        public override async ValueTask ExecuteAsync(IConsole console)
         {
             _serialPort.Initialize($"COM{Port}", new SerialConfig {BaudRate = 512000});
             var bs = new List<byte>();

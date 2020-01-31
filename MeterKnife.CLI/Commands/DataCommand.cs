@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using CliFx;
 using CliFx.Attributes;
-using CliFx.Services;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
@@ -27,7 +27,7 @@ namespace NKnife.MeterKnife.CLI.Commands
         /// Executes command using specified implementation of <see cref="T:CliFx.Services.IConsole" />.
         /// This method is called when the command is invoked by a user through command line interface.
         /// </summary>
-        public override async Task ExecuteAsync(IConsole console)
+        public override async ValueTask ExecuteAsync(IConsole console)
         {
             var engineering = new Engineering();
             var dut = new DUT();

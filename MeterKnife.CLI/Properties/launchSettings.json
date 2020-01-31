@@ -2,7 +2,7 @@
   "profiles": {
     "MeterKnife.CLI": {
       "commandName": "Project",
-      "commandLineArgs": "d"
+      "commandLineArgs": "d -p 4"
     }
   }
 }

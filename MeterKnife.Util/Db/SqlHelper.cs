@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,11 +16,14 @@ namespace NKnife.Db
         private static readonly ConcurrentDictionary<RuntimeTypeHandle, IEnumerable<PropertyInfo>> _TypePropertiesMap = new ConcurrentDictionary<RuntimeTypeHandle, IEnumerable<PropertyInfo>>();
         private static readonly ConcurrentDictionary<RuntimeTypeHandle, string> _TypeTableNameMap = new ConcurrentDictionary<RuntimeTypeHandle, string>();
 
-       public const string SQL_FILE_NAME = "FT-Water-Meters-Sql.xml";
-
-        public static string GetCreateTableSql(Type type, DatabaseType databaseType)
+        public static string GetCreateTableSql(DatabaseType databaseType, Type type)
         {
-            var name = GetTableName(type);
+            var tableName = GetTableName(type);
+            return GetCreateTableSql(tableName, type, databaseType);
+        }
+
+        public static string GetCreateTableSql(string tableName, Type type, DatabaseType databaseType)
+        {
             var allProperties = TypePropertiesCache(type);
 
             var sbTableSql = new StringBuilder();
@@ -37,7 +41,7 @@ namespace NKnife.Db
 
                 if (HasIndexAttribute(ps))
                 {
-                    sbIndexSql.Append($"\r\nCREATE INDEX {ps.Name} ON {name}({ps.Name});");
+                    sbIndexSql.Append($" CREATE INDEX {ps.Name} ON {tableName}({ps.Name});");
                 }
 
                 if (IsNotNull(ps))
@@ -47,10 +51,10 @@ namespace NKnife.Db
 
                 if (i < allProperties.Count - 1)
                 {
-                    sbTableSql.Append(",\r\n");
+                    sbTableSql.Append(", ");
                 }
             }
-            var sql = $"CREATE TABLE {name} (\r\n{sbTableSql}\r\n);";
+            var sql = $"CREATE TABLE {tableName} ( {sbTableSql} );";
             if (sbIndexSql.Length > 0)
                 sql = $"{sql}{sbIndexSql}";
             return sql;
@@ -131,7 +135,7 @@ namespace NKnife.Db
             return attr != null;
         }
 
-        public static string GetInsertSql(Type type, DatabaseType sqLite)
+        public static string GetInsertSql(DatabaseType dbType, Type type)
         {
             var name = GetTableName(type);
             var allProperties = TypePropertiesCache(type);
@@ -150,10 +154,10 @@ namespace NKnife.Db
                 }
             }
 
-            return $"INSERT INTO {name}(\r\n{sbColumnList}\r\n) Values(\r\n{sbParameterList}\r\n);";
+            return $"INSERT INTO {name} ( {sbColumnList} ) Values ( {sbParameterList} );";
         }
 
-        public static string GetUpdateSql(Type type, DatabaseType sqLite)
+        public static string GetUpdateSql(DatabaseType dbType, Type type)
         {
             var name = GetTableName(type);
             var allProperties = TypePropertiesCache(type);
@@ -169,7 +173,7 @@ namespace NKnife.Db
                 }
             }
 
-            return $"UPDATE {name} SET {sbColumnList}";
+            return $"UPDATE {name} SET {sbColumnList};";
         }
 
         /// <summary>
@@ -182,14 +186,16 @@ namespace NKnife.Db
                 return name;
             }
 
-            var info = type;
-            var tableAttrName = "";//(info.GetCustomAttributes(false).FirstOrDefault(attr => attr.GetType().Name == "TableAttribute") as dynamic)?.Name;
-
-            if (tableAttrName != null)
+            var attributes = type.GetCustomAttributes(false);
+            foreach (var attribute in attributes)
             {
-                name = tableAttrName;
+                if (attribute is TableAttribute ta)
+                {
+                    name = ta.Name;
+                    break;
+                }
             }
-            else
+            if (string.IsNullOrEmpty(name))
             {
                 name = $"{type.Name}s";
                 if (type.IsInterface && name.StartsWith("I"))
@@ -209,6 +215,5 @@ namespace NKnife.Db
             _TypePropertiesMap[type.TypeHandle] = properties;
             return properties.ToList();
         }
-
     }
 }

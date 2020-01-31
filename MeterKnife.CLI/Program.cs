@@ -2,45 +2,54 @@
 using System.IO;
 using System.Threading.Tasks;
 using Autofac;
-using Autofac.Configuration;
+using Autofac.Extensions.DependencyInjection;
 using CliFx;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using NKnife.MeterKnife.CLI.Commands;
+using NKnife.MeterKnife.Storage.Db;
 using NKnife.MeterKnife.Util.Serial;
 
 namespace NKnife.MeterKnife.CLI
 {
     class Program
     {
+
         static async Task Main(string[] args)
         {
             SerialHelper.RefreshSerialPorts();
 
-            var configuration = new ConfigurationBuilder()
+            var conf = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                // ReSharper disable once StringLiteralTypo
-                .AddJsonFile("appsettings.json");
-            var configModule = new ConfigurationModule(configuration.Build());
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+
+            IServiceCollection serviceCollection = new ServiceCollection();
+            serviceCollection.AddOptions().Configure<StorageOption>(conf.GetSection(nameof(StorageOption)));
 
             var builder = new ContainerBuilder();
-            builder.RegisterModule(configModule);
-
+            builder.Populate(serviceCollection);
             builder.RegisterAssemblyModules(typeof(Logic.Global).Assembly);
 
-            builder.RegisterType<SerialCliCommand>().Named<ICommand>("serial").SingleInstance();
-            builder.RegisterType<CareConfigCliCommand>().Named<ICommand>("cc").SingleInstance();
-            builder.RegisterType<CareCliCommand>().Named<ICommand>("ci").SingleInstance();
-            builder.RegisterType<DataCommand>().Named<ICommand>("d").SingleInstance();
+            builder.RegisterType<SerialCliCommand>().Named<ICommand>(nameof(SerialCliCommand)).SingleInstance();
+            builder.RegisterType<CareConfigCliCommand>().Named<ICommand>(nameof(CareConfigCliCommand)).SingleInstance();
+            builder.RegisterType<CareCliCommand>().Named<ICommand>(nameof(CareCliCommand)).SingleInstance();
+            builder.RegisterType<DataCommand>().Named<ICommand>(nameof(DataCommand)).SingleInstance();
+            builder.RegisterType<SqlBuildCommand>().Named<ICommand>(nameof(SqlBuildCommand)).SingleInstance();
 
             var container = builder.Build();
 
             await new CliApplicationBuilder()
                 .AddCommandsFromThisAssembly()
-                .UseCommandFactory(schema => container.ResolveNamed<ICommand>(schema.Name))
+                .UseTypeActivator(type => container.ResolveNamed<ICommand>(type.Name))
                 .Build()
                 .RunAsync(args);
 
             Console.ReadLine();
         }
+
     }
 }
+
+

@@ -21,7 +21,15 @@ namespace NKnife.MeterKnife.Storage.Base
         protected BaseStorageDUTWrite(IStorageManager storageManager)
         {
             _storageManager = storageManager;
-            _sqlSet = storageManager.SqlSetMap[storageManager.CurrentDbType];
+            switch (storageManager.CurrentDbType)
+            {
+                case DatabaseType.SqLite:
+                    _sqlSet = storageManager.SqlSetMap.Sqlite;
+                    break;
+                case DatabaseType.MySql:
+                    _sqlSet = storageManager.SqlSetMap.Mysql;
+                    break;
+            }
             TableName = BuildTableName(typeof(T).Name);
         }
 
@@ -45,7 +53,7 @@ namespace NKnife.MeterKnife.Storage.Base
             if (domain == null)
                 return false;
             var conn = _storageManager.OpenConnection(dut.Item1);
-            var sql = _sqlSet.Insert[GetSqlKey()];
+            var sql = _sqlSet[GetSqlKey()].Insert;
             int i = 0;
             try
             {
@@ -66,7 +74,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public async Task<bool> InsertManyAsync((Engineering, DUT) dut, IEnumerable<T> domains)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
-            var sql = _sqlSet.Insert[GetSqlKey()];
+            var sql = _sqlSet[GetSqlKey()].Insert;
             var i = await conn.ExecuteAsync(sql, domains);
             return i == domains.Count();
         }
@@ -79,7 +87,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public async Task<bool> UpdateAsync((Engineering, DUT) dut, T domain)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
-            var sql = _sqlSet.Update[GetSqlKey()];
+            var sql = _sqlSet[GetSqlKey()].Update;
             try
             {
                 IRecord<T> d = (IRecord<T>) domain;

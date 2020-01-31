@@ -11,6 +11,12 @@ namespace NKnife.MeterKnife.Util
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// 检查数据库的完整性，如不完整，将进行修正
+        /// </summary>
+        /// <param name="command">数据库命令</param>
+        /// <param name="dbType">数据库类型</param>
+        /// <param name="tableSqlMap">SQL语句的字典，Key是表名，Value是建表的语句</param>
         public static void CheckTable(IDbCommand command, DatabaseType dbType, Dictionary<string, string> tableSqlMap)
         {
             foreach (var pair in tableSqlMap)
@@ -21,21 +27,26 @@ namespace NKnife.MeterKnife.Util
                         {
                             var tableName = pair.Key;
                             command.CommandText = $"SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='{tableName}s'";
-                            CreateTableAndDefaultData(command, pair);
+                            CreateSqliteTableAndDefaultData(command, pair);
                             break;
                         }
                     case DatabaseType.MySql:
                         {
                             var tableName = pair.Key;
                             command.CommandText = $"SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='wz_wm_devtime' AND TABLE_NAME='{tableName}s'";
-                            CreateTableAndDefaultData(command, pair);
+                            CreateMysqlTableAndDefaultData(command, pair);
                             break;
                         }
                 }
             }
         }
 
-        private static void CreateTableAndDefaultData(IDbCommand command, KeyValuePair<string, string> pair)
+        /// <summary>
+        /// 检查数据库的完整性，如不完整，将进行修正
+        /// </summary>
+        /// <param name="command">数据库命令</param>
+        /// <param name="pair">SQL语句的字典，Key是表名，Value是建表的语句</param>
+        private static void CreateSqliteTableAndDefaultData(IDbCommand command, KeyValuePair<string, string> pair)
         {
             var tableName = pair.Key;
             var result = command.ExecuteScalar();
@@ -59,6 +70,11 @@ namespace NKnife.MeterKnife.Util
                 //         break;
                 // }
             }
+        }
+
+        private static void CreateMysqlTableAndDefaultData(IDbCommand command, KeyValuePair<string, string> pair)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

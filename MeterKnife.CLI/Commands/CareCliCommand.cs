@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
+using CliFx;
 using CliFx.Attributes;
-using CliFx.Services;
-using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
@@ -24,7 +23,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             _connector = dataConnector;
         }
 
-        public override async Task ExecuteAsync(IConsole console)
+        public override async ValueTask ExecuteAsync(IConsole console)
         {
             _slot = Slot.Build(TunnelType.Serial, $"{Port}");
             _antService.Bind((_slot, _connector));

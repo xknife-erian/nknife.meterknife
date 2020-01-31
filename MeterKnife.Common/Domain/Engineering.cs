@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
+using NKnife.Db.Base;
 using NKnife.Jobs;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Util.Tunnel;
@@ -20,6 +22,9 @@ namespace NKnife.MeterKnife.Common.Domain
         /// <summary>
         /// 工程编号
         /// </summary>
+        [Key]
+        [Index]
+        [Required]
         public string Number { get; set; }
 
         /// <summary>

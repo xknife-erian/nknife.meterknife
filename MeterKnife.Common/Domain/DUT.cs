@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using NKnife.Db.Base;
 
 namespace NKnife.MeterKnife.Common.Domain
 {
@@ -7,6 +9,9 @@ namespace NKnife.MeterKnife.Common.Domain
     /// </summary>
     public class DUT
     {
+        [Key]
+        [Index]
+        [Required]
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

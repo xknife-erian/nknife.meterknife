@@ -15,7 +15,7 @@ namespace NKnife.MeterKnife.Common.Domain
         private IPEndPoint _ipEndPoint;
         private string[] _serialPortInfo;
 
-        private Slot()
+        public Slot()
         {
             _id = Guid.NewGuid().ToString();
         }

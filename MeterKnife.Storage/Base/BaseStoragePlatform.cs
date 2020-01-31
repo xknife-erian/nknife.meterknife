@@ -26,6 +26,21 @@ namespace NKnife.MeterKnife.Storage.Base
         public BaseStoragePlatform(IStorageManager storageManager)
         {
             _storageManager = storageManager;
+            switch (storageManager.CurrentDbType)
+            {
+                case DatabaseType.SqLite:
+                    _sqlSet = storageManager.SqlSetMap.Sqlite;
+                    break;
+                case DatabaseType.MySql:
+                    _sqlSet = storageManager.SqlSetMap.Mysql;
+                    break;
+            }
+            TableName = BuildTableName(typeof(T).Name);
+        }
+
+        protected static string BuildTableName(string typeName)
+        {
+            return $"{typeName}s";
         }
 
         /// <summary>
@@ -114,7 +129,7 @@ namespace NKnife.MeterKnife.Storage.Base
             if (domain == null)
                 return false;
             var conn = _storageManager.OpenPlatformConnection();
-            var sql = _sqlSet.Insert[GetSqlKey()];
+            var sql = _sqlSet[GetSqlKey()].Insert;
             var i = 0;
             try
             {
@@ -135,7 +150,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public async Task<bool> InsertManyAsync(IEnumerable<T> domains)
         {
             var conn = _storageManager.OpenPlatformConnection();
-            var sql = _sqlSet.Insert[GetSqlKey()];
+            var sql = _sqlSet[GetSqlKey()].Insert;
             var i = await conn.ExecuteAsync(sql, domains);
             return i == domains.Count();
         }
@@ -147,7 +162,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public async Task<bool> UpdateAsync(T domain)
         {
             var conn = _storageManager.OpenPlatformConnection();
-            var sql = _sqlSet.Update[GetSqlKey()];
+            var sql = _sqlSet[GetSqlKey()].Update;
             try
             {
                 var d = (IRecord<T>) domain;
