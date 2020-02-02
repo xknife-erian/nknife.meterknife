@@ -55,4 +55,5 @@ namespace NKnife.MeterKnife.Common.Domain
 
         #endregion
     }
+
 }

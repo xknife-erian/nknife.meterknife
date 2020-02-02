@@ -11,14 +11,14 @@ using NLog;
 
 namespace NKnife.MeterKnife.Storage.Base
 {
-    public class BaseStorageDUTWrite<T> : IStorageDUTWrite<T>
+    public class StorageDUTWrite<T> : IStorageDUTWrite<T>
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
         protected readonly IStorageManager _storageManager;
         protected readonly SqlSet _sqlSet;
 
-        protected BaseStorageDUTWrite(IStorageManager storageManager)
+        public StorageDUTWrite(IStorageManager storageManager)
         {
             _storageManager = storageManager;
             switch (storageManager.CurrentDbType)
@@ -41,6 +41,28 @@ namespace NKnife.MeterKnife.Storage.Base
         protected static string BuildTableName(string typeName)
         {
             return $"{typeName}s";
+        }
+
+        /// <summary>
+        /// 将指定的工程实体插入数据库中
+        /// </summary>
+        /// <param name="engineering">指定的被测试物</param>
+        public async Task<bool> InsertAsync(Engineering engineering)
+        {
+            if (engineering == null)
+                return false;
+            var conn = _storageManager.OpenConnection(engineering);
+            var sql = _sqlSet[GetSqlKey()].Insert;
+            int i = 0;
+            try
+            {
+                i = await conn.ExecuteAsync(sql, engineering);
+            }
+            catch (Exception e)
+            {
+                _Logger.Error($"数据库新增数据异常。\r\nExceptionMessage: {e.Message}\r\nSQL: {sql}\r\nDomain: {JsonConvert.SerializeObject(engineering)}");
+            }
+            return i == 1;
         }
 
         /// <summary>
@@ -100,6 +122,15 @@ namespace NKnife.MeterKnife.Storage.Base
                 _Logger.Warn(e, $"数据库更新实体时写库异常：{e.Message}\r\n{sql}");
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 更新指定的工程实体
+        /// </summary>
+        /// <param name="engineering">指定的工程实体</param>
+        public Task<bool> UpdateAsync(Engineering engineering)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

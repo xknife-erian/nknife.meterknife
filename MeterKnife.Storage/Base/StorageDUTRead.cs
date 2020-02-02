@@ -8,11 +8,11 @@ using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Storage.Base
 {
-    public class BaseStorageDUTRead<T> : IStorageDUTRead<T>
+    public class StorageDUTRead<T> : IStorageDUTRead<T>
     {
         protected readonly IStorageManager _storageManager;
 
-        protected BaseStorageDUTRead(IStorageManager storageManager)
+        public StorageDUTRead(IStorageManager storageManager)
         {
             _storageManager = storageManager;
             TableName = BuildTableName(typeof(T).Name);

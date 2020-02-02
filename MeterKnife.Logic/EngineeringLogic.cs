@@ -13,11 +13,13 @@ namespace NKnife.MeterKnife.Logic
 {
     public class EngineeringLogic : IEngineeringLogic
     {
-        private readonly IStoragePlatform<Engineering> _engineeringStorage;
+        private readonly IStoragePlatform<Engineering> _engineeringStoragePlatform;
+        private readonly IStorageDUTWrite<Engineering> _engineeringStorageDUTWrite;
 
-        public EngineeringLogic(IStoragePlatform<Engineering> engineeringStorage)
+        public EngineeringLogic(IStoragePlatform<Engineering> engineeringStoragePlatform, IStorageDUTWrite<Engineering> engineeringStorageDUTWrite)
         {
-            _engineeringStorage = engineeringStorage;
+            _engineeringStoragePlatform = engineeringStoragePlatform;
+            _engineeringStorageDUTWrite = engineeringStorageDUTWrite;
         }
 
         #region Implementation of IEngineeringLogic
@@ -29,13 +31,16 @@ namespace NKnife.MeterKnife.Logic
         public async Task<bool> CreateEngineering(Engineering engineering)
         {
             //创建工程的数据库或者文件
-            BuildEngineeringStore(engineering); 
-            return await _engineeringStorage.InsertAsync(engineering);
+            BuildEngineeringStore(engineering);
+            //将工程的相关信息存入到工程库
+            await _engineeringStorageDUTWrite.InsertAsync(engineering);
+            //同时也在平台库中存储一份
+            return await _engineeringStoragePlatform.InsertAsync(engineering);
         }
 
         private void BuildEngineeringStore(Engineering engineering)
         {
-            _engineeringStorage.Create(engineering);
+            _engineeringStoragePlatform.Create(engineering);
         }
 
         #endregion

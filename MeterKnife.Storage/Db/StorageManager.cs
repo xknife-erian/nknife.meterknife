@@ -2,12 +2,14 @@
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
+using Dapper;
 using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 using NKnife.Db;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Util;
 using NKnife.Util;
 using NLog;
@@ -29,13 +31,22 @@ namespace NKnife.MeterKnife.Storage.Db
         private readonly IDbConnection _platformConn = null;
         private readonly EngineeringFileBuilder _engineeringFileBuilder;
         private readonly StorageOption _option;
+        private readonly HabitConfig _habitConfig;
+        private readonly PathManager _pathManager;
+        /// <summary>
+        /// 软件第一次访问数据库时，检查数据库的完整性
+        /// </summary>
+        private bool _isFirst = true;
 
-        public StorageManager(IOptions<StorageOption> options, EngineeringFileBuilder engineeringFileBuilder)
+        public StorageManager(IOptions<StorageOption> options, EngineeringFileBuilder engineeringFileBuilder, HabitConfig habitConfig, PathManager pathManager)
         {
             _engineeringFileBuilder = engineeringFileBuilder;
+            _habitConfig = habitConfig;
+            _pathManager = pathManager;
             _option = options.Value;
             CurrentDbType = _option.CurrentDbType;
             SqlSetMap = _option.SqlSetMap;
+            SqlMapper.AddTypeHandler(typeof(CareCommandPool), new CareCommandPoolTypeHandler());
         }
 
         /// <summary>
@@ -122,14 +133,32 @@ namespace NKnife.MeterKnife.Storage.Db
                         conn = new MySqlConnection(_option.MysqlPlatformConnection);
                         break;
                     default:
-                        conn = new SQLiteConnection(_option.SqlitePlatformConnection);
+                        var path = _habitConfig.GetOptionValue(HabitConfig.KEY_DATA_PATH, _pathManager.UserDocumentsPath);
+                        if (!Directory.Exists(path))
+                            UtilFile.CreateDirectory(path);
+                        if (!path.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                            path = $"{path}{Path.DirectorySeparatorChar}";
+                        var pf = string.Format(_option.SqlitePlatformConnection, path);
+                        conn = new SQLiteConnection(pf);
                         break;
                 }
-
                 conn.Open();
+                if (_isFirst)
+                {
+                    DbUtil.CheckTable(conn.CreateCommand(), CurrentDbType, GetPlatformTableSqlMap());
+                    _isFirst = false;
+                }
             }
 
             return conn;
+        }
+
+        private Dictionary<string, string> GetPlatformTableSqlMap()
+        {
+            var map = new Dictionary<string, string>();
+            map.Add(nameof(DUT), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(DUT)));
+            map.Add(nameof(Engineering), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Engineering)));
+            return map;
         }
 
         /// <summary>

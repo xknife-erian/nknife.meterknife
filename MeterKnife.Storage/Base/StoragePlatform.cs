@@ -14,7 +14,7 @@ using NLog;
 
 namespace NKnife.MeterKnife.Storage.Base
 {
-    public class BaseStoragePlatform<T> : IStoragePlatform<T>
+    public class StoragePlatform<T> : IStoragePlatform<T>
     {
         // ReSharper disable once StaticMemberInGenericType
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
@@ -23,7 +23,7 @@ namespace NKnife.MeterKnife.Storage.Base
 
         protected readonly IStorageManager _storageManager;
 
-        public BaseStoragePlatform(IStorageManager storageManager)
+        public StoragePlatform(IStorageManager storageManager)
         {
             _storageManager = storageManager;
             switch (storageManager.CurrentDbType)

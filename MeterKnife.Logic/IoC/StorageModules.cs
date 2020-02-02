@@ -24,9 +24,9 @@ namespace NKnife.MeterKnife.Logic.IoC
             builder.RegisterType<EngineeringFileBuilder>().AsSelf().SingleInstance();
             builder.RegisterType<StorageManager>().As<IStorageManager>().SingleInstance();
 
-            builder.RegisterGeneric(typeof(BaseStoragePlatform<>)).As(typeof(IStoragePlatform<>)).SingleInstance();
-            builder.RegisterGeneric(typeof(BaseStorageDUTRead<>)).As(typeof(IStorageDUTRead<>)).SingleInstance();
-            builder.RegisterGeneric(typeof(BaseStorageDUTWrite<>)).As(typeof(IStorageDUTWrite<>)).SingleInstance();
+            builder.RegisterGeneric(typeof(StoragePlatform<>)).As(typeof(IStoragePlatform<>)).SingleInstance();
+            builder.RegisterGeneric(typeof(StorageDUTRead<>)).As(typeof(IStorageDUTRead<>)).SingleInstance();
+            builder.RegisterGeneric(typeof(StorageDUTWrite<>)).As(typeof(IStorageDUTWrite<>)).SingleInstance();
 
             var assembly = typeof(StorageManager).Assembly;
             builder.RegisterAssemblyTypes(assembly)

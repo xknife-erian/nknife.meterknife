@@ -27,7 +27,7 @@ namespace NKnife.MeterKnife.Util
                         {
                             var tableName = pair.Key;
                             command.CommandText = $"SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='{tableName}s'";
-                            CreateSqliteTableAndDefaultData(command, pair);
+                            CreateSqliteTable(command, pair);
                             break;
                         }
                     case DatabaseType.MySql:
@@ -46,7 +46,7 @@ namespace NKnife.MeterKnife.Util
         /// </summary>
         /// <param name="command">数据库命令</param>
         /// <param name="pair">SQL语句的字典，Key是表名，Value是建表的语句</param>
-        private static void CreateSqliteTableAndDefaultData(IDbCommand command, KeyValuePair<string, string> pair)
+        private static void CreateSqliteTable(IDbCommand command, KeyValuePair<string, string> pair)
         {
             var tableName = pair.Key;
             var result = command.ExecuteScalar();
@@ -55,20 +55,6 @@ namespace NKnife.MeterKnife.Util
             {
                 _Logger.Info($"{tableName}表不存在，准备新建...");
                 CreateSqliteTable(command, pair.Value);
-                // switch (tableName)
-                // {
-                //     case nameof(User):
-                //         CreateAdminUser(command);
-                //         break;
-                //     case nameof(UserSnack):
-                //         CreateAdminUserSnack(command);
-                //         break;
-                //     case nameof(Role):
-                //         CreateDefaultRole(command);
-                //         break;
-                //     case nameof(Organization):
-                //         break;
-                // }
             }
         }
 

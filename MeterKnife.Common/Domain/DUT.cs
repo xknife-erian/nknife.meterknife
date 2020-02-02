@@ -9,10 +9,13 @@ namespace NKnife.MeterKnife.Common.Domain
     /// </summary>
     public class DUT
     {
-        [Key]
-        [Index]
-        [Required]
-        public string Id { get; set; }
+        public DUT()
+        {
+            Id = $"DUT{SequentialGuid.Create().ToString("N").ToUpper()}";
+            CreateTime = DateTime.Now;
+        }
+
+        [Key] [Index] [Required] public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreateTime { get; set; }

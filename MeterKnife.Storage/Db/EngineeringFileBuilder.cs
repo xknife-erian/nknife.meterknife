@@ -49,9 +49,10 @@ namespace NKnife.MeterKnife.Storage.Db
                 {
                     var d = command.DUT;
                     dutList.Add(d);
-                    map.Add(d.Id, SqlHelper.GetCreateTableSql(d.Id, typeof(DUT), dbType));
+                    map.Add(d.Id, SqlHelper.GetCreateTableSql(d.Id, dbType, typeof(MetricalData)));
                 }
             }
+            map.Add(nameof(Engineering), SqlHelper.GetCreateTableSql(dbType, typeof(Engineering)));
             return map;
         }
 
@@ -60,8 +61,8 @@ namespace NKnife.MeterKnife.Storage.Db
             var t = engineering.CreateTime;
             var fileFullName = $"E-{t:yyMMdd-HHmmss}.mks";
             var path = _habitConfig.GetOptionValue(HabitConfig.KEY_DATA_PATH, _pathManager.UserDocumentsPath);
-            if (path.EndsWith(Path.DirectorySeparatorChar.ToString()))
-                path = $"{path}{Path.DirectorySeparatorChar}";
+            if (!Directory.Exists(path))
+                UtilFile.CreateDirectory(path);
             fileFullName = Path.Combine(path, $"{t:yyyyMM}{Path.DirectorySeparatorChar}", fileFullName);
             return fileFullName;
         }

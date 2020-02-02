@@ -19,10 +19,10 @@ namespace NKnife.Db
         public static string GetCreateTableSql(DatabaseType databaseType, Type type)
         {
             var tableName = GetTableName(type);
-            return GetCreateTableSql(tableName, type, databaseType);
+            return GetCreateTableSql(tableName, databaseType, type);
         }
 
-        public static string GetCreateTableSql(string tableName, Type type, DatabaseType databaseType)
+        public static string GetCreateTableSql(string tableName, DatabaseType databaseType, Type type)
         {
             var allProperties = TypePropertiesCache(type);
 
@@ -41,7 +41,7 @@ namespace NKnife.Db
 
                 if (HasIndexAttribute(ps))
                 {
-                    sbIndexSql.Append($" CREATE INDEX {ps.Name} ON {tableName}({ps.Name});");
+                    sbIndexSql.Append($" CREATE INDEX {tableName}_{ps.Name} ON {tableName}({ps.Name});");
                 }
 
                 if (IsNotNull(ps))
