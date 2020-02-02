@@ -11,7 +11,7 @@ namespace NKnife.MeterKnife.Common.Domain
     {
         public MetricalData()
         {
-
+            Time = DateTime.Now;
         }
 
         /// <summary>

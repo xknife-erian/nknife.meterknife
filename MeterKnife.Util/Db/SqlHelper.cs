@@ -79,7 +79,7 @@ namespace NKnife.Db
             }
             else if (pt == typeof(float) || pt == typeof(double) || pt == typeof(decimal))
             {
-                sb.Append(" FLOAT");
+                sb.Append(" DOUBLE");
             }
             else if (pt == typeof(string))
             {

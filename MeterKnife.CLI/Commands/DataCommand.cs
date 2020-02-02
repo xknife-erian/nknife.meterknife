@@ -7,6 +7,7 @@ using CliFx.Attributes;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
+using NKnife.Util;
 
 namespace NKnife.MeterKnife.CLI.Commands
 {
@@ -30,21 +31,36 @@ namespace NKnife.MeterKnife.CLI.Commands
         /// </summary>
         public override async ValueTask ExecuteAsync(IConsole console)
         {
+            var dut1 = new DUT {Name = "100K电阻"};
+            var dut2 = new DUT {Name = "10K电阻"};
+            var dut3 = new DUT {Name = "1K电阻"};
             var engineering = new Engineering();
             engineering.Commands.AddRange(new[]
             {
-                new CareCommand {DUT = new DUT {Name = "100K电阻"}},
-                new CareCommand {DUT = new DUT {Name = "10K电阻"}},
-                new CareCommand {DUT = new DUT {Name = "1K电阻"}}
+                new CareCommand {DUT = dut1},
+                new CareCommand {DUT = dut2},
+                new CareCommand {DUT = dut3}
             });
-            var dut = new DUT();
-            var data = new MetricalData();
             //创建一个工程
             await _engineeringLogic.CreateEngineering(engineering);
             //模拟处理一些数据
-            for (int i = 0; i < 123; i++)
+            for (int i = 0; i < 100 * 10000; i++)
             {
-                await _performStorageLogic.ProcessAsync((engineering, dut), data);
+                var data = new MetricalData();
+                var a = UtilRandom.Next(10000000, 99999999);
+                var b = UtilRandom.Next(10000000, 99999999);
+                var c = UtilRandom.Next(10000000, 99999999);
+                data.Data = double.Parse($"{a}.{b}{c}");
+                await _performStorageLogic.ProcessAsync((engineering, dut1), data);
+                console.Output.Write(".");
+                data.Data = double.Parse($"{b}.{c}{a}");
+                await _performStorageLogic.ProcessAsync((engineering, dut2), data);
+                console.Output.Write(".");
+                data.Data = double.Parse($"{c}.{a}{b}");
+                await _performStorageLogic.ProcessAsync((engineering, dut3), data);
+                console.Output.Write(".");
+                if (i % 1000 == 0)
+                    console.Output.Write($"/{i}/");
             }
         }
 
