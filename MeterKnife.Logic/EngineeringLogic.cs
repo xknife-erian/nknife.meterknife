@@ -46,15 +46,8 @@ namespace NKnife.MeterKnife.Logic
         {
             foreach (var command in commands)
             {
-                if (!command.IsCare)
-                {
-                    var bs = command.Scpi.GenerateProtocol(command.GpibAddress);
-                    performLogic.SetDUT(bs, (engineering, command.DUT));
-                }
-                else
-                    performLogic.SetDUT(new[] {command.Heads.Item1, command.Heads.Item2}, (engineering, command.DUT));
-
-                //if(command.IsPool)
+                performLogic.SetDUT(command.DUT.Id, (engineering, command.DUT));
+                //TODO:if(command.IsPool)
                 //SetDUTMap(performLogic, command, engineering);
             }
         }

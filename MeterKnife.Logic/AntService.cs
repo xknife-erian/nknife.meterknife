@@ -15,7 +15,7 @@ using NKnife.MeterKnife.Util.Tunnel.Filters;
 using NKnife.MeterKnife.Util.Tunnel.Generic;
 using NLog;
 
-namespace NKnife.MeterKnife.Logic.Services
+namespace NKnife.MeterKnife.Logic
 {
     public sealed class AntService : IAntService
     {
@@ -159,7 +159,7 @@ namespace NKnife.MeterKnife.Logic.Services
                 _Logger.Trace($"< SendCommand:{data.ToHexString()}");
 
                 if (data.Length != 0) 
-                    connector.SendAll(data);
+                    connector.SendAll(data, cmd.DUT.Id);
             }
             catch (Exception e)
             {

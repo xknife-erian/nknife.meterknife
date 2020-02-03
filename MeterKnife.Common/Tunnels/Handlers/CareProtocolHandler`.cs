@@ -28,8 +28,22 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
                 return;
             }
 
-            var care = (CareTalking) protocol;
+            var care = (CareTalking)protocol;
             care.Source = source;
+            Received(care);
+        }
+
+        public override void Received(string relation, byte[] source, IProtocol<byte[]> protocol)
+        {
+            if (!(protocol is CareTalking))
+            {
+                _Logger.Warn("Protocol类型有误, 不是CareSaying类型");
+                return;
+            }
+
+            var care = (CareTalking)protocol;
+            care.Source = source;
+            care.DUT = relation;
             Received(care);
         }
 

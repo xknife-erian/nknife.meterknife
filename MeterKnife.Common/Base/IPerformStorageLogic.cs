@@ -17,33 +17,17 @@ namespace NKnife.MeterKnife.Base
         Task<bool> ProcessAsync((Engineering, DUT) dut, MetricalData data);
 
         /// <summary>
-        /// 根据协议的命令字获取被测物（通常是Care自带的数据采集）
+        /// 根据发送源命令的关系获取被测物
         /// </summary>
-        /// <param name="mainCommand">主命令字</param>
-        /// <param name="subCommand">子命令字</param>
+        /// <param name="relation">源命令的关系</param>
         /// <returns>被测物</returns>
-        (Engineering, DUT) GetDUT(byte mainCommand, byte subCommand);
-
-        /// <summary>
-        /// 根据发送协议获取被测物
-        /// </summary>
-        /// <param name="sourceCommand">源命令</param>
-        /// <returns>被测物</returns>
-        (Engineering, DUT) GetDUT(byte[] sourceCommand);
+        (Engineering, DUT) GetDUT(string relation);
 
         /// <summary>
         /// 设置命令字与被测物的关系
         /// </summary>
-        /// <param name="mainCommand">命令字</param>
-        /// <param name="subCommand">子命令字</param>
+        /// <param name="relation">源命令的关系</param>
         /// <param name="dut">被测物</param>
-        void SetDUT(byte mainCommand, byte subCommand, (Engineering, DUT) dut);
-
-        /// <summary>
-        /// 设置命令字与被测物的关系
-        /// </summary>
-        /// <param name="sourceCommand">源命令</param>
-        /// <param name="dut">被测物</param>
-        void SetDUT(byte[] sourceCommand, (Engineering, DUT) dut);
+        void SetDUT(string relation, (Engineering, DUT) dut);
     }
 }

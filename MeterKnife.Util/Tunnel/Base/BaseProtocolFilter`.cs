@@ -75,7 +75,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                 monitor = new DataMonitor();
                 InitializeDataMonitor(id, monitor);
             }
-            monitor.ReceiveQueue.Enqueue(new Tuple<byte[], byte[]>(src, data));
+            monitor.ReceiveQueue.Enqueue((session.Relation, src, data));
             return true;
         }
 
@@ -94,7 +94,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                     phandler.SendToAll += OnSendToAll;
                     phandler.Bind(_Codec, _Family);
                     _Handlers.Add(handler);
-                    _Logger.Info(string.Format("{0}增加{1}成功.", GetType().Name, handler.GetType().Name));
+                    _Logger.Info($"{GetType().Name}增加{handler.GetType().Name}成功.");
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
             handler.SendToSession -= OnSendToSession;
             handler.SendToAll -= OnSendToAll;
             _Handlers.Remove(handler);
-            _Logger.Info(string.Format("{0}移除{1}成功.", GetType().Name, handler.GetType().Name));
+            _Logger.Info($"{GetType().Name}移除{handler.GetType().Name}成功.");
         }
 
         /// <summary>
@@ -222,16 +222,16 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                             //_logger.Debug(string.Format("dataMonitor 处理数据{0}",_TempCount));
                             if(!dataMonitor.ReceiveQueue.TryDequeue(out var data))
                                 continue;
-                            if (UtilCollection.IsNullOrEmpty(data.Item2))
+                            if (UtilCollection.IsNullOrEmpty(data.Item3))
                                 continue;
-                            IEnumerable<IProtocol<T>> protocols = ProcessDataPacket(data.Item2, ref unFinished);
+                            IEnumerable<IProtocol<T>> protocols = ProcessDataPacket(data.Item3, ref unFinished);
                             //_Logger.Debug($"dataMonitor 处理数据{data.ToHexString()}完成:{_TempCount}");
                             if (protocols != null)
                             {
                                 foreach (var protocol in protocols)
                                 {
                                     // 触发数据基础解析后发生的数据到达事件, 即触发handle
-                                    HandlerInvoke(id, data.Item1, protocol);
+                                    HandlerInvoke(data.Item1, data.Item3, protocol);
                                 }
                             }
                         }
@@ -260,7 +260,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
         /// <summary>
         ///     触发数据基础解析后发生的数据到达事件
         /// </summary>
-        protected virtual void HandlerInvoke(long id, byte[] source, IProtocol<T> protocol)
+        protected virtual void HandlerInvoke(string relation, byte[] source, IProtocol<T> protocol)
         {
             try
             {
@@ -271,7 +271,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                 }
                 if (_Handlers.Count == 1)
                 {
-                    _Handlers[0].Received(id, source, protocol);
+                    _Handlers[0].Received(relation, source, protocol);
                 }
                 else
                 {
@@ -281,7 +281,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                         //handler Commands.Count为0时，接收处理所有的协议，否则，处理Commands指定的协议
                         if (handler.Commands.Count == 0 || ContainsCommand(handler.Commands, protocol.Command))
                         {
-                            handler.Received(id, source, protocol);
+                            handler.Received(relation, source, protocol);
                         }
                     }
                 }

@@ -18,8 +18,8 @@
         byte[] Data { get; }
 
         /// <summary>
-        /// 如Protocol来包装数据，可以使用该Tag来存放个性化的数据Wrapper
+        /// 本次通讯的关联
         /// </summary>
-        object Tag { get; }
+        string Relation { get; }
     }
 }

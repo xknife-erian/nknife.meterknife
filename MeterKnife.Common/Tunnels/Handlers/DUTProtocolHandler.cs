@@ -23,7 +23,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
         {
             if (!string.IsNullOrEmpty(protocol.Scpi))
             {
-                var dut = _dataLogic.GetDUT(protocol.Source);
+                var dut = _dataLogic.GetDUT(protocol.DUT);
                 if (double.TryParse(protocol.Scpi, out var value))
                 {
                     _Logger.Debug($"{protocol.GpibAddress} | {value}");

@@ -37,6 +37,8 @@ namespace NKnife.MeterKnife.Common.Tunnels
 
         #region 基本属性
 
+        public string DUT { get; set; }
+
         /// <summary>
         ///     主命令字
         /// </summary>

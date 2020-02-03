@@ -25,7 +25,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
         {
             var data = protocol.Scpi;
             _Logger.Debug($"Received TEMP: {protocol.MainCommand}|{protocol.SubCommand} {data.TrimEnd('\n')}");
-            var dut = _dataLogic.GetDUT(protocol.MainCommand, protocol.SubCommand);
+            var dut = _dataLogic.GetDUT(protocol.DUT);
             if (double.TryParse(data, out var value))
             {
                 await _dataLogic.ProcessAsync(dut, new MetricalData() {Time = DateTime.Now, Data = value});
