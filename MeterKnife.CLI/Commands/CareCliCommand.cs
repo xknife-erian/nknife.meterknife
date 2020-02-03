@@ -39,11 +39,11 @@ namespace NKnife.MeterKnife.CLI.Commands
 
         private CareCommandPool GetCommands()
         {
-            var interval = 2000;
+            var interval = 1000;
             var item1 = new CareCommand
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = "ABCD", Name = "10v"},
+                DUT = new DUT() {Id = "VOLTAGE", Name = "10v"},
                 GpibAddress = 23,
                 Scpi = new Scpi {Command = "FETC?"},
 
@@ -54,7 +54,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             var item2 = new CareCommand
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = "XYZ", Name = "1k"},
+                DUT = new DUT() {Id = "RES", Name = "1k"},
                 GpibAddress = 24,
                 Scpi = new Scpi {Command = "READ?"},
 

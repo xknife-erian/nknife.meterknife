@@ -80,16 +80,13 @@ namespace NKnife.MeterKnife.Storage.Base
             int i = 0;
             try
             {
+                _Logger.Warn($"{sql}\r\n---- {JsonConvert.SerializeObject(domain)}");
                 i = await conn.ExecuteAsync(sql, domain);
             }
             catch (Exception e)
             {
                 _Logger.Error($"数据库新增数据异常。\r\nExceptionMessage: {e.Message}\r\nSQL: {sql}\r\nDomain: {JsonConvert.SerializeObject(domain)}");
             }
-#if DEBUG
-            if (i == 1)
-                _Logger.Trace("-");
-#endif
             return i == 1;
         }
 

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
-using NKnife.MeterKnife.Util;
 
 namespace NKnife.MeterKnife.Logic
 {
@@ -44,33 +43,6 @@ namespace NKnife.MeterKnife.Logic
         public (Engineering, DUT) GetDUT(string relation)
         {
             return DUTMap[relation];
-        }
-
-        /// <summary>
-        ///     根据协议的命令字获取被测物（通常是Care自带的数据采集，例如温度）
-        /// </summary>
-        /// <param name="mainCommand">主命令字</param>
-        /// <param name="subCommand">子命令字</param>
-        /// <returns>被测物</returns>
-        public (Engineering, DUT) GetDUT(byte mainCommand, byte subCommand)
-        {
-            var key = $"{mainCommand:X2}{subCommand:X2}";
-            if (!DUTMap.TryGetValue(key, out var dut)) 
-                DUTMap.Add(key, (new Engineering(), new DUT()));
-            return dut;
-        }
-
-        /// <summary>
-        ///     根据发送协议获取被测物
-        /// </summary>
-        /// <param name="sourceCommand">源命令</param>
-        /// <returns>被测物</returns>
-        public (Engineering, DUT) GetDUT(byte[] sourceCommand)
-        {
-            var key = sourceCommand.ToDUTKey();
-            if (!DUTMap.TryGetValue(key, out var dut)) 
-                DUTMap.Add(key, (new Engineering(), new DUT()));
-            return dut;
         }
 
         /// <summary>
