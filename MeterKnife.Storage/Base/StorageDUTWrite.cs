@@ -76,7 +76,7 @@ namespace NKnife.MeterKnife.Storage.Base
                 return false;
             var conn = _storageManager.OpenConnection(dut.Item1);
             var sql = _sqlSet[GetSqlKey()].Insert;
-            sql = sql.Replace($"{typeof(T).Name}s", dut.Item2.Id);
+            sql = sql.Replace($"{typeof(T).Name}", dut.Item2.Id);
             int i = 0;
             try
             {
@@ -86,6 +86,10 @@ namespace NKnife.MeterKnife.Storage.Base
             {
                 _Logger.Error($"数据库新增数据异常。\r\nExceptionMessage: {e.Message}\r\nSQL: {sql}\r\nDomain: {JsonConvert.SerializeObject(domain)}");
             }
+#if DEBUG
+            if (i == 1)
+                _Logger.Trace("-");
+#endif
             return i == 1;
         }
 

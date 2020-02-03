@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// <summary>
         ///     当是Care的专属协议时的主命令字与子命令字
         /// </summary>
-        public Tuple<byte, byte> Heads { get; set; }
+        public (byte, byte) Heads { get; set; }
 
         /// <summary>
         ///     当是Care的专属协议时的协议主体内容

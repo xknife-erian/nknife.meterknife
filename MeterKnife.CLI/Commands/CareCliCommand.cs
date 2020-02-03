@@ -15,12 +15,14 @@ namespace NKnife.MeterKnife.CLI.Commands
     {
         private readonly IAntService _antService;
         private readonly IDataConnector _connector;
+        private readonly IEngineeringLogic _engineeringLogic;
         private Slot _slot;
 
-        public CareCliCommand(IAntService antService, IDataConnector dataConnector)
+        public CareCliCommand(IAntService antService, IDataConnector dataConnector, IEngineeringLogic engineeringLogic)
         {
             _antService = antService;
             _connector = dataConnector;
+            _engineeringLogic = engineeringLogic;
         }
 
         public override async ValueTask ExecuteAsync(IConsole console)
@@ -31,6 +33,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             {
                 Commands = GetCommands()
             };
+            await _engineeringLogic.CreateEngineering(engineering);
             await _antService.StartAsync(engineering);
         }
 
@@ -40,7 +43,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             var item1 = new CareCommand
             {
                 Slot = _slot,
-                DUT = new DUT(),
+                DUT = new DUT() {Id = "ABCD", Name = "10v"},
                 GpibAddress = 23,
                 Scpi = new Scpi {Command = "FETC?"},
 
@@ -51,7 +54,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             var item2 = new CareCommand
             {
                 Slot = _slot,
-                DUT = new DUT(),
+                DUT = new DUT() {Id = "XYZ", Name = "1k"},
                 GpibAddress = 24,
                 Scpi = new Scpi {Command = "READ?"},
 
@@ -61,10 +64,11 @@ namespace NKnife.MeterKnife.CLI.Commands
             };
             var temp5 = CareScpiHelper.TEMP(5);
             temp5.Slot = _slot;
-            temp5.DUT = new DUT();
+            temp5.DUT = new DUT() {Id = "T1", Name = "23Temp"};
+
             var temp6 = CareScpiHelper.TEMP(5);
             temp6.Slot = _slot;
-            temp6.DUT = new DUT();
+            temp6.DUT = new DUT() {Id = "T2", Name = "24Temp"};
 
             var pool = new CareCommandPool();
             pool.AddRange(new[] {item1, item2, item1, item2, temp5, temp6});

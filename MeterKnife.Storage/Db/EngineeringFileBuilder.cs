@@ -49,7 +49,7 @@ namespace NKnife.MeterKnife.Storage.Db
                 {
                     var d = command.DUT;
                     dutList.Add(d);
-                    map.Add(d.Id, SqlHelper.GetCreateTableSql(d.Id, dbType, typeof(MetricalData)));
+                    map.Add(d.Id, SqlHelper.GetCreateTableSql($"{d.Id}s", dbType, typeof(MetricalData)));
                 }
             }
             map.Add(nameof(Engineering), SqlHelper.GetCreateTableSql(dbType, typeof(Engineering)));

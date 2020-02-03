@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using MathNet.Numerics.Financial;
-using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Util;
@@ -26,7 +22,7 @@ namespace NKnife.MeterKnife.Logic
         /// <summary>
         ///     被测单元
         /// </summary>
-        public Dictionary<string, (Engineering,DUT)> DUTMap { get; set; } = new Dictionary<string, (Engineering, DUT)>();
+        public Dictionary<string, (Engineering, DUT)> DUTMap { get; set; } = new Dictionary<string, (Engineering, DUT)>();
 
         #region Implementation of IPerformStorageLogic
 
@@ -41,34 +37,55 @@ namespace NKnife.MeterKnife.Logic
         }
 
         /// <summary>
-        /// 根据协议的命令字获取被测物（通常是Care自带的数据采集，例如温度）
+        ///     根据协议的命令字获取被测物（通常是Care自带的数据采集，例如温度）
         /// </summary>
         /// <param name="mainCommand">主命令字</param>
         /// <param name="subCommand">子命令字</param>
         /// <returns>被测物</returns>
         public (Engineering, DUT) GetDUT(byte mainCommand, byte subCommand)
         {
-            string key = $"{mainCommand:X2}{subCommand:X2}";
-            if (!DUTMap.TryGetValue(key, out var dut))
-            {
-                DUTMap.Add(key, (new Engineering(),new DUT()));
-            }
+            var key = $"{mainCommand:X2}{subCommand:X2}";
+            if (!DUTMap.TryGetValue(key, out var dut)) 
+                DUTMap.Add(key, (new Engineering(), new DUT()));
             return dut;
         }
 
         /// <summary>
-        /// 根据发送协议获取被测物
+        ///     根据发送协议获取被测物
         /// </summary>
         /// <param name="sourceCommand">源命令</param>
         /// <returns>被测物</returns>
         public (Engineering, DUT) GetDUT(byte[] sourceCommand)
         {
-            string key = sourceCommand.ToDUTKey();
-            if (!DUTMap.TryGetValue(key, out var dut))
-            {
+            var key = sourceCommand.ToDUTKey();
+            if (!DUTMap.TryGetValue(key, out var dut)) 
                 DUTMap.Add(key, (new Engineering(), new DUT()));
-            }
             return dut;
+        }
+
+        /// <summary>
+        /// 设置命令字与被测物的关系
+        /// </summary>
+        /// <param name="mainCommand">命令字</param>
+        /// <param name="subCommand">子命令字</param>
+        /// <param name="dut">被测物</param>
+        public void SetDUT(byte mainCommand, byte subCommand, (Engineering, DUT) dut)
+        {
+            var key = $"{mainCommand:X2}{subCommand:X2}";
+            if(!DUTMap.ContainsKey(key))
+                DUTMap.Add(key, dut);
+        }
+
+        /// <summary>
+        /// 设置命令字与被测物的关系
+        /// </summary>
+        /// <param name="sourceCommand">源命令</param>
+        /// <param name="dut">被测物</param>
+        public void SetDUT(byte[] sourceCommand, (Engineering, DUT) dut)
+        {
+            var key = sourceCommand.ToDUTKey();
+            if (!DUTMap.ContainsKey(key))
+                DUTMap.Add(key, dut);
         }
 
         #endregion

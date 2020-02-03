@@ -44,11 +44,11 @@ namespace NKnife.MeterKnife.Common.Scpi
             element.SetAttribute("description", Name);
 
             var groupElement = document.CreateElement("group");
-            Initializtion.Build(ref groupElement);
+            //Initializtion.Build(ref groupElement);
             element.AppendChild(groupElement);
 
             groupElement = document.CreateElement("group");
-            Collect.Build(ref groupElement);
+            //Collect.Build(ref groupElement);
             element.AppendChild(groupElement);
         }
 
@@ -79,10 +79,10 @@ namespace NKnife.MeterKnife.Common.Scpi
                         switch (way)
                         {
                             case "init":
-                                scpiSubject.Initializtion = CareCommandPool.Prase(groupElement);
+                                //scpiSubject.Initializtion = CareCommandPool.Prase(groupElement);
                                 break;
                             case "collect":
-                                scpiSubject.Collect = CareCommandPool.Prase(groupElement);
+                                //scpiSubject.Collect = CareCommandPool.Prase(groupElement);
                                 break;
                         }
                     }
@@ -91,6 +91,5 @@ namespace NKnife.MeterKnife.Common.Scpi
             }
             return subjects;
         }
-
     }
 }

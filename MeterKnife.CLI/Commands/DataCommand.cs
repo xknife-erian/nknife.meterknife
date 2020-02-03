@@ -44,7 +44,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             //创建一个工程
             await _engineeringLogic.CreateEngineering(engineering);
             //模拟处理一些数据
-            for (int i = 0; i < 100 * 10000; i++)
+            for (int i = 0; i < 3 * 10000; i++)
             {
                 var data = new MetricalData();
                 var a = UtilRandom.Next(10000000, 99999999);

@@ -55,7 +55,7 @@ namespace NKnife.MeterKnife.Common.Scpi
                 IsCare = true,
                 GpibAddress = 0,
                 Interval = interval,
-                Heads = new Tuple<byte, byte>(0xAE, (byte)index)
+                Heads = (0xAE, (byte)index)
             };
             return item;
         }
@@ -70,7 +70,7 @@ namespace NKnife.MeterKnife.Common.Scpi
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = new Tuple<byte, byte>(0xA0, subCommand)
+                Heads = (0xA0, subCommand)
             };
             return item;
         }
@@ -86,7 +86,7 @@ namespace NKnife.MeterKnife.Common.Scpi
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = new Tuple<byte, byte>(0xB0, subCommand),
+                Heads = (0xB0, subCommand),
                 Content = content
             };
             return item;
@@ -101,7 +101,7 @@ namespace NKnife.MeterKnife.Common.Scpi
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = new Tuple<byte, byte>(0xB1, 0x00),
+                Heads = (0xB1, 0x00),
             };
             return item;
         }
@@ -115,7 +115,7 @@ namespace NKnife.MeterKnife.Common.Scpi
             {
                 IsCare = true,
                 GpibAddress = 0,
-                Heads = new Tuple<byte, byte>(0xB0, 0xD8),
+                Heads = (0xB0, 0xD8),
             };
             return item;
         }

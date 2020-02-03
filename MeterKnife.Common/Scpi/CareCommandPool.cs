@@ -114,15 +114,5 @@ namespace NKnife.MeterKnife.Common.Scpi
         }
 
         #endregion
-
-        public static CareCommandPool Prase(XmlElement groupElement)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Build(ref XmlElement groupElement)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

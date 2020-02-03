@@ -30,5 +30,20 @@ namespace NKnife.MeterKnife.Base
         /// <param name="sourceCommand">源命令</param>
         /// <returns>被测物</returns>
         (Engineering, DUT) GetDUT(byte[] sourceCommand);
+
+        /// <summary>
+        /// 设置命令字与被测物的关系
+        /// </summary>
+        /// <param name="mainCommand">命令字</param>
+        /// <param name="subCommand">子命令字</param>
+        /// <param name="dut">被测物</param>
+        void SetDUT(byte mainCommand, byte subCommand, (Engineering, DUT) dut);
+
+        /// <summary>
+        /// 设置命令字与被测物的关系
+        /// </summary>
+        /// <param name="sourceCommand">源命令</param>
+        /// <param name="dut">被测物</param>
+        void SetDUT(byte[] sourceCommand, (Engineering, DUT) dut);
     }
 }
