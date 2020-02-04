@@ -39,7 +39,7 @@ namespace NKnife.MeterKnife.CLI.Commands
 
         private CareCommandPool GetCommands()
         {
-            var interval = 1000;
+            var interval = 5000;
             var item1 = new CareCommand
             {
                 Slot = _slot,
@@ -48,7 +48,7 @@ namespace NKnife.MeterKnife.CLI.Commands
                 Scpi = new Scpi {Command = "FETC?"},
 
                 Interval = interval,
-                Timeout = 2000,
+                Timeout = interval*2,
                 IsLoop = true
             };
             var item2 = new CareCommand
@@ -59,7 +59,7 @@ namespace NKnife.MeterKnife.CLI.Commands
                 Scpi = new Scpi {Command = "READ?"},
 
                 Interval = interval,
-                Timeout = 2000,
+                Timeout = interval*2,
                 IsLoop = true
             };
             var temp5 = CareScpiHelper.TEMP(5);
@@ -71,7 +71,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             temp6.DUT = new DUT() {Id = "T2", Name = "24Temp"};
 
             var pool = new CareCommandPool();
-            pool.AddRange(new[] {item1, item2, item1, item2, temp5, temp6});
+            pool.AddRange(new[] {item2, item1, item2, item1, temp5, temp6});
             return pool;
         }
     }

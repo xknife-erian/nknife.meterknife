@@ -24,10 +24,10 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
         public override async void Received(CareTalking protocol)
         {
             var data = protocol.Scpi;
-            _Logger.Debug($"Received TEMP: {protocol.MainCommand}|{protocol.SubCommand} {data.TrimEnd('\n')}");
             var dut = _dataLogic.GetDUT(protocol.DUT);
             if (double.TryParse(data, out var value))
             {
+                _Logger.Debug($"Received TEMP: {protocol.MainCommand}|{protocol.SubCommand} {data.TrimEnd('\n')}");
                 await _dataLogic.ProcessAsync(dut, new MetricalData() {Time = DateTime.Now, Data = value});
             }
         }

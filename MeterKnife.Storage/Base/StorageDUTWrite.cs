@@ -74,13 +74,15 @@ namespace NKnife.MeterKnife.Storage.Base
         {
             if (domain == null)
                 return false;
+            //根据不同的工程获取不同的数据库连接
             var conn = _storageManager.OpenConnection(dut.Item1);
             var sql = _sqlSet[GetSqlKey()].Insert;
+            //数据表的表名不再是实体名，而是被测物ID
             sql = sql.Replace($"{typeof(T).Name}", dut.Item2.Id);
             int i = 0;
             try
             {
-                _Logger.Warn($"{sql}\r\n---- {JsonConvert.SerializeObject(domain)}");
+                //_Logger.Info($"{sql}\r\n---- {JsonConvert.SerializeObject(domain)}");
                 i = await conn.ExecuteAsync(sql, domain);
             }
             catch (Exception e)
