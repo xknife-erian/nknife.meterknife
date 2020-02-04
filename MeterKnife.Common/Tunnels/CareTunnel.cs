@@ -60,42 +60,10 @@ namespace NKnife.MeterKnife.Common.Tunnels
 
         private void OnFilterSendToAll(object sender, SessionEventArgs e)
         {
-            //取得上一个（靠近dataConnector的）filter
-            var currentFilter = sender as ITunnelFilter;
-            if (currentFilter == null)
-                return;
-
-            var node = _filterChain.Find(currentFilter);
-            if (node == null)
-                return;
-
-            var previous = node.Previous;
-            while (previous != null)
-            {
-                previous.Value.ProcessSendToAll(e.Item.Data);
-                previous = previous.Previous;
-            }
-
-            //_dataConnector.SendAll(e.Item.Data, e.Item.Relation);
         }
 
         private void OnFilterSendToSession(object sender, SessionEventArgs e)
         {
-            //取得上一个（靠近dataConnector的）filter
-            var currentFilter = sender as ITunnelFilter;
-            if (currentFilter == null) return;
-
-            var node = _filterChain.Find(currentFilter);
-            if (node == null) return;
-
-            var previous = node.Previous;
-            while (previous != null)
-            {
-                previous.Value.ProcessSendToSession(e.Item);
-                previous = previous.Previous;
-            }
-
-            //_dataConnector.Send(e.Item.Id, e.Item.Data, e.Item.Relation);
         }
 
         private void OnDataReceived(object sender, SessionEventArgs e)
