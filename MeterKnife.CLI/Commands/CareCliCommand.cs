@@ -71,7 +71,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             temp6.DUT = new DUT() {Id = "T2", Name = "24Temp"};
 
             var pool = new CareCommandPool();
-            pool.AddRange(new[] {item2, item1, item2, item1, temp5, temp6});
+            pool.AddRange(new[] {item1, item2, temp5, temp6});
             return pool;
         }
     }

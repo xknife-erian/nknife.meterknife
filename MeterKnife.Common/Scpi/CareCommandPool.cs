@@ -100,7 +100,7 @@ namespace NKnife.MeterKnife.Common.Scpi
             AddRange(jobs.Cast<CareCommand>());
         }
 
-        public bool IsOverall { get; set; }
+        public bool IsOverall { get; set; } = true;
 
         #endregion
 

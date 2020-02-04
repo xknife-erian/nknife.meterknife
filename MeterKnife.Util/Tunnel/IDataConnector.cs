@@ -12,9 +12,9 @@ namespace NKnife.MeterKnife.Util.Tunnel
         event EventHandler<SessionEventArgs> SessionBroken;
         event EventHandler<SessionEventArgs> DataReceived;
 
-        void Send(long id, byte[] data, string relation);
+        //void Send(long id, byte[] data, string relation);
 
-        void SendAll(byte[] data, string relation);
+        void SendAll(byte[] data, string relation, int syncWaitTimeout);
 
         void KillSession(long id);
     }

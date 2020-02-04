@@ -26,7 +26,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
                 var dut = _dataLogic.GetDUT(protocol.DUT);
                 if (double.TryParse(protocol.Scpi, out var value))
                 {
-                    _Logger.Debug($"{protocol.GpibAddress} | {value}");
+                    _Logger.Debug($"{protocol.DUT} | {value}");
                     await _dataLogic.ProcessAsync(dut, new MetricalData() { Time = DateTime.Now, Data = value });
                 }
             }

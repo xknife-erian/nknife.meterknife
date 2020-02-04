@@ -103,10 +103,11 @@ namespace NKnife.MeterKnife.Util.Serial
                 OnDataReceived(relation, data, received);
         }
 
-        public void SendAll(byte[] data, string relation)
+        public void SendAll(byte[] data, string relation, int syncWaitTimeout)
         {
             if (_serial == null)
                 return;
+            _serial.SetSyncModelWaitTimeout(syncWaitTimeout);
             _serial.SendReceived(data, out var received);
             OnDataSent(data); //激发发送协议完成事件
             if (received != null)
@@ -143,7 +144,7 @@ namespace NKnife.MeterKnife.Util.Serial
             }
             else
             {
-                _Logger.Warn($"串口{port}初始化完成：{false}");
+                _Logger.Warn($"串口{port}初始化完成，但失败：{false}");
             }
 
             IsInitialized = true;

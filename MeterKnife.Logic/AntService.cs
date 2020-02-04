@@ -106,13 +106,13 @@ namespace NKnife.MeterKnife.Logic
                     }
 
                     var connector = _connMap[command.Slot];
-                    connector.Start();
                     command.Run += job =>
                     {
                         SendCommand(connector, command);
                         return true;
                     };
                     jobManager.Pool.Add(command);
+                    connector.Start();
                 }
 
                 _jobMap.Add(engineering.Number, jobManager);
@@ -158,8 +158,10 @@ namespace NKnife.MeterKnife.Logic
 
                 _Logger.Trace($"< SendCommand:{data.ToHexString()}");
 
-                if (data.Length != 0) 
-                    connector.SendAll(data, cmd.DUT.Id);
+                if (data.Length != 0)
+                {
+                    connector.SendAll(data, cmd.DUT.Id, cmd.Interval);
+                }
             }
             catch (Exception e)
             {

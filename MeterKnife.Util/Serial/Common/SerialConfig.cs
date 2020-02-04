@@ -21,7 +21,7 @@ namespace NKnife.MeterKnife.Util.Serial.Common
         public int DataBits { get; set; }
         public int ReadTimeout { get; set; }
         /// <summary>
-        /// ��������ģ��Ϊͬ��ģʽʱ(һ��һ��)���ȴ��ش�ĳ�ʱʱ�䡣
+        /// 同步模式下等待回复的时长
         /// </summary>
         public int SyncModelWaitTimeout { get; set; }
         public int ReceivedBytesThreshold { get; set; }

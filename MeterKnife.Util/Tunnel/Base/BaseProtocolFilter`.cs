@@ -87,12 +87,11 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
         {
             foreach (var handler in handlers)
             {
-                var phandler = handler as BaseProtocolHandler<T>;
-                if (phandler != null)
+                if (handler is BaseProtocolHandler<T> protocolHandler)
                 {
-                    phandler.SendToSession += OnSendToSession;
-                    phandler.SendToAll += OnSendToAll;
-                    phandler.Bind(_Codec, _Family);
+                    protocolHandler.SendToSession += OnSendToSession;
+                    protocolHandler.SendToAll += OnSendToAll;
+                    protocolHandler.Bind(_Codec, _Family);
                     _Handlers.Add(handler);
                     _Logger.Info($"{GetType().Name}增加{handler.GetType().Name}成功.");
                 }
@@ -200,7 +199,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
             }
         }
 
-        // private int _TempCount = 0;
+         private int _TempCount = 0;
         /// <summary>
         ///     核心方法:监听 ReceiveQueue 队列
         /// </summary>
@@ -218,14 +217,14 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                     {
                         if (dataMonitor.ReceiveQueue.Count > 0)
                         {
-                            //_TempCount += 1;
-                            //_logger.Debug(string.Format("dataMonitor 处理数据{0}",_TempCount));
+                            _TempCount += 1;
+                            //_Logger.Debug($"dataMonitor 处理数据{_TempCount}");
                             if(!dataMonitor.ReceiveQueue.TryDequeue(out var data))
                                 continue;
                             if (UtilCollection.IsNullOrEmpty(data.Item3))
                                 continue;
                             IEnumerable<IProtocol<T>> protocols = ProcessDataPacket(data.Item3, ref unFinished);
-                            //_Logger.Debug($"dataMonitor 处理数据{data.ToHexString()}完成:{_TempCount}");
+                            _Logger.Debug($"DM>> [{data.Item1}] {data.Item3.ToHexString()}");
                             if (protocols != null)
                             {
                                 foreach (var protocol in protocols)

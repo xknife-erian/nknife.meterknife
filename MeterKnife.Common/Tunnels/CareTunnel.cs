@@ -76,7 +76,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
                 previous = previous.Previous;
             }
 
-            _dataConnector.SendAll(e.Item.Data, e.Item.Relation);
+            //_dataConnector.SendAll(e.Item.Data, e.Item.Relation);
         }
 
         private void OnFilterSendToSession(object sender, SessionEventArgs e)
@@ -95,7 +95,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
                 previous = previous.Previous;
             }
 
-            _dataConnector.Send(e.Item.Id, e.Item.Data, e.Item.Relation);
+            //_dataConnector.Send(e.Item.Id, e.Item.Data, e.Item.Relation);
         }
 
         private void OnDataReceived(object sender, SessionEventArgs e)
