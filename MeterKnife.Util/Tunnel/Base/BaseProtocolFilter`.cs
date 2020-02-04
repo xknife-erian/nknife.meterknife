@@ -224,7 +224,7 @@ namespace NKnife.MeterKnife.Util.Tunnel.Base
                             if (UtilCollection.IsNullOrEmpty(data.Item3))
                                 continue;
                             IEnumerable<IProtocol<T>> protocols = ProcessDataPacket(data.Item3, ref unFinished);
-                            _Logger.Debug($"DM>> [{data.Item1}] {data.Item3.ToHexString()}");
+                            //_Logger.Debug($"DataMonitor>> [{data.Item1}] {data.Item3.ToHexString()}");
                             if (protocols != null)
                             {
                                 foreach (var protocol in protocols)

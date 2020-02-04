@@ -27,7 +27,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
             var dut = _dataLogic.GetDUT(protocol.DUT);
             if (double.TryParse(data, out var value))
             {
-                _Logger.Debug($"Received TEMP: {protocol.DUT} {data.TrimEnd('\n')}");
+                _Logger.Trace($"{protocol.DUT} > {data.TrimEnd('\n')}");
                 await _dataLogic.ProcessAsync(dut, new MetricalData() {Time = DateTime.Now, Data = value});
             }
         }

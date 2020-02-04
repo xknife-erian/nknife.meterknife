@@ -156,7 +156,7 @@ namespace NKnife.MeterKnife.Logic
                     ? CareScpiHelper.GenerateProtocol(cmd)
                     : cmd.Scpi.GenerateProtocol(cmd.GpibAddress);
 
-                _Logger.Trace($"< SendCommand:{data.ToHexString()}");
+                _Logger.Trace($"<- {data.ToHexString()}");
 
                 if (data.Length != 0)
                 {

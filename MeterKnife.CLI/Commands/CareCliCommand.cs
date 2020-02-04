@@ -66,7 +66,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             temp5.Slot = _slot;
             temp5.DUT = new DUT() {Id = "T1", Name = "23Temp"};
 
-            var temp6 = CareScpiHelper.TEMP(5);
+            var temp6 = CareScpiHelper.TEMP(6);
             temp6.Slot = _slot;
             temp6.DUT = new DUT() {Id = "T2", Name = "24Temp"};
 
