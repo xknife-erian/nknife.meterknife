@@ -43,6 +43,9 @@
     <Reference Include="fastJSON, Version=2.3.0.0, Culture=neutral, PublicKeyToken=6b75a806b86095cd, processorArchitecture=MSIL">
       <HintPath>..\packages\fastJSON.2.3.1\lib\net40\fastJSON.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.9.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -61,11 +64,18 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.WindowsForms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=245eacd6b5d2d338, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.WindowsForms.2.0.0\lib\net45\OxyPlot.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -112,6 +122,108 @@
     <Compile Include="Base\IAppTrayService.cs" />
     <Compile Include="Base\IAppManager.cs" />
     <Compile Include="Base\IWorkbench.cs" />
+    <Compile Include="Controls\BaseParamPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseParamPanel.Designer.cs">
+      <DependentUpon>BaseParamPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FiguredDataGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FiguredDataGrid.Designer.cs">
+      <DependentUpon>FiguredDataGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ScpiParamPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserScpiCommandPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
+      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AddMeterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddMeterDialog.Designer.cs">
+      <DependentUpon>AddMeterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CareParameterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CareParameterDialog.Designer.cs">
+      <DependentUpon>CareParameterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CommandBuildDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CommandBuildDialog.Designer.cs">
+      <DependentUpon>CommandBuildDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DataPathSetterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DataPathSetterDialog.Designer.cs">
+      <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExportFileSelectorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ExportFileSelectorDialog.Designer.cs">
+      <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExportProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ExportProgressDialog.Designer.cs">
+      <DependentUpon>ExportProgressDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\FilterSettingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FilterSettingDialog.Designer.cs">
+      <DependentUpon>FilterSettingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OfflineCollectParameterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\OfflineCollectParameterDialog.Designer.cs">
+      <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SerialPortSelectorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SerialPortSelectorDialog.designer.cs">
+      <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plots\DataPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\FiguredDataAndTemperaturePlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\FiguredDataPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\StandardDeviationPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\TemperatureDataPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\TemperatureFeaturesPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plots\TemperatureTrendPlot.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="TrayMenuStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -123,6 +235,48 @@
       <DependentUpon>Workbench.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\BaseParamPanel.resx">
+      <DependentUpon>BaseParamPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FiguredDataGrid.resx">
+      <DependentUpon>FiguredDataGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ScpiParamPanel.resx">
+      <DependentUpon>ScpiParamPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserScpiCommandPanel.resx">
+      <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddMeterDialog.resx">
+      <DependentUpon>AddMeterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CareParameterDialog.resx">
+      <DependentUpon>CareParameterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CommandBuildDialog.resx">
+      <DependentUpon>CommandBuildDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DataPathSetterDialog.resx">
+      <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportFileSelectorDialog.resx">
+      <DependentUpon>ExportFileSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ExportProgressDialog.resx">
+      <DependentUpon>ExportProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FilterSettingDialog.resx">
+      <DependentUpon>FilterSettingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\OfflineCollectParameterDialog.resx">
+      <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SerialPortSelectorDialog.resx">
+      <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -171,8 +325,6 @@
       <Name>NKnife.MeterKnife.Util</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
