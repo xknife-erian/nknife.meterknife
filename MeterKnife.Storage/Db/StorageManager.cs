@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.Storage.Db
         private readonly IDbConnection _dutMysqlConn = null;
         private readonly IDbConnection _platformConn = null;
         private readonly EngineeringFileBuilder _engineeringFileBuilder;
-        private readonly StorageOption _option;
+        private readonly StorageSetting _setting;
         private readonly HabitConfig _habitConfig;
         private readonly PathManager _pathManager;
         /// <summary>
@@ -38,14 +38,14 @@ namespace NKnife.MeterKnife.Storage.Db
         /// </summary>
         private bool _isFirst = true;
 
-        public StorageManager(IOptions<StorageOption> options, EngineeringFileBuilder engineeringFileBuilder, HabitConfig habitConfig, PathManager pathManager)
+        public StorageManager(IOptions<StorageSetting> setting, EngineeringFileBuilder engineeringFileBuilder, HabitConfig habitConfig, PathManager pathManager)
         {
             _engineeringFileBuilder = engineeringFileBuilder;
             _habitConfig = habitConfig;
             _pathManager = pathManager;
-            _option = options.Value;
-            CurrentDbType = _option.CurrentDbType;
-            SqlSetMap = _option.SqlSetMap;
+            _setting = setting.Value;
+            CurrentDbType = _setting.CurrentDbType;
+            SqlSetMap = _setting.SqlSetMap;
             SqlMapper.AddTypeHandler(typeof(CareCommandPool), new CareCommandPoolTypeHandler());
         }
 
@@ -130,7 +130,7 @@ namespace NKnife.MeterKnife.Storage.Db
                 switch (CurrentDbType)
                 {
                     case DatabaseType.MySql:
-                        conn = new MySqlConnection(_option.MysqlPlatformConnection);
+                        conn = new MySqlConnection(_setting.MysqlPlatformConnection);
                         break;
                     default:
                         var path = _habitConfig.GetOptionValue(HabitConfig.KEY_DATA_PATH, _pathManager.UserDocumentsPath);
@@ -138,7 +138,7 @@ namespace NKnife.MeterKnife.Storage.Db
                             UtilFile.CreateDirectory(path);
                         if (!path.EndsWith(Path.DirectorySeparatorChar.ToString()))
                             path = $"{path}{Path.DirectorySeparatorChar}";
-                        var pf = string.Format(_option.SqlitePlatformConnection, path);
+                        var pf = string.Format(_setting.SqlitePlatformConnection, path);
                         conn = new SQLiteConnection(pf);
                         break;
                 }
@@ -189,7 +189,7 @@ namespace NKnife.MeterKnife.Storage.Db
         private string BuildEngineeringSqliteConnectionString(Engineering engineering)
         {
             var fileName = _engineeringFileBuilder.GetEngineeringSqliteFileName(engineering);
-            return string.Format(_option.SqliteEngineeringConnection, fileName);
+            return string.Format(_setting.SqliteEngineeringConnection, fileName);
         }
     }
 }

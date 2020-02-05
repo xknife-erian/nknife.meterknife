@@ -26,7 +26,7 @@ namespace NKnife.MeterKnife.CLI
                 .Build();
 
             IServiceCollection serviceCollection = new ServiceCollection();
-            serviceCollection.AddOptions().Configure<StorageOption>(conf.GetSection(nameof(StorageOption)));
+            serviceCollection.AddOptions().Configure<StorageSetting>(conf.GetSection(nameof(StorageSetting)));
 
             var builder = new ContainerBuilder();
             builder.Populate(serviceCollection);

@@ -2,7 +2,7 @@
 
 namespace NKnife.MeterKnife.Storage.Db
 {
-    public class StorageOption
+    public class StorageSetting
     {
         public string MysqlPlatformConnection { get; set; }
         public string MysqlDUTConnection { get; set; }
