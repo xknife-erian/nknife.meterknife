@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeterKnife.Common\NKnife.MeterKnife.Common.csproj" />
-    <ProjectReference Include="..\MeterKnife.Util\NKnife.MeterKnife.Util.csproj" />
+    <ProjectReference Include="..\NKnife.MeterKnife.Common\NKnife.MeterKnife.Common.csproj" />
+    <ProjectReference Include="..\NKnife.MeterKnife.Util\NKnife.MeterKnife.Util.csproj" />
   </ItemGroup>
 
 </Project>

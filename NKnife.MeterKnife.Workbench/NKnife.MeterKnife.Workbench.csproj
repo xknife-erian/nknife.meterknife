@@ -158,15 +158,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MeterKnife.Common\NKnife.MeterKnife.Common.csproj">
+    <ProjectReference Include="..\NKnife.MeterKnife.Common\NKnife.MeterKnife.Common.csproj">
       <Project>{179bf1b0-6fb7-4a63-8023-2bdfe44ad7eb}</Project>
       <Name>NKnife.MeterKnife.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Logic\NKnife.MeterKnife.Logic.csproj">
+    <ProjectReference Include="..\NKnife.MeterKnife.Logic\NKnife.MeterKnife.Logic.csproj">
       <Project>{d4840da6-a26f-4eb4-b9a0-a15139709496}</Project>
       <Name>NKnife.MeterKnife.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MeterKnife.Util\NKnife.MeterKnife.Util.csproj">
+    <ProjectReference Include="..\NKnife.MeterKnife.Util\NKnife.MeterKnife.Util.csproj">
       <Project>{c089e4a3-9545-441a-8e43-9fa1c2586c08}</Project>
       <Name>NKnife.MeterKnife.Util</Name>
     </ProjectReference>
