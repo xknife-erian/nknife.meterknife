@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Util;
 using NLog;
 

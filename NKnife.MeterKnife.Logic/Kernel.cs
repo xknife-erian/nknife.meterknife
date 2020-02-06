@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Autofac;
 using NKnife.Db;
-using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Logic
 {
-    public class Global : IGlobal
+    public class Kernel : IGlobal
     {
         /// <summary>
-        /// 软件使用的数据库模式
+        /// </summary>
+        public static IContainer Container { get; set; }
+
+        /// <summary>
+        ///     软件使用的数据库模式
         /// </summary>
         public DatabaseType DatabaseType { get; set; } = DatabaseType.SqLite;
 

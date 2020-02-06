@@ -1,17 +1,21 @@
 ﻿using System.IO;
 using System.Xml;
 using Newtonsoft.Json;
+using NKnife.MeterKnife.Base;
 using NKnife.XML;
 using NLog;
 
 namespace NKnife.MeterKnife.Common
 {
     /// <summary>
-    ///     软件的选项与用户习惯保存服务
+    ///     软件的“使用习惯记录文件”的记录保存与读取服务
     /// </summary>
-    public class HabitConfig
+    public class HabitConfig : IHabitConfig
     {
-        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
+        /// <summary>
+        /// 用户测量数据的保存路径。关键选项。
+        /// </summary>
+        public const string KEY_MetricalData_Path = "MetricalData_Path";
 
         private const string OPTION_FILE = "Habit.xml";
         private readonly string _optionFile;
@@ -31,8 +35,6 @@ namespace NKnife.MeterKnife.Common
             }
         }
 
-        public const string KEY_DATA_PATH = "data-path";
-
         /// <summary>
         ///     尝试获取指定Key的选项的值
         /// </summary>
@@ -44,6 +46,7 @@ namespace NKnife.MeterKnife.Common
                 SetOptionValue(key, defaultValue);
                 ele = _optionXmlDocument.DocumentElement?.SelectSingleNode(key);
             }
+
             return JsonConvert.DeserializeObject<T>(ele.GetCDataElement().Value);
         }
 
@@ -52,9 +55,7 @@ namespace NKnife.MeterKnife.Common
         /// </summary>
         public void SetOptionValue(string key, object value)
         {
-            var ele = _optionXmlDocument.DocumentElement?.SelectSingleNode(key) as XmlElement;
-            if (ele == null)
-                ele = _optionXmlDocument.CreateElement(key);
+            var ele = _optionXmlDocument.DocumentElement?.SelectSingleNode(key) as XmlElement ?? _optionXmlDocument.CreateElement(key);
             ele.RemoveAll();
             var json = JsonConvert.SerializeObject(value);
             ele.SetCDataElement(json);

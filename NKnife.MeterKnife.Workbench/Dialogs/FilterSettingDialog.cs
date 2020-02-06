@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using MeterKnife.Common.DataModels;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.Win.Forms;
 

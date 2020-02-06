@@ -1,9 +1,5 @@
 ﻿using System.Threading.Tasks;
 using NKnife.MeterKnife.Common.Domain;
-using NKnife.MeterKnife.Common.Scpi;
-using NKnife.MeterKnife.Common.Tunnels;
-using NKnife.MeterKnife.Common.Tunnels.Care;
-using NKnife.MeterKnife.Common.Tunnels.Handlers;
 using NKnife.MeterKnife.Util.Tunnel;
 
 // ReSharper disable once CheckNamespace

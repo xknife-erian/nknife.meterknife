@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Util;
 using OxyPlot;
 using OxyPlot.Axes;

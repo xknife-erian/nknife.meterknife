@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
 using MathNet.Numerics.Statistics;
 using NKnife.MeterKnife.Base;
-using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Base;
-using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Util;
 
-namespace MeterKnife.Common.DataModels
+namespace NKnife.MeterKnife.Common.Domain
 {
     public class FiguredData : ICollectSource
     {
@@ -230,7 +227,7 @@ namespace MeterKnife.Common.DataModels
                 if (relativeSampleStandardDeviation != 0)
                     _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature, relativeSampleStandardDeviation, Ppvalue);
                 //触发数据源发生变化
-                OnReceviedCollectData(new CollectDataEventArgs(Meter, CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
+                OnReceviedCollectData(new CollectDataEventArgs(Meter, new MetricalData(){Data = value}));// CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
             }
             else
             {

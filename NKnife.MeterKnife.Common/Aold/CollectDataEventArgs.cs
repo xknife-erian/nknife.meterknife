@@ -4,9 +4,9 @@ using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Common
 {
-    public class CollectDataEventArgs : EventArgs<CollectData>
+    public class CollectDataEventArgs : EventArgs<MetricalData>
     {
-        public CollectDataEventArgs(IMeter meter, CollectData data)
+        public CollectDataEventArgs(IMeter meter, MetricalData data)
             : base(data)
         {
             Meter = meter;
@@ -14,6 +14,6 @@ namespace NKnife.MeterKnife.Common
         }
 
         public IMeter Meter { get; private set; }
-        public CollectData CollectData { get; private set; }
+        public MetricalData CollectData { get; private set; }
     }
 }

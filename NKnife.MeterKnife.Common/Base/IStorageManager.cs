@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using NKnife.Db;
 using NKnife.MeterKnife.Common.Domain;
 

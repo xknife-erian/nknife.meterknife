@@ -22,9 +22,10 @@ namespace NKnife.MeterKnife.Workbench.IoC
         {
             base.Load(builder);
             builder.RegisterType<AppManager>().As<IAppManager>().SingleInstance();
-            builder.RegisterType<Workbench>().As<IWorkbench>().SingleInstance();
-            builder.RegisterType<AppTrayService>().As<IAppTrayService>().SingleInstance();
             builder.RegisterType<TrayMenuStrip>().AsSelf().SingleInstance();
+            builder.RegisterType<AppTrayService>().As<IAppTrayService>().SingleInstance();
+            builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
+            builder.RegisterType<Workbench>().As<IWorkbench>().SingleInstance();
         }
 
         #endregion

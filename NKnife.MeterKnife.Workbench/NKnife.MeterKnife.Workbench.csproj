@@ -119,8 +119,10 @@
   <ItemGroup>
     <Compile Include="AppTrayService.cs" />
     <Compile Include="AppManager.cs" />
+    <Compile Include="Base\WorkbenchSetting.cs" />
     <Compile Include="Base\IAppTrayService.cs" />
     <Compile Include="Base\IAppManager.cs" />
+    <Compile Include="Base\IDialogService.cs" />
     <Compile Include="Base\IWorkbench.cs" />
     <Compile Include="Controls\BaseParamPanel.cs">
       <SubType>UserControl</SubType>
@@ -143,6 +145,7 @@
     <Compile Include="Controls\UserScpiCommandPanel.Designer.cs">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="DialogService.cs" />
     <Compile Include="Dialogs\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +206,7 @@
     <Compile Include="Dialogs\SerialPortSelectorDialog.designer.cs">
       <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileCleaner.cs" />
     <Compile Include="Plots\DataPlot.cs">
       <SubType>UserControl</SubType>
     </Compile>

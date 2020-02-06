@@ -1,5 +1,5 @@
 ﻿using System;
-using MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Domain;
 using OxyPlot;
 using OxyPlot.Axes;
 

@@ -7,13 +7,13 @@ namespace NKnife.MeterKnife.Common
     public class PathManager
     {
         /// <summary>
-        /// 程序员配置文件路径
+        /// 本软件“使用习惯记录文件”与“软件选项数据文件”的子路径
         /// </summary>
         // ReSharper disable once InconsistentNaming
         public const string NKnife_MeterKnife_ANT = "NKnife|MeterKnife|Ant|";
 
         /// <summary>
-        /// 用户路径。eg. C:\Users\xxx\AppData\Roaming
+        /// 用户应用程序数据路径。“使用习惯记录文件”与“软件选项数据文件”将会被保存在这里。eg. C:\Users\xxx\AppData\Roaming
         /// </summary>
         public string UserApplicationDataPath
         {

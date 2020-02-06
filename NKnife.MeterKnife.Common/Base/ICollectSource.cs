@@ -7,7 +7,7 @@ using NKnife.MeterKnife.Util;
 namespace NKnife.MeterKnife.Common.Base
 {
     /// <summary>
-    /// 一个描述采集数据源的接口
+    ///     一个描述采集数据源的接口
     /// </summary>
     public interface ICollectSource
     {
@@ -19,12 +19,12 @@ namespace NKnife.MeterKnife.Common.Base
 
         bool HasData { get; }
 
-        void Clear();
-
         FiguredDataFilter Filter { get; set; }
 
+        void Clear();
+
         /// <summary>
-        /// 导出到Excle文件
+        ///     导出到Excle文件
         /// </summary>
         /// <param name="fileFullName"></param>
         /// <returns></returns>
@@ -33,7 +33,7 @@ namespace NKnife.MeterKnife.Common.Base
         bool Add(double value);
 
         /// <summary>
-        /// 当收到仪器采集数据时
+        ///     当收到仪器采集数据时
         /// </summary>
         event EventHandler<CollectDataEventArgs> ReceviedCollectData;
     }

@@ -6,7 +6,9 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NKnife.MeterKnife.Logic;
 using NKnife.MeterKnife.Storage.Db;
+using NKnife.MeterKnife.Workbench.Base;
 using NKnife.Win.Forms.Forms;
 using NLog;
 
@@ -14,8 +16,6 @@ namespace NKnife.MeterKnife.App
 {
     public class Program
     {
-        internal static IContainer Container { get; private set; }
-
         [STAThread]
         public static void Main(string[] args)
         {
@@ -27,8 +27,8 @@ namespace NKnife.MeterKnife.App
 
             //开启欢迎屏幕
             Splasher.Show(typeof(SplashForm));
-            FileCleaner.Run();
 
+            //程序员配置。（非用户自行配置）
             var conf = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", true, true)
@@ -36,17 +36,18 @@ namespace NKnife.MeterKnife.App
 
             IServiceCollection serviceCollection = new ServiceCollection();
             serviceCollection.AddOptions().Configure<StorageSetting>(conf.GetSection(nameof(StorageSetting)));
+            serviceCollection.AddOptions().Configure<WorkbenchSetting>(conf.GetSection(nameof(WorkbenchSetting)));
 
             var builder = new ContainerBuilder();
-            builder.Populate(serviceCollection);
+            builder.Populate(serviceCollection); //将.Net的注入移植进Autofac
 
-            builder.RegisterAssemblyModules(typeof(Logic.Global).Assembly);
+            builder.RegisterAssemblyModules(typeof(Logic.Kernel).Assembly);
             builder.RegisterAssemblyModules(typeof(Workbench.Workbench).Assembly);
             builder.RegisterType<Startup>().AsSelf();
 
-            using (Container = builder.Build())
+            using (Kernel.Container = builder.Build())
             {
-                var startup = Container.Resolve<Startup>();
+                var startup = Kernel.Container.Resolve<Startup>();
                 //开启当前程序作用域下的 ApplicationContext 实例
                 Application.Run(startup);
             }

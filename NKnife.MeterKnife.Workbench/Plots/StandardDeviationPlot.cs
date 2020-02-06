@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using MathNet.Numerics.Statistics;
-using MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Domain;
 using OxyPlot;
 using OxyPlot.Annotations;
 using OxyPlot.Axes;

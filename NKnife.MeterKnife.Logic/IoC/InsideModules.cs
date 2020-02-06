@@ -8,7 +8,7 @@ namespace NKnife.MeterKnife.Logic.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Logic.Global>().As<IGlobal>().SingleInstance();
+            builder.RegisterType<Logic.Kernel>().As<IGlobal>().SingleInstance();
             builder.RegisterType<AntService>().As<IAntService>().SingleInstance();
 
             builder.RegisterType<PerformStorageLogic>().As<IPerformStorageLogic>().SingleInstance();

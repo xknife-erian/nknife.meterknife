@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.CLI
 
             var builder = new ContainerBuilder();
             builder.Populate(serviceCollection);
-            builder.RegisterAssemblyModules(typeof(Logic.Global).Assembly);
+            builder.RegisterAssemblyModules(typeof(Logic.Kernel).Assembly);
 
             builder.RegisterType<SerialCliCommand>().Named<ICommand>(nameof(SerialCliCommand)).SingleInstance();
             builder.RegisterType<CareConfigCliCommand>().Named<ICommand>(nameof(CareConfigCliCommand)).SingleInstance();

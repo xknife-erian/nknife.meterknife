@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using MeterKnife.Common.DataModels;
+using NKnife.MeterKnife.Common.Domain;
 using NKnife.Win.Forms;
 using NLog;
 
