@@ -46,7 +46,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             //模拟处理一些数据
             for (int i = 0; i < 3 * 10000; i++)
             {
-                var data = new MetricalData();
+                var data = new MeasureData();
                 var a = UtilRandom.Next(10000000, 99999999);
                 var b = UtilRandom.Next(10000000, 99999999);
                 var c = UtilRandom.Next(10000000, 99999999);

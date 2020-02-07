@@ -63,10 +63,130 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Icon FormIcon_InstrumentsDiscovery {
+            get {
+                object obj = ResourceManager.GetObject("FormIcon_InstrumentsDiscovery", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap InstrumentDefaultIcon {
+            get {
+                object obj = ResourceManager.GetObject("InstrumentDefaultIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap InstrumentsListHead_down {
+            get {
+                object obj = ResourceManager.GetObject("InstrumentsListHead_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap InstrumentsListHead_up {
+            get {
+                object obj = ResourceManager.GetObject("InstrumentsListHead_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap InstrumentsManager_add {
+            get {
+                object obj = ResourceManager.GetObject("InstrumentsManager_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Icon meterknife_24px {
             get {
                 object obj = ResourceManager.GetObject("meterknife_24px", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap PlotOperateStripIcon_horizontal_zoom {
+            get {
+                object obj = ResourceManager.GetObject("PlotOperateStripIcon_horizontal_zoom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap PlotOperateStripIcon_original {
+            get {
+                object obj = ResourceManager.GetObject("PlotOperateStripIcon_original", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap PlotOperateStripIcon_series_selection {
+            get {
+                object obj = ResourceManager.GetObject("PlotOperateStripIcon_series_selection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap PlotOperateStripIcon_vertical_zoom {
+            get {
+                object obj = ResourceManager.GetObject("PlotOperateStripIcon_vertical_zoom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap PlotOperateStripIcon_zoom_in {
+            get {
+                object obj = ResourceManager.GetObject("PlotOperateStripIcon_zoom_in", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap PlotOperateStripIcon_zoom_out {
+            get {
+                object obj = ResourceManager.GetObject("PlotOperateStripIcon_zoom_out", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ThemeStripIcon_theme_selection {
+            get {
+                object obj = ResourceManager.GetObject("ThemeStripIcon_theme_selection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

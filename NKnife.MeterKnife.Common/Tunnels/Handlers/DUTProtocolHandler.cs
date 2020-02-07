@@ -27,7 +27,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
                 if (double.TryParse(protocol.Scpi, out var value))
                 {
                     _Logger.Trace($"{protocol.DUT} > {value}");
-                    await _dataLogic.ProcessAsync(dut, new MetricalData() { Time = DateTime.Now, Data = value });
+                    await _dataLogic.ProcessAsync(dut, new MeasureData() { Time = DateTime.Now, Data = value });
                 }
             }
         }

@@ -1,18 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
+using NKnife.Interface;
 using NKnife.MeterKnife.Workbench.Base;
 
 namespace NKnife.MeterKnife.Workbench
 {
     public class AppManager : IAppManager
     {
-        private readonly IAppTrayService _trayService;
-        private readonly IDialogService _dialogService;
+        private readonly List<IEnvironmentItem> _envItemList = new List<IEnvironmentItem>();
 
-        public AppManager(IAppTrayService trayService, IDialogService dialogService)
+        public AppManager(IAppTrayService trayService, IDialogService dialogService, IFileService fileService)
         {
-            _trayService = trayService;
-            _dialogService = dialogService;
+            _envItemList.AddRange(new IEnvironmentItem[]{trayService, dialogService, fileService});
+            _envItemList.Sort((x, y) => x.Order.CompareTo(y.Order));
         }
 
         /// <summary>
@@ -20,13 +21,12 @@ namespace NKnife.MeterKnife.Workbench
         /// </summary>       
         public void LoadCoreService(Action<string> displayMessage)
         {
-            displayMessage($"加载{_trayService.Description}...");
-            _trayService.StartService();
-            Thread.Sleep(1 * 1000);
-            displayMessage($"加载{_dialogService.Description}...");
-            _dialogService.StartService();
-            Thread.Sleep(1 * 1000);
-
+            for (int i = 0; i < _envItemList.Count; i++)
+            {
+                var item = _envItemList[i];
+                displayMessage($"加载{item.Description}...");
+                item.StartService();
+            }
             displayMessage("加载核心服务及插件完成,关闭欢迎界面.");
         }
 
@@ -35,7 +35,10 @@ namespace NKnife.MeterKnife.Workbench
         /// </summary>
         public void UnloadCoreService()
         {
-            _trayService.CloseService();
+            for (int i = _envItemList.Count - 1; i >= 0; i--)
+            {
+                _envItemList[i].CloseService();
+            }
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
+using NKnife.MeterKnife.Base;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Common
 {
-    public class PathManager
+    public class PathManager : IPathManager
     {
         /// <summary>
         /// 本软件“使用习惯记录文件”与“软件选项数据文件”的子路径

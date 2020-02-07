@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Workbench.Base;
+using NKnife.MeterKnife.Workbench.Contents;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace NKnife.MeterKnife.Workbench
@@ -18,6 +19,8 @@ namespace NKnife.MeterKnife.Workbench
         {
             InitializeComponent();
             InitializeDockPanel();
+            // var content = new PlotContent();
+            // content.Show(MainDockPanel, DockState.Document);
         }
 
         #region Overrides of Form

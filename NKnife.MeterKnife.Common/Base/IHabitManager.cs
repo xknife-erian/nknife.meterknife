@@ -1,0 +1,30 @@
+﻿// ReSharper disable once CheckNamespace
+
+namespace NKnife.MeterKnife.Base
+{
+    /// <summary>
+    ///     软件的“使用习惯记录文件”的记录保存与读取服务
+    /// </summary>
+    public interface IHabitManager
+    {
+        /// <summary>
+        ///     尝试获取指定Key的使用习惯的值
+        /// </summary>
+        T GetHabitValue<T>(string key, T defaultValue);
+
+        /// <summary>
+        ///     设置指定Key的使用习惯的值，值对象序列化成Json保存
+        /// </summary>
+        void SetHabitValue(string key, object value);
+
+        /// <summary>
+        ///     尝试获取指定Key的选项的值
+        /// </summary>
+        T GetOptionValue<T>(string key, T defaultValue);
+
+        /// <summary>
+        ///     设置指定Key的选项的值，值对象序列化成Json保存
+        /// </summary>
+        void SetOptionValue(string key, object value);
+    }
+}

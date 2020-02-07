@@ -60,7 +60,7 @@ namespace NKnife.MeterKnife.Workbench
             return true;
         }
 
-        public int Order { get; } = 0;
+        public int Order { get; } = 1;
         public string Description { get; } = "程序托盘服务";
 
         #endregion

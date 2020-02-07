@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Text;
+using NKnife.Interface;
 using NKnife.MeterKnife.Common.Tunnels;
 
 namespace NKnife.MeterKnife.Common.Domain

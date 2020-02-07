@@ -31,17 +31,17 @@ namespace NKnife.MeterKnife.Storage.Db
         private readonly IDbConnection _platformConn = null;
         private readonly EngineeringFileBuilder _engineeringFileBuilder;
         private readonly StorageSetting _setting;
-        private readonly HabitConfig _habitConfig;
-        private readonly PathManager _pathManager;
+        private readonly IHabitManager _habitManager;
+        private readonly IPathManager _pathManager;
         /// <summary>
         /// 软件第一次访问数据库时，检查数据库的完整性
         /// </summary>
         private bool _isFirst = true;
 
-        public StorageManager(IOptions<StorageSetting> setting, EngineeringFileBuilder engineeringFileBuilder, HabitConfig habitConfig, PathManager pathManager)
+        public StorageManager(IOptions<StorageSetting> setting, EngineeringFileBuilder engineeringFileBuilder, IHabitManager habitManager, IPathManager pathManager)
         {
             _engineeringFileBuilder = engineeringFileBuilder;
-            _habitConfig = habitConfig;
+            _habitManager = habitManager;
             _pathManager = pathManager;
             _setting = setting.Value;
             CurrentDbType = _setting.CurrentDbType;
@@ -133,7 +133,7 @@ namespace NKnife.MeterKnife.Storage.Db
                         conn = new MySqlConnection(_setting.MysqlPlatformConnection);
                         break;
                     default:
-                        var path = _habitConfig.GetOptionValue(HabitConfig.KEY_MetricalData_Path, _pathManager.UserDocumentsPath);
+                        var path = _habitManager.GetOptionValue(HabitManager.KEY_MetricalData_Path, _pathManager.UserDocumentsPath);
                         if (!Directory.Exists(path))
                             UtilFile.CreateDirectory(path);
                         if (!path.EndsWith(Path.DirectorySeparatorChar.ToString()))

@@ -227,7 +227,7 @@ namespace NKnife.MeterKnife.Common.Domain
                 if (relativeSampleStandardDeviation != 0)
                     _DataSet.Tables[1].Rows.Add(DateTime.Now, value, _CurrentTemperature, relativeSampleStandardDeviation, Ppvalue);
                 //触发数据源发生变化
-                OnReceviedCollectData(new CollectDataEventArgs(Meter, new MetricalData(){Data = value}));// CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
+                OnReceviedCollectData(new CollectDataEventArgs(Meter, new MeasureData(){Data = value}));// CollectData.Build(DateTime.Now, value, _CurrentTemperature)));
             }
             else
             {

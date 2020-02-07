@@ -6,8 +6,8 @@ using Autofac.Extensions.DependencyInjection;
 using CliFx;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using NKnife.MeterKnife.CLI.Commands;
+using NKnife.MeterKnife.Logic;
 using NKnife.MeterKnife.Storage.Db;
 using NKnife.MeterKnife.Util.Serial;
 
@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.CLI
 
             var builder = new ContainerBuilder();
             builder.Populate(serviceCollection);
-            builder.RegisterAssemblyModules(typeof(Logic.Kernel).Assembly);
+            builder.RegisterAssemblyModules(typeof(Kernel).Assembly);
 
             builder.RegisterType<SerialCliCommand>().Named<ICommand>(nameof(SerialCliCommand)).SingleInstance();
             builder.RegisterType<CareConfigCliCommand>().Named<ICommand>(nameof(CareConfigCliCommand)).SingleInstance();

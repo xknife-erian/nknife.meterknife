@@ -13,12 +13,12 @@ namespace NKnife.MeterKnife.Storage.Db
 {
     public class EngineeringFileBuilder
     {
-        private readonly HabitConfig _habitConfig;
-        private readonly PathManager _pathManager;
+        private readonly IHabitManager _habitManager;
+        private readonly IPathManager _pathManager;
 
-        public EngineeringFileBuilder(HabitConfig habitConfig, PathManager pathManager)
+        public EngineeringFileBuilder(IHabitManager habitManager, IPathManager pathManager)
         {
-            _habitConfig = habitConfig;
+            _habitManager = habitManager;
             _pathManager = pathManager;
         }
 
@@ -49,7 +49,7 @@ namespace NKnife.MeterKnife.Storage.Db
                 {
                     var d = command.DUT;
                     dutList.Add(d);
-                    map.Add(d.Id, SqlHelper.GetCreateTableSql($"{d.Id}s", dbType, typeof(MetricalData)));
+                    map.Add(d.Id, SqlHelper.GetCreateTableSql($"{d.Id}s", dbType, typeof(MeasureData)));
                 }
             }
             map.Add(nameof(Engineering), SqlHelper.GetCreateTableSql(dbType, typeof(Engineering)));
@@ -60,7 +60,7 @@ namespace NKnife.MeterKnife.Storage.Db
         {
             var t = engineering.CreateTime;
             var fileFullName = $"E-{t:yyMMdd-HHmmss}.mks";
-            var path = _habitConfig.GetOptionValue(HabitConfig.KEY_MetricalData_Path, _pathManager.UserDocumentsPath);
+            var path = _habitManager.GetOptionValue(HabitManager.KEY_MetricalData_Path, _pathManager.UserDocumentsPath);
             if (!Directory.Exists(path))
                 UtilFile.CreateDirectory(path);
             fileFullName = Path.Combine(path, $"{t:yyyyMM}{Path.DirectorySeparatorChar}", fileFullName);

@@ -40,14 +40,29 @@
     <Reference Include="Autofac, Version=5.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.5.0.0\lib\net461\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="fastJSON, Version=2.3.0.0, Culture=neutral, PublicKeyToken=6b75a806b86095cd, processorArchitecture=MSIL">
       <HintPath>..\packages\fastJSON.2.3.1\lib\net40\fastJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
     <Reference Include="MathNet.Numerics, Version=4.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MathNet.Numerics.4.9.0\lib\net461\MathNet.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NKnife, Version=19.0.1.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.20.1.0\lib\netstandard2.0\NKnife.dll</HintPath>
@@ -85,6 +100,9 @@
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.3\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -119,11 +137,26 @@
   <ItemGroup>
     <Compile Include="AppTrayService.cs" />
     <Compile Include="AppManager.cs" />
+    <Compile Include="Base\Gateways\GatewayModel.cs" />
+    <Compile Include="Base\Gateways\IGatewayDiscover.cs" />
+    <Compile Include="Base\Gateways\IGatewayService.cs" />
+    <Compile Include="Base\Gateways\InstrumentCollectionChangedEventArgs.cs" />
+    <Compile Include="Base\Gateways\InstrumentConnectionState.cs" />
+    <Compile Include="Base\IFileService.cs" />
+    <Compile Include="Base\Plugins\IDropFunctionManager.cs" />
+    <Compile Include="Base\Plugins\IPlugIn.cs" />
+    <Compile Include="Base\Plugins\IPluginService.cs" />
     <Compile Include="Base\WorkbenchSetting.cs" />
     <Compile Include="Base\IAppTrayService.cs" />
     <Compile Include="Base\IAppManager.cs" />
     <Compile Include="Base\IDialogService.cs" />
     <Compile Include="Base\IWorkbench.cs" />
+    <Compile Include="Contents\MeasureView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contents\MeasureView.designer.cs">
+      <DependentUpon>MeasureView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\BaseParamPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -135,6 +168,9 @@
     </Compile>
     <Compile Include="Controls\FiguredDataGrid.Designer.cs">
       <DependentUpon>FiguredDataGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OrderToolStripMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ScpiParamPanel.cs">
       <SubType>UserControl</SubType>
@@ -206,28 +242,31 @@
     <Compile Include="Dialogs\SerialPortSelectorDialog.designer.cs">
       <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileCleaner.cs" />
-    <Compile Include="Plots\DataPlot.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="FileService.cs" />
+    <Compile Include="Menus\DataMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Plots\FiguredDataAndTemperaturePlot.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Menus\DropFunctionManager.cs" />
+    <Compile Include="Menus\FileMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Plots\FiguredDataPlot.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Menus\HelpMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Plots\StandardDeviationPlot.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Menus\MeasureMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Plots\TemperatureDataPlot.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Menus\ToolMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Plots\TemperatureFeaturesPlot.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Menus\ViewMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Plots\TemperatureTrendPlot.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Plugins\PluginBase.cs" />
+    <Compile Include="Plugins\PluginDetail.cs" />
+    <Compile Include="Plugins\PluginDetailKnife.cs" />
+    <Compile Include="Plugins\PluginStyle.cs" />
+    <Compile Include="Plugins\PluginViewComponent.cs" />
     <Compile Include="TrayMenuStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -239,6 +278,9 @@
       <DependentUpon>Workbench.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Contents\MeasureView.resx">
+      <DependentUpon>MeasureView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\BaseParamPanel.resx">
       <DependentUpon>BaseParamPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,11 +366,35 @@
       <Project>{d4840da6-a26f-4eb4-b9a0-a15139709496}</Project>
       <Name>NKnife.MeterKnife.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NKnife.MeterKnife.Plots\NKnife.MeterKnife.Plots.csproj">
+      <Project>{0b2cb4c1-2373-469c-b4bb-b6d810f7a151}</Project>
+      <Name>NKnife.MeterKnife.Plots</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NKnife.MeterKnife.Util\NKnife.MeterKnife.Util.csproj">
       <Project>{c089e4a3-9545-441a-8e43-9fa1c2586c08}</Project>
       <Name>NKnife.MeterKnife.Util</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NKnife.MeterKnife.ViewModels\NKnife.MeterKnife.ViewModels.csproj">
+      <Project>{2a27cf7c-fffb-4ea0-8430-d6c6d9184e3e}</Project>
+      <Name>NKnife.MeterKnife.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Debug\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\Icons\FormIcon-InstrumentsDiscovery.ico" />
+    <Content Include="Properties\Images\InstrumentDefaultIcon.png" />
+    <Content Include="Properties\Images\InstrumentsManager\InstrumentsListHead_down.png" />
+    <Content Include="Properties\Images\InstrumentsManager\InstrumentsListHead_up.png" />
+    <Content Include="Properties\Images\InstrumentsManager\InstrumentsManager_add.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_horizontal_zoom.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_original.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_series_selection.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_vertical_zoom.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_in.png" />
+    <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_out.png" />
+    <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

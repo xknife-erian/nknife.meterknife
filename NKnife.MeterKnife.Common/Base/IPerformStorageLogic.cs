@@ -14,7 +14,7 @@ namespace NKnife.MeterKnife.Base
         /// </summary>
         /// <param name="dut">指定的被测物</param>
         /// <param name="data">数据</param>
-        Task<bool> ProcessAsync((Engineering, DUT) dut, MetricalData data);
+        Task<bool> ProcessAsync((Engineering, DUT) dut, MeasureData data);
 
         /// <summary>
         ///     根据发送源命令的关系获取被测物

@@ -11,9 +11,9 @@ namespace NKnife.MeterKnife.Logic
     /// </summary>
     public class PerformStorageLogic : IPerformStorageLogic
     {
-        private readonly IStorageDUTWrite<MetricalData> _dataStorageDUTWrite;
+        private readonly IStorageDUTWrite<MeasureData> _dataStorageDUTWrite;
 
-        public PerformStorageLogic(IStorageDUTWrite<MetricalData> dataStorageDUTWrite)
+        public PerformStorageLogic(IStorageDUTWrite<MeasureData> dataStorageDUTWrite)
         {
             _dataStorageDUTWrite = dataStorageDUTWrite;
         }
@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.Logic
         /// </summary>
         /// <param name="dut">指定的被测物</param>
         /// <param name="data">数据</param>
-        public async Task<bool> ProcessAsync((Engineering, DUT) dut, MetricalData data)
+        public async Task<bool> ProcessAsync((Engineering, DUT) dut, MeasureData data)
         {
             return await _dataStorageDUTWrite.InsertAsync(dut, data);
         }

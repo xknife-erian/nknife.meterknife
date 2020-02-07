@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using NKnife.Db.Base;
+using NKnife.Interface;
 using NKnife.Jobs;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Util.Tunnel;
