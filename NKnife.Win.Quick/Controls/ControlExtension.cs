@@ -36,7 +36,7 @@ namespace System.Windows.Forms
         private static string GetTxtValue(string key)
         {
             var ele = (XmlElement) _LangRoot.SelectSingleNode($"//text[@key='{key}']");
-            if (ele == null || ele.HasAttribute(Global.Culture))
+            if (ele == null || !ele.HasAttribute(Global.Culture))
             {
                 var value = key.Substring(key.IndexOf('.') + 1);
                 if (ele == null)

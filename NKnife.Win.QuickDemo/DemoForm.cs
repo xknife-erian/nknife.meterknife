@@ -21,7 +21,8 @@ namespace NKnife.Win.QuickDemo
             BindNotifyIcon(notifyIcon);
 
             var file = new FileMenuItem();
-            file.DropDownItems.Add(GetItem());
+            file.DropDownItems.Insert(0, new ToolStripSeparator());
+            file.DropDownItems.Insert(0, GetItem());
 
             BindMainMenu(file, new DataMenuItem(), new MeasureMenuItem(), new ToolMenuItem(), new ViewMenuItem(), new HelpMenuItem());
             BindTrayMenu(GetItem(), GetItem());

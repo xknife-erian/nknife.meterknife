@@ -8,6 +8,13 @@ namespace NKnife.Win.Quick.Menus
         public FileMenuItem()
         {
             Text = this.Language("文件(&F)");
+            var exit = new ToolStripMenuItem(this.Language("退出(&X)"));
+            exit.Click += (e, s) =>
+            {
+                var form = this.Parent.FindForm();
+                form?.Close();
+            };
+            this.DropDownItems.Add(exit);
         }
     }
 }

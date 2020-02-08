@@ -16,6 +16,7 @@ namespace NKnife.Win.QuickDemo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Global.Culture = "zh-TW";
             Application.Run(new DemoForm());
         }
     }
