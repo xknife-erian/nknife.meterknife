@@ -7,7 +7,7 @@ namespace NKnife.Win.Quick.Menus
     {
         public ViewMenuItem()
         {
-            Text = this.Language($"{nameof(FileMenuItem)}.视图(&V)");
+            Text = this.Language("视图(&V)");
         }
     }
 }

@@ -25,22 +25,26 @@ namespace System.Windows.Forms
 
         public static string Language(this ToolStripItem item, string key)
         {
-            return GetTxtValue(key);
+            return GetTxtValue($"{item.GetType().Name}.{key}");
         }
 
         public static string Language(this Control control, string key)
         {
-            return GetTxtValue(key);
+            return GetTxtValue($"{control.GetType().Name}.{key}");
         }
 
         private static string GetTxtValue(string key)
         {
             var ele = (XmlElement) _LangRoot.SelectSingleNode($"//text[@key='{key}']");
-            if (ele == null)
+            if (ele == null || ele.HasAttribute(Global.Culture))
             {
                 var value = key.Substring(key.IndexOf('.') + 1);
-                ele = _LangRoot.OwnerDocument.CreateElement("text");
-                ele.SetAttribute("key", key);
+                if (ele == null)
+                {
+                    ele = _LangRoot.OwnerDocument.CreateElement("text");
+                    ele.SetAttribute("key", key);
+                }
+
                 ele.SetAttribute(Global.Culture, value);
                 _LangRoot.AppendChild(ele);
                 _LangRoot.OwnerDocument?.Save(_XmlFile);

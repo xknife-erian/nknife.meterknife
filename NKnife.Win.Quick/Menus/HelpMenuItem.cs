@@ -7,7 +7,7 @@ namespace NKnife.Win.Quick.Menus
     {
         public HelpMenuItem()
         {
-            Text = this.Language($"{nameof(FileMenuItem)}.帮助(&H)");
+            Text = this.Language("帮助(&H)");
         }
     }
 }

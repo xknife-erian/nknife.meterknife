@@ -17,14 +17,14 @@ namespace NKnife.Win.Quick.Controls
                 separator1,
                 exitMenuButton
             });
-            exitMenuButton.Text = "退出(&X)";
+            exitMenuButton.Text = this.Language("退出(&X)");
             exitMenuButton.Click += (s, e) =>
             {
                 workbench.HideOnClosing = false;
                 if(workbench is Form form)
                     form.Close();
             };
-            openAppMenuButton.Text = "主程序(&W)";
+            openAppMenuButton.Text = this.Language("主程序(&W)");
             openAppMenuButton.Click += (s, e) =>
             {
                 var form = (Form)workbench;
