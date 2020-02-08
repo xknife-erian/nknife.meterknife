@@ -143,14 +143,9 @@
     <Compile Include="Base\Gateways\InstrumentCollectionChangedEventArgs.cs" />
     <Compile Include="Base\Gateways\InstrumentConnectionState.cs" />
     <Compile Include="Base\IFileService.cs" />
-    <Compile Include="Base\Plugins\IDropFunctionManager.cs" />
-    <Compile Include="Base\Plugins\IPlugIn.cs" />
-    <Compile Include="Base\Plugins\IPluginService.cs" />
-    <Compile Include="Base\WorkbenchSetting.cs" />
     <Compile Include="Base\IAppTrayService.cs" />
     <Compile Include="Base\IAppManager.cs" />
     <Compile Include="Base\IDialogService.cs" />
-    <Compile Include="Base\IWorkbench.cs" />
     <Compile Include="Contents\MeasureView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,9 +163,6 @@
     </Compile>
     <Compile Include="Controls\FiguredDataGrid.Designer.cs">
       <DependentUpon>FiguredDataGrid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\OrderToolStripMenuItem.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ScpiParamPanel.cs">
       <SubType>UserControl</SubType>
@@ -243,41 +235,11 @@
       <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="FileService.cs" />
-    <Compile Include="Menus\DataMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Menus\DropFunctionManager.cs" />
-    <Compile Include="Menus\FileMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Menus\HelpMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Menus\MeasureMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Menus\ToolMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Menus\ViewMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Plugins\PluginBase.cs" />
-    <Compile Include="Plugins\PluginDetail.cs" />
-    <Compile Include="Plugins\PluginDetailKnife.cs" />
-    <Compile Include="Plugins\PluginStyle.cs" />
-    <Compile Include="Plugins\PluginViewComponent.cs" />
-    <Compile Include="TrayMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="IoC\InsideModules.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Workbench.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Workbench.Designer.cs">
-      <DependentUpon>Workbench.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Contents\MeasureView.resx">
       <DependentUpon>MeasureView.cs</DependentUpon>
     </EmbeddedResource>
@@ -333,9 +295,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Workbench.resx">
-      <DependentUpon>Workbench.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\meter-knife-icon\meterknife_16px.ico" />
@@ -377,6 +336,10 @@
     <ProjectReference Include="..\NKnife.MeterKnife.ViewModels\NKnife.MeterKnife.ViewModels.csproj">
       <Project>{2a27cf7c-fffb-4ea0-8430-d6c6d9184e3e}</Project>
       <Name>NKnife.MeterKnife.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife.Win.Quick\NKnife.Win.Quick.csproj">
+      <Project>{16f785c4-1e9a-4432-a041-a2118fd3fd01}</Project>
+      <Name>NKnife.Win.Quick</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using NKnife.MeterKnife.Workbench.Base;
+using NKnife.Win.Quick.Base;
+using NKnife.Win.Quick.Controls;
 
 namespace NKnife.MeterKnife.Workbench.IoC
 {
@@ -21,9 +23,11 @@ namespace NKnife.MeterKnife.Workbench.IoC
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
+
+            builder.RegisterType<TrayMenuStrip>().AsSelf().SingleInstance();
+
             builder.RegisterType<AppManager>().As<IAppManager>().SingleInstance();
             builder.RegisterType<FileService>().As<IFileService>().SingleInstance();
-            builder.RegisterType<TrayMenuStrip>().AsSelf().SingleInstance();
             builder.RegisterType<AppTrayService>().As<IAppTrayService>().SingleInstance();
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
             builder.RegisterType<Workbench>().As<IWorkbench>().SingleInstance();

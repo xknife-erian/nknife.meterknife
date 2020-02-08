@@ -215,6 +215,10 @@
       <Project>{d4840da6-a26f-4eb4-b9a0-a15139709496}</Project>
       <Name>NKnife.MeterKnife.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NKnife.MeterKnife.Plots\NKnife.MeterKnife.Plots.csproj">
+      <Project>{0b2cb4c1-2373-469c-b4bb-b6d810f7a151}</Project>
+      <Name>NKnife.MeterKnife.Plots</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NKnife.MeterKnife.Storage\NKnife.MeterKnife.Storage.csproj">
       <Project>{60f3a5d4-64ec-4438-abd3-a73f8c5d19b7}</Project>
       <Name>NKnife.MeterKnife.Storage</Name>
@@ -223,9 +227,17 @@
       <Project>{c089e4a3-9545-441a-8e43-9fa1c2586c08}</Project>
       <Name>NKnife.MeterKnife.Util</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NKnife.MeterKnife.ViewModels\NKnife.MeterKnife.ViewModels.csproj">
+      <Project>{2a27cf7c-fffb-4ea0-8430-d6c6d9184e3e}</Project>
+      <Name>NKnife.MeterKnife.ViewModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NKnife.MeterKnife.Workbench\NKnife.MeterKnife.Workbench.csproj">
       <Project>{d790f501-cead-48f0-a6a4-4ac5f6fdb021}</Project>
       <Name>NKnife.MeterKnife.Workbench</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NKnife.Win.Quick\NKnife.Win.Quick.csproj">
+      <Project>{16f785c4-1e9a-4432-a041-a2118fd3fd01}</Project>
+      <Name>NKnife.Win.Quick</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

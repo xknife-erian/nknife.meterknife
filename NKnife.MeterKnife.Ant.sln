@@ -32,6 +32,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.MeterKnife.Plots", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.MeterKnife.ViewModels", "NKnife.MeterKnife.ViewModels\NKnife.MeterKnife.ViewModels.csproj", "{2A27CF7C-FFFB-4EA0-8430-D6C6D9184E3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Win.Quick", "NKnife.Win.Quick\NKnife.Win.Quick.csproj", "{16F785C4-1E9A-4432-A041-A2118FD3FD01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Win.QuickDemo", "NKnife.Win.QuickDemo\NKnife.Win.QuickDemo.csproj", "{A40CEC09-5E09-4950-860D-62D8F93E248B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +82,14 @@ Global
 		{2A27CF7C-FFFB-4EA0-8430-D6C6D9184E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A27CF7C-FFFB-4EA0-8430-D6C6D9184E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A27CF7C-FFFB-4EA0-8430-D6C6D9184E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F785C4-1E9A-4432-A041-A2118FD3FD01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F785C4-1E9A-4432-A041-A2118FD3FD01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F785C4-1E9A-4432-A041-A2118FD3FD01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F785C4-1E9A-4432-A041-A2118FD3FD01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A40CEC09-5E09-4950-860D-62D8F93E248B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A40CEC09-5E09-4950-860D-62D8F93E248B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A40CEC09-5E09-4950-860D-62D8F93E248B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A40CEC09-5E09-4950-860D-62D8F93E248B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

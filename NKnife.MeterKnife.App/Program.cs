@@ -8,8 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NKnife.MeterKnife.Logic;
 using NKnife.MeterKnife.Storage.Db;
-using NKnife.MeterKnife.Workbench.Base;
 using NKnife.Win.Forms.Forms;
+using NKnife.Win.Quick.Base;
 using NLog;
 
 namespace NKnife.MeterKnife.App

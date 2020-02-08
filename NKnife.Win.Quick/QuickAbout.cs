@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NKnife.MeterKnife.Workbench.Base
+namespace NKnife.Win.Quick
 {
-    public class WorkbenchSetting
+    public class QuickAbout : About
     {
     }
 }

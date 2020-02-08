@@ -1,6 +1,8 @@
 ﻿using System.Windows.Forms;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Properties;
+using NKnife.Win.Quick.Base;
+using NKnife.Win.Quick.Controls;
 
 namespace NKnife.MeterKnife.Workbench
 {

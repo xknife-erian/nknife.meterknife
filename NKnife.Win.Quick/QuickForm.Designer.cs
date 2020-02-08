@@ -1,6 +1,7 @@
-﻿namespace NKnife.MeterKnife.Workbench
+﻿
+namespace NKnife.Win.Quick
 {
-    partial class Workbench
+    partial class QuickForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -28,7 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Workbench));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuickForm));
             this._StripContainer = new System.Windows.Forms.ToolStripContainer();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._MenuStrip = new System.Windows.Forms.MenuStrip();
@@ -75,7 +76,6 @@
             this._MenuStrip.Name = "_MenuStrip";
             this._MenuStrip.Size = new System.Drawing.Size(1008, 24);
             this._MenuStrip.TabIndex = 0;
-            this._MenuStrip.Text = "menuStrip1";
             // 
             // Workbench
             // 
@@ -83,7 +83,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this._StripContainer);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this._MenuStrip;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
