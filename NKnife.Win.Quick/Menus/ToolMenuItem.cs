@@ -7,7 +7,7 @@ namespace NKnife.Win.Quick.Menus
     {
         public ToolMenuItem()
         {
-            Text = this.Language("工具(&T)");
+            Text = this.String("工具(&T)");
         }
     }
 }

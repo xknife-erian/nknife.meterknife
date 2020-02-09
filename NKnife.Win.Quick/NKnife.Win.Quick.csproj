@@ -106,7 +106,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ControlExtension.cs" />
+    <Compile Include="Controls\Language.cs" />
     <Compile Include="QuickAbout.cs" />
     <Compile Include="Base\IWorkbench.cs" />
     <Compile Include="Base\WorkbenchSetting.cs" />
