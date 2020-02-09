@@ -20,34 +20,34 @@ namespace System.Windows.Forms
             _LangRoot = xml.DocumentElement;
         }
 
-        public static string String(this ToolStripItem item, string key)
+        public static string Res(this ToolStripItem item, string key)
         {
             return Get(Text, $"{item.GetType().Name}.{key}");
         }
 
-        public static string String(this Control control, string key)
+        public static string Res(this Control control, string key)
         {
             return Get(Text, $"{control.GetType().Name}.{key}");
         }
 
-        public static string String(string key)
+        public static string Res(string key)
         {
-            return Get(Text, $"Tip.{key}");
+            return Get(Text, $"INFO.{key}");
         }
 
-        public static string StringSection(this ToolStripItem item, string key, string defaultValue = "")
+        public static string ResSection(this ToolStripItem item, string key, string defaultValue = "")
         {
             return Get(Section, $"{item.GetType().Name}.{key}", defaultValue);
         }
 
-        public static string StringSection(this Control control, string key, string defaultValue = "")
+        public static string ResSection(this Control control, string key, string defaultValue = "")
         {
             return Get(Section, $"{control.GetType().Name}.{key}", defaultValue);
         }
 
-        public static string StringSection(string key, string defaultValue = "")
+        public static string ResSection(string key, string defaultValue = "")
         {
-            return Get(Section, $"Tip.{key}", defaultValue);
+            return Get(Section, $"INFO.{key}", defaultValue);
         }
 
         private static string Get(string localName, string key, string defaultValue = "")

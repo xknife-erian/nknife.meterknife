@@ -21,8 +21,8 @@ namespace NKnife.Win.Quick
         /// <param name="preparedAction"></param>
         public static void PreparingCloseApplicationForUpdate(string userName, string project, Version swVersion, Action preparedAction)
         {
-            var ds = MessageBox.Show(Language.StringSection("Update","即将更新。准备关闭应用程序进行更新。\r\n更新程序在更新过程中因为要覆盖原有文件，所以需要管理员权限才能更新。"), 
-                Language.String("准备更新"), MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            var ds = MessageBox.Show(Language.ResSection("Update","即将更新。准备关闭应用程序进行更新。\r\n更新程序在更新过程中因为要覆盖原有文件，所以需要管理员权限才能更新。"), 
+                Language.Res("准备更新"), MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             if (ds != DialogResult.Yes)
                 return;
             var swName = Assembly.GetEntryAssembly()?.GetName().Name;

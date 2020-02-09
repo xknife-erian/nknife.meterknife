@@ -12,9 +12,9 @@ namespace NKnife.Win.Quick.Menus
 
         public HelpMenuItem()
         {
-            Text = this.String("帮助(&H)");
-            var update = new ToolStripMenuItem(this.String("更新(&U)"));
-            var about = new ToolStripMenuItem(this.String("关于(&A)"));
+            Text = this.Res("帮助(&H)");
+            var update = new ToolStripMenuItem(this.Res("更新(&U)"));
+            var about = new ToolStripMenuItem(this.Res("关于(&A)"));
             DropDownItems.Add(update);
             DropDownItems.Add(new ToolStripSeparator());
             DropDownItems.Add(about);
@@ -33,7 +33,7 @@ namespace NKnife.Win.Quick.Menus
                             if (version > swVersion)
                                 UpdateHelper.PreparingCloseApplicationForUpdate(wb.GithubUpdateUser, wb.GithubUpdateProject, swVersion, StopApp);
                             else
-                                MessageBox.Show(this.String("已是最新版本，无需更新。"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show(this.Res("已是最新版本，无需更新。"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {

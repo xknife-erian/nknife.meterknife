@@ -7,8 +7,8 @@ namespace NKnife.Win.Quick.Menus
     {
         public FileMenuItem()
         {
-            Text = this.String("文件(&F)");
-            var exit = new ToolStripMenuItem(this.String("退出(&X)"));
+            Text = this.Res("文件(&F)");
+            var exit = new ToolStripMenuItem(this.Res("退出(&X)"));
             exit.Click += (e, s) =>
             {
                 var form = this.Parent.FindForm();

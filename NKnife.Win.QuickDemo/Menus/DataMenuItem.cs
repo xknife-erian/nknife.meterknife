@@ -6,7 +6,7 @@ namespace NKnife.Win.QuickDemo.Menus
     {
         public DataMenuItem()
         {
-            Text = this.String("数据(&D)");
+            Text = this.Res("数据(&D)");
         }
     }
 }

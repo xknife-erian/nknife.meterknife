@@ -21,7 +21,7 @@ namespace NKnife.Win.Quick
 
         public QuickForm()
         {
-            this.String("有新版本建议更新"); this.String("有新版本可以更新"); this.String("远程更新失败"); this.String("就绪");
+            this.Res("有新版本建议更新"); this.Res("有新版本可以更新"); this.Res("远程更新失败"); this.Res("就绪");
             InitializeComponent();
             InitializeDockPanel();
             InitializeFont();
@@ -102,20 +102,20 @@ namespace NKnife.Win.Quick
                     {
                         _StatusStrip.ThreadSafeInvoke(() =>
                         {
-                            _VersionUpdateLabel.Text = version <= localVersion ? $"v.{localVersion}" : this.String("有新版本建议更新");
+                            _VersionUpdateLabel.Text = version <= localVersion ? $"v.{localVersion}" : this.Res("有新版本建议更新");
                         });
                     }
                     else
                     {
-                        _StatusStrip.ThreadSafeInvoke(() => { _VersionUpdateLabel.Text = this.String("有新版本可以更新"); });
+                        _StatusStrip.ThreadSafeInvoke(() => { _VersionUpdateLabel.Text = this.Res("有新版本可以更新"); });
                     }
                 }
                 else
                 {
-                    _StatusStrip.ThreadSafeInvoke(() => { _VersionUpdateLabel.Text = this.String("远程更新失败"); });
+                    _StatusStrip.ThreadSafeInvoke(() => { _VersionUpdateLabel.Text = this.Res("远程更新失败"); });
                 }
             });
-            _StatusStrip.ThreadSafeInvoke(() => { _StatusStripLabel.Text = this.String("就绪"); });
+            _StatusStrip.ThreadSafeInvoke(() => { _StatusStripLabel.Text = this.Res("就绪"); });
         }
 
         /// <summary>引发 <see cref="E:System.Windows.Forms.Form.Closing" /> 事件。</summary>

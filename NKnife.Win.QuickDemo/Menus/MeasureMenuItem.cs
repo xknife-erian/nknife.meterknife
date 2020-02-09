@@ -6,7 +6,7 @@ namespace NKnife.Win.QuickDemo.Menus
     {
         public MeasureMenuItem()
         {
-            Text = this.String("测量(&M)");
+            Text = this.Res("测量(&M)");
         }
     }
 }
