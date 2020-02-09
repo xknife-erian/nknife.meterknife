@@ -1,11 +1,15 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
-using NKnife.Win.Quick.Controls;
+using NKnife.Win.Quick.Base;
+using NKnife.Win.UpdaterFromGitHub;
 
 namespace NKnife.Win.Quick.Menus
 {
     public sealed class HelpMenuItem : ToolStripMenuItem
     {
+        private IWorkbench _workbench;
+
         public HelpMenuItem()
         {
             Text = this.Language("帮助(&H)");
@@ -14,6 +18,37 @@ namespace NKnife.Win.Quick.Menus
             DropDownItems.Add(update);
             DropDownItems.Add(new ToolStripSeparator());
             DropDownItems.Add(about);
+            update.Click += (s, e) =>
+            {
+                var form = Parent.FindForm();
+                if (form != null && form is IWorkbench wb)
+                {
+                    _workbench = wb;
+                    var swVersion = Assembly.GetEntryAssembly()?.GetName().Version;
+                    if (Helper.TryGetLatestRelease(wb.GithubUpdateUser, wb.GithubUpdateProject, out var latestRelease, out var errorMessage))
+                    {
+                        var latestVersion = latestRelease.Version.TrimStart('v', 'V', '.', '-', '_').Trim();
+                        if (Version.TryParse(latestVersion, out var version))
+                        {
+                            if (version > swVersion)
+                                UpdateHelper.PreparingCloseApplicationForUpdate(wb.GithubUpdateUser, wb.GithubUpdateProject, swVersion, StopApp);
+                            else
+                                MessageBox.Show("已是最新版本，无需更新。", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            //版本号对不上，也更新一下吧
+                            UpdateHelper.PreparingCloseApplicationForUpdate(wb.GithubUpdateUser, wb.GithubUpdateProject, swVersion, StopApp);
+                        }
+                    }
+                }
+            };
+        }
+
+        private void StopApp()
+        {
+            _workbench.HideOnClosing = false;
+            ((Form) _workbench).Close();
         }
     }
 }

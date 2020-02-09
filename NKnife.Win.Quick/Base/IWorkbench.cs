@@ -6,5 +6,7 @@ namespace NKnife.Win.Quick.Base
     {
         DockPanel MainDockPanel { get; }
         bool HideOnClosing { get; set; }
+        string GithubUpdateUser { get; set; }
+        string GithubUpdateProject { get; set; }
     }
 }

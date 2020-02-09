@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.Win.Quick;
@@ -16,6 +18,8 @@ namespace NKnife.Win.QuickDemo
     {
         public DemoForm()
         {
+            GithubUpdateUser = "xknife-erian";
+            GithubUpdateProject = "nknife.serial-protocol-debugger";
             var notifyIcon = new NotifyIcon();
             notifyIcon.Icon = Resources.demo;
             BindNotifyIcon(notifyIcon);

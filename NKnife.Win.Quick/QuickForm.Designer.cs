@@ -33,9 +33,13 @@ namespace NKnife.Win.Quick
             this._StripContainer = new System.Windows.Forms.ToolStripContainer();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._MenuStrip = new System.Windows.Forms.MenuStrip();
+            this._StatusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._SpringStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._VersionUpdateLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._StripContainer.BottomToolStripPanel.SuspendLayout();
             this._StripContainer.TopToolStripPanel.SuspendLayout();
             this._StripContainer.SuspendLayout();
+            this._StatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _StripContainer
@@ -47,13 +51,11 @@ namespace NKnife.Win.Quick
             // 
             // _StripContainer.ContentPanel
             // 
-            this._StripContainer.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this._StripContainer.ContentPanel.Size = new System.Drawing.Size(1008, 683);
+            this._StripContainer.ContentPanel.Size = new System.Drawing.Size(864, 469);
             this._StripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._StripContainer.Location = new System.Drawing.Point(0, 0);
-            this._StripContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._StripContainer.Name = "_StripContainer";
-            this._StripContainer.Size = new System.Drawing.Size(1008, 729);
+            this._StripContainer.Size = new System.Drawing.Size(864, 515);
             this._StripContainer.TabIndex = 0;
             this._StripContainer.Text = "toolStripContainer1";
             // 
@@ -64,9 +66,13 @@ namespace NKnife.Win.Quick
             // _StatusStrip
             // 
             this._StatusStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._StatusStripLabel,
+            this._SpringStripLabel,
+            this._VersionUpdateLabel});
             this._StatusStrip.Location = new System.Drawing.Point(0, 0);
             this._StatusStrip.Name = "_StatusStrip";
-            this._StatusStrip.Size = new System.Drawing.Size(1008, 22);
+            this._StatusStrip.Size = new System.Drawing.Size(864, 22);
             this._StatusStrip.TabIndex = 0;
             // 
             // _MenuStrip
@@ -74,19 +80,36 @@ namespace NKnife.Win.Quick
             this._MenuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._MenuStrip.Location = new System.Drawing.Point(0, 0);
             this._MenuStrip.Name = "_MenuStrip";
-            this._MenuStrip.Size = new System.Drawing.Size(1008, 24);
+            this._MenuStrip.Size = new System.Drawing.Size(864, 24);
             this._MenuStrip.TabIndex = 0;
             // 
-            // Workbench
+            // _StatusStripLabel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this._StatusStripLabel.Name = "_StatusStripLabel";
+            this._StatusStripLabel.Size = new System.Drawing.Size(17, 17);
+            this._StatusStripLabel.Text = "...";
+            // 
+            // _SpringStripLabel
+            // 
+            this._SpringStripLabel.Name = "_SpringStripLabel";
+            this._SpringStripLabel.Size = new System.Drawing.Size(784, 17);
+            this._SpringStripLabel.Spring = true;
+            // 
+            // _VersionUpdateLabel
+            // 
+            this._VersionUpdateLabel.Name = "_VersionUpdateLabel";
+            this._VersionUpdateLabel.Size = new System.Drawing.Size(17, 17);
+            this._VersionUpdateLabel.Text = "...";
+            // 
+            // QuickForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(864, 515);
             this.Controls.Add(this._StripContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this._MenuStrip;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Workbench";
+            this.Name = "QuickForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Workbench";
             this._StripContainer.BottomToolStripPanel.ResumeLayout(false);
@@ -95,6 +118,8 @@ namespace NKnife.Win.Quick
             this._StripContainer.TopToolStripPanel.PerformLayout();
             this._StripContainer.ResumeLayout(false);
             this._StripContainer.PerformLayout();
+            this._StatusStrip.ResumeLayout(false);
+            this._StatusStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -104,6 +129,9 @@ namespace NKnife.Win.Quick
         private System.Windows.Forms.ToolStripContainer _StripContainer;
         private System.Windows.Forms.StatusStrip _StatusStrip;
         private System.Windows.Forms.MenuStrip _MenuStrip;
+        private System.Windows.Forms.ToolStripStatusLabel _StatusStripLabel;
+        private System.Windows.Forms.ToolStripStatusLabel _SpringStripLabel;
+        private System.Windows.Forms.ToolStripStatusLabel _VersionUpdateLabel;
     }
 }
 

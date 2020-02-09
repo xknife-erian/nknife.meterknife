@@ -1,10 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.Win.Quick.Base;
 using NKnife.Win.Quick.Controls;
+using NKnife.Win.UpdaterFromGitHub;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace NKnife.Win.Quick
@@ -16,6 +21,9 @@ namespace NKnife.Win.Quick
 
         public QuickForm()
         {
+            //GithubUpdateUser = "xknife-erian";
+            //GithubUpdateProject = "nknife.serial-protocol-debugger";
+
             InitializeComponent();
             InitializeDockPanel();
             InitializeFont();
@@ -81,6 +89,36 @@ namespace NKnife.Win.Quick
         }
 
         #region Overrides of Form
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            Task.Run(() =>
+            {
+                Thread.Sleep(10 * 1000);
+                var localVersion = Assembly.GetEntryAssembly()?.GetName().Version;
+                if (Helper.TryGetLatestRelease(GithubUpdateUser, GithubUpdateProject, out var latestRelease, out var errorMessage))
+                {
+                    var latestVersion = latestRelease.Version.TrimStart('v', 'V', '.', '-', '_').Trim();
+                    if (Version.TryParse(latestVersion, out var version))
+                    {
+                        _StatusStrip.ThreadSafeInvoke(() =>
+                        {
+                            _VersionUpdateLabel.Text = version <= localVersion ? $"v.{localVersion}" : "有新版本建议更新";
+                        });
+                    }
+                    else
+                    {
+                        _StatusStrip.ThreadSafeInvoke(() => { _VersionUpdateLabel.Text = "有新版本可以更新"; });
+                    }
+                }
+                else
+                {
+                    _StatusStrip.ThreadSafeInvoke(() => { _VersionUpdateLabel.Text = "远程更新失败"; });
+                }
+            });
+            _StatusStrip.ThreadSafeInvoke(() => { _StatusStripLabel.Text = "就绪"; });
+        }
 
         /// <summary>引发 <see cref="E:System.Windows.Forms.Form.Closing" /> 事件。</summary>
         /// <param name="e">包含事件数据的 <see cref="T:System.ComponentModel.CancelEventArgs" />。</param>
@@ -152,6 +190,8 @@ namespace NKnife.Win.Quick
         public DockPanel MainDockPanel { get; } = new DockPanel();
 
         public bool HideOnClosing { get; set; } = false;
+        public string GithubUpdateUser { get; set; }
+        public string GithubUpdateProject { get; set; }
 
         #endregion
     }
