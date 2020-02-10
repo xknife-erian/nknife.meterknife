@@ -26,7 +26,7 @@ namespace NKnife.MeterKnife.Workbench.IoC
 
             builder.RegisterType<AppManager>().As<IAppManager>().SingleInstance();
             builder.RegisterType<FileService>().As<IFileService>().SingleInstance();
-            builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
+            builder.RegisterType<DialogProvider>().As<IDialogProvider>().SingleInstance();
             builder.RegisterType<Workbench>().As<IWorkbench>().SingleInstance();
 
             var assembly = typeof(Workbench).Assembly;

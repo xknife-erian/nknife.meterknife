@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using NKnife.MeterKnife.Workbench.Dialogs.Plots;
 
 namespace NKnife.MeterKnife.Workbench.Views
 {
@@ -59,7 +58,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._PlotView.Margin = new System.Windows.Forms.Padding(1);
             this._PlotView.Name = "_PlotView";
             this._PlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this._PlotView.Size = new System.Drawing.Size(784, 535);
+            this._PlotView.Size = new System.Drawing.Size(624, 414);
             this._PlotView.TabIndex = 1;
             this._PlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this._PlotView.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
@@ -71,13 +70,11 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _ToolStripContainer.ContentPanel
             // 
             this._ToolStripContainer.ContentPanel.Controls.Add(this._PlotView);
-            this._ToolStripContainer.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(784, 535);
+            this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(624, 414);
             this._ToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ToolStripContainer.Location = new System.Drawing.Point(0, 0);
-            this._ToolStripContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ToolStripContainer.Name = "_ToolStripContainer";
-            this._ToolStripContainer.Size = new System.Drawing.Size(784, 561);
+            this._ToolStripContainer.Size = new System.Drawing.Size(624, 440);
             this._ToolStripContainer.TabIndex = 4;
             this._ToolStripContainer.Text = "toolStripContainer1";
             // 
@@ -93,15 +90,16 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._SetDataSeriesToolStripButton});
             this._DataToolStrip.Location = new System.Drawing.Point(3, 0);
             this._DataToolStrip.Name = "_DataToolStrip";
-            this._DataToolStrip.Size = new System.Drawing.Size(84, 26);
+            this._DataToolStrip.Size = new System.Drawing.Size(100, 26);
             this._DataToolStrip.TabIndex = 1;
             // 
             // _SetDataSeriesToolStripButton
             // 
+            this._SetDataSeriesToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_series_selection;
             this._SetDataSeriesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SetDataSeriesToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._SetDataSeriesToolStripButton.Name = "_SetDataSeriesToolStripButton";
-            this._SetDataSeriesToolStripButton.Size = new System.Drawing.Size(72, 21);
+            this._SetDataSeriesToolStripButton.Size = new System.Drawing.Size(88, 21);
             this._SetDataSeriesToolStripButton.Text = "设置数据线";
             this._SetDataSeriesToolStripButton.Click += new System.EventHandler(this.SetDataSeriesButtonClick);
             // 
@@ -118,14 +116,15 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._ValueRangeZoomToolStripButton,
             this.toolStripSeparator1,
             this._PlotThemeDropDownButton1});
-            this._PlotToolStrip.Location = new System.Drawing.Point(87, 0);
+            this._PlotToolStrip.Location = new System.Drawing.Point(103, 0);
             this._PlotToolStrip.Name = "_PlotToolStrip";
-            this._PlotToolStrip.Size = new System.Drawing.Size(158, 25);
+            this._PlotToolStrip.Size = new System.Drawing.Size(174, 25);
             this._PlotToolStrip.TabIndex = 0;
             // 
             // _OriginalToolStripButton
             // 
             this._OriginalToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._OriginalToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_original;
             this._OriginalToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._OriginalToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._OriginalToolStripButton.Name = "_OriginalToolStripButton";
@@ -140,6 +139,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _ZoomInToolStripButton
             // 
             this._ZoomInToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ZoomInToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_zoom_in;
             this._ZoomInToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ZoomInToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._ZoomInToolStripButton.Name = "_ZoomInToolStripButton";
@@ -149,6 +149,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _ZoomOutToolStripButton
             // 
             this._ZoomOutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ZoomOutToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_zoom_out;
             this._ZoomOutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ZoomOutToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._ZoomOutToolStripButton.Name = "_ZoomOutToolStripButton";
@@ -163,6 +164,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _TimeZoomToolStripButton
             // 
             this._TimeZoomToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._TimeZoomToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_horizontal_zoom;
             this._TimeZoomToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._TimeZoomToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._TimeZoomToolStripButton.Name = "_TimeZoomToolStripButton";
@@ -172,6 +174,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _ValueRangeZoomToolStripButton
             // 
             this._ValueRangeZoomToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._ValueRangeZoomToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_vertical_zoom;
             this._ValueRangeZoomToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ValueRangeZoomToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._ValueRangeZoomToolStripButton.Name = "_ValueRangeZoomToolStripButton";
@@ -186,19 +189,18 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _PlotThemeDropDownButton1
             // 
             this._PlotThemeDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._PlotThemeDropDownButton1.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.ThemeStripIcon_theme_selection;
             this._PlotThemeDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._PlotThemeDropDownButton1.Name = "_PlotThemeDropDownButton1";
-            this._PlotThemeDropDownButton1.Size = new System.Drawing.Size(13, 22);
+            this._PlotThemeDropDownButton1.Size = new System.Drawing.Size(29, 22);
             this._PlotThemeDropDownButton1.Text = "主题";
             // 
             // MeasureView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(624, 440);
             this.Controls.Add(this._ToolStripContainer);
-            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MeasureView";
             this.Text = "MeasureView";
             this._ToolStripContainer.ContentPanel.ResumeLayout(false);
@@ -226,7 +228,7 @@ namespace NKnife.MeterKnife.Workbench.Views
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripSeparator toolStripSeparator1;
-        private PlotThemeDropDownButton _PlotThemeDropDownButton1;
+        private NKnife.MeterKnife.Workbench.Dialogs.Plots.PlotThemeDropDownButton _PlotThemeDropDownButton1;
         private ToolStrip _DataToolStrip;
         private ToolStripButton _SetDataSeriesToolStripButton;
     }

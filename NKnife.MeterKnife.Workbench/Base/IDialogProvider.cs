@@ -7,7 +7,7 @@ using NKnife.Interface;
 
 namespace NKnife.MeterKnife.Workbench.Base
 {
-    public interface IDialogService : IEnvironmentItem
+    public interface IDialogProvider
     {
         T New<T>();
     }

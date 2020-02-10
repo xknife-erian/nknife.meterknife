@@ -10,9 +10,9 @@ namespace NKnife.MeterKnife.Workbench
     {
         private readonly List<IEnvironmentItem> _envItemList = new List<IEnvironmentItem>();
 
-        public AppManager(IDialogService dialogService, IFileService fileService)
+        public AppManager(IFileService fileService)
         {
-            _envItemList.AddRange(new IEnvironmentItem[]{dialogService, fileService});
+            _envItemList.AddRange(new IEnvironmentItem[]{ fileService});
             _envItemList.Sort((x, y) => x.Order.CompareTo(y.Order));
         }
 
