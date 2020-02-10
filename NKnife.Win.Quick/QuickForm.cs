@@ -194,6 +194,26 @@ namespace NKnife.Win.Quick
         public string GithubUpdateUser { get; set; }
         public string GithubUpdateProject { get; set; }
 
+        /// <summary>
+        ///     尝试获取指定Key的使用习惯的值
+        /// </summary>
+        public Func<string, string, object> GetHabitValueFunc { get; protected set; }
+
+        /// <summary>
+        ///     设置指定Key的使用习惯的值，值对象序列化成Json保存
+        /// </summary>
+        public Action<string, object> SetHabitAction { get; protected set; }
+
+        /// <summary>
+        ///     尝试获取指定Key的选项的值
+        /// </summary>
+        public Func<string, string, object> GetOptionValueFunc { get; protected set; }
+
+        /// <summary>
+        ///     设置指定Key的选项的值，值对象序列化成Json保存
+        /// </summary>
+        public Action<string, object> SetOptionAction { get; protected set; }
+
         #endregion
     }
 }

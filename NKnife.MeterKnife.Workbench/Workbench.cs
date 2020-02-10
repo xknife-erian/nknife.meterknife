@@ -17,12 +17,16 @@ namespace NKnife.MeterKnife.Workbench
 {
     public class Workbench : QuickForm
     {
-        private IHabitManager _habitManager;
+        private readonly IHabitManager _habitManager;
         private MeasureView _measureView;
 
         public Workbench(IHabitManager habitManager, MeasureView measureView)
         {
             _habitManager = habitManager;
+            GetHabitValueFunc = _habitManager.GetHabitValue;
+            SetHabitAction = _habitManager.SetHabitValue;
+            GetOptionValueFunc = _habitManager.GetOptionValue;
+            SetOptionAction = _habitManager.SetOptionValue;
             _measureView = measureView;
             GithubUpdateUser = "xknife-erian";
             GithubUpdateProject = "nknife.serial-protocol-debugger";
@@ -35,18 +39,59 @@ namespace NKnife.MeterKnife.Workbench
             file.DropDownItems.Insert(0, new ToolStripSeparator());
             file.DropDownItems.Insert(0, GetItem());
 
-            BindMainMenu(file, new DataMenuItem(), new MeasureMenuItem(), new ToolMenuItem(), new ViewMenuItem(), new HelpMenuItem());
+            var themeName = habitManager.GetHabitValue("MainTheme", nameof(VS2015BlueTheme));
+            var viewMenu = new ViewMenuItem();
+            viewMenu.SetActiveTheme(themeName);
+            ActiveDockPanelTheme(themeName);
+            BindMainMenu(file, new DataMenuItem(), new MeasureMenuItem(), new ToolMenuItem(), viewMenu, new HelpMenuItem());
             BindTrayMenu(GetItem(), GetItem());
 #if DEBUG
             BindMainMenu(GetDebugMenu());
 #endif
         }
 
-        private ToolStripMenuItem GetItem()
+        private void ActiveDockPanelTheme(string themeName)
         {
-            var t = new ToolStripMenuItem("Abc");
-            t.Click += (s, e) => { MessageBox.Show("Test"); };
-            return t;
+            switch (themeName)
+            {
+                case nameof(VS2015BlueTheme):
+                default:
+                    MainDockPanel.Theme = new VS2015BlueTheme();
+                    break;
+                case nameof(VS2015DarkTheme):
+                    MainDockPanel.Theme = new VS2015DarkTheme();
+                    break;
+                case nameof(VS2015LightTheme):
+                    MainDockPanel.Theme = new VS2015LightTheme();
+                    break;
+                case nameof(VS2013BlueTheme):
+                    MainDockPanel.Theme = new VS2013BlueTheme();
+                    break;
+                case nameof(VS2013DarkTheme):
+                    MainDockPanel.Theme = new VS2013DarkTheme();
+                    break;
+                case nameof(VS2013LightTheme):
+                    MainDockPanel.Theme = new VS2013LightTheme();
+                    break;
+                case nameof(VS2012BlueTheme):
+                    MainDockPanel.Theme = new VS2012BlueTheme();
+                    break;
+                case nameof(VS2012DarkTheme):
+                    MainDockPanel.Theme = new VS2012DarkTheme();
+                    break;
+                case nameof(VS2012LightTheme):
+                    MainDockPanel.Theme = new VS2012LightTheme();
+                    break;
+                case nameof(VS2005MultithreadingTheme):
+                    MainDockPanel.Theme = new VS2005MultithreadingTheme();
+                    break;
+                case nameof(VS2005Theme):
+                    MainDockPanel.Theme = new VS2005Theme();
+                    break;
+                case nameof(VS2003Theme):
+                    MainDockPanel.Theme = new VS2003Theme();
+                    break;
+            }
         }
 
 #if DEBUG
@@ -60,6 +105,13 @@ namespace NKnife.MeterKnife.Workbench
             };
             debug.DropDownItems.Add(plot);
             return debug;
+        }
+
+        private ToolStripMenuItem GetItem()
+        {
+            var t = new ToolStripMenuItem("Abc");
+            t.Click += (s, e) => { MessageBox.Show("Test"); };
+            return t;
         }
 #endif
     }

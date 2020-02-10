@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Logic;
 using NKnife.Win.Forms.Forms;
 using NKnife.Win.Quick.Base;
 using NKnife.MeterKnife.Workbench.Base;
@@ -13,13 +15,16 @@ namespace NKnife.MeterKnife.App
         private static readonly Logger _Logger = LogManager.GetCurrentClassLogger();
         private readonly IAppManager _appManager;
         private readonly IWorkbench _workbench;
+        private readonly IHabitManager _habitManager;
 
-        public Startup(IWorkbench workbench, IAppManager appManager)
+        public Startup(IHabitManager habitManager, IWorkbench workbench, IAppManager appManager)
         {
-            Application.ApplicationExit += OnApplicationExit;
+            Global.Culture = habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
+            _habitManager = habitManager;
             _workbench = workbench;
             _appManager = appManager;
             LoadEnvironment();
+            Application.ApplicationExit += OnApplicationExit;
         }
 
         private void LoadEnvironment()
