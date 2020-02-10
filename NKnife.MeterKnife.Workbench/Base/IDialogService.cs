@@ -9,5 +9,6 @@ namespace NKnife.MeterKnife.Workbench.Base
 {
     public interface IDialogService : IEnvironmentItem
     {
+        T New<T>();
     }
 }

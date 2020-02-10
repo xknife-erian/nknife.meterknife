@@ -21,7 +21,6 @@ namespace NKnife.Win.Quick
 
         public QuickForm()
         {
-            this.Res("有新版本建议更新"); this.Res("有新版本可以更新"); this.Res("远程更新失败"); this.Res("就绪");
             InitializeComponent();
             InitializeDockPanel();
             InitializeFont();
@@ -134,9 +133,13 @@ namespace NKnife.Win.Quick
         /// <param name="e">包含事件数据的 <see cref="T:System.EventArgs" />。</param>
         protected override void OnClosed(EventArgs e)
         {
-            _notifyIcon.ContextMenuStrip.Close();
-            _notifyIcon.Visible = false;
-            _notifyIcon.Dispose();
+            if (_notifyIcon != null)
+            {
+                _notifyIcon.ContextMenuStrip?.Close();
+                _notifyIcon.Visible = false;
+                _notifyIcon.Dispose();
+            }
+
             base.OnClosed(e);
         }
 

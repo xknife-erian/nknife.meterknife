@@ -38,10 +38,14 @@ namespace NKnife.MeterKnife.App
                 mainWorkbench.Shown += (s, e) =>
                 {
                     Splasher.Status = "主控台即将载入完成...";
-                    Thread.Sleep(1000 * 2);
+                    Thread.Sleep(100 * 12);
                     Splasher.Close();
                     mainWorkbench.Activate();
                     _Logger.Info("主控台载入完成.");
+                };
+                mainWorkbench.Closed += (s, e) =>
+                {
+                    Application.Exit();
                 };
                 mainWorkbench.Show();
                 mainWorkbench.Refresh();

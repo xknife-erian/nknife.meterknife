@@ -63,6 +63,9 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -92,7 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MeasureViewModel.cs" />
+    <Compile Include="Plots\PlainPolyLinePlot.cs" />
+    <Compile Include="Plots\PlotSeriesStyle.cs" />
+    <Compile Include="Plots\PlotSeriesStyleSolution.cs" />
+    <Compile Include="Plots\PlotTheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelHelper.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -119,14 +127,11 @@
       <Project>{179bf1b0-6fb7-4a63-8023-2bdfe44ad7eb}</Project>
       <Name>NKnife.MeterKnife.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NKnife.MeterKnife.Plots\NKnife.MeterKnife.Plots.csproj">
-      <Project>{0b2cb4c1-2373-469c-b4bb-b6d810f7a151}</Project>
-      <Name>NKnife.MeterKnife.Plots</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NKnife.MeterKnife.Util\NKnife.MeterKnife.Util.csproj">
       <Project>{c089e4a3-9545-441a-8e43-9fa1c2586c08}</Project>
       <Name>NKnife.MeterKnife.Util</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

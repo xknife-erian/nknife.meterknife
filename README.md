@@ -8,6 +8,7 @@
 ### 2020-1-14
 - 历时5年了，一直忙于工作，久久没有再更新软件，在群里见非常多的朋友都在使用这个软件，非常高兴，但也是非常遗憾，有相当多的功能没有实现，并且还留下来了不少设计缺陷和Bug。
 - 近几日，将时间规划了一下，决定今年认真升级MeterKnife平台。
+- 关于 MeterKnife Ant
   1. MeterKnife Ant版在Gitee上保持开源，主要面向仪器数据的基础采集与数据存储与分析；
   2. MeterKnife Ant采用.Net Framework4.6.2做为开发平台，放弃支持XP操作系统；
 - 关于 MeterKnife Professional

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using NKnife.MeterKnife.Base;
-using NKnife.MeterKnife.Plots;
-using NKnife.MeterKnife.Plots.Util;
+using NKnife.MeterKnife.ViewModels.Plots;
 using NLog;
 
 namespace NKnife.MeterKnife.ViewModels
@@ -14,8 +13,11 @@ namespace NKnife.MeterKnife.ViewModels
 
         public MeasureViewModel(IHabitManager habit)
         {
-            var themes = habit.GetHabitValue("PlotThemes", new List<PlotTheme>());
-            var usingTheme = habit.GetHabitValue<string>("UsingTheme", null);
+            var dvList = new List<PlotTheme>();
+            var dv = new PlotTheme();
+            dvList.Add(dv);
+            var themes = habit.GetHabitValue("PlotThemes", dvList);
+            var usingTheme = habit.GetHabitValue<string>("UsingTheme", dv.Name);
             foreach (var plotTheme in themes)
             {
                 if (plotTheme.Name == usingTheme)

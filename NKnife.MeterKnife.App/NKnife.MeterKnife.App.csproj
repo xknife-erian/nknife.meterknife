@@ -215,10 +215,6 @@
       <Project>{d4840da6-a26f-4eb4-b9a0-a15139709496}</Project>
       <Name>NKnife.MeterKnife.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NKnife.MeterKnife.Plots\NKnife.MeterKnife.Plots.csproj">
-      <Project>{0b2cb4c1-2373-469c-b4bb-b6d810f7a151}</Project>
-      <Name>NKnife.MeterKnife.Plots</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NKnife.MeterKnife.Storage\NKnife.MeterKnife.Storage.csproj">
       <Project>{60f3a5d4-64ec-4438-abd3-a73f8c5d19b7}</Project>
       <Name>NKnife.MeterKnife.Storage</Name>
@@ -241,6 +237,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="language.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Properties\MK_Welcome.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
