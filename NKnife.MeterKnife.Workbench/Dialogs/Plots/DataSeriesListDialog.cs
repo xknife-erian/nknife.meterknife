@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                 _solution.Styles.Clear();
                 foreach (ListViewItem item in _ListView.Items)
                 {
-                    var style = (PlotSeriesStyleSolution.ExhibitSeriesStyle) item.Tag;
+                    var style = (DUTSeriesStyle) item.Tag;
                     _solution.Styles.Add(style);
                 }
                 return _solution;
@@ -59,12 +59,12 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             }
         }
 
-        private static void ByStyle(PlotSeriesStyleSolution.ExhibitSeriesStyle style, ListViewItem item)
+        private static void ByStyle(DUTSeriesStyle style, ListViewItem item)
         {
             item.UseItemStyleForSubItems = false;
             item.Tag = style;
             item.SubItems.Clear();
-            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.Exhibit.ToString()));
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.DUT.ToString()));
             item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.SeriesLineStyle.ToString()));
             item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.Thickness.ToString(CultureInfo.InvariantCulture)));
 
@@ -96,8 +96,8 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
         private void _DeleteButton_Click(object sender, System.EventArgs e)
         {
             var item = _ListView.SelectedItems[0];
-            var style = (PlotSeriesStyleSolution.ExhibitSeriesStyle) item.Tag;
-            var dr = MessageBox.Show(this, $"确认删除{style.Exhibit}数据的显示样式？", "删除样式",
+            var style = (DUTSeriesStyle) item.Tag;
+            var dr = MessageBox.Show(this, $"确认删除{style.DUT}数据的显示样式？", "删除样式",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.Yes)
             {
@@ -119,7 +119,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             var index = item.Text;
             var dialog = new DataSeriesEditorDialog
             {
-                SeriesStyle = (PlotSeriesStyleSolution.ExhibitSeriesStyle) item.Tag
+                SeriesStyle = (DUTSeriesStyle) item.Tag
             };
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {

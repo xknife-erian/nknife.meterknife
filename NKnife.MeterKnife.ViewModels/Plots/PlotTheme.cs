@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <summary>
         ///     数据线颜色
         /// </summary>
-        public List<PlotSeriesStyle> SeriesStyles { get; set; } = new List<PlotSeriesStyle>();
+        public List<SeriesStyle> SeriesStyles { get; set; } = new List<SeriesStyle>();
         
         /// <summary>
         ///     顶部侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色

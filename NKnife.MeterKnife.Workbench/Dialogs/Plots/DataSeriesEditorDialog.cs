@@ -22,7 +22,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                 _ExhibitsComboBox.SelectedIndex = 0;
             }
 
-            foreach (var lineStyle in PlotSeriesStyle.GetAllLineStyles())
+            foreach (var lineStyle in LineStyleWrap.GetAllLineStyles())
             {
                 _LineStyleComboBox.Items.Add(lineStyle);
             }
@@ -40,21 +40,21 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             };
         }
 
-        private PlotSeriesStyleSolution.ExhibitSeriesStyle _seriesStyle;
+        private DUTSeriesStyle _seriesStyle;
 
-        public PlotSeriesStyleSolution.ExhibitSeriesStyle SeriesStyle
+        public DUTSeriesStyle SeriesStyle
         {
             get
             {
-                var s = new PlotSeriesStyle();
+                var s = new SeriesStyle();
                 s.Color = _LineColor.Color;
                 s.Thickness = (double) _ThicknessNumericUpDown.Value;
-                s.SeriesLineStyle = (PlotSeriesStyle.LineStyleWrap) _LineStyleComboBox.SelectedItem;
+                s.SeriesLineStyle = (LineStyleWrap) _LineStyleComboBox.SelectedItem;
                 s.Offset = (double) _OffsetNumericUpDown.Value;
                 // if (_seriesStyle != null) //当修改一个Style时
                 //     _seriesStyle.SeriesStyle = s;
                 // else//当新建一个Style时
-                //     _seriesStyle = new PlotSeriesStyleSolution.ExhibitSeriesStyle((ExhibitBase) _ExhibitsComboBox.SelectedItem, s);
+                //     _seriesStyle = new PlotSeriesStyleSolution.DUTSeriesStyle((ExhibitBase) _ExhibitsComboBox.SelectedItem, s);
                 return _seriesStyle;
             }
             set
@@ -66,7 +66,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                     // var exhibit = item as ExhibitBase;
                     // if (exhibit == null)
                     //     continue;
-                    // if (exhibit.Equals(value.Exhibit))
+                    // if (exhibit.Equals(value.DUT))
                     // {
                     //     _ExhibitsComboBox.SelectedItem = exhibit;
                     //     _ExhibitsComboBox.Enabled = false;//被测物不可修改
@@ -77,7 +77,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                 _ThicknessNumericUpDown.Value = (decimal) value.SeriesStyle.Thickness;
                 _OffsetNumericUpDown.Value = (decimal) value.SeriesStyle.Offset;
                 _LineColor.Color = value.SeriesStyle.Color;
-                _MainGroupBox.Text = $"数据线样式设置({value.Exhibit})";
+                _MainGroupBox.Text = $"数据线样式设置({value.DUT})";
                 _seriesStyle = value;
             }
         }
@@ -94,7 +94,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                 while (i < _ExhibitsComboBox.Items.Count)
                 {
                     // var exhibit = _ExhibitsComboBox.Items[i] as ExhibitBase;
-                    // if (style.Exhibit.Equals(exhibit))
+                    // if (style.DUT.Equals(exhibit))
                     // {
                     //     _ExhibitsComboBox.Items.RemoveAt(i);
                     //     break;

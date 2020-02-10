@@ -10,6 +10,7 @@ namespace NKnife.MeterKnife.Logic.IoC
         {
             builder.RegisterType<Logic.Kernel>().As<IGlobal>().SingleInstance();
             builder.RegisterType<AntService>().As<IAntService>().SingleInstance();
+            builder.RegisterType<MeasureService>().As<IMeasureService>().SingleInstance();
 
             builder.RegisterType<PerformStorageLogic>().As<IPerformStorageLogic>().SingleInstance();
             builder.RegisterType<EngineeringLogic>().As<IEngineeringLogic>().SingleInstance();

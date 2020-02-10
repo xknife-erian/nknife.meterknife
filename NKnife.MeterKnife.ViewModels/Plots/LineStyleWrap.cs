@@ -5,24 +5,34 @@ using OxyPlot;
 
 namespace NKnife.MeterKnife.ViewModels.Plots
 {
-    public class PlotSeriesStyle
+    /// <summary>
+    ///     将数据线样式，和对样式的中文描述封装类(结构体)
+    /// </summary>
+    public struct LineStyleWrap
     {
-        public Color Color { get; set; } = AllSeriesColors[0];
-        public double Offset { get; set; } = 0;
+        public LineStyleWrap(LineStyle lineStyle, string text)
+        {
+            Text = text;
+            LineStyle = lineStyle;
+        }
 
-        /// <summary>
-        ///     数据线线径
-        /// </summary>
-        public double Thickness { get; set; } = 1.8;
+        public string Text { get; set; }
+        public LineStyle LineStyle { get; set; }
 
-        public LineStyleWrap SeriesLineStyle { get; set; } = LineStyleWrap.Default;
+        public static LineStyleWrap Default => new LineStyleWrap(LineStyle.Solid, "实线");
+
+        public override string ToString()
+        {
+            return Text;
+        }
 
         private static ReadOnlyCollection<Color> _allColors;
+        private static LineStyleWrap[] _lineStyleWraps;
 
         /// <summary>
-        /// 获取预置的折线图数据线的颜色，共13种易识别颜色
+        ///     获取预置的折线图数据线的颜色，共13种易识别颜色
         /// </summary>
-        public static ReadOnlyCollection<Color> AllSeriesColors
+        public static ReadOnlyCollection<Color> AllLineColors
         {
             get
             {
@@ -77,46 +87,21 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         }
 
         /// <summary>
-        /// 获取常用的数据线样式集合
+        ///     获取常用的数据线样式集合
         /// </summary>
         /// <returns></returns>
         public static ReadOnlyCollection<LineStyleWrap> GetAllLineStyles()
         {
-            var lineStyleWraps = new LineStyleWrap[5];
-            lineStyleWraps[0] = Build(LineStyle.Solid);
-            lineStyleWraps[1] = Build(LineStyle.Dot);
-            lineStyleWraps[2] = Build(LineStyle.Dash);
-            lineStyleWraps[3] = Build(LineStyle.LongDash);
-            lineStyleWraps[4] = Build(LineStyle.LongDashDot);
-            return Array.AsReadOnly(lineStyleWraps);
-        }
-
-        /// <summary>
-        /// 将数据线样式，和对样式的中文描述封装类(结构体)
-        /// </summary>
-        public struct LineStyleWrap
-        {
-            public LineStyleWrap(LineStyle lineStyle, string text)
+            if (_lineStyleWraps == null)
             {
-                Text = text;
-                LineStyle = lineStyle;
+                _lineStyleWraps = new LineStyleWrap[5];
+                _lineStyleWraps[0] = Build(LineStyle.Solid);
+                _lineStyleWraps[1] = Build(LineStyle.Dot);
+                _lineStyleWraps[2] = Build(LineStyle.Dash);
+                _lineStyleWraps[3] = Build(LineStyle.LongDash);
+                _lineStyleWraps[4] = Build(LineStyle.LongDashDot);
             }
-
-            public string Text { get; set; }
-            public LineStyle LineStyle { get; set; }
-
-            public static LineStyleWrap Default => new LineStyleWrap(LineStyle.Solid, "实线");
-
-            #region Overrides of ValueType
-
-            /// <summary>返回该实例的完全限定类型名。</summary>
-            /// <returns>包含完全限定类型名的 <see cref="T:System.String" />。</returns>
-            public override string ToString()
-            {
-                return Text;
-            }
-
-            #endregion
+            return Array.AsReadOnly(_lineStyleWraps);
         }
     }
 }

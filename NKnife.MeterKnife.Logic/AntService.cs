@@ -101,7 +101,7 @@ namespace NKnife.MeterKnife.Logic
                 {
                     if (!_connMap.ContainsKey(command.Slot))
                     {
-                        _Logger.Warn($"未Binding的Slot和他的IDataConnector,跳过{command}\r\n{command.Slot}");
+                        _Logger.Warn($"未Binding的Slot与对应的IDataConnector,跳过{command}\r\n{command.Slot}");
                         continue;
                     }
 

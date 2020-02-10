@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Data;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Util;
 
-namespace NKnife.MeterKnife.Common.Base
+namespace NKnife.MeterKnife.Base
 {
     /// <summary>
     ///     一个描述采集数据源的接口

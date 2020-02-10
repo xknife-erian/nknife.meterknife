@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using NKnife.Interface;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Workbench.Base;
 
 namespace NKnife.MeterKnife.Workbench
@@ -10,23 +10,23 @@ namespace NKnife.MeterKnife.Workbench
     {
         private readonly List<IEnvironmentItem> _envItemList = new List<IEnvironmentItem>();
 
-        public AppManager(IFileService fileService)
+        public AppManager(IFileService fileService, IMeasureService measureService)
         {
-            _envItemList.AddRange(new IEnvironmentItem[]{ fileService});
+            _envItemList.AddRange(new IEnvironmentItem[] {fileService, measureService});
             _envItemList.Sort((x, y) => x.Order.CompareTo(y.Order));
         }
 
         /// <summary>
         ///     加载核心服务及插件
-        /// </summary>       
+        /// </summary>
         public void LoadCoreService(Action<string> displayMessage)
         {
-            for (int i = 0; i < _envItemList.Count; i++)
+            foreach (var item in _envItemList)
             {
-                var item = _envItemList[i];
                 displayMessage($"加载{item.Description}...");
                 item.StartService();
             }
+
             displayMessage("加载核心服务及插件完成,关闭欢迎界面.");
         }
 
@@ -35,10 +35,7 @@ namespace NKnife.MeterKnife.Workbench
         /// </summary>
         public void UnloadCoreService()
         {
-            for (int i = _envItemList.Count - 1; i >= 0; i--)
-            {
-                _envItemList[i].CloseService();
-            }
+            for (var i = _envItemList.Count - 1; i >= 0; i--) _envItemList[i].CloseService();
         }
     }
 }

@@ -95,8 +95,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MeasureViewModel.cs" />
+    <Compile Include="Plots\DUTSeriesStyle.cs" />
+    <Compile Include="Plots\LineStyleWrap.cs" />
     <Compile Include="Plots\PlainPolyLinePlot.cs" />
-    <Compile Include="Plots\PlotSeriesStyle.cs" />
+    <Compile Include="Plots\SeriesStyle.cs" />
     <Compile Include="Plots\PlotSeriesStyleSolution.cs" />
     <Compile Include="Plots\PlotTheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

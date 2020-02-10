@@ -4,22 +4,23 @@ using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Common.Tunnels.Handlers
 {
-    // ReSharper disable once InconsistentNaming
     public class DUTProtocolHandler : CareProtocolHandler
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly IPerformStorageLogic _dataLogic;
+        private readonly IMeasureService _measureService;
 
-        public DUTProtocolHandler(IPerformStorageLogic dataLogic)
+        public DUTProtocolHandler(IPerformStorageLogic dataLogic, IMeasureService measureService)
         {
             _dataLogic = dataLogic;
+            _measureService = measureService;
             Commands.Add(new byte[] { 0xAA, 0x00 });
             Commands.Add(new byte[] { 0xAB, 0x00 });
             //---
             Commands.Add(new byte[] { 0xAA, 0x01 });
         }
 
-        public override async void Received(CareTalking protocol)
+        public override void Received(CareTalking protocol)
         {
             if (!string.IsNullOrEmpty(protocol.Scpi))
             {
@@ -27,7 +28,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
                 if (double.TryParse(protocol.Scpi, out var value))
                 {
                     _Logger.Trace($"{protocol.DUT} > {value}");
-                    await _dataLogic.ProcessAsync(dut, new MeasureData() { Time = DateTime.Now, Data = value });
+                    _measureService.AddValue(dut, new MeasureData { Time = DateTime.Now, Data = value });
                 }
             }
         }

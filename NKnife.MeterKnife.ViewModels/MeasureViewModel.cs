@@ -17,7 +17,7 @@ namespace NKnife.MeterKnife.ViewModels
             var dv = new PlotTheme();
             dvList.Add(dv);
             var themes = habit.GetHabitValue("PlotThemes", dvList);
-            var usingTheme = habit.GetHabitValue<string>("UsingTheme", dv.Name);
+            var usingTheme = habit.GetHabitValue("UsingTheme", dv.Name);
             foreach (var plotTheme in themes)
             {
                 if (plotTheme.Name == usingTheme)
@@ -36,6 +36,18 @@ namespace NKnife.MeterKnife.ViewModels
             {
                 Set(() => SeriesStyleSolution, ref _seriesStyleSolution, value);
                 Plot.SetSeries(value.Styles.ToArray());
+            }
+        }
+
+        private void OnMeasured(object sender, MeasureEventArgs e)
+        {
+            var index = _seriesStyleSolution.IndexOf(e.DUT.Item2.Id);
+            _Logger.Trace($"数据Index:{index},{e.DUT}");
+            if (index >= 0)
+            {
+                var style = _seriesStyleSolution.Styles[index].SeriesStyle;
+                Plot.AddValues(index, e.Data.Data + style.Offset);
+                OnPlotModelUpdated();
             }
         }
 

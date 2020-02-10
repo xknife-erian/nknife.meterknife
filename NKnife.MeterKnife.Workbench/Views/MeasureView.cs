@@ -12,13 +12,13 @@ namespace NKnife.MeterKnife.Workbench.Views
     public partial class MeasureView : DockContent
     {
         private readonly MeasureViewModel _viewModel;
-        private readonly IDialogProvider _dialogService;
+        private readonly IDialogProvider _dialogProvider;
 
-        public MeasureView(MeasureViewModel viewModel, IDialogProvider dialogService)
+        public MeasureView(MeasureViewModel viewModel, IDialogProvider dialogProvider)
         {
-            _viewModel = viewModel;
-            _dialogService = dialogService;
             InitializeComponent();
+            _dialogProvider = dialogProvider;
+            _viewModel = viewModel;
             _PlotView.Model = _viewModel.Plot.GetPlotModel();
             _PlotView.BackColor = _viewModel.Plot.PlotTheme.ViewBackground;
             _viewModel.PlotModelUpdated += (s, e) => { _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true)); };
@@ -48,14 +48,9 @@ namespace NKnife.MeterKnife.Workbench.Views
             }
         }
 
-        public void AddDataToolStripItem(ToolStripMenuItem item)
-        {
-            _DataToolStrip.Items.Add(item);
-        }
-
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
-            var dialog = _dialogService.New<DataSeriesListDialog>();
+            var dialog = _dialogProvider.New<DataSeriesListDialog>();
             dialog.Solution = _viewModel.SeriesStyleSolution;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {

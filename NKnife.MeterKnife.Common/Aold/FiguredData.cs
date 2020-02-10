@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using MathNet.Numerics.Statistics;
 using NKnife.MeterKnife.Base;
-using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Util;
 
 namespace NKnife.MeterKnife.Common.Domain

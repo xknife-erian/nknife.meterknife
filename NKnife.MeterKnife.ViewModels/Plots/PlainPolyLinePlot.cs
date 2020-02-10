@@ -96,7 +96,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// 增加数据线
         /// </summary>
         /// <param name="styles">数据线的样式</param>
-        public void SetSeries(params PlotSeriesStyleSolution.ExhibitSeriesStyle[] styles)
+        public void SetSeries(params DUTSeriesStyle[] styles)
         {
             _plotModel.Series.Clear();
             foreach (var style in styles)

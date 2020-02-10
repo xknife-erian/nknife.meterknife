@@ -1,5 +1,4 @@
 ﻿// ReSharper disable once CheckNamespace
-
 namespace NKnife.MeterKnife.Base
 {
     /// <summary>

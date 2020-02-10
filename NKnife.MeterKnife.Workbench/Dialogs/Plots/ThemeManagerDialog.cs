@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
 //                }
 //                if (_SeriesListComboBox.Items.Count <= 0)
 //                {
-//                    var item = new PlotTheme.PlotSeriesStyle();
+//                    var item = new PlotTheme.SeriesStyle();
 //                    PlotTheme.SeriesStyles.AddValues(item);
 //                    _SeriesListComboBox.Items.AddValues(item);
 //                }
@@ -48,7 +48,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             };
 //            _SeriesListComboBox.SelectedIndexChanged += (s, e) =>
 //            {
-//                var seriesStyle = (PlotTheme.PlotSeriesStyle) _SeriesListComboBox.SelectedItem;
+//                var seriesStyle = (PlotTheme.SeriesStyle) _SeriesListComboBox.SelectedItem;
 //                _SeriesColor.Color = seriesStyle.Color;
 //                _SeriesThickness.Value = (decimal) seriesStyle.Thickness;
 //            };

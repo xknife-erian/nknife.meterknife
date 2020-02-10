@@ -36,7 +36,7 @@ namespace NKnife.MeterKnife.Logic
         }
 
         /// <summary>
-        /// 根据发送源命令的关系获取被测物
+        ///     根据发送源命令的关系获取被测物
         /// </summary>
         /// <param name="relation">源命令的关系</param>
         /// <returns>被测物</returns>
@@ -46,7 +46,7 @@ namespace NKnife.MeterKnife.Logic
         }
 
         /// <summary>
-        /// 设置命令字与被测物的关系
+        ///     设置命令字与被测物的关系
         /// </summary>
         /// <param name="relation">源命令的关系</param>
         /// <param name="dut">被测物</param>
