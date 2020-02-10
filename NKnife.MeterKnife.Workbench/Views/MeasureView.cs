@@ -33,25 +33,6 @@ namespace NKnife.MeterKnife.Workbench.Views
             return _PlotView.Model;
         }
 
-        /// <summary>
-        /// 设置窗体的工作模式，是新建的测量，还是打开已有的测量
-        /// </summary>
-        /// <param name="isNewMeasure">true时是新建测量，false是打开已有的测量</param>
-        public void SetWorkModel(bool isNewMeasure)
-        {
-            if (isNewMeasure)
-            {
-            }
-            else
-            {
-            }
-        }
-
-        public void AddDataToolStripItem(ToolStripMenuItem item)
-        {
-            _DataToolStrip.Items.Add(item);
-        }
-
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
             var dialog = _dialogService.New<DataSeriesListDialog>();

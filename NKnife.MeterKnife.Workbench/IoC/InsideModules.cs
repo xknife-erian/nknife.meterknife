@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.Win.Quick.Base;
@@ -17,10 +12,12 @@ namespace NKnife.MeterKnife.Workbench.IoC
 
         /// <summary>Override to add registrations to the container.</summary>
         /// <remarks>
-        /// Note that the ContainerBuilder parameter is unique to this module.
+        ///     Note that the ContainerBuilder parameter is unique to this module.
         /// </remarks>
-        /// <param name="builder">The builder through which components can be
-        /// registered.</param>
+        /// <param name="builder">
+        ///     The builder through which components can be
+        ///     registered.
+        /// </param>
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
@@ -34,18 +31,16 @@ namespace NKnife.MeterKnife.Workbench.IoC
 
             var assembly = typeof(Workbench).Assembly;
             builder.RegisterAssemblyTypes(assembly)
-                .Where(t => !t.IsAbstract && (t.Name.EndsWith("Dialog")))
+                .Where(t => !t.IsAbstract && t.Name.EndsWith("Dialog"))
                 .AsImplementedInterfaces()
-                .AsSelf()
-                .SingleInstance();
+                .AsSelf();
             builder.RegisterAssemblyTypes(assembly)
-                .Where(t => !t.IsAbstract && (t.Name.EndsWith("View")))
+                .Where(t => !t.IsAbstract && t.Name.EndsWith("View"))
                 .AsImplementedInterfaces()
-                .AsSelf()
-                .SingleInstance();
+                .AsSelf();
             assembly = typeof(ViewModelHelper).Assembly;
             builder.RegisterAssemblyTypes(assembly)
-                .Where(t => !t.IsAbstract && (t.Name.EndsWith("ViewModel")))
+                .Where(t => !t.IsAbstract && t.Name.EndsWith("ViewModel"))
                 .AsImplementedInterfaces()
                 .AsSelf();
         }
