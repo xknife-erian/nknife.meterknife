@@ -35,7 +35,8 @@ namespace NKnife.MeterKnife.Workbench
         /// </summary>
         public void UnloadCoreService()
         {
-            for (var i = _envItemList.Count - 1; i >= 0; i--) _envItemList[i].CloseService();
+            for (var i = _envItemList.Count - 1; i >= 0; i--)
+                _envItemList[i].CloseService();
         }
     }
 }

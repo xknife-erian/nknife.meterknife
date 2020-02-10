@@ -28,11 +28,11 @@ namespace NKnife.MeterKnife.Base
     /// </summary>
     public class MeasureEventArgs : EventArgs
     {
-        public MeasureEventArgs(DateTime time, (Engineering, DUT) dut, MeasureData data)
+        public MeasureEventArgs(DateTime time, (Engineering, DUT) dut, MeasureData measurements)
         {
             Time = time;
             DUT = dut;
-            Data = data;
+            Measurements = measurements;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace NKnife.MeterKnife.Base
         /// <summary>
         /// 测量值
         /// </summary>
-        public MeasureData Data { get; set; }
+        public MeasureData Measurements { get; set; }
 
     }
 }

@@ -27,26 +27,26 @@ namespace NKnife.MeterKnife.ViewModels
             }
         }
 
-        private PlotSeriesStyleSolution _seriesStyleSolution = new PlotSeriesStyleSolution();
+        private PlotSeriesStyleSolution _solution = new PlotSeriesStyleSolution();
 
         public PlotSeriesStyleSolution SeriesStyleSolution
         {
-            get => _seriesStyleSolution;
+            get => _solution;
             set
             {
-                Set(() => SeriesStyleSolution, ref _seriesStyleSolution, value);
-                Plot.SetSeries(value.Styles.ToArray());
+                Set(() => SeriesStyleSolution, ref _solution, value);
+                Plot.SetSeries(value.ToArray());
             }
         }
 
         private void OnMeasured(object sender, MeasureEventArgs e)
         {
-            var index = _seriesStyleSolution.IndexOf(e.DUT.Item2.Id);
+            var index = _solution.IndexOf(e.DUT.Item2.Id);
             _Logger.Trace($"数据Index:{index},{e.DUT}");
             if (index >= 0)
             {
-                var style = _seriesStyleSolution.Styles[index].SeriesStyle;
-                Plot.AddValues(index, e.Data.Data + style.Offset);
+                var style = _solution[index].SeriesStyle;
+                Plot.AddValues(index, e.Measurements.Data + style.Offset);
                 OnPlotModelUpdated();
             }
         }

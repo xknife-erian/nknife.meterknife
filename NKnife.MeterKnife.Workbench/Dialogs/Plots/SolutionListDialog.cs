@@ -14,28 +14,26 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
 {
     public partial class SolutionListDialog : SimpleForm
     {
-        private IHabitManager _habits;
         public SolutionListDialog(IHabitManager habits)
         {
-            _habits = habits;
             InitializeComponent();
             //_NameTextBox.Enabled = isSave;
-            var list = _habits.GetOptionValue("SeriesStyleSolutionList", new List<PlotSeriesStyleSolution>());
+            var list = habits.GetOptionValue("SeriesStyleSolutionList", new List<PlotSeriesStyleSolution>());
             for (int i = 0; i < list.Count; i++)
             {
                 var solution = list[i];
                 var viewitem = new ListViewItem($"{i+1}");
                 viewitem.Tag = solution;
-                var subitem = new ListViewItem.ListViewSubItem(viewitem, solution.SolutionName);
+                var subitem = new ListViewItem.ListViewSubItem(viewitem, solution.Name);
                 viewitem.SubItems.Add(subitem);
-                subitem = new ListViewItem.ListViewSubItem(viewitem, $"{solution.Styles.Count}");
+                subitem = new ListViewItem.ListViewSubItem(viewitem, $"{solution.Count}");
                 viewitem.SubItems.Add(subitem);
                 _ListView.Items.Add(viewitem);
             }
             _ListView.SelectedIndexChanged += (s, e) =>
             {
                 if (_ListView.SelectedItems.Count > 0)
-                    _NameTextBox.Text = ((PlotSeriesStyleSolution) _ListView.SelectedItems[0].Tag).SolutionName;
+                    _NameTextBox.Text = ((PlotSeriesStyleSolution) _ListView.SelectedItems[0].Tag).Name;
             };
         }
 

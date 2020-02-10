@@ -37,11 +37,11 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
         {
             get
             {
-                _solution.Styles.Clear();
+                _solution.Clear();
                 foreach (ListViewItem item in _ListView.Items)
                 {
                     var style = (DUTSeriesStyle) item.Tag;
-                    _solution.Styles.Add(style);
+                    _solution.Add(style);
                 }
                 return _solution;
             }
@@ -49,7 +49,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             {
                 _solution = value;
                 var i = 1;
-                foreach (var style in value.Styles)
+                foreach (var style in value)
                 {
                     var listItem = new ListViewItem();
                     ByStyle(style, listItem);
@@ -86,7 +86,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                 ByStyle(style, item);
                 item.Text = $"{_ListView.Items.Count + 1}";
                 _ListView.Items.Add(item);
-                _solution.Styles.Add(style); //向方案中添加样式
+                _solution.Add(style); //向方案中添加样式
                 _ListView.Select();
                 item.Selected = true;
             }
@@ -101,7 +101,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.Yes)
             {
-                if (_solution.Styles.Remove(style))
+                if (_solution.Remove(style))
                 {
                     _ListView.Items.Remove(item);
                     for (int i = 1; i <= _ListView.Items.Count; i++)
@@ -153,7 +153,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
 
         private void SaveSolution(string solutionName)
         {
-            Solution.SolutionName = solutionName;
+            Solution.Name = solutionName;
             var list = _habits.GetOptionValue("SeriesStyleSolutionList", new List<PlotSeriesStyleSolution>());
             list.Add(Solution);
             _habits.SetOptionValue("SeriesStyleSolutionList", list);
