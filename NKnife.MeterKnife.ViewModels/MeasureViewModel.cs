@@ -11,7 +11,8 @@ namespace NKnife.MeterKnife.ViewModels
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
-        private IMeasureService _measureService;
+        private readonly IMeasureService _measureService;
+
         public MeasureViewModel(IHabitManager habit, IMeasureService measureService)
         {
             _measureService = measureService;

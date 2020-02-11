@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Threading;
 using System.Threading.Tasks;
-using NKnife.Events;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Logic
 {
     /// <summary>
-    /// 面向全局的测量数据广播服务。该测量服务以事件方式，广播测量指令所采集到的数据。
+    ///     面向全局的测量数据广播服务。该测量服务以事件方式，广播测量指令所采集到的数据。
     /// </summary>
     public class MeasureService : IMeasureService
     {
@@ -46,7 +41,7 @@ namespace NKnife.MeterKnife.Logic
         /// <param name="data">数据</param>
         public void AddValue((Engineering, DUT) dut, MeasureData data)
         {
-            Task.Factory.StartNew(OnMeasured, new MeasureEventArgs(DateTime.Now, dut, data));
+            Task.Factory.StartNew(OnMeasured, new MeasureEventArgs(dut, data));
         }
 
         protected virtual void OnMeasured(object e)
@@ -55,6 +50,5 @@ namespace NKnife.MeterKnife.Logic
         }
 
         #endregion
-
     }
 }

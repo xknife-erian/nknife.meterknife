@@ -28,12 +28,17 @@ namespace NKnife.MeterKnife.Base
     /// </summary>
     public class MeasureEventArgs : EventArgs
     {
-        public MeasureEventArgs(DateTime time, (Engineering, DUT) dut, MeasureData measurements)
+        public MeasureEventArgs((Engineering, DUT) dut, MeasureData measurements)
         {
-            Time = time;
+            Time = DateTime.Now;
             DUT = dut;
             Measurements = measurements;
         }
+
+        /// <summary>
+        /// 数据分组
+        /// </summary>
+        public string Group { get; set; }
 
         /// <summary>
         /// 测量时的即时时间

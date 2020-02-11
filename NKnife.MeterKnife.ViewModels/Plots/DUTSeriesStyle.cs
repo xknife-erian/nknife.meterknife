@@ -34,6 +34,13 @@ namespace NKnife.MeterKnife.ViewModels.Plots
 
         #region Overrides of Object
 
+        /// <summary>返回表示当前对象的字符串。</summary>
+        /// <returns>表示当前对象的字符串。</returns>
+        public override string ToString()
+        {
+            return $"[{DUT}]:: {SeriesStyle}";
+        }
+
         /// <summary>确定指定的 <see cref="T:System.Object" /> 是否等于当前的 <see cref="T:System.Object" />。</summary>
         /// <returns>如果指定的 <see cref="T:System.Object" /> 等于当前的 <see cref="T:System.Object" />，则为 true；否则为 false。</returns>
         /// <param name="obj">与当前的 <see cref="T:System.Object" /> 进行比较的 <see cref="T:System.Object" />。</param>

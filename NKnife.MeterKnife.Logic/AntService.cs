@@ -99,7 +99,7 @@ namespace NKnife.MeterKnife.Logic
                 jobManager = new JobManager {Pool = new CareCommandPool {IsOverall = true}};
                 foreach (var command in engineering.Commands)
                 {
-                    if (!_connMap.ContainsKey(command.Slot))
+                    if (command.Slot == null || !_connMap.ContainsKey(command.Slot))
                     {
                         _Logger.Warn($"未Binding的Slot与对应的IDataConnector,跳过{command}\r\n{command.Slot}");
                         continue;

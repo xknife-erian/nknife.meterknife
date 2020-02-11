@@ -7,25 +7,33 @@ using NKnife.MeterKnife.Util.Tunnel;
 
 namespace NKnife.MeterKnife.Workbench.Debugs
 {
+
     public class SimpleMeasure
     {
         private Slot _slot;
+        public CareCommandPool Pool { get; private set; }
 
-        public async Task RunAsync(IAntService antService, IDataConnector connector, IEngineeringLogic engineeringLogic)
+        /*
+         * 启动采集的标准过程：
+         * 1. 构建一个采集槽（Slot)；
+         * 2. 在本软件的AntService中为该采集槽启用一个连接器（绑定）；
+         * 3. 创建一个工程；
+         * 4. 为这个工程创建运行外围（数据存储文件等）；
+         * 5. 从AntService中启动这个工程；
+         */
+
+        public void Init(IAntService antService, IDataConnector connector)
         {
-            /*
-             * 启动采集的标准过程：
-             * 1. 构建一个采集槽（Slot)；
-             * 2. 在本软件的AntService中为该采集槽启用一个连接器（绑定）；
-             * 3. 创建一个工程；
-             * 4. 为这个工程创建运行外围（数据存储文件等）；
-             * 5. 从AntService中启动这个工程；
-             */
             _slot = Slot.Build(TunnelType.Serial, $"4");
             antService.Bind((_slot, connector));
+            Pool = GetCommands();
+        }
+
+        public async Task RunAsync(IAntService antService, IEngineeringLogic engineeringLogic)
+        {
             var engineering = new Engineering
             {
-                Commands = GetCommands()
+                Commands = Pool
             };
             await engineeringLogic.CreateEngineering(engineering);
             await antService.StartAsync(engineering);
@@ -33,7 +41,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         private CareCommandPool GetCommands()
         {
-            var interval = 1000;
+            var interval = 200;
             var item1 = new CareCommand
             {
                 Slot = _slot,
@@ -65,8 +73,10 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             temp6.DUT = new DUT() { Id = "T2", Name = "24Temp" };
 
             var pool = new CareCommandPool();
-            pool.AddRange(new[] { item2, temp5, item1, temp6 });
+            //pool.AddRange(new[] { item2, temp5 });
+            pool.AddRange(new[] { item1, temp6 });
             return pool;
         }
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Util.Tunnel;
+using NKnife.MeterKnife.ViewModels.Plots;
 using NKnife.MeterKnife.Workbench.Views;
 using NKnife.Util;
 using NKnife.Win.Quick.Base;
@@ -34,9 +35,17 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 var form = debug.GetCurrentParent().FindForm();
                 if (form != null && form is IWorkbench wb)
                 {
-                    _measureView.Show(wb.MainDockPanel, DockState.Document);
                     var start = new SimpleMeasure();
-                    await start.RunAsync(_antService, _connector, _engineeringLogic);
+                    start.Init(_antService, _connector);
+                        var solution = new PlotSeriesStyleSolution();
+                    foreach (var cmd in start.Pool)
+                    {
+                        solution.Add(new DUTSeriesStyle(cmd.DUT.Id, new SeriesStyle()));
+                    }
+
+                    _measureView.ViewModel.SeriesStyleSolution = solution;
+                    _measureView.Show(wb.MainDockPanel, DockState.Document);
+                    await start.RunAsync(_antService, _engineeringLogic);
                 }
             };
             debug.DropDownItems.Add(plot);
