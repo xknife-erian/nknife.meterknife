@@ -53,6 +53,14 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             _timeAxis.Position = AxisPosition.Bottom;
             _timeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
 
+            var l1 = new LinearAxis() {Position = AxisPosition.Left};
+            l1.AxisDistance = 80;
+            l1.TextColor = ToOxyColor(Color.Lavender);
+            _plotModel.Axes.Add(l1);
+            var r1 = new LinearAxis() {Position = AxisPosition.Right};
+            r1.AxisDistance = -80;
+            r1.TextColor = ToOxyColor(Color.Lavender);
+            _plotModel.Axes.Add(r1);
             _plotModel.Axes.Add(_leftAxis);
             _plotModel.Axes.Add(_timeAxis);
         }

@@ -73,7 +73,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             temp6.DUT = new DUT() { Id = "T2", Name = "24Temp" };
 
             var pool = new CareCommandPool();
-            //pool.AddRange(new[] { item2, temp5 });
+            pool.AddRange(new[] { item2, temp5 });
             pool.AddRange(new[] { item1, temp6 });
             return pool;
         }
