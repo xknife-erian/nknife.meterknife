@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.Workbench.Base;
+using NKnife.MeterKnife.Workbench.Debugs;
 using NKnife.Win.Quick.Base;
 using NKnife.Win.Quick.Controls;
 
@@ -28,6 +29,8 @@ namespace NKnife.MeterKnife.Workbench.IoC
             builder.RegisterType<FileService>().As<IFileService>().SingleInstance();
             builder.RegisterType<DialogProvider>().As<IDialogProvider>().SingleInstance();
             builder.RegisterType<Workbench>().AsImplementedInterfaces().AsSelf().SingleInstance();
+
+            builder.RegisterType<DebuggerManager>().AsSelf().SingleInstance();
 
             var assembly = typeof(Workbench).Assembly;
             builder.RegisterAssemblyTypes(assembly)

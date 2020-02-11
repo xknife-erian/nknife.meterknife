@@ -1,31 +1,17 @@
 ﻿using System.Threading.Tasks;
-using CliFx;
-using CliFx.Attributes;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
-using NKnife.MeterKnife.Common.Tunnels.Care;
 using NKnife.MeterKnife.Util.Tunnel;
 
-namespace NKnife.MeterKnife.CLI.Commands
+namespace NKnife.MeterKnife.Workbench.Debugs
 {
-    [Command("ci", Description = "连接Care，采集数据。")]
-    public class CareCliCommand : BaseCommand
+    public class SimpleMeasure
     {
-        private readonly IAntService _antService;
-        private readonly IDataConnector _connector;
-        private readonly IEngineeringLogic _engineeringLogic;
         private Slot _slot;
 
-        public CareCliCommand(IAntService antService, IDataConnector dataConnector, IEngineeringLogic engineeringLogic)
-        {
-            _antService = antService;
-            _connector = dataConnector;
-            _engineeringLogic = engineeringLogic;
-        }
-
-        public override async ValueTask ExecuteAsync(IConsole console)
+        public async Task RunAsync(IAntService antService, IDataConnector connector, IEngineeringLogic engineeringLogic)
         {
             /*
              * 启动采集的标准过程：
@@ -35,14 +21,14 @@ namespace NKnife.MeterKnife.CLI.Commands
              * 4. 为这个工程创建运行外围（数据存储文件等）；
              * 5. 从AntService中启动这个工程；
              */
-            _slot = Slot.Build(TunnelType.Serial, $"{Port}");
-            _antService.Bind((_slot, _connector));
+            _slot = Slot.Build(TunnelType.Serial, $"4");
+            antService.Bind((_slot, connector));
             var engineering = new Engineering
             {
                 Commands = GetCommands()
             };
-            await _engineeringLogic.CreateEngineering(engineering);
-            await _antService.StartAsync(engineering);
+            await engineeringLogic.CreateEngineering(engineering);
+            await antService.StartAsync(engineering);
         }
 
         private CareCommandPool GetCommands()
@@ -51,35 +37,35 @@ namespace NKnife.MeterKnife.CLI.Commands
             var item1 = new CareCommand
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = "RES", Name = "520r|1K"},
+                DUT = new DUT() { Id = "RES", Name = "520r|1K" },
                 GpibAddress = 23,
-                Scpi = new Scpi {Command = "FETC?"},
+                Scpi = new Scpi { Command = "FETC?" },
 
                 Interval = interval,
-                Timeout = interval*2,
+                Timeout = interval * 2,
                 IsLoop = true
             };
             var item2 = new CareCommand
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = "VOLTAGE", Name = "10v" },
+                DUT = new DUT() { Id = "VOLTAGE", Name = "10v" },
                 GpibAddress = 24,
-                Scpi = new Scpi {Command = "READ?"},
+                Scpi = new Scpi { Command = "READ?" },
 
                 Interval = interval,
-                Timeout = interval*2,
+                Timeout = interval * 2,
                 IsLoop = true
             };
             var temp5 = CareScpiHelper.TEMP(5);
             temp5.Slot = _slot;
-            temp5.DUT = new DUT() {Id = "T1", Name = "23Temp"};
+            temp5.DUT = new DUT() { Id = "T1", Name = "23Temp" };
 
             var temp6 = CareScpiHelper.TEMP(6);
             temp6.Slot = _slot;
-            temp6.DUT = new DUT() {Id = "T2", Name = "24Temp"};
+            temp6.DUT = new DUT() { Id = "T2", Name = "24Temp" };
 
             var pool = new CareCommandPool();
-            pool.AddRange(new[] {item2,temp5,item1,   temp6});
+            pool.AddRange(new[] { item2, temp5, item1, temp6 });
             return pool;
         }
     }

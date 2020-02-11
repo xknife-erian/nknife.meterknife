@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Workbench.Debugs;
 using NKnife.MeterKnife.Workbench.Menus;
 using NKnife.MeterKnife.Workbench.Properties;
 using NKnife.MeterKnife.Workbench.Views;
@@ -12,9 +13,8 @@ namespace NKnife.MeterKnife.Workbench
     public class Workbench : QuickForm
     {
         private readonly IHabitManager _habitManager;
-        private readonly MeasureView _measureView;
 
-        public Workbench(IHabitManager habitManager, MeasureView measureView)
+        public Workbench(IHabitManager habitManager, DebuggerManager debuggerManager)
         {
             _habitManager = habitManager;
             GetHabitValueFunc = _habitManager.GetHabitValue;
@@ -23,6 +23,7 @@ namespace NKnife.MeterKnife.Workbench
             SetOptionAction = _habitManager.SetOptionValue;
             GithubUpdateUser = "xknife-erian";
             GithubUpdateProject = "nknife.serial-protocol-debugger";
+
             Icon = Resources.meterknife_24px;
             var notifyIcon = new NotifyIcon();
             notifyIcon.Icon = Resources.meterknife_48px;
@@ -30,7 +31,7 @@ namespace NKnife.MeterKnife.Workbench
 
             var fileMenuItem = new FileMenuItem();
             fileMenuItem.DropDownItems.Insert(0, new ToolStripSeparator());
-            fileMenuItem.DropDownItems.Insert(0, GetItem());
+            fileMenuItem.DropDownItems.Insert(0, DebuggerManager.GetDebugItem());
 
             var culture = habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
             var themeName = habitManager.GetHabitValue("MainTheme", nameof(VS2015BlueTheme));
@@ -39,11 +40,10 @@ namespace NKnife.MeterKnife.Workbench
             viewMenuItem.SetActiveTheme(themeName);
             ActiveDockPanelTheme(themeName);
             BindMainMenu(fileMenuItem, new DataMenuItem(), new MeasureMenuItem(), new ToolMenuItem(), viewMenuItem, new HelpMenuItem());
-            BindTrayMenu(GetItem(), GetItem());
+            BindTrayMenu(DebuggerManager.GetDebugItem(), DebuggerManager.GetDebugItem());
 #if DEBUG
-            BindMainMenu(GetDebugMenu());
+            BindMainMenu(debuggerManager.GetDebugMenu());
 #endif
-            _measureView = measureView;
         }
 
         private void ActiveDockPanelTheme(string themeName)
@@ -90,22 +90,5 @@ namespace NKnife.MeterKnife.Workbench
             }
         }
 
-#if DEBUG
-        private ToolStripMenuItem GetDebugMenu()
-        {
-            var debug = new ToolStripMenuItem("Debug");
-            var plot = new ToolStripMenuItem("Plot");
-            plot.Click += (s, e) => { _measureView.Show(MainDockPanel, DockState.Document); };
-            debug.DropDownItems.Add(plot);
-            return debug;
-        }
-
-        private ToolStripMenuItem GetItem()
-        {
-            var t = new ToolStripMenuItem("Abc");
-            t.Click += (s, e) => { MessageBox.Show("Test"); };
-            return t;
-        }
-#endif
     }
 }

@@ -11,8 +11,11 @@ namespace NKnife.MeterKnife.ViewModels
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
-        public MeasureViewModel(IHabitManager habit)
+        private IMeasureService _measureService;
+        public MeasureViewModel(IHabitManager habit, IMeasureService measureService)
         {
+            _measureService = measureService;
+
             var dvList = new List<PlotTheme>();
             var dv = new PlotTheme();
             dvList.Add(dv);
@@ -25,6 +28,8 @@ namespace NKnife.MeterKnife.ViewModels
                     Plot = new PlainPolyLinePlot(plotTheme);
                 }
             }
+
+            _measureService.Measured += OnMeasured;
         }
 
         private PlotSeriesStyleSolution _solution = new PlotSeriesStyleSolution();

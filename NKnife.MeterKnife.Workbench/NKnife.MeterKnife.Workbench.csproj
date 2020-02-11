@@ -139,6 +139,8 @@
     <Compile Include="Base\IFileService.cs" />
     <Compile Include="Base\IAppManager.cs" />
     <Compile Include="Base\IDialogProvider.cs" />
+    <Compile Include="Debugs\DebuggerManager.cs" />
+    <Compile Include="Debugs\SimpleMeasure.cs" />
     <Compile Include="Dialogs\Plots\DataSeriesEditorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -372,9 +374,7 @@
       <Name>NKnife.Win.Quick</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Debug\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\Images\ColorPicker.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_horizontal_zoom.png" />

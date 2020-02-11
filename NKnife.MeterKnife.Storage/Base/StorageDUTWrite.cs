@@ -52,7 +52,8 @@ namespace NKnife.MeterKnife.Storage.Base
             if (engineering == null)
                 return false;
             var conn = _storageManager.OpenConnection(engineering);
-            var sql = _sqlSet[GetSqlKey()].Insert;
+            var key = GetSqlKey();
+            var sql = _sqlSet[key].Insert;
             int i = 0;
             try
             {
@@ -76,9 +77,15 @@ namespace NKnife.MeterKnife.Storage.Base
                 return false;
             //根据不同的工程获取不同的数据库连接
             var conn = _storageManager.OpenConnection(dut.Item1);
-            var sql = _sqlSet[GetSqlKey()].Insert;
+            var key = GetSqlKey();
+            if (!_sqlSet.ContainsKey(key))
+            {
+                _Logger.Debug($"Sql预置语句不包含“{key}”的语句。{JsonConvert.SerializeObject(_sqlSet.Keys)}");
+                return false;
+            }
+            var sql = _sqlSet[key].Insert;
             //数据表的表名不再是实体名，而是被测物ID
-            sql = sql.Replace($"{typeof(T).Name}", dut.Item2.Id);
+            sql = sql.Replace($"{typeof(T).Name}", $"{dut.Item2.Id}s");
             int i = 0;
             try
             {
@@ -100,7 +107,8 @@ namespace NKnife.MeterKnife.Storage.Base
         public async Task<bool> InsertManyAsync((Engineering, DUT) dut, IEnumerable<T> domains)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
-            var sql = _sqlSet[GetSqlKey()].Insert;
+            var key = GetSqlKey();
+            var sql = _sqlSet[key].Insert;
             var i = await conn.ExecuteAsync(sql, domains);
             return i == domains.Count();
         }
@@ -113,7 +121,8 @@ namespace NKnife.MeterKnife.Storage.Base
         public async Task<bool> UpdateAsync((Engineering, DUT) dut, T domain)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
-            var sql = _sqlSet[GetSqlKey()].Update;
+            var key = GetSqlKey();
+            var sql = _sqlSet[key].Update;
             try
             {
                 IRecord<T> d = (IRecord<T>) domain;

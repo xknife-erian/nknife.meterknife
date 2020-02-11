@@ -41,7 +41,7 @@ namespace NKnife.MeterKnife.App
             var builder = new ContainerBuilder();
             builder.Populate(serviceCollection); //将.Net的注入移植进Autofac
 
-            builder.RegisterAssemblyModules(typeof(Logic.Kernel).Assembly);
+            builder.RegisterAssemblyModules(typeof(Kernel).Assembly);
             builder.RegisterAssemblyModules(typeof(Workbench.Workbench).Assembly);
             builder.RegisterType<Startup>().AsSelf();
 
