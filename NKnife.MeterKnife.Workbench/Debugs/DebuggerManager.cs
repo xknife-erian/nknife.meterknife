@@ -50,6 +50,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                         style.DUT = cmd.DUT.Id;
 
                         style.Axis = new LinearAxis();
+                        style.Axis.Key = cmd.DUT.Id;
                         style.Axis.AxisDistance = index * 60;
                         style.Axis.TextColor = DUTLinearPlot.ToOxyColor(Color.Lavender);
                         //style.Axis.MajorGridlineColor = DUTLinearPlot.ToOxyColor(Color.White);

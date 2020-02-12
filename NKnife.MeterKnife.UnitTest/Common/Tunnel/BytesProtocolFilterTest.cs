@@ -3,7 +3,7 @@ using FluentAssertions;
 using NKnife.MeterKnife.Util.Tunnel.Filters;
 using Xunit;
 
-namespace NKnife.MeterKnife.UnitTest.Util.Tunnel
+namespace NKnife.MeterKnife.UnitTest.Common.Tunnel
 {
     public class BytesProtocolFilterTest
     {

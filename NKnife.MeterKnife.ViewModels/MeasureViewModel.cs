@@ -44,7 +44,7 @@ namespace NKnife.MeterKnife.ViewModels
         private void OnMeasured(object sender, MeasureEventArgs e)
         {
             var index = _solution.IndexOf(e.DUT.Item2.Id);
-            _Logger.Trace($"数据Index:{index},{e.DUT}");
+            _Logger.Trace($"数据Index:{index},{e.Measurements.Data},{e.Time},{e.DUT},{e.Group}");
             if (index >= 0)
             {
                 LinearPlot.AddValues(index, e.Time, e.Measurements.Data + _solution[index].Offset);
