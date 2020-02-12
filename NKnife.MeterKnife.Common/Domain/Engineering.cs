@@ -17,7 +17,7 @@ namespace NKnife.MeterKnife.Common.Domain
     {
         public Engineering()
         {
-            Number = Guid.NewGuid().ToString("n");
+            Number = SequentialGuid.Create().ToString("N").ToUpper();
         }
 
         /// <summary>
@@ -44,6 +44,17 @@ namespace NKnife.MeterKnife.Common.Domain
         /// 工程的命令集合
         /// </summary>
         public CareCommandPool Commands { get; set; } = new CareCommandPool();
+
+        #region Overrides of Object
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return $"{Number}/{CreateTime}";
+        }
+
+        #endregion
 
         #region Implementation of ICloneable
 

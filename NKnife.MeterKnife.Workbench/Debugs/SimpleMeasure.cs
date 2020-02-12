@@ -41,7 +41,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         private CareCommandPool GetCommands()
         {
-            var interval = 200;
+            var interval = 1000;
             var item1 = new CareCommand
             {
                 Slot = _slot,

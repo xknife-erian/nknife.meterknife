@@ -23,5 +23,16 @@ namespace NKnife.MeterKnife.Common.Domain
         public DateTime CreateTime { get; set; }
         public string ImagePath { get; set; }
         public string ReportPath { get; set; }
+
+        #region Overrides of Object
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return $"{Id}/{Name}";
+        }
+
+        #endregion
     }
 }
