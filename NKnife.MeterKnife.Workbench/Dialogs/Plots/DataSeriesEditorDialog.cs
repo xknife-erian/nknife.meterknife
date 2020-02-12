@@ -22,7 +22,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                 _ExhibitsComboBox.SelectedIndex = 0;
             }
 
-            foreach (var lineStyle in LineStyleWrap.GetAllLineStyles())
+            foreach (var lineStyle in DUTSeriesStyle.GetAllLineStyles())
             {
                 _LineStyleComboBox.Items.Add(lineStyle);
             }
@@ -46,15 +46,15 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
         {
             get
             {
-                var s = new SeriesStyle();
+                var s = new DUTSeriesStyle();
                 s.Color = _LineColor.Color;
                 s.Thickness = (double) _ThicknessNumericUpDown.Value;
-                s.SeriesLineStyle = (LineStyleWrap) _LineStyleComboBox.SelectedItem;
+                //s.SeriesLineStyle = (SeriesStyle) _LineStyleComboBox.SelectedItem;
                 s.Offset = (double) _OffsetNumericUpDown.Value;
                 // if (_seriesStyle != null) //当修改一个Style时
                 //     _seriesStyle.SeriesStyle = s;
                 // else//当新建一个Style时
-                //     _seriesStyle = new PlotSeriesStyleSolution.DUTSeriesStyle((ExhibitBase) _ExhibitsComboBox.SelectedItem, s);
+                //     _seriesStyle = new DUTSeriesStyleSolution.DUTSeriesStyle((ExhibitBase) _ExhibitsComboBox.SelectedItem, s);
                 return _seriesStyle;
             }
             set
@@ -73,10 +73,10 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                     //     break;
                     // }
                 }
-                _LineStyleComboBox.SelectedItem = value.SeriesStyle.SeriesLineStyle;
-                _ThicknessNumericUpDown.Value = (decimal) value.SeriesStyle.Thickness;
-                _OffsetNumericUpDown.Value = (decimal) value.SeriesStyle.Offset;
-                _LineColor.Color = value.SeriesStyle.Color;
+                //_LineStyleComboBox.SelectedItem = value.SeriesStyle.SeriesLineStyle;
+                _ThicknessNumericUpDown.Value = (decimal) value.Thickness;
+                _OffsetNumericUpDown.Value = (decimal) value.Offset;
+                _LineColor.Color = value.Color;
                 _MainGroupBox.Text = $"数据线样式设置({value.DUT})";
                 _seriesStyle = value;
             }
@@ -86,7 +86,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
         /// 当新建样式时，已被选择过的数据线，不再列表中出现。
         /// </summary>
         /// <param name="solution">样式方案(被测物列表)</param>
-        public void IgnoreExistsExhibits(PlotSeriesStyleSolution solution)
+        public void IgnoreExistsExhibits(DUTSeriesStyleSolution solution)
         {
             foreach (var style in solution)
             {

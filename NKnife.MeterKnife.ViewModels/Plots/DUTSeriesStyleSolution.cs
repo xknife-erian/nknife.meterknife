@@ -6,7 +6,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
     /// <summary>
     /// 数据折线图中被测物与被测物数据折线样式的列表，该列表在一些情况下会被反复使用，那么这个时候可以保存为方案
     /// </summary>
-    public class PlotSeriesStyleSolution : List<DUTSeriesStyle>
+    public class DUTSeriesStyleSolution : List<DUTSeriesStyle>
     {
         public string Name { get; set; }
 

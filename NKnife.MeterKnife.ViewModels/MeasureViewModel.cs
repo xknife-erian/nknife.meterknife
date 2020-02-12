@@ -11,12 +11,10 @@ namespace NKnife.MeterKnife.ViewModels
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly IMeasureService _measureService;
+        private DUTSeriesStyleSolution _solution = new DUTSeriesStyleSolution();
 
         public MeasureViewModel(IHabitManager habit, IMeasureService measureService)
         {
-            _measureService = measureService;
-
             var dvList = new List<PlotTheme>();
             var dv = new PlotTheme();
             dvList.Add(dv);
@@ -25,25 +23,23 @@ namespace NKnife.MeterKnife.ViewModels
             foreach (var plotTheme in themes)
             {
                 if (plotTheme.Name == usingTheme)
-                {
-                    Plot = new PlainPolyLinePlot(plotTheme);
-                }
+                    LinearPlot = new DUTLinearPlot(plotTheme);
             }
 
-            _measureService.Measured += OnMeasured;
+            measureService.Measured += OnMeasured;
         }
 
-        private PlotSeriesStyleSolution _solution = new PlotSeriesStyleSolution();
-
-        public PlotSeriesStyleSolution SeriesStyleSolution
+        public DUTSeriesStyleSolution StyleSolution
         {
             get => _solution;
             set
             {
-                Set(() => SeriesStyleSolution, ref _solution, value);
-                Plot.SetSeries(value.ToArray());
+                Set(() => StyleSolution, ref _solution, value);
+                LinearPlot.SetSeries(value.ToArray());
             }
         }
+
+        public DUTLinearPlot LinearPlot { get; }
 
         private void OnMeasured(object sender, MeasureEventArgs e)
         {
@@ -51,13 +47,10 @@ namespace NKnife.MeterKnife.ViewModels
             _Logger.Trace($"数据Index:{index},{e.DUT}");
             if (index >= 0)
             {
-                var style = _solution[index].SeriesStyle;
-                Plot.AddValues(index, e.Measurements.Data + style.Offset);
+                LinearPlot.AddValues(index, e.Time, e.Measurements.Data + _solution[index].Offset);
                 OnPlotModelUpdated();
             }
         }
-
-        public PlainPolyLinePlot Plot { get; }
 
         public event EventHandler PlotModelUpdated;
 

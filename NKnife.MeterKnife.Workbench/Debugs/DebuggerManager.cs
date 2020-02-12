@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Util.Tunnel;
@@ -6,6 +7,8 @@ using NKnife.MeterKnife.ViewModels.Plots;
 using NKnife.MeterKnife.Workbench.Views;
 using NKnife.Util;
 using NKnife.Win.Quick.Base;
+using OxyPlot;
+using OxyPlot.Axes;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace NKnife.MeterKnife.Workbench.Debugs
@@ -37,13 +40,32 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 {
                     var start = new SimpleMeasure();
                     start.Init(_antService, _connector);
-                        var solution = new PlotSeriesStyleSolution();
-                    foreach (var cmd in start.Pool)
+                    
+                    var solution = new DUTSeriesStyleSolution();
+                    for (var index = 0; index < start.Pool.Count; index++)
                     {
-                        solution.Add(new DUTSeriesStyle(cmd.DUT.Id, new SeriesStyle()));
+                        var cmd = start.Pool[index];
+                        var style = DUTSeriesStyle.GetAllLineStyles()[index];
+                        style.Color = DUTSeriesStyle.AllLineColors[index];
+                        style.DUT = cmd.DUT.Id;
+
+                        style.Axis = new LinearAxis();
+                        style.Axis.AxisDistance = index * 60;
+                        style.Axis.TextColor = DUTLinearPlot.ToOxyColor(Color.Lavender);
+                        //style.Axis.MajorGridlineColor = DUTLinearPlot.ToOxyColor(Color.White);
+                        //style.Axis.MinorGridlineColor = DUTLinearPlot.ToOxyColor(Color.White);
+                        style.Axis.MajorGridlineStyle = LineStyle.Dash;
+                        style.Axis.MinorGridlineStyle = LineStyle.Dot;
+                        style.Axis.MaximumPadding = 0;
+                        style.Axis.MinimumPadding = 0;
+                        style.Axis.Angle = 0;
+                        style.Axis.Maximum = 220;
+                        style.Axis.Minimum = -220;
+                        style.Axis.Position = AxisPosition.Left;
+                        solution.Add(style);
                     }
 
-                    _measureView.ViewModel.SeriesStyleSolution = solution;
+                    _measureView.ViewModel.StyleSolution = solution;
                     _measureView.Show(wb.MainDockPanel, DockState.Document);
                     await start.RunAsync(_antService, _engineeringLogic);
                 }

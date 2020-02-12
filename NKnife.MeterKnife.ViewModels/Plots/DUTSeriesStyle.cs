@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Drawing;
 using Newtonsoft.Json;
+using OxyPlot;
+using OxyPlot.Axes;
 
 namespace NKnife.MeterKnife.ViewModels.Plots
 {
@@ -8,11 +12,10 @@ namespace NKnife.MeterKnife.ViewModels.Plots
     /// </summary>
     public class DUTSeriesStyle
     {
-        public DUTSeriesStyle(string dut, SeriesStyle seriesStyle)
+        public DUTSeriesStyle(string dut)
         {
             Id = Guid.NewGuid();
             DUT = dut;
-            SeriesStyle = seriesStyle;
         }
 
         public DUTSeriesStyle()
@@ -27,10 +30,17 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// </summary>
         public string DUT { get; set; }
 
+        public Color Color { get; set; } = AllLineColors[0];
+        public double Offset { get; set; } = 0;
+
         /// <summary>
-        /// 该被测物的数据折线
+        ///     数据线线径
         /// </summary>
-        public SeriesStyle SeriesStyle { get; set; }
+        public double Thickness { get; set; } = 1.8;
+
+        public string Text { get; set; }
+        public LineStyle LineStyle { get; set; } = LineStyle.Solid;
+        public LinearAxis Axis { get; set; } = new LinearAxis();
 
         #region Overrides of Object
 
@@ -38,7 +48,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <returns>表示当前对象的字符串。</returns>
         public override string ToString()
         {
-            return $"[{DUT}]:: {SeriesStyle}";
+            return $"[{DUT}]:: {Color}|{LineStyle}|{Offset}|{Thickness}";
         }
 
         /// <summary>确定指定的 <see cref="T:System.Object" /> 是否等于当前的 <see cref="T:System.Object" />。</summary>
@@ -66,5 +76,84 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         #endregion
 
         #endregion
+
+        private static ReadOnlyCollection<Color> _allColors;
+
+        /// <summary>
+        ///     获取预置的折线图数据线的颜色，共13种易识别颜色
+        /// </summary>
+        public static ReadOnlyCollection<Color> AllLineColors
+        {
+            get
+            {
+                if (_allColors == null)
+                {
+                    var colors = new Color[13];
+                    colors[0] = Color.FromArgb(255, 255, 0);
+                    colors[1] = Color.FromArgb(0, 255, 255);
+                    colors[2] = Color.FromArgb(255, 0, 255);
+
+                    colors[3] = Color.FromArgb(0, 255, 0);
+                    colors[4] = Color.FromArgb(0, 0, 255);
+                    colors[5] = Color.FromArgb(255, 0, 0);
+
+                    colors[6] = Color.FromArgb(128, 255, 128);
+                    colors[7] = Color.FromArgb(128, 128, 255);
+                    colors[8] = Color.FromArgb(255, 128, 128);
+
+                    colors[9] = Color.FromArgb(255, 128, 0);
+                    colors[10] = Color.FromArgb(0, 128, 255);
+                    colors[11] = Color.FromArgb(255, 0, 128);
+                    colors[12] = Color.FromArgb(128, 255, 0);
+                    _allColors = Array.AsReadOnly(colors);
+                }
+                return _allColors;
+            }
+        }
+
+        private static DUTSeriesStyle[] _lineStyles;
+        public static DUTSeriesStyle Build(LineStyle lineStyle)
+        {
+            switch (lineStyle)
+            {
+                case LineStyle.Dash:
+                    return new DUTSeriesStyle() { LineStyle = LineStyle.Dash, Text = "短划线" };
+                case LineStyle.LongDash:
+                    return new DUTSeriesStyle() { LineStyle = LineStyle.LongDash, Text = "长划线" };
+                case LineStyle.DashDot:
+                case LineStyle.DashDashDot:
+                case LineStyle.DashDashDotDot:
+                case LineStyle.DashDotDot:
+                case LineStyle.LongDashDotDot:
+                case LineStyle.LongDashDot:
+                    return new DUTSeriesStyle() { LineStyle = LineStyle.LongDashDot, Text = "点划线" };
+                case LineStyle.Dot:
+                    return new DUTSeriesStyle() { LineStyle = LineStyle.Dot, Text = "点" };
+                case LineStyle.Automatic:
+                case LineStyle.Solid:
+                case LineStyle.None:
+                default:
+                    return new DUTSeriesStyle() { LineStyle = LineStyle.Solid, Text = "实线" };
+            }
+        }
+
+        /// <summary>
+        ///     获取常用的数据线样式集合
+        /// </summary>
+        /// <returns></returns>
+        public static ReadOnlyCollection<DUTSeriesStyle> GetAllLineStyles()
+        {
+            if (_lineStyles == null)
+            {
+                _lineStyles = new DUTSeriesStyle[5];
+                _lineStyles[0] = Build(LineStyle.Solid);
+                _lineStyles[1] = Build(LineStyle.Dot);
+                _lineStyles[2] = Build(LineStyle.Dash);
+                _lineStyles[3] = Build(LineStyle.LongDash);
+                _lineStyles[4] = Build(LineStyle.LongDashDot);
+            }
+            return Array.AsReadOnly(_lineStyles);
+        }
+
     }
 }

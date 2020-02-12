@@ -19,8 +19,8 @@ namespace NKnife.MeterKnife.Workbench.Views
             InitializeComponent();
             _dialogProvider = dialogProvider;
             _viewModel = viewModel;
-            _PlotView.Model = _viewModel.Plot.GetPlotModel();
-            _PlotView.BackColor = _viewModel.Plot.PlotTheme.ViewBackground;
+            _PlotView.Model = _viewModel.LinearPlot.GetPlotModel();
+            _PlotView.BackColor = _viewModel.LinearPlot.PlotTheme.ViewBackground;
             _viewModel.PlotModelUpdated += (s, e) => { _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true)); };
             _OriginalToolStripButton.Click += (s, e) => { _PlotView.Model.ResetAllAxes(); };
             _ZoomInToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(1.3); };
@@ -51,10 +51,10 @@ namespace NKnife.MeterKnife.Workbench.Views
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
             var dialog = _dialogProvider.New<DataSeriesListDialog>();
-            dialog.Solution = _viewModel.SeriesStyleSolution;
+            dialog.Solution = _viewModel.StyleSolution;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _viewModel.SeriesStyleSolution = dialog.Solution;
+                _viewModel.StyleSolution = dialog.Solution;
             }
         }
     }

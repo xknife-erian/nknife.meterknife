@@ -6,7 +6,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
     /// <summary>
     /// 图表主题，保存图表的颜色等信息。
     /// </summary>
-    public partial class PlotTheme
+    public class PlotTheme
     {
         public string Id { get; set; }
         public string Name { get; set; } = "默认主题";
@@ -15,16 +15,6 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         {
             Id = Guid.NewGuid().ToString("D");
         }
-
-        /// <summary>
-        ///     左侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
-        /// </summary>
-        public GridLineColors LeftAxisGridLineColors { get; set; } = new GridLineColors();
-
-        /// <summary>
-        ///     底部数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
-        /// </summary>
-        public GridLineColors BottomAxisGridLineColors { get; set; } = new GridLineColors();
 
         /// <summary>
         ///     图表画框区背景色
@@ -36,11 +26,15 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// </summary>
         public Color AreaBackground { get; set; } = Color.DimGray;
 
-        /*
         /// <summary>
-        ///     数据线颜色
+        ///     左侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
         /// </summary>
-        public List<SeriesStyle> SeriesStyles { get; set; } = new List<SeriesStyle>();
+        public GridLineColors LeftAxisGridLineColors { get; set; } = new GridLineColors();
+
+        /// <summary>
+        ///     底部数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
+        /// </summary>
+        public GridLineColors BottomAxisGridLineColors { get; set; } = new GridLineColors();
         
         /// <summary>
         ///     顶部侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
@@ -51,8 +45,6 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         ///     右侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色
         /// </summary>
         public GridLineColors RightAxisGridLineColors { get; set; } = new GridLineColors();
-
-        */
 
         /// <summary>返回表示当前 <see cref="T:System.Object" /> 的 <see cref="T:System.String" />。</summary>
         /// <returns>

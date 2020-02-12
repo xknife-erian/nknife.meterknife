@@ -18,7 +18,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
         {
             InitializeComponent();
             //_NameTextBox.Enabled = isSave;
-            var list = habits.GetOptionValue("SeriesStyleSolutionList", new List<PlotSeriesStyleSolution>());
+            var list = habits.GetOptionValue("SeriesStyleSolutionList", new List<DUTSeriesStyleSolution>());
             for (int i = 0; i < list.Count; i++)
             {
                 var solution = list[i];
@@ -33,11 +33,11 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             _ListView.SelectedIndexChanged += (s, e) =>
             {
                 if (_ListView.SelectedItems.Count > 0)
-                    _NameTextBox.Text = ((PlotSeriesStyleSolution) _ListView.SelectedItems[0].Tag).Name;
+                    _NameTextBox.Text = ((DUTSeriesStyleSolution) _ListView.SelectedItems[0].Tag).Name;
             };
         }
 
-        public PlotSeriesStyleSolution Solution { get; set; }
+        public DUTSeriesStyleSolution Solution { get; set; }
         public string SolutionName { get; set; }
 
         private void _AcceptButton_Click(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             DialogResult = DialogResult.OK;
             SolutionName = _NameTextBox.Text;
             if (_ListView.SelectedItems.Count > 0)
-                Solution = (PlotSeriesStyleSolution) _ListView.SelectedItems[0].Tag;
+                Solution = (DUTSeriesStyleSolution) _ListView.SelectedItems[0].Tag;
         }
 
         private void _CancelButton_Click(object sender, EventArgs e)

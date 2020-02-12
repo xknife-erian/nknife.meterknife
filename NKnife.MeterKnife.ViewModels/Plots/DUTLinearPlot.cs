@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -11,37 +12,23 @@ namespace NKnife.MeterKnife.ViewModels.Plots
     /// <summary>
     /// 基础的折线图表, 横轴表示时间，纵轴代表测量值
     /// </summary>
-    public class PlainPolyLinePlot
+    public class DUTLinearPlot
     {
-        private readonly PlotModel _plotModel = new PlotModel();
-        private readonly LinearAxis _leftAxis = new LinearAxis();
-        private readonly DateTimeAxis _timeAxis = new DateTimeAxis();
         private bool _isFirst = true;
-        private double _max;
-        private double _min;
+        private readonly PlotModel _plotModel = new PlotModel();
+        private readonly DateTimeAxis _timeAxis = new DateTimeAxis();
+        private readonly Dictionary<int, (LinearAxis, double, double)> _axisMap = new Dictionary<int, (LinearAxis, double, double)>();
 
         /// <summary>
         /// 构造函数：基础的折线图表, 横轴表示时间，纵轴代表测量值
         /// </summary>
-        public PlainPolyLinePlot(PlotTheme plotTheme, string title = "")
+        public DUTLinearPlot(PlotTheme plotTheme, string title = "")
         {
             PlotTheme = plotTheme;
 
             _plotModel.PlotAreaBackground = ToOxyColor(plotTheme.AreaBackground);
             _plotModel.Title = title;
             _plotModel.TitleFontSize = 12F;
-
-            _leftAxis.TextColor = ToOxyColor(Color.Lavender);
-            _leftAxis.MajorGridlineColor = ToOxyColor(plotTheme.LeftAxisGridLineColors.Major);
-            _leftAxis.MinorGridlineColor = ToOxyColor(plotTheme.LeftAxisGridLineColors.Minor);
-            _leftAxis.MajorGridlineStyle = LineStyle.Dash;
-            _leftAxis.MinorGridlineStyle = LineStyle.Dot;
-            _leftAxis.MaximumPadding = 0;
-            _leftAxis.MinimumPadding = 0;
-            _leftAxis.Angle = LeftAxisAngle;
-            _leftAxis.Maximum = 220;
-            _leftAxis.Minimum = -220;
-            _leftAxis.Position = AxisPosition.Left;
 
             _timeAxis.TextColor = ToOxyColor(Color.Lavender);
             _timeAxis.MajorGridlineColor = ToOxyColor(plotTheme.BottomAxisGridLineColors.Major);
@@ -53,21 +40,6 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             _timeAxis.Position = AxisPosition.Bottom;
             _timeAxis.LabelFormatter = d => DateTimeAxis.ToDateTime(d).ToString("HH:mm:ss");
 
-            var l1 = new LinearAxis
-            {
-                Position = AxisPosition.Left, 
-                AxisDistance = 80, 
-                TextColor = ToOxyColor(Color.Lavender)
-            };
-            _plotModel.Axes.Add(l1);
-            var r1 = new LinearAxis
-            {
-                Position = AxisPosition.Right, 
-                AxisDistance = -80, 
-                TextColor = ToOxyColor(Color.Lavender)
-            };
-            _plotModel.Axes.Add(r1);
-            _plotModel.Axes.Add(_leftAxis);
             _plotModel.Axes.Add(_timeAxis);
         }
 
@@ -82,28 +54,24 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             set => _plotModel.Title = value;
         }
 
-        public double LeftAxisAngle => 0;
-
         public PlotTheme PlotTheme { get; set; }
 
         /// <summary>
         /// 增加测量数据
         /// </summary>
         /// <param name="number">数据渠道编号</param>
-        /// <param name="values">测量数据</param>
-        public void AddValues(int number, params double[] values)
+        /// <param name="time">测量时间</param>
+        /// <param name="value">测量数据</param>
+        public void AddValues(int number, DateTime time, double value)
         {
+            var axis = _axisMap[number];
             //先根据测量数据调整纵轴的值的范围
-            var pair = UpdateRange(values, ref _isFirst, ref _max, ref _min);
-            _leftAxis.Minimum = pair.Item1;
-            _leftAxis.Maximum = pair.Item2;
+            var pair = UpdateRange(value, ref _isFirst, ref axis.Item2, ref axis.Item3);
+            axis.Item1.Minimum = pair.Item1;
+            axis.Item1.Maximum = pair.Item2;
             //向数据线上添加测量数据点
-            DataPoint[] points = new DataPoint[values.Length];
-            for (int i = 0; i < values.Length; i++)
-            {
-                points[i] = DateTimeAxis.CreateDataPoint(DateTime.Now, values[i]);
-            }
-            ((LineSeries)_plotModel.Series[number]).Points.AddRange(points);
+            var points = DateTimeAxis.CreateDataPoint(time, value);
+            ((LineSeries) _plotModel.Series[number]).Points.Add(points);
         }
 
         /// <summary>
@@ -113,14 +81,18 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         public void SetSeries(params DUTSeriesStyle[] styles)
         {
             _plotModel.Series.Clear();
-            foreach (var style in styles)
+            for (var index = 0; index < styles.Length; index++)
             {
+                var style = styles[index];
                 var series = new LineSeries
                 {
-                    Color = ToOxyColor(style.SeriesStyle.Color),
-                    StrokeThickness = style.SeriesStyle.Thickness,
+                    LineStyle = style.LineStyle,
+                    Color = ToOxyColor(style.Color),
+                    StrokeThickness = style.Thickness,
                     TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}"
                 };
+                _axisMap.Add(index, (style.Axis, 0, 0));
+                _plotModel.Axes.Add(style.Axis);
                 _plotModel.Series.Add(series);
             }
         }
@@ -128,28 +100,26 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <summary>
         /// 根据当前测量值更新纵轴的显示区域
         /// </summary>
-        /// <param name="values">当前测量值</param>
+        /// <param name="value">当前测量值</param>
         /// <param name="isFirst">是否是第一个数据</param>
         /// <param name="max">纵值的最大数据</param>
         /// <param name="min">纵值的最小数据</param>
         /// <returns></returns>
-        protected static (double, double) UpdateRange(double[] values, ref bool isFirst, ref double max, ref double min)
+        public static (double, double) UpdateRange(double value, ref bool isFirst, ref double max, ref double min)
         {
             if (isFirst) //当第一个数据时，做一些常规处理
             {
-                var precision = GetPrecision(values[0]);
+                var precision = GetPrecision(value);
                 var offset = GetMinPrecisionValue(precision);
-                max = values[0] + offset;
-                min = values[0] - offset;
+                max = value + offset;
+                min = value - offset;
                 isFirst = false;
                 return (min, max);
             }
-            var x = values.Max();
-            var n = values.Min();
-            if (x > max)
-                max = x;
-            else if (n < min)
-                min = n;
+            if (value > max)
+                max = value;
+            else if (value < min)
+                min = value;
             var r = Math.Abs(max - min) / 8;
             return (min - r, max + r);
         }

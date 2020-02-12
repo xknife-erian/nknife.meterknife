@@ -9,7 +9,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
 {
     public partial class DataSeriesListDialog : SimpleForm
     {
-        private PlotSeriesStyleSolution _solution = new PlotSeriesStyleSolution();
+        private DUTSeriesStyleSolution _solution = new DUTSeriesStyleSolution();
         private readonly IHabitManager _habits;
         private SolutionListDialog _solutionListDialog;
 
@@ -26,14 +26,14 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
         {
             _DeleteButton.Enabled = _ListView.SelectedItems.Count > 0;
             _ModifyButton.Enabled = _ListView.SelectedItems.Count > 0;
-            var list = _habits.GetOptionValue("SeriesStyleSolutionList", new List<PlotSeriesStyleSolution>());
+            var list = _habits.GetOptionValue("SeriesStyleSolutionList", new List<DUTSeriesStyleSolution>());
             if (list.Count <= 0)
             {
                 _LoadButton.Enabled = false;
             }
         }
 
-        public PlotSeriesStyleSolution Solution
+        public DUTSeriesStyleSolution Solution
         {
             get
             {
@@ -65,14 +65,14 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             item.Tag = style;
             item.SubItems.Clear();
             item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.DUT.ToString()));
-            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.SeriesLineStyle.ToString()));
-            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.Thickness.ToString(CultureInfo.InvariantCulture)));
+            //item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.SeriesLineStyle.ToString()));
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.Thickness.ToString(CultureInfo.InvariantCulture)));
 
             var subItem = new ListViewItem.ListViewSubItem();
-            subItem.BackColor = style.SeriesStyle.Color;
+            subItem.BackColor = style.Color;
             item.SubItems.Add(subItem);
 
-            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.Offset.ToString(CultureInfo.InvariantCulture)));
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.Offset.ToString(CultureInfo.InvariantCulture)));
         }
 
         private void _AppendButton_Click(object sender, System.EventArgs e)
@@ -154,7 +154,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
         private void SaveSolution(string solutionName)
         {
             Solution.Name = solutionName;
-            var list = _habits.GetOptionValue("SeriesStyleSolutionList", new List<PlotSeriesStyleSolution>());
+            var list = _habits.GetOptionValue("SeriesStyleSolutionList", new List<DUTSeriesStyleSolution>());
             list.Add(Solution);
             _habits.SetOptionValue("SeriesStyleSolutionList", list);
         }
