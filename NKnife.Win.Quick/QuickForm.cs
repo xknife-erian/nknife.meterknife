@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -188,11 +189,30 @@ namespace NKnife.Win.Quick
 
         #region Implementation of IWorkbench
 
+        /// <summary>
+        /// 主窗体使用的Dock控件
+        /// </summary>
         public DockPanel MainDockPanel { get; } = new DockPanel();
 
+        /// <summary>
+        /// 当主窗体的Close方法被调用后，是立即关闭还是先隐藏窗体
+        /// </summary>
         public bool HideOnClosing { get; set; } = false;
+
+        /// <summary>
+        /// 当启用自动更新时，更新包在GitHub的项目的用户名
+        /// </summary>
         public string GithubUpdateUser { get; set; }
+
+        /// <summary>
+        /// 当启用自动更新时，更新包在Github的项目名称
+        /// </summary>
         public string GithubUpdateProject { get; set; }
+
+        /// <summary>
+        /// 窗体的选项面板
+        /// </summary>
+        public List<IOptionPanel> OptionPanelList { get; set; } = new List<IOptionPanel>();
 
         /// <summary>
         ///     尝试获取指定Key的使用习惯的值

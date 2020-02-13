@@ -2,9 +2,11 @@
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Workbench.Debugs;
 using NKnife.MeterKnife.Workbench.Menus;
+using NKnife.MeterKnife.Workbench.Options;
 using NKnife.MeterKnife.Workbench.Properties;
 using NKnife.MeterKnife.Workbench.Views;
 using NKnife.Win.Quick;
+using NKnife.Win.Quick.Base;
 using NKnife.Win.Quick.Menus;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -44,6 +46,7 @@ namespace NKnife.MeterKnife.Workbench
 #if DEBUG
             BindMainMenu(debuggerManager.GetDebugMenu());
 #endif
+            OptionPanelList.AddRange(new IOptionPanel[] {new GeneralOptionPanel(), new DataOptionPanel()});
         }
 
         private void ActiveDockPanelTheme(string themeName)

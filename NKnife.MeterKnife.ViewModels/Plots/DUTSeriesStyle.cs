@@ -36,7 +36,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <summary>
         ///     数据线线径
         /// </summary>
-        public double Thickness { get; set; } = 1.8;
+        public double Thickness { get; set; } = 2;
 
         public string Text { get; set; }
         public LineStyle LineStyle { get; set; } = LineStyle.Solid;
@@ -94,8 +94,8 @@ namespace NKnife.MeterKnife.ViewModels.Plots
                     colors[2] = Color.FromArgb(255, 0, 255);
 
                     colors[3] = Color.FromArgb(0, 255, 0);
-                    colors[4] = Color.FromArgb(0, 0, 255);
-                    colors[5] = Color.FromArgb(255, 0, 0);
+                    colors[4] = Color.FromArgb(255, 0, 0);
+                    colors[5] = Color.FromArgb(0, 0, 255);
 
                     colors[6] = Color.FromArgb(128, 255, 128);
                     colors[7] = Color.FromArgb(128, 128, 255);
@@ -154,6 +154,5 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             }
             return Array.AsReadOnly(_lineStyles);
         }
-
     }
 }

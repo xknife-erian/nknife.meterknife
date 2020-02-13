@@ -19,12 +19,12 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <summary>
         ///     图表画框区背景色
         /// </summary>
-        public Color ViewBackground { get; set; } = Color.MidnightBlue;
+        public Color ViewBackground { get; set; } = Color.FromArgb(16, 54, 103);
 
         /// <summary>
         ///     图表区背景色
         /// </summary>
-        public Color AreaBackground { get; set; } = Color.DimGray;
+        public Color AreaBackground { get; set; } = Color.FromArgb(137, 137, 137);
 
         /// <summary>
         ///     左侧数轴网格线颜色，第一个值是突出显示的颜色，第二个值是一般显示的颜色

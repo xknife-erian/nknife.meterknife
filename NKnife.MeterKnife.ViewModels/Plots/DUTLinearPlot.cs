@@ -97,9 +97,18 @@ namespace NKnife.MeterKnife.ViewModels.Plots
                     StrokeThickness = style.Thickness,
                     TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}"
                 };
+                style.Axis.AxislineColor = ToOxyColor(style.Color);
+                style.Axis.TextColor = ToOxyColor(style.Color);
+                if (index > 0)
+                {
+                    style.Axis.MinorGridlineStyle = LineStyle.None;
+                    style.Axis.MajorGridlineStyle = LineStyle.None;
+                }
                 series.YAxisKey = style.Axis.Key;
+
                 _axisMap.Add(index, style.Axis);
                 _axisFirstMap.Add(index, true);
+
                 _plotModel.Axes.Add(style.Axis);
                 _plotModel.Series.Add(series);
             }

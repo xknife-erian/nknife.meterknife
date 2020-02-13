@@ -32,7 +32,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         public ToolStripMenuItem GetDebugMenu()
         {
             var debug = new ToolStripMenuItem("Debug");
-            var plot = new ToolStripMenuItem("Plot");
+            var plot = new ToolStripMenuItem("&Measure View");
             plot.Click += async (s, e) =>
             {
                 var form = debug.GetCurrentParent().FindForm();
@@ -51,10 +51,8 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
                         style.Axis = new LinearAxis();
                         style.Axis.Key = cmd.DUT.Id;
+                        style.Axis.FontSize = 13d;
                         style.Axis.AxisDistance = index * 60;
-                        style.Axis.TextColor = DUTLinearPlot.ToOxyColor(Color.Lavender);
-                        //style.Axis.MajorGridlineColor = DUTLinearPlot.ToOxyColor(Color.White);
-                        //style.Axis.MinorGridlineColor = DUTLinearPlot.ToOxyColor(Color.White);
                         style.Axis.MajorGridlineStyle = LineStyle.Dash;
                         style.Axis.MinorGridlineStyle = LineStyle.Dot;
                         style.Axis.MaximumPadding = 0;

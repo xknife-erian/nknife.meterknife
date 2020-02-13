@@ -110,11 +110,18 @@
     <Compile Include="Controls\SingletonDockContent.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Base\IOptionPanel.cs" />
     <Compile Include="LoggerDockContent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoggerDockContent.Designer.cs">
       <DependentUpon>LoggerDockContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OptionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptionDialog.Designer.cs">
+      <DependentUpon>OptionDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="QuickAbout.cs" />
     <Compile Include="Base\IWorkbench.cs" />
@@ -144,6 +151,9 @@
     <Compile Include="UpdateHelper.cs" />
     <EmbeddedResource Include="LoggerDockContent.resx">
       <DependentUpon>LoggerDockContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionDialog.resx">
+      <DependentUpon>OptionDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

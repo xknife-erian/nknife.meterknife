@@ -108,7 +108,7 @@
             this.x1MToolStripMenuItem,
             this.x10MToolStripMenuItem,
             this.x100MToolStripMenuItem});
-            this._MeterRangeDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("_MeterRangeDropDownButton.Image")));
+            this._MeterRangeDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("_MeterRangeDropDownButton.Icon")));
             this._MeterRangeDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._MeterRangeDropDownButton.Name = "_MeterRangeDropDownButton";
             this._MeterRangeDropDownButton.Size = new System.Drawing.Size(45, 22);
@@ -218,7 +218,7 @@
             this._500MenuItem,
             this._1000MenuItem,
             this._2000MenuItem});
-            this._SampleRangeDropMenu.Image = ((System.Drawing.Image)(resources.GetObject("_SampleRangeDropMenu.Image")));
+            this._SampleRangeDropMenu.Image = ((System.Drawing.Image)(resources.GetObject("_SampleRangeDropMenu.Icon")));
             this._SampleRangeDropMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SampleRangeDropMenu.Name = "_SampleRangeDropMenu";
             this._SampleRangeDropMenu.Size = new System.Drawing.Size(42, 22);
