@@ -56,7 +56,7 @@ namespace NKnife.MeterKnife.Storage.Db
             return map;
         }
 
-        public string GetEngineeringSqliteFileName(Engineering engineering)
+        private string GetEngineeringSqliteFileName(Engineering engineering)
         {
             var t = engineering.CreateTime;
             var fileFullName = $"E-{t:yyMMdd-HHmmss}.mks";
@@ -64,6 +64,7 @@ namespace NKnife.MeterKnife.Storage.Db
             if (!Directory.Exists(path))
                 UtilFile.CreateDirectory(path);
             fileFullName = Path.Combine(path, $"{t:yyyyMM}{Path.DirectorySeparatorChar}", fileFullName);
+            engineering.Path = fileFullName;
             return fileFullName;
         }
 

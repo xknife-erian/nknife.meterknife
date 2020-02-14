@@ -28,7 +28,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutDialog));
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.labelProductName = new System.Windows.Forms.Label();
@@ -69,7 +68,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
             // 
             // logoPictureBox
             // 
-            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Icon")));
             this.logoPictureBox.Location = new System.Drawing.Point(3, 4);
             this.logoPictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.logoPictureBox.Name = "logoPictureBox";

@@ -34,14 +34,14 @@ namespace NKnife.MeterKnife.Common.Domain
         public string Name { get; set; }
 
         /// <summary>
-        /// 创建工程的时间（一般是工程创建完成，保存工程的时间）
-        /// </summary>
-        public DateTime CreateTime { get; set; }
-
-        /// <summary>
         /// 工程的详细描述
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// 创建工程的时间（一般是工程创建完成，保存工程的时间）
+        /// </summary>
+        public DateTime CreateTime { get; set; }
 
         /// <summary>
         /// 路径。当Sqlite时是文件路径及全名；当Mysql时是数据库与表名。

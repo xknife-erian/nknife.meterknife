@@ -50,7 +50,7 @@ namespace NKnife.MeterKnife.Common.Tunnels
 
         public virtual void Dispose()
         {
-            _dataConnector.Stop();
+            _dataConnector?.Stop();
         }
 
         private void OnFilterKillSession(object sender, SessionEventArgs e)

@@ -139,8 +139,15 @@
     <Compile Include="Base\IFileService.cs" />
     <Compile Include="Base\IAppManager.cs" />
     <Compile Include="Base\IDialogProvider.cs" />
+    <Compile Include="Controls\EngineeringTreeNode.cs" />
     <Compile Include="Debugs\DebuggerManager.cs" />
     <Compile Include="Debugs\SimpleMeasure.cs" />
+    <Compile Include="Dialogs\EngineeringDetailDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EngineeringDetailDialog.Designer.cs">
+      <DependentUpon>EngineeringDetailDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Plots\DataSeriesEditorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +310,9 @@
     <Compile Include="Workbench.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Dialogs\EngineeringDetailDialog.resx">
+      <DependentUpon>EngineeringDetailDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Plots\DataSeriesEditorDialog.resx">
       <DependentUpon>DataSeriesEditorDialog.cs</DependentUpon>
     </EmbeddedResource>

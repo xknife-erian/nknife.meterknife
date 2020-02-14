@@ -188,8 +188,7 @@ namespace NKnife.MeterKnife.Storage.Db
 
         private string BuildEngineeringSqliteConnectionString(Engineering engineering)
         {
-            var fileName = _engineeringFileBuilder.GetEngineeringSqliteFileName(engineering);
-            return string.Format(_setting.SqliteEngineeringConnection, fileName);
+            return string.Format(_setting.SqliteEngineeringConnection, engineering.Path);
         }
     }
 }

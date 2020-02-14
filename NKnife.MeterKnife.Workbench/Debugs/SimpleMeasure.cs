@@ -36,7 +36,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var engineering = new Engineering
             {
                 Name = "",
-                CreateTime = new DateTime(2019, UtilRandom.Next(1, 12), UtilRandom.Next(1, 25), UtilRandom.Next(1, 24), UtilRandom.Next(1, 60), UtilRandom.Next(1, 60)),
+                CreateTime = new DateTime(2019, UtilRandom.Next(10, 12), UtilRandom.Next(1, 25), UtilRandom.Next(1, 24), UtilRandom.Next(1, 60), UtilRandom.Next(1, 60)),
                 Commands = Pool
             };
             await engineeringLogic.CreateEngineering(engineering);

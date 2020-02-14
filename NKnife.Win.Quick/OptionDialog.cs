@@ -23,9 +23,9 @@ namespace NKnife.Win.Quick
         {
             InitializeComponent();
             Text = this.Res("选项");
-            _acceptButton.Text = this.Res("确定");
-            _cancelButton.Text = this.Res("取消");
-            ResponseToEvent();
+            _AcceptButton.Text = this.Res("确定");
+            _CancelButton.Text = this.Res("取消");
+            RespondToEvent();
         }
 
         public void InitializeOptionPanelList(IWorkbench workbench)
@@ -47,14 +47,14 @@ namespace NKnife.Win.Quick
                     treeNode.ImageKey = optionPanel.Name;
                 }
 
-                _leftTreeView.Nodes.Add(treeNode);
+                _LeftTreeView.Nodes.Add(treeNode);
             }
             _isFirst = false;
         }
 
-        private void ResponseToEvent()
+        private void RespondToEvent()
         {
-            _leftTreeView.NodeMouseClick += (s, e) =>
+            _LeftTreeView.AfterSelect += (s, e) =>
             {
                 if (e.Node != null)
                 {
@@ -62,33 +62,36 @@ namespace NKnife.Win.Quick
                     _mainPanel.Controls.Add(_panelMap[e.Node.Text]);
                 }
             };
-            _acceptButton.Click += (s, e) =>
+            _AcceptButton.Click += (s, e) =>
             {
                 var num = 0;
-                if (_workbench != null)
+                if (_workbench == null)
                 {
-                    foreach (Control control in _panelMap.Values)
+                    DialogResult = DialogResult.Cancel;
+                    return;
+                }
+
+                foreach (Control control in _panelMap.Values)
+                {
+                    if (control is IOptionPanel optionPanel)
                     {
-                        if (control is IOptionPanel optionPanel)
+                        if (optionPanel.HasDataChanged)
                         {
-                            if (optionPanel.HasDataChanged)
+                            foreach (var pair in optionPanel.OptionMap)
                             {
-                                foreach (var pair in optionPanel.OptionMap)
-                                {
-                                    _workbench.SetOptionAction(pair.Key, pair.Value);
-                                    num++;
-                                    _Logger.Info($"新选项值保存完成。{pair.Key}: {pair.Value}");
-                                }
+                                _workbench.SetOptionAction(pair.Key, pair.Value);
+                                _Logger.Info($"新选项值保存完成。{pair.Key}: {pair.Value}");
+                                num++;
                             }
                         }
                     }
                 }
 
                 MessageBox.Show(this.ResF("共有{0}个选项值发生变化，已保存成功。", num), this.Res("选项保存"),
-                    MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             };
-            _cancelButton.Click += (s, e) => { DialogResult = DialogResult.Cancel; };
+            _CancelButton.Click += (s, e) => { DialogResult = DialogResult.Cancel; };
         }
     }
 }

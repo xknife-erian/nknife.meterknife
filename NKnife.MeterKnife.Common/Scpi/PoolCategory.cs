@@ -4,6 +4,6 @@ namespace NKnife.MeterKnife.Common.Scpi
     {
         Initializtion,
         Collect,
-        None
+        Finished
     }
 }

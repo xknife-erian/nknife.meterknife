@@ -23,7 +23,7 @@ namespace NKnife.MeterKnife.ViewModels
         {
             _engMap.Clear();
             var engList = (await _engineeringLogic.GetAllEngineeringAsync()).ToList();
-            engList.Sort((x, y) => x.CreateTime.CompareTo(y.CreateTime));
+            engList.Sort((x, y) => y.CreateTime.CompareTo(x.CreateTime));
             foreach (var engineering in engList)
             {
                 var date = engineering.CreateTime.ToString("yyyy-MM");

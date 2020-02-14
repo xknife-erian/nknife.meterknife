@@ -55,13 +55,8 @@ namespace NKnife.MeterKnife.Workbench
         private ViewMenuItem BuildViewMenu()
         {
             var viewMenu = new ViewMenuItem();
-            var engManagerMenu = new ToolStripMenuItem(this.Res("工程管理(&E)"));
-            engManagerMenu.Click += (s, e) =>
-            {
-                _engineeringView.Show(MainDockPanel,DockState.DockRight);
-            };
-            viewMenu.DropDownItems.Insert(0,new ToolStripSeparator());
-            viewMenu.DropDownItems.Insert(0, engManagerMenu);
+            viewMenu.DropDownItems.Insert(0, new ToolStripSeparator());
+            viewMenu.DropDownItems.Insert(0, BuildViewMenu_EngineeringManagerMenu());
 
             var culture = _habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
             var themeName = _habitManager.GetHabitValue("MainTheme", nameof(VS2015BlueTheme));
@@ -69,6 +64,21 @@ namespace NKnife.MeterKnife.Workbench
             viewMenu.SetActiveTheme(themeName);
             ActiveDockPanelTheme(themeName);
             return viewMenu;
+        }
+
+        private ToolStripMenuItem BuildViewMenu_EngineeringManagerMenu()
+        {
+            var engManagerMenu = new ToolStripMenuItem(this.Res("工程管理(&E)")) {Checked = true};
+            _engineeringView.Show(MainDockPanel, DockState.DockRight);
+            engManagerMenu.Click += (s, e) =>
+            {
+                if (engManagerMenu.Checked)
+                    _engineeringView.Close();
+                else
+                    _engineeringView.Show(MainDockPanel, DockState.DockRight);
+                engManagerMenu.Checked = !engManagerMenu.Checked;
+            };
+            return engManagerMenu;
         }
 
         private void ActiveDockPanelTheme(string themeName)
