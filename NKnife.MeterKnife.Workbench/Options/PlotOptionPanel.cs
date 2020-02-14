@@ -11,12 +11,12 @@ using NKnife.Win.Quick.Base;
 
 namespace NKnife.MeterKnife.Workbench.Options
 {
-    public partial class GeneralOptionPanel : UserControl, IOptionPanel
+    public sealed partial class PlotOptionPanel : UserControl, IOptionPanel
     {
-        public GeneralOptionPanel()
+        public PlotOptionPanel()
         {
             InitializeComponent();
-            Name = this.Res("通用");
+            Name = this.Res("图表");
         }
 
         #region Implementation of IOptionPanel

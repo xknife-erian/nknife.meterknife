@@ -64,6 +64,7 @@ namespace NKnife.Win.Quick
             };
             _acceptButton.Click += (s, e) =>
             {
+                var num = 0;
                 if (_workbench != null)
                 {
                     foreach (Control control in _panelMap.Values)
@@ -75,12 +76,16 @@ namespace NKnife.Win.Quick
                                 foreach (var pair in optionPanel.OptionMap)
                                 {
                                     _workbench.SetOptionAction(pair.Key, pair.Value);
+                                    num++;
                                     _Logger.Info($"新选项值保存完成。{pair.Key}: {pair.Value}");
                                 }
                             }
                         }
                     }
                 }
+
+                MessageBox.Show(this.ResF("共有{0}个选项值发生变化，已保存成功。", num), this.Res("选项保存"),
+                    MessageBoxButtons.OK,MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             };
             _cancelButton.Click += (s, e) => { DialogResult = DialogResult.Cancel; };

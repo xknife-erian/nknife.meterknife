@@ -186,6 +186,12 @@
     <Compile Include="Options\GeneralOptionPanel.Designer.cs">
       <DependentUpon>GeneralOptionPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Options\PlotOptionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Options\PlotOptionPanel.Designer.cs">
+      <DependentUpon>PlotOptionPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -311,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Options\GeneralOptionPanel.resx">
       <DependentUpon>GeneralOptionPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\PlotOptionPanel.resx">
+      <DependentUpon>PlotOptionPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

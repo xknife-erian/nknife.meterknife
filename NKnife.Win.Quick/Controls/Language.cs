@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.CompilerServices;
 using System.Xml;
 using NKnife;
 
@@ -33,6 +34,21 @@ namespace System.Windows.Forms
         public static string Res(string key)
         {
             return Get(Text, $"INFO.{key}");
+        }
+
+        public static string ResF(this ToolStripItem item, string key, params object[] values)
+        {
+            return Get(Text, string.Format($"{item.GetType().Name}.{key}", values));
+        }
+
+        public static string ResF(this Control control, string key, params object[] values)
+        {
+            return Get(Text, string.Format($"{control.GetType().Name}.{key}", values));
+        }
+
+        public static string ResF(string key, params object[] values)
+        {
+            return Get(Text, string.Format($"INFO.{key}", values));
         }
 
         public static string ResSection(this ToolStripItem item, string key, string defaultValue = "")

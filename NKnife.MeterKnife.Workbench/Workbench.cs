@@ -46,7 +46,12 @@ namespace NKnife.MeterKnife.Workbench
 #if DEBUG
             BindMainMenu(debuggerManager.GetDebugMenu());
 #endif
-            OptionPanelList.AddRange(new IOptionPanel[] {new GeneralOptionPanel(), new DataOptionPanel()});
+            OptionPanelList.AddRange(new IOptionPanel[]
+            {
+                new GeneralOptionPanel(), 
+                new DataOptionPanel(),
+                new PlotOptionPanel(), 
+            });
         }
 
         private void ActiveDockPanelTheme(string themeName)
