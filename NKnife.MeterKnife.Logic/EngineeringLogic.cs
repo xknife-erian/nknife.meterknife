@@ -16,9 +16,9 @@ namespace NKnife.MeterKnife.Logic
     {
         private readonly IStoragePlatform<Engineering> _engineeringStoragePlatform;
         private readonly IStorageDUTWrite<Engineering> _engineeringStorageDUTWrite;
-        private readonly IPerformStorageLogic _performLogic;
+        private readonly IMeasuringLogic _performLogic;
 
-        public EngineeringLogic(IStoragePlatform<Engineering> engineeringStoragePlatform, IStorageDUTWrite<Engineering> engineeringStorageDUTWrite, IPerformStorageLogic performLogic)
+        public EngineeringLogic(IStoragePlatform<Engineering> engineeringStoragePlatform, IStorageDUTWrite<Engineering> engineeringStorageDUTWrite, IMeasuringLogic performLogic)
         {
             _engineeringStoragePlatform = engineeringStoragePlatform;
             _engineeringStorageDUTWrite = engineeringStorageDUTWrite;
@@ -42,7 +42,26 @@ namespace NKnife.MeterKnife.Logic
             return await _engineeringStoragePlatform.InsertAsync(engineering);
         }
 
-        private static void SetDUTMap(IPerformStorageLogic performLogic, CareCommandPool commands, Engineering engineering)
+        /// <summary>
+        /// 创建工程的数据库或者文件
+        /// </summary>
+        private void BuildEngineeringStore(Engineering engineering)
+        {
+            if (string.IsNullOrEmpty(engineering.Name))
+            {
+                var sb = new StringBuilder();
+                foreach (var command in engineering.Commands)
+                {
+                    sb.Append(command.DUT.Name).Append('/');
+                }
+
+                engineering.Name = sb.ToString();
+            }
+
+            _engineeringStoragePlatform.Create(engineering);
+        }
+
+        private static void SetDUTMap(IMeasuringLogic performLogic, CareCommandPool commands, Engineering engineering)
         {
             foreach (var command in commands)
             {
@@ -52,9 +71,12 @@ namespace NKnife.MeterKnife.Logic
             }
         }
 
-        private void BuildEngineeringStore(Engineering engineering)
+        /// <summary>
+        /// 获取所有工程
+        /// </summary>
+        public async Task<IEnumerable<Engineering>> GetAllEngineeringAsync()
         {
-            _engineeringStoragePlatform.Create(engineering);
+            return await _engineeringStoragePlatform.FindAllAsync();
         }
 
         #endregion

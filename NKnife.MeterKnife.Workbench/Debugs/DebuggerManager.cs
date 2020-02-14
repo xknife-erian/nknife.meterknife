@@ -73,7 +73,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             return debug;
         }
 
-        public static ToolStripMenuItem GetDebugItem()
+        public static ToolStripMenuItem GetMockItem()
         {
             var word = Guid.NewGuid().ToString("N").ToUpper();
             var t = new ToolStripMenuItem($"{word.Substring(0, UtilRandom.Next(4, 8))}(&{word[0]})");

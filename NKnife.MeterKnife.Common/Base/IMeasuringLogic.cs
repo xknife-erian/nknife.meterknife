@@ -7,7 +7,7 @@ namespace NKnife.MeterKnife.Base
     /// <summary>
     ///     采集数据的存储逻辑
     /// </summary>
-    public interface IPerformStorageLogic
+    public interface IMeasuringLogic
     {
         /// <summary>
         ///     处理当前的被测物的测量数据

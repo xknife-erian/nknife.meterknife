@@ -13,7 +13,7 @@ namespace NKnife.MeterKnife.ViewModels
 
         private DUTSeriesStyleSolution _solution = new DUTSeriesStyleSolution();
 
-        public MeasureViewModel(IHabitManager habit, IMeasureService measureService)
+        public MeasureViewModel(IHabitManager habit, IAntCollectService antCollectService)
         {
             var dvList = new List<PlotTheme>();
             var dv = new PlotTheme();
@@ -26,7 +26,7 @@ namespace NKnife.MeterKnife.ViewModels
                     LinearPlot = new DUTLinearPlot(plotTheme);
             }
 
-            measureService.Measured += OnMeasured;
+            antCollectService.Collected += OnMeasured;
         }
 
         public DUTSeriesStyleSolution StyleSolution
@@ -41,7 +41,7 @@ namespace NKnife.MeterKnife.ViewModels
 
         public DUTLinearPlot LinearPlot { get; }
 
-        private void OnMeasured(object sender, MeasureEventArgs e)
+        private void OnMeasured(object sender, CollectEventArgs e)
         {
             var index = _solution.IndexOf(e.DUT.Item2.Id);
             _Logger.Trace($"数据Index:{index},{e.Measurements.Data},{e.Time},{e.DUT},{e.Group}");

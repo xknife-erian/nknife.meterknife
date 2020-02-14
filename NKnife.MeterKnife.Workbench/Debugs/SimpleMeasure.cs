@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Util.Tunnel;
+using NKnife.Util;
 
 namespace NKnife.MeterKnife.Workbench.Debugs
 {
@@ -33,6 +35,8 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         {
             var engineering = new Engineering
             {
+                Name = "",
+                CreateTime = new DateTime(2019, UtilRandom.Next(1, 12), UtilRandom.Next(1, 25), UtilRandom.Next(1, 24), UtilRandom.Next(1, 60), UtilRandom.Next(1, 60)),
                 Commands = Pool
             };
             await engineeringLogic.CreateEngineering(engineering);

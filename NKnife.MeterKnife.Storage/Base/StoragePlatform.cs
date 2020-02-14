@@ -115,7 +115,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public virtual async Task<IEnumerable<T>> FindAllAsync()
         {
             var conn = _storageManager.OpenPlatformConnection();
-            var sql = $"SELECT * FROM {TableName}'";
+            var sql = $"SELECT * FROM '{TableName}'";
             var result = await conn.QueryAsync<T>(sql);
             return result;
         }

@@ -15,12 +15,12 @@ namespace NKnife.MeterKnife.CLI.Commands
     public class DataCommand : BaseCommand
     {
         private readonly IEngineeringLogic _engineeringLogic;
-        private readonly IPerformStorageLogic _performStorageLogic;
+        private readonly IMeasuringLogic _measuringLogic;
 
-        public DataCommand(IEngineeringLogic engineeringLogic, IPerformStorageLogic performStorageLogic)
+        public DataCommand(IEngineeringLogic engineeringLogic, IMeasuringLogic measuringLogic)
         {
             _engineeringLogic = engineeringLogic;
-            _performStorageLogic = performStorageLogic;
+            _measuringLogic = measuringLogic;
         }
 
         #region Overrides of BaseCommand
@@ -51,13 +51,13 @@ namespace NKnife.MeterKnife.CLI.Commands
                 var b = UtilRandom.Next(10000000, 99999999);
                 var c = UtilRandom.Next(10000000, 99999999);
                 data.Data = double.Parse($"{a}.{b}{c}");
-                await _performStorageLogic.ProcessAsync((engineering, dut1), data);
+                await _measuringLogic.ProcessAsync((engineering, dut1), data);
                 console.Output.Write(".");
                 data.Data = double.Parse($"{b}.{c}{a}");
-                await _performStorageLogic.ProcessAsync((engineering, dut2), data);
+                await _measuringLogic.ProcessAsync((engineering, dut2), data);
                 console.Output.Write(".");
                 data.Data = double.Parse($"{c}.{a}{b}");
-                await _performStorageLogic.ProcessAsync((engineering, dut3), data);
+                await _measuringLogic.ProcessAsync((engineering, dut3), data);
                 console.Output.Write(".");
                 if (i % 1000 == 0)
                     console.Output.Write($"/{i}/");

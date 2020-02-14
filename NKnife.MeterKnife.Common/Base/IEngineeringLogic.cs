@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NKnife.MeterKnife.Common.Domain;
 
 // ReSharper disable once CheckNamespace
@@ -11,5 +12,10 @@ namespace NKnife.MeterKnife.Base
         /// </summary>
         /// <returns>是否创建成功</returns>
         Task<bool> CreateEngineering(Engineering engineering);
+
+        /// <summary>
+        /// 获取所有工程
+        /// </summary>
+        Task<IEnumerable<Engineering>> GetAllEngineeringAsync();
     }
 }

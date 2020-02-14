@@ -6,9 +6,9 @@ using NKnife.MeterKnife.Common.Domain;
 namespace NKnife.MeterKnife.Logic
 {
     /// <summary>
-    ///     面向全局的测量数据广播服务。该测量服务以事件方式，广播测量指令所采集到的数据。
+    ///     面向全局的数据采集广播服务。该服务以事件方式，广播采集指令所采集到的数据。
     /// </summary>
-    public class MeasureService : IMeasureService
+    public class AntCollectService : IAntCollectService
     {
         #region Implementation of IEnvironmentItem
 
@@ -23,30 +23,30 @@ namespace NKnife.MeterKnife.Logic
         }
 
         public int Order { get; } = 999;
-        public string Description { get; } = "面向全局的测量数据广播服务";
+        public string Description { get; } = "面向全局的采集数据广播服务";
 
         #endregion
 
-        #region Implementation of IMeasureService
+        #region Implementation of IAntCollectService
 
         /// <summary>
-        ///     当测量指令采集到数据时发生。
+        ///     当采集指令采集到数据时发生。
         /// </summary>
-        public event EventHandler<MeasureEventArgs> Measured;
+        public event EventHandler<CollectEventArgs> Collected;
 
         /// <summary>
-        ///     当测量指令采集到数据时，将数据置入MeasureService服务中
+        ///     当测量指令采集到数据时，将数据置入<see cref="AntCollectService"/>服务中
         /// </summary>
         /// <param name="dut">指定的工程与被测物</param>
         /// <param name="data">数据</param>
         public void AddValue((Engineering, DUT) dut, MeasureData data)
         {
-            Task.Factory.StartNew(OnMeasured, new MeasureEventArgs(dut, data));
+            Task.Factory.StartNew(OnCollected, new CollectEventArgs(dut, data));
         }
 
-        protected virtual void OnMeasured(object e)
+        protected virtual void OnCollected(object e)
         {
-            Measured?.Invoke(this, (MeasureEventArgs) e);
+            Collected?.Invoke(this, (CollectEventArgs) e);
         }
 
         #endregion

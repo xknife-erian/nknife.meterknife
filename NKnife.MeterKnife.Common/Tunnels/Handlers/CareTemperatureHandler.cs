@@ -7,13 +7,13 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
     public class CareTemperatureHandler : CareProtocolHandler
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly IPerformStorageLogic _dataLogic;
-        private readonly IMeasureService _measureService;
+        private readonly IMeasuringLogic _dataLogic;
+        private readonly IAntCollectService _antCollectService;
 
-        public CareTemperatureHandler(IPerformStorageLogic dataLogic, IMeasureService measureService)
+        public CareTemperatureHandler(IMeasuringLogic dataLogic, IAntCollectService antCollectService)
         {
             _dataLogic = dataLogic;
-            _measureService = measureService;
+            _antCollectService = antCollectService;
             Commands.Add(new byte[] {0xAE, 0x00});
             Commands.Add(new byte[] {0xAE, 0x01});
             Commands.Add(new byte[] {0xAE, 0x02});
@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
             if (double.TryParse(data, out var value))
             {
                 _Logger.Trace($"{protocol.DUT} > {data.TrimEnd('\n')}");
-                _measureService.AddValue(dut, new MeasureData { Time = DateTime.Now, Data = value });
+                _antCollectService.AddValue(dut, new MeasureData { Time = DateTime.Now, Data = value });
             }
         }
     }

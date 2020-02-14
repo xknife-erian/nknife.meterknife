@@ -8,12 +8,12 @@ namespace NKnife.MeterKnife.Base
     /// <summary>
     ///     面向全局的测量数据广播服务。该测量服务以事件方式，广播测量指令所采集到的数据。
     /// </summary>
-    public interface IMeasureService : IEnvironmentItem
+    public interface IAntCollectService : IEnvironmentItem
     {
         /// <summary>
         ///     当测量事物启动后采集到即时数据时发生。
         /// </summary>
-        event EventHandler<MeasureEventArgs> Measured;
+        event EventHandler<CollectEventArgs> Collected;
 
         /// <summary>
         ///     当测量指令采集到数据时，将数据置入MeasureService服务中
@@ -26,9 +26,9 @@ namespace NKnife.MeterKnife.Base
     /// <summary>
     ///     当测量事物启动后采集到即时数据时发生的事件信息封装。
     /// </summary>
-    public class MeasureEventArgs : EventArgs
+    public class CollectEventArgs : EventArgs
     {
-        public MeasureEventArgs((Engineering, DUT) dut, MeasureData measurements)
+        public CollectEventArgs((Engineering, DUT) dut, MeasureData measurements)
         {
             Time = DateTime.Now;
             DUT = dut;

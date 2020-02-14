@@ -15,10 +15,13 @@ namespace NKnife.MeterKnife.Workbench
     public class Workbench : QuickForm
     {
         private readonly IHabitManager _habitManager;
+        private readonly EngineeringView _engineeringView;
 
-        public Workbench(IHabitManager habitManager, DebuggerManager debuggerManager)
+        public Workbench(IHabitManager habitManager, EngineeringView engineeringView,
+            DebuggerManager debuggerManager)
         {
             _habitManager = habitManager;
+            _engineeringView = engineeringView;
             GetHabitValueFunc = _habitManager.GetHabitValue;
             SetHabitAction = _habitManager.SetHabitValue;
             GetOptionValueFunc = _habitManager.GetOptionValue;
@@ -33,16 +36,11 @@ namespace NKnife.MeterKnife.Workbench
 
             var fileMenuItem = new FileMenuItem();
             fileMenuItem.DropDownItems.Insert(0, new ToolStripSeparator());
-            fileMenuItem.DropDownItems.Insert(0, DebuggerManager.GetDebugItem());
+            fileMenuItem.DropDownItems.Insert(0, DebuggerManager.GetMockItem());
 
-            var culture = habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
-            var themeName = habitManager.GetHabitValue("MainTheme", nameof(VS2015BlueTheme));
-            var viewMenuItem = new ViewMenuItem();
-            viewMenuItem.SetActiveCulture(culture);
-            viewMenuItem.SetActiveTheme(themeName);
-            ActiveDockPanelTheme(themeName);
+            var viewMenuItem = BuildViewMenu();
             BindMainMenu(fileMenuItem, new DataMenuItem(), new MeasureMenuItem(), new ToolMenuItem(), viewMenuItem, new HelpMenuItem());
-            BindTrayMenu(DebuggerManager.GetDebugItem(), DebuggerManager.GetDebugItem());
+            BindTrayMenu(DebuggerManager.GetMockItem(), DebuggerManager.GetMockItem());
 #if DEBUG
             BindMainMenu(debuggerManager.GetDebugMenu());
 #endif
@@ -52,6 +50,25 @@ namespace NKnife.MeterKnife.Workbench
                 new DataOptionPanel(),
                 new PlotOptionPanel(), 
             });
+        }
+
+        private ViewMenuItem BuildViewMenu()
+        {
+            var viewMenu = new ViewMenuItem();
+            var engManagerMenu = new ToolStripMenuItem(this.Res("工程管理(&E)"));
+            engManagerMenu.Click += (s, e) =>
+            {
+                _engineeringView.Show(MainDockPanel,DockState.DockRight);
+            };
+            viewMenu.DropDownItems.Insert(0,new ToolStripSeparator());
+            viewMenu.DropDownItems.Insert(0, engManagerMenu);
+
+            var culture = _habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
+            var themeName = _habitManager.GetHabitValue("MainTheme", nameof(VS2015BlueTheme));
+            viewMenu.SetActiveCulture(culture);
+            viewMenu.SetActiveTheme(themeName);
+            ActiveDockPanelTheme(themeName);
+            return viewMenu;
         }
 
         private void ActiveDockPanelTheme(string themeName)

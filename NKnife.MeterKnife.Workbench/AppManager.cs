@@ -10,11 +10,11 @@ namespace NKnife.MeterKnife.Workbench
     {
         private readonly List<IEnvironmentItem> _envItemList = new List<IEnvironmentItem>();
 
-        public AppManager(IFileService fileService, IMeasureService measureService, IPerformStorageLogic storageLogic)
+        public AppManager(IFileService fileService, IAntCollectService antCollectService, IMeasuringLogic storageLogic)
         {
             //启动核心触发，当接收到数据时，调用存储逻辑进行数据处理。
-            measureService.Measured += async (s, e) => { await storageLogic.ProcessAsync(e.DUT, e.Measurements); };
-            _envItemList.AddRange(new IEnvironmentItem[] {fileService, measureService});
+            antCollectService.Collected += async (s, e) => { await storageLogic.ProcessAsync(e.DUT, e.Measurements); };
+            _envItemList.AddRange(new IEnvironmentItem[] {fileService, antCollectService});
             _envItemList.Sort((x, y) => x.Order.CompareTo(y.Order));
         }
 

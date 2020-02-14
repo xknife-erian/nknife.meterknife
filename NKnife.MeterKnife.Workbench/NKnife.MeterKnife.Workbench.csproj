@@ -288,6 +288,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\EngineeringView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EngineeringView.Designer.cs">
+      <DependentUpon>EngineeringView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MeasureView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SerialPortSelectorDialog.resx">
       <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EngineeringView.resx">
+      <DependentUpon>EngineeringView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MeasureView.resx">
       <DependentUpon>MeasureView.cs</DependentUpon>

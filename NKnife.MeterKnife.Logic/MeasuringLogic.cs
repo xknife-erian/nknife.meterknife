@@ -6,24 +6,24 @@ using NKnife.MeterKnife.Common.Domain;
 namespace NKnife.MeterKnife.Logic
 {
     /// <summary>
-    ///     描述一次测量执行事件的数据逻辑
+    ///     描述一次测量执行事件过程中的逻辑
     ///     2020年1月18日新增
     /// </summary>
-    public class PerformStorageLogic : IPerformStorageLogic
+    public class MeasuringLogic : IMeasuringLogic
     {
         private readonly IStorageDUTWrite<MeasureData> _dataStorageDUTWrite;
 
-        public PerformStorageLogic(IStorageDUTWrite<MeasureData> dataStorageDUTWrite)
+        public MeasuringLogic(IStorageDUTWrite<MeasureData> dataStorageDUTWrite)
         {
             _dataStorageDUTWrite = dataStorageDUTWrite;
         }
 
         /// <summary>
-        ///     被测单元
+        ///     被测单元字典。Key是命令体，Value是工程与被测物。
         /// </summary>
         public Dictionary<string, (Engineering, DUT)> DUTMap { get; set; } = new Dictionary<string, (Engineering, DUT)>();
 
-        #region Implementation of IPerformStorageLogic
+        #region Implementation of IMeasuringLogic
 
         /// <summary>
         ///     处理当前的被测物的测量数据
