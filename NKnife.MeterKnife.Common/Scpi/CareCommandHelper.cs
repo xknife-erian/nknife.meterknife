@@ -6,16 +6,8 @@ namespace NKnife.MeterKnife.Common.Scpi
     /// <summary>
     ///     Care组装SCPI指令的帮助方法
     /// </summary>
-    public static class ScpiHelper
+    public static class CareCommandHelper
     {
-        public static byte[] GenerateProtocol(CareCommand careCommand)
-        {
-            var head = new byte[] { 0x08, 0x00, 0x02, careCommand.Heads.Item1, careCommand.Heads.Item2 };
-            var newbs = UtilCollection.MergerArray(head, careCommand.Content);
-            newbs[2] = (byte)(newbs.Length - 3);
-            return newbs;
-        }
-
         /// <summary>
         ///     查询温度
         /// </summary>

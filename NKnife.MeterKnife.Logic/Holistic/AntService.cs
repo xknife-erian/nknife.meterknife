@@ -155,7 +155,7 @@ namespace NKnife.MeterKnife.Holistic
             {
                 byte[] data;
                 if (cmd is CareCommand careCommand)
-                    data = ScpiHelper.GenerateProtocol(careCommand);
+                    data = careCommand.GenerateCareProtocol();
                 else
                     data = cmd.Scpi.GenerateCareProtocol(cmd.GpibAddress);
 
@@ -305,7 +305,7 @@ namespace NKnife.MeterKnife.Holistic
             try
             {
                 var data = cmd.IsCare
-                    ? ScpiHelper.GenerateCareProtocol(cmd)
+                    ? CareCommandHelper.GenerateCareProtocol(cmd)
                     : cmd.Scpi.GenerateCareProtocol(cmd.GpibAddress);
 
                 _Logger.Trace($"< SendCommand:{data.ToHexString()}");
@@ -527,7 +527,7 @@ namespace NKnife.MeterKnife.Holistic
             try
             {
                 var data = cmd.IsCare
-                    ? ScpiHelper.GenerateCareProtocol(cmd)
+                    ? CareCommandHelper.GenerateCareProtocol(cmd)
                     : cmd.ScpiCommand.GenerateCareProtocol(cmd.GpibAddress);
 
                 _Logger.Trace($"SendCommand:{data.ToHexString()}");

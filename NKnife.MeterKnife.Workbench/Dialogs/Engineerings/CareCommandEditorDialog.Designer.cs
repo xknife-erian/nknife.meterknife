@@ -40,7 +40,7 @@
             this._ConfirmButton = new System.Windows.Forms.Button();
             this._CancelButton = new System.Windows.Forms.Button();
             this._SlotComboBox = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this._DUTComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -56,11 +56,11 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this._CommandTabControl = new System.Windows.Forms.TabControl();
+            this._ScpiTabPage = new System.Windows.Forms.TabPage();
+            this._CareTabPage = new System.Windows.Forms.TabPage();
+            this._ScpiRadioButton = new System.Windows.Forms.RadioButton();
+            this._CareRadioButton = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this._IntervalNumericUpDown)).BeginInit();
@@ -69,15 +69,15 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this._CommandTabControl.SuspendLayout();
+            this._ScpiTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(44, 119);
+            this.label9.Location = new System.Drawing.Point(44, 113);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 17);
             this.label9.TabIndex = 9;
@@ -87,7 +87,7 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(85, 116);
+            this.textBox1.Location = new System.Drawing.Point(85, 110);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -101,7 +101,7 @@
             this._BrLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._BrLabel.AutoSize = true;
             this._BrLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this._BrLabel.Location = new System.Drawing.Point(97, 93);
+            this._BrLabel.Location = new System.Drawing.Point(83, 87);
             this._BrLabel.Name = "_BrLabel";
             this._BrLabel.Size = new System.Drawing.Size(115, 17);
             this._BrLabel.TabIndex = 7;
@@ -117,7 +117,7 @@
             this._CommandTextBox.Multiline = true;
             this._CommandTextBox.Name = "_CommandTextBox";
             this._CommandTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._CommandTextBox.Size = new System.Drawing.Size(230, 46);
+            this._CommandTextBox.Size = new System.Drawing.Size(230, 40);
             this._CommandTextBox.TabIndex = 0;
             this._CommandTextBox.Text = "READ?\r\nFETC?";
             // 
@@ -132,9 +132,9 @@
             // 
             // _HexEnableCheckBox
             // 
-            this._HexEnableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._HexEnableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._HexEnableCheckBox.AutoSize = true;
-            this._HexEnableCheckBox.Location = new System.Drawing.Point(307, 45);
+            this._HexEnableCheckBox.Location = new System.Drawing.Point(321, 46);
             this._HexEnableCheckBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._HexEnableCheckBox.Name = "_HexEnableCheckBox";
             this._HexEnableCheckBox.Size = new System.Drawing.Size(65, 21);
@@ -226,16 +226,16 @@
             this._SlotComboBox.Size = new System.Drawing.Size(365, 25);
             this._SlotComboBox.TabIndex = 3;
             // 
-            // comboBox2
+            // _DUTComboBox
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._DUTComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(107, 68);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(365, 25);
-            this.comboBox2.TabIndex = 4;
+            this._DUTComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._DUTComboBox.FormattingEnabled = true;
+            this._DUTComboBox.Location = new System.Drawing.Point(107, 68);
+            this._DUTComboBox.Name = "_DUTComboBox";
+            this._DUTComboBox.Size = new System.Drawing.Size(365, 25);
+            this._DUTComboBox.TabIndex = 4;
             // 
             // label4
             // 
@@ -439,66 +439,66 @@
             this.label12.TabIndex = 13;
             this.label12.Text = "循环次数:";
             // 
-            // tabControl1
+            // _CommandTabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(136, 143);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(449, 206);
-            this.tabControl1.TabIndex = 17;
+            this._CommandTabControl.Controls.Add(this._ScpiTabPage);
+            this._CommandTabControl.Controls.Add(this._CareTabPage);
+            this._CommandTabControl.ItemSize = new System.Drawing.Size(62, 28);
+            this._CommandTabControl.Location = new System.Drawing.Point(136, 143);
+            this._CommandTabControl.Name = "_CommandTabControl";
+            this._CommandTabControl.SelectedIndex = 0;
+            this._CommandTabControl.Size = new System.Drawing.Size(449, 206);
+            this._CommandTabControl.TabIndex = 17;
             // 
-            // tabPage1
+            // _ScpiTabPage
             // 
-            this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this._CommandTextBox);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this._HexEnableCheckBox);
-            this.tabPage1.Controls.Add(this._BrLabel);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 26);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(441, 176);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "SCPI指令";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this._ScpiTabPage.Controls.Add(this.textBox2);
+            this._ScpiTabPage.Controls.Add(this.label10);
+            this._ScpiTabPage.Controls.Add(this.label9);
+            this._ScpiTabPage.Controls.Add(this._CommandTextBox);
+            this._ScpiTabPage.Controls.Add(this.textBox1);
+            this._ScpiTabPage.Controls.Add(this._HexEnableCheckBox);
+            this._ScpiTabPage.Controls.Add(this._BrLabel);
+            this._ScpiTabPage.Controls.Add(this.label1);
+            this._ScpiTabPage.Location = new System.Drawing.Point(4, 32);
+            this._ScpiTabPage.Name = "_ScpiTabPage";
+            this._ScpiTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this._ScpiTabPage.Size = new System.Drawing.Size(441, 170);
+            this._ScpiTabPage.TabIndex = 0;
+            this._ScpiTabPage.Text = "SCPI指令";
+            this._ScpiTabPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // _CareTabPage
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(441, 176);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "MeterCare指令";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this._CareTabPage.Location = new System.Drawing.Point(4, 30);
+            this._CareTabPage.Name = "_CareTabPage";
+            this._CareTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this._CareTabPage.Size = new System.Drawing.Size(441, 172);
+            this._CareTabPage.TabIndex = 1;
+            this._CareTabPage.Text = "MeterCare指令";
+            this._CareTabPage.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // _ScpiRadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(42, 147);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(52, 21);
-            this.radioButton1.TabIndex = 18;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "SCPI";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this._ScpiRadioButton.AutoSize = true;
+            this._ScpiRadioButton.Checked = true;
+            this._ScpiRadioButton.Location = new System.Drawing.Point(42, 147);
+            this._ScpiRadioButton.Name = "_ScpiRadioButton";
+            this._ScpiRadioButton.Size = new System.Drawing.Size(52, 21);
+            this._ScpiRadioButton.TabIndex = 18;
+            this._ScpiRadioButton.TabStop = true;
+            this._ScpiRadioButton.Text = "SCPI";
+            this._ScpiRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // _CareRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(42, 168);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(88, 21);
-            this.radioButton2.TabIndex = 19;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "MeterCare";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this._CareRadioButton.AutoSize = true;
+            this._CareRadioButton.Location = new System.Drawing.Point(42, 168);
+            this._CareRadioButton.Name = "_CareRadioButton";
+            this._CareRadioButton.Size = new System.Drawing.Size(88, 21);
+            this._CareRadioButton.TabIndex = 19;
+            this._CareRadioButton.Text = "MeterCare";
+            this._CareRadioButton.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -513,7 +513,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(85, 17);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(216, 23);
+            this.textBox2.Size = new System.Drawing.Size(230, 23);
             this.textBox2.TabIndex = 11;
             // 
             // CareCommandEditorDialog
@@ -523,15 +523,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._CancelButton;
             this.ClientSize = new System.Drawing.Size(619, 545);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this._CareRadioButton);
+            this.Controls.Add(this._ScpiRadioButton);
+            this.Controls.Add(this._CommandTabControl);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this._DUTComboBox);
             this.Controls.Add(this._SlotComboBox);
             this.Controls.Add(this._CancelButton);
             this.Controls.Add(this._ConfirmButton);
@@ -557,9 +557,9 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this._CommandTabControl.ResumeLayout(false);
+            this._ScpiTabPage.ResumeLayout(false);
+            this._ScpiTabPage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -576,7 +576,7 @@
         private System.Windows.Forms.Button _CancelButton;
         private System.Windows.Forms.Label _BrLabel;
         private System.Windows.Forms.ComboBox _SlotComboBox;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox _DUTComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
@@ -594,11 +594,11 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.TabControl _CommandTabControl;
+        private System.Windows.Forms.TabPage _ScpiTabPage;
+        private System.Windows.Forms.TabPage _CareTabPage;
+        private System.Windows.Forms.RadioButton _ScpiRadioButton;
+        private System.Windows.Forms.RadioButton _CareRadioButton;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label10;
     }

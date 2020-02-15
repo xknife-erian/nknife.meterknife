@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
@@ -12,18 +13,51 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
         private readonly IDUTLogic _dutLogic;
         private PoolCategory _category;
 
-        public CareCommandEditorDialog()
+        public CareCommandEditorDialog(IDUTLogic dutLogic)
         {
+            _dutLogic = dutLogic;
             InitializeComponent();
-            _SlotComboBox.SelectedIndex = 0;
-            _CommandTextBox.TextChanged += (s, e) => { _ConfirmButton.Enabled = _CommandTextBox.Text.Length > 0; };
+            InitializeCommandTabControl();
             _ConfirmButton.Enabled = false;
+            _SlotComboBox.SelectedIndex = 0;
+            RespondToControlEvnet();
             Shown+= OnShown;
         }
 
-        private void OnShown(object sender, EventArgs e)
+        private void InitializeCommandTabControl()
         {
-            
+            _CommandTabControl.SuspendLayout();
+            _CommandTabControl.TabPages.Clear();
+            _CommandTabControl.TabPages.Add(_ScpiTabPage);
+            _CommandTabControl.ResumeLayout(false);
+            _CommandTabControl.PerformLayout();
+        }
+
+        private async void OnShown(object sender, EventArgs e)
+        {
+            var dutArray = await _dutLogic.GetAllDUTAsync();
+            if (dutArray != null) 
+                _DUTComboBox.Items.AddRange(dutArray.Cast<object>().ToArray());
+        }
+
+        private void RespondToControlEvnet()
+        {
+            _ScpiRadioButton.CheckedChanged += (sender, args) =>
+            {
+                _CommandTabControl.SuspendLayout();
+                _CommandTabControl.TabPages.Clear();
+                _CommandTabControl.TabPages.Add(_ScpiTabPage);
+                _CommandTabControl.ResumeLayout(false);
+                _CommandTabControl.PerformLayout();
+            };
+            _CareRadioButton.CheckedChanged += (sender, args) =>
+            {
+                _CommandTabControl.SuspendLayout();
+                _CommandTabControl.TabPages.Clear();
+                _CommandTabControl.TabPages.Add(_CareTabPage);
+                _CommandTabControl.ResumeLayout(false);
+                _CommandTabControl.PerformLayout();
+            };
         }
 
         public PoolCategory Category
