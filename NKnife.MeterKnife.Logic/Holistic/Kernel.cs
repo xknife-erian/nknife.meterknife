@@ -4,7 +4,8 @@ using NKnife.Db;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
-namespace NKnife.MeterKnife.Logic
+// ReSharper disable once CheckNamespace
+namespace NKnife.MeterKnife.Holistic
 {
     public class Kernel : IGlobal
     {

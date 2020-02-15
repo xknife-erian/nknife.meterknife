@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CareCommandEditorViewModel.cs" />
     <Compile Include="EngineeringViewModel.cs" />
     <Compile Include="MeasureViewModel.cs" />
     <Compile Include="Plots\DUTSeriesStyle.cs" />

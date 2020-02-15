@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Holistic;
 
 namespace NKnife.MeterKnife.Logic.IoC
 {
@@ -8,7 +8,7 @@ namespace NKnife.MeterKnife.Logic.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Logic.Kernel>().As<IGlobal>().SingleInstance();
+            builder.RegisterType<Kernel>().As<IGlobal>().SingleInstance();
             builder.RegisterType<AntService>().As<IAntService>().SingleInstance();
             builder.RegisterType<AntCollectService>().As<IAntCollectService>().SingleInstance();
 

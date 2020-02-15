@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using NKnife.Interface;
-using NKnife.MeterKnife.Logic;
+using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Workbench.Base;
 
 namespace NKnife.MeterKnife.Workbench

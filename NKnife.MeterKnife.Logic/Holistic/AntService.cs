@@ -15,7 +15,8 @@ using NKnife.MeterKnife.Util.Tunnel.Filters;
 using NKnife.MeterKnife.Util.Tunnel.Generic;
 using NLog;
 
-namespace NKnife.MeterKnife.Logic
+// ReSharper disable once CheckNamespace
+namespace NKnife.MeterKnife.Holistic
 {
     public sealed class AntService : IAntService
     {

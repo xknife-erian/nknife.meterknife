@@ -248,7 +248,7 @@ namespace NKnife.MeterKnife.Scpis
             }
         }
 
-        protected void AddListItem(PoolCategory category, CareCommand command)
+        protected void AddListItem(PoolCategory category, ScpiCommand command)
         {
             var listitem = new ListViewItem {Checked = true};
             switch (category)

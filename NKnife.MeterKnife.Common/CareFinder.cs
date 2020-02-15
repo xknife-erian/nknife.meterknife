@@ -1,7 +1,4 @@
-﻿using NKnife.MeterKnife.Common;
-using NKnife.MeterKnife.Base;
-
-namespace NKnife.MeterKnife.Logic
+﻿namespace NKnife.MeterKnife.Common
 {
     public class CareFinder
     {

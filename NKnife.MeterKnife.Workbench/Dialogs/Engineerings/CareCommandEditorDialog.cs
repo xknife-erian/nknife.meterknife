@@ -13,6 +13,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
         public CareCommandEditorDialog()
         {
             InitializeComponent();
+            _SlotComboBox.SelectedIndex = 0;
             _CommandTextBox.TextChanged += (s, e) => { _ConfirmButton.Enabled = _CommandTextBox.Text.Length > 0; };
             _ConfirmButton.Enabled = false;
         }
@@ -27,11 +28,9 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 {
                     case PoolCategory.Collect:
                         _IntervalNumericUpDown.Value = 400;
-                        _IsReturnCheckBox.Checked = true;
                         break;
                     case PoolCategory.Initializtion:
                         _IntervalNumericUpDown.Value = 50;
-                        _IsReturnCheckBox.Checked = false;
                         break;
                 }
             }
@@ -59,12 +58,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
         {
             get => _HexEnableCheckBox.Checked;
             set => _HexEnableCheckBox.Checked = value;
-        }
-
-        public bool IsReturn
-        {
-            get => _IsReturnCheckBox.Checked;
-            set => _IsReturnCheckBox.Checked = value;
         }
 
         private void _ConfirmButton_Click(object sender, EventArgs e)

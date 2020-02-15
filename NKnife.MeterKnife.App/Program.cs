@@ -6,6 +6,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Logic;
 using NKnife.MeterKnife.Storage.Db;
 using NKnife.Win.Forms.Forms;

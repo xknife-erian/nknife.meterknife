@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
-namespace NKnife.MeterKnife.Logic
+// ReSharper disable once CheckNamespace
+namespace NKnife.MeterKnife.Holistic
 {
     /// <summary>
     ///     面向全局的数据采集广播服务。该服务以事件方式，广播采集指令所采集到的数据。

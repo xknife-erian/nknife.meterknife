@@ -7,6 +7,7 @@ using CliFx;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NKnife.MeterKnife.CLI.Commands;
+using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Logic;
 using NKnife.MeterKnife.Storage.Db;
 using NKnife.MeterKnife.Util.Serial;
