@@ -51,30 +51,31 @@
             this._AcceptButton = new System.Windows.Forms.Button();
             this._TabControl = new System.Windows.Forms.TabControl();
             this._EngineeringTabPage = new System.Windows.Forms.TabPage();
-            this._CommandsTabPage = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this._EngNumberTextBox = new System.Windows.Forms.TextBox();
-            this._EngNameTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this._AutomaticNumberGenerationButton = new System.Windows.Forms.Button();
             this._EngDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this._CommandsToolStrip = new System.Windows.Forms.ToolStrip();
+            this._EngNameTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this._EngNumberTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this._CommandsTabPage = new System.Windows.Forms.TabPage();
             this._CommandsListView = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
             this._IndexColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._DUTColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._SlotColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._SCPIColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._IntervalColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._TimeoutColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._IsLoopColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._LoopCountolumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._IntervalColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._TimeoutColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._CommandsToolStrip = new System.Windows.Forms.ToolStrip();
             this._CreateCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this._EditCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteCommandStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._UpCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this._DownCommandStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._GenerateNameOnDUTButton = new System.Windows.Forms.Button();
             this._TabControl.SuspendLayout();
             this._EngineeringTabPage.SuspendLayout();
             this._CommandsTabPage.SuspendLayout();
@@ -119,7 +120,8 @@
             // 
             // _EngineeringTabPage
             // 
-            this._EngineeringTabPage.Controls.Add(this.button1);
+            this._EngineeringTabPage.Controls.Add(this._GenerateNameOnDUTButton);
+            this._EngineeringTabPage.Controls.Add(this._AutomaticNumberGenerationButton);
             this._EngineeringTabPage.Controls.Add(this._EngDescriptionTextBox);
             this._EngineeringTabPage.Controls.Add(this.label3);
             this._EngineeringTabPage.Controls.Add(this._EngNameTextBox);
@@ -134,53 +136,15 @@
             this._EngineeringTabPage.Text = "工程信息";
             this._EngineeringTabPage.UseVisualStyleBackColor = true;
             // 
-            // _CommandsTabPage
+            // _AutomaticNumberGenerationButton
             // 
-            this._CommandsTabPage.Controls.Add(this._CommandsListView);
-            this._CommandsTabPage.Controls.Add(this._CommandsToolStrip);
-            this._CommandsTabPage.Location = new System.Drawing.Point(4, 34);
-            this._CommandsTabPage.Name = "_CommandsTabPage";
-            this._CommandsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this._CommandsTabPage.Size = new System.Drawing.Size(752, 458);
-            this._CommandsTabPage.TabIndex = 1;
-            this._CommandsTabPage.Text = "采集指令";
-            this._CommandsTabPage.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "工程编号：";
-            // 
-            // _EngNumberTextBox
-            // 
-            this._EngNumberTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._EngNumberTextBox.Location = new System.Drawing.Point(108, 21);
-            this._EngNumberTextBox.Name = "_EngNumberTextBox";
-            this._EngNumberTextBox.Size = new System.Drawing.Size(479, 23);
-            this._EngNumberTextBox.TabIndex = 1;
-            // 
-            // _EngNameTextBox
-            // 
-            this._EngNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._EngNameTextBox.Location = new System.Drawing.Point(108, 53);
-            this._EngNameTextBox.Name = "_EngNameTextBox";
-            this._EngNameTextBox.Size = new System.Drawing.Size(607, 23);
-            this._EngNameTextBox.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "工程名称：";
+            this._AutomaticNumberGenerationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._AutomaticNumberGenerationButton.Location = new System.Drawing.Point(561, 17);
+            this._AutomaticNumberGenerationButton.Name = "_AutomaticNumberGenerationButton";
+            this._AutomaticNumberGenerationButton.Size = new System.Drawing.Size(154, 30);
+            this._AutomaticNumberGenerationButton.TabIndex = 7;
+            this._AutomaticNumberGenerationButton.Text = "自动生成";
+            this._AutomaticNumberGenerationButton.UseVisualStyleBackColor = true;
             // 
             // _EngDescriptionTextBox
             // 
@@ -204,21 +168,53 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "详细描述：";
             // 
-            // _CommandsToolStrip
+            // _EngNameTextBox
             // 
-            this._CommandsToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this._CommandsToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._CreateCommandStripButton,
-            this._EditCommandStripButton,
-            this._DeleteCommandStripButton,
-            this.toolStripSeparator1,
-            this._UpCommandStripButton,
-            this._DownCommandStripButton});
-            this._CommandsToolStrip.Location = new System.Drawing.Point(3, 3);
-            this._CommandsToolStrip.Name = "_CommandsToolStrip";
-            this._CommandsToolStrip.Size = new System.Drawing.Size(746, 25);
-            this._CommandsToolStrip.TabIndex = 0;
-            this._CommandsToolStrip.Text = "toolStrip1";
+            this._EngNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._EngNameTextBox.Location = new System.Drawing.Point(108, 53);
+            this._EngNameTextBox.Name = "_EngNameTextBox";
+            this._EngNameTextBox.Size = new System.Drawing.Size(447, 23);
+            this._EngNameTextBox.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(43, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "工程名称：";
+            // 
+            // _EngNumberTextBox
+            // 
+            this._EngNumberTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._EngNumberTextBox.Location = new System.Drawing.Point(108, 21);
+            this._EngNumberTextBox.Name = "_EngNumberTextBox";
+            this._EngNumberTextBox.Size = new System.Drawing.Size(447, 23);
+            this._EngNumberTextBox.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(43, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "工程编号：";
+            // 
+            // _CommandsTabPage
+            // 
+            this._CommandsTabPage.Controls.Add(this._CommandsListView);
+            this._CommandsTabPage.Controls.Add(this._CommandsToolStrip);
+            this._CommandsTabPage.Location = new System.Drawing.Point(4, 34);
+            this._CommandsTabPage.Name = "_CommandsTabPage";
+            this._CommandsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this._CommandsTabPage.Size = new System.Drawing.Size(752, 458);
+            this._CommandsTabPage.TabIndex = 1;
+            this._CommandsTabPage.Text = "采集指令";
+            this._CommandsTabPage.UseVisualStyleBackColor = true;
             // 
             // _CommandsListView
             // 
@@ -268,16 +264,6 @@
             this._CommandsListView.UseCompatibleStateImageBehavior = false;
             this._CommandsListView.View = System.Windows.Forms.View.Details;
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(593, 17);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 30);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "自动生成";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // _IndexColumnHeader
             // 
             this._IndexColumnHeader.Text = "序号";
@@ -297,6 +283,14 @@
             this._SCPIColumnHeader.Text = "指令";
             this._SCPIColumnHeader.Width = 200;
             // 
+            // _IsLoopColumnHeader
+            // 
+            this._IsLoopColumnHeader.Text = "循环";
+            // 
+            // _LoopCountolumnHeader
+            // 
+            this._LoopCountolumnHeader.Text = "循环次数";
+            // 
             // _IntervalColumnHeader
             // 
             this._IntervalColumnHeader.Text = "循环间隔";
@@ -305,13 +299,21 @@
             // 
             this._TimeoutColumnHeader.Text = "循环超时";
             // 
-            // _IsLoopColumnHeader
+            // _CommandsToolStrip
             // 
-            this._IsLoopColumnHeader.Text = "循环";
-            // 
-            // _LoopCountolumnHeader
-            // 
-            this._LoopCountolumnHeader.Text = "循环次数";
+            this._CommandsToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this._CommandsToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._CreateCommandStripButton,
+            this._EditCommandStripButton,
+            this._DeleteCommandStripButton,
+            this.toolStripSeparator1,
+            this._UpCommandStripButton,
+            this._DownCommandStripButton});
+            this._CommandsToolStrip.Location = new System.Drawing.Point(3, 3);
+            this._CommandsToolStrip.Name = "_CommandsToolStrip";
+            this._CommandsToolStrip.Size = new System.Drawing.Size(746, 25);
+            this._CommandsToolStrip.TabIndex = 0;
+            this._CommandsToolStrip.Text = "toolStrip1";
             // 
             // _CreateCommandStripButton
             // 
@@ -340,6 +342,11 @@
             this._DeleteCommandStripButton.Size = new System.Drawing.Size(36, 22);
             this._DeleteCommandStripButton.Text = "删除";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // _UpCommandStripButton
             // 
             this._UpCommandStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -358,10 +365,15 @@
             this._DownCommandStripButton.Size = new System.Drawing.Size(36, 22);
             this._DownCommandStripButton.Text = "下移";
             // 
-            // toolStripSeparator1
+            // _GenerateNameOnDUTButton
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this._GenerateNameOnDUTButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._GenerateNameOnDUTButton.Location = new System.Drawing.Point(561, 49);
+            this._GenerateNameOnDUTButton.Name = "_GenerateNameOnDUTButton";
+            this._GenerateNameOnDUTButton.Size = new System.Drawing.Size(154, 30);
+            this._GenerateNameOnDUTButton.TabIndex = 8;
+            this._GenerateNameOnDUTButton.Text = "依据被测物生成";
+            this._GenerateNameOnDUTButton.UseVisualStyleBackColor = true;
             // 
             // EngineeringDetailDialog
             // 
@@ -403,7 +415,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox _EngNumberTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button _AutomaticNumberGenerationButton;
         private System.Windows.Forms.ListView _CommandsListView;
         private System.Windows.Forms.ToolStrip _CommandsToolStrip;
         private System.Windows.Forms.ColumnHeader _IndexColumnHeader;
@@ -420,5 +432,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton _UpCommandStripButton;
         private System.Windows.Forms.ToolStripButton _DownCommandStripButton;
+        private System.Windows.Forms.Button _GenerateNameOnDUTButton;
     }
 }

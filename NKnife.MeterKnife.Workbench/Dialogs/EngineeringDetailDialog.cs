@@ -15,6 +15,23 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
         public EngineeringDetailDialog()
         {
             InitializeComponent();
+            RespondToEvent();
+            RespondToButtonClick();
+        }
+
+        private void RespondToButtonClick()
+        {
+            _AutomaticNumberGenerationButton.Click += (sender, args) =>
+            {
+                var number = SequentialGuid.Create().ToString("D").ToUpper();
+                _EngNumberTextBox.Text = number;
+            };
+            _GenerateNameOnDUTButton.Click += (sender, args) => { };
+        }
+
+        private void RespondToEvent()
+        {
+            
         }
     }
 }
