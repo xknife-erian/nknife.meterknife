@@ -41,7 +41,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             {
                 Commands = GetCommands()
             };
-            await _engineeringLogic.CreateEngineering(engineering);
+            await _engineeringLogic.CreateEngineeringAsync(engineering);
             await _antService.StartAsync(engineering);
         }
 
@@ -70,11 +70,11 @@ namespace NKnife.MeterKnife.CLI.Commands
                 Timeout = interval*2,
                 IsLoop = true
             };
-            var temp5 = ScpiHelper.TEMP(5);
+            var temp5 = ScpiHelper.Temperature(5);
             temp5.Slot = _slot;
             temp5.DUT = new DUT() {Id = "T1", Name = "23Temp"};
 
-            var temp6 = ScpiHelper.TEMP(6);
+            var temp6 = ScpiHelper.Temperature(6);
             temp6.Slot = _slot;
             temp6.DUT = new DUT() {Id = "T2", Name = "24Temp"};
 

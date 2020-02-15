@@ -42,7 +42,7 @@ namespace NKnife.MeterKnife.CLI.Commands
                 new CareCommand {DUT = dut3}
             });
             //创建一个工程
-            await _engineeringLogic.CreateEngineering(engineering);
+            await _engineeringLogic.CreateEngineeringAsync(engineering);
             //模拟处理一些数据
             for (int i = 0; i < 3 * 10000; i++)
             {

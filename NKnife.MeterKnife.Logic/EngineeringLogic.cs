@@ -31,7 +31,7 @@ namespace NKnife.MeterKnife.Logic
         /// 新建一个测量工程
         /// </summary>
         /// <returns>是否创建成功</returns>
-        public async Task<bool> CreateEngineering(Engineering engineering)
+        public async Task<bool> CreateEngineeringAsync(Engineering engineering)
         {
             //创建工程的数据库或者文件
             BuildEngineeringStore(engineering);

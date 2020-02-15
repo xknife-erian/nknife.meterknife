@@ -39,7 +39,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 CreateTime = new DateTime(2019, UtilRandom.Next(11, 13), UtilRandom.Next(1, 25), UtilRandom.Next(1, 24), UtilRandom.Next(1, 60), UtilRandom.Next(1, 60)),
                 Commands = Pool
             };
-            await engineeringLogic.CreateEngineering(engineering);
+            await engineeringLogic.CreateEngineeringAsync(engineering);
             await antService.StartAsync(engineering);
         }
 
@@ -68,11 +68,11 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 Timeout = interval * 2,
                 IsLoop = true
             };
-            var temp5 = ScpiHelper.TEMP(5);
+            var temp5 = ScpiHelper.Temperature(5);
             temp5.Slot = _slot;
             temp5.DUT = new DUT() { Id = "T1", Name = "23Temp" };
 
-            var temp6 = ScpiHelper.TEMP(6);
+            var temp6 = ScpiHelper.Temperature(6);
             temp6.Slot = _slot;
             temp6.DUT = new DUT() { Id = "T2", Name = "24Temp" };
 

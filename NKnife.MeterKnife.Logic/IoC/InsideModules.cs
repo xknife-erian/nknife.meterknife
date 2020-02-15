@@ -12,8 +12,12 @@ namespace NKnife.MeterKnife.Logic.IoC
             builder.RegisterType<AntService>().As<IAntService>().SingleInstance();
             builder.RegisterType<AntCollectService>().As<IAntCollectService>().SingleInstance();
 
-            builder.RegisterType<MeasuringLogic>().As<IMeasuringLogic>().SingleInstance();
-            builder.RegisterType<EngineeringLogic>().As<IEngineeringLogic>().SingleInstance();
+            var assembly = this.GetType().Assembly;
+            builder.RegisterAssemblyTypes(assembly)
+                .Where(t => !t.IsAbstract && t.Name.EndsWith("Logic"))
+                .AsImplementedInterfaces()
+                .AsSelf()
+                .SingleInstance();
         }
     }
 }

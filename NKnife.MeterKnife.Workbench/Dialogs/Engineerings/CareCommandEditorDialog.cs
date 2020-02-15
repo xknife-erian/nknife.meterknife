@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Windows.Forms;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.Util;
 
@@ -8,6 +9,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
 {
     public partial class CareCommandEditorDialog : Form
     {
+        private readonly IDUTLogic _dutLogic;
         private PoolCategory _category;
 
         public CareCommandEditorDialog()
@@ -16,6 +18,12 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             _SlotComboBox.SelectedIndex = 0;
             _CommandTextBox.TextChanged += (s, e) => { _ConfirmButton.Enabled = _CommandTextBox.Text.Length > 0; };
             _ConfirmButton.Enabled = false;
+            Shown+= OnShown;
+        }
+
+        private void OnShown(object sender, EventArgs e)
+        {
+            
         }
 
         public PoolCategory Category

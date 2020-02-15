@@ -11,7 +11,7 @@ namespace NKnife.MeterKnife.Base
         ///     新建一个测量工程
         /// </summary>
         /// <returns>是否创建成功</returns>
-        Task<bool> CreateEngineering(Engineering engineering);
+        Task<bool> CreateEngineeringAsync(Engineering engineering);
 
         /// <summary>
         /// 获取所有工程

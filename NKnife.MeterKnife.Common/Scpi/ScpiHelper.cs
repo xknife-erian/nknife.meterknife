@@ -8,33 +8,6 @@ namespace NKnife.MeterKnife.Common.Scpi
     /// </summary>
     public static class ScpiHelper
     {
-        public static Scpi BuildScpiCommand(string scpi, bool isReturn = true)
-        {
-            var careTalking = new Scpi
-            {
-                Command = scpi,
-            };
-            return careTalking;
-        }
-
-        // ReSharper disable once InconsistentNaming
-        public static Scpi IDN(int gpib)
-        {
-            return BuildScpiCommand("*IDN?");
-        }
-
-        // ReSharper disable once InconsistentNaming
-        public static Scpi READ(int gpib)
-        {
-            return BuildScpiCommand("READ?");
-        }
-
-        // ReSharper disable once InconsistentNaming
-        public static Scpi FETC(int gpib)
-        {
-            return BuildScpiCommand("FETC?");
-        }
-
         public static byte[] GenerateProtocol(CareCommand careCommand)
         {
             var head = new byte[] { 0x08, 0x00, 0x02, careCommand.Heads.Item1, careCommand.Heads.Item2 };
@@ -46,8 +19,7 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// <summary>
         ///     查询温度
         /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public static CareCommand TEMP(ushort index, int interval = 100)
+        public static CareCommand Temperature(ushort index, int interval = 100)
         {
             var item = new CareCommand
             {

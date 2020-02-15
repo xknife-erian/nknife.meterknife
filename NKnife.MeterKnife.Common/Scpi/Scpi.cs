@@ -19,6 +19,11 @@ namespace NKnife.MeterKnife.Common.Scpi
         }
 
         /// <summary>
+        /// 命令名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// 命令主体
         /// </summary>
         public string Command { get; set; }
