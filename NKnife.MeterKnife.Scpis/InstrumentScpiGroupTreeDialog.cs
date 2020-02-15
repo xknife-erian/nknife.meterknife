@@ -46,16 +46,16 @@ namespace NKnife.MeterKnife.Scpis
             };
         }
 
-        public CareCommandSubject SelectedScpiSubject
+        public ScpiCommandSubject SelectedScpiSubject
         {
             get
             {
                 var treeNode = _Tree.SelectedNode;
-                return (CareCommandSubject) treeNode.Tag;
+                return (ScpiCommandSubject) treeNode.Tag;
             }
         }
 
-        public CareCommandSubjectList SelectedScpiSubjectCollection
+        public ScpiCommandSubjectList SelectedScpiSubjectCollection
         {
             get
             {
@@ -107,7 +107,7 @@ namespace NKnife.MeterKnife.Scpis
         private void _ConfirmButton_Click(object sender, EventArgs e)
         {
             var treeNode = _Tree.SelectedNode;
-            CareCommandSubjectList collection = null;
+            ScpiCommandSubjectList collection = null;
             var node = treeNode as SubjectCollectionTreeNode;
             if (node != null)
             {
@@ -178,7 +178,7 @@ namespace NKnife.MeterKnife.Scpis
             var dialog = new InstrumentInfoDialog();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                var collection = new CareCommandSubjectList
+                var collection = new ScpiCommandSubjectList
                 {
                     Brand = dialog.InstBrand,
                     Name = dialog.InstName,
@@ -201,7 +201,7 @@ namespace NKnife.MeterKnife.Scpis
                 if (node != null)
                 {
                     var collection = node.GetScpiSubjectCollection();
-                    var subject = new CareCommandSubject();
+                    var subject = new ScpiCommandSubject();
                     subject.OwnerList = collection;
                     subject.Name = dialog.GroupName;
                     collection.Add(subject);
@@ -222,7 +222,7 @@ namespace NKnife.MeterKnife.Scpis
                 var node = _Tree.SelectedNode as SubjectGroupTreeNode;
                 if (node != null)
                 {
-                    var subject = (CareCommandSubject) node.Tag;
+                    var subject = (ScpiCommandSubject) node.Tag;
                     subject.OwnerList.Remove(subject);
                     subject.OwnerList.Save();
                     UpdateTreeNodes();
@@ -236,7 +236,7 @@ namespace NKnife.MeterKnife.Scpis
             var node = _Tree.SelectedNode as SubjectGroupTreeNode;
             if (node != null)
             {
-                var subject = (CareCommandSubject) node.Tag;
+                var subject = (ScpiCommandSubject) node.Tag;
                 var dialog = new SubjectInfoDialog();
                 dialog.GroupName = subject.Name;
                 if (dialog.ShowDialog(this) == DialogResult.OK)

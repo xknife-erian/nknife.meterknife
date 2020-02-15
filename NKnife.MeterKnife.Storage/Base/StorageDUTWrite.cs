@@ -85,7 +85,7 @@ namespace NKnife.MeterKnife.Storage.Base
             }
             var sql = _sqlSet[key].Insert;
             //数据表的表名不再是实体名，而是被测物ID
-            sql = sql.Replace($"{typeof(T).Name}", $"{dut.Item2.Id}s");
+            sql = sql.Replace($"{typeof(T).Name}", $"{dut.Item2.Id}");
             int i = 0;
             try
             {

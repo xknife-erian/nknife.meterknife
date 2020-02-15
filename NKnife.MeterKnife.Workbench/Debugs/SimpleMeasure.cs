@@ -13,7 +13,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
     public class SimpleMeasure
     {
         private Slot _slot;
-        public CareCommandPool Pool { get; private set; }
+        public ScpiCommandPool Pool { get; private set; }
 
         /*
          * 启动采集的标准过程：
@@ -36,14 +36,14 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var engineering = new Engineering
             {
                 Name = "",
-                CreateTime = new DateTime(2019, UtilRandom.Next(10, 12), UtilRandom.Next(1, 25), UtilRandom.Next(1, 24), UtilRandom.Next(1, 60), UtilRandom.Next(1, 60)),
+                CreateTime = new DateTime(2019, UtilRandom.Next(11, 13), UtilRandom.Next(1, 25), UtilRandom.Next(1, 24), UtilRandom.Next(1, 60), UtilRandom.Next(1, 60)),
                 Commands = Pool
             };
             await engineeringLogic.CreateEngineering(engineering);
             await antService.StartAsync(engineering);
         }
 
-        private CareCommandPool GetCommands()
+        private ScpiCommandPool GetCommands()
         {
             var interval = 1000;
             var item1 = new CareCommand
@@ -68,15 +68,15 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 Timeout = interval * 2,
                 IsLoop = true
             };
-            var temp5 = CareScpiHelper.TEMP(5);
+            var temp5 = ScpiHelper.TEMP(5);
             temp5.Slot = _slot;
             temp5.DUT = new DUT() { Id = "T1", Name = "23Temp" };
 
-            var temp6 = CareScpiHelper.TEMP(6);
+            var temp6 = ScpiHelper.TEMP(6);
             temp6.Slot = _slot;
             temp6.DUT = new DUT() { Id = "T2", Name = "24Temp" };
 
-            var pool = new CareCommandPool();
+            var pool = new ScpiCommandPool();
             pool.AddRange(new[] { item2, temp5 });
             pool.AddRange(new[] { item1, temp6 });
             return pool;

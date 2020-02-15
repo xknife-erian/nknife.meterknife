@@ -6,10 +6,10 @@ namespace NKnife.MeterKnife.Scpis.ScpiTree
 
     public class SubjectCollectionTreeNode : TreeNode
     {
-        private readonly CareCommandSubjectList _collection;
+        private readonly ScpiCommandSubjectList _collection;
 
-        public SubjectCollectionTreeNode(CareCommandSubjectList collection)
-            : this(string.Format("{0}{1}", collection.Brand, collection.Name))
+        public SubjectCollectionTreeNode(ScpiCommandSubjectList collection)
+            : this($"{collection.Brand}{collection.Name}")
         {
             _collection = collection;
         }
@@ -21,7 +21,7 @@ namespace NKnife.MeterKnife.Scpis.ScpiTree
             SelectedImageKey = "subject-collection";
         }
 
-        public CareCommandSubjectList GetScpiSubjectCollection()
+        public ScpiCommandSubjectList GetScpiSubjectCollection()
         {
             return _collection;
         }

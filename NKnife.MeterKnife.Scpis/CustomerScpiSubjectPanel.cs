@@ -15,8 +15,8 @@ namespace NKnife.MeterKnife.Scpis
         private readonly ListViewGroup _initGroup = new ListViewGroup("初始指令集", HorizontalAlignment.Left);
 
         private readonly string _scpiSubjectKey = Guid.NewGuid().ToString();
-        private CareCommandSubject _currentScpiSubject;
-        private CareCommandSubjectList _currentScpiSubjectCollection;
+        private ScpiCommandSubject _currentScpiSubject;
+        private ScpiCommandSubjectList _currentScpiSubjectCollection;
 
         private bool _isModified;
 
@@ -158,7 +158,7 @@ namespace NKnife.MeterKnife.Scpis
         {
             if (string.IsNullOrEmpty(_currentScpiSubject.Name) && _currentScpiSubjectCollection == null)
             {
-                var collection = new CareCommandSubjectList();
+                var collection = new ScpiCommandSubjectList();
                 var dialog = ScpiMangerForm.AutofacContainer.Resolve<InstrumentAndSubjectInfoDialog>();
                 dialog.ScpiSubjectCollection = collection;
                 if (dialog.ShowDialog(this) == DialogResult.OK)
@@ -209,7 +209,7 @@ namespace NKnife.MeterKnife.Scpis
         private void _AddInitButton_Click(object sender, EventArgs e)
         {
             if (_currentScpiSubject == null)
-                _currentScpiSubject = new CareCommandSubject();
+                _currentScpiSubject = new ScpiCommandSubject();
 
             var dialog = new ScpiCommandEditorDialog();
             dialog.Category = PoolCategory.Initializtion;
@@ -230,7 +230,7 @@ namespace NKnife.MeterKnife.Scpis
         private void _AddCollectButton_Click(object sender, EventArgs e)
         {
             if (_currentScpiSubject == null)
-                _currentScpiSubject = new CareCommandSubject();
+                _currentScpiSubject = new ScpiCommandSubject();
 
             var dialog = new ScpiCommandEditorDialog();
             dialog.Category = PoolCategory.Collect;

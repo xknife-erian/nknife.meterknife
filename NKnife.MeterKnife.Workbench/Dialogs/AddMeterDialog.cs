@@ -56,7 +56,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
                 handler.CareConfigging += OnCareConfigging;
 
                 var idn = CommandUtil.IDN(address);
-                _logger.Debug(string.Format("Send:{0}", idn.GenerateProtocol(0)));
+                _logger.Debug(string.Format("Send:{0}", idn.GenerateCareProtocol(0)));
                 var careItem = new ScpiCommandQueue.Item
                 {
                     ScpiCommand = idn,

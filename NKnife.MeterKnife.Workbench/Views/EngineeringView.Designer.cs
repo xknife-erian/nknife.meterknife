@@ -36,8 +36,9 @@
             this._EngPropertyGrid = new System.Windows.Forms.PropertyGrid();
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._CreateEngStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this._DeleteStripButton = new System.Windows.Forms.ToolStripButton();
+            this._RefreshStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -122,38 +123,45 @@
             this._toolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._CreateEngStripButton,
-            this.toolStripButton2,
-            this.toolStripButton3});
+            this._DeleteStripButton,
+            this.toolStripSeparator1,
+            this._RefreshStripButton});
             this._toolStrip.Location = new System.Drawing.Point(3, 0);
             this._toolStrip.Name = "_toolStrip";
-            this._toolStrip.Size = new System.Drawing.Size(141, 25);
+            this._toolStrip.Size = new System.Drawing.Size(157, 25);
             this._toolStrip.TabIndex = 0;
             // 
             // _CreateEngStripButton
             // 
+            this._CreateEngStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._CreateEngStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_CreateEngStripButton.Image")));
             this._CreateEngStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._CreateEngStripButton.Name = "_CreateEngStripButton";
-            this._CreateEngStripButton.Size = new System.Drawing.Size(52, 22);
+            this._CreateEngStripButton.Size = new System.Drawing.Size(36, 22);
             this._CreateEngStripButton.Text = "新建";
             // 
-            // toolStripButton2
+            // _DeleteStripButton
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this._DeleteStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._DeleteStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteStripButton.Image")));
+            this._DeleteStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteStripButton.Name = "_DeleteStripButton";
+            this._DeleteStripButton.Size = new System.Drawing.Size(36, 22);
+            this._DeleteStripButton.Text = "删除";
             // 
-            // toolStripButton3
+            // _RefreshStripButton
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this._RefreshStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._RefreshStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_RefreshStripButton.Image")));
+            this._RefreshStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._RefreshStripButton.Name = "_RefreshStripButton";
+            this._RefreshStripButton.Size = new System.Drawing.Size(36, 22);
+            this._RefreshStripButton.Text = "刷新";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // EngineeringView
             // 
@@ -191,7 +199,8 @@
         private System.Windows.Forms.SplitContainer _SplitContainer;
         private System.Windows.Forms.PropertyGrid _EngPropertyGrid;
         private System.Windows.Forms.ToolStripButton _CreateEngStripButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton _DeleteStripButton;
+        private System.Windows.Forms.ToolStripButton _RefreshStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

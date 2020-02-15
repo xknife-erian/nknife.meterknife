@@ -43,7 +43,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._TimeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ValueRangeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this._PlotThemeDropDownButton1 = new NKnife.MeterKnife.Workbench.Dialogs.Plots.PlotThemeDropDownButton();
+            this._PlotThemeDropDownButton1 = new Dialogs.Plots.PlotThemeDropDownButton();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
             this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
             this._ToolStripContainer.SuspendLayout();
@@ -58,7 +58,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._PlotView.Margin = new System.Windows.Forms.Padding(1);
             this._PlotView.Name = "_PlotView";
             this._PlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this._PlotView.Size = new System.Drawing.Size(624, 414);
+            this._PlotView.Size = new System.Drawing.Size(784, 535);
             this._PlotView.TabIndex = 1;
             this._PlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this._PlotView.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
@@ -70,11 +70,13 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _ToolStripContainer.ContentPanel
             // 
             this._ToolStripContainer.ContentPanel.Controls.Add(this._PlotView);
-            this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(624, 414);
+            this._ToolStripContainer.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(784, 535);
             this._ToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ToolStripContainer.Location = new System.Drawing.Point(0, 0);
+            this._ToolStripContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ToolStripContainer.Name = "_ToolStripContainer";
-            this._ToolStripContainer.Size = new System.Drawing.Size(624, 440);
+            this._ToolStripContainer.Size = new System.Drawing.Size(784, 561);
             this._ToolStripContainer.TabIndex = 4;
             this._ToolStripContainer.Text = "toolStripContainer1";
             // 
@@ -197,10 +199,12 @@ namespace NKnife.MeterKnife.Workbench.Views
             // 
             // MeasureView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 440);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this._ToolStripContainer);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MeasureView";
             this.Text = "MeasureView";
             this._ToolStripContainer.ContentPanel.ResumeLayout(false);
@@ -228,7 +232,7 @@ namespace NKnife.MeterKnife.Workbench.Views
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripSeparator toolStripSeparator1;
-        private NKnife.MeterKnife.Workbench.Dialogs.Plots.PlotThemeDropDownButton _PlotThemeDropDownButton1;
+        private Dialogs.Plots.PlotThemeDropDownButton _PlotThemeDropDownButton1;
         private ToolStrip _DataToolStrip;
         private ToolStripButton _SetDataSeriesToolStripButton;
     }

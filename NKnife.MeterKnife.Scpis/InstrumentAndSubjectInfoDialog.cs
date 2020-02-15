@@ -28,7 +28,7 @@ namespace NKnife.MeterKnife.Scpis
             _NameComboBox.SelectedIndexChanged += _NameComboBox_SelectedIndexChanged;
         }
 
-        public CareCommandSubjectList ScpiSubjectCollection { get; set; }
+        public ScpiCommandSubjectList ScpiSubjectCollection { get; set; }
 
         public string InstBrand
         {

@@ -6,7 +6,7 @@ namespace NKnife.MeterKnife.Scpis
 {
     public interface IScpiInfoGetter
     {
-        IEnumerable<CareCommandSubjectList> GetScpiSubjectCollections();
+        IEnumerable<ScpiCommandSubjectList> GetScpiSubjectCollections();
         List<Tuple<string, string, string>> GetMeterInfoList();
     }
 }

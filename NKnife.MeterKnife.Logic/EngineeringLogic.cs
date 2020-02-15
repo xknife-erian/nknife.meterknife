@@ -61,7 +61,7 @@ namespace NKnife.MeterKnife.Logic
             _engineeringStoragePlatform.Create(engineering);
         }
 
-        private static void SetDUTMap(IMeasuringLogic performLogic, CareCommandPool commands, Engineering engineering)
+        private static void SetDUTMap(IMeasuringLogic performLogic, ScpiCommandPool commands, Engineering engineering)
         {
             foreach (var command in commands)
             {

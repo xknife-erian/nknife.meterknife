@@ -46,7 +46,7 @@ namespace NKnife.MeterKnife.Storage.Db
             _setting = setting.Value;
             CurrentDbType = _setting.CurrentDbType;
             SqlSetMap = _setting.SqlSetMap;
-            SqlMapper.AddTypeHandler(typeof(CareCommandPool), new CareCommandPoolTypeHandler());
+            SqlMapper.AddTypeHandler(typeof(ScpiCommandPool), new CareCommandPoolTypeHandler());
         }
 
         /// <summary>

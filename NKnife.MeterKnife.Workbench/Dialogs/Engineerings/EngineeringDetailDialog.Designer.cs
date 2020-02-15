@@ -1,4 +1,4 @@
-﻿namespace NKnife.MeterKnife.Workbench.Dialogs
+﻿namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
 {
     partial class EngineeringDetailDialog
     {

@@ -13,6 +13,7 @@ using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Controls;
 using NKnife.MeterKnife.Workbench.Dialogs;
+using NKnife.MeterKnife.Workbench.Dialogs.Engineerings;
 using NKnife.Win.Quick.Controls;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -30,30 +31,43 @@ namespace NKnife.MeterKnife.Workbench.Views
             InitializeComponent();
             Text = this.Res("工程管理");
             RespondToEvents();
+            RespondToButtonClick();
             Shown += EngineeringsBindToTree;
         }
 
-        private void RespondToEvents()
+        private void RespondToButtonClick()
         {
-            _TreeView.AfterSelect += (s, e) =>
-            {
-                if (e.Node.Tag is Engineering engineering)
-                {
-                    var evm = new EngineeringVm(engineering);
-                    _EngPropertyGrid.SelectedObject = evm;
-                }
-            };
-            _CreateEngStripButton.Click += (s, e) =>
+            _CreateEngStripButton.Click += (sender, args) =>
             {
                 var dialog = _dialogProvider.New<EngineeringDetailDialog>();
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
                 }
             };
+            _DeleteStripButton.Click += (sender, args) =>
+            {
+
+            };
+            _RefreshStripButton.Click += EngineeringsBindToTree;
+        }
+
+        private void RespondToEvents()
+        {
+            _TreeView.AfterSelect += (sender, args) =>
+            {
+                if (args.Node.Tag is Engineering engineering)
+                {
+                    var evm = new EngineeringVm(engineering);
+                    _EngPropertyGrid.SelectedObject = evm;
+                }
+            };
+
         }
 
         private async void EngineeringsBindToTree(object sender, EventArgs e)
         {
+            _TreeView.SuspendLayout();
+            _TreeView.Nodes.Clear();
             var engList = await _viewModel.GetEngineeringAndDateMap();
             foreach (var pair in engList)
             {
@@ -76,6 +90,8 @@ namespace NKnife.MeterKnife.Workbench.Views
             }
 
             _TreeView.Select();
+            _TreeView.ResumeLayout(false);
+            _TreeView.PerformLayout();
         }
 
         public class EngineeringVm

@@ -9,11 +9,11 @@ namespace NKnife.MeterKnife.Common.Scpi
     /// <summary>
     ///     指令主题集合
     /// </summary>
-    public class CareCommandSubjectList : List<CareCommandSubject>
+    public class ScpiCommandSubjectList : List<ScpiCommandSubject>
     {
         protected ScpiXmlFile _ScpiFile;
 
-        public CareCommandSubjectList()
+        public ScpiCommandSubjectList()
         {
             Version = new Version("1.0");
         }
@@ -110,7 +110,7 @@ namespace NKnife.MeterKnife.Common.Scpi
                 {
                     return false;
                 }
-                var array = CareCommandSubject.Parse(scpigroups);
+                var array = ScpiCommandSubject.Parse(scpigroups);
                 foreach (var scpiSubject in array)
                 {
                     scpiSubject.OwnerList = this;

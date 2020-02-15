@@ -7,12 +7,12 @@ namespace NKnife.MeterKnife.Common.Scpi
     /// <summary>
     /// 面向一个工作指令主题的指令集合
     /// </summary>
-    public class CareCommandSubject
+    public class ScpiCommandSubject
     {
-        public CareCommandSubject()
+        public ScpiCommandSubject()
         {
-            Collect = new CareCommandPool { Category = PoolCategory.Collect};
-            Initializtion = new CareCommandPool { Category = PoolCategory.Initializtion};
+            Collect = new ScpiCommandPool { Category = PoolCategory.Collect};
+            Initializtion = new ScpiCommandPool { Category = PoolCategory.Initializtion};
         }
 
         /// <summary>
@@ -22,16 +22,16 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// <summary>
         /// 初始化指令集合
         /// </summary>
-        public CareCommandPool Initializtion { get; set; }
+        public ScpiCommandPool Initializtion { get; set; }
         /// <summary>
         /// 采集指令集合
         /// </summary>
-        public CareCommandPool Collect { get; set; }
+        public ScpiCommandPool Collect { get; set; }
 
         /// <summary>
         /// 指令集合所在的主题集合
         /// </summary>
-        public CareCommandSubjectList OwnerList { get; set; }
+        public ScpiCommandSubjectList OwnerList { get; set; }
 
         public void Build(ref XmlElement element)
         {
@@ -52,14 +52,14 @@ namespace NKnife.MeterKnife.Common.Scpi
             element.AppendChild(groupElement);
         }
 
-        public static IEnumerable<CareCommandSubject> Parse(XmlElement scpigroups)
+        public static IEnumerable<ScpiCommandSubject> Parse(XmlElement scpigroups)
         {
-            var subjects = new List<CareCommandSubject>();
+            var subjects = new List<ScpiCommandSubject>();
             foreach (var subjectNode in scpigroups.ChildNodes)
             {
                 if (!(subjectNode is XmlElement))
                     continue;
-                var scpiSubject = new CareCommandSubject();
+                var scpiSubject = new ScpiCommandSubject();
                 var ele = subjectNode as XmlElement;
                 scpiSubject.Name = ele.GetAttribute("description");
 
@@ -79,10 +79,10 @@ namespace NKnife.MeterKnife.Common.Scpi
                         switch (way)
                         {
                             case "init":
-                                //scpiSubject.Initializtion = CareCommandPool.Prase(groupElement);
+                                //scpiSubject.Initializtion = ScpiCommandPool.Prase(groupElement);
                                 break;
                             case "collect":
-                                //scpiSubject.Collect = CareCommandPool.Prase(groupElement);
+                                //scpiSubject.Collect = ScpiCommandPool.Prase(groupElement);
                                 break;
                         }
                     }

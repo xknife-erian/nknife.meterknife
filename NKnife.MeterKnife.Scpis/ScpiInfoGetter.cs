@@ -10,13 +10,13 @@ namespace NKnife.MeterKnife.Scpis
     {
         private readonly DirectoryInfo _directory = new DirectoryInfo(ScpiUtil.ScpisPath);
 
-        public IEnumerable<CareCommandSubjectList> GetScpiSubjectCollections()
+        public IEnumerable<ScpiCommandSubjectList> GetScpiSubjectCollections()
         {
             var files = _directory.GetFiles("*.xml", SearchOption.AllDirectories);
-            var list = new List<CareCommandSubjectList>(files.Length);
+            var list = new List<ScpiCommandSubjectList>(files.Length);
             foreach (var file in files)
             {
-                var collection = new CareCommandSubjectList();
+                var collection = new ScpiCommandSubjectList();
                 collection.BuildScpiFile(file.FullName);
                 collection.TryParse(null);
                 list.Add(collection);
@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.Scpis
             var files = _directory.GetFiles("*.xml", SearchOption.AllDirectories);
             foreach (var file in files)
             {
-                var collection = new CareCommandSubjectList();
+                var collection = new ScpiCommandSubjectList();
                 collection.BuildScpiFile(file.FullName);
                 collection.TryParse(null, false);//快速解析
                 list.Add(new Tuple<string, string, string>(collection.Brand, collection.Name, collection.Description));

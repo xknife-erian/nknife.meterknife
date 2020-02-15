@@ -96,7 +96,7 @@ namespace NKnife.MeterKnife.Logic
         {
             if (!_jobMap.TryGetValue(engineering.Number, out var jobManager))
             {
-                jobManager = new JobManager {Pool = new CareCommandPool {IsOverall = true}};
+                jobManager = new JobManager {Pool = new ScpiCommandPool {IsOverall = true}};
                 foreach (var command in engineering.Commands)
                 {
                     if (command.Slot == null || !_connMap.ContainsKey(command.Slot))
@@ -153,8 +153,8 @@ namespace NKnife.MeterKnife.Logic
             try
             {
                 var data = cmd.IsCare
-                    ? CareScpiHelper.GenerateProtocol(cmd)
-                    : cmd.Scpi.GenerateProtocol(cmd.GpibAddress);
+                    ? ScpiHelper.GenerateProtocol(cmd)
+                    : cmd.Scpi.GenerateCareProtocol(cmd.GpibAddress);
 
                 _Logger.Trace($"<- {data.ToHexString()}");
 
@@ -302,8 +302,8 @@ namespace NKnife.MeterKnife.Logic
             try
             {
                 var data = cmd.IsCare
-                    ? CareScpiHelper.GenerateProtocol(cmd)
-                    : cmd.Scpi.GenerateProtocol(cmd.GpibAddress);
+                    ? ScpiHelper.GenerateCareProtocol(cmd)
+                    : cmd.Scpi.GenerateCareProtocol(cmd.GpibAddress);
 
                 _Logger.Trace($"< SendCommand:{data.ToHexString()}");
 
@@ -524,8 +524,8 @@ namespace NKnife.MeterKnife.Logic
             try
             {
                 var data = cmd.IsCare
-                    ? CareScpiHelper.GenerateProtocol(cmd)
-                    : cmd.ScpiCommand.GenerateProtocol(cmd.GpibAddress);
+                    ? ScpiHelper.GenerateCareProtocol(cmd)
+                    : cmd.ScpiCommand.GenerateCareProtocol(cmd.GpibAddress);
 
                 _Logger.Trace($"SendCommand:{data.ToHexString()}");
 

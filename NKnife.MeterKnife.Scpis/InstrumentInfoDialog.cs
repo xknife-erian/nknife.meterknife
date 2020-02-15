@@ -12,7 +12,7 @@ namespace NKnife.MeterKnife.Scpis
             InitializeComponent();
         }
 
-        public CareCommandSubjectList ScpiSubjectCollection { get; set; }
+        public ScpiCommandSubjectList ScpiSubjectCollection { get; set; }
 
         public string InstBrand
         {

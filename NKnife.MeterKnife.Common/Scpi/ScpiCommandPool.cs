@@ -1,13 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Xml;
 using NKnife.Interface;
 
 namespace NKnife.MeterKnife.Common.Scpi
 {
-    public class CareCommandPool : List<CareCommand>, IJobPool
+    public class ScpiCommandPool : List<ScpiCommand>, IJobPool
     {
         public PoolCategory Category { get; set; }
+
+        #region Implementation of IEnumerable<out IJobPoolItem>
+
+        /// <summary>Returns an enumerator that iterates through the collection.</summary>
+        /// <returns>An enumerator that can be used to iterate through the collection.</returns>
+        IEnumerator<IJobPoolItem> IEnumerable<IJobPoolItem>.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
 
         #region Implementation of ICollection<IJobPoolItem>
 
@@ -59,7 +69,7 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// </exception>
         void ICollection<IJobPoolItem>.CopyTo(IJobPoolItem[] array, int arrayIndex)
         {
-            ((ICollection<CareCommand>)this).CopyTo(array.Cast<CareCommand>().ToArray(), arrayIndex);
+            ((ICollection<ScpiCommand>) this).CopyTo(array.Cast<ScpiCommand>().ToArray(), arrayIndex);
         }
 
         /// <summary>
@@ -79,7 +89,7 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// </exception>
         bool ICollection<IJobPoolItem>.Remove(IJobPoolItem item)
         {
-            return Remove(item as CareCommand);
+            return Remove(item as ScpiCommand);
         }
 
         /// <summary>
@@ -87,7 +97,7 @@ namespace NKnife.MeterKnife.Common.Scpi
         ///     read-only.
         /// </summary>
         /// <returns>true if the <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only; otherwise, false.</returns>
-        bool ICollection<IJobPoolItem>.IsReadOnly => ((ICollection<CareCommand>)this).IsReadOnly;
+        bool ICollection<IJobPoolItem>.IsReadOnly => ((ICollection<ScpiCommand>) this).IsReadOnly;
 
         #endregion
 
@@ -97,21 +107,10 @@ namespace NKnife.MeterKnife.Common.Scpi
 
         void IJobPool.AddRange(IEnumerable<IJobPoolItem> jobs)
         {
-            AddRange(jobs.Cast<CareCommand>());
+            AddRange(jobs.Cast<ScpiCommand>());
         }
 
         public bool IsOverall { get; set; } = true;
-
-        #endregion
-
-        #region Implementation of IEnumerable<out IJobPoolItem>
-
-        /// <summary>Returns an enumerator that iterates through the collection.</summary>
-        /// <returns>An enumerator that can be used to iterate through the collection.</returns>
-        IEnumerator<IJobPoolItem> IEnumerable<IJobPoolItem>.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
 
         #endregion
     }

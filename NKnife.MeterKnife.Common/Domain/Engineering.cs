@@ -51,7 +51,7 @@ namespace NKnife.MeterKnife.Common.Domain
         /// <summary>
         /// 工程的命令集合
         /// </summary>
-        public CareCommandPool Commands { get; set; } = new CareCommandPool();
+        public ScpiCommandPool Commands { get; set; } = new ScpiCommandPool();
 
         #region Overrides of Object
 

@@ -5,7 +5,7 @@ namespace NKnife.MeterKnife.Scpis.ScpiTree
 {
     public class SubjectGroupTreeNode : TreeNode
     {
-        public SubjectGroupTreeNode(CareCommandSubject scpiSubject)
+        public SubjectGroupTreeNode(ScpiCommandSubject scpiSubject)
             : this(scpiSubject.Name)
         {
         }

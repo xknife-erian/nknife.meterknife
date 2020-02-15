@@ -6,13 +6,12 @@ namespace NKnife.MeterKnife.Common.Scpi
     /// <summary>
     ///     Care组装SCPI指令的帮助方法
     /// </summary>
-    public static class CareScpiHelper
+    public static class ScpiHelper
     {
         public static Scpi BuildScpiCommand(string scpi, bool isReturn = true)
         {
             var careTalking = new Scpi
             {
-                IsReturn = isReturn,
                 Command = scpi,
             };
             return careTalking;

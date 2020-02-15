@@ -142,11 +142,17 @@
     <Compile Include="Controls\EngineeringTreeNode.cs" />
     <Compile Include="Debugs\DebuggerManager.cs" />
     <Compile Include="Debugs\SimpleMeasure.cs" />
-    <Compile Include="Dialogs\EngineeringDetailDialog.cs">
+    <Compile Include="Dialogs\Engineerings\EngineeringDetailDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\EngineeringDetailDialog.Designer.cs">
+    <Compile Include="Dialogs\Engineerings\EngineeringDetailDialog.Designer.cs">
       <DependentUpon>EngineeringDetailDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Engineerings\CareCommandEditorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Engineerings\CareCommandEditorDialog.Designer.cs">
+      <DependentUpon>CareCommandEditorDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Plots\DataSeriesEditorDialog.cs">
       <SubType>Form</SubType>
@@ -310,8 +316,11 @@
     <Compile Include="Workbench.cs">
       <SubType>Form</SubType>
     </Compile>
-    <EmbeddedResource Include="Dialogs\EngineeringDetailDialog.resx">
+    <EmbeddedResource Include="Dialogs\Engineerings\EngineeringDetailDialog.resx">
       <DependentUpon>EngineeringDetailDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Engineerings\CareCommandEditorDialog.resx">
+      <DependentUpon>CareCommandEditorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Plots\DataSeriesEditorDialog.resx">
       <DependentUpon>DataSeriesEditorDialog.cs</DependentUpon>

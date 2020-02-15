@@ -45,7 +45,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             await _antService.StartAsync(engineering);
         }
 
-        private CareCommandPool GetCommands()
+        private ScpiCommandPool GetCommands()
         {
             var interval = 1000;
             var item1 = new CareCommand
@@ -70,15 +70,15 @@ namespace NKnife.MeterKnife.CLI.Commands
                 Timeout = interval*2,
                 IsLoop = true
             };
-            var temp5 = CareScpiHelper.TEMP(5);
+            var temp5 = ScpiHelper.TEMP(5);
             temp5.Slot = _slot;
             temp5.DUT = new DUT() {Id = "T1", Name = "23Temp"};
 
-            var temp6 = CareScpiHelper.TEMP(6);
+            var temp6 = ScpiHelper.TEMP(6);
             temp6.Slot = _slot;
             temp6.DUT = new DUT() {Id = "T2", Name = "24Temp"};
 
-            var pool = new CareCommandPool();
+            var pool = new ScpiCommandPool();
             pool.AddRange(new[] {item2,temp5,item1,   temp6});
             return pool;
         }
