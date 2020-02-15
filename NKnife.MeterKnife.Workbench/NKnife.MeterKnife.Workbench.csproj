@@ -244,18 +244,6 @@
     <Compile Include="Dialogs\AddMeterDialog.Designer.cs">
       <DependentUpon>AddMeterDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\CareParameterDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\CareParameterDialog.Designer.cs">
-      <DependentUpon>CareParameterDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\CommandBuildDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\CommandBuildDialog.Designer.cs">
-      <DependentUpon>CommandBuildDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\DataPathSetterDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,12 +267,6 @@
     </Compile>
     <Compile Include="Dialogs\FilterSettingDialog.Designer.cs">
       <DependentUpon>FilterSettingDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\OfflineCollectParameterDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\OfflineCollectParameterDialog.Designer.cs">
-      <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SerialPortSelectorDialog.cs">
       <SubType>Form</SubType>
@@ -368,12 +350,6 @@
     <EmbeddedResource Include="Dialogs\AddMeterDialog.resx">
       <DependentUpon>AddMeterDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\CareParameterDialog.resx">
-      <DependentUpon>CareParameterDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\CommandBuildDialog.resx">
-      <DependentUpon>CommandBuildDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DataPathSetterDialog.resx">
       <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -385,9 +361,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FilterSettingDialog.resx">
       <DependentUpon>FilterSettingDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\OfflineCollectParameterDialog.resx">
-      <DependentUpon>OfflineCollectParameterDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SerialPortSelectorDialog.resx">
       <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>

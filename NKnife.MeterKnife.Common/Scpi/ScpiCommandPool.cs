@@ -29,7 +29,7 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// </exception>
         void ICollection<IJobPoolItem>.Add(IJobPoolItem item)
         {
-            Add(item as CareCommand);
+            Add(item as ScpiCommand);
         }
 
         /// <summary>

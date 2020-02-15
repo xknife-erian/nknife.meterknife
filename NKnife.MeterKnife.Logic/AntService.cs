@@ -148,13 +148,15 @@ namespace NKnife.MeterKnife.Logic
 
         #endregion
 
-        private static void SendCommand(IDataConnector connector, CareCommand cmd)
+        private static void SendCommand(IDataConnector connector, ScpiCommand cmd)
         {
             try
             {
-                var data = cmd.IsCare
-                    ? ScpiHelper.GenerateProtocol(cmd)
-                    : cmd.Scpi.GenerateCareProtocol(cmd.GpibAddress);
+                byte[] data;
+                if (cmd is CareCommand careCommand)
+                    data = ScpiHelper.GenerateProtocol(careCommand);
+                else
+                    data = cmd.Scpi.GenerateCareProtocol(cmd.GpibAddress);
 
                 _Logger.Trace($"<- {data.ToHexString()}");
 

@@ -46,7 +46,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         private ScpiCommandPool GetCommands()
         {
             var interval = 1000;
-            var item1 = new CareCommand
+            var item1 = new ScpiCommand
             {
                 Slot = _slot,
                 DUT = new DUT() { Id = "RES", Name = "520r|1K" },
@@ -57,7 +57,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 Timeout = interval * 2,
                 IsLoop = true
             };
-            var item2 = new CareCommand
+            var item2 = new ScpiCommand
             {
                 Slot = _slot,
                 DUT = new DUT() { Id = "VOLTAGE", Name = "10v" },

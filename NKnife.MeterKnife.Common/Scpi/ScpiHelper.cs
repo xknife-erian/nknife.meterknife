@@ -51,7 +51,6 @@ namespace NKnife.MeterKnife.Common.Scpi
         {
             var item = new CareCommand
             {
-                IsCare = true,
                 GpibAddress = 0,
                 Interval = interval,
                 Heads = (0xAE, (byte)index)
@@ -67,7 +66,6 @@ namespace NKnife.MeterKnife.Common.Scpi
         {
             var item = new CareCommand
             {
-                IsCare = true,
                 GpibAddress = 0,
                 Heads = (0xA0, subCommand)
             };
@@ -83,7 +81,6 @@ namespace NKnife.MeterKnife.Common.Scpi
         {
             var item = new CareCommand
             {
-                IsCare = true,
                 GpibAddress = 0,
                 Heads = (0xB0, subCommand),
                 Content = content
@@ -98,7 +95,6 @@ namespace NKnife.MeterKnife.Common.Scpi
         {
             var item = new CareCommand
             {
-                IsCare = true,
                 GpibAddress = 0,
                 Heads = (0xB1, 0x00),
             };
@@ -112,7 +108,6 @@ namespace NKnife.MeterKnife.Common.Scpi
         {
             var item = new CareCommand
             {
-                IsCare = true,
                 GpibAddress = 0,
                 Heads = (0xB0, 0xD8),
             };
