@@ -236,14 +236,14 @@ namespace NKnife.MeterKnife.Scpis
             var node = _Tree.SelectedNode as SubjectGroupTreeNode;
             if (node != null)
             {
-                var subject = (CareCommandSubjectList) node.Tag;
+                var subject = (CareCommandSubject) node.Tag;
                 var dialog = new SubjectInfoDialog();
                 dialog.GroupName = subject.Name;
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
                     subject.Name = dialog.GroupName;
-                    //subject.OwnerCollection.Add(subject);
-                    subject.Save();
+                    subject.OwnerList.Add(subject);
+                    subject.OwnerList.Save();
                     UpdateTreeNodes();
                     _Tree.SelectedNode = node;
                 }

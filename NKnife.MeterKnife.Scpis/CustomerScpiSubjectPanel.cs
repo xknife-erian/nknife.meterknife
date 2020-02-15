@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Autofac;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Scpis;
 
@@ -113,7 +114,7 @@ namespace NKnife.MeterKnife.Scpis
 
         private void _OpenButton_Click(object sender, EventArgs e)
         {
-            var dialog = new InstrumentScpiGroupTreeDialog(null);
+            var dialog = ScpiMangerForm.AutofacContainer.Resolve<InstrumentScpiGroupTreeDialog>();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 _currentScpiSubject = null;
@@ -158,7 +159,8 @@ namespace NKnife.MeterKnife.Scpis
             if (string.IsNullOrEmpty(_currentScpiSubject.Name) && _currentScpiSubjectCollection == null)
             {
                 var collection = new CareCommandSubjectList();
-                var dialog = new InstrumentAndSubjectInfoDialog(null) {ScpiSubjectCollection = collection};
+                var dialog = ScpiMangerForm.AutofacContainer.Resolve<InstrumentAndSubjectInfoDialog>();
+                dialog.ScpiSubjectCollection = collection;
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
                     collection.Brand = dialog.InstBrand;
@@ -179,10 +181,8 @@ namespace NKnife.MeterKnife.Scpis
             }
             else if (_currentScpiSubjectCollection != null)
             {
-                var dialog = new InstrumentAndSubjectInfoDialog(null)
-                {
-                    ScpiSubjectCollection = _currentScpiSubjectCollection
-                };
+                var dialog = ScpiMangerForm.AutofacContainer.Resolve<InstrumentAndSubjectInfoDialog>();
+                dialog.ScpiSubjectCollection = _currentScpiSubjectCollection;
                 dialog.Initialize(_currentScpiSubjectCollection.Brand, _currentScpiSubjectCollection.Name, _currentScpiSubjectCollection.Description);
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {

@@ -8,8 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Autofac;
 using NKnife.MeterKnife.Scpis.Properties;
 using NKnife.Win.Forms;
+using IContainer = Autofac.IContainer;
 
 namespace NKnife.MeterKnife.Scpis
 {
@@ -29,8 +31,19 @@ namespace NKnife.MeterKnife.Scpis
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            Application.Run(new ScpiMangerForm());
+            var builder = new ContainerBuilder();
+            builder.RegisterType<ScpiInfoGetter>().As<IScpiInfoGetter>().SingleInstance();
+            builder.RegisterType<ScpiMangerForm>().SingleInstance();
+            builder.RegisterAssemblyTypes(typeof(ScpiMangerForm).Assembly)
+                .Where(t => !t.IsAbstract && t.Name.EndsWith("Dialog"))
+                .AsImplementedInterfaces()
+                .AsSelf();
+            using (AutofacContainer = builder.Build())
+            {
+                Application.Run(AutofacContainer.Resolve<ScpiMangerForm>());
+            }
         }
+
+        public static IContainer AutofacContainer { get; set; }
     }
 }
