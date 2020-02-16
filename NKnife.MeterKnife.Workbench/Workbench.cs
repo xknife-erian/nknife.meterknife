@@ -18,13 +18,15 @@ namespace NKnife.MeterKnife.Workbench
         private readonly WorkbenchViewModel _viewModel;
         private readonly IHabitManager _habitManager;
         private readonly EngineeringView _engineeringView;
+        private readonly SlotView _slotView;
 
         public Workbench(WorkbenchViewModel viewModel, IHabitManager habitManager, EngineeringView engineeringView,
-            DebuggerManager debuggerManager)
+            DebuggerManager debuggerManager, SlotView slotView)
         {
             _viewModel = viewModel;
             _habitManager = habitManager;
             _engineeringView = engineeringView;
+            _slotView = slotView;
             GetHabitValueFunc = _habitManager.GetHabitValue;
             SetHabitAction = _habitManager.SetHabitValue;
             GetOptionValueFunc = _habitManager.GetOptionValue;
@@ -100,6 +102,10 @@ namespace NKnife.MeterKnife.Workbench
             var intMenu = new ToolStripMenuItem(this.Res("仪表管理(&I)"));
             toolMenu.DropDownItems.Insert(0, intMenu);
             var connMenu = new ToolStripMenuItem(this.Res("接驳器管理(&C)"));
+            connMenu.Click += (sender, args) =>
+            {
+                _slotView.Show(MainDockPanel, DockState.DockLeft);
+            };
             toolMenu.DropDownItems.Insert(0, connMenu);
             return toolMenu;
         }
