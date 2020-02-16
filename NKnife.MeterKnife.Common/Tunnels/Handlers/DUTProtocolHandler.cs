@@ -8,12 +8,12 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
     {
         private static readonly NLog.ILogger _Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly IMeasuringLogic _dataLogic;
-        private readonly IAntCollectService _antCollectService;
+        private readonly IAcquisitionService _acquisitionService;
 
-        public DUTProtocolHandler(IMeasuringLogic dataLogic, IAntCollectService antCollectService)
+        public DUTProtocolHandler(IMeasuringLogic dataLogic, IAcquisitionService acquisitionService)
         {
             _dataLogic = dataLogic;
-            _antCollectService = antCollectService;
+            _acquisitionService = acquisitionService;
             Commands.Add(new byte[] { 0xAA, 0x00 });
             Commands.Add(new byte[] { 0xAB, 0x00 });
             //---
@@ -28,7 +28,7 @@ namespace NKnife.MeterKnife.Common.Tunnels.Handlers
                 if (double.TryParse(protocol.Scpi, out var value))
                 {
                     _Logger.Trace($"{protocol.DUT} > {value}");
-                    _antCollectService.AddValue(dut, new MeasureData { Time = DateTime.Now, Data = value });
+                    _acquisitionService.AddValue(dut, new MeasureData { Time = DateTime.Now, Data = value });
                 }
             }
         }

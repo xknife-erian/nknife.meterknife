@@ -103,6 +103,7 @@
     <Compile Include="Plots\PlotTheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelHelper.cs" />
+    <Compile Include="WorkbenchViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -19,6 +19,10 @@ namespace NKnife.MeterKnife.Common.Domain
         [Key] [Index] [Required] 
         public string Id { get; set; }
         public string Name { get; set; }
+        /// <summary>
+        /// 被测物的设计值
+        /// </summary>
+        public double ExpectValue { get; set; }
         public string Description { get; set; }
         public DateTime CreateTime { get; set; }
         public string ImagePath { get; set; }

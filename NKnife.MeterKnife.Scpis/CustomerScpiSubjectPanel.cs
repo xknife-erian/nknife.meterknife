@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.Scpis
 
             //TODO:kernel
             //var kernel = DI.Get<IMeterKernel>();
-            //kernel.Collected += (s, e) =>
+            //kernel.Acquired += (s, e) =>
             //{
             //    if (e.GpibAddress == GpibAddress)
             //        SetToolStripState(e.IsCollected);

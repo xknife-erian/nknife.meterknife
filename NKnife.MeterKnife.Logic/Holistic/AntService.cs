@@ -49,28 +49,32 @@ namespace NKnife.MeterKnife.Holistic
             {
                 var slot = tuple.Item1;
                 var connector = tuple.Item2;
-                _connMap.Add(slot, connector);
-                switch (slot.TunnelType)
-                {
-                    case TunnelType.Tcpip:
-                        break;
-                    case TunnelType.Serial:
-                    {
-                        _tunnel.AddFilters(_filter);
-                        _tunnel.BindDataConnector(connector); //dataConnector是数据流动的动力
-                        if (connector is ISerialConnector c)
-                        {
-                            var portInfo = slot.GetSerialPortInfo();
-                            c.SerialConfig = new SerialConfig
-                            {
-                                BaudRate = portInfo[1],
-                                ReadBufferSize = 64,
-                                ReadTimeout = 100 * 10
-                            };
-                            c.PortNumber = portInfo[0]; //串口
-                        }
 
-                        break;
+                if (!_connMap.ContainsKey(slot))
+                {
+                    _connMap.Add(slot, connector);
+                    switch (slot.TunnelType)
+                    {
+                        case TunnelType.Tcpip:
+                            break;
+                        case TunnelType.Serial:
+                        {
+                            _tunnel.AddFilters(_filter);
+                            _tunnel.BindDataConnector(connector); //dataConnector是数据流动的动力
+                            if (connector is ISerialConnector c)
+                            {
+                                var portInfo = slot.GetSerialPortInfo();
+                                c.SerialConfig = new SerialConfig
+                                {
+                                    BaudRate = portInfo[1],
+                                    ReadBufferSize = 64,
+                                    ReadTimeout = 100 * 10
+                                };
+                                c.PortNumber = portInfo[0]; //串口
+                            }
+
+                            break;
+                        }
                     }
                 }
             }
@@ -412,7 +416,7 @@ namespace NKnife.MeterKnife.Holistic
                 Queue = new ScpiCommandQueue(), //队列循环监听
                 QueueListenState = true
             };
-            _global.Collected += (s, e) =>
+            _global.Acquired += (s, e) =>
             {
                 if (!e.IsCollected && box.LoopQueueMap.ContainsKey(e.Slot))
                     box.LoopQueueMap.Remove(e.Slot, e.ScpiGroupKey);

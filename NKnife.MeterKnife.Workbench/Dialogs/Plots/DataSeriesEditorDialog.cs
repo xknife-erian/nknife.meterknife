@@ -12,7 +12,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             InitializeComponent();
             _LineColor.Color = Color.Yellow;
 
-            // IAntCollectService antCollectService = DI.Get<IAntCollectService>();
+            // IAcquisitionService antCollectService = DI.Get<IAcquisitionService>();
             // foreach (var e in antCollectService.Exhibits)
             // {
             //     _ExhibitsComboBox.Items.Add(e);

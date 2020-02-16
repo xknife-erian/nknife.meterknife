@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.Workbench.Debugs;
 using NKnife.MeterKnife.Workbench.Menus;
 using NKnife.MeterKnife.Workbench.Options;
@@ -14,12 +15,14 @@ namespace NKnife.MeterKnife.Workbench
 {
     public class Workbench : QuickForm
     {
+        private readonly WorkbenchViewModel _viewModel;
         private readonly IHabitManager _habitManager;
         private readonly EngineeringView _engineeringView;
 
-        public Workbench(IHabitManager habitManager, EngineeringView engineeringView,
+        public Workbench(WorkbenchViewModel viewModel, IHabitManager habitManager, EngineeringView engineeringView,
             DebuggerManager debuggerManager)
         {
+            _viewModel = viewModel;
             _habitManager = habitManager;
             _engineeringView = engineeringView;
             GetHabitValueFunc = _habitManager.GetHabitValue;
@@ -34,12 +37,13 @@ namespace NKnife.MeterKnife.Workbench
             notifyIcon.Icon = Resources.meterknife_48px;
             BindNotifyIcon(notifyIcon);
 
-            var fileMenuItem = new FileMenuItem();
-            fileMenuItem.DropDownItems.Insert(0, new ToolStripSeparator());
-            fileMenuItem.DropDownItems.Insert(0, DebuggerManager.GetMockItem());
-
+            var fileMenuItem = BuildFileMenu();
+            var dataMenuItem = BuildDataMenu();
+            var measureMenuItem = BuildMeasureMenu();
+            var toolMenuItem = BuildToolMenu();
             var viewMenuItem = BuildViewMenu();
-            BindMainMenu(fileMenuItem, new DataMenuItem(), new MeasureMenuItem(), new ToolMenuItem(), viewMenuItem, new HelpMenuItem());
+            var helpMenuItem = BuildHelpMenu();
+            BindMainMenu(fileMenuItem, dataMenuItem, measureMenuItem, toolMenuItem, viewMenuItem, helpMenuItem);
             BindTrayMenu(DebuggerManager.GetMockItem(), DebuggerManager.GetMockItem());
 #if DEBUG
             BindMainMenu(debuggerManager.GetDebugMenu());
@@ -50,6 +54,54 @@ namespace NKnife.MeterKnife.Workbench
                 new DataOptionPanel(),
                 new PlotOptionPanel(), 
             });
+        }
+
+        private FileMenuItem BuildFileMenu()
+        {
+            var fileMenuItem = new FileMenuItem();
+            fileMenuItem.DropDownItems.Insert(0, new ToolStripSeparator());
+
+            var newQuickEng = new ToolStripMenuItem(this.Res("新建快速测量..."));
+            newQuickEng.ShortcutKeys = Keys.Control | Keys.N;
+            fileMenuItem.DropDownItems.Insert(0, newQuickEng);
+            var newEng = new ToolStripMenuItem(this.Res("新建测量(&N)..."));
+            fileMenuItem.DropDownItems.Insert(0, newEng);
+            return fileMenuItem;
+        }
+
+        private DataMenuItem BuildDataMenu()
+        {
+            var dataMenu = new DataMenuItem();
+            var dut = new ToolStripMenuItem(this.Res("被测物管理(&D)"));
+            dataMenu.DropDownItems.Add(dut);
+            return dataMenu;
+        }
+
+        private MeasureMenuItem BuildMeasureMenu()
+        {
+            var measureMenu = new MeasureMenuItem();
+            var start = new ToolStripMenuItem(this.Res("启动"));
+            start.ShortcutKeys = Keys.Control | Keys.F5;
+            measureMenu.DropDownItems.Add(start);
+            var pause = new ToolStripMenuItem(this.Res("暂停"));
+            pause.ShortcutKeys = Keys.Control | Keys.F6;
+            measureMenu.DropDownItems.Add(pause);
+            var stop = new ToolStripMenuItem(this.Res("停止"));
+            stop.ShortcutKeys = Keys.Control | Keys.F4;
+            measureMenu.DropDownItems.Add(stop);
+            return measureMenu;
+        }
+
+        private ToolMenuItem BuildToolMenu()
+        {
+            var toolMenu = new ToolMenuItem();
+            toolMenu.DropDownItems.Insert(0, new ToolStripSeparator());
+
+            var intMenu = new ToolStripMenuItem(this.Res("仪表管理(&I)"));
+            toolMenu.DropDownItems.Insert(0, intMenu);
+            var connMenu = new ToolStripMenuItem(this.Res("接驳器管理(&C)"));
+            toolMenu.DropDownItems.Insert(0, connMenu);
+            return toolMenu;
         }
 
         private ViewMenuItem BuildViewMenu()
@@ -64,6 +116,12 @@ namespace NKnife.MeterKnife.Workbench
             viewMenu.SetActiveTheme(themeName);
             ActiveDockPanelTheme(themeName);
             return viewMenu;
+        }
+
+        private HelpMenuItem BuildHelpMenu()
+        {
+            var dataMenu = new HelpMenuItem();
+            return dataMenu;
         }
 
         private ToolStripMenuItem BuildViewMenu_EngineeringManagerMenu()

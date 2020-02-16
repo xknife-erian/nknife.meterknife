@@ -9,7 +9,7 @@ namespace NKnife.MeterKnife.Holistic
     /// <summary>
     ///     面向全局的数据采集广播服务。该服务以事件方式，广播采集指令所采集到的数据。
     /// </summary>
-    public class AntCollectService : IAntCollectService
+    public class AcquisitionService : IAcquisitionService
     {
         #region Implementation of IEnvironmentItem
 
@@ -28,26 +28,26 @@ namespace NKnife.MeterKnife.Holistic
 
         #endregion
 
-        #region Implementation of IAntCollectService
+        #region Implementation of IAcquisitionService
 
         /// <summary>
         ///     当采集指令采集到数据时发生。
         /// </summary>
-        public event EventHandler<CollectEventArgs> Collected;
+        public event EventHandler<CollectEventArgs> Acquired;
 
         /// <summary>
-        ///     当测量指令采集到数据时，将数据置入<see cref="AntCollectService"/>服务中
+        ///     当测量指令采集到数据时，将数据置入<see cref="AcquisitionService"/>服务中
         /// </summary>
         /// <param name="dut">指定的工程与被测物</param>
         /// <param name="data">数据</param>
         public void AddValue((Engineering, DUT) dut, MeasureData data)
         {
-            Task.Factory.StartNew(OnCollected, new CollectEventArgs(dut, data));
+            Task.Factory.StartNew(OnAcquired, new CollectEventArgs(dut, data));
         }
 
-        protected virtual void OnCollected(object e)
+        protected virtual void OnAcquired(object e)
         {
-            Collected?.Invoke(this, (CollectEventArgs) e);
+            Acquired?.Invoke(this, (CollectEventArgs) e);
         }
 
         #endregion

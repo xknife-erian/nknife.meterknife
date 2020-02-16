@@ -33,6 +33,10 @@ namespace NKnife.MeterKnife.Common.Scpi
         public int Timeout { get; set; }
 
         public bool IsLoop { get; set; }
+        /// <summary>
+        /// 优先完成工作，即完成循环设置的工作数量
+        /// </summary>
+        public bool IsPrecedenceWork { get; set; }
         public int LoopCount { get; set; }
         public int CountOfCompleted { get; set; }
 

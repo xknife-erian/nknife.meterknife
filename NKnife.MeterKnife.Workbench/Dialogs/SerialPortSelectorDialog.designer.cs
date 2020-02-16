@@ -1,5 +1,5 @@
 ﻿
-namespace NKnife.WinTool.SerialProtocolDebugger.Views.Dialogs
+namespace NKnife.MeterKnife.Workbench.Dialogs
 {
     partial class SerialPortSelectorDialog
     {

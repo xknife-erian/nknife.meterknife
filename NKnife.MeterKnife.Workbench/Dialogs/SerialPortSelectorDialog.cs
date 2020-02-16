@@ -2,16 +2,14 @@
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.Win.Forms;
 
-namespace NKnife.WinTool.SerialProtocolDebugger.Views.Dialogs
+namespace NKnife.MeterKnife.Workbench.Dialogs
 {
     public partial class SerialPortSelectorDialog : SimpleForm
     {
         public SerialPortSelectorDialog()
         {
             InitializeComponent();
-
             FillListView();
-
             _AcceptButton.Click += (sender, args) =>
             {
                 if (_ListView.SelectedItems.Count > 0)
@@ -37,12 +35,15 @@ namespace NKnife.WinTool.SerialProtocolDebugger.Views.Dialogs
 
         private void FillListView()
         {
+            _ListView.SuspendLayout();
             _ListView.Items.Clear();
             foreach (var p in SerialHelper.LocalSerialPorts)
             {
                 var item = new ListViewItem(new[] {"", "", p.Key, p.Value});
                 _ListView.Items.Add(item);
             }
+            _ListView.PerformLayout();
+            _ListView.ResumeLayout(false);
         }
 
         public ushort SerialPort { get; private set; }

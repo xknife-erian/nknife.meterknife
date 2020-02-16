@@ -10,7 +10,7 @@ namespace NKnife.MeterKnife.Logic.IoC
         {
             builder.RegisterType<Kernel>().As<IGlobal>().SingleInstance();
             builder.RegisterType<AntService>().As<IAntService>().SingleInstance();
-            builder.RegisterType<AntCollectService>().As<IAntCollectService>().SingleInstance();
+            builder.RegisterType<AcquisitionService>().As<IAcquisitionService>().SingleInstance();
 
             var assembly = this.GetType().Assembly;
             builder.RegisterAssemblyTypes(assembly)
