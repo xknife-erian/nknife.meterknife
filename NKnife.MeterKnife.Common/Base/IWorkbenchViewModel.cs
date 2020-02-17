@@ -13,7 +13,7 @@ namespace NKnife.MeterKnife.Common.Base
         /// <summary>
         /// 获取所有工程，并按工程的创建时间倒序排列
         /// </summary>
-        Task<Dictionary<string, List<Engineering>>> GetEngineeringAndDateMap();
+        Task<Dictionary<string, List<Engineering>>> GetEngineeringAndDateMapAsync();
 
         #endregion
 
@@ -24,19 +24,21 @@ namespace NKnife.MeterKnife.Common.Base
         /// </summary>
         /// <param name="port">Care所在串口编号</param>
         /// <returns>是否创建成功</returns>
-        Task<bool> CreatMeterCareSlot(short port);
+        Task<bool> CreatMeterCareSlotAsync(short port);
 
         /// <summary>
         /// 获取所有的<see cref="Slot"/>
         /// </summary>
-        /// <returns></returns>
         Task<IEnumerable<Slot>> GetAllSlotAsync();
 
         #endregion
 
         #region DUT
 
-
+        /// <summary>
+        /// 获取所有的<see cref="DUT"/>
+        /// </summary>
+        Task<IEnumerable<DUT>> GetAllDUTAsync();
 
         #endregion
 

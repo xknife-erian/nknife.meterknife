@@ -69,7 +69,7 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             _TreeView.SuspendLayout();
             _TreeView.Nodes.Clear();
-            var engList = await _viewModel.GetEngineeringAndDateMap();
+            var engList = await _viewModel.GetEngineeringAndDateMapAsync();
             foreach (var pair in engList)
             {
                 var dateNode = new EngineeringCreateTimeTreeNode(pair.Key);

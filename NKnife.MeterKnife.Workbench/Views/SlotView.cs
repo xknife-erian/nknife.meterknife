@@ -71,7 +71,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
                     var result = dialog.SerialPort;
-                    _viewModel.CreatMeterCareSlot(result);
+                    _viewModel.CreatMeterCareSlotAsync(result);
                 }
             };
         }

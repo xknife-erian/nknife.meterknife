@@ -26,6 +26,12 @@ namespace NKnife.MeterKnife.Common.Domain
 
         public override string ToString()
         {
+            switch (SlotType)
+            {
+                case SlotType.MeterCare:
+                    var c = JsonConvert.DeserializeObject<(short, SerialConfig)>(Config);
+                    return $"{nameof(SlotType.MeterCare)} : COM{c.Item1}";
+            }
             return $"{SlotType}/{Config}";
         }
 

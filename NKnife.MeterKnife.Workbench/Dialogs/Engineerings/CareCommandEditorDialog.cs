@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.Util;
@@ -11,28 +12,52 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
 {
     public partial class CareCommandEditorDialog : Form
     {
-        private readonly IDUTLogic _dutLogic;
+        private readonly IWorkbenchViewModel _workbench;
         private PoolCategory _category;
         private ScpiCommand _scpiCommand;
         private bool _timeoutContrilAlreadySet = false;
 
-        public CareCommandEditorDialog(IDUTLogic dutLogic)
+
+        public CareCommandEditorDialog(IWorkbenchViewModel viewModel)
         {
-            _dutLogic = dutLogic;
+            _workbench = viewModel;
             InitializeComponent();
+            InitizlizeLanguage();
+            InitializeSlotGroup();
+            InitializeDUTGroup();
             InitializeCommandTabControl();
             InitializeTimeControlGroup();
             InitializeLoopControlGroup();
 
-            _SlotComboBox.SelectedIndex = 0;
-            RespondToControlEvnet();
+            RespondToControlEvent();
             Shown+= OnShown;
+        }
+
+        private void InitizlizeLanguage()
+        {
+            _Label1.Text = this.Res(_Label1.Text);
+            _Label2.Text = this.Res(_Label2.Text);
+            _Label3.Text = this.Res(_Label3.Text);
+            _Label4.Text = this.Res(_Label4.Text);
+            _Label5.Text = this.Res(_Label5.Text);
+            _Label6.Text = this.Res(_Label6.Text);
+            _NewDUTButton.Text = this.Res(_NewDUTButton.Text);
+
         }
 
         public ScpiCommand ScpiCommand
         {
             get => _scpiCommand;
             set => _scpiCommand = value;
+        }
+
+        private void InitializeSlotGroup()
+        {
+        }
+
+        private void InitializeDUTGroup()
+        {
+            throw new NotImplementedException();
         }
 
         private void InitializeCommandTabControl()
@@ -75,7 +100,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             };
         }
 
-
         private void InitializeTimeControlGroup()
         {
             _TimeoutNumericUpDown.Maximum = _IntervalNumericUpDown.Maximum * 2 + 1;
@@ -102,12 +126,24 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
 
         private async void OnShown(object sender, EventArgs e)
         {
-            var dutArray = await _dutLogic.GetAllDUTAsync();
-            if (dutArray != null) 
+            var slotArray = await _workbench.GetAllSlotAsync();
+            if (slotArray != null)
+            {
+                _SlotComboBox.Items.AddRange(slotArray.Cast<object>().ToArray());
+                if (_SlotComboBox.Items.Count > 0)
+                    _SlotComboBox.SelectedIndex = 0;
+            }
+
+            var dutArray = await _workbench.GetAllDUTAsync();
+            if (dutArray != null)
+            {
                 _DUTComboBox.Items.AddRange(dutArray.Cast<object>().ToArray());
+                if (_DUTComboBox.Items.Count > 0)
+                    _DUTComboBox.SelectedIndex = 0;
+            }
         }
 
-        private void RespondToControlEvnet()
+        private void RespondToControlEvent()
         {
         }
 

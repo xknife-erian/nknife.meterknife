@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Autofac;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.MeterKnife.ViewModels.Plots;
+using NKnife.MeterKnife.Workbench.Dialogs.Engineerings;
 using NKnife.MeterKnife.Workbench.Views;
 using NKnife.Util;
 using NKnife.Win.Quick.Base;
@@ -31,8 +34,29 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         public ToolStripMenuItem GetDebugMenu()
         {
-            var debug = new ToolStripMenuItem("Debug");
-            var plot = new ToolStripMenuItem("&Measure View");
+            var debugMainMenu = new ToolStripMenuItem("Debug");
+            var plot = BuildMeasureMenu(debugMainMenu);
+            debugMainMenu.DropDownItems.Add(plot);
+            var cmdEditDilog = BuildCommandEditMenu(debugMainMenu);
+            debugMainMenu.DropDownItems.Add(cmdEditDilog);
+            return debugMainMenu;
+        }
+
+        private ToolStripMenuItem BuildCommandEditMenu(ToolStripMenuItem debugMainMenu)
+        {
+            var menu = new ToolStripMenuItem("指令编辑器");
+            menu.Click += (sender, args) =>
+            {
+                var form = menu.GetCurrentParent().FindForm(); 
+                var dialog = Kernel.Container.Resolve<CareCommandEditorDialog>();
+                dialog.ShowDialog(form);
+            };
+            return menu;
+        }
+
+        private ToolStripMenuItem BuildMeasureMenu(ToolStripMenuItem debug)
+        {
+            var plot = new ToolStripMenuItem("测量曲线窗体");
             plot.Click += async (s, e) =>
             {
                 var form = debug.GetCurrentParent().FindForm();
@@ -40,7 +64,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 {
                     var start = new SimpleMeasure();
                     start.Init(_antService, _connector);
-                    
+
                     var solution = new DUTSeriesStyleSolution();
                     for (var index = 0; index < start.Pool.Count; index++)
                     {
@@ -69,8 +93,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                     await start.RunAsync(_antService, _engineeringLogic);
                 }
             };
-            debug.DropDownItems.Add(plot);
-            return debug;
+            return plot;
         }
 
         public static ToolStripMenuItem GetMockItem()
