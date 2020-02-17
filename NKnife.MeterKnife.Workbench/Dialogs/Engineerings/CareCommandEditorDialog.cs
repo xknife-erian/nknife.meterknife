@@ -35,14 +35,18 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
 
         private void InitizlizeLanguage()
         {
-            _Label1.Text = this.Res(_Label1.Text);
-            _Label2.Text = this.Res(_Label2.Text);
-            _Label3.Text = this.Res(_Label3.Text);
-            _Label4.Text = this.Res(_Label4.Text);
-            _Label5.Text = this.Res(_Label5.Text);
-            _Label6.Text = this.Res(_Label6.Text);
-            _NewDUTButton.Text = this.Res(_NewDUTButton.Text);
-
+            this.Res(new Control[]
+            {
+                _Label1, _Label2, _Label3, _Label4, _Label5, _Label6,
+                //
+                _NewDUTButton, _ConfirmButton, _CancelButton,
+                //
+                _ScpiTabPage, _CareTabPage,
+                //
+                _HexEnableCheckBox, _InfiniteLoopCheckBox, _WorkToFinishCheckBox,
+                //
+                _TimeGroupBox, _LoopGroupBox
+            });
         }
 
         public ScpiCommand ScpiCommand
@@ -57,7 +61,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
 
         private void InitializeDUTGroup()
         {
-            throw new NotImplementedException();
         }
 
         private void InitializeCommandTabControl()
@@ -147,25 +150,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
         {
         }
 
-        public PoolCategory Category
-        {
-            get => _category;
-            set
-            {
-                _category = value;
-                switch (value)
-                {
-                    case PoolCategory.Collect:
-                        _IntervalNumericUpDown.Value = 400;
-                        break;
-                    case PoolCategory.Initializtion:
-                        _IntervalNumericUpDown.Value = 50;
-                        break;
-                }
-            }
-        }
-
-        private void _ConfirmButton_Click(object sender, EventArgs e)
+        private void ConfirmButton_Click(object sender, EventArgs e)
         {
             var right = VerifyControlValue();
             if (right)
@@ -199,7 +184,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                     _scpiCommand.IsPrecedenceWork = _WorkToFinishCheckBox.Checked;
                 }
 
-                _scpiCommand.Slot = new Slot();
+                _scpiCommand.Slot = (Slot)_SlotComboBox.SelectedItem;
                 _scpiCommand.DUT = (DUT)_DUTComboBox.SelectedItem;
                 DialogResult = DialogResult.OK;
             }
@@ -209,14 +194,14 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             }
         }
 
-        private bool VerifyControlValue()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void _CancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private bool VerifyControlValue()
+        {
+            return true;
         }
     }
 }

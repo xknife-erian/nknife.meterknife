@@ -51,6 +51,7 @@
             this._AcceptButton = new System.Windows.Forms.Button();
             this._TabControl = new System.Windows.Forms.TabControl();
             this._EngineeringTabPage = new System.Windows.Forms.TabPage();
+            this._GenerateNameOnDUTButton = new System.Windows.Forms.Button();
             this._AutomaticNumberGenerationButton = new System.Windows.Forms.Button();
             this._EngDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._UpCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this._DownCommandStripButton = new System.Windows.Forms.ToolStripButton();
-            this._GenerateNameOnDUTButton = new System.Windows.Forms.Button();
             this._TabControl.SuspendLayout();
             this._EngineeringTabPage.SuspendLayout();
             this._CommandsTabPage.SuspendLayout();
@@ -135,6 +135,16 @@
             this._EngineeringTabPage.TabIndex = 0;
             this._EngineeringTabPage.Text = "工程信息";
             this._EngineeringTabPage.UseVisualStyleBackColor = true;
+            // 
+            // _GenerateNameOnDUTButton
+            // 
+            this._GenerateNameOnDUTButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._GenerateNameOnDUTButton.Location = new System.Drawing.Point(561, 49);
+            this._GenerateNameOnDUTButton.Name = "_GenerateNameOnDUTButton";
+            this._GenerateNameOnDUTButton.Size = new System.Drawing.Size(154, 30);
+            this._GenerateNameOnDUTButton.TabIndex = 8;
+            this._GenerateNameOnDUTButton.Text = "依据被测物生成";
+            this._GenerateNameOnDUTButton.UseVisualStyleBackColor = true;
             // 
             // _AutomaticNumberGenerationButton
             // 
@@ -302,6 +312,7 @@
             // _CommandsToolStrip
             // 
             this._CommandsToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this._CommandsToolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this._CommandsToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._CreateCommandStripButton,
             this._EditCommandStripButton,
@@ -365,21 +376,11 @@
             this._DownCommandStripButton.Size = new System.Drawing.Size(36, 22);
             this._DownCommandStripButton.Text = "下移";
             // 
-            // _GenerateNameOnDUTButton
-            // 
-            this._GenerateNameOnDUTButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._GenerateNameOnDUTButton.Location = new System.Drawing.Point(561, 49);
-            this._GenerateNameOnDUTButton.Name = "_GenerateNameOnDUTButton";
-            this._GenerateNameOnDUTButton.Size = new System.Drawing.Size(154, 30);
-            this._GenerateNameOnDUTButton.TabIndex = 8;
-            this._GenerateNameOnDUTButton.Text = "依据被测物生成";
-            this._GenerateNameOnDUTButton.UseVisualStyleBackColor = true;
-            // 
             // EngineeringDetailDialog
             // 
             this.AcceptButton = this._AcceptButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this._TabControl);

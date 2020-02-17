@@ -280,7 +280,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="language.xml">
+    <None Include="Languages.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="Properties\MK_Welcome.jpg" />

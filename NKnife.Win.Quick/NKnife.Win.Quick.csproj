@@ -180,7 +180,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="language.xml">
+    <None Include="Languages.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

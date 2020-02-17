@@ -49,8 +49,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this._TimeoutNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this._Label5 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this._TimeGroupBox = new System.Windows.Forms.GroupBox();
+            this._LoopGroupBox = new System.Windows.Forms.GroupBox();
             this._InfiniteLoopCheckBox = new System.Windows.Forms.CheckBox();
             this._WorkToFinishCheckBox = new System.Windows.Forms.CheckBox();
             this._LoopCountNmericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -65,8 +65,8 @@
             ((System.ComponentModel.ISupportInitialize)(this._IntervalNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._GpibNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TimeoutNumericUpDown)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this._TimeGroupBox.SuspendLayout();
+            this._LoopGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._LoopCountNmericUpDown)).BeginInit();
             this._CommandTabControl.SuspendLayout();
             this._ScpiTabPage.SuspendLayout();
@@ -91,7 +91,7 @@
             this._ScpiDescriptionTextBox.Multiline = true;
             this._ScpiDescriptionTextBox.Name = "_ScpiDescriptionTextBox";
             this._ScpiDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._ScpiDescriptionTextBox.Size = new System.Drawing.Size(299, 41);
+            this._ScpiDescriptionTextBox.Size = new System.Drawing.Size(206, 41);
             this._ScpiDescriptionTextBox.TabIndex = 8;
             this._ScpiDescriptionTextBox.Text = "某某\r\n大规模";
             // 
@@ -116,7 +116,7 @@
             this._CommandTextBox.Multiline = true;
             this._CommandTextBox.Name = "_CommandTextBox";
             this._CommandTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._CommandTextBox.Size = new System.Drawing.Size(230, 40);
+            this._CommandTextBox.Size = new System.Drawing.Size(137, 40);
             this._CommandTextBox.TabIndex = 0;
             this._CommandTextBox.Text = "READ?\r\nFETC?";
             // 
@@ -133,7 +133,7 @@
             // 
             this._HexEnableCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._HexEnableCheckBox.AutoSize = true;
-            this._HexEnableCheckBox.Location = new System.Drawing.Point(321, 46);
+            this._HexEnableCheckBox.Location = new System.Drawing.Point(228, 46);
             this._HexEnableCheckBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._HexEnableCheckBox.Name = "_HexEnableCheckBox";
             this._HexEnableCheckBox.Size = new System.Drawing.Size(65, 21);
@@ -186,27 +186,27 @@
             // _ConfirmButton
             // 
             this._ConfirmButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._ConfirmButton.Location = new System.Drawing.Point(403, 514);
+            this._ConfirmButton.Location = new System.Drawing.Point(300, 513);
             this._ConfirmButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ConfirmButton.Name = "_ConfirmButton";
             this._ConfirmButton.Size = new System.Drawing.Size(87, 37);
             this._ConfirmButton.TabIndex = 1;
             this._ConfirmButton.Text = "确定";
             this._ConfirmButton.UseVisualStyleBackColor = true;
-            this._ConfirmButton.Click += new System.EventHandler(this._ConfirmButton_Click);
+            this._ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
             // _CancelButton
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(498, 514);
+            this._CancelButton.Location = new System.Drawing.Point(400, 513);
             this._CancelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(87, 37);
             this._CancelButton.TabIndex = 2;
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
-            this._CancelButton.Click += new System.EventHandler(this._CancelButton_Click);
+            this._CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // _SlotComboBox
             // 
@@ -214,9 +214,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._SlotComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._SlotComboBox.FormattingEnabled = true;
-            this._SlotComboBox.Location = new System.Drawing.Point(107, 27);
+            this._SlotComboBox.Location = new System.Drawing.Point(102, 24);
             this._SlotComboBox.Name = "_SlotComboBox";
-            this._SlotComboBox.Size = new System.Drawing.Size(365, 25);
+            this._SlotComboBox.Size = new System.Drawing.Size(255, 25);
             this._SlotComboBox.TabIndex = 3;
             // 
             // _DUTComboBox
@@ -225,15 +225,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._DUTComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._DUTComboBox.FormattingEnabled = true;
-            this._DUTComboBox.Location = new System.Drawing.Point(107, 68);
+            this._DUTComboBox.Location = new System.Drawing.Point(102, 65);
             this._DUTComboBox.Name = "_DUTComboBox";
-            this._DUTComboBox.Size = new System.Drawing.Size(365, 25);
+            this._DUTComboBox.Size = new System.Drawing.Size(255, 25);
             this._DUTComboBox.TabIndex = 4;
             // 
             // _Label1
             // 
             this._Label1.AutoSize = true;
-            this._Label1.Location = new System.Drawing.Point(39, 30);
+            this._Label1.Location = new System.Drawing.Point(34, 27);
             this._Label1.Name = "_Label1";
             this._Label1.Size = new System.Drawing.Size(56, 17);
             this._Label1.TabIndex = 5;
@@ -242,7 +242,7 @@
             // _Label2
             // 
             this._Label2.AutoSize = true;
-            this._Label2.Location = new System.Drawing.Point(39, 71);
+            this._Label2.Location = new System.Drawing.Point(34, 68);
             this._Label2.Name = "_Label2";
             this._Label2.Size = new System.Drawing.Size(56, 17);
             this._Label2.TabIndex = 6;
@@ -251,10 +251,10 @@
             // _NewDUTButton
             // 
             this._NewDUTButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._NewDUTButton.Location = new System.Drawing.Point(478, 64);
+            this._NewDUTButton.Location = new System.Drawing.Point(363, 60);
             this._NewDUTButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._NewDUTButton.Name = "_NewDUTButton";
-            this._NewDUTButton.Size = new System.Drawing.Size(107, 33);
+            this._NewDUTButton.Size = new System.Drawing.Size(120, 33);
             this._NewDUTButton.TabIndex = 8;
             this._NewDUTButton.Text = "新建被测物";
             this._NewDUTButton.UseVisualStyleBackColor = true;
@@ -262,7 +262,7 @@
             // _GpibNumericUpDown
             // 
             this._GpibNumericUpDown.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this._GpibNumericUpDown.Location = new System.Drawing.Point(107, 106);
+            this._GpibNumericUpDown.Location = new System.Drawing.Point(102, 103);
             this._GpibNumericUpDown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._GpibNumericUpDown.Maximum = new decimal(new int[] {
             30,
@@ -287,7 +287,7 @@
             // _Label3
             // 
             this._Label3.AutoSize = true;
-            this._Label3.Location = new System.Drawing.Point(39, 111);
+            this._Label3.Location = new System.Drawing.Point(34, 108);
             this._Label3.Name = "_Label3";
             this._Label3.Size = new System.Drawing.Size(72, 17);
             this._Label3.TabIndex = 11;
@@ -335,37 +335,37 @@
             this._Label5.TabIndex = 13;
             this._Label5.Text = "等待超时:";
             // 
-            // groupBox2
+            // _TimeGroupBox
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this._TimeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this._TimeoutNumericUpDown);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this._Label4);
-            this.groupBox2.Controls.Add(this._IntervalNumericUpDown);
-            this.groupBox2.Controls.Add(this._Label5);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(42, 355);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(543, 61);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "时长";
+            this._TimeGroupBox.Controls.Add(this._TimeoutNumericUpDown);
+            this._TimeGroupBox.Controls.Add(this.label7);
+            this._TimeGroupBox.Controls.Add(this._Label4);
+            this._TimeGroupBox.Controls.Add(this._IntervalNumericUpDown);
+            this._TimeGroupBox.Controls.Add(this._Label5);
+            this._TimeGroupBox.Controls.Add(this.label3);
+            this._TimeGroupBox.Location = new System.Drawing.Point(37, 352);
+            this._TimeGroupBox.Name = "_TimeGroupBox";
+            this._TimeGroupBox.Size = new System.Drawing.Size(450, 61);
+            this._TimeGroupBox.TabIndex = 15;
+            this._TimeGroupBox.TabStop = false;
+            this._TimeGroupBox.Text = "时长";
             // 
-            // groupBox3
+            // _LoopGroupBox
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this._LoopGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this._InfiniteLoopCheckBox);
-            this.groupBox3.Controls.Add(this._WorkToFinishCheckBox);
-            this.groupBox3.Controls.Add(this._LoopCountNmericUpDown);
-            this.groupBox3.Controls.Add(this._Label6);
-            this.groupBox3.Location = new System.Drawing.Point(42, 420);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(543, 87);
-            this.groupBox3.TabIndex = 16;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "循环";
+            this._LoopGroupBox.Controls.Add(this._InfiniteLoopCheckBox);
+            this._LoopGroupBox.Controls.Add(this._WorkToFinishCheckBox);
+            this._LoopGroupBox.Controls.Add(this._LoopCountNmericUpDown);
+            this._LoopGroupBox.Controls.Add(this._Label6);
+            this._LoopGroupBox.Location = new System.Drawing.Point(37, 419);
+            this._LoopGroupBox.Name = "_LoopGroupBox";
+            this._LoopGroupBox.Size = new System.Drawing.Size(450, 87);
+            this._LoopGroupBox.TabIndex = 16;
+            this._LoopGroupBox.TabStop = false;
+            this._LoopGroupBox.Text = "循环";
             // 
             // _InfiniteLoopCheckBox
             // 
@@ -427,10 +427,10 @@
             this._CommandTabControl.Controls.Add(this._ScpiTabPage);
             this._CommandTabControl.Controls.Add(this._CareTabPage);
             this._CommandTabControl.ItemSize = new System.Drawing.Size(62, 28);
-            this._CommandTabControl.Location = new System.Drawing.Point(136, 143);
+            this._CommandTabControl.Location = new System.Drawing.Point(131, 140);
             this._CommandTabControl.Name = "_CommandTabControl";
             this._CommandTabControl.SelectedIndex = 0;
-            this._CommandTabControl.Size = new System.Drawing.Size(449, 206);
+            this._CommandTabControl.Size = new System.Drawing.Size(356, 206);
             this._CommandTabControl.TabIndex = 17;
             // 
             // _ScpiTabPage
@@ -446,7 +446,7 @@
             this._ScpiTabPage.Location = new System.Drawing.Point(4, 32);
             this._ScpiTabPage.Name = "_ScpiTabPage";
             this._ScpiTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this._ScpiTabPage.Size = new System.Drawing.Size(441, 170);
+            this._ScpiTabPage.Size = new System.Drawing.Size(348, 170);
             this._ScpiTabPage.TabIndex = 0;
             this._ScpiTabPage.Text = "SCPI指令";
             this._ScpiTabPage.UseVisualStyleBackColor = true;
@@ -472,7 +472,7 @@
             this._CareTabPage.Location = new System.Drawing.Point(4, 32);
             this._CareTabPage.Name = "_CareTabPage";
             this._CareTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this._CareTabPage.Size = new System.Drawing.Size(441, 170);
+            this._CareTabPage.Size = new System.Drawing.Size(399, 171);
             this._CareTabPage.TabIndex = 1;
             this._CareTabPage.Text = "MeterCare指令";
             this._CareTabPage.UseVisualStyleBackColor = true;
@@ -481,7 +481,7 @@
             // 
             this._ScpiRadioButton.AutoSize = true;
             this._ScpiRadioButton.Checked = true;
-            this._ScpiRadioButton.Location = new System.Drawing.Point(42, 147);
+            this._ScpiRadioButton.Location = new System.Drawing.Point(37, 144);
             this._ScpiRadioButton.Name = "_ScpiRadioButton";
             this._ScpiRadioButton.Size = new System.Drawing.Size(52, 21);
             this._ScpiRadioButton.TabIndex = 18;
@@ -492,7 +492,7 @@
             // _CareRadioButton
             // 
             this._CareRadioButton.AutoSize = true;
-            this._CareRadioButton.Location = new System.Drawing.Point(42, 168);
+            this._CareRadioButton.Location = new System.Drawing.Point(37, 165);
             this._CareRadioButton.Name = "_CareRadioButton";
             this._CareRadioButton.Size = new System.Drawing.Size(88, 21);
             this._CareRadioButton.TabIndex = 19;
@@ -502,15 +502,15 @@
             // CareCommandEditorDialog
             // 
             this.AcceptButton = this._ConfirmButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(619, 568);
+            this.ClientSize = new System.Drawing.Size(526, 566);
             this.Controls.Add(this._CareRadioButton);
             this.Controls.Add(this._ScpiRadioButton);
             this.Controls.Add(this._CommandTabControl);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this._LoopGroupBox);
+            this.Controls.Add(this._TimeGroupBox);
             this.Controls.Add(this._GpibNumericUpDown);
             this.Controls.Add(this._NewDUTButton);
             this.Controls.Add(this._DUTComboBox);
@@ -534,10 +534,10 @@
             ((System.ComponentModel.ISupportInitialize)(this._IntervalNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._GpibNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._TimeoutNumericUpDown)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this._TimeGroupBox.ResumeLayout(false);
+            this._TimeGroupBox.PerformLayout();
+            this._LoopGroupBox.ResumeLayout(false);
+            this._LoopGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._LoopCountNmericUpDown)).EndInit();
             this._CommandTabControl.ResumeLayout(false);
             this._ScpiTabPage.ResumeLayout(false);
@@ -567,10 +567,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown _TimeoutNumericUpDown;
         private System.Windows.Forms.Label _Label5;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox _TimeGroupBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox _ScpiDescriptionTextBox;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox _LoopGroupBox;
         private System.Windows.Forms.CheckBox _InfiniteLoopCheckBox;
         private System.Windows.Forms.CheckBox _WorkToFinishCheckBox;
         private System.Windows.Forms.NumericUpDown _LoopCountNmericUpDown;
