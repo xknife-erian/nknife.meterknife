@@ -4,6 +4,7 @@ using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
+using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.Util;
 
@@ -26,7 +27,9 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         public void Init(IAntService antService, IDataConnector connector)
         {
-            _slot = Slot.Build(TunnelType.Serial, $"4");
+            _slot = new Slot();
+            var config = new SerialConfig(){BaudRate = 115200};
+            _slot.Set(TunnelType.Serial, (4, config));
             antService.Bind((_slot, connector));
             Pool = GetCommands();
         }

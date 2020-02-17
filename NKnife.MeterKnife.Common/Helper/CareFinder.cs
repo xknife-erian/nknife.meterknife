@@ -19,7 +19,7 @@
 //                    continue;
 //                if (port <= 0)
 //                    continue;
-//                Slot carePort = Slot.Build(TunnelType.Serial, port.ToString());
+//                Slot carePort = Slot.Set(TunnelType.Serial, port.ToString());
 //
 //                bool onFindCare = true;
 //                var handler = new CareConfigHandler();

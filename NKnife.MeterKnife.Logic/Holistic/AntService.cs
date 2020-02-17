@@ -64,13 +64,8 @@ namespace NKnife.MeterKnife.Holistic
                             if (connector is ISerialConnector c)
                             {
                                 var portInfo = slot.GetSerialPortInfo();
-                                c.SerialConfig = new SerialConfig
-                                {
-                                    BaudRate = portInfo[1],
-                                    ReadBufferSize = 64,
-                                    ReadTimeout = 100 * 10
-                                };
-                                c.PortNumber = portInfo[0]; //串口
+                                c.SerialConfig = portInfo.Item2;
+                                c.PortNumber = portInfo.Item1; //串口
                             }
 
                             break;

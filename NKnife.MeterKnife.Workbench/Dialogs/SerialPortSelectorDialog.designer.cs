@@ -30,7 +30,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
         private void InitializeComponent()
         {
             this._ListView = new NKnife.Win.Forms.SingleRowCheckedListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._AcceptButton = new System.Windows.Forms.Button();
@@ -45,7 +44,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
             | System.Windows.Forms.AnchorStyles.Right)));
             this._ListView.CheckBoxes = true;
             this._ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
             this._ListView.FullRowSelect = true;
@@ -61,11 +59,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
             this._ListView.TabIndex = 2;
             this._ListView.UseCompatibleStateImageBehavior = false;
             this._ListView.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "";
-            this.columnHeader1.Width = 20;
             // 
             // columnHeader2
             // 
@@ -142,7 +135,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
         private NKnife.Win.Forms.SingleRowCheckedListView _ListView;
         private System.Windows.Forms.Button _AcceptButton;
         private System.Windows.Forms.Button _CancelButton;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button _refreshButton;

@@ -41,7 +41,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
             _ListView.Items.Clear();
             foreach (var p in SerialHelper.LocalSerialPorts)
             {
-                var item = new ListViewItem(new[] {"", "", p.Key, p.Value});
+                var item = new ListViewItem(new[] {"", p.Key, p.Value});
                 _ListView.Items.Add(item);
             }
             _ListView.PerformLayout();
