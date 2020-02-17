@@ -20,13 +20,13 @@ namespace NKnife.MeterKnife.Common.Domain
             _id = Guid.NewGuid().ToString();
         }
 
-        public TunnelType TunnelType { get; set; }
+        public SlotType SlotType { get; set; }
 
         public string Config { get; set; }
 
         public override string ToString()
         {
-            return $"{TunnelType}/{Config}";
+            return $"{SlotType}/{Config}";
         }
 
         public override bool Equals(object obj)
@@ -38,7 +38,7 @@ namespace NKnife.MeterKnife.Common.Domain
 
         private bool Equals(Slot other)
         {
-            return _id.Equals(other._id) && TunnelType == other.TunnelType;
+            return _id.Equals(other._id) && SlotType == other.SlotType;
         }
 
         public override int GetHashCode()

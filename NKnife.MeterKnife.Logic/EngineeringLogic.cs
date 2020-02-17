@@ -14,12 +14,15 @@ namespace NKnife.MeterKnife.Logic
 {
     public class EngineeringLogic : IEngineeringLogic
     {
-        private readonly IStoragePlatform<Engineering> _engineeringStoragePlatform;
+        private readonly IStorageManager _storageManager;
         private readonly IStorageDUTWrite<Engineering> _engineeringStorageDUTWrite;
+        private readonly IStoragePlatform<Engineering> _engineeringStoragePlatform;
         private readonly IMeasuringLogic _performLogic;
 
-        public EngineeringLogic(IStoragePlatform<Engineering> engineeringStoragePlatform, IStorageDUTWrite<Engineering> engineeringStorageDUTWrite, IMeasuringLogic performLogic)
+        public EngineeringLogic(IStorageManager storageManager, IStoragePlatform<Engineering> engineeringStoragePlatform, IStorageDUTWrite<Engineering> engineeringStorageDUTWrite,
+            IMeasuringLogic performLogic)
         {
+            _storageManager = storageManager;
             _engineeringStoragePlatform = engineeringStoragePlatform;
             _engineeringStorageDUTWrite = engineeringStorageDUTWrite;
             _performLogic = performLogic;
@@ -58,7 +61,7 @@ namespace NKnife.MeterKnife.Logic
                 engineering.Name = sb.ToString();
             }
 
-            _engineeringStoragePlatform.Create(engineering);
+            _storageManager.CreateEngineering(engineering);
         }
 
         private static void SetDUTMap(IMeasuringLogic performLogic, ScpiCommandPool commands, Engineering engineering)
@@ -69,14 +72,6 @@ namespace NKnife.MeterKnife.Logic
                 //TODO:if(command.IsPool)
                 //SetDUTMap(performLogic, command, engineering);
             }
-        }
-
-        /// <summary>
-        /// 获取所有工程
-        /// </summary>
-        public async Task<IEnumerable<Engineering>> GetAllEngineeringAsync()
-        {
-            return await _engineeringStoragePlatform.FindAllAsync();
         }
 
         #endregion

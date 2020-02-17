@@ -12,12 +12,6 @@ namespace NKnife.MeterKnife.Base
     public interface IStoragePlatform<T>
     {
         /// <summary>
-        ///     根据指定的数据库类型创建相应的工程存储
-        /// </summary>
-        /// <param name="engineering">相应的工程</param>
-        void Create(Engineering engineering);
-
-        /// <summary>
         ///     指定ID的记录是否存在
         /// </summary>
         /// <param name="id">指定的记录ID</param>

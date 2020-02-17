@@ -6,6 +6,7 @@ using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Common.Tunnels.Care;
+using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.MeterKnife.Util.Tunnel;
 
 namespace NKnife.MeterKnife.CLI.Commands
@@ -35,7 +36,10 @@ namespace NKnife.MeterKnife.CLI.Commands
              * 4. 为这个工程创建运行外围（数据存储文件等）；
              * 5. 从AntService中启动这个工程；
              */
-            _slot = Slot.Build(TunnelType.Serial, $"{Port}");
+            _slot = new Slot();
+            var config = new SerialConfig() { BaudRate = 115200 };
+            _slot.SetMeterCare(SlotType.Serial, ((short)Port, config));
+
             _antService.Bind((_slot, _connector));
             var engineering = new Engineering
             {

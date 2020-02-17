@@ -31,14 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlotView));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.listView1 = new System.Windows.Forms.ListView();
             this._NewToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this._NewCareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aglient82357ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.串口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tCPIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uSBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.aglient82357ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SlotListView = new System.Windows.Forms.ListView();
+            this._EditToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,22 +56,14 @@
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._NewToolStripDropDownButton});
+            this._NewToolStripDropDownButton,
+            this._EditToolStripButton,
+            this._DeleteToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(208, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // listView1
-            // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 25);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(208, 496);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // _NewToolStripDropDownButton
             // 
@@ -93,6 +87,18 @@
             this._NewCareToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this._NewCareToolStripMenuItem.Text = "MeterCare";
             // 
+            // aglient82357ToolStripMenuItem
+            // 
+            this.aglient82357ToolStripMenuItem.Enabled = false;
+            this.aglient82357ToolStripMenuItem.Name = "aglient82357ToolStripMenuItem";
+            this.aglient82357ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aglient82357ToolStripMenuItem.Text = "Aglient 82357";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
             // 串口ToolStripMenuItem
             // 
             this.串口ToolStripMenuItem.Enabled = false;
@@ -114,24 +120,41 @@
             this.uSBToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uSBToolStripMenuItem.Text = "USB";
             // 
-            // toolStripSeparator1
+            // _SlotListView
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this._SlotListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._SlotListView.HideSelection = false;
+            this._SlotListView.Location = new System.Drawing.Point(0, 25);
+            this._SlotListView.MultiSelect = false;
+            this._SlotListView.Name = "_SlotListView";
+            this._SlotListView.Size = new System.Drawing.Size(208, 496);
+            this._SlotListView.TabIndex = 2;
+            this._SlotListView.UseCompatibleStateImageBehavior = false;
             // 
-            // aglient82357ToolStripMenuItem
+            // _EditToolStripButton
             // 
-            this.aglient82357ToolStripMenuItem.Enabled = false;
-            this.aglient82357ToolStripMenuItem.Name = "aglient82357ToolStripMenuItem";
-            this.aglient82357ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aglient82357ToolStripMenuItem.Text = "Aglient 82357";
+            this._EditToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._EditToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_EditToolStripButton.Image")));
+            this._EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._EditToolStripButton.Name = "_EditToolStripButton";
+            this._EditToolStripButton.Size = new System.Drawing.Size(36, 22);
+            this._EditToolStripButton.Text = "修改";
+            // 
+            // _DeleteToolStripButton
+            // 
+            this._DeleteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._DeleteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteToolStripButton.Image")));
+            this._DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteToolStripButton.Name = "_DeleteToolStripButton";
+            this._DeleteToolStripButton.Size = new System.Drawing.Size(36, 22);
+            this._DeleteToolStripButton.Text = "删除";
             // 
             // SlotView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(208, 543);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this._SlotListView);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -149,7 +172,7 @@
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView _SlotListView;
         private System.Windows.Forms.ToolStripDropDownButton _NewToolStripDropDownButton;
         private System.Windows.Forms.ToolStripMenuItem _NewCareToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -157,5 +180,7 @@
         private System.Windows.Forms.ToolStripMenuItem tCPIPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uSBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aglient82357ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton _EditToolStripButton;
+        private System.Windows.Forms.ToolStripButton _DeleteToolStripButton;
     }
 }

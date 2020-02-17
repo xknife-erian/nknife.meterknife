@@ -15,9 +15,9 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
                 if (_ListView.SelectedItems.Count > 0)
                 {
                     var item = _ListView.SelectedItems[0];
-                    var port = item.SubItems[2].Text.ToUpper().Trim().TrimStart('C', 'O', 'M');
-                    ushort p = 0;
-                    ushort.TryParse(port, out p);
+                    var port = item.SubItems[1].Text.ToUpper().Trim().TrimStart('C', 'O', 'M');
+                    short p = 0;
+                    short.TryParse(port, out p);
                     SerialPort = p;
                     DialogResult = DialogResult.OK;
                 }
@@ -33,7 +33,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
             };
         }
 
-        public ushort SerialPort { get; private set; }
+        public short SerialPort { get; private set; }
 
         private void FillListView()
         {

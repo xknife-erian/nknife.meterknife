@@ -29,7 +29,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         {
             _slot = new Slot();
             var config = new SerialConfig(){BaudRate = 115200};
-            _slot.Set(TunnelType.Serial, (4, config));
+            _slot.SetMeterCare(SlotType.Serial, (4, config));
             antService.Bind((_slot, connector));
             Pool = GetCommands();
         }

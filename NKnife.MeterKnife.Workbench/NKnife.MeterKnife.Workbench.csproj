@@ -420,6 +420,8 @@
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_vertical_zoom.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_in.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_out.png" />
+    <Content Include="Properties\Images\SlotType\SlotType_MeterCare.png" />
+    <Content Include="Properties\Images\SlotType\SlotType_Serial.png" />
     <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

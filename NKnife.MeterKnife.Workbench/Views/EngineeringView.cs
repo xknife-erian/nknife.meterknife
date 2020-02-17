@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.ViewModels;
@@ -22,9 +23,9 @@ namespace NKnife.MeterKnife.Workbench.Views
     public sealed partial class EngineeringView : SingletonDockContent
     {
         private readonly IDialogProvider _dialogProvider;
-        private readonly EngineeringViewModel _viewModel;
+        private readonly IWorkbenchViewModel _viewModel;
 
-        public EngineeringView(EngineeringViewModel viewModel, IDialogProvider dialogProvider)
+        public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider)
         {
             _viewModel = viewModel;
             _dialogProvider = dialogProvider;

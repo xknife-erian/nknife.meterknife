@@ -53,11 +53,11 @@ namespace NKnife.MeterKnife.Holistic
                 if (!_connMap.ContainsKey(slot))
                 {
                     _connMap.Add(slot, connector);
-                    switch (slot.TunnelType)
+                    switch (slot.SlotType)
                     {
-                        case TunnelType.Tcpip:
+                        case SlotType.Tcpip:
                             break;
-                        case TunnelType.Serial:
+                        case SlotType.Serial:
                         {
                             _tunnel.AddFilters(_filter);
                             _tunnel.BindDataConnector(connector); //dataConnector是数据流动的动力
@@ -202,11 +202,11 @@ namespace NKnife.MeterKnife.Holistic
         public void Bind(Slot slot, SlotProcessor processor, params CareProtocolHandler[] handlers)
         {
             _processorMap.Add(slot, processor);
-            switch (slot.TunnelType)
+            switch (slot.SlotType)
             {
-                case TunnelType.Tcpip:
+                case SlotType.Tcpip:
                     break;
-                case TunnelType.Serial:
+                case SlotType.Serial:
                 default:
                 {
                     _tunnel.AddFilters(processor.Filter);
@@ -359,9 +359,9 @@ namespace NKnife.MeterKnife.Holistic
         /// <param name="handlers">协议处理的handler</param>
         private void Bind(Slot slot, IDataConnector connector, params CareProtocolHandler[] handlers)
         {
-            switch (slot.TunnelType)
+            switch (slot.SlotType)
             {
-                case TunnelType.Tcpip:
+                case SlotType.Tcpip:
                 {
                     //TODO: socket 暂时未移植
 //                        BuildConnector(slot, new SocketBytesProtocolFilter());
@@ -376,7 +376,7 @@ namespace NKnife.MeterKnife.Holistic
 //
                     break;
                 }
-                case TunnelType.Serial:
+                case SlotType.Serial:
                 default:
                 {
                     BuildConnector(slot, connector, new SerialProtocolFilter());

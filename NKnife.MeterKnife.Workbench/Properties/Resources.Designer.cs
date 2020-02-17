@@ -153,6 +153,26 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap SlotType_MeterCare {
+            get {
+                object obj = ResourceManager.GetObject("SlotType_MeterCare", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap SlotType_Serial {
+            get {
+                object obj = ResourceManager.GetObject("SlotType_Serial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ThemeStripIcon_theme_selection {
             get {
                 object obj = ResourceManager.GetObject("ThemeStripIcon_theme_selection", resourceCulture);

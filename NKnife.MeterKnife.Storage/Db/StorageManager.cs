@@ -46,7 +46,7 @@ namespace NKnife.MeterKnife.Storage.Db
             _setting = setting.Value;
             CurrentDbType = _setting.CurrentDbType;
             SqlSetMap = _setting.SqlSetMap;
-            SqlMapper.AddTypeHandler(typeof(ScpiCommandPool), new CareCommandPoolTypeHandler());
+            SqlMapper.AddTypeHandler(typeof(ScpiCommandPool), new ObjectJsonTypeHandler());
         }
 
         /// <summary>
@@ -158,6 +158,7 @@ namespace NKnife.MeterKnife.Storage.Db
             var map = new Dictionary<string, string>();
             map.Add(nameof(DUT), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(DUT)));
             map.Add(nameof(Engineering), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Engineering)));
+            map.Add(nameof(Slot), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Slot)));
             return map;
         }
 

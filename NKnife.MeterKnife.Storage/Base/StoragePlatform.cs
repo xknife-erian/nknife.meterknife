@@ -49,15 +49,6 @@ namespace NKnife.MeterKnife.Storage.Base
         public string TableName { get; }
 
         /// <summary>
-        ///     根据指定的数据库类型创建相应的工程存储
-        /// </summary>
-        /// <param name="engineering">相应工程的参数</param>
-        public void Create(Engineering engineering)
-        {
-            _storageManager.CreateEngineering(engineering);
-        }
-
-        /// <summary>
         ///     分页查询方法
         /// </summary>
         /// <param name="pageNumber">当前页码。从0开始。</param>
