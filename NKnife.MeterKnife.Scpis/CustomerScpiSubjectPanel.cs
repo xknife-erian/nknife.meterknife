@@ -146,7 +146,7 @@ namespace NKnife.MeterKnife.Scpis
                 }
                 foreach (var command in _currentScpiSubject.Collect)
                 {
-                    AddListItem(PoolCategory.Collect, command);
+                    AddListItem(PoolCategory.Acquisition, command);
                 }
             }
             _ListView.EndUpdate();
@@ -233,7 +233,7 @@ namespace NKnife.MeterKnife.Scpis
                 _currentScpiSubject = new ScpiCommandSubject();
 
             var dialog = new ScpiCommandEditorDialog();
-            dialog.Category = PoolCategory.Collect;
+            dialog.Category = PoolCategory.Acquisition;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
@@ -244,7 +244,7 @@ namespace NKnife.MeterKnife.Scpis
                     // IsHex = dialog.IsHex,
                     // IsReturn = true
                 };
-                AddListItem(PoolCategory.Collect, command);
+                AddListItem(PoolCategory.Acquisition, command);
             }
         }
 
@@ -258,7 +258,7 @@ namespace NKnife.MeterKnife.Scpis
                     if (!_currentScpiSubject.Initializtion.Contains(command))
                         _currentScpiSubject.Initializtion.Add(command);
                     break;
-                case PoolCategory.Collect:
+                case PoolCategory.Acquisition:
                     listitem.Group = _collectGroup;
                     if (!_currentScpiSubject.Collect.Contains(command))
                         _currentScpiSubject.Collect.Add(command);
@@ -354,7 +354,7 @@ namespace NKnife.MeterKnife.Scpis
                 //     _currentScpiSubject.Initializtion.DownItem(n);
                 //     break;
                 // case "COLLECT":
-                //     _currentScpiSubject.Collect.DownItem(n);
+                //     _currentScpiSubject.Acquisition.DownItem(n);
                 //     break;
             }
             UpdateListView();
@@ -373,7 +373,7 @@ namespace NKnife.MeterKnife.Scpis
                 //     _currentScpiSubject.Initializtion.UpItem(n);
                 //     break;
                 // case "COLLECT":
-                //     _currentScpiSubject.Collect.UpItem(n);
+                //     _currentScpiSubject.Acquisition.UpItem(n);
                 //     break;
             }
             UpdateListView();

@@ -49,9 +49,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(332, 37);
+            this.label5.Location = new System.Drawing.Point(332, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 13);
+            this.label5.Size = new System.Drawing.Size(32, 17);
             this.label5.TabIndex = 24;
             this.label5.Text = "偏移";
             // 
@@ -61,7 +61,7 @@
             this._LineColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._LineColor.Color = System.Drawing.Color.White;
             this._LineColor.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this._LineColor.Location = new System.Drawing.Point(274, 53);
+            this._LineColor.Location = new System.Drawing.Point(274, 48);
             this._LineColor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._LineColor.Name = "_LineColor";
             this._LineColor.Size = new System.Drawing.Size(57, 25);
@@ -70,30 +70,31 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(271, 37);
+            this.label4.Location = new System.Drawing.Point(271, 27);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(32, 17);
             this.label4.TabIndex = 22;
             this.label4.Text = "颜色";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(211, 37);
+            this.label3.Location = new System.Drawing.Point(211, 27);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.Size = new System.Drawing.Size(32, 17);
             this.label3.TabIndex = 21;
             this.label3.Text = "线宽";
             // 
             // _ThicknessNumericUpDown
             // 
             this._ThicknessNumericUpDown.DecimalPlaces = 1;
+            this._ThicknessNumericUpDown.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._ThicknessNumericUpDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this._ThicknessNumericUpDown.Location = new System.Drawing.Point(214, 55);
+            this._ThicknessNumericUpDown.Location = new System.Drawing.Point(214, 48);
             this._ThicknessNumericUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -105,7 +106,7 @@
             0,
             65536});
             this._ThicknessNumericUpDown.Name = "_ThicknessNumericUpDown";
-            this._ThicknessNumericUpDown.Size = new System.Drawing.Size(56, 21);
+            this._ThicknessNumericUpDown.Size = new System.Drawing.Size(56, 26);
             this._ThicknessNumericUpDown.TabIndex = 2;
             this._ThicknessNumericUpDown.Value = new decimal(new int[] {
             18,
@@ -116,18 +117,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(143, 37);
+            this.label2.Location = new System.Drawing.Point(143, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.Size = new System.Drawing.Size(32, 17);
             this.label2.TabIndex = 19;
             this.label2.Text = "类型";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 37);
+            this.label1.Location = new System.Drawing.Point(20, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 18;
             this.label1.Text = "数据名称：";
             // 
@@ -135,35 +136,37 @@
             // 
             this._LineStyleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._LineStyleComboBox.FormattingEnabled = true;
-            this._LineStyleComboBox.Location = new System.Drawing.Point(146, 55);
+            this._LineStyleComboBox.Location = new System.Drawing.Point(146, 48);
             this._LineStyleComboBox.Name = "_LineStyleComboBox";
-            this._LineStyleComboBox.Size = new System.Drawing.Size(63, 21);
+            this._LineStyleComboBox.Size = new System.Drawing.Size(63, 25);
             this._LineStyleComboBox.TabIndex = 1;
             // 
             // _ExhibitsComboBox
             // 
             this._ExhibitsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._ExhibitsComboBox.FormattingEnabled = true;
-            this._ExhibitsComboBox.Location = new System.Drawing.Point(20, 55);
+            this._ExhibitsComboBox.Location = new System.Drawing.Point(20, 48);
             this._ExhibitsComboBox.Name = "_ExhibitsComboBox";
-            this._ExhibitsComboBox.Size = new System.Drawing.Size(121, 21);
+            this._ExhibitsComboBox.Size = new System.Drawing.Size(121, 25);
             this._ExhibitsComboBox.TabIndex = 0;
             // 
             // _CancelButton
             // 
+            this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(364, 125);
+            this._CancelButton.Location = new System.Drawing.Point(376, 108);
             this._CancelButton.Name = "_CancelButton";
-            this._CancelButton.Size = new System.Drawing.Size(89, 31);
+            this._CancelButton.Size = new System.Drawing.Size(89, 38);
             this._CancelButton.TabIndex = 2;
             this._CancelButton.Text = "取消(&X)";
             this._CancelButton.UseVisualStyleBackColor = true;
             // 
             // _AcceptButton
             // 
-            this._AcceptButton.Location = new System.Drawing.Point(269, 125);
+            this._AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._AcceptButton.Location = new System.Drawing.Point(281, 108);
             this._AcceptButton.Name = "_AcceptButton";
-            this._AcceptButton.Size = new System.Drawing.Size(89, 31);
+            this._AcceptButton.Size = new System.Drawing.Size(89, 38);
             this._AcceptButton.TabIndex = 1;
             this._AcceptButton.Text = "确定(&C)";
             this._AcceptButton.UseVisualStyleBackColor = true;
@@ -182,38 +185,40 @@
             this._MainGroupBox.Controls.Add(this._LineColor);
             this._MainGroupBox.Location = new System.Drawing.Point(12, 12);
             this._MainGroupBox.Name = "_MainGroupBox";
-            this._MainGroupBox.Size = new System.Drawing.Size(441, 107);
+            this._MainGroupBox.Size = new System.Drawing.Size(453, 90);
             this._MainGroupBox.TabIndex = 0;
             this._MainGroupBox.TabStop = false;
             // 
             // _OffsetNumericUpDown
             // 
             this._OffsetNumericUpDown.DecimalPlaces = 8;
+            this._OffsetNumericUpDown.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this._OffsetNumericUpDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this._OffsetNumericUpDown.Location = new System.Drawing.Point(335, 54);
+            this._OffsetNumericUpDown.Location = new System.Drawing.Point(335, 48);
             this._OffsetNumericUpDown.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this._OffsetNumericUpDown.Name = "_OffsetNumericUpDown";
-            this._OffsetNumericUpDown.Size = new System.Drawing.Size(89, 21);
+            this._OffsetNumericUpDown.Size = new System.Drawing.Size(97, 26);
             this._OffsetNumericUpDown.TabIndex = 25;
             // 
             // DataSeriesEditorDialog
             // 
             this.AcceptButton = this._AcceptButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(464, 169);
+            this.ClientSize = new System.Drawing.Size(477, 158);
             this.Controls.Add(this._MainGroupBox);
             this.Controls.Add(this._AcceptButton);
             this.Controls.Add(this._CancelButton);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(120, 148);

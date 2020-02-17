@@ -57,10 +57,11 @@
             this.columnHeader7});
             this._ListView.FullRowSelect = true;
             this._ListView.GridLines = true;
+            this._ListView.HideSelection = false;
             this._ListView.Location = new System.Drawing.Point(13, 12);
             this._ListView.MultiSelect = false;
             this._ListView.Name = "_ListView";
-            this._ListView.Size = new System.Drawing.Size(445, 206);
+            this._ListView.Size = new System.Drawing.Size(440, 225);
             this._ListView.TabIndex = 0;
             this._ListView.UseCompatibleStateImageBehavior = false;
             this._ListView.View = System.Windows.Forms.View.Details;
@@ -98,7 +99,7 @@
             // _AcceptButton
             // 
             this._AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._AcceptButton.Location = new System.Drawing.Point(380, 224);
+            this._AcceptButton.Location = new System.Drawing.Point(375, 243);
             this._AcceptButton.Name = "_AcceptButton";
             this._AcceptButton.Size = new System.Drawing.Size(78, 27);
             this._AcceptButton.TabIndex = 1;
@@ -109,7 +110,7 @@
             // _ModifyButton
             // 
             this._ModifyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._ModifyButton.Location = new System.Drawing.Point(127, 224);
+            this._ModifyButton.Location = new System.Drawing.Point(127, 243);
             this._ModifyButton.Name = "_ModifyButton";
             this._ModifyButton.Size = new System.Drawing.Size(55, 27);
             this._ModifyButton.TabIndex = 17;
@@ -120,7 +121,7 @@
             // _AppendButton
             // 
             this._AppendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._AppendButton.Location = new System.Drawing.Point(13, 224);
+            this._AppendButton.Location = new System.Drawing.Point(13, 243);
             this._AppendButton.Name = "_AppendButton";
             this._AppendButton.Size = new System.Drawing.Size(55, 27);
             this._AppendButton.TabIndex = 18;
@@ -131,7 +132,7 @@
             // _DeleteButton
             // 
             this._DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._DeleteButton.Location = new System.Drawing.Point(69, 224);
+            this._DeleteButton.Location = new System.Drawing.Point(69, 243);
             this._DeleteButton.Name = "_DeleteButton";
             this._DeleteButton.Size = new System.Drawing.Size(55, 27);
             this._DeleteButton.TabIndex = 19;
@@ -142,7 +143,7 @@
             // _LoadButton
             // 
             this._LoadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._LoadButton.Location = new System.Drawing.Point(196, 224);
+            this._LoadButton.Location = new System.Drawing.Point(196, 243);
             this._LoadButton.Name = "_LoadButton";
             this._LoadButton.Size = new System.Drawing.Size(55, 27);
             this._LoadButton.TabIndex = 20;
@@ -153,7 +154,7 @@
             // _SaveButton
             // 
             this._SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._SaveButton.Location = new System.Drawing.Point(252, 224);
+            this._SaveButton.Location = new System.Drawing.Point(252, 243);
             this._SaveButton.Name = "_SaveButton";
             this._SaveButton.Size = new System.Drawing.Size(55, 27);
             this._SaveButton.TabIndex = 21;
@@ -164,9 +165,9 @@
             // DataSeriesListDialog
             // 
             this.AcceptButton = this._AcceptButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 262);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(465, 281);
             this.Controls.Add(this._SaveButton);
             this.Controls.Add(this._LoadButton);
             this.Controls.Add(this._DeleteButton);
@@ -174,6 +175,7 @@
             this.Controls.Add(this._ModifyButton);
             this.Controls.Add(this._AcceptButton);
             this.Controls.Add(this._ListView);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DataSeriesListDialog";

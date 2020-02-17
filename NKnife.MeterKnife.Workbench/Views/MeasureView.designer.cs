@@ -43,7 +43,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._TimeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._ValueRangeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this._PlotThemeDropDownButton1 = new Dialogs.Plots.PlotThemeDropDownButton();
+            this._PlotThemeDropDownButton1 = new NKnife.MeterKnife.Workbench.Dialogs.Plots.PlotThemeDropDownButton();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
             this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
             this._ToolStripContainer.SuspendLayout();
@@ -120,7 +120,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._PlotThemeDropDownButton1});
             this._PlotToolStrip.Location = new System.Drawing.Point(103, 0);
             this._PlotToolStrip.Name = "_PlotToolStrip";
-            this._PlotToolStrip.Size = new System.Drawing.Size(174, 25);
+            this._PlotToolStrip.Size = new System.Drawing.Size(205, 25);
             this._PlotToolStrip.TabIndex = 0;
             // 
             // _OriginalToolStripButton
@@ -199,8 +199,8 @@ namespace NKnife.MeterKnife.Workbench.Views
             // 
             // MeasureView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this._ToolStripContainer);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

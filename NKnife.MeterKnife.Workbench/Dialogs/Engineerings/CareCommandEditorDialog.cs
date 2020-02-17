@@ -13,8 +13,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
     public partial class CareCommandEditorDialog : Form
     {
         private readonly IWorkbenchViewModel _workbench;
-        private PoolCategory _category;
-        private ScpiCommand _scpiCommand;
         private bool _timeoutContrilAlreadySet = false;
 
 
@@ -49,11 +47,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             });
         }
 
-        public ScpiCommand ScpiCommand
-        {
-            get => _scpiCommand;
-            set => _scpiCommand = value;
-        }
+        public ScpiCommand ScpiCommand { get; set; }
 
         private void InitializeSlotGroup()
         {
@@ -157,35 +151,36 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             {
                 if (_ScpiRadioButton.Checked)
                 {
-                    _scpiCommand = new ScpiCommand();
-                    var scpi = new Scpi();
-                    scpi.Name = _ScpiNameTextBox.Text;
-                    scpi.IsHex = _HexEnableCheckBox.Checked;
-                    scpi.Command = _CommandTextBox.Text;
-                    scpi.Description = _ScpiDescriptionTextBox.Text;
-                    _scpiCommand.Scpi = scpi;
+                    ScpiCommand = new ScpiCommand();
+                    ScpiCommand.Scpi = new Scpi
+                    {
+                        Name = _ScpiNameTextBox.Text,
+                        IsHex = _HexEnableCheckBox.Checked,
+                        Command = _CommandTextBox.Text, 
+                        Description = _ScpiDescriptionTextBox.Text
+                    };
                 }
                 else if (_CareRadioButton.Checked)
                 {
-                    _scpiCommand = new CareCommand();
+                    ScpiCommand = new CareCommand();
                 }
 
-                _scpiCommand.GpibAddress = (short) _GpibNumericUpDown.Value;
-                _scpiCommand.Interval = (int)_IntervalNumericUpDown.Value;
-                _scpiCommand.Timeout = (int)_TimeoutNumericUpDown.Value;
+                ScpiCommand.GpibAddress = (short) _GpibNumericUpDown.Value;
+                ScpiCommand.Interval = (int)_IntervalNumericUpDown.Value;
+                ScpiCommand.Timeout = (int)_TimeoutNumericUpDown.Value;
                 if (_LoopCountNmericUpDown.Value == 1)
                 {
-                    _scpiCommand.IsLoop = false;
+                    ScpiCommand.IsLoop = false;
                 }
                 else
                 {
-                    _scpiCommand.IsLoop = true;
-                    _scpiCommand.LoopCount = (int) _LoopCountNmericUpDown.Value;
-                    _scpiCommand.IsPrecedenceWork = _WorkToFinishCheckBox.Checked;
+                    ScpiCommand.IsLoop = true;
+                    ScpiCommand.LoopCount = (int) _LoopCountNmericUpDown.Value;
+                    ScpiCommand.IsPrecedenceWork = _WorkToFinishCheckBox.Checked;
                 }
 
-                _scpiCommand.Slot = (Slot)_SlotComboBox.SelectedItem;
-                _scpiCommand.DUT = (DUT)_DUTComboBox.SelectedItem;
+                ScpiCommand.Slot = (Slot)_SlotComboBox.SelectedItem;
+                ScpiCommand.DUT = (DUT)_DUTComboBox.SelectedItem;
                 DialogResult = DialogResult.OK;
             }
             else

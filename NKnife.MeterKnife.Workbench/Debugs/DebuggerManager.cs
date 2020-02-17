@@ -35,10 +35,18 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         public ToolStripMenuItem GetDebugMenu()
         {
             var debugMainMenu = new ToolStripMenuItem("Debug");
-            var plot = BuildMeasureMenu(debugMainMenu);
-            debugMainMenu.DropDownItems.Add(plot);
+
+            var engineeringDetail = BuildEngineeringDetailMenu(debugMainMenu);
+            debugMainMenu.DropDownItems.Add(engineeringDetail);
+
             var cmdEditDilog = BuildCommandEditMenu(debugMainMenu);
             debugMainMenu.DropDownItems.Add(cmdEditDilog);
+
+            debugMainMenu.DropDownItems.Add(new ToolStripSeparator());
+
+            var plot = BuildMeasureMenu(debugMainMenu);
+            debugMainMenu.DropDownItems.Add(plot);
+
             return debugMainMenu;
         }
 
@@ -47,8 +55,20 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var menu = new ToolStripMenuItem("指令编辑器");
             menu.Click += (sender, args) =>
             {
-                var form = menu.GetCurrentParent().FindForm(); 
+                var form = menu.GetCurrentParent().FindForm();
                 var dialog = Kernel.Container.Resolve<CareCommandEditorDialog>();
+                dialog.ShowDialog(form);
+            };
+            return menu;
+        }
+
+        private ToolStripMenuItem BuildEngineeringDetailMenu(ToolStripMenuItem debugMainMenu)
+        {
+            var menu = new ToolStripMenuItem("工程编辑器");
+            menu.Click += (sender, args) =>
+            {
+                var form = menu.GetCurrentParent().FindForm();
+                var dialog = Kernel.Container.Resolve<EngineeringDetailDialog>();
                 dialog.ShowDialog(form);
             };
             return menu;

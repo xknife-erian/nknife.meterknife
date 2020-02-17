@@ -11,7 +11,7 @@ namespace NKnife.MeterKnife.Common.Scpi
     {
         public ScpiCommandSubject()
         {
-            Collect = new ScpiCommandPool { Category = PoolCategory.Collect};
+            Collect = new ScpiCommandPool { Category = PoolCategory.Acquisition};
             Initializtion = new ScpiCommandPool { Category = PoolCategory.Initializtion};
         }
 
@@ -48,7 +48,7 @@ namespace NKnife.MeterKnife.Common.Scpi
             element.AppendChild(groupElement);
 
             groupElement = document.CreateElement("group");
-            //Collect.Build(ref groupElement);
+            //Acquisition.Build(ref groupElement);
             element.AppendChild(groupElement);
         }
 
@@ -82,7 +82,7 @@ namespace NKnife.MeterKnife.Common.Scpi
                                 //scpiSubject.Initializtion = ScpiCommandPool.Prase(groupElement);
                                 break;
                             case "collect":
-                                //scpiSubject.Collect = ScpiCommandPool.Prase(groupElement);
+                                //scpiSubject.Acquisition = ScpiCommandPool.Prase(groupElement);
                                 break;
                         }
                     }

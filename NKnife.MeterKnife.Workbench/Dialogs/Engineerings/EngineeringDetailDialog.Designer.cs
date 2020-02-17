@@ -28,24 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("初始化", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("数据采集", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("结束", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("aaa");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("bbb");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "ccc",
-            "RES",
-            "Care",
-            "READ?",
-            "Yes",
-            "0",
-            "500",
-            "1000"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("ddd");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("eee");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("fff");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("ggg");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EngineeringDetailDialog));
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
@@ -65,17 +47,20 @@
             this._DUTColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._SlotColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._SCPIColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._IsLoopColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._LoopCountolumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._IntervalColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._TimeoutColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._IsLoopColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._LoopCountolumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._CommandsToolStrip = new System.Windows.Forms.ToolStrip();
-            this._CreateCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this._EditCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._UpCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this._DownCommandStripButton = new System.Windows.Forms.ToolStripButton();
+            this._CreateCommandStripButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this._CreateInitializeCmdStripButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._CreateAcquisitionCmdStripButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._CreateFinishCmdStripButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._TabControl.SuspendLayout();
             this._EngineeringTabPage.SuspendLayout();
             this._CommandsTabPage.SuspendLayout();
@@ -233,39 +218,14 @@
             this._DUTColumnHeader,
             this._SlotColumnHeader,
             this._SCPIColumnHeader,
-            this._IsLoopColumnHeader,
-            this._LoopCountolumnHeader,
             this._IntervalColumnHeader,
-            this._TimeoutColumnHeader});
+            this._TimeoutColumnHeader,
+            this._IsLoopColumnHeader,
+            this._LoopCountolumnHeader});
             this._CommandsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._CommandsListView.FullRowSelect = true;
             this._CommandsListView.GridLines = true;
-            listViewGroup1.Header = "初始化";
-            listViewGroup1.Name = "_InitializtionListViewGroup";
-            listViewGroup2.Header = "数据采集";
-            listViewGroup2.Name = "_CollectListViewGroup";
-            listViewGroup3.Header = "结束";
-            listViewGroup3.Name = "_FinishedListViewGroup";
-            this._CommandsListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3});
             this._CommandsListView.HideSelection = false;
-            listViewItem1.Group = listViewGroup1;
-            listViewItem2.Group = listViewGroup1;
-            listViewItem3.Group = listViewGroup2;
-            listViewItem4.Group = listViewGroup2;
-            listViewItem5.Group = listViewGroup2;
-            listViewItem6.Group = listViewGroup3;
-            listViewItem7.Group = listViewGroup3;
-            this._CommandsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7});
             this._CommandsListView.Location = new System.Drawing.Point(3, 28);
             this._CommandsListView.MultiSelect = false;
             this._CommandsListView.Name = "_CommandsListView";
@@ -277,42 +237,46 @@
             // _IndexColumnHeader
             // 
             this._IndexColumnHeader.Text = "序号";
-            this._IndexColumnHeader.Width = 40;
+            this._IndexColumnHeader.Width = 36;
             // 
             // _DUTColumnHeader
             // 
             this._DUTColumnHeader.Text = "被测物";
-            this._DUTColumnHeader.Width = 80;
+            this._DUTColumnHeader.Width = 170;
             // 
             // _SlotColumnHeader
             // 
             this._SlotColumnHeader.Text = "接驳器";
+            this._SlotColumnHeader.Width = 150;
             // 
             // _SCPIColumnHeader
             // 
             this._SCPIColumnHeader.Text = "指令";
-            this._SCPIColumnHeader.Width = 200;
+            this._SCPIColumnHeader.Width = 160;
+            // 
+            // _IntervalColumnHeader
+            // 
+            this._IntervalColumnHeader.Text = "定时";
+            this._IntervalColumnHeader.Width = 50;
+            // 
+            // _TimeoutColumnHeader
+            // 
+            this._TimeoutColumnHeader.Text = "超时";
+            this._TimeoutColumnHeader.Width = 50;
             // 
             // _IsLoopColumnHeader
             // 
             this._IsLoopColumnHeader.Text = "循环";
+            this._IsLoopColumnHeader.Width = 50;
             // 
             // _LoopCountolumnHeader
             // 
-            this._LoopCountolumnHeader.Text = "循环次数";
-            // 
-            // _IntervalColumnHeader
-            // 
-            this._IntervalColumnHeader.Text = "循环间隔";
-            // 
-            // _TimeoutColumnHeader
-            // 
-            this._TimeoutColumnHeader.Text = "循环超时";
+            this._LoopCountolumnHeader.Text = "次数";
+            this._LoopCountolumnHeader.Width = 50;
             // 
             // _CommandsToolStrip
             // 
             this._CommandsToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this._CommandsToolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this._CommandsToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._CreateCommandStripButton,
             this._EditCommandStripButton,
@@ -325,15 +289,6 @@
             this._CommandsToolStrip.Size = new System.Drawing.Size(746, 25);
             this._CommandsToolStrip.TabIndex = 0;
             this._CommandsToolStrip.Text = "toolStrip1";
-            // 
-            // _CreateCommandStripButton
-            // 
-            this._CreateCommandStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this._CreateCommandStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_CreateCommandStripButton.Image")));
-            this._CreateCommandStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._CreateCommandStripButton.Name = "_CreateCommandStripButton";
-            this._CreateCommandStripButton.Size = new System.Drawing.Size(36, 22);
-            this._CreateCommandStripButton.Text = "新建";
             // 
             // _EditCommandStripButton
             // 
@@ -376,6 +331,37 @@
             this._DownCommandStripButton.Size = new System.Drawing.Size(36, 22);
             this._DownCommandStripButton.Text = "下移";
             // 
+            // _CreateCommandStripButton
+            // 
+            this._CreateCommandStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._CreateCommandStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._CreateInitializeCmdStripButtonMenuItem,
+            this._CreateAcquisitionCmdStripButtonMenuItem,
+            this._CreateFinishCmdStripButtonMenuItem});
+            this._CreateCommandStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_CreateCommandStripButton.Image")));
+            this._CreateCommandStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._CreateCommandStripButton.Name = "_CreateCommandStripButton";
+            this._CreateCommandStripButton.Size = new System.Drawing.Size(45, 22);
+            this._CreateCommandStripButton.Text = "新建";
+            // 
+            // _CreateInitializeCmdStripButtonMenuItem
+            // 
+            this._CreateInitializeCmdStripButtonMenuItem.Name = "_CreateInitializeCmdStripButtonMenuItem";
+            this._CreateInitializeCmdStripButtonMenuItem.Size = new System.Drawing.Size(180, 22);
+            this._CreateInitializeCmdStripButtonMenuItem.Text = "初始化设置";
+            // 
+            // _CreateAcquisitionCmdStripButtonMenuItem
+            // 
+            this._CreateAcquisitionCmdStripButtonMenuItem.Name = "_CreateAcquisitionCmdStripButtonMenuItem";
+            this._CreateAcquisitionCmdStripButtonMenuItem.Size = new System.Drawing.Size(180, 22);
+            this._CreateAcquisitionCmdStripButtonMenuItem.Text = "采集过程";
+            // 
+            // _CreateFinishCmdStripButtonMenuItem
+            // 
+            this._CreateFinishCmdStripButtonMenuItem.Name = "_CreateFinishCmdStripButtonMenuItem";
+            this._CreateFinishCmdStripButtonMenuItem.Size = new System.Drawing.Size(180, 22);
+            this._CreateFinishCmdStripButtonMenuItem.Text = "结束维护";
+            // 
             // EngineeringDetailDialog
             // 
             this.AcceptButton = this._AcceptButton;
@@ -391,7 +377,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EngineeringDetailDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "EngineeringDetailDialog";
+            this.Text = "工程详细信息";
             this._TabControl.ResumeLayout(false);
             this._EngineeringTabPage.ResumeLayout(false);
             this._EngineeringTabPage.PerformLayout();
@@ -427,12 +413,15 @@
         private System.Windows.Forms.ColumnHeader _TimeoutColumnHeader;
         private System.Windows.Forms.ColumnHeader _IsLoopColumnHeader;
         private System.Windows.Forms.ColumnHeader _LoopCountolumnHeader;
-        private System.Windows.Forms.ToolStripButton _CreateCommandStripButton;
         private System.Windows.Forms.ToolStripButton _EditCommandStripButton;
         private System.Windows.Forms.ToolStripButton _DeleteCommandStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton _UpCommandStripButton;
         private System.Windows.Forms.ToolStripButton _DownCommandStripButton;
         private System.Windows.Forms.Button _GenerateNameOnDUTButton;
+        private System.Windows.Forms.ToolStripDropDownButton _CreateCommandStripButton;
+        private System.Windows.Forms.ToolStripMenuItem _CreateInitializeCmdStripButtonMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _CreateAcquisitionCmdStripButtonMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _CreateFinishCmdStripButtonMenuItem;
     }
 }

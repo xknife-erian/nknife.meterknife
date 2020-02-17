@@ -19,7 +19,7 @@ namespace NKnife.MeterKnife.Scpis
                 _category = value;
                 switch (value)
                 {
-                    case PoolCategory.Collect:
+                    case PoolCategory.Acquisition:
                         _IntervalNumericUpDown.Value = 400;
                         _IsReturnCheckBox.Checked = true;
                         break;
