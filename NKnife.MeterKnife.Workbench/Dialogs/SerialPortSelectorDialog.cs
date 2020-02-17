@@ -33,6 +33,8 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
             };
         }
 
+        public ushort SerialPort { get; private set; }
+
         private void FillListView()
         {
             _ListView.SuspendLayout();
@@ -46,12 +48,11 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
             _ListView.ResumeLayout(false);
         }
 
-        public ushort SerialPort { get; private set; }
-
         private void _refreshButton_Click(object sender, System.EventArgs e)
         {
             SerialHelper.RefreshSerialPorts();
             FillListView();
         }
+
     }
 }

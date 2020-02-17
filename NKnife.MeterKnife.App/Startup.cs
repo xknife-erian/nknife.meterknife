@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Logic;
+using NKnife.MeterKnife.Util.Serial;
 using NKnife.Win.Forms.Forms;
 using NKnife.Win.Quick.Base;
 using NKnife.MeterKnife.Workbench.Base;
@@ -23,6 +25,7 @@ namespace NKnife.MeterKnife.App
             _habitManager = habitManager;
             _workbench = workbench;
             _appManager = appManager;
+            Task.Factory.StartNew(SerialHelper.RefreshSerialPorts);
             LoadEnvironment();
             Application.ApplicationExit += OnApplicationExit;
         }

@@ -28,6 +28,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                 dialog.Text = this.Res("选择MeterCare所在的串口");
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
+                    var result = dialog.SerialPort;
                 }
             };
         }
