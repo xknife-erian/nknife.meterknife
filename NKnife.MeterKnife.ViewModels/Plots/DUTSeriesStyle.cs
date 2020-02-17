@@ -90,8 +90,8 @@ namespace NKnife.MeterKnife.ViewModels.Plots
                 {
                     var colors = new Color[13];
                     colors[0] = Color.FromArgb(255, 255, 0);
-                    colors[1] = Color.FromArgb(0, 255, 255);
-                    colors[2] = Color.FromArgb(255, 0, 255);
+                    colors[1] = Color.FromArgb(255, 0, 255);
+                    colors[2] = Color.FromArgb(0, 255, 255);
 
                     colors[3] = Color.FromArgb(0, 255, 0);
                     colors[4] = Color.FromArgb(255, 0, 0);

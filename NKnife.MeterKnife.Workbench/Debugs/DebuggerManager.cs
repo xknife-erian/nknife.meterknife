@@ -89,7 +89,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                     for (var index = 0; index < start.Pool.Count; index++)
                     {
                         var cmd = start.Pool[index];
-                        var style = DUTSeriesStyle.GetAllLineStyles()[index];
+                        var style = DUTSeriesStyle.Build(LineStyle.Solid);//.GetAllLineStyles()[index];
                         style.Color = DUTSeriesStyle.AllLineColors[index];
                         style.DUT = cmd.DUT.Id;
 

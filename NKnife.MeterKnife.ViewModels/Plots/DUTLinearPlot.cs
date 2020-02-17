@@ -129,10 +129,21 @@ namespace NKnife.MeterKnife.ViewModels.Plots
                 axis.Minimum = value - offset;
                 return;
             }
+
             if (value >= axis.Maximum)
-                axis.Maximum = value + GetOffset(value);
+            {
+                var min = axis.Minimum;
+                var max = value;
+                var offset = Math.Abs((max - min) / 10);
+                axis.Maximum = value + offset;
+            }
             else if (value <= axis.Minimum)
-                axis.Minimum = value - GetOffset(value);
+            {
+                var min = value;
+                var max = axis.Maximum;
+                var offset = Math.Abs((max - min) / 10);
+                axis.Minimum = value - offset;
+            }
         }
 
         private static double GetOffset(double value)
@@ -161,7 +172,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <param name="precision">指定小数精度</param>
         public static double GetMinPrecisionValue(int precision)
         {
-            return Math.Pow(10, -precision);
+            return Math.Pow(10, -precision)*2;
         }
 
         public static OxyColor ToOxyColor(Color color)
