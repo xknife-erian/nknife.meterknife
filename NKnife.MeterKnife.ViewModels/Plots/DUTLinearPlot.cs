@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using NKnife.MeterKnife.Base;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -67,12 +68,12 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             //先根据测量数据调整纵轴的值的范围
             if (_axisFirstMap[number])
             {
-                UpdateRange(value, axis, true);
+                UpdateRange(value, axis, PlotTheme.YSpaceLevel, true);
                 _axisFirstMap[number] = false;
             }
             else
             {
-                UpdateRange(value, axis);
+                UpdateRange(value, axis, PlotTheme.YSpaceLevel);
             }
 
             //向数据线上添加测量数据点
@@ -119,12 +120,14 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// </summary>
         /// <param name="value">当前测量值</param>
         /// <param name="axis">LinearAxis的相对值</param>
+        /// <param name="ySpaceLevel">Y轴上下的留白级别</param>
         /// <param name="isFirst">是第一个数据</param>
-        private void UpdateRange(double value, Axis axis, bool isFirst = false)
+        public static void UpdateRange(double value, Axis axis, short ySpaceLevel, bool isFirst = false)
         {
+            var ys = ySpaceLevel * 2;
             if (isFirst) //当第一个数据时，做一些常规处理
             {
-                var offset = GetOffset(value);
+                var offset = Math.Abs(value) > 0 ? GetOffset(value) : 0.00000001;
                 axis.Maximum = value + offset;
                 axis.Minimum = value - offset;
                 return;
@@ -134,19 +137,19 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             {
                 var min = axis.Minimum;
                 var max = value;
-                var offset = Math.Abs((max - min) / 10);
+                var offset = Math.Abs((max - min) / ys);
                 axis.Maximum = value + offset;
             }
             else if (value <= axis.Minimum)
             {
                 var min = value;
                 var max = axis.Maximum;
-                var offset = Math.Abs((max - min) / 10);
+                var offset = Math.Abs((max - min) / ys);
                 axis.Minimum = value - offset;
             }
         }
 
-        private static double GetOffset(double value)
+        public static double GetOffset(double value)
         {
             var precision = GetPrecision(value);
             var offset = GetMinPrecisionValue(precision);
@@ -172,7 +175,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <param name="precision">指定小数精度</param>
         public static double GetMinPrecisionValue(int precision)
         {
-            return Math.Pow(10, -precision)*2;
+            return Math.Pow(10, -(precision+1));
         }
 
         public static OxyColor ToOxyColor(Color color)

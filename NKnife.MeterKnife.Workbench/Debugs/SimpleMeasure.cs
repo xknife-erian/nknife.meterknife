@@ -48,7 +48,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         private ScpiCommandPool GetCommands()
         {
-            var interval = 1000;
+            var interval = 500;
             var item1 = new ScpiCommand
             {
                 Slot = _slot,
@@ -82,7 +82,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var pool = new ScpiCommandPool();
             //pool.Add(item1);
              pool.AddRange(new[] { item2, temp5 });
-            // pool.AddRange(new[] { item1, temp6 });
+             pool.AddRange(new[] { item1, temp6 });
             return pool;
         }
 
