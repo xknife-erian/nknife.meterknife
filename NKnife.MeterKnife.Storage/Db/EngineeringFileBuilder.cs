@@ -60,7 +60,7 @@ namespace NKnife.MeterKnife.Storage.Db
         {
             var t = engineering.CreateTime;
             var fileFullName = $"E-{t:yyMMdd-HHmmss}.mks";
-            var path = _habitManager.GetOptionValue(HabitManager.KEY_MetricalData_Path, _pathManager.UserDocumentsPath);
+            var path = _habitManager.GetOptionValue(HabitKey.Data_MetricalData_Path, _pathManager.UserDocumentsPath);
             if (!Directory.Exists(path))
                 UtilFile.CreateDirectory(path);
             fileFullName = Path.Combine(path, $"{t:yyyyMM}{Path.DirectorySeparatorChar}", fileFullName);

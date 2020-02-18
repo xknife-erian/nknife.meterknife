@@ -18,8 +18,7 @@ namespace NKnife.MeterKnife.Workbench.Options
         {
             InitializeComponent();
             Name = this.Res("数据");
-            _dataSavePathLabel.Text = this.Res(_dataSavePathLabel.Text);
-            _brownPathButton.Text = this.Res(_brownPathButton.Text);
+            this.Res(_dataSavePathLabel, _brownPathButton);
             ResponseToEvent();
         }
 
@@ -32,8 +31,9 @@ namespace NKnife.MeterKnife.Workbench.Options
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
                     _dataSavePathTextBox.Text = dialog.SelectedPath;
-                    ((IOptionPanel)this).HasDataChanged = true;
-                    ((IOptionPanel)this).OptionMap.Add(HabitManager.KEY_MetricalData_Path, _dataSavePathTextBox.Text);
+                    var t = ((IOptionPanel)this);
+                    t.HasDataChanged = true;
+                    t.OptionMap.Update(HabitKey.Data_MetricalData_Path, _dataSavePathTextBox.Text);
                 }
             };
         }
@@ -62,7 +62,7 @@ namespace NKnife.MeterKnife.Workbench.Options
         /// <returns>初始化是否成功</returns>
         bool IOptionPanel.Initialize(Func<string, string, object> getOptionValueFunc)
         {
-            _dataSavePathTextBox.Text = getOptionValueFunc.Invoke(HabitManager.KEY_MetricalData_Path, "").ToString();
+            _dataSavePathTextBox.Text = getOptionValueFunc.Invoke(HabitKey.Data_MetricalData_Path, "").ToString();
             return true;
         }
 

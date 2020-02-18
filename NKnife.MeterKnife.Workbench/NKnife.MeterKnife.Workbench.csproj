@@ -199,6 +199,7 @@
     <Compile Include="Options\GeneralOptionPanel.Designer.cs">
       <DependentUpon>GeneralOptionPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Options\OptionHelper.cs" />
     <Compile Include="Options\PlotOptionPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

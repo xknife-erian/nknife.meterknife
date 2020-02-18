@@ -55,7 +55,7 @@ namespace System.Windows.Forms
             _RootElement = _Xml.DocumentElement;
         }
 
-        public static void Res(this Form form, params Control[] controls)
+        public static void Res(this Control ctr, params Control[] controls)
         {
             foreach (var control in controls)
             {

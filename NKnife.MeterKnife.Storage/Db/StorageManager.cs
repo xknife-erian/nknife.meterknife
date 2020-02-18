@@ -133,7 +133,7 @@ namespace NKnife.MeterKnife.Storage.Db
                         conn = new MySqlConnection(_setting.MysqlPlatformConnection);
                         break;
                     default:
-                        var path = _habitManager.GetOptionValue(HabitManager.KEY_MetricalData_Path, _pathManager.UserDocumentsPath);
+                        var path = _habitManager.GetOptionValue(HabitKey.Data_MetricalData_Path, _pathManager.UserDocumentsPath);
                         if (!Directory.Exists(path))
                             UtilFile.CreateDirectory(path);
                         if (!path.EndsWith(Path.DirectorySeparatorChar.ToString()))

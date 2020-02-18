@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NKnife.MeterKnife.Common;
 using NKnife.Win.Quick.Base;
 
 namespace NKnife.MeterKnife.Workbench.Options
@@ -17,6 +18,18 @@ namespace NKnife.MeterKnife.Workbench.Options
         {
             InitializeComponent();
             Name = this.Res("图表");
+            this.Res(new Control[] {_Label1});
+            ResponseToEvent();
+        }
+
+        private void ResponseToEvent()
+        {
+            _YSpaceTrackBar.ValueChanged += (sender, args) =>
+            {
+                var t = ((IOptionPanel) this);
+                t.HasDataChanged = true;
+                t.OptionMap.Update(HabitKey.Plot_YSpace, _YSpaceTrackBar.Value);
+            };
         }
 
         #region Implementation of IOptionPanel
@@ -34,7 +47,7 @@ namespace NKnife.MeterKnife.Workbench.Options
         /// <summary>
         /// 发生了变化的数据
         /// </summary>
-        IDictionary<string, object> IOptionPanel.OptionMap { get; set; }
+        IDictionary<string, object> IOptionPanel.OptionMap { get; set; } = new Dictionary<string, object>(0);
 
         /// <summary>
         /// 初始化
@@ -43,6 +56,7 @@ namespace NKnife.MeterKnife.Workbench.Options
         /// <returns>初始化是否成功</returns>
         bool IOptionPanel.Initialize(Func<string, string, object> getOptionValueFunc)
         {
+            _YSpaceTrackBar.Value = int.Parse(getOptionValueFunc.Invoke(HabitKey.Plot_YSpace, "5").ToString());
             return true;
         }
 

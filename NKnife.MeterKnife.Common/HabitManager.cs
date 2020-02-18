@@ -12,11 +12,6 @@ namespace NKnife.MeterKnife.Common
     /// </summary>
     public class HabitManager : IHabitManager
     {
-        /// <summary>
-        /// 用户测量数据的保存路径。关键选项。
-        /// </summary>
-        public const string KEY_MetricalData_Path = "MetricalData_Path";
-
         private const string OPTION_FILE = "Habit.xml";
         private readonly string _optionFile;
         private readonly XmlDocument _optionXml;
@@ -79,5 +74,32 @@ namespace NKnife.MeterKnife.Common
             _optionXml.Save(_optionFile);
         }
 
+    }
+
+    public static class HabitKey
+    {
+        #region General
+
+
+
+        #endregion
+
+        #region Data
+
+        /// <summary>
+        /// 用户测量数据的保存路径。关键选项。
+        /// </summary>
+        public const string Data_MetricalData_Path = nameof(Data_MetricalData_Path);
+
+        #endregion
+
+        #region Plot
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string Plot_YSpace = nameof(Plot_YSpace);
+
+        #endregion
     }
 }
