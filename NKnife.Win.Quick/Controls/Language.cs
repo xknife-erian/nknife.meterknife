@@ -63,6 +63,11 @@ namespace System.Windows.Forms
             }
         }
 
+        public static string Res(this ToolStripItem item)
+        {
+            return Get(TEXT, item.Text);
+        }
+
         public static string Res(this ToolStripItem item, string key)
         {
             return Get(TEXT, key);

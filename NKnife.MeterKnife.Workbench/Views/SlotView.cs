@@ -18,7 +18,7 @@ using NKnife.Win.Quick.Controls;
 
 namespace NKnife.MeterKnife.Workbench.Views
 {
-    public partial class SlotView : SingletonDockContent
+    public sealed partial class SlotView : SingletonDockContent
     {
         private readonly IWorkbenchViewModel _viewModel;
 
@@ -51,6 +51,11 @@ namespace NKnife.MeterKnife.Workbench.Views
                     _SlotListView.Items.Add(slotListItem);
                 }
             };
+            this.Res();
+            _NewToolStripDropDownButton.Res();
+            _NewSerialPortToolStripMenuItem.Res();
+            _EditToolStripButton.Res();
+            _DeleteToolStripButton.Res();
         }
 
         private void InitializeImageList()

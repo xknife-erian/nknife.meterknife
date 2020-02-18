@@ -35,12 +35,12 @@
             this._NewCareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aglient82357ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.串口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._NewSerialPortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tCPIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uSBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._SlotListView = new System.Windows.Forms.ListView();
             this._EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._SlotListView = new System.Windows.Forms.ListView();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,7 +72,7 @@
             this._NewCareToolStripMenuItem,
             this.aglient82357ToolStripMenuItem,
             this.toolStripSeparator1,
-            this.串口ToolStripMenuItem,
+            this._NewSerialPortToolStripMenuItem,
             this.tCPIPToolStripMenuItem,
             this.uSBToolStripMenuItem});
             this._NewToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("_NewToolStripDropDownButton.Image")));
@@ -99,12 +99,12 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
-            // 串口ToolStripMenuItem
+            // _NewSerialPortToolStripMenuItem
             // 
-            this.串口ToolStripMenuItem.Enabled = false;
-            this.串口ToolStripMenuItem.Name = "串口ToolStripMenuItem";
-            this.串口ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.串口ToolStripMenuItem.Text = "串口";
+            this._NewSerialPortToolStripMenuItem.Enabled = false;
+            this._NewSerialPortToolStripMenuItem.Name = "_NewSerialPortToolStripMenuItem";
+            this._NewSerialPortToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this._NewSerialPortToolStripMenuItem.Text = "串口";
             // 
             // tCPIPToolStripMenuItem
             // 
@@ -119,17 +119,6 @@
             this.uSBToolStripMenuItem.Name = "uSBToolStripMenuItem";
             this.uSBToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uSBToolStripMenuItem.Text = "USB";
-            // 
-            // _SlotListView
-            // 
-            this._SlotListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._SlotListView.HideSelection = false;
-            this._SlotListView.Location = new System.Drawing.Point(0, 25);
-            this._SlotListView.MultiSelect = false;
-            this._SlotListView.Name = "_SlotListView";
-            this._SlotListView.Size = new System.Drawing.Size(208, 496);
-            this._SlotListView.TabIndex = 2;
-            this._SlotListView.UseCompatibleStateImageBehavior = false;
             // 
             // _EditToolStripButton
             // 
@@ -149,6 +138,17 @@
             this._DeleteToolStripButton.Size = new System.Drawing.Size(36, 22);
             this._DeleteToolStripButton.Text = "删除";
             // 
+            // _SlotListView
+            // 
+            this._SlotListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._SlotListView.HideSelection = false;
+            this._SlotListView.Location = new System.Drawing.Point(0, 25);
+            this._SlotListView.MultiSelect = false;
+            this._SlotListView.Name = "_SlotListView";
+            this._SlotListView.Size = new System.Drawing.Size(208, 496);
+            this._SlotListView.TabIndex = 2;
+            this._SlotListView.UseCompatibleStateImageBehavior = false;
+            // 
             // SlotView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -160,7 +160,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SlotView";
-            this.Text = "SlotView";
+            this.Text = "接驳器管理";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -176,7 +176,7 @@
         private System.Windows.Forms.ToolStripDropDownButton _NewToolStripDropDownButton;
         private System.Windows.Forms.ToolStripMenuItem _NewCareToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem 串口ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _NewSerialPortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tCPIPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uSBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aglient82357ToolStripMenuItem;
