@@ -121,11 +121,59 @@
   <data name="ColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\colorpicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dut_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\dut_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dut_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\dut_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dut_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\dut_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eng_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\eng_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eng_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\eng_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eng_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\eng_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ints_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\ints_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ints_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\ints_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ints_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\ints_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="meterknife_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>meter-knife-icon\meterknife_24px.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="meterknife_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>meter-knife-icon\meterknife_48px.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="node_date" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\node_date.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="node_dut1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\node_dut1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="node_dut2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\node_dut2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="node_dut3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\node_dut3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="node_dut4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\node_dut4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="node_dut5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\node_dut5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="node_eng" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\node_eng.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PlotOperateStripIcon_horizontal_zoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\plotoperatestripicon\plotoperatestripicon_horizontal_zoom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,11 +193,29 @@
   <data name="PlotOperateStripIcon_zoom_out" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\plotoperatestripicon\plotoperatestripicon_zoom_out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="plot_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\plot_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plot_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\plot_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plot_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\plot_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SlotType_MeterCare" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\slottype\slottype_metercare.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SlotType_Serial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\slottype\slottype_serial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slot_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\slot_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slot_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\slot_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="slot_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\strip\slot_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ThemeStripIcon_theme_selection" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\themestripicon\themestripicon_theme_selection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

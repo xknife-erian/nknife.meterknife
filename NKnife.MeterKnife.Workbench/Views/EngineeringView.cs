@@ -15,6 +15,7 @@ using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Controls;
 using NKnife.MeterKnife.Workbench.Dialogs;
 using NKnife.MeterKnife.Workbench.Dialogs.Engineerings;
+using NKnife.MeterKnife.Workbench.Properties;
 using NKnife.Win.Quick.Controls;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -24,16 +25,39 @@ namespace NKnife.MeterKnife.Workbench.Views
     {
         private readonly IDialogProvider _dialogProvider;
         private readonly IWorkbenchViewModel _viewModel;
+        private readonly ImageList _imageList = new ImageList();
 
         public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider)
         {
             _viewModel = viewModel;
             _dialogProvider = dialogProvider;
             InitializeComponent();
-            Text = this.Res("工程管理");
+            InitializeImageList();
             RespondToEvents();
             RespondToButtonClick();
             Shown += EngineeringsBindToTree;
+            this.Res();
+            _CreateEngStripButton.Res();
+            _CreateEngStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _CreateEngStripButton.Image = Resources.eng_add;
+            _EditToolStripButton.Res();
+            _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _EditToolStripButton.Image = Resources.eng_edit;
+            _DeleteStripButton.Res();
+            _DeleteStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _DeleteStripButton.Image = Resources.eng_delete;
+        }
+
+        private void InitializeImageList()
+        {
+            _imageList.Images.Add(nameof(EngineeringCreateTimeTreeNode), Resources.node_date);
+            _imageList.Images.Add(nameof(EngineeringTreeNode), Resources.node_eng);
+            _imageList.Images.Add(Resources.node_dut1);
+            _imageList.Images.Add(Resources.node_dut2);
+            _imageList.Images.Add(Resources.node_dut3);
+            _imageList.Images.Add(Resources.node_dut4);
+            _imageList.Images.Add(Resources.node_dut5);
+            _TreeView.ImageList = _imageList;
         }
 
         private void RespondToButtonClick()

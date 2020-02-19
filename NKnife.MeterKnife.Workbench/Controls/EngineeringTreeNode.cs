@@ -12,7 +12,7 @@ namespace NKnife.MeterKnife.Workbench.Controls
         public EngineeringTreeNode(string text) 
             : base(text)
         {
-            
+            this.ImageKey = nameof(EngineeringTreeNode);
         }
     }
 
@@ -21,7 +21,7 @@ namespace NKnife.MeterKnife.Workbench.Controls
         public EngineeringCreateTimeTreeNode(string text) 
             : base(text)
         {
-            
+            this.ImageKey = nameof(EngineeringCreateTimeTreeNode);
         }
     }
 }

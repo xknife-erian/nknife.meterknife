@@ -18,6 +18,9 @@ using NKnife.Win.Quick.Controls;
 
 namespace NKnife.MeterKnife.Workbench.Views
 {
+    /// <summary>
+    /// 接驳器管理界面
+    /// </summary>
     public sealed partial class SlotView : SingletonDockContent
     {
         private readonly IWorkbenchViewModel _viewModel;
@@ -53,9 +56,15 @@ namespace NKnife.MeterKnife.Workbench.Views
             };
             this.Res();
             _NewToolStripDropDownButton.Res();
+            _NewToolStripDropDownButton.Image = Resources.slot_add;
+            _NewToolStripDropDownButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _NewSerialPortToolStripMenuItem.Res();
             _EditToolStripButton.Res();
+            _EditToolStripButton.Image = Resources.slot_edit;
+            _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _DeleteToolStripButton.Res();
+            _DeleteToolStripButton.Image = Resources.slot_delete;
+            _DeleteToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
         }
 
         private void InitializeImageList()

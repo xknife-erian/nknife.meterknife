@@ -37,8 +37,9 @@
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._CreateEngStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteStripButton = new System.Windows.Forms.ToolStripButton();
-            this._RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._RefreshStripButton = new System.Windows.Forms.ToolStripButton();
+            this._EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -123,12 +124,13 @@
             this._toolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._CreateEngStripButton,
+            this._EditToolStripButton,
             this._DeleteStripButton,
             this.toolStripSeparator1,
             this._RefreshStripButton});
             this._toolStrip.Location = new System.Drawing.Point(3, 0);
             this._toolStrip.Name = "_toolStrip";
-            this._toolStrip.Size = new System.Drawing.Size(157, 25);
+            this._toolStrip.Size = new System.Drawing.Size(162, 25);
             this._toolStrip.TabIndex = 0;
             // 
             // _CreateEngStripButton
@@ -149,6 +151,11 @@
             this._DeleteStripButton.Size = new System.Drawing.Size(36, 22);
             this._DeleteStripButton.Text = "删除";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // _RefreshStripButton
             // 
             this._RefreshStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -158,21 +165,25 @@
             this._RefreshStripButton.Size = new System.Drawing.Size(36, 22);
             this._RefreshStripButton.Text = "刷新";
             // 
-            // toolStripSeparator1
+            // _EditToolStripButton
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this._EditToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._EditToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_EditToolStripButton.Image")));
+            this._EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._EditToolStripButton.Name = "_EditToolStripButton";
+            this._EditToolStripButton.Size = new System.Drawing.Size(36, 22);
+            this._EditToolStripButton.Text = "编辑";
             // 
             // EngineeringView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(272, 732);
             this.Controls.Add(this.toolStripContainer1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EngineeringView";
-            this.Text = "EngineeringView";
+            this.Text = "工程管理";
             this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -202,5 +213,6 @@
         private System.Windows.Forms.ToolStripButton _DeleteStripButton;
         private System.Windows.Forms.ToolStripButton _RefreshStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton _EditToolStripButton;
     }
 }
