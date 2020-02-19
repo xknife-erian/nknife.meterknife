@@ -13,7 +13,7 @@ namespace NKnife.MeterKnife.Common.Base
         /// <summary>
         /// 获取所有工程，并按工程的创建时间倒序排列
         /// </summary>
-        Task<Dictionary<string, List<Engineering>>> GetEngineeringAndDateMapAsync();
+        Task<Dictionary<DateTime, List<Engineering>>> GetEngineeringAndDateMapAsync();
 
         #endregion
 

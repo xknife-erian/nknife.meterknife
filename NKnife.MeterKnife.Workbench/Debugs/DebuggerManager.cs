@@ -85,18 +85,19 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                     var start = new SimpleMeasure();
                     start.Init(_antService, _connector);
 
+                    var left = 0;
+                    var right = 0;
                     var solution = new DUTSeriesStyleSolution();
                     for (var index = 0; index < start.Pool.Count; index++)
                     {
                         var cmd = start.Pool[index];
-                        var style = DUTSeriesStyle.Build(LineStyle.Solid);//.GetAllLineStyles()[index];
+                        var style = DUTSeriesStyle.Build(LineStyle.Solid); //.GetAllLineStyles()[index];
                         style.Color = DUTSeriesStyle.AllLineColors[index];
                         style.DUT = cmd.DUT.Id;
 
                         style.Axis = new LinearAxis();
                         style.Axis.Key = cmd.DUT.Id;
                         style.Axis.FontSize = 13d;
-                        style.Axis.AxisDistance = index * 60;
                         style.Axis.MajorGridlineStyle = LineStyle.Dash;
                         style.Axis.MinorGridlineStyle = LineStyle.Dot;
                         style.Axis.MaximumPadding = 0;
@@ -104,7 +105,16 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                         style.Axis.Angle = 0;
                         style.Axis.Maximum = 220;
                         style.Axis.Minimum = -220;
-                        style.Axis.Position = AxisPosition.Left;
+                        if (index % 2 == 0)
+                        {
+                            style.Axis.AxisDistance = left++ * 60;
+                            style.Axis.Position = AxisPosition.Left;
+                        }
+                        else
+                        {
+                            style.Axis.AxisDistance = right++ * 60;
+                            style.Axis.Position = AxisPosition.Right;
+                        }
                         solution.Add(style);
                     }
 

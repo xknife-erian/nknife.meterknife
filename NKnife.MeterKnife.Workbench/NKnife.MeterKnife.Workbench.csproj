@@ -144,7 +144,9 @@
     <Compile Include="Base\IFileService.cs" />
     <Compile Include="Base\IAppManager.cs" />
     <Compile Include="Base\IDialogProvider.cs" />
-    <Compile Include="Controls\EngineeringTreeNode.cs" />
+    <Compile Include="Controls\EngineeringTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Debugs\DebuggerManager.cs" />
     <Compile Include="Debugs\SimpleMeasure.cs" />
     <Compile Include="Dialogs\Engineerings\EngineeringDetailDialog.cs">

@@ -28,58 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EngineeringView));
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this._statusStrip = new System.Windows.Forms.StatusStrip();
+            this._ToolStripContainer = new System.Windows.Forms.ToolStripContainer();
+            this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
-            this._TreeView = new System.Windows.Forms.TreeView();
             this._EngPropertyGrid = new System.Windows.Forms.PropertyGrid();
-            this._toolStrip = new System.Windows.Forms.ToolStrip();
+            this._ToolStrip = new System.Windows.Forms.ToolStrip();
             this._CreateEngStripButton = new System.Windows.Forms.ToolStripButton();
+            this._EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._RefreshStripButton = new System.Windows.Forms.ToolStripButton();
-            this._EditToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
-            this.toolStripContainer1.ContentPanel.SuspendLayout();
-            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
-            this.toolStripContainer1.SuspendLayout();
+            this._TreeView = new NKnife.MeterKnife.Workbench.Controls.EngineeringTree();
+            this._ToolStripContainer.BottomToolStripPanel.SuspendLayout();
+            this._ToolStripContainer.ContentPanel.SuspendLayout();
+            this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
+            this._ToolStripContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
             this._SplitContainer.Panel2.SuspendLayout();
             this._SplitContainer.SuspendLayout();
-            this._toolStrip.SuspendLayout();
+            this._ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStripContainer1
+            // _ToolStripContainer
             // 
             // 
-            // toolStripContainer1.BottomToolStripPanel
+            // _ToolStripContainer.BottomToolStripPanel
             // 
-            this.toolStripContainer1.BottomToolStripPanel.Controls.Add(this._statusStrip);
+            this._ToolStripContainer.BottomToolStripPanel.Controls.Add(this._StatusStrip);
             // 
-            // toolStripContainer1.ContentPanel
+            // _ToolStripContainer.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this._SplitContainer);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(272, 685);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(272, 732);
-            this.toolStripContainer1.TabIndex = 0;
-            this.toolStripContainer1.Text = "toolStripContainer1";
+            this._ToolStripContainer.ContentPanel.Controls.Add(this._SplitContainer);
+            this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(272, 685);
+            this._ToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ToolStripContainer.Location = new System.Drawing.Point(0, 0);
+            this._ToolStripContainer.Name = "_ToolStripContainer";
+            this._ToolStripContainer.Size = new System.Drawing.Size(272, 732);
+            this._ToolStripContainer.TabIndex = 0;
+            this._ToolStripContainer.Text = "_ToolStripContainer";
             // 
-            // toolStripContainer1.TopToolStripPanel
+            // _ToolStripContainer.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this._toolStrip);
+            this._ToolStripContainer.TopToolStripPanel.Controls.Add(this._ToolStrip);
             // 
-            // _statusStrip
+            // _StatusStrip
             // 
-            this._statusStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this._statusStrip.Location = new System.Drawing.Point(0, 0);
-            this._statusStrip.Name = "_statusStrip";
-            this._statusStrip.Size = new System.Drawing.Size(272, 22);
-            this._statusStrip.TabIndex = 0;
+            this._StatusStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._StatusStrip.Location = new System.Drawing.Point(0, 0);
+            this._StatusStrip.Name = "_StatusStrip";
+            this._StatusStrip.Size = new System.Drawing.Size(272, 22);
+            this._StatusStrip.TabIndex = 0;
             // 
             // _SplitContainer
             // 
@@ -99,16 +100,6 @@
             this._SplitContainer.SplitterDistance = 504;
             this._SplitContainer.TabIndex = 1;
             // 
-            // _TreeView
-            // 
-            this._TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._TreeView.FullRowSelect = true;
-            this._TreeView.HideSelection = false;
-            this._TreeView.Location = new System.Drawing.Point(0, 0);
-            this._TreeView.Name = "_TreeView";
-            this._TreeView.Size = new System.Drawing.Size(272, 504);
-            this._TreeView.TabIndex = 0;
-            // 
             // _EngPropertyGrid
             // 
             this._EngPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -119,19 +110,19 @@
             this._EngPropertyGrid.TabIndex = 0;
             this._EngPropertyGrid.ToolbarVisible = false;
             // 
-            // _toolStrip
+            // _ToolStrip
             // 
-            this._toolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._ToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._CreateEngStripButton,
             this._EditToolStripButton,
             this._DeleteStripButton,
             this.toolStripSeparator1,
             this._RefreshStripButton});
-            this._toolStrip.Location = new System.Drawing.Point(3, 0);
-            this._toolStrip.Name = "_toolStrip";
-            this._toolStrip.Size = new System.Drawing.Size(162, 25);
-            this._toolStrip.TabIndex = 0;
+            this._ToolStrip.Location = new System.Drawing.Point(3, 0);
+            this._ToolStrip.Name = "_ToolStrip";
+            this._ToolStrip.Size = new System.Drawing.Size(162, 25);
+            this._ToolStrip.TabIndex = 0;
             // 
             // _CreateEngStripButton
             // 
@@ -141,6 +132,15 @@
             this._CreateEngStripButton.Name = "_CreateEngStripButton";
             this._CreateEngStripButton.Size = new System.Drawing.Size(36, 22);
             this._CreateEngStripButton.Text = "新建";
+            // 
+            // _EditToolStripButton
+            // 
+            this._EditToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._EditToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_EditToolStripButton.Image")));
+            this._EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._EditToolStripButton.Name = "_EditToolStripButton";
+            this._EditToolStripButton.Size = new System.Drawing.Size(36, 22);
+            this._EditToolStripButton.Text = "编辑";
             // 
             // _DeleteStripButton
             // 
@@ -165,48 +165,51 @@
             this._RefreshStripButton.Size = new System.Drawing.Size(36, 22);
             this._RefreshStripButton.Text = "刷新";
             // 
-            // _EditToolStripButton
+            // _TreeView
             // 
-            this._EditToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this._EditToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_EditToolStripButton.Image")));
-            this._EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._EditToolStripButton.Name = "_EditToolStripButton";
-            this._EditToolStripButton.Size = new System.Drawing.Size(36, 22);
-            this._EditToolStripButton.Text = "编辑";
+            this._TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._TreeView.FullRowSelect = true;
+            this._TreeView.HideSelection = false;
+            this._TreeView.ImageIndex = 0;
+            this._TreeView.Location = new System.Drawing.Point(0, 0);
+            this._TreeView.Name = "_TreeView";
+            this._TreeView.SelectedImageIndex = 0;
+            this._TreeView.Size = new System.Drawing.Size(272, 504);
+            this._TreeView.TabIndex = 0;
             // 
             // EngineeringView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(272, 732);
-            this.Controls.Add(this.toolStripContainer1);
+            this.Controls.Add(this._ToolStripContainer);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EngineeringView";
             this.Text = "工程管理";
-            this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
-            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
-            this.toolStripContainer1.ResumeLayout(false);
-            this.toolStripContainer1.PerformLayout();
+            this._ToolStripContainer.BottomToolStripPanel.ResumeLayout(false);
+            this._ToolStripContainer.BottomToolStripPanel.PerformLayout();
+            this._ToolStripContainer.ContentPanel.ResumeLayout(false);
+            this._ToolStripContainer.TopToolStripPanel.ResumeLayout(false);
+            this._ToolStripContainer.TopToolStripPanel.PerformLayout();
+            this._ToolStripContainer.ResumeLayout(false);
+            this._ToolStripContainer.PerformLayout();
             this._SplitContainer.Panel1.ResumeLayout(false);
             this._SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).EndInit();
             this._SplitContainer.ResumeLayout(false);
-            this._toolStrip.ResumeLayout(false);
-            this._toolStrip.PerformLayout();
+            this._ToolStrip.ResumeLayout(false);
+            this._ToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.StatusStrip _statusStrip;
-        private System.Windows.Forms.TreeView _TreeView;
-        private System.Windows.Forms.ToolStrip _toolStrip;
+        private System.Windows.Forms.ToolStripContainer _ToolStripContainer;
+        private System.Windows.Forms.StatusStrip _StatusStrip;
+        private NKnife.MeterKnife.Workbench.Controls.EngineeringTree _TreeView;
+        private System.Windows.Forms.ToolStrip _ToolStrip;
         private System.Windows.Forms.SplitContainer _SplitContainer;
         private System.Windows.Forms.PropertyGrid _EngPropertyGrid;
         private System.Windows.Forms.ToolStripButton _CreateEngStripButton;

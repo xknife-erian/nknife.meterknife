@@ -17,7 +17,7 @@ namespace NKnife.MeterKnife.ViewModels
         private readonly IStoragePlatform<Slot> _slotStoragePlatform;
         private readonly IStoragePlatform<DUT> _dutStoragePlatform;
 
-        private readonly Dictionary<string, List<Engineering>> _engMap = new Dictionary<string, List<Engineering>>();
+        private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
 
         public WorkbenchViewModel(IStoragePlatform<Engineering> engineeringStoragePlatform, IStoragePlatform<Slot> slotStoragePlatform, IStoragePlatform<DUT> dutStoragePlatform)
         {
@@ -29,21 +29,21 @@ namespace NKnife.MeterKnife.ViewModels
         /// <summary>
         /// 获取所有工程，并按工程的创建时间倒序排列
         /// </summary>
-        public async Task<Dictionary<string, List<Engineering>>> GetEngineeringAndDateMapAsync()
+        public async Task<Dictionary<DateTime, List<Engineering>>> GetEngineeringAndDateMapAsync()
         {
             _engMap.Clear();
             var engList = (await _engineeringStoragePlatform.FindAllAsync()).ToList();
             engList.Sort((x, y) => y.CreateTime.CompareTo(x.CreateTime));
             foreach (var engineering in engList)
             {
-                var date = engineering.CreateTime.ToString("yyyy-MM");
+                var date = new DateTime(engineering.CreateTime.Year, engineering.CreateTime.Month, 1, 0, 0, 0);
                 if (_engMap.TryGetValue(date, out var list))
                 {
                     list.Add(engineering);
                 }
                 else
                 {
-                    list = new List<Engineering> { engineering };
+                    list = new List<Engineering> {engineering};
                     _engMap.Add(date, list);
                 }
             }
@@ -59,7 +59,7 @@ namespace NKnife.MeterKnife.ViewModels
         public async Task<bool> CreatMeterCareSlotAsync(short port)
         {
             var slot = new Slot();
-            slot.SetMeterCare(SlotType.MeterCare, (port, new SerialConfig() { BaudRate = 115200 }));
+            slot.SetMeterCare(SlotType.MeterCare, (port, new SerialConfig() {BaudRate = 115200}));
             return await _slotStoragePlatform.InsertAsync(slot);
         }
 

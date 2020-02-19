@@ -28,7 +28,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         public void Init(IAntService antService, IDataConnector connector)
         {
             _slot = new Slot();
-            var config = new SerialConfig(){BaudRate = 115200};
+            var config = new SerialConfig() {BaudRate = 115200};
             _slot.SetMeterCare(SlotType.Serial, (4, config));
             antService.Bind((_slot, connector));
             Pool = GetCommands();
@@ -52,9 +52,9 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var item1 = new ScpiCommand
             {
                 Slot = _slot,
-                DUT = new DUT() { Id = "RES", Name = "520r|1K" },
+                DUT = new DUT() {Id = "RES", Name = "520r|1K"},
                 GpibAddress = 23,
-                Scpi = new Scpi { Command = "FETC?" },
+                Scpi = new Scpi {Command = "FETC?"},
 
                 Interval = interval,
                 Timeout = interval * 2,
@@ -63,9 +63,9 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var item2 = new ScpiCommand
             {
                 Slot = _slot,
-                DUT = new DUT() { Id = "VOLTAGE", Name = "10v" },
+                DUT = new DUT() {Id = "VOLTAGE", Name = "10v"},
                 GpibAddress = 24,
-                Scpi = new Scpi { Command = "READ?" },
+                Scpi = new Scpi {Command = "READ?"},
 
                 Interval = interval,
                 Timeout = interval * 2,
@@ -73,16 +73,16 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             };
             var temp5 = CareCommandHelper.Temperature(5);
             temp5.Slot = _slot;
-            temp5.DUT = new DUT() { Id = "T1", Name = "23Temp" };
+            temp5.DUT = new DUT() {Id = "T1", Name = "23Temp"};
 
             var temp6 = CareCommandHelper.Temperature(6);
             temp6.Slot = _slot;
-            temp6.DUT = new DUT() { Id = "T2", Name = "24Temp" };
+            temp6.DUT = new DUT() {Id = "T2", Name = "24Temp"};
 
             var pool = new ScpiCommandPool();
             //pool.Add(item1);
-             pool.AddRange(new[] { item2, temp5 });
-             pool.AddRange(new[] { item1, temp6 });
+            pool.AddRange(new[] {item2, temp5});
+            pool.AddRange(new[] {item1, temp6});
             return pool;
         }
 

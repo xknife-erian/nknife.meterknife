@@ -25,14 +25,12 @@ namespace NKnife.MeterKnife.Workbench.Views
     {
         private readonly IDialogProvider _dialogProvider;
         private readonly IWorkbenchViewModel _viewModel;
-        private readonly ImageList _imageList = new ImageList();
 
         public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider)
         {
             _viewModel = viewModel;
             _dialogProvider = dialogProvider;
             InitializeComponent();
-            InitializeImageList();
             RespondToEvents();
             RespondToButtonClick();
             Shown += EngineeringsBindToTree;
@@ -48,17 +46,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             _DeleteStripButton.Image = Resources.eng_delete;
         }
 
-        private void InitializeImageList()
-        {
-            _imageList.Images.Add(nameof(EngineeringCreateTimeTreeNode), Resources.node_date);
-            _imageList.Images.Add(nameof(EngineeringTreeNode), Resources.node_eng);
-            _imageList.Images.Add(Resources.node_dut1);
-            _imageList.Images.Add(Resources.node_dut2);
-            _imageList.Images.Add(Resources.node_dut3);
-            _imageList.Images.Add(Resources.node_dut4);
-            _imageList.Images.Add(Resources.node_dut5);
-            _TreeView.ImageList = _imageList;
-        }
+
 
         private void RespondToButtonClick()
         {
@@ -80,9 +68,9 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             _TreeView.AfterSelect += (sender, args) =>
             {
-                if (args.Node.Tag is Engineering engineering)
+                if (args.Node is EngineeringTreeNode node)
                 {
-                    var evm = new EngineeringVm(engineering);
+                    var evm = new EngineeringVm(node.Engineering);
                     _EngPropertyGrid.SelectedObject = evm;
                 }
             };
@@ -91,19 +79,26 @@ namespace NKnife.MeterKnife.Workbench.Views
 
         private async void EngineeringsBindToTree(object sender, EventArgs e)
         {
-            _TreeView.SuspendLayout();
+            _TreeView.BeginUpdate();
             _TreeView.Nodes.Clear();
             var engList = await _viewModel.GetEngineeringAndDateMapAsync();
             foreach (var pair in engList)
             {
-                var dateNode = new EngineeringCreateTimeTreeNode(pair.Key);
-                dateNode.Tag = pair.Key;
+                var date = pair.Key;
+                var dateNode = new EngineeringCreateTimeTreeNode(date.ToString("yyyy-MM")) {CreateTime = date};
                 _TreeView.Nodes.Add(dateNode);
                 foreach (var engineering in pair.Value)
                 {
-                    var engNode = new EngineeringTreeNode(engineering.Name);
-                    engNode.Tag = engineering;
+                    var engNode = new EngineeringTreeNode(engineering.Name) {Engineering = engineering};
                     dateNode.Nodes.Add(engNode);
+                    foreach (var command in engineering.Commands)
+                    {
+                        if (command.DUT != null)
+                        {
+                            var dutNode = new DUTTreeNode(command.DUT.Name) {DUT = command.DUT};
+                            engNode.Nodes.Add(dutNode);
+                        }
+                    }
                 }
             }
 
@@ -115,8 +110,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             }
 
             _TreeView.Select();
-            _TreeView.ResumeLayout(false);
-            _TreeView.PerformLayout();
+            _TreeView.EndUpdate();
         }
 
         public class EngineeringVm
