@@ -11,12 +11,14 @@ namespace NKnife.MeterKnife.Workbench.Menus
         private readonly EngineeringView _engineeringView;
         private readonly InstrumentView _instrumentView;
         private readonly SlotView _slotView;
+        private readonly DUTView _dutView;
 
-        public DataMenuItem(SlotView slotView, EngineeringView engineeringView, InstrumentView instrumentView)
+        public DataMenuItem(SlotView slotView, EngineeringView engineeringView, InstrumentView instrumentView, DUTView dutView)
         {
             _slotView = slotView;
             _engineeringView = engineeringView;
             _instrumentView = instrumentView;
+            _dutView = dutView;
             Text = this.Res("数据(&D)");
 
             var eng = BuildEngineeringManagerMenu();
@@ -29,7 +31,7 @@ namespace NKnife.MeterKnife.Workbench.Menus
             DropDownItems.Add(connMenu);
             DropDownItems.Add(new ToolStripSeparator());
 
-            var dut = new ToolStripMenuItem(this.Res("被测物管理(&D)"));
+            var dut = BuildDUTManagerMenu();
             DropDownItems.Add(dut);
         }
 
@@ -68,7 +70,7 @@ namespace NKnife.MeterKnife.Workbench.Menus
         private ToolStripMenuItem BuildEngineeringManagerMenu()
         {
             var engManagerMenu = new ToolStripMenuItem(this.Res("工程管理(&E)"));
-            engManagerMenu.ShortcutKeys = Keys.F5;
+            engManagerMenu.ShortcutKeys = Keys.F6;
             engManagerMenu.Click += (s, e) =>
             {
                 IWorkbench wb = this.GetWorkbench();
@@ -80,6 +82,24 @@ namespace NKnife.MeterKnife.Workbench.Menus
                 engManagerMenu.Checked = !engManagerMenu.Checked;
             };
             return engManagerMenu;
+        }
+
+
+        private ToolStripMenuItem BuildDUTManagerMenu()
+        {
+            var dutMenu = new ToolStripMenuItem(this.Res("被测物管理(&D)"));
+            dutMenu.ShortcutKeys = Keys.F5;
+            dutMenu.Click += (sender, args) =>
+            {
+                IWorkbench wb = this.GetWorkbench();
+                if (wb == null) return;
+                if (dutMenu.Checked)
+                    _dutView.Close();
+                else
+                    _dutView.Show(wb.MainDockPanel, DockState.Document);
+                dutMenu.Checked = !dutMenu.Checked;
+            };
+            return dutMenu;
         }
     }
 }

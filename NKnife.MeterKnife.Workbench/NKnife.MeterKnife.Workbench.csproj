@@ -149,17 +149,23 @@
     </Compile>
     <Compile Include="Debugs\DebuggerManager.cs" />
     <Compile Include="Debugs\SimpleMeasure.cs" />
+    <Compile Include="Dialogs\DUTs\DUTDetailDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DUTs\DUTDetailDialog.Designer.cs">
+      <DependentUpon>DUTDetailDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Engineerings\EngineeringDetailDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\Engineerings\EngineeringDetailDialog.Designer.cs">
       <DependentUpon>EngineeringDetailDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\Engineerings\CareCommandEditorDialog.cs">
+    <Compile Include="Dialogs\Commands\CommandEditorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\Engineerings\CareCommandEditorDialog.Designer.cs">
-      <DependentUpon>CareCommandEditorDialog.cs</DependentUpon>
+    <Compile Include="Dialogs\Commands\CommandEditorDialog.Designer.cs">
+      <DependentUpon>CommandEditorDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Plots\DataSeriesEditorDialog.cs">
       <SubType>Form</SubType>
@@ -277,10 +283,10 @@
     <Compile Include="Dialogs\FilterSettingDialog.Designer.cs">
       <DependentUpon>FilterSettingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\SerialPortSelectorDialog.cs">
+    <Compile Include="Dialogs\Slots\SerialPortSelectorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\SerialPortSelectorDialog.designer.cs">
+    <Compile Include="Dialogs\Slots\SerialPortSelectorDialog.designer.cs">
       <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="FileService.cs" />
@@ -293,6 +299,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserResearch.cs" />
+    <Compile Include="Views\DUTView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DUTView.Designer.cs">
+      <DependentUpon>DUTView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EngineeringView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,11 +332,14 @@
     <Compile Include="Workbench.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Dialogs\DUTs\DUTDetailDialog.resx">
+      <DependentUpon>DUTDetailDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Engineerings\EngineeringDetailDialog.resx">
       <DependentUpon>EngineeringDetailDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Engineerings\CareCommandEditorDialog.resx">
-      <DependentUpon>CareCommandEditorDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\Commands\CommandEditorDialog.resx">
+      <DependentUpon>CommandEditorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Plots\DataSeriesEditorDialog.resx">
       <DependentUpon>DataSeriesEditorDialog.cs</DependentUpon>
@@ -384,8 +399,11 @@
     <EmbeddedResource Include="Dialogs\FilterSettingDialog.resx">
       <DependentUpon>FilterSettingDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\SerialPortSelectorDialog.resx">
+    <EmbeddedResource Include="Dialogs\Slots\SerialPortSelectorDialog.resx">
       <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DUTView.resx">
+      <DependentUpon>DUTView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EngineeringView.resx">
       <DependentUpon>EngineeringView.cs</DependentUpon>

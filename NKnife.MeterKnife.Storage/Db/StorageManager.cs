@@ -48,6 +48,8 @@ namespace NKnife.MeterKnife.Storage.Db
             SqlSetMap = _setting.SqlSetMap;
             SqlMapper.AddTypeHandler(typeof(ScpiCommandPool), new ObjectToJsonTypeHandler());
             SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), new ObjectToJsonTypeHandler());
+            SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), new ObjectToJsonTypeHandler());
+            SqlMapper.AddTypeHandler(typeof(MetrologyValue[]), new ObjectToJsonTypeHandler());
         }
 
         /// <summary>

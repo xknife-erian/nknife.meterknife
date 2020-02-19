@@ -52,15 +52,15 @@
             this._IsLoopColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._LoopCountolumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._CommandsToolStrip = new System.Windows.Forms.ToolStrip();
+            this._CreateCommandStripButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this._CreateInitializeCmdStripButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._CreateAcquisitionCmdStripButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._CreateFinishCmdStripButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._EditCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._UpCommandStripButton = new System.Windows.Forms.ToolStripButton();
             this._DownCommandStripButton = new System.Windows.Forms.ToolStripButton();
-            this._CreateCommandStripButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this._CreateInitializeCmdStripButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._CreateAcquisitionCmdStripButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._CreateFinishCmdStripButtonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._TabControl.SuspendLayout();
             this._EngineeringTabPage.SuspendLayout();
             this._CommandsTabPage.SuspendLayout();
@@ -290,6 +290,37 @@
             this._CommandsToolStrip.TabIndex = 0;
             this._CommandsToolStrip.Text = "toolStrip1";
             // 
+            // _CreateCommandStripButton
+            // 
+            this._CreateCommandStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._CreateCommandStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._CreateInitializeCmdStripButtonMenuItem,
+            this._CreateAcquisitionCmdStripButtonMenuItem,
+            this._CreateFinishCmdStripButtonMenuItem});
+            this._CreateCommandStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_CreateCommandStripButton.Image")));
+            this._CreateCommandStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._CreateCommandStripButton.Name = "_CreateCommandStripButton";
+            this._CreateCommandStripButton.Size = new System.Drawing.Size(45, 22);
+            this._CreateCommandStripButton.Text = "新建";
+            // 
+            // _CreateInitializeCmdStripButtonMenuItem
+            // 
+            this._CreateInitializeCmdStripButtonMenuItem.Name = "_CreateInitializeCmdStripButtonMenuItem";
+            this._CreateInitializeCmdStripButtonMenuItem.Size = new System.Drawing.Size(136, 22);
+            this._CreateInitializeCmdStripButtonMenuItem.Text = "初始化设置";
+            // 
+            // _CreateAcquisitionCmdStripButtonMenuItem
+            // 
+            this._CreateAcquisitionCmdStripButtonMenuItem.Name = "_CreateAcquisitionCmdStripButtonMenuItem";
+            this._CreateAcquisitionCmdStripButtonMenuItem.Size = new System.Drawing.Size(136, 22);
+            this._CreateAcquisitionCmdStripButtonMenuItem.Text = "采集过程";
+            // 
+            // _CreateFinishCmdStripButtonMenuItem
+            // 
+            this._CreateFinishCmdStripButtonMenuItem.Name = "_CreateFinishCmdStripButtonMenuItem";
+            this._CreateFinishCmdStripButtonMenuItem.Size = new System.Drawing.Size(136, 22);
+            this._CreateFinishCmdStripButtonMenuItem.Text = "结束维护";
+            // 
             // _EditCommandStripButton
             // 
             this._EditCommandStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -331,37 +362,6 @@
             this._DownCommandStripButton.Size = new System.Drawing.Size(36, 22);
             this._DownCommandStripButton.Text = "下移";
             // 
-            // _CreateCommandStripButton
-            // 
-            this._CreateCommandStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this._CreateCommandStripButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._CreateInitializeCmdStripButtonMenuItem,
-            this._CreateAcquisitionCmdStripButtonMenuItem,
-            this._CreateFinishCmdStripButtonMenuItem});
-            this._CreateCommandStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_CreateCommandStripButton.Image")));
-            this._CreateCommandStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._CreateCommandStripButton.Name = "_CreateCommandStripButton";
-            this._CreateCommandStripButton.Size = new System.Drawing.Size(45, 22);
-            this._CreateCommandStripButton.Text = "新建";
-            // 
-            // _CreateInitializeCmdStripButtonMenuItem
-            // 
-            this._CreateInitializeCmdStripButtonMenuItem.Name = "_CreateInitializeCmdStripButtonMenuItem";
-            this._CreateInitializeCmdStripButtonMenuItem.Size = new System.Drawing.Size(180, 22);
-            this._CreateInitializeCmdStripButtonMenuItem.Text = "初始化设置";
-            // 
-            // _CreateAcquisitionCmdStripButtonMenuItem
-            // 
-            this._CreateAcquisitionCmdStripButtonMenuItem.Name = "_CreateAcquisitionCmdStripButtonMenuItem";
-            this._CreateAcquisitionCmdStripButtonMenuItem.Size = new System.Drawing.Size(180, 22);
-            this._CreateAcquisitionCmdStripButtonMenuItem.Text = "采集过程";
-            // 
-            // _CreateFinishCmdStripButtonMenuItem
-            // 
-            this._CreateFinishCmdStripButtonMenuItem.Name = "_CreateFinishCmdStripButtonMenuItem";
-            this._CreateFinishCmdStripButtonMenuItem.Size = new System.Drawing.Size(180, 22);
-            this._CreateFinishCmdStripButtonMenuItem.Text = "结束维护";
-            // 
             // EngineeringDetailDialog
             // 
             this.AcceptButton = this._AcceptButton;
@@ -376,6 +376,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EngineeringDetailDialog";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "工程详细信息";
             this._TabControl.ResumeLayout(false);
