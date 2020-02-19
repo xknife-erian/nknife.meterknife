@@ -76,10 +76,10 @@ namespace NKnife.MeterKnife.Storage.Db
                 }
                 default:
                 {
-                    if (!_engineeringSqliteConnMap.TryGetValue(engineering.Number, out conn))
+                    if (!_engineeringSqliteConnMap.TryGetValue(engineering.Id, out conn))
                     {
                         conn = new SQLiteConnection(BuildEngineeringSqliteConnectionString(engineering));
-                        _engineeringSqliteConnMap.Add(engineering.Number, conn);
+                        _engineeringSqliteConnMap.Add(engineering.Id, conn);
                     }
 
                     break;
@@ -105,7 +105,7 @@ namespace NKnife.MeterKnife.Storage.Db
         /// <param name="engineering">指定的工程</param>
         public void CloseConnection(Engineering engineering)
         {
-            if (_engineeringSqliteConnMap.TryGetValue(engineering.Number, out var conn))
+            if (_engineeringSqliteConnMap.TryGetValue(engineering.Id, out var conn))
                 conn?.Close();
         }
 

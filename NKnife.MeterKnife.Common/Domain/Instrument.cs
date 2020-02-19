@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Text;
 using Newtonsoft.Json;
+using NKnife.Db.Base;
 using NKnife.Interface;
 
 namespace NKnife.MeterKnife.Common.Domain
@@ -12,14 +14,15 @@ namespace NKnife.MeterKnife.Common.Domain
     /// </summary>
     public class Instrument : IId
     {
-        public Instrument(string manufacturer, string model, string name, int address = -1)
+        public Instrument()
         {
             Id = Guid.NewGuid().ToString("N");
-            Manufacturer = manufacturer;
-            Model = model;
-            Name = name;
-            Address = address;
         }
+
+        [Key]
+        [Index]
+        [Required]
+        public string Id { get; set; }
 
         /// <summary>
         ///     生产厂商
@@ -27,9 +30,19 @@ namespace NKnife.MeterKnife.Common.Domain
         public string Manufacturer { get; set; }
 
         /// <summary>
-        ///     型号
+        /// 用途分类
         /// </summary>
-        public string Model { get; set; }
+        public string UseClassification { get; set; }
+
+        /// <summary>
+        ///     型号1
+        /// </summary>
+        public string Model1 { get; set; }
+
+        /// <summary>
+        ///     子型号
+        /// </summary>
+        public string Model2 { get; set; }
 
         /// <summary>
         ///     设备名称
@@ -42,11 +55,6 @@ namespace NKnife.MeterKnife.Common.Domain
         public string AbbrName { get; } = string.Empty;
 
         /// <summary>
-        ///     设备地址
-        /// </summary>
-        public int Address { get; set; }
-
-        /// <summary>
         ///     设备说明或信息
         /// </summary>
         public string Information { get; set; } = string.Empty;
@@ -56,18 +64,6 @@ namespace NKnife.MeterKnife.Common.Domain
         /// </summary>
         [JsonIgnore]
         public Image Image { get; set; }
-
-        /// <summary>
-        ///     使用该议器采集的数据数量
-        /// </summary>
-        public int DatasCount { get; set; }
-
-        /// <summary>
-        ///     最后一次使用该仪器的时间
-        /// </summary>
-        public DateTime LastUsingTime { get; set; } = DateTime.Now;
-
-        public string Id { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -83,7 +79,8 @@ namespace NKnife.MeterKnife.Common.Domain
         {
             return string.Equals(Id, other.Id)
                    && string.Equals(Manufacturer, other.Manufacturer)
-                   && string.Equals(Model, other.Model);
+                   && string.Equals(Model1, other.Model1)
+                   && string.Equals(Model2, other.Model2);
         }
 
         public override int GetHashCode()
@@ -92,7 +89,7 @@ namespace NKnife.MeterKnife.Common.Domain
             {
                 return ((Id != null ? Id.GetHashCode() : 0) * 397) ^
                        ((Manufacturer != null ? Manufacturer.GetHashCode() : 0) * 397) ^
-                       (Model != null ? Model.GetHashCode() : 0);
+                       (Model1 != null ? Model1.GetHashCode() : 0);
             }
         }
 

@@ -11,14 +11,18 @@ namespace NKnife.MeterKnife.Common.Domain
     /// <summary>
     ///     描述一个数据端口，一般是只能打开一次的独占数据端口。比如串口，TCPIP端口等。
     /// </summary>
-    public sealed class Slot
+    public sealed class Slot : IId
     {
-        private readonly string _id;
-
         public Slot()
         {
-            _id = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid().ToString();
         }
+
+        #region Implementation of IId
+
+        public string Id { get; set; }
+
+        #endregion
 
         public SlotType SlotType { get; set; }
 
@@ -44,12 +48,13 @@ namespace NKnife.MeterKnife.Common.Domain
 
         private bool Equals(Slot other)
         {
-            return _id.Equals(other._id) && SlotType == other.SlotType;
+            return Id.Equals(other.Id) && SlotType == other.SlotType;
         }
 
         public override int GetHashCode()
         {
-            return _id.GetHashCode() * 397;
+            return Id.GetHashCode() * 397 ^ SlotType.GetHashCode() * 21973;
         }
+
     }
 }

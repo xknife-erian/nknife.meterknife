@@ -99,7 +99,7 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             public EngineeringVm(Engineering engineering)
             {
-                Number = engineering.Number;
+                Number = engineering.Id;
                 Name = engineering.Name;
                 CreateTime = engineering.CreateTime;
                 Description = engineering.Description;

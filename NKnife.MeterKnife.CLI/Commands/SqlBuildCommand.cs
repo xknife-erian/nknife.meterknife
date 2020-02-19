@@ -63,7 +63,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             var list = new List<Type>();
             list.AddRange(new[]
             {
-                typeof(DUT), typeof(Engineering), typeof(MeasureData), typeof(Slot)
+                typeof(DUT), typeof(Engineering), typeof(MeasureData), typeof(Slot), typeof(Instrument)
             });
             return list.ToArray();
         }

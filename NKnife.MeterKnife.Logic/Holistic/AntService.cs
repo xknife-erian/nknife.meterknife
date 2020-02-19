@@ -94,7 +94,7 @@ namespace NKnife.MeterKnife.Holistic
         /// <returns>启动是否成功</returns>
         public Task<bool> StartAsync(Engineering engineering)
         {
-            if (!_jobMap.TryGetValue(engineering.Number, out var jobManager))
+            if (!_jobMap.TryGetValue(engineering.Id, out var jobManager))
             {
                 jobManager = new JobManager {Pool = new ScpiCommandPool {IsOverall = true}};
                 foreach (var command in engineering.Commands)
@@ -115,7 +115,7 @@ namespace NKnife.MeterKnife.Holistic
                     connector.Start();
                 }
 
-                _jobMap.Add(engineering.Number, jobManager);
+                _jobMap.Add(engineering.Id, jobManager);
             }
 
             Task.Factory.StartNew(() => jobManager.Run());
@@ -129,8 +129,8 @@ namespace NKnife.MeterKnife.Holistic
         /// <returns>启动是否成功</returns>
         public bool Pause(Engineering engineering)
         {
-            if (_jobMap.ContainsKey(engineering.Number))
-                _jobMap[engineering.Number].Pause();
+            if (_jobMap.ContainsKey(engineering.Id))
+                _jobMap[engineering.Id].Pause();
             return true;
         }
 
@@ -141,8 +141,8 @@ namespace NKnife.MeterKnife.Holistic
         /// <returns>停止是否成功</returns>
         public bool Stop(Engineering engineering)
         {
-            if (_jobMap.ContainsKey(engineering.Number))
-                _jobMap[engineering.Number].Break();
+            if (_jobMap.ContainsKey(engineering.Id))
+                _jobMap[engineering.Id].Break();
             return true;
         }
 

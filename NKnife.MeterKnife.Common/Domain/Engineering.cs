@@ -13,11 +13,11 @@ namespace NKnife.MeterKnife.Common.Domain
     /// <summary>
     /// 一个测量工程
     /// </summary>
-    public class Engineering : ICloneable
+    public class Engineering : IId, ICloneable
     {
         public Engineering()
         {
-            Number = SequentialGuid.Create().ToString("N").ToUpper();
+            Id = SequentialGuid.Create().ToString("N").ToUpper();
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace NKnife.MeterKnife.Common.Domain
         [Key]
         [Index]
         [Required]
-        public string Number { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 工程的简称
@@ -59,7 +59,7 @@ namespace NKnife.MeterKnife.Common.Domain
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            return $"{Number}/{CreateTime}";
+            return $"{Id}/{CreateTime}";
         }
 
         #endregion
