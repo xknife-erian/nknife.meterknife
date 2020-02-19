@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.Logic
             BuildEngineeringStore(engineering);
             //将工程的相关信息存入到工程库
             await _engineeringStorageDUTWrite.InsertAsync(engineering);
-            SetDUTMap(_performLogic, engineering.Commands, engineering);
+            SetDUTMap(_performLogic, engineering.CommandPools, engineering);
             //同时也在平台库中存储一份
             return await _engineeringStoragePlatform.InsertAsync(engineering);
         }
@@ -53,9 +53,12 @@ namespace NKnife.MeterKnife.Logic
             if (string.IsNullOrEmpty(engineering.Name))
             {
                 var sb = new StringBuilder();
-                foreach (var command in engineering.Commands)
+                foreach (var pool in engineering.CommandPools)
                 {
-                    sb.Append(command.DUT.Name).Append('/');
+                    foreach (var command in pool)
+                    {
+                        sb.Append(command.DUT.Name).Append('/');
+                    }
                 }
 
                 engineering.Name = sb.ToString();
@@ -64,13 +67,17 @@ namespace NKnife.MeterKnife.Logic
             _storageManager.CreateEngineering(engineering);
         }
 
-        private static void SetDUTMap(IMeasuringLogic performLogic, ScpiCommandPool commands, Engineering engineering)
+        private static void SetDUTMap(IMeasuringLogic performLogic, List<ScpiCommandPool> commands, Engineering engineering)
         {
-            foreach (var command in commands)
+            foreach (var pool in commands)
             {
-                performLogic.SetDUT(command.DUT.Id, (engineering, command.DUT));
-                //TODO:if(command.IsPool)
-                //SetDUTMap(performLogic, command, engineering);
+                foreach (var command in pool)
+                {
+                    if (command.DUT != null)
+                        performLogic.SetDUT(command.DUT.Id, (engineering, command.DUT));
+                    //TODO:if(command.IsPool)
+                    //SetDUTMap(performLogic, command, engineering);
+                }
             }
         }
 

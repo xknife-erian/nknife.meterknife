@@ -97,22 +97,25 @@ namespace NKnife.MeterKnife.Holistic
             if (!_jobMap.TryGetValue(engineering.Id, out var jobManager))
             {
                 jobManager = new JobManager {Pool = new ScpiCommandPool {IsOverall = true}};
-                foreach (var command in engineering.Commands)
+                foreach (var pool in engineering.CommandPools)
                 {
-                    if (command.Slot == null || !_connMap.ContainsKey(command.Slot))
+                    foreach (var command in pool)
                     {
-                        _Logger.Warn($"未Binding的Slot与对应的IDataConnector,跳过{command}\r\n{command.Slot}");
-                        continue;
-                    }
+                        if (command.Slot == null || !_connMap.ContainsKey(command.Slot))
+                        {
+                            _Logger.Warn($"未Binding的Slot与对应的IDataConnector,跳过{command}\r\n{command.Slot}");
+                            continue;
+                        }
 
-                    var connector = _connMap[command.Slot];
-                    command.Run += job =>
-                    {
-                        SendCommand(connector, command);
-                        return true;
-                    };
-                    jobManager.Pool.Add(command);
-                    connector.Start();
+                        var connector = _connMap[command.Slot];
+                        command.Run += job =>
+                        {
+                            SendCommand(connector, command);
+                            return true;
+                        };
+                        jobManager.Pool.Add(command);
+                        connector.Start();
+                    }
                 }
 
                 _jobMap.Add(engineering.Id, jobManager);

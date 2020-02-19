@@ -17,13 +17,24 @@ namespace NKnife.MeterKnife.ViewModels
         private readonly IStoragePlatform<Slot> _slotStoragePlatform;
         private readonly IStoragePlatform<DUT> _dutStoragePlatform;
 
+        private readonly IEngineeringLogic _engineeringLogic;
+
         private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
 
-        public WorkbenchViewModel(IStoragePlatform<Engineering> engineeringStoragePlatform, IStoragePlatform<Slot> slotStoragePlatform, IStoragePlatform<DUT> dutStoragePlatform)
+        public WorkbenchViewModel(IStoragePlatform<Engineering> engineeringStoragePlatform, IStoragePlatform<Slot> slotStoragePlatform, IStoragePlatform<DUT> dutStoragePlatform, IEngineeringLogic engineeringLogic)
         {
             _engineeringStoragePlatform = engineeringStoragePlatform;
             _slotStoragePlatform = slotStoragePlatform;
             _dutStoragePlatform = dutStoragePlatform;
+            _engineeringLogic = engineeringLogic;
+        }
+
+        /// <summary>
+        /// 创建一个工程
+        /// </summary>
+        public async Task CreateAsync(Engineering eng)
+        {
+            await _engineeringLogic.CreateEngineeringAsync(eng);
         }
 
         /// <summary>
@@ -49,6 +60,16 @@ namespace NKnife.MeterKnife.ViewModels
             }
 
             return _engMap;
+        }
+
+        /// <summary>
+        /// 是否存在相同编号的工程
+        /// </summary>
+        /// <param name="engId">工程编号</param>
+        /// <returns>是否存在</returns>
+        public bool ExistEngineering(string engId)
+        {
+            return _engineeringStoragePlatform.ExistAsync(engId).Result;
         }
 
         /// <summary>

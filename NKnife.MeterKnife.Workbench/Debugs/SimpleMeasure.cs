@@ -40,8 +40,8 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             {
                 Name = "",
                 CreateTime = new DateTime(2019, UtilRandom.Next(11, 13), UtilRandom.Next(1, 25), UtilRandom.Next(1, 24), UtilRandom.Next(1, 60), UtilRandom.Next(1, 60)),
-                Commands = Pool
             };
+            engineering.CommandPools.Add(Pool);
             await engineeringLogic.CreateEngineeringAsync(engineering);
             await antService.StartAsync(engineering);
         }

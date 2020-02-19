@@ -39,15 +39,13 @@ namespace NKnife.MeterKnife.Workbench
             var about = new QuickAbout();
             Text = $"{about.AssemblyTitle} - {about.AssemblyVersion}";
             Icon = Resources.meterknife_24px;
-            var notifyIcon = new NotifyIcon();
-            notifyIcon.Icon = Resources.meterknife_48px;
+            var notifyIcon = new NotifyIcon {Icon = Resources.meterknife_48px};
             BindNotifyIcon(notifyIcon);
 
             var fileMenuItem = BuildFileMenu();
             var toolMenuItem = BuildToolMenu();
             var viewMenuItem = BuildViewMenu();
             var helpMenuItem = BuildHelpMenu();
-            BindTrayMenu(DebuggerManager.GetMockItem(), DebuggerManager.GetMockItem());
             BindMainMenu(fileMenuItem, dataMenu, measureMenu, toolMenuItem, viewMenuItem, helpMenuItem);
 #if DEBUG
             BindMainMenu(debuggerManager.GetDebugMenu());

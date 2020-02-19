@@ -43,13 +43,16 @@ namespace NKnife.MeterKnife.Storage.Db
         {
             var map = new Dictionary<string, string>();
             var dutList = new List<DUT>();
-            foreach (var command in engineering.Commands)
+            foreach (var pool in engineering.CommandPools)
             {
-                if (!dutList.Contains(command.DUT))
+                foreach (var command in pool)
                 {
-                    var d = command.DUT;
-                    dutList.Add(d);
-                    map.Add(d.Id, SqlHelper.GetCreateTableSql($"{d.Id}s", dbType, typeof(MeasureData)));
+                    if (command.DUT != null && !dutList.Contains(command.DUT))
+                    {
+                        var d = command.DUT;
+                        dutList.Add(d);
+                        map.Add(d.Id, SqlHelper.GetCreateTableSql($"{d.Id}s", dbType, typeof(MeasureData)));
+                    }
                 }
             }
             map.Add(nameof(Engineering), SqlHelper.GetCreateTableSql(dbType, typeof(Engineering)));

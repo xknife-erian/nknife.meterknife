@@ -68,6 +68,7 @@ namespace NKnife.MeterKnife.Workbench.Menus
         private ToolStripMenuItem BuildEngineeringManagerMenu()
         {
             var engManagerMenu = new ToolStripMenuItem(this.Res("工程管理(&E)"));
+            engManagerMenu.ShortcutKeys = Keys.F5;
             engManagerMenu.Click += (s, e) =>
             {
                 IWorkbench wb = this.GetWorkbench();

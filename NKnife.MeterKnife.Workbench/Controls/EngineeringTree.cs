@@ -46,6 +46,23 @@ namespace NKnife.MeterKnife.Workbench.Controls
 
     public class EngineeringTreeNode : TreeNode
     {
+        public EngineeringTreeNode(Engineering engineering)
+            : this(engineering.Name)
+        {
+            Engineering = engineering;
+            foreach (var pool in engineering.CommandPools)
+            {
+                foreach (var command in pool)
+                {
+                    if (command.DUT != null)
+                    {
+                        var dutNode = new DUTTreeNode(command.DUT.Name) {DUT = command.DUT};
+                        this.Nodes.Add(dutNode);
+                    }
+                }
+            }
+        }
+
         public EngineeringTreeNode(string text) 
             : base(text)
         {
@@ -59,6 +76,12 @@ namespace NKnife.MeterKnife.Workbench.Controls
 
     public class EngineeringCreateTimeTreeNode : TreeNode
     {
+        public EngineeringCreateTimeTreeNode(DateTime createTime)
+            : this(createTime.ToString("yyyy-MM"))
+        {
+            CreateTime = createTime;
+        }
+
         public EngineeringCreateTimeTreeNode(string text) 
             : base(text)
         {

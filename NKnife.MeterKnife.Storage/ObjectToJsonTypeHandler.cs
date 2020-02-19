@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace NKnife.MeterKnife.Storage
 {
-    public class ObjectJsonTypeHandler : SqlMapper.ITypeHandler
+    public class ObjectToJsonTypeHandler : SqlMapper.ITypeHandler
     {
         public void SetValue(IDbDataParameter parameter, object value)
         {

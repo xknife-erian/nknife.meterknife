@@ -35,12 +35,14 @@ namespace NKnife.MeterKnife.CLI.Commands
             var dut2 = new DUT {Name = "10K电阻"};
             var dut3 = new DUT {Name = "1K电阻"};
             var engineering = new Engineering();
-            engineering.Commands.AddRange(new[]
+            var pool = new ScpiCommandPool();
+            pool.AddRange(new[]
             {
                 new CareCommand {DUT = dut1},
                 new CareCommand {DUT = dut2},
                 new CareCommand {DUT = dut3}
             });
+            engineering.CommandPools.Add(pool);
             //创建一个工程
             await _engineeringLogic.CreateEngineeringAsync(engineering);
             //模拟处理一些数据

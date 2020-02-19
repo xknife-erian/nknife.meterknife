@@ -46,15 +46,35 @@ namespace NKnife.MeterKnife.Workbench.Views
             _DeleteStripButton.Image = Resources.eng_delete;
         }
 
-
-
         private void RespondToButtonClick()
         {
-            _CreateEngStripButton.Click += (sender, args) =>
+            _CreateEngStripButton.Click += async (sender, args) =>
             {
                 var dialog = _dialogProvider.New<EngineeringDetailDialog>();
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
+                    var eng = dialog.Engineering;
+                    await _viewModel.CreateAsync(eng);
+                    var simpleDate = new DateTime(eng.CreateTime.Year, eng.CreateTime.Month, 1, 0, 0, 0);
+                    TreeNode dateNode;
+                    EngineeringCreateTimeTreeNode srcNode = null;
+                    if (_TreeView.Nodes.Count > 0)
+                        srcNode = (EngineeringCreateTimeTreeNode) _TreeView.Nodes[0];
+                    if (srcNode != null && srcNode.CreateTime.Equals(simpleDate))
+                    {
+                        dateNode = srcNode;
+                    }
+                    else
+                    {
+                        dateNode = new EngineeringCreateTimeTreeNode(simpleDate);
+                        _TreeView.Nodes.Insert(0, dateNode);
+                    }
+
+                    var engNode = new EngineeringTreeNode(eng);
+                    dateNode.Nodes.Add(engNode);
+                    engNode.Expand();
+                    engNode.EnsureVisible();
+                    _TreeView.SelectedNode = engNode;
                 }
             };
             _DeleteStripButton.Click += (sender, args) =>
@@ -89,16 +109,8 @@ namespace NKnife.MeterKnife.Workbench.Views
                 _TreeView.Nodes.Add(dateNode);
                 foreach (var engineering in pair.Value)
                 {
-                    var engNode = new EngineeringTreeNode(engineering.Name) {Engineering = engineering};
+                    var engNode = new EngineeringTreeNode(engineering);
                     dateNode.Nodes.Add(engNode);
-                    foreach (var command in engineering.Commands)
-                    {
-                        if (command.DUT != null)
-                        {
-                            var dutNode = new DUTTreeNode(command.DUT.Name) {DUT = command.DUT};
-                            engNode.Nodes.Add(dutNode);
-                        }
-                    }
                 }
             }
 
@@ -122,11 +134,16 @@ namespace NKnife.MeterKnife.Workbench.Views
                 CreateTime = engineering.CreateTime;
                 Description = engineering.Description;
                 Path = engineering.Path;
-                Duts = new DUT[engineering.Commands.Count];
-                for (int i = 0; i < engineering.Commands.Count; i++)
+                var ds = new List<DUT>();
+                foreach (var pool in engineering.CommandPools)
                 {
-                    Duts[i] = engineering.Commands[i].DUT;
+                    foreach (var command in pool)
+                    {
+                        ds.Add(command.DUT);
+                    }
                 }
+
+                Duts = ds.ToArray();
             }
 
             [Category("工程"), DisplayName("编号")]

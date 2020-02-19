@@ -41,10 +41,8 @@ namespace NKnife.MeterKnife.CLI.Commands
             _slot.SetMeterCare(SlotType.Serial, ((short)Port, config));
 
             _antService.Bind((_slot, _connector));
-            var engineering = new Engineering
-            {
-                Commands = GetCommands()
-            };
+            var engineering = new Engineering();
+            engineering.CommandPools.Add(GetCommands());
             await _engineeringLogic.CreateEngineeringAsync(engineering);
             await _antService.StartAsync(engineering);
         }

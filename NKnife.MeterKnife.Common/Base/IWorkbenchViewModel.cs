@@ -9,11 +9,23 @@ namespace NKnife.MeterKnife.Common.Base
     public interface IWorkbenchViewModel
     {
         #region Engineering
-        
+
+        /// <summary>
+        /// 创建一个工程
+        /// </summary>
+        Task CreateAsync(Engineering eng);
+
         /// <summary>
         /// 获取所有工程，并按工程的创建时间倒序排列
         /// </summary>
         Task<Dictionary<DateTime, List<Engineering>>> GetEngineeringAndDateMapAsync();
+
+        /// <summary>
+        /// 是否存在相同编号的工程
+        /// </summary>
+        /// <param name="engId">工程编号</param>
+        /// <returns>是否存在</returns>
+        bool ExistEngineering(string engId);
 
         #endregion
 
