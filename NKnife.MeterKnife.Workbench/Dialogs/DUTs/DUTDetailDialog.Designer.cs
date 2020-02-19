@@ -64,6 +64,10 @@
             this._EditMetrologyValueToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteMetrologyValueToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -78,7 +82,7 @@
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(366, 554);
+            this._CancelButton.Location = new System.Drawing.Point(346, 374);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(86, 35);
             this._CancelButton.TabIndex = 5;
@@ -88,7 +92,7 @@
             // _AcceptButton
             // 
             this._AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._AcceptButton.Location = new System.Drawing.Point(274, 554);
+            this._AcceptButton.Location = new System.Drawing.Point(254, 374);
             this._AcceptButton.Name = "_AcceptButton";
             this._AcceptButton.Size = new System.Drawing.Size(86, 35);
             this._AcceptButton.TabIndex = 4;
@@ -108,7 +112,7 @@
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(439, 535);
+            this.tabControl1.Size = new System.Drawing.Size(419, 355);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
@@ -129,7 +133,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(431, 497);
+            this.tabPage1.Size = new System.Drawing.Size(411, 317);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基本信息";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -141,7 +145,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(431, 497);
+            this.tabPage2.Size = new System.Drawing.Size(411, 317);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "标定值";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -153,7 +157,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(431, 497);
+            this.tabPage3.Size = new System.Drawing.Size(411, 317);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "被测物照片";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -165,7 +169,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(431, 497);
+            this.tabPage4.Size = new System.Drawing.Size(411, 317);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "测试报告";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -185,13 +189,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(22, 41);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(257, 23);
+            this.textBox1.Size = new System.Drawing.Size(237, 23);
             this.textBox1.TabIndex = 1;
             // 
             // _AutoNumberButton
             // 
             this._AutoNumberButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._AutoNumberButton.Location = new System.Drawing.Point(285, 38);
+            this._AutoNumberButton.Location = new System.Drawing.Point(265, 38);
             this._AutoNumberButton.Name = "_AutoNumberButton";
             this._AutoNumberButton.Size = new System.Drawing.Size(124, 29);
             this._AutoNumberButton.TabIndex = 2;
@@ -238,7 +242,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(224, 144);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(185, 25);
+            this.comboBox2.Size = new System.Drawing.Size(165, 25);
             this.comboBox2.TabIndex = 8;
             // 
             // label4
@@ -278,11 +282,14 @@
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(387, 278);
+            this.textBox4.Size = new System.Drawing.Size(367, 98);
             this.textBox4.TabIndex = 12;
             // 
             // listView1
             // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -290,13 +297,16 @@
             this.listView1.Location = new System.Drawing.Point(3, 28);
             this.listView1.Name = "listView1";
             this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(425, 466);
+            this.listView1.Size = new System.Drawing.Size(405, 286);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // listView2
             // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3,
+            this.columnHeader4});
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
@@ -304,7 +314,7 @@
             this.listView2.Location = new System.Drawing.Point(3, 28);
             this.listView2.Name = "listView2";
             this.listView2.ShowGroups = false;
-            this.listView2.Size = new System.Drawing.Size(425, 466);
+            this.listView2.Size = new System.Drawing.Size(405, 286);
             this.listView2.TabIndex = 1;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -315,7 +325,7 @@
             this.listView3.HideSelection = false;
             this.listView3.Location = new System.Drawing.Point(3, 28);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(425, 466);
+            this.listView3.Size = new System.Drawing.Size(405, 286);
             this.listView3.TabIndex = 0;
             this.listView3.UseCompatibleStateImageBehavior = false;
             // 
@@ -328,7 +338,7 @@
             this._DeletePhotoToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(425, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(405, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -368,7 +378,7 @@
             this._DeleteReportToolStripButton});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(425, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(405, 25);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -408,7 +418,7 @@
             this._DeleteMetrologyValueToolStripButton});
             this.toolStrip3.Location = new System.Drawing.Point(3, 3);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(425, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(405, 25);
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -441,10 +451,32 @@
             // 
             // maskedTextBox1
             // 
+            this.maskedTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.maskedTextBox1.Location = new System.Drawing.Point(224, 93);
             this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(185, 23);
+            this.maskedTextBox1.Size = new System.Drawing.Size(165, 23);
             this.maskedTextBox1.TabIndex = 13;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "标定时间";
+            this.columnHeader1.Width = 180;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "标定值";
+            this.columnHeader2.Width = 180;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "时间";
+            this.columnHeader3.Width = 150;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "路径";
+            this.columnHeader4.Width = 220;
             // 
             // DUTDetailDialog
             // 
@@ -452,7 +484,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(464, 601);
+            this.ClientSize = new System.Drawing.Size(444, 421);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this._CancelButton);
             this.Controls.Add(this._AcceptButton);
@@ -520,5 +552,9 @@
         private System.Windows.Forms.ToolStripButton _EditReportToolStripButton;
         private System.Windows.Forms.ToolStripButton _DeleteReportToolStripButton;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

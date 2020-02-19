@@ -63,6 +63,22 @@ namespace System.Windows.Forms
             }
         }
 
+        public static void Res(this Control ctr, params ToolStripItem[] items)
+        {
+            foreach (var stripItem in items)
+            {
+                Get(TEXT, $"{stripItem.Text}");
+            }
+        }
+
+        public static void Res(this Control ctr, params ColumnHeader[] items)
+        {
+            foreach (var header in items)
+            {
+                Get(TEXT, $"{header.Text}");
+            }
+        }
+
         public static string Res(this ToolStripItem item)
         {
             return Get(TEXT, item.Text);

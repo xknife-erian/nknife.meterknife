@@ -31,19 +31,22 @@ namespace NKnife.MeterKnife.Workbench.Views
             _viewModel = viewModel;
             _dialogProvider = dialogProvider;
             InitializeComponent();
+            InitializeLanguage();
             RespondToEvents();
             RespondToButtonClick();
             Shown += EngineeringsBindToTree;
-            this.Res();
-            _CreateEngStripButton.Res();
             _CreateEngStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _CreateEngStripButton.Image = Resources.eng_add;
-            _EditToolStripButton.Res();
             _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _EditToolStripButton.Image = Resources.eng_edit;
-            _DeleteStripButton.Res();
             _DeleteStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _DeleteStripButton.Image = Resources.eng_delete;
+        }
+
+        private void InitializeLanguage()
+        {
+            this.Res(this);
+            this.Res(_CreateEngStripButton, _EditToolStripButton, _DeleteStripButton);
         }
 
         private void RespondToButtonClick()

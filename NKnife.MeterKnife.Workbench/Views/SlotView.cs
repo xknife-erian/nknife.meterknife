@@ -29,6 +29,7 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             _viewModel = viewModel;
             InitializeComponent();
+            InitializeLanguage();
             InitializeImageList();
             RespondToClickEvent();
             Shown += async (sender, args) =>
@@ -54,17 +55,18 @@ namespace NKnife.MeterKnife.Workbench.Views
                     _SlotListView.Items.Add(slotListItem);
                 }
             };
-            this.Res();
-            _NewToolStripDropDownButton.Res();
             _NewToolStripDropDownButton.Image = Resources.slot_add;
             _NewToolStripDropDownButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _NewSerialPortToolStripMenuItem.Res();
-            _EditToolStripButton.Res();
             _EditToolStripButton.Image = Resources.slot_edit;
             _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _DeleteToolStripButton.Res();
             _DeleteToolStripButton.Image = Resources.slot_delete;
             _DeleteToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+        }
+
+        private void InitializeLanguage()
+        {
+            this.Res(this);
+            this.Res(_NewToolStripDropDownButton, _NewSerialPortToolStripMenuItem, _EditToolStripButton, _DeleteToolStripButton);
         }
 
         private void InitializeImageList()

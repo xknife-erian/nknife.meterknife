@@ -17,16 +17,19 @@ namespace NKnife.MeterKnife.Workbench.Views
         public InstrumentView()
         {
             InitializeComponent();
-            this.Res();
-            _NewToolStripButton.Res();
+            InitializeLanguage();
             _NewToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _NewToolStripButton.Image = Resources.ints_add;
-            _EditToolStripButton.Res();
             _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _EditToolStripButton.Image = Resources.ints_edit;
-            _DeleteToolStripButton.Res();
             _DeleteToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _DeleteToolStripButton.Image = Resources.ints_delete;
+        }
+
+        private void InitializeLanguage()
+        {
+            this.Res(this);
+            this.Res(_NewToolStripButton, _EditToolStripButton, _DeleteToolStripButton);
         }
     }
 }

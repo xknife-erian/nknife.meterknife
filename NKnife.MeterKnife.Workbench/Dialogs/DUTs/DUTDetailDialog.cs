@@ -26,6 +26,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.DUTs
             this.Res(this, _AcceptButton, _CancelButton, _AutoNumberButton);
             this.Res(tabPage1, tabPage2, tabPage3, tabPage4);
             this.Res(label1, label2, label3, label4, label5, label6);
+            this.Res(columnHeader1, columnHeader2, columnHeader3, columnHeader4);
         }
     }
 }
