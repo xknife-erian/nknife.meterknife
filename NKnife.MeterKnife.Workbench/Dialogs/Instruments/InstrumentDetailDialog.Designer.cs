@@ -35,42 +35,47 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this._AddFileToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._EditFileToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteFileToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.miniToolStrip = new System.Windows.Forms.ToolStrip();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listView3 = new System.Windows.Forms.ListView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._AddPhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._EditPhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeletePhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this._SubModelTextBox = new System.Windows.Forms.TextBox();
+            this._ModelTextBox = new System.Windows.Forms.TextBox();
+            this._AbbrNameTextBox = new System.Windows.Forms.TextBox();
+            this._DescriptionTextBox = new System.Windows.Forms.TextBox();
+            this._NameTextBox = new System.Windows.Forms.TextBox();
+            this._NumberTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this._UseClassificationComboBox = new System.Windows.Forms.ComboBox();
+            this._ManufacturerComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this._AutoNumberButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._NetInfoLabel = new System.Windows.Forms.Label();
+            this._GetInstrumentScpiTemplateButton = new System.Windows.Forms.Button();
+            this._SplitContainer = new System.Windows.Forms.SplitContainer();
+            this._ScpiTreeView = new System.Windows.Forms.TreeView();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this._AddCommandToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._EditCommandToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._DeleteCommandToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._AddScpiToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._DeleteScpiToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._ScpiNameTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this._ScpiCommandTextBox = new System.Windows.Forms.TextBox();
+            this._ScpiDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabPage4.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -78,6 +83,10 @@
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
+            this._SplitContainer.Panel1.SuspendLayout();
+            this._SplitContainer.Panel2.SuspendLayout();
+            this._SplitContainer.SuspendLayout();
             this.toolStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,9 +94,9 @@
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(325, 453);
+            this._CancelButton.Location = new System.Drawing.Point(332, 453);
             this._CancelButton.Name = "_CancelButton";
-            this._CancelButton.Size = new System.Drawing.Size(86, 35);
+            this._CancelButton.Size = new System.Drawing.Size(75, 35);
             this._CancelButton.TabIndex = 5;
             this._CancelButton.Text = "取消";
             this._CancelButton.UseVisualStyleBackColor = true;
@@ -95,9 +104,9 @@
             // _AcceptButton
             // 
             this._AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._AcceptButton.Location = new System.Drawing.Point(233, 453);
+            this._AcceptButton.Location = new System.Drawing.Point(251, 453);
             this._AcceptButton.Name = "_AcceptButton";
-            this._AcceptButton.Size = new System.Drawing.Size(86, 35);
+            this._AcceptButton.Size = new System.Drawing.Size(75, 35);
             this._AcceptButton.TabIndex = 4;
             this._AcceptButton.Text = "确定";
             this._AcceptButton.UseVisualStyleBackColor = true;
@@ -109,7 +118,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(391, 395);
+            this.tabPage4.Size = new System.Drawing.Size(391, 379);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "相关文件";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -117,41 +126,32 @@
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(3, 28);
+            this.treeView1.Location = new System.Drawing.Point(3, 34);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(385, 364);
+            this.treeView1.Size = new System.Drawing.Size(385, 342);
             this.treeView1.TabIndex = 3;
             // 
             // toolStrip2
             // 
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._AddFileToolStripButton,
-            this._EditFileToolStripButton,
             this._DeleteFileToolStripButton});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(385, 25);
-            this.toolStrip2.TabIndex = 2;
+            this.toolStrip2.Size = new System.Drawing.Size(385, 31);
+            this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             // 
             // _AddFileToolStripButton
             // 
             this._AddFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddFileToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_AddFileToolStripButton.Image")));
+            this._AddFileToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
             this._AddFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._AddFileToolStripButton.Name = "_AddFileToolStripButton";
-            this._AddFileToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._AddFileToolStripButton.Size = new System.Drawing.Size(28, 28);
             this._AddFileToolStripButton.Text = "新增";
-            // 
-            // _EditFileToolStripButton
-            // 
-            this._EditFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._EditFileToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_EditFileToolStripButton.Image")));
-            this._EditFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._EditFileToolStripButton.Name = "_EditFileToolStripButton";
-            this._EditFileToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._EditFileToolStripButton.Text = "编辑";
             // 
             // _DeleteFileToolStripButton
             // 
@@ -159,7 +159,7 @@
             this._DeleteFileToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteFileToolStripButton.Image")));
             this._DeleteFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._DeleteFileToolStripButton.Name = "_DeleteFileToolStripButton";
-            this._DeleteFileToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._DeleteFileToolStripButton.Size = new System.Drawing.Size(28, 28);
             this._DeleteFileToolStripButton.Text = "删除";
             // 
             // miniToolStrip
@@ -170,6 +170,7 @@
             this.miniToolStrip.CanOverflow = false;
             this.miniToolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.miniToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.miniToolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.miniToolStrip.Location = new System.Drawing.Point(69, 3);
             this.miniToolStrip.Name = "miniToolStrip";
             this.miniToolStrip.Size = new System.Drawing.Size(405, 25);
@@ -182,7 +183,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(391, 395);
+            this.tabPage3.Size = new System.Drawing.Size(391, 379);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "实物照片";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -191,42 +192,33 @@
             // 
             this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(3, 28);
+            this.listView3.Location = new System.Drawing.Point(3, 34);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(385, 364);
+            this.listView3.Size = new System.Drawing.Size(385, 342);
             this.listView3.TabIndex = 0;
             this.listView3.UseCompatibleStateImageBehavior = false;
             // 
             // toolStrip1
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._AddPhotoToolStripButton,
-            this._EditPhotoToolStripButton,
             this._DeletePhotoToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(385, 25);
-            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Size = new System.Drawing.Size(385, 31);
+            this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // _AddPhotoToolStripButton
             // 
             this._AddPhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddPhotoToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_AddPhotoToolStripButton.Image")));
+            this._AddPhotoToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
             this._AddPhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._AddPhotoToolStripButton.Name = "_AddPhotoToolStripButton";
-            this._AddPhotoToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._AddPhotoToolStripButton.Size = new System.Drawing.Size(28, 28);
             this._AddPhotoToolStripButton.Text = "新增";
-            // 
-            // _EditPhotoToolStripButton
-            // 
-            this._EditPhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._EditPhotoToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_EditPhotoToolStripButton.Image")));
-            this._EditPhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._EditPhotoToolStripButton.Name = "_EditPhotoToolStripButton";
-            this._EditPhotoToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._EditPhotoToolStripButton.Text = "编辑";
             // 
             // _DeletePhotoToolStripButton
             // 
@@ -234,24 +226,24 @@
             this._DeletePhotoToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeletePhotoToolStripButton.Image")));
             this._DeletePhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._DeletePhotoToolStripButton.Name = "_DeletePhotoToolStripButton";
-            this._DeletePhotoToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._DeletePhotoToolStripButton.Size = new System.Drawing.Size(28, 28);
             this._DeletePhotoToolStripButton.Text = "删除";
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.textBox5);
-            this.tabPage1.Controls.Add(this.textBox6);
-            this.tabPage1.Controls.Add(this.textBox3);
-            this.tabPage1.Controls.Add(this.textBox4);
-            this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this._SubModelTextBox);
+            this.tabPage1.Controls.Add(this._ModelTextBox);
+            this.tabPage1.Controls.Add(this._AbbrNameTextBox);
+            this.tabPage1.Controls.Add(this._DescriptionTextBox);
+            this.tabPage1.Controls.Add(this._NameTextBox);
+            this.tabPage1.Controls.Add(this._NumberTextBox);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.comboBox2);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this._UseClassificationComboBox);
+            this.tabPage1.Controls.Add(this._ManufacturerComboBox);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this._AutoNumberButton);
@@ -259,7 +251,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(391, 395);
+            this.tabPage1.Size = new System.Drawing.Size(391, 379);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基本信息";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -282,61 +274,61 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "型号";
             // 
-            // textBox5
+            // _SubModelTextBox
             // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._SubModelTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.Location = new System.Drawing.Point(223, 198);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(146, 23);
-            this.textBox5.TabIndex = 15;
+            this._SubModelTextBox.Location = new System.Drawing.Point(223, 198);
+            this._SubModelTextBox.Name = "_SubModelTextBox";
+            this._SubModelTextBox.Size = new System.Drawing.Size(146, 23);
+            this._SubModelTextBox.TabIndex = 15;
             // 
-            // textBox6
+            // _ModelTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(21, 198);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(185, 23);
-            this.textBox6.TabIndex = 14;
+            this._ModelTextBox.Location = new System.Drawing.Point(21, 198);
+            this._ModelTextBox.Name = "_ModelTextBox";
+            this._ModelTextBox.Size = new System.Drawing.Size(185, 23);
+            this._ModelTextBox.TabIndex = 14;
             // 
-            // textBox3
+            // _AbbrNameTextBox
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._AbbrNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(224, 93);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(145, 23);
-            this.textBox3.TabIndex = 13;
+            this._AbbrNameTextBox.Location = new System.Drawing.Point(224, 93);
+            this._AbbrNameTextBox.Name = "_AbbrNameTextBox";
+            this._AbbrNameTextBox.Size = new System.Drawing.Size(145, 23);
+            this._AbbrNameTextBox.TabIndex = 13;
             // 
-            // textBox4
+            // _DescriptionTextBox
             // 
-            this.textBox4.AcceptsReturn = true;
-            this.textBox4.AcceptsTab = true;
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this._DescriptionTextBox.AcceptsReturn = true;
+            this._DescriptionTextBox.AcceptsTab = true;
+            this._DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(22, 250);
-            this.textBox4.MaxLength = 327670;
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(347, 124);
-            this.textBox4.TabIndex = 12;
+            this._DescriptionTextBox.Location = new System.Drawing.Point(22, 250);
+            this._DescriptionTextBox.MaxLength = 327670;
+            this._DescriptionTextBox.Multiline = true;
+            this._DescriptionTextBox.Name = "_DescriptionTextBox";
+            this._DescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._DescriptionTextBox.Size = new System.Drawing.Size(347, 108);
+            this._DescriptionTextBox.TabIndex = 12;
             // 
-            // textBox2
+            // _NameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(22, 93);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 23);
-            this.textBox2.TabIndex = 4;
+            this._NameTextBox.Location = new System.Drawing.Point(22, 93);
+            this._NameTextBox.Name = "_NameTextBox";
+            this._NameTextBox.Size = new System.Drawing.Size(185, 23);
+            this._NameTextBox.TabIndex = 4;
             // 
-            // textBox1
+            // _NumberTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._NumberTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(22, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(217, 23);
-            this.textBox1.TabIndex = 1;
+            this._NumberTextBox.Location = new System.Drawing.Point(22, 41);
+            this._NumberTextBox.Name = "_NumberTextBox";
+            this._NumberTextBox.Size = new System.Drawing.Size(217, 23);
+            this._NumberTextBox.TabIndex = 1;
             // 
             // label6
             // 
@@ -365,23 +357,23 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "生产厂商";
             // 
-            // comboBox2
+            // _UseClassificationComboBox
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._UseClassificationComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(224, 144);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(145, 25);
-            this.comboBox2.TabIndex = 8;
+            this._UseClassificationComboBox.FormattingEnabled = true;
+            this._UseClassificationComboBox.Location = new System.Drawing.Point(224, 144);
+            this._UseClassificationComboBox.Name = "_UseClassificationComboBox";
+            this._UseClassificationComboBox.Size = new System.Drawing.Size(145, 25);
+            this._UseClassificationComboBox.TabIndex = 8;
             // 
-            // comboBox1
+            // _ManufacturerComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(22, 144);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(185, 25);
-            this.comboBox1.TabIndex = 7;
+            this._ManufacturerComboBox.FormattingEnabled = true;
+            this._ManufacturerComboBox.Location = new System.Drawing.Point(22, 144);
+            this._ManufacturerComboBox.Name = "_ManufacturerComboBox";
+            this._ManufacturerComboBox.Size = new System.Drawing.Size(185, 25);
+            this._ManufacturerComboBox.TabIndex = 7;
             // 
             // label3
             // 
@@ -433,86 +425,171 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(399, 433);
+            this.tabControl1.Size = new System.Drawing.Size(399, 417);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.listView1);
-            this.tabPage2.Controls.Add(this.toolStrip3);
+            this.tabPage2.Controls.Add(this._SplitContainer);
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(391, 395);
+            this.tabPage2.Size = new System.Drawing.Size(391, 379);
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "SCPI指令";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // _NetInfoLabel
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 28);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(385, 364);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this._NetInfoLabel.AutoSize = true;
+            this._NetInfoLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this._NetInfoLabel.Location = new System.Drawing.Point(17, 434);
+            this._NetInfoLabel.Name = "_NetInfoLabel";
+            this._NetInfoLabel.Size = new System.Drawing.Size(11, 17);
+            this._NetInfoLabel.TabIndex = 8;
+            this._NetInfoLabel.Text = ".";
             // 
-            // columnHeader1
+            // _GetInstrumentScpiTemplateButton
             // 
-            this.columnHeader1.Text = "命令名称";
-            this.columnHeader1.Width = 140;
+            this._GetInstrumentScpiTemplateButton.Enabled = false;
+            this._GetInstrumentScpiTemplateButton.Location = new System.Drawing.Point(16, 453);
+            this._GetInstrumentScpiTemplateButton.Name = "_GetInstrumentScpiTemplateButton";
+            this._GetInstrumentScpiTemplateButton.Size = new System.Drawing.Size(116, 35);
+            this._GetInstrumentScpiTemplateButton.TabIndex = 9;
+            this._GetInstrumentScpiTemplateButton.Text = "从网络获取";
+            this._GetInstrumentScpiTemplateButton.UseVisualStyleBackColor = true;
             // 
-            // columnHeader2
+            // _SplitContainer
             // 
-            this.columnHeader2.Text = "命令";
-            this.columnHeader2.Width = 220;
+            this._SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._SplitContainer.Location = new System.Drawing.Point(3, 3);
+            this._SplitContainer.Name = "_SplitContainer";
+            // 
+            // _SplitContainer.Panel1
+            // 
+            this._SplitContainer.Panel1.Controls.Add(this._ScpiTreeView);
+            this._SplitContainer.Panel1.Controls.Add(this.toolStrip3);
+            // 
+            // _SplitContainer.Panel2
+            // 
+            this._SplitContainer.Panel2.Controls.Add(this._ScpiNameTextBox);
+            this._SplitContainer.Panel2.Controls.Add(this.label9);
+            this._SplitContainer.Panel2.Controls.Add(this._ScpiCommandTextBox);
+            this._SplitContainer.Panel2.Controls.Add(this._ScpiDescriptionTextBox);
+            this._SplitContainer.Panel2.Controls.Add(this.label10);
+            this._SplitContainer.Panel2.Controls.Add(this.label11);
+            this._SplitContainer.Panel2.Controls.Add(this.label12);
+            this._SplitContainer.Size = new System.Drawing.Size(385, 373);
+            this._SplitContainer.SplitterDistance = 141;
+            this._SplitContainer.TabIndex = 9;
+            // 
+            // _ScpiTreeView
+            // 
+            this._ScpiTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ScpiTreeView.FullRowSelect = true;
+            this._ScpiTreeView.HideSelection = false;
+            this._ScpiTreeView.LabelEdit = true;
+            this._ScpiTreeView.Location = new System.Drawing.Point(0, 31);
+            this._ScpiTreeView.Name = "_ScpiTreeView";
+            this._ScpiTreeView.Size = new System.Drawing.Size(141, 342);
+            this._ScpiTreeView.TabIndex = 5;
             // 
             // toolStrip3
             // 
             this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip3.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._AddCommandToolStripButton,
-            this._EditCommandToolStripButton,
-            this._DeleteCommandToolStripButton});
-            this.toolStrip3.Location = new System.Drawing.Point(3, 3);
+            this._AddScpiToolStripButton,
+            this._DeleteScpiToolStripButton});
+            this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(385, 25);
-            this.toolStrip3.TabIndex = 3;
+            this.toolStrip3.Size = new System.Drawing.Size(141, 31);
+            this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
             // 
-            // _AddCommandToolStripButton
+            // _AddScpiToolStripButton
             // 
-            this._AddCommandToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddCommandToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_AddCommandToolStripButton.Image")));
-            this._AddCommandToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._AddCommandToolStripButton.Name = "_AddCommandToolStripButton";
-            this._AddCommandToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._AddCommandToolStripButton.Text = "新增";
+            this._AddScpiToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._AddScpiToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
+            this._AddScpiToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._AddScpiToolStripButton.Name = "_AddScpiToolStripButton";
+            this._AddScpiToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._AddScpiToolStripButton.Text = "新增";
             // 
-            // _EditCommandToolStripButton
+            // _DeleteScpiToolStripButton
             // 
-            this._EditCommandToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._EditCommandToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_EditCommandToolStripButton.Image")));
-            this._EditCommandToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._EditCommandToolStripButton.Name = "_EditCommandToolStripButton";
-            this._EditCommandToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._EditCommandToolStripButton.Text = "编辑";
+            this._DeleteScpiToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._DeleteScpiToolStripButton.Enabled = false;
+            this._DeleteScpiToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteScpiToolStripButton.Image")));
+            this._DeleteScpiToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteScpiToolStripButton.Name = "_DeleteScpiToolStripButton";
+            this._DeleteScpiToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._DeleteScpiToolStripButton.Text = "删除";
             // 
-            // _DeleteCommandToolStripButton
+            // _ScpiNameTextBox
             // 
-            this._DeleteCommandToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DeleteCommandToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteCommandToolStripButton.Image")));
-            this._DeleteCommandToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._DeleteCommandToolStripButton.Name = "_DeleteCommandToolStripButton";
-            this._DeleteCommandToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this._DeleteCommandToolStripButton.Text = "删除";
+            this._ScpiNameTextBox.Location = new System.Drawing.Point(8, 23);
+            this._ScpiNameTextBox.Name = "_ScpiNameTextBox";
+            this._ScpiNameTextBox.Size = new System.Drawing.Size(223, 23);
+            this._ScpiNameTextBox.TabIndex = 26;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 3);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 17);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "助记名";
+            // 
+            // _ScpiCommandTextBox
+            // 
+            this._ScpiCommandTextBox.Location = new System.Drawing.Point(8, 67);
+            this._ScpiCommandTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._ScpiCommandTextBox.Multiline = true;
+            this._ScpiCommandTextBox.Name = "_ScpiCommandTextBox";
+            this._ScpiCommandTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._ScpiCommandTextBox.Size = new System.Drawing.Size(223, 106);
+            this._ScpiCommandTextBox.TabIndex = 20;
+            // 
+            // _ScpiDescriptionTextBox
+            // 
+            this._ScpiDescriptionTextBox.Location = new System.Drawing.Point(8, 210);
+            this._ScpiDescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this._ScpiDescriptionTextBox.Multiline = true;
+            this._ScpiDescriptionTextBox.Name = "_ScpiDescriptionTextBox";
+            this._ScpiDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._ScpiDescriptionTextBox.Size = new System.Drawing.Size(223, 163);
+            this._ScpiDescriptionTextBox.TabIndex = 23;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 49);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(32, 17);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "指令";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 191);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(32, 17);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "描述";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label12.Location = new System.Drawing.Point(103, 177);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(115, 17);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Ctrl+Enter添加新行";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // InstrumentDetailDialog
             // 
@@ -521,6 +598,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
             this.ClientSize = new System.Drawing.Size(423, 500);
+            this.Controls.Add(this._GetInstrumentScpiTemplateButton);
+            this.Controls.Add(this._NetInfoLabel);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this._CancelButton);
             this.Controls.Add(this._AcceptButton);
@@ -544,10 +623,16 @@
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this._SplitContainer.Panel1.ResumeLayout(false);
+            this._SplitContainer.Panel1.PerformLayout();
+            this._SplitContainer.Panel2.ResumeLayout(false);
+            this._SplitContainer.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).EndInit();
+            this._SplitContainer.ResumeLayout(false);
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -557,43 +642,48 @@
         private System.Windows.Forms.Button _AcceptButton;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton _AddFileToolStripButton;
-        private System.Windows.Forms.ToolStripButton _EditFileToolStripButton;
-        private System.Windows.Forms.ToolStripButton _DeleteFileToolStripButton;
         private System.Windows.Forms.ToolStrip miniToolStrip;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton _AddPhotoToolStripButton;
-        private System.Windows.Forms.ToolStripButton _EditPhotoToolStripButton;
-        private System.Windows.Forms.ToolStripButton _DeletePhotoToolStripButton;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox _SubModelTextBox;
+        private System.Windows.Forms.TextBox _ModelTextBox;
+        private System.Windows.Forms.TextBox _AbbrNameTextBox;
+        private System.Windows.Forms.TextBox _DescriptionTextBox;
+        private System.Windows.Forms.TextBox _NameTextBox;
+        private System.Windows.Forms.TextBox _NumberTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox _UseClassificationComboBox;
+        private System.Windows.Forms.ComboBox _ManufacturerComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button _AutoNumberButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Label _NetInfoLabel;
+        private System.Windows.Forms.Button _GetInstrumentScpiTemplateButton;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton _AddFileToolStripButton;
+        private System.Windows.Forms.ToolStripButton _DeleteFileToolStripButton;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton _AddPhotoToolStripButton;
+        private System.Windows.Forms.ToolStripButton _DeletePhotoToolStripButton;
+        private System.Windows.Forms.SplitContainer _SplitContainer;
+        private System.Windows.Forms.TreeView _ScpiTreeView;
         private System.Windows.Forms.ToolStrip toolStrip3;
-        private System.Windows.Forms.ToolStripButton _AddCommandToolStripButton;
-        private System.Windows.Forms.ToolStripButton _EditCommandToolStripButton;
-        private System.Windows.Forms.ToolStripButton _DeleteCommandToolStripButton;
+        private System.Windows.Forms.ToolStripButton _AddScpiToolStripButton;
+        private System.Windows.Forms.ToolStripButton _DeleteScpiToolStripButton;
+        private System.Windows.Forms.TextBox _ScpiNameTextBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox _ScpiCommandTextBox;
+        private System.Windows.Forms.TextBox _ScpiDescriptionTextBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }

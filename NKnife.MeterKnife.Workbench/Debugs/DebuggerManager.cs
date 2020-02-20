@@ -38,42 +38,42 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         {
             var debugMenu = new ToolStripMenuItem("研发调试(&D)");
 
-            var scpiDetailDialog = new ToolStripMenuItem("SCPI编辑器");
-            scpiDetailDialog.ShortcutKeys = Keys.F5;
-            scpiDetailDialog.Click += (sender, args) =>
+            var menu = new ToolStripMenuItem("SCPI编辑器");
+            menu.ShortcutKeys = Keys.F5;
+            menu.Click += (sender, args) =>
             {
-                var form = scpiDetailDialog.GetCurrentParent().FindForm();
+                var form = debugMenu.GetCurrentParent().FindForm();
                 var dialog = Kernel.Container.Resolve<ScpiDetailDialog>();
                 dialog.ShowDialog(form);
             };
-            debugMenu.DropDownItems.Add(scpiDetailDialog);
+            debugMenu.DropDownItems.Add(menu);
 
-            var instDialog = new ToolStripMenuItem("仪器编辑器");
-            instDialog.Click += (sender, args) =>
+            menu = new ToolStripMenuItem("仪器编辑器");
+            menu.Click += (sender, args) =>
             {
-                var form = instDialog.GetCurrentParent().FindForm();
+                var form = debugMenu.GetCurrentParent().FindForm();
                 var dialog = Kernel.Container.Resolve<InstrumentDetailDialog>();
                 dialog.ShowDialog(form);
             };
-            debugMenu.DropDownItems.Add(instDialog);
+            debugMenu.DropDownItems.Add(menu);
 
-            var engineeringDetail = new ToolStripMenuItem("工程编辑器");
-            engineeringDetail.Click += (sender, args) =>
+            menu = new ToolStripMenuItem("工程编辑器");
+            menu.Click += (sender, args) =>
             {
-                var form = engineeringDetail.GetCurrentParent().FindForm();
+                var form = debugMenu.GetCurrentParent().FindForm();
                 var dialog = Kernel.Container.Resolve<EngineeringDetailDialog>();
                 dialog.ShowDialog(form);
             };
-            debugMenu.DropDownItems.Add(engineeringDetail);
+            debugMenu.DropDownItems.Add(menu);
 
-            var cmdEditDilog = new ToolStripMenuItem("指令编辑器");
-            cmdEditDilog.Click += (sender, args) =>
+            menu = new ToolStripMenuItem("指令编辑器");
+            menu.Click += (sender, args) =>
             {
-                var form = cmdEditDilog.GetCurrentParent().FindForm();
+                var form = debugMenu.GetCurrentParent().FindForm();
                 var dialog = Kernel.Container.Resolve<CommandEditorDialog>();
                 dialog.ShowDialog(form);
             };
-            debugMenu.DropDownItems.Add(cmdEditDilog);
+            debugMenu.DropDownItems.Add(menu);
 
             debugMenu.DropDownItems.Add(new ToolStripSeparator());
 

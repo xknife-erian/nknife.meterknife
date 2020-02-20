@@ -41,7 +41,7 @@ namespace NKnife.MeterKnife.ViewModels
 
         public DUTLinearPlot LinearPlot { get; }
 
-        private void OnMeasured(object sender, CollectEventArgs e)
+        private void OnMeasured(object sender, AcquisitionEventArgs e)
         {
             var index = _solution.IndexOf(e.DUT.Item2.Id);
             _Logger.Trace($"数据Index:{index},{e.Measurements.Data},{e.Time},{e.DUT},{e.Group}");

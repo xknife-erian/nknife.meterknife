@@ -33,7 +33,7 @@ namespace NKnife.MeterKnife.Holistic
         /// <summary>
         ///     当采集指令采集到数据时发生。
         /// </summary>
-        public event EventHandler<CollectEventArgs> Acquired;
+        public event EventHandler<AcquisitionEventArgs> Acquired;
 
         /// <summary>
         ///     当测量指令采集到数据时，将数据置入<see cref="AcquisitionService"/>服务中
@@ -42,12 +42,12 @@ namespace NKnife.MeterKnife.Holistic
         /// <param name="data">数据</param>
         public void AddValue((Engineering, DUT) dut, MeasureData data)
         {
-            Task.Factory.StartNew(OnAcquired, new CollectEventArgs(dut, data));
+            Task.Factory.StartNew(OnAcquired, new AcquisitionEventArgs(dut, data));
         }
 
         protected virtual void OnAcquired(object e)
         {
-            Acquired?.Invoke(this, (CollectEventArgs) e);
+            Acquired?.Invoke(this, (AcquisitionEventArgs) e);
         }
 
         #endregion

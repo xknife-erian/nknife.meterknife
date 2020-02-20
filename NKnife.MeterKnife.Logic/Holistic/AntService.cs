@@ -185,10 +185,10 @@ namespace NKnife.MeterKnife.Holistic
 
         private readonly Dictionary<Slot, SlotProcessor> _processorMap = new Dictionary<Slot, SlotProcessor>(1);
 
-        private readonly IGlobal _global;
+        private readonly IKernel _global;
         private readonly ITunnel _tunnel;
 
-        public AntService1(IGlobal global, ITunnel tunnel)
+        public AntService1(IKernel global, ITunnel tunnel)
         {
             _global = global;
             _tunnel = tunnel;
@@ -326,14 +326,14 @@ namespace NKnife.MeterKnife.Holistic
         private const string FAMILY_NAME = "care";
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly IGlobal _global;
+        private readonly IKernel _global;
         private readonly ITunnel _tunnel;
         private readonly BytesCodec _codec;
         private readonly BytesProtocolFamily _family;
 
         private readonly Dictionary<Slot, SlotProcessor> _boxMap = new Dictionary<Slot, SlotProcessor>(1);
 
-        public AntServiceOld(IGlobal global, ITunnel tunnel, BytesCodec codec, BytesProtocolFamily family)
+        public AntServiceOld(IKernel global, ITunnel tunnel, BytesCodec codec, BytesProtocolFamily family)
         {
             _global = global;
             _codec = codec;

@@ -434,12 +434,6 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\meter-knife-icon\meterknife_16px.ico" />
-    <None Include="Properties\meter-knife-icon\meterknife_24px.ico" />
-    <None Include="Properties\meter-knife-icon\meterknife_48px.ico" />
-    <None Include="Properties\meter-knife-icon\meterknife_64px.ico" />
-    <None Include="Properties\meter-knife-icon\meterknife_72px.ico" />
-    <None Include="Properties\meter-knife-icon\meterknife_72px.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NKnife.MeterKnife.Common\NKnife.MeterKnife.Common.csproj">
@@ -465,7 +459,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Properties\Images\add_24px.png" />
     <Content Include="Properties\Images\ColorPicker.png" />
+    <Content Include="Properties\Images\delete_24px.png" />
+    <Content Include="Properties\Images\edit_24px.png" />
+    <Content Include="Properties\Images\stop_24px.png" />
+    <Content Include="Properties\Images\pause_24px.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_horizontal_zoom.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_original.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_series_selection.png" />
@@ -474,6 +473,7 @@
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_out.png" />
     <Content Include="Properties\Images\SlotType\SlotType_MeterCare.png" />
     <Content Include="Properties\Images\SlotType\SlotType_Serial.png" />
+    <Content Include="Properties\Images\start_24px.png" />
     <Content Include="Properties\Images\Strip\dut_add.png" />
     <Content Include="Properties\Images\Strip\dut_delete.png" />
     <Content Include="Properties\Images\Strip\dut_edit.png" />
@@ -497,6 +497,8 @@
     <Content Include="Properties\Images\Strip\slot_delete.png" />
     <Content Include="Properties\Images\Strip\slot_edit.png" />
     <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
+    <Content Include="Properties\meterknife_32px.ico" />
+    <Content Include="Properties\meterknife_96px.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

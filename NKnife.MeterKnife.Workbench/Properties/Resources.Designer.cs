@@ -63,9 +63,29 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap add_24px {
+            get {
+                object obj = ResourceManager.GetObject("add_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ColorPicker {
             get {
                 object obj = ResourceManager.GetObject("ColorPicker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap delete_24px {
+            get {
+                object obj = ResourceManager.GetObject("delete_24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,6 +116,16 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         internal static System.Drawing.Bitmap dut_edit {
             get {
                 object obj = ResourceManager.GetObject("dut_edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap edit_24px {
+            get {
+                object obj = ResourceManager.GetObject("edit_24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,19 +193,9 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon meterknife_24px {
+        internal static System.Drawing.Icon meterknife_32px {
             get {
-                object obj = ResourceManager.GetObject("meterknife_24px", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Icon meterknife_48px {
-            get {
-                object obj = ResourceManager.GetObject("meterknife_48px", resourceCulture);
+                object obj = ResourceManager.GetObject("meterknife_32px", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -246,6 +266,16 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         internal static System.Drawing.Bitmap node_eng {
             get {
                 object obj = ResourceManager.GetObject("node_eng", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap pause_24px {
+            get {
+                object obj = ResourceManager.GetObject("pause_24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -386,6 +416,26 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         internal static System.Drawing.Bitmap SlotType_Serial {
             get {
                 object obj = ResourceManager.GetObject("SlotType_Serial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap start_24px {
+            get {
+                object obj = ResourceManager.GetObject("start_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap stop_24px {
+            get {
+                object obj = ResourceManager.GetObject("stop_24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

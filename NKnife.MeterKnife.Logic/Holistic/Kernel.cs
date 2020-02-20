@@ -7,7 +7,7 @@ using NKnife.MeterKnife.Common.Domain;
 // ReSharper disable once CheckNamespace
 namespace NKnife.MeterKnife.Holistic
 {
-    public class Kernel : IGlobal
+    public class Kernel : IKernel
     {
         /// <summary>
         /// </summary>

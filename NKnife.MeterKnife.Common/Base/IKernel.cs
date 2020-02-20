@@ -8,7 +8,7 @@ namespace NKnife.MeterKnife.Base
     /// <summary>
     ///     软件全局的一些数据
     /// </summary>
-    public interface IGlobal
+    public interface IKernel
     {
         /// <summary>
         ///     软件使用的数据库模式

@@ -38,8 +38,8 @@ namespace NKnife.MeterKnife.Workbench
             InitializeComponent();
             var about = new QuickAbout();
             Text = $"{about.AssemblyTitle} - {about.AssemblyVersion}";
-            Icon = Resources.meterknife_24px;
-            var notifyIcon = new NotifyIcon {Icon = Resources.meterknife_48px};
+            Icon = Resources.meterknife_32px;
+            var notifyIcon = new NotifyIcon {Icon = Resources.meterknife_32px};
             BindNotifyIcon(notifyIcon);
 
             var fileMenuItem = BuildFileMenu();

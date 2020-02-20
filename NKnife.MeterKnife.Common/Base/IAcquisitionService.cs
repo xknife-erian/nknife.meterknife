@@ -13,7 +13,7 @@ namespace NKnife.MeterKnife.Base
         /// <summary>
         ///     当测量事物启动后采集到即时数据时发生。
         /// </summary>
-        event EventHandler<CollectEventArgs> Acquired;
+        event EventHandler<AcquisitionEventArgs> Acquired;
 
         /// <summary>
         ///     当测量指令采集到数据时，将数据置入MeasureService服务中
@@ -26,9 +26,9 @@ namespace NKnife.MeterKnife.Base
     /// <summary>
     ///     当测量事物启动后采集到即时数据时发生的事件信息封装。
     /// </summary>
-    public class CollectEventArgs : EventArgs
+    public class AcquisitionEventArgs : EventArgs
     {
-        public CollectEventArgs((Engineering, DUT) dut, MeasureData measurements)
+        public AcquisitionEventArgs((Engineering, DUT) dut, MeasureData measurements)
         {
             Time = DateTime.Now;
             DUT = dut;
