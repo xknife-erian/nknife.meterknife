@@ -11,6 +11,7 @@ using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Workbench.Base;
+using NKnife.MeterKnife.Workbench.Dialogs.Commands;
 
 namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
 {
@@ -127,7 +128,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
 
         private void OpenDialogAndGetCommand(PoolCategory pc)
         {
-            var dialog = _dialogProvider.New<CareCommandEditorDialog>();
+            var dialog = _dialogProvider.New<CommandEditorDialog>();
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var cmd = dialog.ScpiCommand;

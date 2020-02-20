@@ -142,7 +142,7 @@ namespace System.Windows.Forms
             {
                 key = keyName;
             }
-            var ele = (XmlElement) _RootElement.SelectSingleNode($"//{localName}[@key='{key}']");
+            var ele = (XmlElement) _RootElement?.SelectSingleNode($"//{localName}[@key='{key}']");
             if (ele == null || !ele.HasAttribute(Global.Culture))
             {
                 if (ele == null)
@@ -165,11 +165,11 @@ namespace System.Windows.Forms
                     }
                 }
 
-                _RootElement.AppendChild(ele);
-                _RootElement.OwnerDocument?.Save(_XmlFile);
+                _RootElement?.AppendChild(ele);
+                _RootElement?.OwnerDocument?.Save(_XmlFile);
             }
 
-            return $"{ele.GetAttribute(Global.Culture)}{end}";
+            return $"{ele?.GetAttribute(Global.Culture)}{end}";
         }
     }
 }

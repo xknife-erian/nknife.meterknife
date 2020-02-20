@@ -8,15 +8,15 @@ using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.Util;
 
-namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
+namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
 {
-    public partial class CareCommandEditorDialog : Form
+    public partial class CommandEditorDialog : Form
     {
         private readonly IWorkbenchViewModel _workbench;
         private bool _timeoutContrilAlreadySet = false;
 
 
-        public CareCommandEditorDialog(IWorkbenchViewModel viewModel)
+        public CommandEditorDialog(IWorkbenchViewModel viewModel)
         {
             _workbench = viewModel;
             InitializeComponent();
@@ -35,13 +35,13 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
         {
             this.Res(new Control[]
             {
-                _Label1, _Label2, _Label3, _Label4, _Label5, _Label6,
+                label5, label4, label6, label8, label11,
                 //
-                _NewDUTButton, _ConfirmButton, _CancelButton,
+                _ConfirmButton, _CancelButton,
                 //
                 _ScpiTabPage, _CareTabPage,
                 //
-                _HexEnableCheckBox, _InfiniteLoopCheckBox, _WorkToFinishCheckBox,
+                _InfiniteLoopCheckBox, _WorkToFinishCheckBox,
                 //
                 _TimeGroupBox, _LoopGroupBox
             });
@@ -79,21 +79,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 _CommandTabControl.TabPages.Add(_CareTabPage);
                 _CommandTabControl.ResumeLayout(false);
                 _CommandTabControl.PerformLayout();
-            };
-            _HexEnableCheckBox.CheckedChanged += (sender, args) =>
-            {
-                if (_HexEnableCheckBox.Checked)
-                {
-                    var t = _CommandTextBox.Text;
-                    _CommandTextBox.Text = Encoding.ASCII.GetBytes(t).ToHexString();
-                }
-                else
-                {
-                    var t = _CommandTextBox.Text;
-                    var bs = UtilByte.ConvertToBytes(t);
-                    _CommandTextBox.Text = Encoding.ASCII.GetString(bs);
-                }
-                _CommandTextBox.Focus();
             };
         }
 
@@ -152,20 +137,14 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 if (_ScpiRadioButton.Checked)
                 {
                     ScpiCommand = new ScpiCommand();
-                    ScpiCommand.Scpi = new Scpi
-                    {
-                        Name = _ScpiNameTextBox.Text,
-                        IsHex = _HexEnableCheckBox.Checked,
-                        Command = _CommandTextBox.Text, 
-                        Description = _ScpiDescriptionTextBox.Text
-                    };
+                    ScpiCommand.Scpi = _ScpiDetailPanel.Scpi;
                 }
                 else if (_CareRadioButton.Checked)
                 {
                     ScpiCommand = new CareCommand();
                 }
 
-                ScpiCommand.GpibAddress = (short) _GpibNumericUpDown.Value;
+                //ScpiCommand.GpibAddress = (short) _GpibNumericUpDown.Value;
                 ScpiCommand.Interval = (int)_IntervalNumericUpDown.Value;
                 ScpiCommand.Timeout = (int)_TimeoutNumericUpDown.Value;
                 if (_LoopCountNmericUpDown.Value == 1)

@@ -13,11 +13,6 @@ namespace NKnife.MeterKnife.Common.Scpi
     /// </summary>
     public class Scpi
     {
-        public Scpi()
-        {
-            IsHex = false;
-        }
-
         /// <summary>
         /// 命令名称
         /// </summary>
@@ -27,11 +22,6 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// 命令主体
         /// </summary>
         public string Command { get; set; }
-
-        /// <summary>
-        /// 命令主体是用原生字符串表达,还是16进制字符串表达
-        /// </summary>
-        public bool IsHex { get; set; }
 
         /// <summary>
         /// 命令的解释

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Workbench.Base;
+using NKnife.MeterKnife.Workbench.Dialogs.Instruments;
 using NKnife.MeterKnife.Workbench.Properties;
 using NKnife.Win.Quick.Controls;
 
@@ -14,22 +17,33 @@ namespace NKnife.MeterKnife.Workbench.Views
 {
     public partial class InstrumentView : SingletonDockContent
     {
-        public InstrumentView()
+        private readonly IDialogProvider _dialogProvider;
+
+        public InstrumentView(IDialogProvider dialogProvider)
         {
+            _dialogProvider = dialogProvider;
             InitializeComponent();
             InitializeLanguage();
-            _NewToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _NewToolStripButton.Image = Resources.ints_add;
-            _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _EditToolStripButton.Image = Resources.ints_edit;
-            _DeleteToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _DeleteToolStripButton.Image = Resources.ints_delete;
+            RespondToControlClick();
         }
 
         private void InitializeLanguage()
         {
             this.Res(this);
             this.Res(_NewToolStripButton, _EditToolStripButton, _DeleteToolStripButton);
+        }
+
+        private void RespondToControlClick()
+        {
+            _NewToolStripButton.Click += (sender, args) =>
+            {
+                var dialog = _dialogProvider.New<InstrumentDetailDialog>();
+                var ds = dialog.ShowDialog();
+                if (ds == DialogResult.OK)
+                {
+
+                }
+            };
         }
     }
 }

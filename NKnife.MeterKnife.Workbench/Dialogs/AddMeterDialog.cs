@@ -59,7 +59,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
                 _logger.Debug(string.Format("Send:{0}", idn.GenerateCareProtocol(0)));
                 var careItem = new ScpiCommandQueue.Item
                 {
-                    ScpiCommand = idn,
+                    ScpiCommandPanel = idn,
                     GpibAddress = address
                 };
                 _CommService.SendCommands(Port, careItem); //08 17 07 AA 00 2A 49 44 4E 3F

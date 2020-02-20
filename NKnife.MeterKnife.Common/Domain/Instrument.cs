@@ -25,12 +25,22 @@ namespace NKnife.MeterKnife.Common.Domain
         public string Id { get; set; }
 
         /// <summary>
+        ///     设备名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     设备常用简称
+        /// </summary>
+        public string AbbrName { get; } = string.Empty;
+
+        /// <summary>
         ///     生产厂商
         /// </summary>
         public string Manufacturer { get; set; }
 
         /// <summary>
-        /// 用途分类
+        ///     用途分类
         /// </summary>
         public string UseClassification { get; set; }
 
@@ -45,25 +55,21 @@ namespace NKnife.MeterKnife.Common.Domain
         public string Model2 { get; set; }
 
         /// <summary>
-        ///     设备名称
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        ///     设备常用简称
-        /// </summary>
-        public string AbbrName { get; } = string.Empty;
-
-        /// <summary>
         ///     设备说明或信息
         /// </summary>
-        public string Information { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+
+        public DateTime CreateTime { get; set; }
 
         /// <summary>
-        ///     仪器的图片
+        ///     仪器的图片存放路径
         /// </summary>
-        [JsonIgnore]
-        public Image Image { get; set; }
+        public string ImagesPath { get; set; }
+
+        /// <summary>
+        ///     被测物的测量报告存放路径
+        /// </summary>
+        public string FilesPath { get; set; }
 
         public override bool Equals(object obj)
         {

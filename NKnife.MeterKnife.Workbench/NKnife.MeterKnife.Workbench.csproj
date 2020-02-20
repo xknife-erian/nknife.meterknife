@@ -147,8 +147,20 @@
     <Compile Include="Controls\EngineeringTree.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\ScpiDetailPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ScpiDetailPanel.Designer.cs">
+      <DependentUpon>ScpiDetailPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Debugs\DebuggerManager.cs" />
     <Compile Include="Debugs\SimpleMeasure.cs" />
+    <Compile Include="Dialogs\Commands\ScpiDetailDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Commands\ScpiDetailDialog.Designer.cs">
+      <DependentUpon>ScpiDetailDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\DUTs\DUTDetailDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +178,12 @@
     </Compile>
     <Compile Include="Dialogs\Commands\CommandEditorDialog.Designer.cs">
       <DependentUpon>CommandEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Instruments\InstrumentDetailDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Instruments\InstrumentDetailDialog.Designer.cs">
+      <DependentUpon>InstrumentDetailDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\Plots\DataSeriesEditorDialog.cs">
       <SubType>Form</SubType>
@@ -225,20 +243,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\BaseParamPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\BaseParamPanel.Designer.cs">
-      <DependentUpon>BaseParamPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\FiguredDataGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\FiguredDataGrid.Designer.cs">
       <DependentUpon>FiguredDataGrid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ScpiParamPanel.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UserScpiCommandPanel.cs">
       <SubType>UserControl</SubType>
@@ -332,6 +341,12 @@
     <Compile Include="Workbench.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Controls\ScpiDetailPanel.resx">
+      <DependentUpon>ScpiDetailPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Commands\ScpiDetailDialog.resx">
+      <DependentUpon>ScpiDetailDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DUTs\DUTDetailDialog.resx">
       <DependentUpon>DUTDetailDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Commands\CommandEditorDialog.resx">
       <DependentUpon>CommandEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Instruments\InstrumentDetailDialog.resx">
+      <DependentUpon>InstrumentDetailDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Plots\DataSeriesEditorDialog.resx">
       <DependentUpon>DataSeriesEditorDialog.cs</DependentUpon>
@@ -369,14 +387,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\BaseParamPanel.resx">
-      <DependentUpon>BaseParamPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FiguredDataGrid.resx">
       <DependentUpon>FiguredDataGrid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ScpiParamPanel.resx">
-      <DependentUpon>ScpiParamPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserScpiCommandPanel.resx">
       <DependentUpon>UserScpiCommandPanel.cs</DependentUpon>

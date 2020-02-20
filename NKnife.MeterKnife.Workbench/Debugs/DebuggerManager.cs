@@ -6,7 +6,9 @@ using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.MeterKnife.ViewModels.Plots;
+using NKnife.MeterKnife.Workbench.Dialogs.Commands;
 using NKnife.MeterKnife.Workbench.Dialogs.Engineerings;
+using NKnife.MeterKnife.Workbench.Dialogs.Instruments;
 using NKnife.MeterKnife.Workbench.Views;
 using NKnife.Util;
 using NKnife.Win.Quick.Base;
@@ -34,44 +36,51 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         public ToolStripMenuItem GetDebugMenu()
         {
-            var debugMainMenu = new ToolStripMenuItem("Debug");
+            var debugMenu = new ToolStripMenuItem("研发调试(&D)");
 
-            var engineeringDetail = BuildEngineeringDetailMenu(debugMainMenu);
-            debugMainMenu.DropDownItems.Add(engineeringDetail);
-
-            var cmdEditDilog = BuildCommandEditMenu(debugMainMenu);
-            debugMainMenu.DropDownItems.Add(cmdEditDilog);
-
-            debugMainMenu.DropDownItems.Add(new ToolStripSeparator());
-
-            var plot = BuildMeasureMenu(debugMainMenu);
-            debugMainMenu.DropDownItems.Add(plot);
-
-            return debugMainMenu;
-        }
-
-        private ToolStripMenuItem BuildCommandEditMenu(ToolStripMenuItem debugMainMenu)
-        {
-            var menu = new ToolStripMenuItem("指令编辑器");
-            menu.Click += (sender, args) =>
+            var scpiDetailDialog = new ToolStripMenuItem("SCPI编辑器");
+            scpiDetailDialog.ShortcutKeys = Keys.F5;
+            scpiDetailDialog.Click += (sender, args) =>
             {
-                var form = menu.GetCurrentParent().FindForm();
-                var dialog = Kernel.Container.Resolve<CareCommandEditorDialog>();
+                var form = scpiDetailDialog.GetCurrentParent().FindForm();
+                var dialog = Kernel.Container.Resolve<ScpiDetailDialog>();
                 dialog.ShowDialog(form);
             };
-            return menu;
-        }
+            debugMenu.DropDownItems.Add(scpiDetailDialog);
 
-        private ToolStripMenuItem BuildEngineeringDetailMenu(ToolStripMenuItem debugMainMenu)
-        {
-            var menu = new ToolStripMenuItem("工程编辑器");
-            menu.Click += (sender, args) =>
+            var instDialog = new ToolStripMenuItem("仪器编辑器");
+            instDialog.Click += (sender, args) =>
             {
-                var form = menu.GetCurrentParent().FindForm();
+                var form = instDialog.GetCurrentParent().FindForm();
+                var dialog = Kernel.Container.Resolve<InstrumentDetailDialog>();
+                dialog.ShowDialog(form);
+            };
+            debugMenu.DropDownItems.Add(instDialog);
+
+            var engineeringDetail = new ToolStripMenuItem("工程编辑器");
+            engineeringDetail.Click += (sender, args) =>
+            {
+                var form = engineeringDetail.GetCurrentParent().FindForm();
                 var dialog = Kernel.Container.Resolve<EngineeringDetailDialog>();
                 dialog.ShowDialog(form);
             };
-            return menu;
+            debugMenu.DropDownItems.Add(engineeringDetail);
+
+            var cmdEditDilog = new ToolStripMenuItem("指令编辑器");
+            cmdEditDilog.Click += (sender, args) =>
+            {
+                var form = cmdEditDilog.GetCurrentParent().FindForm();
+                var dialog = Kernel.Container.Resolve<CommandEditorDialog>();
+                dialog.ShowDialog(form);
+            };
+            debugMenu.DropDownItems.Add(cmdEditDilog);
+
+            debugMenu.DropDownItems.Add(new ToolStripSeparator());
+
+            var plot = BuildMeasureMenu(debugMenu);
+            debugMenu.DropDownItems.Add(plot);
+
+            return debugMenu;
         }
 
         private ToolStripMenuItem BuildMeasureMenu(ToolStripMenuItem debug)

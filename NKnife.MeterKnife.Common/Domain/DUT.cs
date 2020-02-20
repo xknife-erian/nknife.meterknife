@@ -48,12 +48,12 @@ namespace NKnife.MeterKnife.Common.Domain
         /// <summary>
         ///     被测物的照片存放路径
         /// </summary>
-        public string ImagePath { get; set; }
+        public string ImagesPath { get; set; }
 
         /// <summary>
         ///     被测物的测量报告存放路径
         /// </summary>
-        public string ReportPath { get; set; }
+        public string ReportsPath { get; set; }
 
         /// <summary>
         ///     被测物ID，也是编号，全局不可重复

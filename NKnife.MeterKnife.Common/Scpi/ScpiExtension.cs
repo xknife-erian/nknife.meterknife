@@ -18,7 +18,7 @@ namespace NKnife.MeterKnife.Common.Scpi
             const byte MAIN_COMMAND = 0xAA;
             const byte SUB_COMMAND = 0x00;
 
-            byte[] scpiBytes = scpi.IsHex ? UtilByte.ConvertToBytes(scpi.Command) : Encoding.ASCII.GetBytes(scpi.Command);
+            byte[] scpiBytes = Encoding.ASCII.GetBytes(scpi.Command);
 
             var bs = new byte[] { 0x08, (byte)gpibAddress, (byte)(scpiBytes.Length + 2), MAIN_COMMAND, SUB_COMMAND };
             var result = new byte[bs.Length + scpiBytes.Length];

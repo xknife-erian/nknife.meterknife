@@ -38,6 +38,7 @@ namespace NKnife.MeterKnife.Workbench.Menus
         private ToolStripMenuItem BuildInstrumentManagerMenu()
         {
             var instMenu = new ToolStripMenuItem(this.Res("仪表管理(&I)"));
+            instMenu.ShortcutKeys = Keys.F4;
             instMenu.Click += (sender, args) =>
             {
                 IWorkbench wb = this.GetWorkbench();
@@ -54,6 +55,7 @@ namespace NKnife.MeterKnife.Workbench.Menus
         private ToolStripMenuItem BuildSlotManagerMenu()
         {
             var slotMenu = new ToolStripMenuItem(this.Res("接驳器管理(&C)"));
+            slotMenu.ShortcutKeys = Keys.F8;
             slotMenu.Click += (sender, args) =>
             {
                 IWorkbench wb = this.GetWorkbench();
@@ -70,7 +72,7 @@ namespace NKnife.MeterKnife.Workbench.Menus
         private ToolStripMenuItem BuildEngineeringManagerMenu()
         {
             var engManagerMenu = new ToolStripMenuItem(this.Res("工程管理(&E)"));
-            engManagerMenu.ShortcutKeys = Keys.F6;
+            engManagerMenu.ShortcutKeys = Keys.F7;
             engManagerMenu.Click += (s, e) =>
             {
                 IWorkbench wb = this.GetWorkbench();
@@ -88,7 +90,7 @@ namespace NKnife.MeterKnife.Workbench.Menus
         private ToolStripMenuItem BuildDUTManagerMenu()
         {
             var dutMenu = new ToolStripMenuItem(this.Res("被测物管理(&D)"));
-            dutMenu.ShortcutKeys = Keys.F5;
+            dutMenu.ShortcutKeys = Keys.F6;
             dutMenu.Click += (sender, args) =>
             {
                 IWorkbench wb = this.GetWorkbench();
