@@ -15,14 +15,12 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
         private readonly IWorkbenchViewModel _workbench;
         private bool _timeoutContrilAlreadySet = false;
 
-
         public CommandEditorDialog(IWorkbenchViewModel viewModel)
         {
             _workbench = viewModel;
             InitializeComponent();
             InitizlizeLanguage();
-            InitializeSlotGroup();
-            InitializeDUTGroup();
+            InitializeInstrumentControls();
             InitializeCommandTabControl();
             InitializeTimeControlGroup();
             InitializeLoopControlGroup();
@@ -35,7 +33,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
         {
             this.Res(new Control[]
             {
-                label5, label4, label6, label8, label11,
+                label1, label2, label3, label4, label5, label6, label8, label9,
                 //
                 _ConfirmButton, _CancelButton,
                 //
@@ -49,12 +47,16 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
 
         public ScpiCommand ScpiCommand { get; set; }
 
-        private void InitializeSlotGroup()
+        private void InitializeInstrumentControls()
         {
-        }
-
-        private void InitializeDUTGroup()
-        {
+            _InstrumentsComboBox.SelectedIndexChanged += (sender, args) =>
+            {
+                if (_InstrumentsComboBox.SelectedItem is Instrument inst)
+                {
+                    _InstrumentSCPIComboBox.Items.Clear();
+                    _InstrumentSCPIComboBox.Items.AddRange(inst.ScpiList.Cast<object>().ToArray());
+                }
+            };
         }
 
         private void InitializeCommandTabControl()
@@ -122,6 +124,14 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
                 _DUTComboBox.Items.AddRange(dutArray.Cast<object>().ToArray());
                 if (_DUTComboBox.Items.Count > 0)
                     _DUTComboBox.SelectedIndex = 0;
+            }
+
+            var instArray = await _workbench.GetAllInstrumentAsync();
+            if (instArray != null)
+            {
+                _InstrumentsComboBox.Items.AddRange(instArray.Cast<object>().ToArray());
+                if (_InstrumentsComboBox.Items.Count > 0)
+                    _InstrumentsComboBox.SelectedIndex = 0;
             }
         }
 

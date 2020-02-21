@@ -46,15 +46,17 @@
             this._InfiniteLoopCheckBox = new System.Windows.Forms.CheckBox();
             this._WorkToFinishCheckBox = new System.Windows.Forms.CheckBox();
             this._LoopCountNmericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this._CommandTabControl = new System.Windows.Forms.TabControl();
             this._ScpiTabPage = new System.Windows.Forms.TabPage();
+            this._ScpiDetailPanel = new NKnife.MeterKnife.Workbench.Controls.ScpiDetailPanel();
             this._CareTabPage = new System.Windows.Forms.TabPage();
             this._ScpiRadioButton = new System.Windows.Forms.RadioButton();
             this._CareRadioButton = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this._InstrumentsComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this._ScpiDetailPanel = new NKnife.MeterKnife.Workbench.Controls.ScpiDetailPanel();
+            this._InstrumentSCPIComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._IntervalNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TimeoutNumericUpDown)).BeginInit();
             this._TimeGroupBox.SuspendLayout();
@@ -237,7 +239,7 @@
             this._LoopGroupBox.Controls.Add(this._InfiniteLoopCheckBox);
             this._LoopGroupBox.Controls.Add(this._WorkToFinishCheckBox);
             this._LoopGroupBox.Controls.Add(this._LoopCountNmericUpDown);
-            this._LoopGroupBox.Controls.Add(this.label11);
+            this._LoopGroupBox.Controls.Add(this.label9);
             this._LoopGroupBox.Location = new System.Drawing.Point(263, 374);
             this._LoopGroupBox.Name = "_LoopGroupBox";
             this._LoopGroupBox.Size = new System.Drawing.Size(227, 138);
@@ -288,14 +290,14 @@
             0,
             0});
             // 
-            // label11
+            // label9
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(27, 28);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 17);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "循环次数:";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(27, 28);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 17);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "循环次数:";
             // 
             // _CommandTabControl
             // 
@@ -321,6 +323,19 @@
             this._ScpiTabPage.TabIndex = 0;
             this._ScpiTabPage.Text = "SCPI指令";
             this._ScpiTabPage.UseVisualStyleBackColor = true;
+            // 
+            // _ScpiDetailPanel
+            // 
+            this._ScpiDetailPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ScpiDetailPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this._ScpiDetailPanel.Location = new System.Drawing.Point(3, 3);
+            this._ScpiDetailPanel.Name = "_ScpiDetailPanel";
+            scpi1.Command = "";
+            scpi1.Description = "";
+            scpi1.Name = "";
+            this._ScpiDetailPanel.Scpi = scpi1;
+            this._ScpiDetailPanel.Size = new System.Drawing.Size(349, 201);
+            this._ScpiDetailPanel.TabIndex = 0;
             // 
             // _CareTabPage
             // 
@@ -354,16 +369,16 @@
             this._CareRadioButton.Text = "MeterCare";
             this._CareRadioButton.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // _InstrumentsComboBox
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._InstrumentsComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(36, 90);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(209, 25);
-            this.comboBox1.TabIndex = 20;
+            this._InstrumentsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._InstrumentsComboBox.FormattingEnabled = true;
+            this._InstrumentsComboBox.Location = new System.Drawing.Point(36, 90);
+            this._InstrumentsComboBox.Name = "_InstrumentsComboBox";
+            this._InstrumentsComboBox.Size = new System.Drawing.Size(209, 25);
+            this._InstrumentsComboBox.TabIndex = 20;
             // 
             // label2
             // 
@@ -374,18 +389,24 @@
             this.label2.TabIndex = 21;
             this.label2.Text = "仪器";
             // 
-            // _ScpiDetailPanel
+            // _InstrumentSCPIComboBox
             // 
-            this._ScpiDetailPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ScpiDetailPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this._ScpiDetailPanel.Location = new System.Drawing.Point(3, 3);
-            this._ScpiDetailPanel.Name = "_ScpiDetailPanel";
-            scpi1.Command = "";
-            scpi1.Description = "";
-            scpi1.Name = "";
-            this._ScpiDetailPanel.Scpi = scpi1;
-            this._ScpiDetailPanel.Size = new System.Drawing.Size(349, 201);
-            this._ScpiDetailPanel.TabIndex = 0;
+            this._InstrumentSCPIComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._InstrumentSCPIComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._InstrumentSCPIComboBox.FormattingEnabled = true;
+            this._InstrumentSCPIComboBox.Location = new System.Drawing.Point(263, 90);
+            this._InstrumentSCPIComboBox.Name = "_InstrumentSCPIComboBox";
+            this._InstrumentSCPIComboBox.Size = new System.Drawing.Size(231, 25);
+            this._InstrumentSCPIComboBox.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(262, 70);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 17);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "仪器指令集";
             // 
             // CommandEditorDialog
             // 
@@ -394,8 +415,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
             this.ClientSize = new System.Drawing.Size(533, 573);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this._InstrumentSCPIComboBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this._InstrumentsComboBox);
             this.Controls.Add(this._CareRadioButton);
             this.Controls.Add(this._ScpiRadioButton);
             this.Controls.Add(this._CommandTabControl);
@@ -450,14 +473,16 @@
         private System.Windows.Forms.CheckBox _InfiniteLoopCheckBox;
         private System.Windows.Forms.CheckBox _WorkToFinishCheckBox;
         private System.Windows.Forms.NumericUpDown _LoopCountNmericUpDown;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TabControl _CommandTabControl;
         private System.Windows.Forms.TabPage _ScpiTabPage;
         private System.Windows.Forms.TabPage _CareTabPage;
         private System.Windows.Forms.RadioButton _ScpiRadioButton;
         private System.Windows.Forms.RadioButton _CareRadioButton;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox _InstrumentsComboBox;
         private System.Windows.Forms.Label label2;
         private Controls.ScpiDetailPanel _ScpiDetailPanel;
+        private System.Windows.Forms.ComboBox _InstrumentSCPIComboBox;
+        private System.Windows.Forms.Label label1;
     }
 }
