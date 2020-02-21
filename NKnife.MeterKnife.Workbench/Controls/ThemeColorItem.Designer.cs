@@ -35,16 +35,17 @@
             // 
             this._Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._Button.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.color_picker;
             this._Button.Location = new System.Drawing.Point(54, -1);
             this._Button.Name = "_Button";
-            this._Button.Size = new System.Drawing.Size(27, 23);
+            this._Button.Size = new System.Drawing.Size(27, 25);
             this._Button.TabIndex = 2;
             this._Button.UseVisualStyleBackColor = true;
             // 
             // ThemeColorItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this._Button);
             this.Font = new System.Drawing.Font("Verdana", 8.25F);
@@ -56,6 +57,7 @@
         }
 
         #endregion
+
         private System.Windows.Forms.Button _Button;
     }
 }

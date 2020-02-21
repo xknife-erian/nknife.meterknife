@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScpiDetailDialog));
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
@@ -103,41 +102,43 @@
             this._ScpiTreeView.FullRowSelect = true;
             this._ScpiTreeView.HideSelection = false;
             this._ScpiTreeView.LabelEdit = true;
-            this._ScpiTreeView.Location = new System.Drawing.Point(0, 31);
+            this._ScpiTreeView.Location = new System.Drawing.Point(0, 33);
             this._ScpiTreeView.Name = "_ScpiTreeView";
-            this._ScpiTreeView.Size = new System.Drawing.Size(144, 214);
+            this._ScpiTreeView.Size = new System.Drawing.Size(144, 212);
             this._ScpiTreeView.TabIndex = 5;
             // 
             // toolStrip3
             // 
             this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip3.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip3.ImageScalingSize = new System.Drawing.Size(18, 18);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._AddToolStripButton,
             this._DeleteToolStripButton});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(144, 31);
+            this.toolStrip3.Size = new System.Drawing.Size(144, 33);
             this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
             // 
             // _AddToolStripButton
             // 
-            this._AddToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.add_24px;
+            this._AddToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._AddToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._AddToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._AddToolStripButton.Name = "_AddToolStripButton";
-            this._AddToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._AddToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._AddToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._AddToolStripButton.Text = "新增";
             // 
             // _DeleteToolStripButton
             // 
-            this._DeleteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._DeleteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._DeleteToolStripButton.Enabled = false;
-            this._DeleteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteToolStripButton.Image")));
             this._DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._DeleteToolStripButton.Name = "_DeleteToolStripButton";
-            this._DeleteToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._DeleteToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._DeleteToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._DeleteToolStripButton.Text = "删除";
             // 
             // _ScpiNameTextBox

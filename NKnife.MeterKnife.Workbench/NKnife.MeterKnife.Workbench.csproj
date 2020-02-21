@@ -257,12 +257,6 @@
     <Compile Include="Dialogs\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\AddMeterDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\AddMeterDialog.Designer.cs">
-      <DependentUpon>AddMeterDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\DataPathSetterDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -390,6 +384,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Res.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Res.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FiguredDataGrid.resx">
@@ -400,9 +395,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\AddMeterDialog.resx">
-      <DependentUpon>AddMeterDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DataPathSetterDialog.resx">
       <DependentUpon>DataPathSetterDialog.cs</DependentUpon>
@@ -474,10 +466,7 @@
     <Folder Include="Properties\Photos\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\Images\add_24px.png" />
-    <Content Include="Properties\Images\ColorPicker.png" />
-    <Content Include="Properties\Images\delete_24px.png" />
-    <Content Include="Properties\Images\edit_24px.png" />
+    <Content Include="Properties\Images\color_picker.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_horizontal_zoom.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_original.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_series_selection.png" />

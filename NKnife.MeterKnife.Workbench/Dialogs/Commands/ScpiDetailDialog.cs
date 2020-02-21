@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Scpi;
+using NKnife.MeterKnife.Resources;
 
 namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
 {
@@ -53,6 +54,10 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
         {
             this.Res(this, _AcceptButton, _CancelButton, label1, label2, label3, label4);
             this.Res(_AddToolStripButton, _DeleteToolStripButton);
+            _AddToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _DeleteToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _AddToolStripButton.Image = MenuButtonResource.base_add_24px;
+            _DeleteToolStripButton.Image = MenuButtonResource.base_delete_24px;
         }
 
         private void RespondToTreeViewEvent()

@@ -10,8 +10,14 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
         public DataPathSetterDialog()
         {
             InitializeComponent();
+            InitializeLanguage();
             if (Directory.Exists(DataPath))
                 _PathTextbox.Text = DataPath;
+        }
+
+        private void InitializeLanguage()
+        {
+            this.Res(this, groupBox1, label1, _CancelButton, _ConfirmButton, _PathSelectButton);
         }
 
         public string DataPath { get; private set; }

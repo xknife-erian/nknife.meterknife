@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
+using NKnife.MeterKnife.Resources;
 
 namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
 {
@@ -58,6 +59,20 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
             this.Res(_AddScpiToolStripButton, _DeleteScpiToolStripButton);
             this.Res(_AddPhotoToolStripButton, _DeletePhotoToolStripButton);
             this.Res(_AddFileToolStripButton, _DeleteFileToolStripButton);
+
+            _AddScpiToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image; 
+            _DeleteScpiToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _AddPhotoToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _DeletePhotoToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _AddFileToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _DeleteFileToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+
+            _AddScpiToolStripButton.Image = MenuButtonResource.base_add_24px;
+            _DeleteScpiToolStripButton.Image = MenuButtonResource.base_delete_24px;
+            _AddPhotoToolStripButton.Image = MenuButtonResource.base_add_24px;
+            _DeletePhotoToolStripButton.Image = MenuButtonResource.base_delete_24px;
+            _AddFileToolStripButton.Image = MenuButtonResource.base_add_24px;
+            _DeleteFileToolStripButton.Image = MenuButtonResource.base_delete_24px;
         }
 
         private void RespondToControlEvent()

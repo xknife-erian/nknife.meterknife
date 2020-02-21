@@ -4,12 +4,14 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
 {
     public sealed class PlotThemeDropDownButton : ToolStripDropDownButton
     {
-        private readonly ToolStripMenuItem _defaultThemeMenuItem = new ToolStripMenuItem("默认主题(&D)");
-        private readonly ToolStripMenuItem _themeManagerMenuItem = new ToolStripMenuItem("主题管理(&M)");
+        private ToolStripMenuItem _defaultThemeMenuItem;
+        private ToolStripMenuItem _themeManagerMenuItem;
 
         public PlotThemeDropDownButton()
         {
-            Text = "主题";
+            Text = this.Res("主题");
+            _defaultThemeMenuItem = new ToolStripMenuItem(this.Res("默认主题(&D)"));
+            _themeManagerMenuItem = new ToolStripMenuItem(this.Res("主题管理(&M)"));
             DropDownItems.AddRange(new ToolStripItem[]
             {
                 _defaultThemeMenuItem,

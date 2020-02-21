@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstrumentDetailDialog));
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this._FilesTreeView = new System.Windows.Forms.TreeView();
+            this._FilesStatusStrip = new System.Windows.Forms.StatusStrip();
+            this._FilesPathToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this._AddFileToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteFileToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.miniToolStrip = new System.Windows.Forms.ToolStrip();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this._PhotoListView = new System.Windows.Forms.ListView();
+            this._PhotosStatusStrip = new System.Windows.Forms.StatusStrip();
+            this._PhotosPathToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._AddPhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeletePhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -76,13 +79,11 @@
             this.label12 = new System.Windows.Forms.Label();
             this._NetInfoLabel = new System.Windows.Forms.Label();
             this._GetInstrumentScpiTemplateButton = new System.Windows.Forms.Button();
-            this._FilesStatusStrip = new System.Windows.Forms.StatusStrip();
-            this._PhotosStatusStrip = new System.Windows.Forms.StatusStrip();
-            this._PhotosPathToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this._FilesPathToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabPage4.SuspendLayout();
+            this._FilesStatusStrip.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this._PhotosStatusStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -92,8 +93,6 @@
             this._SplitContainer.Panel2.SuspendLayout();
             this._SplitContainer.SuspendLayout();
             this.toolStrip3.SuspendLayout();
-            this._FilesStatusStrip.SuspendLayout();
-            this._PhotosStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _CancelButton
@@ -133,40 +132,58 @@
             // _FilesTreeView
             // 
             this._FilesTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._FilesTreeView.Location = new System.Drawing.Point(3, 34);
+            this._FilesTreeView.Location = new System.Drawing.Point(3, 36);
             this._FilesTreeView.Name = "_FilesTreeView";
-            this._FilesTreeView.Size = new System.Drawing.Size(422, 320);
+            this._FilesTreeView.Size = new System.Drawing.Size(422, 318);
             this._FilesTreeView.TabIndex = 3;
+            // 
+            // _FilesStatusStrip
+            // 
+            this._FilesStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._FilesPathToolStripStatusLabel});
+            this._FilesStatusStrip.Location = new System.Drawing.Point(3, 354);
+            this._FilesStatusStrip.Name = "_FilesStatusStrip";
+            this._FilesStatusStrip.Size = new System.Drawing.Size(422, 22);
+            this._FilesStatusStrip.SizingGrip = false;
+            this._FilesStatusStrip.TabIndex = 5;
+            // 
+            // _FilesPathToolStripStatusLabel
+            // 
+            this._FilesPathToolStripStatusLabel.Name = "_FilesPathToolStripStatusLabel";
+            this._FilesPathToolStripStatusLabel.Size = new System.Drawing.Size(11, 17);
+            this._FilesPathToolStripStatusLabel.Text = ".";
             // 
             // toolStrip2
             // 
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(18, 18);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._AddFileToolStripButton,
             this._DeleteFileToolStripButton});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(422, 31);
+            this.toolStrip2.Size = new System.Drawing.Size(422, 33);
             this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             // 
             // _AddFileToolStripButton
             // 
-            this._AddFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddFileToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.add_24px;
+            this._AddFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._AddFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._AddFileToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._AddFileToolStripButton.Name = "_AddFileToolStripButton";
-            this._AddFileToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._AddFileToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._AddFileToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._AddFileToolStripButton.Text = "新增";
             // 
             // _DeleteFileToolStripButton
             // 
-            this._DeleteFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DeleteFileToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteFileToolStripButton.Image")));
+            this._DeleteFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._DeleteFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteFileToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._DeleteFileToolStripButton.Name = "_DeleteFileToolStripButton";
-            this._DeleteFileToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._DeleteFileToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._DeleteFileToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._DeleteFileToolStripButton.Text = "删除";
             // 
             // miniToolStrip
@@ -200,41 +217,60 @@
             // 
             this._PhotoListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._PhotoListView.HideSelection = false;
-            this._PhotoListView.Location = new System.Drawing.Point(3, 34);
+            this._PhotoListView.Location = new System.Drawing.Point(3, 36);
             this._PhotoListView.Name = "_PhotoListView";
-            this._PhotoListView.Size = new System.Drawing.Size(422, 320);
+            this._PhotoListView.Size = new System.Drawing.Size(422, 318);
             this._PhotoListView.TabIndex = 0;
             this._PhotoListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // _PhotosStatusStrip
+            // 
+            this._PhotosStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._PhotosPathToolStripStatusLabel});
+            this._PhotosStatusStrip.Location = new System.Drawing.Point(3, 354);
+            this._PhotosStatusStrip.Name = "_PhotosStatusStrip";
+            this._PhotosStatusStrip.Size = new System.Drawing.Size(422, 22);
+            this._PhotosStatusStrip.SizingGrip = false;
+            this._PhotosStatusStrip.TabIndex = 5;
+            this._PhotosStatusStrip.Text = "statusStrip2";
+            // 
+            // _PhotosPathToolStripStatusLabel
+            // 
+            this._PhotosPathToolStripStatusLabel.Name = "_PhotosPathToolStripStatusLabel";
+            this._PhotosPathToolStripStatusLabel.Size = new System.Drawing.Size(11, 17);
+            this._PhotosPathToolStripStatusLabel.Text = ".";
             // 
             // toolStrip1
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(18, 18);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._AddPhotoToolStripButton,
             this._DeletePhotoToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(422, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(422, 33);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // _AddPhotoToolStripButton
             // 
-            this._AddPhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddPhotoToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.add_24px;
+            this._AddPhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._AddPhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._AddPhotoToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._AddPhotoToolStripButton.Name = "_AddPhotoToolStripButton";
-            this._AddPhotoToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._AddPhotoToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._AddPhotoToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._AddPhotoToolStripButton.Text = "新增";
             // 
             // _DeletePhotoToolStripButton
             // 
-            this._DeletePhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DeletePhotoToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeletePhotoToolStripButton.Image")));
+            this._DeletePhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._DeletePhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeletePhotoToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._DeletePhotoToolStripButton.Name = "_DeletePhotoToolStripButton";
-            this._DeletePhotoToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._DeletePhotoToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._DeletePhotoToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._DeletePhotoToolStripButton.Text = "删除";
             // 
             // tabPage1
@@ -477,41 +513,43 @@
             this._ScpiTreeView.FullRowSelect = true;
             this._ScpiTreeView.HideSelection = false;
             this._ScpiTreeView.LabelEdit = true;
-            this._ScpiTreeView.Location = new System.Drawing.Point(0, 31);
+            this._ScpiTreeView.Location = new System.Drawing.Point(0, 33);
             this._ScpiTreeView.Name = "_ScpiTreeView";
-            this._ScpiTreeView.Size = new System.Drawing.Size(154, 342);
+            this._ScpiTreeView.Size = new System.Drawing.Size(154, 340);
             this._ScpiTreeView.TabIndex = 5;
             // 
             // toolStrip3
             // 
             this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip3.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip3.ImageScalingSize = new System.Drawing.Size(18, 18);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._AddScpiToolStripButton,
             this._DeleteScpiToolStripButton});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(154, 31);
+            this.toolStrip3.Size = new System.Drawing.Size(154, 33);
             this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
             // 
             // _AddScpiToolStripButton
             // 
-            this._AddScpiToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddScpiToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.add_24px;
+            this._AddScpiToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._AddScpiToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._AddScpiToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._AddScpiToolStripButton.Name = "_AddScpiToolStripButton";
-            this._AddScpiToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._AddScpiToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._AddScpiToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._AddScpiToolStripButton.Text = "新增";
             // 
             // _DeleteScpiToolStripButton
             // 
-            this._DeleteScpiToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._DeleteScpiToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._DeleteScpiToolStripButton.Enabled = false;
-            this._DeleteScpiToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteScpiToolStripButton.Image")));
             this._DeleteScpiToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteScpiToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._DeleteScpiToolStripButton.Name = "_DeleteScpiToolStripButton";
-            this._DeleteScpiToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this._DeleteScpiToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._DeleteScpiToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._DeleteScpiToolStripButton.Text = "删除";
             // 
             // _ScpiNameTextBox
@@ -608,39 +646,6 @@
             this._GetInstrumentScpiTemplateButton.Text = "从云端获取";
             this._GetInstrumentScpiTemplateButton.UseVisualStyleBackColor = true;
             // 
-            // _FilesStatusStrip
-            // 
-            this._FilesStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._FilesPathToolStripStatusLabel});
-            this._FilesStatusStrip.Location = new System.Drawing.Point(3, 354);
-            this._FilesStatusStrip.Name = "_FilesStatusStrip";
-            this._FilesStatusStrip.Size = new System.Drawing.Size(422, 22);
-            this._FilesStatusStrip.SizingGrip = false;
-            this._FilesStatusStrip.TabIndex = 5;
-            // 
-            // _PhotosStatusStrip
-            // 
-            this._PhotosStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._PhotosPathToolStripStatusLabel});
-            this._PhotosStatusStrip.Location = new System.Drawing.Point(3, 354);
-            this._PhotosStatusStrip.Name = "_PhotosStatusStrip";
-            this._PhotosStatusStrip.Size = new System.Drawing.Size(422, 22);
-            this._PhotosStatusStrip.SizingGrip = false;
-            this._PhotosStatusStrip.TabIndex = 5;
-            this._PhotosStatusStrip.Text = "statusStrip2";
-            // 
-            // _PhotosPathToolStripStatusLabel
-            // 
-            this._PhotosPathToolStripStatusLabel.Name = "_PhotosPathToolStripStatusLabel";
-            this._PhotosPathToolStripStatusLabel.Size = new System.Drawing.Size(11, 17);
-            this._PhotosPathToolStripStatusLabel.Text = ".";
-            // 
-            // _FilesPathToolStripStatusLabel
-            // 
-            this._FilesPathToolStripStatusLabel.Name = "_FilesPathToolStripStatusLabel";
-            this._FilesPathToolStripStatusLabel.Size = new System.Drawing.Size(11, 17);
-            this._FilesPathToolStripStatusLabel.Text = ".";
-            // 
             // InstrumentDetailDialog
             // 
             this.AcceptButton = this._AcceptButton;
@@ -663,10 +668,14 @@
             this.Text = "仪器详细信息";
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this._FilesStatusStrip.ResumeLayout(false);
+            this._FilesStatusStrip.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this._PhotosStatusStrip.ResumeLayout(false);
+            this._PhotosStatusStrip.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -681,10 +690,6 @@
             this._SplitContainer.ResumeLayout(false);
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
-            this._FilesStatusStrip.ResumeLayout(false);
-            this._FilesStatusStrip.PerformLayout();
-            this._PhotosStatusStrip.ResumeLayout(false);
-            this._PhotosStatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

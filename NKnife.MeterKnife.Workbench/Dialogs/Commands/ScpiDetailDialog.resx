@@ -123,17 +123,4 @@
   <metadata name="toolStrip3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_DeleteToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFISURBVEhL7ZRLaoNgFIWF0h2UzKIli+gOugSHxsdAHTsJ
-        KuoeHGgUEx+byaDQkQuoxXmXYO+RP5lEo0Kh0ObAIff63++exKDc/5Cu60+apgmSJPEwalxjx8tE4COW
-        qKq6kWX5WVGUV6pP5E9yw4z6hDPMUL0BA5atGRcA8htBLS1oyF9Ud0PGGWaobsGAZWvGhSGC3g3D6EzT
-        nGXMgpkVIIriQxAEL2EYtnEcd3OMWTBg2ZrbOh6P6zzPP+izS5KkN+qxfr/fY3bN8GmVZckfDocGsOd5
-        vVGnadr5vn/pYfS2bTe73Y5n+LTOAfTNAPc+LxzqLcv6uQDHca76e8A94Fq/GjDULw7IskxAABbMfZJd
-        1xUYPq2qqlYUUJMvi1CP9fTCq6MoWjF8ngjekhHSTLguimLLsGXCL8Htwn8yZJxhho3/SXHcN2UKgJ+0
-        O2QPAAAAAElFTkSuQmCC
-</value>
-  </data>
 </root>

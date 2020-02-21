@@ -63,36 +63,6 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap add_24px {
-            get {
-                object obj = ResourceManager.GetObject("add_24px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap ColorPicker {
-            get {
-                object obj = ResourceManager.GetObject("ColorPicker", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap delete_24px {
-            get {
-                object obj = ResourceManager.GetObject("delete_24px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         internal static System.Drawing.Bitmap dut_add {
             get {
                 object obj = ResourceManager.GetObject("dut_add", resourceCulture);
@@ -116,16 +86,6 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         internal static System.Drawing.Bitmap dut_edit {
             get {
                 object obj = ResourceManager.GetObject("dut_edit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap edit_24px {
-            get {
-                object obj = ResourceManager.GetObject("edit_24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
