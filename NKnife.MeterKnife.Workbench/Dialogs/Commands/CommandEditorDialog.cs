@@ -54,7 +54,11 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
                 if (_InstrumentsComboBox.SelectedItem is Instrument inst)
                 {
                     _InstrumentSCPIComboBox.Items.Clear();
-                    _InstrumentSCPIComboBox.Items.AddRange(inst.ScpiList.Cast<object>().ToArray());
+                    if (inst.ScpiList != null && inst.ScpiList.Count > 0)
+                    {
+                        _InstrumentSCPIComboBox.Items.AddRange(inst.ScpiList.Cast<object>().ToArray());
+                        _InstrumentSCPIComboBox.SelectedIndex = 0;
+                    }
                 }
             };
         }

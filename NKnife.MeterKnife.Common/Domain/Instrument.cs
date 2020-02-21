@@ -77,6 +77,17 @@ namespace NKnife.MeterKnife.Common.Domain
         /// </summary>
         public List<SCPI> ScpiList { get; set; }
 
+        #region Overrides of Object
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return $"{Name}/{Manufacturer}-{Model1}";
+        }
+
+        #endregion
+
         public override bool Equals(object obj)
         {
             var bo = obj as Instrument;

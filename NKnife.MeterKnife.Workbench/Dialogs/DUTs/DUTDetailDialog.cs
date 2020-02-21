@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Resources;
+using NKnife.Util;
 
 namespace NKnife.MeterKnife.Workbench.Dialogs.DUTs
 {
@@ -53,7 +54,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.DUTs
 
         private void RespondToButtonClick()
         {
-            _AutoNumberButton.Click += (sender, args) => { _NumberTextBox.Text = SequentialGuid.Create().ToString("D").ToUpper(); };
+            _AutoNumberButton.Click += (sender, args) => { _NumberTextBox.Text = BuildAutoNubmer(); };
             _CancelButton.Click += (sender, args) => { DialogResult = DialogResult.Cancel; };
             _AcceptButton.Click += (sender, args) =>
             {
@@ -73,6 +74,12 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.DUTs
                 DialogResult = DialogResult.OK;
                 Close();
             };
+        }
+
+        private static string BuildAutoNubmer()
+        {
+            var rand = UtilRandom.GetString(2, UtilRandom.RandomCharType.Uppercased);
+            return $"DUT{DateTime.Now:yyMMddHHmmss}{rand}";
         }
 
         private MetrologyValue[] GetMetrologyValues()

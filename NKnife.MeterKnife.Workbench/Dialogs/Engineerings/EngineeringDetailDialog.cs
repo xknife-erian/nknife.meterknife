@@ -29,7 +29,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             _viewModel = viewModel;
             InitializeComponent();
             InitializeCommandListView();
-            RespondToEvent();
             RespondToButtonClick();
         }
 
@@ -63,7 +62,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             {
                 if (!VerifyControlValue(out Control control, out string message))
                 {
-                    MessageBox.Show(message, "填写有误", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(message, this.Res("填写有误"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     control.Focus();
                     return;
                 }
@@ -156,11 +155,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 item.Tag = cmd;
                 _CommandsListView.Items.Add(item);
             }
-        }
-
-        private void RespondToEvent()
-        {
-            
         }
     }
 }

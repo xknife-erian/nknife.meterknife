@@ -1,36 +1,10 @@
 ﻿// ReSharper disable once CheckNamespace
+
 namespace NKnife.Metrology
 {
     public interface IMetrology
     {
-    }
-
-    /// <summary>
-    ///     电压
-    /// </summary>
-    public class ElectricVoltage : IMetrology
-    {
-    }
-
-    /// <summary>
-    ///     电阻
-    /// </summary>
-    public class ElectricResistance : IMetrology
-    {
-    }
-
-    /// <summary>
-    ///     电感
-    /// </summary>
-    public class ElectricInductance : IMetrology
-    {
-    }
-
-    /// <summary>
-    ///     电容
-    /// </summary>
-    public class ElectricCapacitance : IMetrology
-    {
+        string[] Units { get; }
     }
 
     /// <summary>
@@ -38,20 +12,23 @@ namespace NKnife.Metrology
     /// </summary>
     public class Pressure : IMetrology
     {
-    }
+        #region Implementation of IMetrology
 
+        public string[] Units { get; } = {"kV", "V", "mV", "nV"};
+
+        #endregion
+    }
+    
     /// <summary>
     ///     流量
     /// </summary>
     public class Flow : IMetrology
     {
-    }
+        #region Implementation of IMetrology
 
-    /// <summary>
-    ///     频率
-    /// </summary>
-    public class Frequency : IMetrology
-    {
+        public string[] Units { get; } = {"kV", "V", "mV", "nV"};
+
+        #endregion
     }
 
     /// <summary>
@@ -59,6 +36,11 @@ namespace NKnife.Metrology
     /// </summary>
     public class Humidity : IMetrology
     {
+        #region Implementation of IMetrology
+
+        public string[] Units { get; } = {"kV", "V", "mV", "nV"};
+
+        #endregion
     }
 
     /// <summary>
@@ -66,6 +48,11 @@ namespace NKnife.Metrology
     /// </summary>
     public class Sound : IMetrology
     {
+        #region Implementation of IMetrology
+
+        public string[] Units { get; } = {"kV", "V", "mV", "nV"};
+
+        #endregion
     }
 
     /// <summary>
@@ -75,6 +62,11 @@ namespace NKnife.Metrology
     /// </summary>
     public class Length : IMetrology
     {
+        #region Implementation of IMetrology
+
+        public string[] Units { get; } = {"kV", "V", "mV", "nV"};
+
+        #endregion
     }
 
     /// <summary>
@@ -85,6 +77,11 @@ namespace NKnife.Metrology
     /// </summary>
     public class Mass : IMetrology
     {
+        #region Implementation of IMetrology
+
+        public string[] Units { get; } = {"kV", "V", "mV", "nV"};
+
+        #endregion
     }
 
     /// <summary>
@@ -94,28 +91,11 @@ namespace NKnife.Metrology
     /// </summary>
     public class Time : IMetrology
     {
-    }
+        #region Implementation of IMetrology
 
-    /// <summary>
-    ///     Electric current: Ampere (A) The basic unit of electric current is the ampere. The ampere is defined as the
-    ///     constant current that, if maintained in two infinitely long straight parallel conductors with a negligible circular
-    ///     cross-section and placed 1 m apart in a vacuum, would produce a force between the conductors equal to 2 x 10-7
-    ///     newtons per meter of length.
-    ///     安培。在圆截面很小的两根平行的无限长直导体中通以强度相同的稳恒电流，如果两导体相距 1 米，且处于真空中时，在每米长度上所受到的作用力为 2× 10-7
-    ///     牛顿，则此稳恒电流的强度为 1 安培。
-    /// </summary>
-    public class ElectricCurrent : IMetrology
-    {
-    }
+        public string[] Units { get; } = {"kV", "V", "mV", "nV"};
 
-    /// <summary>
-    ///     Temperature: Kelvin (K) The Kelvin is the unit of thermodynamic temperature. It is the fraction 1/273.16 of the
-    ///     thermodynamic temperature of the triple point of water. The Kelvin scale is an absolute scale, so there is no
-    ///     degree.​
-    ///     开尔文。以水的三相点温度为273.16K。开尔文一度等于水三相点热力学温度的 1/273.16。热力学温度 T 和摄氏温度 t 的关系为 T=t+273.15。
-    /// </summary>
-    public class Temperature : IMetrology
-    {
+        #endregion
     }
 
     /// <summary>
@@ -127,6 +107,11 @@ namespace NKnife.Metrology
     /// </summary>
     public class AmountOfSubstance : IMetrology
     {
+        #region Implementation of IMetrology
+
+        public string[] Units { get; } = {"kV", "V", "mV", "nV"};
+
+        #endregion
     }
 
     /// <summary>
@@ -137,5 +122,11 @@ namespace NKnife.Metrology
     /// </summary>
     public class LuminousIntensity : IMetrology
     {
+        #region Implementation of IMetrology
+
+        public string[] Units { get; } = {"kV", "V", "mV", "nV"};
+
+        #endregion
     }
 }
+                                                        
