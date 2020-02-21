@@ -97,7 +97,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // 
             // _SetDataSeriesToolStripButton
             // 
-            this._SetDataSeriesToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_series_selection;
+            this._SetDataSeriesToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.PlotOperateStripIcon_series_selection;
             this._SetDataSeriesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._SetDataSeriesToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._SetDataSeriesToolStripButton.Name = "_SetDataSeriesToolStripButton";
@@ -126,7 +126,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _OriginalToolStripButton
             // 
             this._OriginalToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._OriginalToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_original;
+            this._OriginalToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.PlotOperateStripIcon_original;
             this._OriginalToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._OriginalToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._OriginalToolStripButton.Name = "_OriginalToolStripButton";
@@ -141,7 +141,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _ZoomInToolStripButton
             // 
             this._ZoomInToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ZoomInToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_zoom_in;
+            this._ZoomInToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.PlotOperateStripIcon_zoom_in;
             this._ZoomInToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ZoomInToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._ZoomInToolStripButton.Name = "_ZoomInToolStripButton";
@@ -151,7 +151,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _ZoomOutToolStripButton
             // 
             this._ZoomOutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ZoomOutToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_zoom_out;
+            this._ZoomOutToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.PlotOperateStripIcon_zoom_out;
             this._ZoomOutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ZoomOutToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._ZoomOutToolStripButton.Name = "_ZoomOutToolStripButton";
@@ -166,7 +166,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _TimeZoomToolStripButton
             // 
             this._TimeZoomToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._TimeZoomToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_horizontal_zoom;
+            this._TimeZoomToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.PlotOperateStripIcon_horizontal_zoom;
             this._TimeZoomToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._TimeZoomToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._TimeZoomToolStripButton.Name = "_TimeZoomToolStripButton";
@@ -176,7 +176,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _ValueRangeZoomToolStripButton
             // 
             this._ValueRangeZoomToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._ValueRangeZoomToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.PlotOperateStripIcon_vertical_zoom;
+            this._ValueRangeZoomToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.PlotOperateStripIcon_vertical_zoom;
             this._ValueRangeZoomToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._ValueRangeZoomToolStripButton.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
             this._ValueRangeZoomToolStripButton.Name = "_ValueRangeZoomToolStripButton";
@@ -191,7 +191,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _PlotThemeDropDownButton1
             // 
             this._PlotThemeDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._PlotThemeDropDownButton1.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.ThemeStripIcon_theme_selection;
+            this._PlotThemeDropDownButton1.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.ThemeStripIcon_theme_selection;
             this._PlotThemeDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._PlotThemeDropDownButton1.Name = "_PlotThemeDropDownButton1";
             this._PlotThemeDropDownButton1.Size = new System.Drawing.Size(29, 22);

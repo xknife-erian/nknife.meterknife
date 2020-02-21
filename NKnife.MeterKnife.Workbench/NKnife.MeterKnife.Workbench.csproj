@@ -302,6 +302,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Res.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Res.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -383,9 +388,9 @@
     <EmbeddedResource Include="Options\PlotOptionPanel.resx">
       <DependentUpon>PlotOptionPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Include="Properties\Res.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FiguredDataGrid.resx">
       <DependentUpon>FiguredDataGrid.cs</DependentUpon>
@@ -413,6 +418,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Slots\SerialPortSelectorDialog.resx">
       <DependentUpon>SerialPortSelectorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DUTView.resx">
       <DependentUpon>DUTView.cs</DependentUpon>
@@ -444,6 +453,10 @@
       <Project>{d4840da6-a26f-4eb4-b9a0-a15139709496}</Project>
       <Name>NKnife.MeterKnife.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NKnife.MeterKnife.Resources\NKnife.MeterKnife.Resources.csproj">
+      <Project>{455d8d91-d56f-4fcc-ba84-af9e5a945214}</Project>
+      <Name>NKnife.MeterKnife.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NKnife.MeterKnife.Util\NKnife.MeterKnife.Util.csproj">
       <Project>{c089e4a3-9545-441a-8e43-9fa1c2586c08}</Project>
       <Name>NKnife.MeterKnife.Util</Name>
@@ -457,23 +470,20 @@
       <Name>NKnife.Win.Quick</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\Photos\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Images\add_24px.png" />
     <Content Include="Properties\Images\ColorPicker.png" />
     <Content Include="Properties\Images\delete_24px.png" />
     <Content Include="Properties\Images\edit_24px.png" />
-    <Content Include="Properties\Images\stop_24px.png" />
-    <Content Include="Properties\Images\pause_24px.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_horizontal_zoom.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_original.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_series_selection.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_vertical_zoom.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_in.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_out.png" />
-    <Content Include="Properties\Images\SlotType\SlotType_MeterCare.png" />
-    <Content Include="Properties\Images\SlotType\SlotType_Serial.png" />
-    <Content Include="Properties\Images\start_24px.png" />
     <Content Include="Properties\Images\Strip\dut_add.png" />
     <Content Include="Properties\Images\Strip\dut_delete.png" />
     <Content Include="Properties\Images\Strip\dut_edit.png" />
@@ -497,10 +507,6 @@
     <Content Include="Properties\Images\Strip\slot_delete.png" />
     <Content Include="Properties\Images\Strip\slot_edit.png" />
     <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
-    <Content Include="Properties\meterknife_32px.ico" />
-    <Content Include="Properties\meterknife_96px.ico" />
-    <Content Include="Properties\Photos\Agilent34401.jpg" />
-    <Content Include="Properties\Photos\instrument.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

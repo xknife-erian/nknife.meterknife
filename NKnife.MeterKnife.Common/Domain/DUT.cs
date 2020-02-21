@@ -42,18 +42,25 @@ namespace NKnife.MeterKnife.Common.Domain
         /// </summary>
         public MetrologyValue[] MetrologyValues { get; set; }
 
+        /// <summary>
+        ///     详细描述
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        ///     被测物的登记时间
+        /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
         ///     被测物的照片存放路径
         /// </summary>
-        public string ImagesPath { get; set; }
+        public string PhotosPath { get; set; }
 
         /// <summary>
-        ///     被测物的测量报告存放路径
+        ///     被测物的相关文件存放路径
         /// </summary>
-        public string ReportsPath { get; set; }
+        public string FilesPath { get; set; }
 
         /// <summary>
         ///     被测物ID，也是编号，全局不可重复

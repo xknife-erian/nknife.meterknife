@@ -1,6 +1,7 @@
 ﻿using System.Net.Mime;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.Workbench.Debugs;
 using NKnife.MeterKnife.Workbench.Menus;
@@ -38,8 +39,8 @@ namespace NKnife.MeterKnife.Workbench
             InitializeComponent();
             var about = new QuickAbout();
             Text = $"{about.AssemblyTitle} - {about.AssemblyVersion}";
-            Icon = Resources.meterknife_32px;
-            var notifyIcon = new NotifyIcon {Icon = Resources.meterknife_32px};
+            Icon = IconResource.app_32px;
+            var notifyIcon = new NotifyIcon {Icon = IconResource.app_32px };
             BindNotifyIcon(notifyIcon);
 
             var fileMenuItem = BuildFileMenu();

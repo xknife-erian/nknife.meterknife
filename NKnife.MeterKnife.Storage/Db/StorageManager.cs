@@ -11,6 +11,7 @@ using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Util;
+using NKnife.Metrology;
 using NKnife.Util;
 using NLog;
 
@@ -49,6 +50,7 @@ namespace NKnife.MeterKnife.Storage.Db
             SqlMapper.AddTypeHandler(typeof(ScpiCommandPool), new ObjectToJsonTypeHandler());
             SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), new ObjectToJsonTypeHandler());
             SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), new ObjectToJsonTypeHandler());
+            SqlMapper.AddTypeHandler(typeof(IMetrology), new ObjectToJsonTypeHandler());
             SqlMapper.AddTypeHandler(typeof(MetrologyValue[]), new ObjectToJsonTypeHandler());
             SqlMapper.AddTypeHandler(typeof(SCPI), new ObjectToJsonTypeHandler());
             SqlMapper.AddTypeHandler(typeof(List<SCPI>), new ObjectToJsonTypeHandler());

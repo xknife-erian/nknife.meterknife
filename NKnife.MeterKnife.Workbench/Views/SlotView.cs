@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.MeterKnife.Workbench.Dialogs;
 using NKnife.MeterKnife.Workbench.Properties;
@@ -42,11 +43,11 @@ namespace NKnife.MeterKnife.Workbench.Views
                     _SlotListView.Items.Add(slotListItem);
                 }
             };
-            _NewToolStripDropDownButton.Image = Resources.slot_add;
+            _NewToolStripDropDownButton.Image = Res.slot_add;
             _NewToolStripDropDownButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _EditToolStripButton.Image = Resources.slot_edit;
+            _EditToolStripButton.Image = Res.slot_edit;
             _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _DeleteToolStripButton.Image = Resources.slot_delete;
+            _DeleteToolStripButton.Image = Res.slot_delete;
             _DeleteToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
         }
 
@@ -61,8 +62,8 @@ namespace NKnife.MeterKnife.Workbench.Views
             if(_SlotListView.LargeImageList==null)
                 _SlotListView.LargeImageList = new ImageList();
             _SlotListView.LargeImageList.ImageSize = new Size(64,64);
-            _SlotListView.LargeImageList.Images.Add(nameof(SlotType.MeterCare), Resources.SlotType_MeterCare);
-            _SlotListView.LargeImageList.Images.Add(nameof(SlotType.Serial), Resources.SlotType_Serial);
+            _SlotListView.LargeImageList.Images.Add(nameof(SlotType.MeterCare), LargeImageResource.slot_meter_care);
+            _SlotListView.LargeImageList.Images.Add(nameof(SlotType.Serial), LargeImageResource.slot_serial);
         }
 
         private void RespondToClickEvent()
@@ -74,7 +75,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
                     var result = dialog.SerialPort;
-                    var slot = await _viewModel.CreatMeterCareSlotAsync(result);
+                    var slot = await _viewModel.CreateMeterCareSlotAsync(result);
                     var item = GetSlotListItem(slot);
                     _SlotListView.Items.Add(item);
                 }

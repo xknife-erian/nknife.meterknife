@@ -124,7 +124,7 @@
             // _AddToolStripButton
             // 
             this._AddToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
+            this._AddToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.add_24px;
             this._AddToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._AddToolStripButton.Name = "_AddToolStripButton";
             this._AddToolStripButton.Size = new System.Drawing.Size(28, 28);

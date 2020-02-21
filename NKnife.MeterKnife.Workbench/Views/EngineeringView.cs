@@ -36,11 +36,11 @@ namespace NKnife.MeterKnife.Workbench.Views
             RespondToButtonClick();
             Shown += EngineeringsBindToTree;
             _CreateEngStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _CreateEngStripButton.Image = Resources.eng_add;
+            _CreateEngStripButton.Image = Res.eng_add;
             _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _EditToolStripButton.Image = Resources.eng_edit;
+            _EditToolStripButton.Image = Res.eng_edit;
             _DeleteStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _DeleteStripButton.Image = Resources.eng_delete;
+            _DeleteStripButton.Image = Res.eng_delete;
         }
 
         private void InitializeLanguage()

@@ -28,53 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DUTDetailDialog));
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this._ExpectValueTextBox = new System.Windows.Forms.TextBox();
+            this._DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this._UnitComboBox = new System.Windows.Forms.ComboBox();
+            this._ClassifyComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this._NameTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this._AutoNumberButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this._NumberTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this._MetrologyValuesListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this._AddMetrologyValueToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._EditMetrologyValueToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._DeleteMetrologyValueToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.listView3 = new System.Windows.Forms.ListView();
+            this._PhotoListView = new System.Windows.Forms.ListView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this._AddPhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._DeletePhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this._FilesListView = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this._AddCommandToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._EditCommandToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._DeleteCommandToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this._AddFileToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this._DeleteFileToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             this.toolStrip3.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,18 +114,18 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBox3);
-            this.tabPage1.Controls.Add(this.textBox4);
+            this.tabPage1.Controls.Add(this._ExpectValueTextBox);
+            this.tabPage1.Controls.Add(this._DescriptionTextBox);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.comboBox2);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this._UnitComboBox);
+            this.tabPage1.Controls.Add(this._ClassifyComboBox);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this._NameTextBox);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this._AutoNumberButton);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this._NumberTextBox);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
@@ -138,27 +135,27 @@
             this.tabPage1.Text = "基本信息";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // _ExpectValueTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(224, 93);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(165, 23);
-            this.textBox3.TabIndex = 13;
+            this._ExpectValueTextBox.Location = new System.Drawing.Point(224, 93);
+            this._ExpectValueTextBox.Name = "_ExpectValueTextBox";
+            this._ExpectValueTextBox.Size = new System.Drawing.Size(165, 23);
+            this._ExpectValueTextBox.TabIndex = 13;
             // 
-            // textBox4
+            // _DescriptionTextBox
             // 
-            this.textBox4.AcceptsReturn = true;
-            this.textBox4.AcceptsTab = true;
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this._DescriptionTextBox.AcceptsReturn = true;
+            this._DescriptionTextBox.AcceptsTab = true;
+            this._DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(22, 198);
-            this.textBox4.MaxLength = 327670;
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(367, 98);
-            this.textBox4.TabIndex = 12;
+            this._DescriptionTextBox.Location = new System.Drawing.Point(22, 198);
+            this._DescriptionTextBox.MaxLength = 327670;
+            this._DescriptionTextBox.Multiline = true;
+            this._DescriptionTextBox.Name = "_DescriptionTextBox";
+            this._DescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._DescriptionTextBox.Size = new System.Drawing.Size(367, 98);
+            this._DescriptionTextBox.TabIndex = 12;
             // 
             // label6
             // 
@@ -187,23 +184,23 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "分类";
             // 
-            // comboBox2
+            // _UnitComboBox
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._UnitComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(224, 144);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(165, 25);
-            this.comboBox2.TabIndex = 8;
+            this._UnitComboBox.FormattingEnabled = true;
+            this._UnitComboBox.Location = new System.Drawing.Point(224, 144);
+            this._UnitComboBox.Name = "_UnitComboBox";
+            this._UnitComboBox.Size = new System.Drawing.Size(165, 25);
+            this._UnitComboBox.TabIndex = 8;
             // 
-            // comboBox1
+            // _ClassifyComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(22, 144);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(185, 25);
-            this.comboBox1.TabIndex = 7;
+            this._ClassifyComboBox.FormattingEnabled = true;
+            this._ClassifyComboBox.Location = new System.Drawing.Point(22, 144);
+            this._ClassifyComboBox.Name = "_ClassifyComboBox";
+            this._ClassifyComboBox.Size = new System.Drawing.Size(185, 25);
+            this._ClassifyComboBox.TabIndex = 7;
             // 
             // label3
             // 
@@ -214,12 +211,12 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "设计值";
             // 
-            // textBox2
+            // _NameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(22, 93);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 23);
-            this.textBox2.TabIndex = 4;
+            this._NameTextBox.Location = new System.Drawing.Point(22, 93);
+            this._NameTextBox.Name = "_NameTextBox";
+            this._NameTextBox.Size = new System.Drawing.Size(185, 23);
+            this._NameTextBox.TabIndex = 4;
             // 
             // label2
             // 
@@ -240,14 +237,14 @@
             this._AutoNumberButton.Text = "自动生成编号";
             this._AutoNumberButton.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // _NumberTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._NumberTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(22, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 23);
-            this.textBox1.TabIndex = 1;
+            this._NumberTextBox.Location = new System.Drawing.Point(22, 41);
+            this._NumberTextBox.Name = "_NumberTextBox";
+            this._NumberTextBox.Size = new System.Drawing.Size(237, 23);
+            this._NumberTextBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -260,7 +257,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.listView1);
+            this.tabPage2.Controls.Add(this._MetrologyValuesListView);
             this.tabPage2.Controls.Add(this.toolStrip3);
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
@@ -270,22 +267,22 @@
             this.tabPage2.Text = "标定值";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // _MetrologyValuesListView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._MetrologyValuesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 34);
-            this.listView1.Name = "listView1";
-            this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(405, 280);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this._MetrologyValuesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._MetrologyValuesListView.FullRowSelect = true;
+            this._MetrologyValuesListView.GridLines = true;
+            this._MetrologyValuesListView.HideSelection = false;
+            this._MetrologyValuesListView.Location = new System.Drawing.Point(3, 36);
+            this._MetrologyValuesListView.Name = "_MetrologyValuesListView";
+            this._MetrologyValuesListView.ShowGroups = false;
+            this._MetrologyValuesListView.Size = new System.Drawing.Size(405, 278);
+            this._MetrologyValuesListView.TabIndex = 0;
+            this._MetrologyValuesListView.UseCompatibleStateImageBehavior = false;
+            this._MetrologyValuesListView.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -297,9 +294,53 @@
             this.columnHeader2.Text = "标定值";
             this.columnHeader2.Width = 180;
             // 
+            // toolStrip3
+            // 
+            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip3.ImageScalingSize = new System.Drawing.Size(18, 18);
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._AddMetrologyValueToolStripButton,
+            this._EditMetrologyValueToolStripButton,
+            this._DeleteMetrologyValueToolStripButton});
+            this.toolStrip3.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.Size = new System.Drawing.Size(405, 33);
+            this.toolStrip3.TabIndex = 4;
+            this.toolStrip3.Text = "toolStrip3";
+            // 
+            // _AddMetrologyValueToolStripButton
+            // 
+            this._AddMetrologyValueToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._AddMetrologyValueToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._AddMetrologyValueToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this._AddMetrologyValueToolStripButton.Name = "_AddMetrologyValueToolStripButton";
+            this._AddMetrologyValueToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._AddMetrologyValueToolStripButton.Size = new System.Drawing.Size(46, 31);
+            this._AddMetrologyValueToolStripButton.Text = "新增";
+            // 
+            // _EditMetrologyValueToolStripButton
+            // 
+            this._EditMetrologyValueToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._EditMetrologyValueToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._EditMetrologyValueToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this._EditMetrologyValueToolStripButton.Name = "_EditMetrologyValueToolStripButton";
+            this._EditMetrologyValueToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._EditMetrologyValueToolStripButton.Size = new System.Drawing.Size(46, 31);
+            this._EditMetrologyValueToolStripButton.Text = "编辑";
+            // 
+            // _DeleteMetrologyValueToolStripButton
+            // 
+            this._DeleteMetrologyValueToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._DeleteMetrologyValueToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteMetrologyValueToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this._DeleteMetrologyValueToolStripButton.Name = "_DeleteMetrologyValueToolStripButton";
+            this._DeleteMetrologyValueToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._DeleteMetrologyValueToolStripButton.Size = new System.Drawing.Size(46, 31);
+            this._DeleteMetrologyValueToolStripButton.Text = "删除";
+            // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.listView3);
+            this.tabPage3.Controls.Add(this._PhotoListView);
             this.tabPage3.Controls.Add(this.toolStrip1);
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
@@ -309,44 +350,77 @@
             this.tabPage3.Text = "被测物照片";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // listView3
+            // _PhotoListView
             // 
-            this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(3, 34);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(405, 280);
-            this.listView3.TabIndex = 0;
-            this.listView3.UseCompatibleStateImageBehavior = false;
+            this._PhotoListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._PhotoListView.HideSelection = false;
+            this._PhotoListView.Location = new System.Drawing.Point(3, 36);
+            this._PhotoListView.Name = "_PhotoListView";
+            this._PhotoListView.Size = new System.Drawing.Size(405, 278);
+            this._PhotoListView.TabIndex = 0;
+            this._PhotoListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(18, 18);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._AddPhotoToolStripButton,
+            this._DeletePhotoToolStripButton});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(405, 33);
+            this.toolStrip1.TabIndex = 5;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // _AddPhotoToolStripButton
+            // 
+            this._AddPhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._AddPhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._AddPhotoToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this._AddPhotoToolStripButton.Name = "_AddPhotoToolStripButton";
+            this._AddPhotoToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._AddPhotoToolStripButton.Size = new System.Drawing.Size(46, 31);
+            this._AddPhotoToolStripButton.Text = "新增";
+            // 
+            // _DeletePhotoToolStripButton
+            // 
+            this._DeletePhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._DeletePhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeletePhotoToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this._DeletePhotoToolStripButton.Name = "_DeletePhotoToolStripButton";
+            this._DeletePhotoToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._DeletePhotoToolStripButton.Size = new System.Drawing.Size(46, 31);
+            this._DeletePhotoToolStripButton.Text = "删除";
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.listView2);
+            this.tabPage4.Controls.Add(this._FilesListView);
             this.tabPage4.Controls.Add(this.toolStrip2);
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(411, 317);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "测试报告";
+            this.tabPage4.Text = "相关文件";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // listView2
+            // _FilesListView
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._FilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
             this.columnHeader4});
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(3, 34);
-            this.listView2.Name = "listView2";
-            this.listView2.ShowGroups = false;
-            this.listView2.Size = new System.Drawing.Size(405, 280);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
+            this._FilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._FilesListView.FullRowSelect = true;
+            this._FilesListView.GridLines = true;
+            this._FilesListView.HideSelection = false;
+            this._FilesListView.Location = new System.Drawing.Point(3, 36);
+            this._FilesListView.Name = "_FilesListView";
+            this._FilesListView.ShowGroups = false;
+            this._FilesListView.Size = new System.Drawing.Size(405, 278);
+            this._FilesListView.TabIndex = 1;
+            this._FilesListView.UseCompatibleStateImageBehavior = false;
+            this._FilesListView.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader3
             // 
@@ -358,128 +432,38 @@
             this.columnHeader4.Text = "路径";
             this.columnHeader4.Width = 220;
             // 
-            // toolStrip3
-            // 
-            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip3.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._AddCommandToolStripButton,
-            this._EditCommandToolStripButton,
-            this._DeleteCommandToolStripButton});
-            this.toolStrip3.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(405, 31);
-            this.toolStrip3.TabIndex = 4;
-            this.toolStrip3.Text = "toolStrip3";
-            // 
-            // _AddCommandToolStripButton
-            // 
-            this._AddCommandToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddCommandToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
-            this._AddCommandToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._AddCommandToolStripButton.Name = "_AddCommandToolStripButton";
-            this._AddCommandToolStripButton.Size = new System.Drawing.Size(28, 28);
-            this._AddCommandToolStripButton.Text = "新增";
-            // 
-            // _EditCommandToolStripButton
-            // 
-            this._EditCommandToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._EditCommandToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.edit_24px;
-            this._EditCommandToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._EditCommandToolStripButton.Name = "_EditCommandToolStripButton";
-            this._EditCommandToolStripButton.Size = new System.Drawing.Size(28, 28);
-            this._EditCommandToolStripButton.Text = "编辑";
-            // 
-            // _DeleteCommandToolStripButton
-            // 
-            this._DeleteCommandToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DeleteCommandToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("_DeleteCommandToolStripButton.Image")));
-            this._DeleteCommandToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._DeleteCommandToolStripButton.Name = "_DeleteCommandToolStripButton";
-            this._DeleteCommandToolStripButton.Size = new System.Drawing.Size(28, 28);
-            this._DeleteCommandToolStripButton.Text = "删除";
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(405, 31);
-            this.toolStrip1.TabIndex = 4;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton1.Text = "新增";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.edit_24px;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton2.Text = "编辑";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton3.Text = "删除";
-            // 
             // toolStrip2
             // 
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(18, 18);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton4,
-            this.toolStripButton5,
-            this.toolStripButton6});
+            this._AddFileToolStripButton,
+            this._DeleteFileToolStripButton});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(405, 31);
-            this.toolStrip2.TabIndex = 4;
+            this.toolStrip2.Size = new System.Drawing.Size(405, 33);
+            this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // toolStripButton4
+            // _AddFileToolStripButton
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton4.Text = "新增";
+            this._AddFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._AddFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._AddFileToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this._AddFileToolStripButton.Name = "_AddFileToolStripButton";
+            this._AddFileToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._AddFileToolStripButton.Size = new System.Drawing.Size(46, 31);
+            this._AddFileToolStripButton.Text = "新增";
             // 
-            // toolStripButton5
+            // _DeleteFileToolStripButton
             // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.edit_24px;
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton5.Text = "编辑";
-            // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton6.Text = "删除";
+            this._DeleteFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._DeleteFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteFileToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this._DeleteFileToolStripButton.Name = "_DeleteFileToolStripButton";
+            this._DeleteFileToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._DeleteFileToolStripButton.Size = new System.Drawing.Size(46, 31);
+            this._DeleteFileToolStripButton.Text = "删除";
             // 
             // DUTDetailDialog
             // 
@@ -504,14 +488,14 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
@@ -525,39 +509,37 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox _NameTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button _AutoNumberButton;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox _NumberTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox _DescriptionTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ComboBox _UnitComboBox;
+        private System.Windows.Forms.ComboBox _ClassifyComboBox;
+        private System.Windows.Forms.ListView _MetrologyValuesListView;
+        private System.Windows.Forms.ListView _PhotoListView;
+        private System.Windows.Forms.ListView _FilesListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox _ExpectValueTextBox;
         private System.Windows.Forms.ToolStrip toolStrip3;
-        private System.Windows.Forms.ToolStripButton _AddCommandToolStripButton;
-        private System.Windows.Forms.ToolStripButton _EditCommandToolStripButton;
-        private System.Windows.Forms.ToolStripButton _DeleteCommandToolStripButton;
+        private System.Windows.Forms.ToolStripButton _AddMetrologyValueToolStripButton;
+        private System.Windows.Forms.ToolStripButton _EditMetrologyValueToolStripButton;
+        private System.Windows.Forms.ToolStripButton _DeleteMetrologyValueToolStripButton;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton _AddPhotoToolStripButton;
+        private System.Windows.Forms.ToolStripButton _DeletePhotoToolStripButton;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.ToolStripButton _AddFileToolStripButton;
+        private System.Windows.Forms.ToolStripButton _DeleteFileToolStripButton;
     }
 }

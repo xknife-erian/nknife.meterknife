@@ -22,13 +22,13 @@ namespace NKnife.MeterKnife.Workbench.Controls
 
         private void InitializeImageList()
         {
-            _imageList.Images.Add(nameof(EngineeringCreateTimeTreeNode), Resources.node_date);
-            _imageList.Images.Add(nameof(EngineeringTreeNode), Resources.node_eng);
-            _imageList.Images.Add(nameof(DUTTreeNode), Resources.node_dut1);
-            _imageList.Images.Add(Resources.node_dut2);
-            _imageList.Images.Add(Resources.node_dut3);
-            _imageList.Images.Add(Resources.node_dut4);
-            _imageList.Images.Add(Resources.node_dut5);
+            _imageList.Images.Add(nameof(EngineeringCreateTimeTreeNode), Res.node_date);
+            _imageList.Images.Add(nameof(EngineeringTreeNode), Res.node_eng);
+            _imageList.Images.Add(nameof(DUTTreeNode), Res.node_dut1);
+            _imageList.Images.Add(Res.node_dut2);
+            _imageList.Images.Add(Res.node_dut3);
+            _imageList.Images.Add(Res.node_dut4);
+            _imageList.Images.Add(Res.node_dut5);
             ImageList = _imageList;
         }
 

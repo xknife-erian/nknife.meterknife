@@ -69,7 +69,7 @@
             // _NewToolStripButton
             // 
             this._NewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._NewToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.eng_add;
+            this._NewToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.eng_add;
             this._NewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._NewToolStripButton.Name = "_NewToolStripButton";
             this._NewToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -78,7 +78,7 @@
             // _EditToolStripButton
             // 
             this._EditToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._EditToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.eng_edit;
+            this._EditToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.eng_edit;
             this._EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._EditToolStripButton.Name = "_EditToolStripButton";
             this._EditToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -87,7 +87,7 @@
             // _DeleteToolStripButton
             // 
             this._DeleteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DeleteToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.ints_delete;
+            this._DeleteToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.ints_delete;
             this._DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._DeleteToolStripButton.Name = "_DeleteToolStripButton";
             this._DeleteToolStripButton.Size = new System.Drawing.Size(23, 22);

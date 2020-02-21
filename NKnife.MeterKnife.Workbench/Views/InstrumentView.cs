@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Dialogs.Instruments;
 using NKnife.MeterKnife.Workbench.Properties;
@@ -46,8 +47,8 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             _InstrumentListView.LargeImageList = _instPhotos;
             _InstrumentListView.LargeImageList.ImageSize = new Size(64, 64);
-            _instPhotos.Images.Add(nameof(Resources.instrument), Resources.instrument);
-            _instPhotos.Images.Add(nameof(Resources.Agilent34401), Resources.Agilent34401);
+            _instPhotos.Images.Add(nameof(LargeImageResource.instrument), LargeImageResource.instrument);
+            _instPhotos.Images.Add(nameof(LargeImageResource.inst_agilent_34401), LargeImageResource.inst_agilent_34401);
         }
 
         private void InitializeLanguage()
@@ -77,7 +78,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             var item = new ListViewItem();
             item.Tag = inst;
             item.Text = $"{inst.Manufacturer} {inst.Model1}";
-            item.ImageKey = nameof(Resources.instrument);
+            item.ImageKey = nameof(LargeImageResource.instrument);
             return item;
         }
     }

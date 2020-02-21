@@ -154,7 +154,7 @@
             // _AddFileToolStripButton
             // 
             this._AddFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddFileToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
+            this._AddFileToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.add_24px;
             this._AddFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._AddFileToolStripButton.Name = "_AddFileToolStripButton";
             this._AddFileToolStripButton.Size = new System.Drawing.Size(28, 28);
@@ -222,7 +222,7 @@
             // _AddPhotoToolStripButton
             // 
             this._AddPhotoToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddPhotoToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
+            this._AddPhotoToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.add_24px;
             this._AddPhotoToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._AddPhotoToolStripButton.Name = "_AddPhotoToolStripButton";
             this._AddPhotoToolStripButton.Size = new System.Drawing.Size(28, 28);
@@ -498,7 +498,7 @@
             // _AddScpiToolStripButton
             // 
             this._AddScpiToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._AddScpiToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Resources.add_24px;
+            this._AddScpiToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.add_24px;
             this._AddScpiToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._AddScpiToolStripButton.Name = "_AddScpiToolStripButton";
             this._AddScpiToolStripButton.Size = new System.Drawing.Size(28, 28);

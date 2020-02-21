@@ -10,6 +10,12 @@ namespace NKnife.MeterKnife.Common.Base
         #region DUT
 
         /// <summary>
+        ///     创建一个被测物
+        /// </summary>
+        /// <param name="dut"></param>
+        Task<bool> CreateDUTAsync(DUT dut);
+
+        /// <summary>
         ///     获取所有的<see cref="DUT" />
         /// </summary>
         Task<IEnumerable<DUT>> GetAllDUTAsync();
@@ -58,7 +64,7 @@ namespace NKnife.MeterKnife.Common.Base
         /// </summary>
         /// <param name="port">Care所在串口编号</param>
         /// <returns>是否创建成功</returns>
-        Task<Slot> CreatMeterCareSlotAsync(short port);
+        Task<Slot> CreateMeterCareSlotAsync(short port);
 
         /// <summary>
         ///     获取所有的<see cref="Slot" />
@@ -66,5 +72,6 @@ namespace NKnife.MeterKnife.Common.Base
         Task<IEnumerable<Slot>> GetAllSlotAsync();
 
         #endregion
+
     }
 }

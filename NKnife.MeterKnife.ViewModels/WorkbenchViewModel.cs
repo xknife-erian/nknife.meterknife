@@ -95,7 +95,7 @@ namespace NKnife.MeterKnife.ViewModels
         /// </summary>
         /// <param name="port">Care所在串口编号</param>
         /// <returns>是否创建成功</returns>
-        public async Task<Slot> CreatMeterCareSlotAsync(short port)
+        public async Task<Slot> CreateMeterCareSlotAsync(short port)
         {
             var slot = new Slot();
             slot.SetMeterCare(SlotType.MeterCare, (port, new SerialConfig() {BaudRate = 115200}));
@@ -112,6 +112,15 @@ namespace NKnife.MeterKnife.ViewModels
         public async Task<IEnumerable<Slot>> GetAllSlotAsync()
         {
             return await _slotStoragePlatform.FindAllAsync();
+        }
+
+        /// <summary>
+        ///     创建一个被测物
+        /// </summary>
+        /// <param name="dut"></param>
+        public async Task<bool> CreateDUTAsync(DUT dut)
+        {
+            return await _dutStoragePlatform.InsertAsync(dut);
         }
 
         /// <summary>
