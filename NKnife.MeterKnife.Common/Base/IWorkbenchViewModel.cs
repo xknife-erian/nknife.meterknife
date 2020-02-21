@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using NKnife.MeterKnife.Common.Domain;
 
@@ -8,20 +7,43 @@ namespace NKnife.MeterKnife.Common.Base
 {
     public interface IWorkbenchViewModel
     {
+        #region DUT
+
+        /// <summary>
+        ///     获取所有的<see cref="DUT" />
+        /// </summary>
+        Task<IEnumerable<DUT>> GetAllDUTAsync();
+
+        #endregion
+
+        #region Instrument
+
+        /// <summary>
+        ///     创建一台仪器
+        /// </summary>
+        Task CreateInstrumentAsync(Instrument inst);
+
+        /// <summary>
+        ///     获取所有的仪器
+        /// </summary>
+        Task<IEnumerable<Instrument>> GetAllInstrumentAsync();
+
         #region Engineering
 
-        /// <summary>
-        /// 创建一个工程
-        /// </summary>
-        Task CreateAsync(Engineering eng);
+        #endregion
 
         /// <summary>
-        /// 获取所有工程，并按工程的创建时间倒序排列
+        ///     创建一个工程
+        /// </summary>
+        Task CreateEngineeringAsync(Engineering eng);
+
+        /// <summary>
+        ///     获取所有工程，并按工程的创建时间倒序排列
         /// </summary>
         Task<Dictionary<DateTime, List<Engineering>>> GetEngineeringAndDateMapAsync();
 
         /// <summary>
-        /// 是否存在相同编号的工程
+        ///     是否存在相同编号的工程
         /// </summary>
         /// <param name="engId">工程编号</param>
         /// <returns>是否存在</returns>
@@ -32,27 +54,17 @@ namespace NKnife.MeterKnife.Common.Base
         #region Slot
 
         /// <summary>
-        /// 创建一个Care接驳器
+        ///     创建一个Care接驳器
         /// </summary>
         /// <param name="port">Care所在串口编号</param>
         /// <returns>是否创建成功</returns>
-        Task<bool> CreatMeterCareSlotAsync(short port);
+        Task<Slot> CreatMeterCareSlotAsync(short port);
 
         /// <summary>
-        /// 获取所有的<see cref="Slot"/>
+        ///     获取所有的<see cref="Slot" />
         /// </summary>
         Task<IEnumerable<Slot>> GetAllSlotAsync();
 
         #endregion
-
-        #region DUT
-
-        /// <summary>
-        /// 获取所有的<see cref="DUT"/>
-        /// </summary>
-        Task<IEnumerable<DUT>> GetAllDUTAsync();
-
-        #endregion
-
     }
 }

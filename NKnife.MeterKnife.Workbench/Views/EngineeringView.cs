@@ -57,7 +57,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
                     var eng = dialog.Engineering;
-                    await _viewModel.CreateAsync(eng);
+                    await _viewModel.CreateEngineeringAsync(eng);
                     var simpleDate = new DateTime(eng.CreateTime.Year, eng.CreateTime.Month, 1, 0, 0, 0);
                     TreeNode dateNode;
                     EngineeringCreateTimeTreeNode srcNode = null;

@@ -238,11 +238,6 @@
     <Compile Include="Options\PlotOptionPanel.Designer.cs">
       <DependentUpon>PlotOptionPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Controls\FiguredDataGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -307,6 +302,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserResearch.cs" />
     <Compile Include="Views\DUTView.cs">
       <SubType>Form</SubType>
@@ -499,6 +499,8 @@
     <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
     <Content Include="Properties\meterknife_32px.ico" />
     <Content Include="Properties\meterknife_96px.ico" />
+    <Content Include="Properties\Photos\Agilent34401.jpg" />
+    <Content Include="Properties\Photos\instrument.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

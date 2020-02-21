@@ -13,7 +13,7 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// <param name="scpi">指令</param>
         /// <param name="gpibAddress">协议体里的GPIB地址</param>
         /// <returns>协议字节数组</returns>
-        public static byte[] GenerateCareProtocol(this Scpi scpi, int gpibAddress)
+        public static byte[] GenerateCareProtocol(this SCPI scpi, int gpibAddress)
         {
             const byte MAIN_COMMAND = 0xAA;
             const byte SUB_COMMAND = 0x00;

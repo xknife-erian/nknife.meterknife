@@ -13,7 +13,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
 {
     public partial class ScpiDetailDialog : Form
     {
-        private List<Scpi> _scpis;
+        private List<SCPI> _scpis;
 
         public ScpiDetailDialog()
         {
@@ -24,12 +24,12 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
             RespontToInputEvent();
         }
 
-        public List<Scpi> Scpis
+        public List<SCPI> Scpis
         {
             get
             {
                 if(_scpis==null)
-                    _scpis = new List<Scpi>();
+                    _scpis = new List<SCPI>();
                 _scpis.Clear();
                 foreach (TreeNode node in _ScpiTreeView.Nodes)
                 {
@@ -109,7 +109,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
         {
             _AddToolStripButton.Click += (sender, args) =>
             {
-                var node = new ScpiTreeNode(new Scpi() {Name = this.Res("新指令")});
+                var node = new ScpiTreeNode(new SCPI() {Name = this.Res("新指令")});
                 _ScpiTreeView.Nodes.Add(node);
                 //node.BeginEdit();
                 _ScpiTreeView.SelectedNode = node;
@@ -120,20 +120,20 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
 
         class ScpiTreeNode : TreeNode
         {
-            private Scpi _scpi;
+            private SCPI _scpi;
 
-            public ScpiTreeNode(Scpi scpi)
+            public ScpiTreeNode(SCPI scpi)
             {
                 _scpi = scpi;
                 Text = scpi.Name;
             }
 
-            public Scpi Scpi
+            public SCPI Scpi
             {
                 get
                 {
                     if (_scpi == null) 
-                        return _scpi = new Scpi {Name = Text};
+                        return _scpi = new SCPI {Name = Text};
                     _scpi.Name = Text;
                     return _scpi;
                 }

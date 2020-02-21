@@ -38,17 +38,8 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         {
             var debugMenu = new ToolStripMenuItem("研发调试(&D)");
 
-            var menu = new ToolStripMenuItem("SCPI编辑器");
+            var menu = new ToolStripMenuItem("仪器编辑器");
             menu.ShortcutKeys = Keys.F5;
-            menu.Click += (sender, args) =>
-            {
-                var form = debugMenu.GetCurrentParent().FindForm();
-                var dialog = Kernel.Container.Resolve<ScpiDetailDialog>();
-                dialog.ShowDialog(form);
-            };
-            debugMenu.DropDownItems.Add(menu);
-
-            menu = new ToolStripMenuItem("仪器编辑器");
             menu.Click += (sender, args) =>
             {
                 var form = debugMenu.GetCurrentParent().FindForm();

@@ -5,7 +5,7 @@ namespace NKnife.MeterKnife.Workbench.Controls
 {
     public partial class ScpiDetailPanel : UserControl
     {
-        private Scpi _scpi;
+        private SCPI _scpi;
 
         public ScpiDetailPanel()
         {
@@ -13,12 +13,12 @@ namespace NKnife.MeterKnife.Workbench.Controls
             InitializeLanguage();
         }
 
-        public Scpi Scpi
+        public SCPI Scpi
         {
             get
             {
                 if (_scpi == null)
-                    _scpi = new Scpi();
+                    _scpi = new SCPI();
                 _scpi.Name = _ScpiNameTextBox.Text;
                 _scpi.Command = _CommandTextBox.Text;
                 _scpi.Description = _ScpiDescriptionTextBox.Text;

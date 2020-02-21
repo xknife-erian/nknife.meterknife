@@ -28,9 +28,7 @@ namespace NKnife.MeterKnife.Workbench.Views
         private void InitializeLanguage()
         {
             this.Res(this);
-            _NewToolStripButton.Res();
-            _EditToolStripButton.Res();
-            _DeleteToolStripButton.Res();
+            this.Res(_NewToolStripButton, _EditToolStripButton, _DeleteToolStripButton);
         }
 
         private void RespondToControlClick()

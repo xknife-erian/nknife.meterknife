@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            NKnife.MeterKnife.Common.Scpi.Scpi scpi1 = new NKnife.MeterKnife.Common.Scpi.Scpi();
+            NKnife.MeterKnife.Common.Scpi.SCPI scpi1 = new NKnife.MeterKnife.Common.Scpi.SCPI();
             this.label3 = new System.Windows.Forms.Label();
             this._IntervalNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();

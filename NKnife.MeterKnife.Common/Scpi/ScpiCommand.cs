@@ -27,7 +27,7 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// <summary>
         ///     仪器的SCPI指令
         /// </summary>
-        public Scpi Scpi { get; set; }
+        public SCPI Scpi { get; set; }
 
         public int Interval { get; set; }
         public int Timeout { get; set; }

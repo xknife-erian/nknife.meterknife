@@ -30,8 +30,8 @@
         {
             this._ToolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._NewToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -52,11 +52,11 @@
             // _ToolStripContainer.ContentPanel
             // 
             this._ToolStripContainer.ContentPanel.Controls.Add(this.listView1);
-            this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(796, 725);
+            this._ToolStripContainer.ContentPanel.Size = new System.Drawing.Size(493, 725);
             this._ToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ToolStripContainer.Location = new System.Drawing.Point(0, 0);
             this._ToolStripContainer.Name = "_ToolStripContainer";
-            this._ToolStripContainer.Size = new System.Drawing.Size(796, 772);
+            this._ToolStripContainer.Size = new System.Drawing.Size(493, 772);
             this._ToolStripContainer.TabIndex = 0;
             this._ToolStripContainer.Text = "toolStripContainer1";
             // 
@@ -69,8 +69,21 @@
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(796, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(493, 22);
             this.statusStrip1.TabIndex = 0;
+            // 
+            // listView1
+            // 
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(493, 725);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // toolStrip1
             // 
@@ -81,21 +94,8 @@
             this._DeleteToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(112, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(81, 25);
             this.toolStrip1.TabIndex = 0;
-            // 
-            // listView1
-            // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(796, 725);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // _NewToolStripButton
             // 
@@ -128,7 +128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(796, 772);
+            this.ClientSize = new System.Drawing.Size(493, 772);
             this.Controls.Add(this._ToolStripContainer);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "DUTView";

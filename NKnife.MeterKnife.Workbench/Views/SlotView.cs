@@ -38,20 +38,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                 IEnumerable<Slot> slots = await viewModel.GetAllSlotAsync();
                 foreach (var slot in slots)
                 {
-                    var slotListItem = new ListViewItem();
-                    slotListItem.Tag = slot;
-                    switch (slot.SlotType)
-                    {
-                        case SlotType.MeterCare:
-                        default:
-                        {
-                            var config = slot.GetSerialPortInfo();
-                            slotListItem.Text = $"MeterCare\r\nCOM{config.Item1}";
-                            slotListItem.ImageKey = $"{nameof(SlotType.MeterCare)}";
-                            break;
-                        }
-                    }
-
+                    var slotListItem = GetSlotListItem(slot);
                     _SlotListView.Items.Add(slotListItem);
                 }
             };
@@ -73,23 +60,43 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             if(_SlotListView.LargeImageList==null)
                 _SlotListView.LargeImageList = new ImageList();
-            _SlotListView.LargeImageList.ImageSize = new Size(72,72);
+            _SlotListView.LargeImageList.ImageSize = new Size(64,64);
             _SlotListView.LargeImageList.Images.Add(nameof(SlotType.MeterCare), Resources.SlotType_MeterCare);
             _SlotListView.LargeImageList.Images.Add(nameof(SlotType.Serial), Resources.SlotType_Serial);
         }
 
         private void RespondToClickEvent()
         {
-            _NewCareToolStripMenuItem.Click += (sender, args) =>
+            _NewCareToolStripMenuItem.Click += async (sender, args) =>
             {
                 var dialog = new SerialPortSelectorDialog();
                 dialog.Text = this.Res("选择MeterCare所在的串口");
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
                     var result = dialog.SerialPort;
-                    _viewModel.CreatMeterCareSlotAsync(result);
+                    var slot = await _viewModel.CreatMeterCareSlotAsync(result);
+                    var item = GetSlotListItem(slot);
+                    _SlotListView.Items.Add(item);
                 }
             };
+        }
+
+        private static ListViewItem GetSlotListItem(Slot slot)
+        {
+            var slotListItem = new ListViewItem();
+            slotListItem.Tag = slot;
+            switch (slot.SlotType)
+            {
+                case SlotType.MeterCare:
+                default:
+                {
+                    var config = slot.GetSerialPortInfo();
+                    slotListItem.Text = $"MeterCare\r\nCOM{config.Item1}";
+                    slotListItem.ImageKey = $"{nameof(SlotType.MeterCare)}";
+                    break;
+                }
+            }
+            return slotListItem;
         }
     }
 }

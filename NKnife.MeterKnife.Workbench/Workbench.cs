@@ -57,9 +57,9 @@ namespace NKnife.MeterKnife.Workbench
                 new PlotOptionPanel(), 
             });
 
-            MainDockPanel.DockLeftPortion = 130;
+            MainDockPanel.DockLeftPortion = 115;
             MainDockPanel.DockRightPortion = 280;
-            MainDockPanel.DockBottomPortion = 160;
+            MainDockPanel.DockBottomPortion = 175;
         }
 
         private FileMenuItem BuildFileMenu()

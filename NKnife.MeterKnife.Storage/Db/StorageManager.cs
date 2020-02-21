@@ -50,6 +50,8 @@ namespace NKnife.MeterKnife.Storage.Db
             SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), new ObjectToJsonTypeHandler());
             SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), new ObjectToJsonTypeHandler());
             SqlMapper.AddTypeHandler(typeof(MetrologyValue[]), new ObjectToJsonTypeHandler());
+            SqlMapper.AddTypeHandler(typeof(SCPI), new ObjectToJsonTypeHandler());
+            SqlMapper.AddTypeHandler(typeof(List<SCPI>), new ObjectToJsonTypeHandler());
         }
 
         /// <summary>
@@ -162,6 +164,7 @@ namespace NKnife.MeterKnife.Storage.Db
             map.Add(nameof(DUT), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(DUT)));
             map.Add(nameof(Engineering), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Engineering)));
             map.Add(nameof(Slot), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Slot)));
+            map.Add(nameof(Instrument), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Instrument)));
             return map;
         }
 

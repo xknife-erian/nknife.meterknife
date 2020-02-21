@@ -6,6 +6,7 @@ using System.Text;
 using Newtonsoft.Json;
 using NKnife.Db.Base;
 using NKnife.Interface;
+using NKnife.MeterKnife.Common.Scpi;
 
 namespace NKnife.MeterKnife.Common.Domain
 {
@@ -32,7 +33,7 @@ namespace NKnife.MeterKnife.Common.Domain
         /// <summary>
         ///     设备常用简称
         /// </summary>
-        public string AbbrName { get; } = string.Empty;
+        public string AbbrName { get; set; } = string.Empty;
 
         /// <summary>
         ///     生产厂商
@@ -64,12 +65,17 @@ namespace NKnife.MeterKnife.Common.Domain
         /// <summary>
         ///     仪器的图片存放路径
         /// </summary>
-        public string ImagesPath { get; set; }
+        public string PhotosPath { get; set; }
 
         /// <summary>
         ///     被测物的测量报告存放路径
         /// </summary>
         public string FilesPath { get; set; }
+
+        /// <summary>
+        ///     这台仪器的SCPI指令集
+        /// </summary>
+        public List<SCPI> ScpiList { get; set; }
 
         public override bool Equals(object obj)
         {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Dialogs.Instruments;
@@ -17,14 +18,36 @@ namespace NKnife.MeterKnife.Workbench.Views
 {
     public partial class InstrumentView : SingletonDockContent
     {
+        private readonly IWorkbenchViewModel _viewModel;
         private readonly IDialogProvider _dialogProvider;
+        private ImageList _instPhotos = new ImageList();
 
-        public InstrumentView(IDialogProvider dialogProvider)
+        public InstrumentView(IDialogProvider dialogProvider, IWorkbenchViewModel viewModel)
         {
             _dialogProvider = dialogProvider;
+            _viewModel = viewModel;
             InitializeComponent();
             InitializeLanguage();
+            InitializeImageList();
             RespondToControlClick();
+            Shown += async (sender, args) =>
+            {
+
+                IEnumerable<Instrument> instArray = await viewModel.GetAllInstrumentAsync();
+                foreach (var inst in instArray)
+                {
+                    var item = GetInstrumentListItem(inst);
+                    _InstrumentListView.Items.Add(item);
+                }
+            };
+        }
+
+        private void InitializeImageList()
+        {
+            _InstrumentListView.LargeImageList = _instPhotos;
+            _InstrumentListView.LargeImageList.ImageSize = new Size(64, 64);
+            _instPhotos.Images.Add(nameof(Resources.instrument), Resources.instrument);
+            _instPhotos.Images.Add(nameof(Resources.Agilent34401), Resources.Agilent34401);
         }
 
         private void InitializeLanguage()
@@ -35,15 +58,27 @@ namespace NKnife.MeterKnife.Workbench.Views
 
         private void RespondToControlClick()
         {
-            _NewToolStripButton.Click += (sender, args) =>
+            _NewToolStripButton.Click += async (sender, args) =>
             {
                 var dialog = _dialogProvider.New<InstrumentDetailDialog>();
                 var ds = dialog.ShowDialog();
                 if (ds == DialogResult.OK)
                 {
-
+                    var inst = dialog.Instrument;
+                    var item = GetInstrumentListItem(inst);
+                    _InstrumentListView.Items.Add(item);
+                    await _viewModel.CreateInstrumentAsync(inst);
                 }
             };
+        }
+
+        private ListViewItem GetInstrumentListItem(Instrument inst)
+        {
+            var item = new ListViewItem();
+            item.Tag = inst;
+            item.Text = $"{inst.Manufacturer} {inst.Model1}";
+            item.ImageKey = nameof(Resources.instrument);
+            return item;
         }
     }
 }

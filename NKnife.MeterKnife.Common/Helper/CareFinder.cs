@@ -27,7 +27,7 @@
 //                {
 //                    if (onFindCare)
 //                    {
-//                        if (e.CareCommand.Scpi.ToLower().StartsWith("care"))
+//                        if (e.CareCommand.SCPI.ToLower().StartsWith("care"))
 //                        {
 //                            careComm.OnSerialInitialized(carePort);
 //                            careComm.Solts.Add(carePort);

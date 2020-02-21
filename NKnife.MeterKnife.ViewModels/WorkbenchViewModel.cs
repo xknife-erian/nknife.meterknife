@@ -13,6 +13,7 @@ namespace NKnife.MeterKnife.ViewModels
 {
     public class WorkbenchViewModel : ViewModelBase, IWorkbenchViewModel
     {
+        private readonly IStoragePlatform<Instrument> _instrumentStoragePlatform;
         private readonly IStoragePlatform<Engineering> _engineeringStoragePlatform;
         private readonly IStoragePlatform<Slot> _slotStoragePlatform;
         private readonly IStoragePlatform<DUT> _dutStoragePlatform;
@@ -21,18 +22,35 @@ namespace NKnife.MeterKnife.ViewModels
 
         private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
 
-        public WorkbenchViewModel(IStoragePlatform<Engineering> engineeringStoragePlatform, IStoragePlatform<Slot> slotStoragePlatform, IStoragePlatform<DUT> dutStoragePlatform, IEngineeringLogic engineeringLogic)
+        public WorkbenchViewModel(IStoragePlatform<Engineering> engineeringStoragePlatform, IStoragePlatform<Slot> slotStoragePlatform, IStoragePlatform<DUT> dutStoragePlatform, IEngineeringLogic engineeringLogic, IStoragePlatform<Instrument> instrumentStoragePlatform)
         {
             _engineeringStoragePlatform = engineeringStoragePlatform;
             _slotStoragePlatform = slotStoragePlatform;
             _dutStoragePlatform = dutStoragePlatform;
             _engineeringLogic = engineeringLogic;
+            _instrumentStoragePlatform = instrumentStoragePlatform;
+        }
+
+        /// <summary>
+        ///     创建一台仪器
+        /// </summary>
+        public async Task CreateInstrumentAsync(Instrument inst)
+        {
+            await _instrumentStoragePlatform.InsertAsync(inst);
+        }
+
+        /// <summary>
+        ///     获取所有的仪器
+        /// </summary>
+        public async Task<IEnumerable<Instrument>> GetAllInstrumentAsync()
+        {
+            return await _instrumentStoragePlatform.FindAllAsync();
         }
 
         /// <summary>
         /// 创建一个工程
         /// </summary>
-        public async Task CreateAsync(Engineering eng)
+        public async Task CreateEngineeringAsync(Engineering eng)
         {
             await _engineeringLogic.CreateEngineeringAsync(eng);
         }
@@ -77,11 +95,14 @@ namespace NKnife.MeterKnife.ViewModels
         /// </summary>
         /// <param name="port">Care所在串口编号</param>
         /// <returns>是否创建成功</returns>
-        public async Task<bool> CreatMeterCareSlotAsync(short port)
+        public async Task<Slot> CreatMeterCareSlotAsync(short port)
         {
             var slot = new Slot();
             slot.SetMeterCare(SlotType.MeterCare, (port, new SerialConfig() {BaudRate = 115200}));
-            return await _slotStoragePlatform.InsertAsync(slot);
+            var b =  await _slotStoragePlatform.InsertAsync(slot);
+            if (b)
+                return slot;
+            return null;
         }
 
         /// <summary>

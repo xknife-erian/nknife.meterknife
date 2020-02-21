@@ -308,7 +308,7 @@ namespace NKnife.MeterKnife.Holistic
             {
                 var data = cmd.IsCare
                     ? CareCommandHelper.GenerateCareProtocol(cmd)
-                    : cmd.Scpi.GenerateCareProtocol(cmd.GpibAddress);
+                    : cmd.SCPI.GenerateCareProtocol(cmd.GpibAddress);
 
                 _Logger.Trace($"< SendCommand:{data.ToHexString()}");
 

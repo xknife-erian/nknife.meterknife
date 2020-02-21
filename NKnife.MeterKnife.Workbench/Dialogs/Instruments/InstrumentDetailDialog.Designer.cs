@@ -32,13 +32,13 @@
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this._FilesTreeView = new System.Windows.Forms.TreeView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this._AddFileToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteFileToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.miniToolStrip = new System.Windows.Forms.ToolStrip();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.listView3 = new System.Windows.Forms.ListView();
+            this._PhotoListView = new System.Windows.Forms.ListView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._AddPhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeletePhotoToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -62,8 +62,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this._NetInfoLabel = new System.Windows.Forms.Label();
-            this._GetInstrumentScpiTemplateButton = new System.Windows.Forms.Button();
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
             this._ScpiTreeView = new System.Windows.Forms.TreeView();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
@@ -76,6 +74,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this._NetInfoLabel = new System.Windows.Forms.Label();
+            this._GetInstrumentScpiTemplateButton = new System.Windows.Forms.Button();
+            this._FilesStatusStrip = new System.Windows.Forms.StatusStrip();
+            this._PhotosStatusStrip = new System.Windows.Forms.StatusStrip();
+            this._PhotosPathToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._FilesPathToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabPage4.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -88,13 +92,15 @@
             this._SplitContainer.Panel2.SuspendLayout();
             this._SplitContainer.SuspendLayout();
             this.toolStrip3.SuspendLayout();
+            this._FilesStatusStrip.SuspendLayout();
+            this._PhotosStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _CancelButton
             // 
             this._CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._CancelButton.Location = new System.Drawing.Point(332, 453);
+            this._CancelButton.Location = new System.Drawing.Point(369, 453);
             this._CancelButton.Name = "_CancelButton";
             this._CancelButton.Size = new System.Drawing.Size(75, 35);
             this._CancelButton.TabIndex = 5;
@@ -104,7 +110,7 @@
             // _AcceptButton
             // 
             this._AcceptButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._AcceptButton.Location = new System.Drawing.Point(251, 453);
+            this._AcceptButton.Location = new System.Drawing.Point(288, 453);
             this._AcceptButton.Name = "_AcceptButton";
             this._AcceptButton.Size = new System.Drawing.Size(75, 35);
             this._AcceptButton.TabIndex = 4;
@@ -113,23 +119,24 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.treeView1);
+            this.tabPage4.Controls.Add(this._FilesTreeView);
+            this.tabPage4.Controls.Add(this._FilesStatusStrip);
             this.tabPage4.Controls.Add(this.toolStrip2);
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(391, 379);
+            this.tabPage4.Size = new System.Drawing.Size(428, 379);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "相关文件";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // treeView1
+            // _FilesTreeView
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(3, 34);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(385, 342);
-            this.treeView1.TabIndex = 3;
+            this._FilesTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._FilesTreeView.Location = new System.Drawing.Point(3, 34);
+            this._FilesTreeView.Name = "_FilesTreeView";
+            this._FilesTreeView.Size = new System.Drawing.Size(422, 320);
+            this._FilesTreeView.TabIndex = 3;
             // 
             // toolStrip2
             // 
@@ -140,7 +147,7 @@
             this._DeleteFileToolStripButton});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(385, 31);
+            this.toolStrip2.Size = new System.Drawing.Size(422, 31);
             this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -178,25 +185,26 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.listView3);
+            this.tabPage3.Controls.Add(this._PhotoListView);
+            this.tabPage3.Controls.Add(this._PhotosStatusStrip);
             this.tabPage3.Controls.Add(this.toolStrip1);
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(391, 379);
+            this.tabPage3.Size = new System.Drawing.Size(428, 379);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "实物照片";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // listView3
+            // _PhotoListView
             // 
-            this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(3, 34);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(385, 342);
-            this.listView3.TabIndex = 0;
-            this.listView3.UseCompatibleStateImageBehavior = false;
+            this._PhotoListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._PhotoListView.HideSelection = false;
+            this._PhotoListView.Location = new System.Drawing.Point(3, 34);
+            this._PhotoListView.Name = "_PhotoListView";
+            this._PhotoListView.Size = new System.Drawing.Size(422, 320);
+            this._PhotoListView.TabIndex = 0;
+            this._PhotoListView.UseCompatibleStateImageBehavior = false;
             // 
             // toolStrip1
             // 
@@ -207,7 +215,7 @@
             this._DeletePhotoToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(385, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(422, 31);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -251,7 +259,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(391, 379);
+            this.tabPage1.Size = new System.Drawing.Size(428, 379);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基本信息";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -280,7 +288,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._SubModelTextBox.Location = new System.Drawing.Point(223, 198);
             this._SubModelTextBox.Name = "_SubModelTextBox";
-            this._SubModelTextBox.Size = new System.Drawing.Size(146, 23);
+            this._SubModelTextBox.Size = new System.Drawing.Size(183, 23);
             this._SubModelTextBox.TabIndex = 15;
             // 
             // _ModelTextBox
@@ -296,7 +304,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._AbbrNameTextBox.Location = new System.Drawing.Point(224, 93);
             this._AbbrNameTextBox.Name = "_AbbrNameTextBox";
-            this._AbbrNameTextBox.Size = new System.Drawing.Size(145, 23);
+            this._AbbrNameTextBox.Size = new System.Drawing.Size(182, 23);
             this._AbbrNameTextBox.TabIndex = 13;
             // 
             // _DescriptionTextBox
@@ -311,7 +319,7 @@
             this._DescriptionTextBox.Multiline = true;
             this._DescriptionTextBox.Name = "_DescriptionTextBox";
             this._DescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._DescriptionTextBox.Size = new System.Drawing.Size(347, 108);
+            this._DescriptionTextBox.Size = new System.Drawing.Size(384, 108);
             this._DescriptionTextBox.TabIndex = 12;
             // 
             // _NameTextBox
@@ -327,7 +335,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._NumberTextBox.Location = new System.Drawing.Point(22, 41);
             this._NumberTextBox.Name = "_NumberTextBox";
-            this._NumberTextBox.Size = new System.Drawing.Size(217, 23);
+            this._NumberTextBox.Size = new System.Drawing.Size(280, 23);
             this._NumberTextBox.TabIndex = 1;
             // 
             // label6
@@ -364,7 +372,7 @@
             this._UseClassificationComboBox.FormattingEnabled = true;
             this._UseClassificationComboBox.Location = new System.Drawing.Point(224, 144);
             this._UseClassificationComboBox.Name = "_UseClassificationComboBox";
-            this._UseClassificationComboBox.Size = new System.Drawing.Size(145, 25);
+            this._UseClassificationComboBox.Size = new System.Drawing.Size(182, 25);
             this._UseClassificationComboBox.TabIndex = 8;
             // 
             // _ManufacturerComboBox
@@ -396,11 +404,11 @@
             // _AutoNumberButton
             // 
             this._AutoNumberButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._AutoNumberButton.Location = new System.Drawing.Point(245, 38);
+            this._AutoNumberButton.Location = new System.Drawing.Point(308, 38);
             this._AutoNumberButton.Name = "_AutoNumberButton";
-            this._AutoNumberButton.Size = new System.Drawing.Size(124, 29);
+            this._AutoNumberButton.Size = new System.Drawing.Size(98, 29);
             this._AutoNumberButton.TabIndex = 2;
-            this._AutoNumberButton.Text = "自动生成编号";
+            this._AutoNumberButton.Text = "自动生成";
             this._AutoNumberButton.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -425,7 +433,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(399, 417);
+            this.tabControl1.Size = new System.Drawing.Size(436, 417);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage2
@@ -434,30 +442,10 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(391, 379);
+            this.tabPage2.Size = new System.Drawing.Size(428, 379);
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "SCPI指令";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // _NetInfoLabel
-            // 
-            this._NetInfoLabel.AutoSize = true;
-            this._NetInfoLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this._NetInfoLabel.Location = new System.Drawing.Point(17, 434);
-            this._NetInfoLabel.Name = "_NetInfoLabel";
-            this._NetInfoLabel.Size = new System.Drawing.Size(11, 17);
-            this._NetInfoLabel.TabIndex = 8;
-            this._NetInfoLabel.Text = ".";
-            // 
-            // _GetInstrumentScpiTemplateButton
-            // 
-            this._GetInstrumentScpiTemplateButton.Enabled = false;
-            this._GetInstrumentScpiTemplateButton.Location = new System.Drawing.Point(16, 453);
-            this._GetInstrumentScpiTemplateButton.Name = "_GetInstrumentScpiTemplateButton";
-            this._GetInstrumentScpiTemplateButton.Size = new System.Drawing.Size(116, 35);
-            this._GetInstrumentScpiTemplateButton.TabIndex = 9;
-            this._GetInstrumentScpiTemplateButton.Text = "从网络获取";
-            this._GetInstrumentScpiTemplateButton.UseVisualStyleBackColor = true;
             // 
             // _SplitContainer
             // 
@@ -479,8 +467,8 @@
             this._SplitContainer.Panel2.Controls.Add(this.label10);
             this._SplitContainer.Panel2.Controls.Add(this.label11);
             this._SplitContainer.Panel2.Controls.Add(this.label12);
-            this._SplitContainer.Size = new System.Drawing.Size(385, 373);
-            this._SplitContainer.SplitterDistance = 141;
+            this._SplitContainer.Size = new System.Drawing.Size(422, 373);
+            this._SplitContainer.SplitterDistance = 154;
             this._SplitContainer.TabIndex = 9;
             // 
             // _ScpiTreeView
@@ -491,7 +479,7 @@
             this._ScpiTreeView.LabelEdit = true;
             this._ScpiTreeView.Location = new System.Drawing.Point(0, 31);
             this._ScpiTreeView.Name = "_ScpiTreeView";
-            this._ScpiTreeView.Size = new System.Drawing.Size(141, 342);
+            this._ScpiTreeView.Size = new System.Drawing.Size(154, 342);
             this._ScpiTreeView.TabIndex = 5;
             // 
             // toolStrip3
@@ -503,7 +491,7 @@
             this._DeleteScpiToolStripButton});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(141, 31);
+            this.toolStrip3.Size = new System.Drawing.Size(154, 31);
             this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -528,9 +516,11 @@
             // 
             // _ScpiNameTextBox
             // 
+            this._ScpiNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._ScpiNameTextBox.Location = new System.Drawing.Point(8, 23);
             this._ScpiNameTextBox.Name = "_ScpiNameTextBox";
-            this._ScpiNameTextBox.Size = new System.Drawing.Size(223, 23);
+            this._ScpiNameTextBox.Size = new System.Drawing.Size(253, 23);
             this._ScpiNameTextBox.TabIndex = 26;
             // 
             // label9
@@ -544,22 +534,27 @@
             // 
             // _ScpiCommandTextBox
             // 
+            this._ScpiCommandTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._ScpiCommandTextBox.Location = new System.Drawing.Point(8, 67);
             this._ScpiCommandTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ScpiCommandTextBox.Multiline = true;
             this._ScpiCommandTextBox.Name = "_ScpiCommandTextBox";
             this._ScpiCommandTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._ScpiCommandTextBox.Size = new System.Drawing.Size(223, 106);
+            this._ScpiCommandTextBox.Size = new System.Drawing.Size(253, 106);
             this._ScpiCommandTextBox.TabIndex = 20;
             // 
             // _ScpiDescriptionTextBox
             // 
+            this._ScpiDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._ScpiDescriptionTextBox.Location = new System.Drawing.Point(8, 210);
             this._ScpiDescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this._ScpiDescriptionTextBox.Multiline = true;
             this._ScpiDescriptionTextBox.Name = "_ScpiDescriptionTextBox";
             this._ScpiDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._ScpiDescriptionTextBox.Size = new System.Drawing.Size(223, 163);
+            this._ScpiDescriptionTextBox.Size = new System.Drawing.Size(253, 163);
             this._ScpiDescriptionTextBox.TabIndex = 23;
             // 
             // label10
@@ -591,13 +586,68 @@
             this.label12.Text = "Ctrl+Enter添加新行";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // _NetInfoLabel
+            // 
+            this._NetInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._NetInfoLabel.AutoSize = true;
+            this._NetInfoLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this._NetInfoLabel.Location = new System.Drawing.Point(17, 434);
+            this._NetInfoLabel.Name = "_NetInfoLabel";
+            this._NetInfoLabel.Size = new System.Drawing.Size(11, 17);
+            this._NetInfoLabel.TabIndex = 8;
+            this._NetInfoLabel.Text = ".";
+            // 
+            // _GetInstrumentScpiTemplateButton
+            // 
+            this._GetInstrumentScpiTemplateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._GetInstrumentScpiTemplateButton.Enabled = false;
+            this._GetInstrumentScpiTemplateButton.Location = new System.Drawing.Point(16, 453);
+            this._GetInstrumentScpiTemplateButton.Name = "_GetInstrumentScpiTemplateButton";
+            this._GetInstrumentScpiTemplateButton.Size = new System.Drawing.Size(116, 35);
+            this._GetInstrumentScpiTemplateButton.TabIndex = 9;
+            this._GetInstrumentScpiTemplateButton.Text = "从云端获取";
+            this._GetInstrumentScpiTemplateButton.UseVisualStyleBackColor = true;
+            // 
+            // _FilesStatusStrip
+            // 
+            this._FilesStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._FilesPathToolStripStatusLabel});
+            this._FilesStatusStrip.Location = new System.Drawing.Point(3, 354);
+            this._FilesStatusStrip.Name = "_FilesStatusStrip";
+            this._FilesStatusStrip.Size = new System.Drawing.Size(422, 22);
+            this._FilesStatusStrip.SizingGrip = false;
+            this._FilesStatusStrip.TabIndex = 5;
+            // 
+            // _PhotosStatusStrip
+            // 
+            this._PhotosStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._PhotosPathToolStripStatusLabel});
+            this._PhotosStatusStrip.Location = new System.Drawing.Point(3, 354);
+            this._PhotosStatusStrip.Name = "_PhotosStatusStrip";
+            this._PhotosStatusStrip.Size = new System.Drawing.Size(422, 22);
+            this._PhotosStatusStrip.SizingGrip = false;
+            this._PhotosStatusStrip.TabIndex = 5;
+            this._PhotosStatusStrip.Text = "statusStrip2";
+            // 
+            // _PhotosPathToolStripStatusLabel
+            // 
+            this._PhotosPathToolStripStatusLabel.Name = "_PhotosPathToolStripStatusLabel";
+            this._PhotosPathToolStripStatusLabel.Size = new System.Drawing.Size(11, 17);
+            this._PhotosPathToolStripStatusLabel.Text = ".";
+            // 
+            // _FilesPathToolStripStatusLabel
+            // 
+            this._FilesPathToolStripStatusLabel.Name = "_FilesPathToolStripStatusLabel";
+            this._FilesPathToolStripStatusLabel.Size = new System.Drawing.Size(11, 17);
+            this._FilesPathToolStripStatusLabel.Text = ".";
+            // 
             // InstrumentDetailDialog
             // 
             this.AcceptButton = this._AcceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this._CancelButton;
-            this.ClientSize = new System.Drawing.Size(423, 500);
+            this.ClientSize = new System.Drawing.Size(460, 500);
             this.Controls.Add(this._GetInstrumentScpiTemplateButton);
             this.Controls.Add(this._NetInfoLabel);
             this.Controls.Add(this.tabControl1);
@@ -631,6 +681,10 @@
             this._SplitContainer.ResumeLayout(false);
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
+            this._FilesStatusStrip.ResumeLayout(false);
+            this._FilesStatusStrip.PerformLayout();
+            this._PhotosStatusStrip.ResumeLayout(false);
+            this._PhotosStatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -641,10 +695,10 @@
         private System.Windows.Forms.Button _CancelButton;
         private System.Windows.Forms.Button _AcceptButton;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView _FilesTreeView;
         private System.Windows.Forms.ToolStrip miniToolStrip;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.ListView _PhotoListView;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -685,5 +739,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.StatusStrip _FilesStatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel _FilesPathToolStripStatusLabel;
+        private System.Windows.Forms.StatusStrip _PhotosStatusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel _PhotosPathToolStripStatusLabel;
     }
 }

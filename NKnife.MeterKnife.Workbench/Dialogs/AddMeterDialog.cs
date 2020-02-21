@@ -83,7 +83,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs
 
         private void OnCareConfigging(object sender, EventArgs<CareTalking> e)
         {
-            var idnName = e.Item.Scpi.Trim();
+            var idnName = e.Item.SCPI.Trim();
 
             var simpleName = MeterUtil.SimplifyName(idnName);
             var meterName = MeterUtil.Named(simpleName);

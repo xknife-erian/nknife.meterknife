@@ -73,6 +73,16 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Agilent34401 {
+            get {
+                object obj = ResourceManager.GetObject("Agilent34401", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap ColorPicker {
             get {
                 object obj = ResourceManager.GetObject("ColorPicker", resourceCulture);
@@ -156,6 +166,16 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         internal static System.Drawing.Bitmap eng_edit {
             get {
                 object obj = ResourceManager.GetObject("eng_edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap instrument {
+            get {
+                object obj = ResourceManager.GetObject("instrument", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
