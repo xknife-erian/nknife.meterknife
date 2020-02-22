@@ -82,7 +82,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var pool = new ScpiCommandPool();
             //pool.Add(item1);
             pool.AddRange(new[] {item2, temp5});
-            pool.AddRange(new[] {item1, temp6});
+            //pool.AddRange(new[] {item1, temp6});
             return pool;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using NKnife.MeterKnife.Common.Domain;
 
@@ -54,6 +55,11 @@ namespace NKnife.MeterKnife.Common.Base
         /// <param name="engId">工程编号</param>
         /// <returns>是否存在</returns>
         bool ExistEngineering(string engId);
+
+        /// <summary>
+        ///     已打开的工程
+        /// </summary>
+        ObservableCollection<Engineering> OpenedEngineerings { get; set; }
 
         #endregion
 

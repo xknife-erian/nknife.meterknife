@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Views;
 using NKnife.MeterKnife.ViewModels;
+using NKnife.MeterKnife.ViewModels.Plots;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Dialogs.Plots;
 using OxyPlot;
@@ -9,14 +10,15 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace NKnife.MeterKnife.Workbench.Views
 {
-    public partial class MeasureView : DockContent
+    public partial class DataPlotView : DockContent
     {
         private readonly MeasureViewModel _viewModel;
         private readonly IDialogProvider _dialogProvider;
 
-        public MeasureView(MeasureViewModel viewModel, IDialogProvider dialogProvider)
+        public DataPlotView(MeasureViewModel viewModel, IDialogProvider dialogProvider)
         {
             InitializeComponent();
+            InitializeLanguage();
             _dialogProvider = dialogProvider;
             _viewModel = viewModel;
             _PlotView.Model = _viewModel.LinearPlot.GetPlotModel();
@@ -27,25 +29,17 @@ namespace NKnife.MeterKnife.Workbench.Views
             _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(0.7); };
         }
 
-        public MeasureViewModel ViewModel => _viewModel;
-
-        public PlotModel GetMainPlotModel()
+        private void InitializeLanguage()
         {
-            return _PlotView.Model;
+            this.Res(this);
+            this.Res(_SetDataSeriesToolStripButton);
+            this.Res(_OriginalToolStripButton, _ZoomInToolStripButton, _ZoomOutToolStripButton, _TimeZoomToolStripButton, _ValueRangeZoomToolStripButton);
+            this.Res(_MainTabPage, tabPage2);
         }
 
-        /// <summary>
-        /// 设置窗体的工作模式，是新建的测量，还是打开已有的测量
-        /// </summary>
-        /// <param name="isNewMeasure">true时是新建测量，false是打开已有的测量</param>
-        public void SetWorkModel(bool isNewMeasure)
+        public void SetStyleSolution(DUTSeriesStyleSolution solution)
         {
-            if (isNewMeasure)
-            {
-            }
-            else
-            {
-            }
+            _viewModel.StyleSolution = solution;
         }
 
         private void SetDataSeriesButtonClick(object sender, EventArgs e)

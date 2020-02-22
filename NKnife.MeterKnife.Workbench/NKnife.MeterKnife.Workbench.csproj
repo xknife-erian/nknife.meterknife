@@ -150,6 +150,12 @@
     <Compile Include="Controls\EngineeringTree.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\PlotBanner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PlotBanner.Designer.cs">
+      <DependentUpon>PlotBanner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ScpiDetailPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -317,11 +323,11 @@
     <Compile Include="Views\InstrumentView.Designer.cs">
       <DependentUpon>InstrumentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MeasureView.cs">
+    <Compile Include="Views\DataPlotView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\MeasureView.Designer.cs">
-      <DependentUpon>MeasureView.cs</DependentUpon>
+    <Compile Include="Views\DataPlotView.Designer.cs">
+      <DependentUpon>DataPlotView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SlotView.cs">
       <SubType>Form</SubType>
@@ -332,6 +338,9 @@
     <Compile Include="Workbench.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Controls\PlotBanner.resx">
+      <DependentUpon>PlotBanner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ScpiDetailPanel.resx">
       <DependentUpon>ScpiDetailPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -408,8 +417,8 @@
     <EmbeddedResource Include="Views\InstrumentView.resx">
       <DependentUpon>InstrumentView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\MeasureView.resx">
-      <DependentUpon>MeasureView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\DataPlotView.resx">
+      <DependentUpon>DataPlotView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SlotView.resx">
       <DependentUpon>SlotView.cs</DependentUpon>

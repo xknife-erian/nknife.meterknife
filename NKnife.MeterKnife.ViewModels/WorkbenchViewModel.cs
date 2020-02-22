@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
@@ -88,6 +90,18 @@ namespace NKnife.MeterKnife.ViewModels
         public bool ExistEngineering(string engId)
         {
             return _engineeringStoragePlatform.ExistAsync(engId).Result;
+        }
+
+        private ObservableCollection<Engineering> _openedEngineerings = new ObservableCollection<Engineering>();
+
+        public ObservableCollection<Engineering> OpenedEngineerings
+        {
+            get => _openedEngineerings;
+            set
+            {
+                _openedEngineerings = value;
+                RaisePropertyChanged(() => OpenedEngineerings);
+            }
         }
 
         /// <summary>

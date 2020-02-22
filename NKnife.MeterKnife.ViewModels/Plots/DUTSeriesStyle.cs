@@ -30,13 +30,13 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// </summary>
         public string DUT { get; set; }
 
-        public Color Color { get; set; } = AllLineColors[0];
+        public Color Color { get; set; } = PlotTheme.CommonlyUsedColors[0];
         public double Offset { get; set; } = 0;
 
         /// <summary>
         ///     数据线线径
         /// </summary>
-        public double Thickness { get; set; } = 2;
+        public double Thickness { get; set; } = 3;
 
         public string Text { get; set; }
         public LineStyle LineStyle { get; set; } = LineStyle.Solid;
@@ -76,40 +76,6 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         #endregion
 
         #endregion
-
-        private static ReadOnlyCollection<Color> _allColors;
-
-        /// <summary>
-        ///     获取预置的折线图数据线的颜色，共13种易识别颜色
-        /// </summary>
-        public static ReadOnlyCollection<Color> AllLineColors
-        {
-            get
-            {
-                if (_allColors == null)
-                {
-                    var colors = new Color[13];
-                    colors[0] = Color.FromArgb(255, 255, 0);
-                    colors[1] = Color.FromArgb(255, 0, 255);
-                    colors[2] = Color.FromArgb(0, 255, 255);
-
-                    colors[3] = Color.FromArgb(0, 255, 0);
-                    colors[4] = Color.FromArgb(255, 0, 0);
-                    colors[5] = Color.FromArgb(0, 0, 255);
-
-                    colors[6] = Color.FromArgb(128, 255, 128);
-                    colors[7] = Color.FromArgb(128, 128, 255);
-                    colors[8] = Color.FromArgb(255, 128, 128);
-
-                    colors[9] = Color.FromArgb(255, 128, 0);
-                    colors[10] = Color.FromArgb(0, 128, 255);
-                    colors[11] = Color.FromArgb(255, 0, 128);
-                    colors[12] = Color.FromArgb(128, 255, 0);
-                    _allColors = Array.AsReadOnly(colors);
-                }
-                return _allColors;
-            }
-        }
 
         private static DUTSeriesStyle[] _lineStyles;
         public static DUTSeriesStyle Build(LineStyle lineStyle)

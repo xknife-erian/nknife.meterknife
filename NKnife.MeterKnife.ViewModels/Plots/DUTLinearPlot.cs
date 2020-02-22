@@ -14,23 +14,27 @@ namespace NKnife.MeterKnife.ViewModels.Plots
     /// </summary>
     public class DUTLinearPlot
     {
-        private readonly Dictionary<int, LinearAxis> _axisMap = new Dictionary<int, LinearAxis>();
-        private readonly Dictionary<int, bool> _axisFirstMap = new Dictionary<int, bool>();
         private readonly PlotModel _plotModel = new PlotModel();
         private readonly DateTimeAxis _timeAxis = new DateTimeAxis();
+
+        private readonly Dictionary<int, LinearAxis> _axisMap = new Dictionary<int, LinearAxis>();
+        private readonly Dictionary<int, bool> _axisFirstMap = new Dictionary<int, bool>();
+        private readonly List<short> _droppedDataCounter = new List<short>();
+        private readonly short _droppedDataCount;
 
         /// <summary>
         ///     构造函数：基础的折线图表, 横轴表示时间，纵轴代表测量值
         /// </summary>
-        public DUTLinearPlot(PlotTheme plotTheme, string title = "")
+        public DUTLinearPlot(PlotTheme plotTheme, short droppedDataCount, string title = "")
         {
+            _droppedDataCount = droppedDataCount;
             PlotTheme = plotTheme;
 
             _plotModel.PlotAreaBackground = ToOxyColor(plotTheme.AreaBackground);
             _plotModel.Title = title;
             _plotModel.TitleFontSize = 12F;
 
-            _timeAxis.TextColor = ToOxyColor(Color.Lavender);
+            _timeAxis.TextColor = ToOxyColor(SystemColors.ControlText);
             _timeAxis.MajorGridlineColor = ToOxyColor(plotTheme.BottomAxisGridLineColors.Major);
             _timeAxis.MinorGridlineColor = ToOxyColor(plotTheme.BottomAxisGridLineColors.Minor);
             _timeAxis.MajorGridlineStyle = LineStyle.Dash;
@@ -64,6 +68,11 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <param name="value">测量数据</param>
         public void AddValues(int number, DateTime time, double value)
         {
+            if (_droppedDataCounter[number] < _droppedDataCount)
+            {
+                _droppedDataCounter[number]++;
+                return;
+            }
             var axis = _axisMap[number];
             //先根据测量数据调整纵轴的值的范围
             if (_axisFirstMap[number])
@@ -87,6 +96,10 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <param name="styles">数据线的样式</param>
         public void SetSeries(params DUTSeriesStyle[] styles)
         {
+            for (int i = 0; i < styles.Length; i++)
+            {
+                _droppedDataCounter.Add(0);
+            }
             _plotModel.Series.Clear();
             for (var index = 0; index < styles.Length; index++)
             {
@@ -99,7 +112,9 @@ namespace NKnife.MeterKnife.ViewModels.Plots
                     TrackerFormatString = "{1}: {2:HH:mm:ss}\n{3}: {4:0.######}"
                 };
                 style.Axis.AxislineColor = ToOxyColor(style.Color);
-                style.Axis.TextColor = ToOxyColor(style.Color);
+                style.Axis.TextColor = ToOxyColor(SystemColors.ControlText);
+                style.Axis.MajorGridlineColor = ToOxyColor(PlotTheme.LeftAxisGridLineColors.Major);
+                style.Axis.MinorGridlineColor = ToOxyColor(PlotTheme.LeftAxisGridLineColors.Minor);
                 if (index > 0)
                 {
                     style.Axis.MinorGridlineStyle = LineStyle.None;

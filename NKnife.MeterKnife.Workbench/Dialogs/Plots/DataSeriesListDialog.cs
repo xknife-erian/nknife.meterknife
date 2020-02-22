@@ -65,7 +65,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
             item.Tag = style;
             item.SubItems.Clear();
             item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.DUT.ToString()));
-            //item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.SeriesStyle.SeriesLineStyle.ToString()));
+            item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.LineStyle.ToString()));
             item.SubItems.Add(new ListViewItem.ListViewSubItem(item, style.Thickness.ToString(CultureInfo.InvariantCulture)));
 
             var subItem = new ListViewItem.ListViewSubItem();

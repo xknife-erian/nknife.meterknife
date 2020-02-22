@@ -17,6 +17,7 @@ using NKnife.MeterKnife.Workbench.Controls;
 using NKnife.MeterKnife.Workbench.Dialogs;
 using NKnife.MeterKnife.Workbench.Dialogs.Engineerings;
 using NKnife.MeterKnife.Workbench.Properties;
+using NKnife.Win.Quick.Base;
 using NKnife.Win.Quick.Controls;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -26,11 +27,13 @@ namespace NKnife.MeterKnife.Workbench.Views
     {
         private readonly IDialogProvider _dialogProvider;
         private readonly IWorkbenchViewModel _viewModel;
+        private readonly DataPlotView _dataPlotView;
 
-        public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider)
+        public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider, DataPlotView dataPlotView)
         {
             _viewModel = viewModel;
             _dialogProvider = dialogProvider;
+            _dataPlotView = dataPlotView;
             InitializeComponent();
             InitializeLanguage();
             RespondToEvents();
@@ -98,7 +101,13 @@ namespace NKnife.MeterKnife.Workbench.Views
                     _EngPropertyGrid.SelectedObject = evm;
                 }
             };
-
+            _TreeView.MouseDoubleClick += (sender, args) =>
+            {
+                var node = _TreeView.SelectedNode as EngineeringTreeNode;
+                if(node ==null)
+                    return;
+                _viewModel.OpenedEngineerings.Add(node.Engineering);
+            };
         }
 
         private async void EngineeringsBindToTree(object sender, EventArgs e)

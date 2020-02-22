@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.ViewModels.Plots;
 using NLog;
 
@@ -23,7 +24,10 @@ namespace NKnife.MeterKnife.ViewModels
             foreach (var plotTheme in themes)
             {
                 if (plotTheme.Name == usingTheme)
-                    LinearPlot = new DUTLinearPlot(plotTheme);
+                {
+                    var droppedDataCount = habit.GetOptionValue(HabitKey.Plot_DroppedDataCount, (short)5);
+                    LinearPlot = new DUTLinearPlot(plotTheme, droppedDataCount);
+                }
             }
 
             acquisitionService.Acquired += OnMeasured;

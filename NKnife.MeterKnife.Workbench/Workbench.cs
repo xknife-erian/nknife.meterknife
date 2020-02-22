@@ -23,13 +23,15 @@ namespace NKnife.MeterKnife.Workbench
     {
         private readonly WorkbenchViewModel _viewModel;
         private readonly IHabitManager _habitManager;
+        private readonly DataPlotView _dataPlotView;
 
         public Workbench(WorkbenchViewModel viewModel, IHabitManager habitManager, 
             DataMenuItem dataMenu, MeasureMenuItem measureMenu,
-            DebuggerManager debuggerManager)
+            DebuggerManager debuggerManager, DataPlotView dataPlotView)
         {
             _viewModel = viewModel;
             _habitManager = habitManager;
+            _dataPlotView = dataPlotView;
 
             GetHabitValueFunc = _habitManager.GetHabitValue;
             SetHabitAction = _habitManager.SetHabitValue;
@@ -50,6 +52,7 @@ namespace NKnife.MeterKnife.Workbench
             var helpMenuItem = BuildHelpMenu();
             BindMainMenu(fileMenuItem, dataMenu, measureMenu, helpMenuItem);
 #if DEBUG
+            HideOnClosing = false;
             BindMainMenu(debuggerManager.GetDebugMenu());
 #endif
             OptionPanelList.AddRange(new IOptionPanel[]
@@ -62,6 +65,8 @@ namespace NKnife.MeterKnife.Workbench
             MainDockPanel.DockLeftPortion = 230;
             MainDockPanel.DockRightPortion = 280;
             MainDockPanel.DockBottomPortion = 170;
+
+            RespondToViewModel();
         }
 
         private FileMenuItem BuildFileMenu()
@@ -130,6 +135,15 @@ namespace NKnife.MeterKnife.Workbench
                     MainDockPanel.Theme = new VS2003Theme();
                     break;
             }
+        }
+
+        private void RespondToViewModel()
+        {
+            _viewModel.OpenedEngineerings.CollectionChanged += (sender, args) =>
+            {
+                var eng = _viewModel.OpenedEngineerings[args.NewStartingIndex];
+                _dataPlotView.Show(MainDockPanel, DockState.Document);
+            };
         }
 
         private void InitializeComponent()

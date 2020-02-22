@@ -20,13 +20,13 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 {
     public class DebuggerManager
     {
-        private readonly MeasureView _measureView;
+        private readonly DataPlotView _measureView;
 
         private readonly IAntService _antService;
         private readonly IDataConnector _connector;
         private readonly IEngineeringLogic _engineeringLogic;
 
-        public DebuggerManager(MeasureView measureView, IAntService antService, IDataConnector connector, IEngineeringLogic engineeringLogic)
+        public DebuggerManager(DataPlotView measureView, IAntService antService, IDataConnector connector, IEngineeringLogic engineeringLogic)
         {
             _measureView = measureView;
             _antService = antService;
@@ -39,7 +39,6 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var debugMenu = new ToolStripMenuItem("研发调试(&D)");
 
             var menu = new ToolStripMenuItem("仪器编辑器");
-            menu.ShortcutKeys = Keys.F5;
             menu.Click += (sender, args) =>
             {
                 var form = debugMenu.GetCurrentParent().FindForm();
@@ -68,8 +67,9 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
             debugMenu.DropDownItems.Add(new ToolStripSeparator());
 
-            var plot = BuildMeasureMenu(debugMenu);
-            debugMenu.DropDownItems.Add(plot);
+            menu = BuildMeasureMenu(debugMenu);
+            menu.ShortcutKeys = Keys.F5;
+            debugMenu.DropDownItems.Add(menu);
 
             return debugMenu;
         }
@@ -92,7 +92,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                     {
                         var cmd = start.Pool[index];
                         var style = DUTSeriesStyle.Build(LineStyle.Solid); //.GetAllLineStyles()[index];
-                        style.Color = DUTSeriesStyle.AllLineColors[index];
+                        style.Color = PlotTheme.CommonlyUsedColors[index];
                         style.DUT = cmd.DUT.Id;
 
                         style.Axis = new LinearAxis();
@@ -118,7 +118,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                         solution.Add(style);
                     }
 
-                    _measureView.ViewModel.StyleSolution = solution;
+                    _measureView.SetStyleSolution(solution);
                     _measureView.Show(wb.MainDockPanel, DockState.Document);
                     await start.RunAsync(_antService, _engineeringLogic);
                 }

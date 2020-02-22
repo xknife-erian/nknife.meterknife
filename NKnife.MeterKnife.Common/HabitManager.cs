@@ -80,8 +80,6 @@ namespace NKnife.MeterKnife.Common
     {
         #region General
 
-
-
         #endregion
 
         #region Data
@@ -96,7 +94,12 @@ namespace NKnife.MeterKnife.Common
         #region Plot
 
         /// <summary>
-        /// 
+        ///     采集数据时，丢弃开始的数据个数
+        /// </summary>
+        public static string Plot_DroppedDataCount = nameof(Plot_DroppedDataCount);
+
+        /// <summary>
+        ///     图表上下留白占比。
         /// </summary>
         public const string Plot_YSpace = nameof(Plot_YSpace);
 
