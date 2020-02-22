@@ -135,12 +135,6 @@
     <Compile Include="Menus\HelpMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Menus\ToolMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Menus\ViewMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuickForm.cs">
       <SubType>Form</SubType>

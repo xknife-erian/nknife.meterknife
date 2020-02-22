@@ -43,11 +43,11 @@ namespace NKnife.MeterKnife.Workbench.Views
                     _SlotListView.Items.Add(slotListItem);
                 }
             };
-            _NewToolStripDropDownButton.Image = Res.slot_add;
+            _NewToolStripDropDownButton.Image = MenuButtonResource.base_add_24px;
             _NewToolStripDropDownButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _EditToolStripButton.Image = Res.slot_edit;
+            _EditToolStripButton.Image = MenuButtonResource.base_edit_24px;
             _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _DeleteToolStripButton.Image = Res.slot_delete;
+            _DeleteToolStripButton.Image = MenuButtonResource.base_delete_24px;
             _DeleteToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
         }
 

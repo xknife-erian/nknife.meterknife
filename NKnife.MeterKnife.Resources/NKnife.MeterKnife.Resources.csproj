@@ -68,6 +68,11 @@
       <DependentUpon>MenuButtonResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TreeNodeResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TreeNodeResource.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="IconResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IconResource.Designer.cs</LastGenOutput>
@@ -80,24 +85,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuButtonResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="TreeNodeResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TreeNodeResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -121,6 +112,13 @@
     <Content Include="MenuButton\measure_pause_24px.png" />
     <Content Include="MenuButton\measure_start_24px.png" />
     <Content Include="MenuButton\measure_stop_24px.png" />
+    <Content Include="TreeNode\eng_node_date.png" />
+    <Content Include="TreeNode\eng_node_dut1.png" />
+    <Content Include="TreeNode\eng_node_dut2.png" />
+    <Content Include="TreeNode\eng_node_dut3.png" />
+    <Content Include="TreeNode\eng_node_dut4.png" />
+    <Content Include="TreeNode\eng_node_dut5.png" />
+    <Content Include="TreeNode\eng_node_eng.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

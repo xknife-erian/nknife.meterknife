@@ -28,7 +28,7 @@ namespace NKnife.Win.QuickDemo
             file.DropDownItems.Insert(0, new ToolStripSeparator());
             file.DropDownItems.Insert(0, GetItem());
 
-            BindMainMenu(file, new DataMenuItem(), new MeasureMenuItem(), new ToolMenuItem(), new ViewMenuItem(), new HelpMenuItem());
+            BindMainMenu(file, new DataMenuItem(), new MeasureMenuItem(), new HelpMenuItem());
             BindTrayMenu(GetItem(), GetItem());
         }
 

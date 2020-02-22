@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
+using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Controls;
@@ -36,11 +37,11 @@ namespace NKnife.MeterKnife.Workbench.Views
             RespondToButtonClick();
             Shown += EngineeringsBindToTree;
             _CreateEngStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _CreateEngStripButton.Image = Res.eng_add;
+            _CreateEngStripButton.Image = MenuButtonResource.base_add_24px;
             _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _EditToolStripButton.Image = Res.eng_edit;
+            _EditToolStripButton.Image = MenuButtonResource.base_edit_24px;
             _DeleteStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _DeleteStripButton.Image = Res.eng_delete;
+            _DeleteStripButton.Image = MenuButtonResource.base_delete_24px;
         }
 
         private void InitializeLanguage()

@@ -293,11 +293,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Res.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Res.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -376,11 +371,6 @@
     <EmbeddedResource Include="Options\PlotOptionPanel.resx">
       <DependentUpon>PlotOptionPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Res.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Res.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FiguredDataGrid.resx">
       <DependentUpon>FiguredDataGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -456,9 +446,7 @@
       <Name>NKnife.Win.Quick</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\Photos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\Images\color_picker.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_horizontal_zoom.png" />
@@ -467,28 +455,6 @@
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_vertical_zoom.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_in.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_out.png" />
-    <Content Include="Properties\Images\Strip\dut_add.png" />
-    <Content Include="Properties\Images\Strip\dut_delete.png" />
-    <Content Include="Properties\Images\Strip\dut_edit.png" />
-    <Content Include="Properties\Images\Strip\eng_add.png" />
-    <Content Include="Properties\Images\Strip\eng_delete.png" />
-    <Content Include="Properties\Images\Strip\eng_edit.png" />
-    <Content Include="Properties\Images\Strip\ints_add.png" />
-    <Content Include="Properties\Images\Strip\ints_delete.png" />
-    <Content Include="Properties\Images\Strip\ints_edit.png" />
-    <Content Include="Properties\Images\Strip\node_date.png" />
-    <Content Include="Properties\Images\Strip\node_dut1.png" />
-    <Content Include="Properties\Images\Strip\node_dut2.png" />
-    <Content Include="Properties\Images\Strip\node_dut3.png" />
-    <Content Include="Properties\Images\Strip\node_dut4.png" />
-    <Content Include="Properties\Images\Strip\node_dut5.png" />
-    <Content Include="Properties\Images\Strip\node_eng.png" />
-    <Content Include="Properties\Images\Strip\plot_add.png" />
-    <Content Include="Properties\Images\Strip\plot_delete.png" />
-    <Content Include="Properties\Images\Strip\plot_edit.png" />
-    <Content Include="Properties\Images\Strip\slot_add.png" />
-    <Content Include="Properties\Images\Strip\slot_delete.png" />
-    <Content Include="Properties\Images\Strip\slot_edit.png" />
     <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

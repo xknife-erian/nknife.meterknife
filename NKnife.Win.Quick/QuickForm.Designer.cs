@@ -32,10 +32,10 @@ namespace NKnife.Win.Quick
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuickForm));
             this._StripContainer = new System.Windows.Forms.ToolStripContainer();
             this._StatusStrip = new System.Windows.Forms.StatusStrip();
-            this._MenuStrip = new System.Windows.Forms.MenuStrip();
             this._StatusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._SpringStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._VersionUpdateLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._MenuStrip = new System.Windows.Forms.MenuStrip();
             this._StripContainer.BottomToolStripPanel.SuspendLayout();
             this._StripContainer.TopToolStripPanel.SuspendLayout();
             this._StripContainer.SuspendLayout();
@@ -73,15 +73,8 @@ namespace NKnife.Win.Quick
             this._StatusStrip.Location = new System.Drawing.Point(0, 0);
             this._StatusStrip.Name = "_StatusStrip";
             this._StatusStrip.Size = new System.Drawing.Size(864, 22);
+            this._StatusStrip.SizingGrip = false;
             this._StatusStrip.TabIndex = 0;
-            // 
-            // _MenuStrip
-            // 
-            this._MenuStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this._MenuStrip.Location = new System.Drawing.Point(0, 0);
-            this._MenuStrip.Name = "_MenuStrip";
-            this._MenuStrip.Size = new System.Drawing.Size(864, 24);
-            this._MenuStrip.TabIndex = 0;
             // 
             // _StatusStripLabel
             // 
@@ -92,7 +85,7 @@ namespace NKnife.Win.Quick
             // _SpringStripLabel
             // 
             this._SpringStripLabel.Name = "_SpringStripLabel";
-            this._SpringStripLabel.Size = new System.Drawing.Size(784, 17);
+            this._SpringStripLabel.Size = new System.Drawing.Size(815, 17);
             this._SpringStripLabel.Spring = true;
             // 
             // _VersionUpdateLabel
@@ -100,6 +93,14 @@ namespace NKnife.Win.Quick
             this._VersionUpdateLabel.Name = "_VersionUpdateLabel";
             this._VersionUpdateLabel.Size = new System.Drawing.Size(17, 17);
             this._VersionUpdateLabel.Text = "...";
+            // 
+            // _MenuStrip
+            // 
+            this._MenuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this._MenuStrip.Name = "_MenuStrip";
+            this._MenuStrip.Size = new System.Drawing.Size(864, 24);
+            this._MenuStrip.TabIndex = 0;
             // 
             // QuickForm
             // 

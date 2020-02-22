@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.Workbench.Properties;
 
 namespace NKnife.MeterKnife.Workbench.Controls
@@ -22,13 +23,13 @@ namespace NKnife.MeterKnife.Workbench.Controls
 
         private void InitializeImageList()
         {
-            _imageList.Images.Add(nameof(EngineeringCreateTimeTreeNode), Res.node_date);
-            _imageList.Images.Add(nameof(EngineeringTreeNode), Res.node_eng);
-            _imageList.Images.Add(nameof(DUTTreeNode), Res.node_dut1);
-            _imageList.Images.Add(Res.node_dut2);
-            _imageList.Images.Add(Res.node_dut3);
-            _imageList.Images.Add(Res.node_dut4);
-            _imageList.Images.Add(Res.node_dut5);
+            _imageList.Images.Add(nameof(EngineeringCreateTimeTreeNode), TreeNodeResource.eng_node_date);
+            _imageList.Images.Add(nameof(EngineeringTreeNode), TreeNodeResource.eng_node_eng);
+            _imageList.Images.Add(nameof(DUTTreeNode), TreeNodeResource.eng_node_dut1);
+            _imageList.Images.Add(TreeNodeResource.eng_node_dut2);
+            _imageList.Images.Add(TreeNodeResource.eng_node_dut3);
+            _imageList.Images.Add(TreeNodeResource.eng_node_dut4);
+            _imageList.Images.Add(TreeNodeResource.eng_node_dut5);
             ImageList = _imageList;
         }
 
@@ -37,11 +38,13 @@ namespace NKnife.MeterKnife.Workbench.Controls
             SendMessage(this.Handle, TVM_SETEXTENDEDSTYLE, (IntPtr)TVS_EX_DOUBLEBUFFER, (IntPtr)TVS_EX_DOUBLEBUFFER);
             base.OnHandleCreated(e);
         }
+
         private const int TVM_SETEXTENDEDSTYLE = 0x1100 + 44;
         private const int TVM_GETEXTENDEDSTYLE = 0x1100 + 45;
         private const int TVS_EX_DOUBLEBUFFER = 0x0004;
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+
     }
 
     public class EngineeringTreeNode : TreeNode

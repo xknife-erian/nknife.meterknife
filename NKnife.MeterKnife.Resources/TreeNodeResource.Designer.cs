@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NKnife.MeterKnife.Workbench.Properties {
+namespace NKnife.MeterKnife.Resources {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace NKnife.MeterKnife.Workbench.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class TreeNodeResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal TreeNodeResource() {
         }
         
         /// <summary>
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NKnife.MeterKnife.Workbench.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NKnife.MeterKnife.Resources.TreeNodeResource", typeof(TreeNodeResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,9 +63,9 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap color_picker {
+        public static System.Drawing.Bitmap eng_node_date {
             get {
-                object obj = ResourceManager.GetObject("color_picker", resourceCulture);
+                object obj = ResourceManager.GetObject("eng_node_date", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap PlotOperateStripIcon_horizontal_zoom {
+        public static System.Drawing.Bitmap eng_node_dut1 {
             get {
-                object obj = ResourceManager.GetObject("PlotOperateStripIcon_horizontal_zoom", resourceCulture);
+                object obj = ResourceManager.GetObject("eng_node_dut1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap PlotOperateStripIcon_original {
+        public static System.Drawing.Bitmap eng_node_dut2 {
             get {
-                object obj = ResourceManager.GetObject("PlotOperateStripIcon_original", resourceCulture);
+                object obj = ResourceManager.GetObject("eng_node_dut2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap PlotOperateStripIcon_series_selection {
+        public static System.Drawing.Bitmap eng_node_dut3 {
             get {
-                object obj = ResourceManager.GetObject("PlotOperateStripIcon_series_selection", resourceCulture);
+                object obj = ResourceManager.GetObject("eng_node_dut3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap PlotOperateStripIcon_vertical_zoom {
+        public static System.Drawing.Bitmap eng_node_dut4 {
             get {
-                object obj = ResourceManager.GetObject("PlotOperateStripIcon_vertical_zoom", resourceCulture);
+                object obj = ResourceManager.GetObject("eng_node_dut4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap PlotOperateStripIcon_zoom_in {
+        public static System.Drawing.Bitmap eng_node_dut5 {
             get {
-                object obj = ResourceManager.GetObject("PlotOperateStripIcon_zoom_in", resourceCulture);
+                object obj = ResourceManager.GetObject("eng_node_dut5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,19 +123,9 @@ namespace NKnife.MeterKnife.Workbench.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap PlotOperateStripIcon_zoom_out {
+        public static System.Drawing.Bitmap eng_node_eng {
             get {
-                object obj = ResourceManager.GetObject("PlotOperateStripIcon_zoom_out", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap ThemeStripIcon_theme_selection {
-            get {
-                object obj = ResourceManager.GetObject("ThemeStripIcon_theme_selection", resourceCulture);
+                object obj = ResourceManager.GetObject("eng_node_eng", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

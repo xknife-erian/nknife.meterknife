@@ -34,9 +34,7 @@
             this._EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this._StatusStrip = new System.Windows.Forms.StatusStrip();
             this._ToolStrip.SuspendLayout();
-            this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -49,61 +47,60 @@
             this._InstrumentListView.Location = new System.Drawing.Point(0, 0);
             this._InstrumentListView.MultiSelect = false;
             this._InstrumentListView.Name = "_InstrumentListView";
-            this._InstrumentListView.Size = new System.Drawing.Size(544, 164);
+            this._InstrumentListView.Size = new System.Drawing.Size(544, 178);
             this._InstrumentListView.TabIndex = 5;
             this._InstrumentListView.UseCompatibleStateImageBehavior = false;
             // 
             // _ToolStrip
             // 
             this._ToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this._ToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this._ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._NewToolStripButton,
             this._EditToolStripButton,
             this._DeleteToolStripButton});
             this._ToolStrip.Location = new System.Drawing.Point(3, 0);
             this._ToolStrip.Name = "_ToolStrip";
-            this._ToolStrip.Size = new System.Drawing.Size(112, 25);
+            this._ToolStrip.Size = new System.Drawing.Size(150, 33);
             this._ToolStrip.TabIndex = 4;
-            this._ToolStrip.Text = "toolStrip1";
             // 
             // _NewToolStripButton
             // 
-            this._NewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._NewToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.eng_add;
+            this._NewToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._NewToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._NewToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._NewToolStripButton.Name = "_NewToolStripButton";
-            this._NewToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._NewToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._NewToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._NewToolStripButton.Text = "新建";
             // 
             // _EditToolStripButton
             // 
-            this._EditToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._EditToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.eng_edit;
+            this._EditToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._EditToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._EditToolStripButton.Name = "_EditToolStripButton";
-            this._EditToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._EditToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._EditToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._EditToolStripButton.Text = "修改";
             // 
             // _DeleteToolStripButton
             // 
-            this._DeleteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._DeleteToolStripButton.Image = global::NKnife.MeterKnife.Workbench.Properties.Res.ints_delete;
+            this._DeleteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._DeleteToolStripButton.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this._DeleteToolStripButton.Name = "_DeleteToolStripButton";
-            this._DeleteToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this._DeleteToolStripButton.Padding = new System.Windows.Forms.Padding(5);
+            this._DeleteToolStripButton.Size = new System.Drawing.Size(46, 31);
             this._DeleteToolStripButton.Text = "删除";
             // 
             // toolStripContainer1
             // 
             // 
-            // toolStripContainer1.BottomToolStripPanel
-            // 
-            this.toolStripContainer1.BottomToolStripPanel.Controls.Add(this._StatusStrip);
-            // 
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this._InstrumentListView);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(544, 164);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(544, 178);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -114,14 +111,6 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this._ToolStrip);
-            // 
-            // _StatusStrip
-            // 
-            this._StatusStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this._StatusStrip.Location = new System.Drawing.Point(0, 0);
-            this._StatusStrip.Name = "_StatusStrip";
-            this._StatusStrip.Size = new System.Drawing.Size(544, 22);
-            this._StatusStrip.TabIndex = 0;
             // 
             // InstrumentView
             // 
@@ -134,8 +123,6 @@
             this.Text = "仪器管理";
             this._ToolStrip.ResumeLayout(false);
             this._ToolStrip.PerformLayout();
-            this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
@@ -153,6 +140,5 @@
         private System.Windows.Forms.ToolStripButton _DeleteToolStripButton;
         private System.Windows.Forms.ToolStripButton _NewToolStripButton;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.StatusStrip _StatusStrip;
     }
 }
