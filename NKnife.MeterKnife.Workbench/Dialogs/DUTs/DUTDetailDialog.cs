@@ -42,13 +42,13 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.DUTs
             this.Res(_AddPhotoToolStripButton, _DeletePhotoToolStripButton);
             _AddPhotoToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _DeletePhotoToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _AddPhotoToolStripButton.Image = MenuButtonResource.base_add_24px;
+            _AddPhotoToolStripButton.Image = MenuButtonResource.base_add_photo_24px;
             _DeletePhotoToolStripButton.Image = MenuButtonResource.base_delete_24px;
 
             this.Res(_AddFileToolStripButton, _DeleteFileToolStripButton);
             _AddFileToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _DeleteFileToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _AddFileToolStripButton.Image = MenuButtonResource.base_add_24px;
+            _AddFileToolStripButton.Image = MenuButtonResource.base_add_file_24px;
             _DeleteFileToolStripButton.Image = MenuButtonResource.base_delete_24px;
         }
 

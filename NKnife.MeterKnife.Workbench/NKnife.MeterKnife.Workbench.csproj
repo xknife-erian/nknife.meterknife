@@ -140,6 +140,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\NKnife.MeterKnife.App\Properties\AssemblyInfo-Version.cs">
+      <Link>Properties\AssemblyInfo-Version.cs</Link>
+    </Compile>
     <Compile Include="AppManager.cs" />
     <Compile Include="Base\IFileService.cs" />
     <Compile Include="Base\IAppManager.cs" />
@@ -155,12 +158,6 @@
     </Compile>
     <Compile Include="Debugs\DebuggerManager.cs" />
     <Compile Include="Debugs\SimpleMeasure.cs" />
-    <Compile Include="Dialogs\Commands\ScpiDetailDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\Commands\ScpiDetailDialog.Designer.cs">
-      <DependentUpon>ScpiDetailDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\DUTs\DUTDetailDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -342,9 +339,6 @@
     </Compile>
     <EmbeddedResource Include="Controls\ScpiDetailPanel.resx">
       <DependentUpon>ScpiDetailPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Commands\ScpiDetailDialog.resx">
-      <DependentUpon>ScpiDetailDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DUTs\DUTDetailDialog.resx">
       <DependentUpon>DUTDetailDialog.cs</DependentUpon>

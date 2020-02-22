@@ -21,7 +21,7 @@ namespace NKnife.MeterKnife.Workbench.Views
     {
         private readonly IWorkbenchViewModel _viewModel;
         private readonly IDialogProvider _dialogProvider;
-        private ImageList _instPhotos = new ImageList();
+        private readonly ImageList _instPhotos = new ImageList();
 
         public InstrumentView(IDialogProvider dialogProvider, IWorkbenchViewModel viewModel)
         {

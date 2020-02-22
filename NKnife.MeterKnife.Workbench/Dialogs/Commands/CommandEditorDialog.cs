@@ -61,6 +61,12 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
                     }
                 }
             };
+            _InstrumentSCPIComboBox.SelectedIndexChanged += (sender, args) =>
+            {
+                var scpi = _InstrumentSCPIComboBox.SelectedItem as SCPI;
+                if (scpi == null) return;
+                _ScpiDetailPanel.Scpi = scpi;
+            };
         }
 
         private void InitializeCommandTabControl()
@@ -159,8 +165,8 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
                 }
 
                 //ScpiCommand.GpibAddress = (short) _GpibNumericUpDown.Value;
-                ScpiCommand.Interval = (int)_IntervalNumericUpDown.Value;
-                ScpiCommand.Timeout = (int)_TimeoutNumericUpDown.Value;
+                ScpiCommand.Interval = (int) _IntervalNumericUpDown.Value;
+                ScpiCommand.Timeout = (int) _TimeoutNumericUpDown.Value;
                 if (_LoopCountNmericUpDown.Value == 1)
                 {
                     ScpiCommand.IsLoop = false;
@@ -172,8 +178,9 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
                     ScpiCommand.IsPrecedenceWork = _WorkToFinishCheckBox.Checked;
                 }
 
-                ScpiCommand.Slot = (Slot)_SlotComboBox.SelectedItem;
-                ScpiCommand.DUT = (DUT)_DUTComboBox.SelectedItem;
+                ScpiCommand.Slot = (Slot) _SlotComboBox.SelectedItem;
+                ScpiCommand.DUT = (DUT) _DUTComboBox.SelectedItem;
+                ScpiCommand.Scpi = (SCPI) _InstrumentSCPIComboBox.SelectedItem;
                 DialogResult = DialogResult.OK;
             }
             else

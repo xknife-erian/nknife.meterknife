@@ -1,4 +1,5 @@
-﻿using System.Net.Mime;
+﻿using System.Drawing;
+using System.Net.Mime;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Resources;
@@ -29,6 +30,7 @@ namespace NKnife.MeterKnife.Workbench
         {
             _viewModel = viewModel;
             _habitManager = habitManager;
+
             GetHabitValueFunc = _habitManager.GetHabitValue;
             SetHabitAction = _habitManager.SetHabitValue;
             GetOptionValueFunc = _habitManager.GetOptionValue;
@@ -40,6 +42,7 @@ namespace NKnife.MeterKnife.Workbench
             var about = new QuickAbout();
             Text = $"{about.AssemblyTitle} - {about.AssemblyVersion}";
             Icon = IconResource.app_32px;
+
             var notifyIcon = new NotifyIcon {Icon = IconResource.app_32px };
             BindNotifyIcon(notifyIcon);
 
@@ -145,16 +148,13 @@ namespace NKnife.MeterKnife.Workbench
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // Workbench
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1440 , 1050); //1024,768; 1440,1050; 1600,1200;
-            this.Name = "Workbench";
-            this.ResumeLayout(false);
-
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(1440 , 1050); //1024,768; 1440,1050; 1600,1200;
+            ResumeLayout(false);
         }
     }
 }

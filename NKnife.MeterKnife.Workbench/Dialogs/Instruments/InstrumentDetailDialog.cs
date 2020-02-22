@@ -7,6 +7,7 @@ using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Resources;
+using NKnife.Util;
 
 namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
 {
@@ -36,12 +37,13 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
                 _instrument.CreateTime = DateTime.Now; 
                 _instrument.Id = _NumberTextBox.Text;
                 _instrument.Name = _NameTextBox.Text;
-                _instrument.AbbrName = _AbbrNameTextBox.Text;
                 _instrument.Manufacturer = _ManufacturerComboBox.Text;
                 _instrument.UseClassification = _UseClassificationComboBox.Text;
                 _instrument.Model1 = _ModelTextBox.Text;
                 _instrument.Model2 = _SubModelTextBox.Text;
                 _instrument.Description = _DescriptionTextBox.Text;
+                _instrument.GPIBAddress = (short) _GPIBNumericUpDown.Value;
+                _instrument.IPAddress = _IpAddressControl.GetAddressBytes();
                 _instrument.ScpiList = GetScpiList();
                 //下述路径，当按确定键后会被创建。
                 _instrument.PhotosPath = _PhotosPathToolStripStatusLabel.Text;
@@ -55,7 +57,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
         {
             this.Res(this, _AcceptButton, _CancelButton, _AutoNumberButton, _GetInstrumentScpiTemplateButton);
             this.Res(tabPage1, tabPage2, tabPage3, tabPage4);
-            this.Res(label1, label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12);
+            this.Res(label1, label2, label4, label5, label6, label7, label8, label9, label10, label11);
             this.Res(_AddScpiToolStripButton, _DeleteScpiToolStripButton);
             this.Res(_AddPhotoToolStripButton, _DeletePhotoToolStripButton);
             this.Res(_AddFileToolStripButton, _DeleteFileToolStripButton);
@@ -82,8 +84,8 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
             _SubModelTextBox.LostFocus += ControlOnLostFocus;
             _AutoNumberButton.Click += (sender, args) =>
             {
-                var number = SequentialGuid.Create().ToString("D").ToUpper();
-                _NumberTextBox.Text = number;
+                var rand = UtilRandom.GetString(1, UtilRandom.RandomCharType.Uppercased);
+                _NumberTextBox.Text = $"T{DateTime.Now:yyMMddHHmmss}{rand}";
             };
             _CancelButton.Click += (sender, args) => { DialogResult = DialogResult.Cancel; };
             _AcceptButton.Click += (sender, args) =>

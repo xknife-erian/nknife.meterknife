@@ -31,11 +31,6 @@ namespace NKnife.MeterKnife.Common.Domain
         public string Name { get; set; }
 
         /// <summary>
-        ///     设备常用简称
-        /// </summary>
-        public string AbbrName { get; set; } = string.Empty;
-
-        /// <summary>
         ///     生产厂商
         /// </summary>
         public string Manufacturer { get; set; }
@@ -54,6 +49,16 @@ namespace NKnife.MeterKnife.Common.Domain
         ///     子型号
         /// </summary>
         public string Model2 { get; set; }
+
+        /// <summary>
+        ///     仪器GPIB地址
+        /// </summary>
+        public short GPIBAddress { get; set; }
+
+        /// <summary>
+        ///     仪器IP地址
+        /// </summary>
+        public byte[] IPAddress { get; set; }
 
         /// <summary>
         ///     设备说明或信息

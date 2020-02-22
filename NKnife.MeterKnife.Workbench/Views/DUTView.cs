@@ -46,7 +46,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             this.Res(this);
             this.Res(_NewToolStripButton, _EditToolStripButton, _DeleteToolStripButton);
             _NewToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _NewToolStripButton.Image = MenuButtonResource.base_add_24px;
+            _NewToolStripButton.Image = MenuButtonResource.base_add_24px_1;
             _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _EditToolStripButton.Image = MenuButtonResource.base_edit_24px;
             _DeleteToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;

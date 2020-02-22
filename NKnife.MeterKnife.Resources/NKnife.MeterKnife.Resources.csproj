@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\NKnife.MeterKnife.App\Properties\AssemblyInfo-Version.cs">
+      <Link>Properties\AssemblyInfo-Version.cs</Link>
+    </Compile>
     <Compile Include="IconResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,7 +109,11 @@
     <Content Include="LargeImage\slot_meter_care.png" />
     <Content Include="LargeImage\slot_ni_gpib_usb_hs.jpg" />
     <Content Include="LargeImage\slot_serial.png" />
+    <Content Include="MenuButton\app_24px.png" />
     <Content Include="MenuButton\base_add_24px.png" />
+    <Content Include="MenuButton\base_add_24px_1.png" />
+    <Content Include="MenuButton\base_add_file_24px.png" />
+    <Content Include="MenuButton\base_add_photo_24px.png" />
     <Content Include="MenuButton\base_configure_24px.png" />
     <Content Include="MenuButton\base_delete_24px.png" />
     <Content Include="MenuButton\base_down_24px.png" />

@@ -47,13 +47,16 @@ namespace NKnife.MeterKnife.Storage.Db
             _setting = setting.Value;
             CurrentDbType = _setting.CurrentDbType;
             SqlSetMap = _setting.SqlSetMap;
-            SqlMapper.AddTypeHandler(typeof(ScpiCommandPool), new ObjectToJsonTypeHandler());
-            SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), new ObjectToJsonTypeHandler());
-            SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), new ObjectToJsonTypeHandler());
-            SqlMapper.AddTypeHandler(typeof(IMetrology), new ObjectToJsonTypeHandler());
-            SqlMapper.AddTypeHandler(typeof(MetrologyValue[]), new ObjectToJsonTypeHandler());
-            SqlMapper.AddTypeHandler(typeof(SCPI), new ObjectToJsonTypeHandler());
-            SqlMapper.AddTypeHandler(typeof(List<SCPI>), new ObjectToJsonTypeHandler());
+
+            var jsonHandler = new ObjectToJsonTypeHandler();
+
+            SqlMapper.AddTypeHandler(typeof(ScpiCommandPool), jsonHandler);
+            SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), jsonHandler);
+            SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), jsonHandler);
+            SqlMapper.AddTypeHandler(typeof(IMetrology), jsonHandler);
+            SqlMapper.AddTypeHandler(typeof(MetrologyValue[]), jsonHandler);
+            SqlMapper.AddTypeHandler(typeof(SCPI), jsonHandler);
+            SqlMapper.AddTypeHandler(typeof(List<SCPI>), jsonHandler);
         }
 
         /// <summary>

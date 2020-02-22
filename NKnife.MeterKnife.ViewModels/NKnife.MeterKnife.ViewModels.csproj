@@ -94,6 +94,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\NKnife.MeterKnife.App\Properties\AssemblyInfo-Version.cs">
+      <Link>Properties\AssemblyInfo-Version.cs</Link>
+    </Compile>
     <Compile Include="MeasureViewModel.cs" />
     <Compile Include="Plots\DUTSeriesStyle.cs" />
     <Compile Include="Plots\DUTLinearPlot.cs" />

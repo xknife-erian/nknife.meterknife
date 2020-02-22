@@ -12,6 +12,7 @@ using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Dialogs.Commands;
+using NKnife.Util;
 
 namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
 {
@@ -46,8 +47,8 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
         {
             _AutomaticNumberGenerationButton.Click += (sender, args) =>
             {
-                var number = SequentialGuid.Create().ToString("D").ToUpper();
-                _EngNumberTextBox.Text = number;
+                var rand = UtilRandom.GetString(1, UtilRandom.RandomCharType.Uppercased);
+                _EngNumberTextBox.Text = $"E{DateTime.Now:yyMMddHHmmss}{rand}";
             };
             _GenerateNameOnDUTButton.Click += (sender, args) => { };
             _CreateInitializeCmdStripButtonMenuItem.Click += (sender, args) => { OpenDialogAndGetCommand(PoolCategory.Initializtion); };

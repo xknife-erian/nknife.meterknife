@@ -110,6 +110,14 @@ namespace NKnife.Db
                         break;
                 }
             }
+            else if (pt == typeof(byte[]))
+            {
+                sb.Append(" BLOB");
+            }
+            else
+            {
+                sb.Append(" TEXT");
+            }
         }
 
         private static bool IsNotNull(PropertyInfo propertyInfo)

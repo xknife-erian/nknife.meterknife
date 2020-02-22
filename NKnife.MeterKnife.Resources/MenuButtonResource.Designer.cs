@@ -63,9 +63,49 @@ namespace NKnife.MeterKnife.Resources {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap app_24px {
+            get {
+                object obj = ResourceManager.GetObject("app_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap base_add_24px {
             get {
                 object obj = ResourceManager.GetObject("base_add_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap base_add_24px_1 {
+            get {
+                object obj = ResourceManager.GetObject("base_add_24px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap base_add_file_24px {
+            get {
+                object obj = ResourceManager.GetObject("base_add_file_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap base_add_photo_24px {
+            get {
+                object obj = ResourceManager.GetObject("base_add_photo_24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
