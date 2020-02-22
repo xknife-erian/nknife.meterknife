@@ -47,10 +47,8 @@ namespace NKnife.MeterKnife.Workbench
             BindNotifyIcon(notifyIcon);
 
             var fileMenuItem = BuildFileMenu();
-            var toolMenuItem = BuildToolMenu();
-            var viewMenuItem = BuildViewMenu();
             var helpMenuItem = BuildHelpMenu();
-            BindMainMenu(fileMenuItem, dataMenu, measureMenu, toolMenuItem, viewMenuItem, helpMenuItem);
+            BindMainMenu(fileMenuItem, dataMenu, measureMenu, helpMenuItem);
 #if DEBUG
             BindMainMenu(debuggerManager.GetDebugMenu());
 #endif
@@ -79,27 +77,15 @@ namespace NKnife.MeterKnife.Workbench
             return fileMenuItem;
         }
 
-        private ToolMenuItem BuildToolMenu()
-        {
-            var toolMenu = new ToolMenuItem();
-            return toolMenu;
-        }
-
-        private ViewMenuItem BuildViewMenu()
-        {
-            var viewMenu = new ViewMenuItem();
-            var culture = _habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
-            var themeName = _habitManager.GetHabitValue("MainTheme", nameof(VS2015BlueTheme));
-            viewMenu.SetActiveCulture(culture);
-            viewMenu.SetActiveTheme(themeName);
-            ActiveDockPanelTheme(themeName);
-            return viewMenu;
-        }
-
         private HelpMenuItem BuildHelpMenu()
         {
-            var dataMenu = new HelpMenuItem();
-            return dataMenu;
+            var menu = new HelpMenuItem();
+            var culture = _habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
+            var themeName = _habitManager.GetHabitValue("MainTheme", nameof(VS2015BlueTheme));
+            menu.SetActiveCulture(culture);
+            menu.SetActiveTheme(themeName);
+            ActiveDockPanelTheme(themeName);
+            return menu;
         }
 
         private void ActiveDockPanelTheme(string themeName)
