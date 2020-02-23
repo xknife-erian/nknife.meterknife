@@ -1,7 +1,9 @@
 ﻿using System.Drawing;
 using System.Net.Mime;
 using System.Windows.Forms;
+using Autofac;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.Workbench.Debugs;
@@ -23,15 +25,13 @@ namespace NKnife.MeterKnife.Workbench
     {
         private readonly WorkbenchViewModel _viewModel;
         private readonly IHabitManager _habitManager;
-        private readonly DataPlotView _dataPlotView;
 
         public Workbench(WorkbenchViewModel viewModel, IHabitManager habitManager, 
             DataMenuItem dataMenu, MeasureMenuItem measureMenu,
-            DebuggerManager debuggerManager, DataPlotView dataPlotView)
+            DebuggerManager debuggerManager)
         {
             _viewModel = viewModel;
             _habitManager = habitManager;
-            _dataPlotView = dataPlotView;
 
             GetHabitValueFunc = _habitManager.GetHabitValue;
             SetHabitAction = _habitManager.SetHabitValue;
@@ -142,7 +142,9 @@ namespace NKnife.MeterKnife.Workbench
             _viewModel.OpenedEngineerings.CollectionChanged += (sender, args) =>
             {
                 var eng = _viewModel.OpenedEngineerings[args.NewStartingIndex];
-                _dataPlotView.Show(MainDockPanel, DockState.Document);
+                var view = Kernel.Container.Resolve<StaticDataPlotView>();
+                view.SetEngineering(eng);
+                view.Show(MainDockPanel, DockState.Document);
             };
         }
 

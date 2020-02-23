@@ -3,6 +3,7 @@ using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Debugs;
 using NKnife.MeterKnife.Workbench.Menus;
+using NKnife.MeterKnife.Workbench.Views;
 using NKnife.Win.Quick.Base;
 using NKnife.Win.Quick.Controls;
 
@@ -45,11 +46,10 @@ namespace NKnife.MeterKnife.Workbench.IoC
                 .Where(t => !t.IsAbstract && t.Name.EndsWith("View"))
                 .AsImplementedInterfaces()
                 .AsSelf();
-            assembly = typeof(ViewModelHelper).Assembly;
-            builder.RegisterAssemblyTypes(assembly)
-                .Where(t => !t.IsAbstract && t.Name.EndsWith("ViewModel"))
-                .AsImplementedInterfaces()
-                .AsSelf();
+
+            builder.RegisterType<WorkbenchViewModel>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<StaticDataPlotViewModel>().AsImplementedInterfaces().AsSelf();
+            builder.RegisterType<RealTimeDataPlotViewModel>().AsImplementedInterfaces().AsSelf();
         }
 
         #endregion

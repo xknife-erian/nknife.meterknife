@@ -20,15 +20,15 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 {
     public class DebuggerManager
     {
-        private readonly DataPlotView _measureView;
+        private readonly RealTimeDataPlotView _realTimeDataPlotView;
 
         private readonly IAntService _antService;
         private readonly IDataConnector _connector;
         private readonly IEngineeringLogic _engineeringLogic;
 
-        public DebuggerManager(DataPlotView measureView, IAntService antService, IDataConnector connector, IEngineeringLogic engineeringLogic)
+        public DebuggerManager(RealTimeDataPlotView realTimeDataPlotView, IAntService antService, IDataConnector connector, IEngineeringLogic engineeringLogic)
         {
-            _measureView = measureView;
+            _realTimeDataPlotView = realTimeDataPlotView;
             _antService = antService;
             _connector = connector;
             _engineeringLogic = engineeringLogic;
@@ -118,8 +118,8 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                         solution.Add(style);
                     }
 
-                    _measureView.SetStyleSolution(solution);
-                    _measureView.Show(wb.MainDockPanel, DockState.Document);
+                    _realTimeDataPlotView.SetStyleSolution(solution);
+                    _realTimeDataPlotView.Show(wb.MainDockPanel, DockState.Document);
                     await start.RunAsync(_antService, _engineeringLogic);
                 }
             };

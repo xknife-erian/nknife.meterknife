@@ -323,11 +323,17 @@
     <Compile Include="Views\InstrumentView.Designer.cs">
       <DependentUpon>InstrumentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\DataPlotView.cs">
+    <Compile Include="Views\RealTimeDataPlotView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\DataPlotView.Designer.cs">
-      <DependentUpon>DataPlotView.cs</DependentUpon>
+    <Compile Include="Views\RealTimeDataPlotView.Designer.cs">
+      <DependentUpon>RealTimeDataPlotView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StaticDataPlotView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\StaticDataPlotView.Designer.cs">
+      <DependentUpon>StaticDataPlotView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SlotView.cs">
       <SubType>Form</SubType>
@@ -417,8 +423,11 @@
     <EmbeddedResource Include="Views\InstrumentView.resx">
       <DependentUpon>InstrumentView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\DataPlotView.resx">
-      <DependentUpon>DataPlotView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\RealTimeDataPlotView.resx">
+      <DependentUpon>RealTimeDataPlotView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\StaticDataPlotView.resx">
+      <DependentUpon>StaticDataPlotView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SlotView.resx">
       <DependentUpon>SlotView.cs</DependentUpon>

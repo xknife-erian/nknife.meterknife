@@ -97,13 +97,14 @@
     <Compile Include="..\NKnife.MeterKnife.App\Properties\AssemblyInfo-Version.cs">
       <Link>Properties\AssemblyInfo-Version.cs</Link>
     </Compile>
-    <Compile Include="MeasureViewModel.cs" />
+    <Compile Include="RealTimeDataPlotViewModel.cs" />
+    <Compile Include="PlotViewModel.cs" />
     <Compile Include="Plots\DUTSeriesStyle.cs" />
     <Compile Include="Plots\DUTLinearPlot.cs" />
     <Compile Include="Plots\DUTSeriesStyleSolution.cs" />
     <Compile Include="Plots\PlotTheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModelHelper.cs" />
+    <Compile Include="StaticDataPlotViewModel.cs" />
     <Compile Include="WorkbenchViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

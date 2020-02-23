@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Views;
+using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.ViewModels.Plots;
 using NKnife.MeterKnife.Workbench.Base;
@@ -10,23 +12,27 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace NKnife.MeterKnife.Workbench.Views
 {
-    public partial class DataPlotView : DockContent
+    public partial class StaticDataPlotView : DockContent
     {
-        private readonly MeasureViewModel _viewModel;
+        private readonly StaticDataPlotViewModel _viewModel;
         private readonly IDialogProvider _dialogProvider;
 
-        public DataPlotView(MeasureViewModel viewModel, IDialogProvider dialogProvider)
+        public StaticDataPlotView(StaticDataPlotViewModel viewModel, IDialogProvider dialogProvider)
         {
-            InitializeComponent();
-            InitializeLanguage();
             _dialogProvider = dialogProvider;
             _viewModel = viewModel;
-            _PlotView.Model = _viewModel.LinearPlot.GetPlotModel();
-            _PlotView.BackColor = _viewModel.LinearPlot.PlotTheme.ViewBackground;
-            _viewModel.PlotModelUpdated += (s, e) => { _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true)); };
-            _OriginalToolStripButton.Click += (s, e) => { _PlotView.Model.ResetAllAxes(); };
-            _ZoomInToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(1.3); };
-            _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(0.7); };
+            InitializeComponent();
+            InitializeLanguage();
+            Shown += (sender, args) =>
+            {
+                _PlotView.Model = _viewModel.LinearPlot.GetPlotModel();
+                _PlotView.BackColor = _viewModel.LinearPlot.PlotTheme.ViewBackground;
+                _OriginalToolStripButton.Click += (s, e) => { _PlotView.Model.ResetAllAxes(); };
+                _ZoomInToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(1.3); };
+                _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(0.7); };
+                _viewModel.PlotModelUpdated += (s, e) => { _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true)); };
+                Task.Factory.StartNew(async () => { await _viewModel.LoadDataAsync(); });
+            };
         }
 
         private void InitializeLanguage()
@@ -50,6 +56,11 @@ namespace NKnife.MeterKnife.Workbench.Views
             {
                 _viewModel.StyleSolution = dialog.Solution;
             }
+        }
+
+        public void SetEngineering(Engineering eng)
+        {
+            _viewModel.SetEngineering(eng);
         }
     }
 }

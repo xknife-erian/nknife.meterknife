@@ -8,19 +8,17 @@ using NLog;
 
 namespace NKnife.MeterKnife.ViewModels
 {
-    public class MeasureViewModel : ViewModelBase
+    public abstract class PlotViewModel : ViewModelBase
     {
-        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
+        protected DUTSeriesStyleSolution _solution = new DUTSeriesStyleSolution();
 
-        private DUTSeriesStyleSolution _solution = new DUTSeriesStyleSolution();
-
-        public MeasureViewModel(IHabitManager habit, IAcquisitionService acquisitionService)
+        protected PlotViewModel(IHabitManager habit)
         {
             var dvList = new List<PlotTheme>();
             var dv = new PlotTheme();
             dvList.Add(dv);
-            var themes = habit.GetHabitValue("PlotThemes", dvList);
-            var usingTheme = habit.GetHabitValue("UsingTheme", dv.Name);
+            var themes = habit.GetHabitValue(HabitKey.Plot_PlotThemes, dvList);
+            var usingTheme = habit.GetHabitValue(HabitKey.Plot_UsingTheme, dv.Name);
             foreach (var plotTheme in themes)
             {
                 if (plotTheme.Name == usingTheme)
@@ -29,8 +27,6 @@ namespace NKnife.MeterKnife.ViewModels
                     LinearPlot = new DUTLinearPlot(plotTheme, droppedDataCount);
                 }
             }
-
-            acquisitionService.Acquired += OnMeasured;
         }
 
         public DUTSeriesStyleSolution StyleSolution
@@ -44,18 +40,7 @@ namespace NKnife.MeterKnife.ViewModels
         }
 
         public DUTLinearPlot LinearPlot { get; }
-
-        private void OnMeasured(object sender, AcquisitionEventArgs e)
-        {
-            var index = _solution.IndexOf(e.DUT.Item2.Id);
-            _Logger.Trace($"数据Index:{index},{e.Measurements.Data},{e.Time},{e.DUT},{e.Group}");
-            if (index >= 0)
-            {
-                LinearPlot.AddValues(index, e.Time, e.Measurements.Data + _solution[index].Offset);
-                OnPlotModelUpdated();
-            }
-        }
-
+        
         public event EventHandler PlotModelUpdated;
 
         protected virtual void OnPlotModelUpdated()

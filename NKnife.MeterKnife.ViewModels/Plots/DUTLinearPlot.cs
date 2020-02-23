@@ -63,31 +63,30 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <summary>
         ///     增加测量数据
         /// </summary>
-        /// <param name="number">数据渠道编号</param>
-        /// <param name="time">测量时间</param>
-        /// <param name="value">测量数据</param>
-        public void AddValues(int number, DateTime time, double value)
+        /// <param name="value">测量数据: Item1是数据渠道编号，Item2是测量时间，Item3是测量数据值</param>
+        public void AddValues((int, DateTime, double) value)
         {
-            if (_droppedDataCounter[number] < _droppedDataCount)
+            if (_droppedDataCounter[value.Item1] < _droppedDataCount)
             {
-                _droppedDataCounter[number]++;
+                _droppedDataCounter[value.Item1]++;
                 return;
             }
-            var axis = _axisMap[number];
+
+            var axis = _axisMap[value.Item1];
             //先根据测量数据调整纵轴的值的范围
-            if (_axisFirstMap[number])
+            if (_axisFirstMap[value.Item1])
             {
-                UpdateRange(value, axis, PlotTheme.YSpaceLevel, true);
-                _axisFirstMap[number] = false;
+                UpdateRange(value.Item3, axis, PlotTheme.YSpaceLevel, true);
+                _axisFirstMap[value.Item1] = false;
             }
             else
             {
-                UpdateRange(value, axis, PlotTheme.YSpaceLevel);
+                UpdateRange(value.Item3, axis, PlotTheme.YSpaceLevel);
             }
 
             //向数据线上添加测量数据点
-            var points = DateTimeAxis.CreateDataPoint(time, value);
-            ((LineSeries) _plotModel.Series[number]).Points.Add(points);
+            var points = DateTimeAxis.CreateDataPoint(value.Item2, value.Item3);
+            ((LineSeries) _plotModel.Series[value.Item1]).Points.Add(points);
         }
 
         /// <summary>

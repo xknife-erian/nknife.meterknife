@@ -27,13 +27,13 @@ namespace NKnife.MeterKnife.Workbench.Views
     {
         private readonly IDialogProvider _dialogProvider;
         private readonly IWorkbenchViewModel _viewModel;
-        private readonly DataPlotView _dataPlotView;
+        private readonly StaticDataPlotView _staticDataPlotView;
 
-        public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider, DataPlotView dataPlotView)
+        public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider, StaticDataPlotView staticDataPlotView)
         {
             _viewModel = viewModel;
             _dialogProvider = dialogProvider;
-            _dataPlotView = dataPlotView;
+            _staticDataPlotView = staticDataPlotView;
             InitializeComponent();
             InitializeLanguage();
             RespondToEvents();

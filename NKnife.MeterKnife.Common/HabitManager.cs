@@ -98,6 +98,9 @@ namespace NKnife.MeterKnife.Common
         /// </summary>
         public static string Plot_DroppedDataCount = nameof(Plot_DroppedDataCount);
 
+        public static string Plot_PlotThemes = nameof(Plot_PlotThemes);
+        public static string Plot_UsingTheme = nameof(Plot_UsingTheme);
+
         /// <summary>
         ///     图表上下留白占比。
         /// </summary>

@@ -12,5 +12,11 @@ namespace NKnife.MeterKnife.Base
         /// </summary>
         /// <returns>是否创建成功</returns>
         Task<bool> CreateEngineeringAsync(Engineering engineering);
+
+        /// <summary>
+        ///     获取指定被测物的测量数据
+        /// </summary>
+        /// <param name="dut">指定被测物</param>
+        Task<IEnumerable<MeasureData>> GetDUTDataAsync((Engineering, DUT) dut);
     }
 }

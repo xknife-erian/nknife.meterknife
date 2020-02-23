@@ -24,7 +24,12 @@ namespace NKnife.MeterKnife.ViewModels
 
         private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
 
-        public WorkbenchViewModel(IStoragePlatform<Engineering> engineeringStoragePlatform, IStoragePlatform<Slot> slotStoragePlatform, IStoragePlatform<DUT> dutStoragePlatform, IEngineeringLogic engineeringLogic, IStoragePlatform<Instrument> instrumentStoragePlatform)
+        public WorkbenchViewModel(
+            IEngineeringLogic engineeringLogic,
+            IStoragePlatform<Engineering> engineeringStoragePlatform,
+            IStoragePlatform<Slot> slotStoragePlatform,
+            IStoragePlatform<DUT> dutStoragePlatform,
+            IStoragePlatform<Instrument> instrumentStoragePlatform)
         {
             _engineeringStoragePlatform = engineeringStoragePlatform;
             _slotStoragePlatform = slotStoragePlatform;
@@ -113,10 +118,8 @@ namespace NKnife.MeterKnife.ViewModels
         {
             var slot = new Slot();
             slot.SetMeterCare(SlotType.MeterCare, (port, new SerialConfig() {BaudRate = 115200}));
-            var b =  await _slotStoragePlatform.InsertAsync(slot);
-            if (b)
-                return slot;
-            return null;
+            var insertSuccess =  await _slotStoragePlatform.InsertAsync(slot);
+            return insertSuccess ? slot : null;
         }
 
         /// <summary>

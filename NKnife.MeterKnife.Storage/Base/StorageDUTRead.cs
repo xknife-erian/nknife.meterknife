@@ -42,7 +42,7 @@ namespace NKnife.MeterKnife.Storage.Base
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
             //offset代表从第几条记录“之后“开始查询，limit表明查询多少条结果
-            var sql = $"SELECT * FROM {TableName} LIMIT {pageSize * pageNumber} OFFSET {pageSize}";
+            var sql = $"SELECT * FROM '{TableName}' LIMIT {pageSize * pageNumber} OFFSET {pageSize}";
             var result = await conn.QueryAsync<T>(sql);
             return result;
         }
@@ -56,7 +56,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public virtual async Task<T> FindOneByIdAsync((Engineering, DUT) dut, DateTime id)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
-            return await conn.QueryFirstAsync<T>($"SELECT * FROM {TableName} WHERE {nameof(IRecord<T>.Id)}='{id}'");
+            return await conn.QueryFirstAsync<T>($"SELECT * FROM '{TableName}' WHERE {nameof(IRecord<T>.Id)}='{id}'");
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public virtual async Task<bool> ExistAsync((Engineering, DUT) dut, DateTime id)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
-            var sql = $"SELECT COUNT(*) FROM {TableName} WHERE {nameof(IRecord<T>.Id)}='{id}'";
+            var sql = $"SELECT COUNT(*) FROM '{TableName}' WHERE {nameof(IRecord<T>.Id)}='{id}'";
             return await conn.ExecuteAsync(sql) > 0;
         }
 
@@ -93,7 +93,8 @@ namespace NKnife.MeterKnife.Storage.Base
         public virtual async Task<IEnumerable<T>> FindAllAsync((Engineering, DUT) dut)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
-            var sql = $"SELECT * FROM {TableName}'";
+            var sql = $"SELECT * FROM '{TableName}'";
+            sql = sql.Replace($"{typeof(T).Name}", $"{dut.Item2.Id}"); 
             var result = await conn.QueryAsync<T>(sql);
             return result;
         }

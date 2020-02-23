@@ -2,7 +2,7 @@
 
 namespace NKnife.MeterKnife.Workbench.Views
 {
-    partial class DataPlotView
+    partial class RealTimeDataPlotView
     {
         /// <summary>
         /// Required designer variable.
@@ -249,7 +249,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._PlotThemeDropDownButton1.Size = new System.Drawing.Size(43, 34);
             this._PlotThemeDropDownButton1.Text = "主题";
             // 
-            // DataPlotView
+            // StaticDataPlotView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -257,7 +257,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             this.Controls.Add(this._ToolStripContainer);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "DataPlotView";
+            this.Name = "StaticDataPlotView";
             this.Text = "数据图表";
             this._ToolStripContainer.ContentPanel.ResumeLayout(false);
             this._ToolStripContainer.TopToolStripPanel.ResumeLayout(false);

@@ -53,6 +53,23 @@ namespace NKnife.MeterKnife.Common.Domain
         /// </summary>
         public List<ScpiCommandPool> CommandPools { get; set; } = new List<ScpiCommandPool>();
 
+        /// <summary>
+        /// 获取本工程内部包含被测物
+        /// </summary>
+        public List<DUT> GetIncludedDUTs()
+        {
+            List<DUT> duts = new List<DUT>();
+            foreach (var cmdPool in CommandPools)
+            {
+                foreach (var cmd in cmdPool)
+                {
+                    if(cmd.DUT!=null)
+                        duts.Add(cmd.DUT);
+                }
+            }
+            return duts;
+        }
+
         #region Overrides of Object
 
         /// <summary>Returns a string that represents the current object.</summary>
