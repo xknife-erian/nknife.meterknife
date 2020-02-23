@@ -43,11 +43,6 @@ namespace NKnife.MeterKnife.Workbench.Views
             this.Res(_MainTabPage, tabPage2);
         }
 
-        public void SetStyleSolution(DUTSeriesStyleSolution solution)
-        {
-            _viewModel.StyleSolution = solution;
-        }
-
         private void SetDataSeriesButtonClick(object sender, EventArgs e)
         {
             var dialog = _dialogProvider.New<DataSeriesListDialog>();
@@ -61,6 +56,7 @@ namespace NKnife.MeterKnife.Workbench.Views
         public void SetEngineering(Engineering eng)
         {
             _viewModel.SetEngineering(eng);
+            Text = eng.Name;
         }
     }
 }
