@@ -16,6 +16,10 @@ namespace NKnife.MeterKnife.Workbench.Views
     {
         private readonly StaticDataPlotViewModel _viewModel;
         private readonly IDialogProvider _dialogProvider;
+        /// <summary>
+        /// 窗口已初始化完成
+        /// </summary>
+        private bool _isInitialized = false;
 
         public StaticDataPlotView(StaticDataPlotViewModel viewModel, IDialogProvider dialogProvider)
         {
@@ -25,6 +29,8 @@ namespace NKnife.MeterKnife.Workbench.Views
             InitializeLanguage();
             Shown += (sender, args) =>
             {
+                if (_isInitialized)
+                    return;
                 _PlotView.Model = _viewModel.LinearPlot.GetPlotModel();
                 _PlotView.BackColor = _viewModel.LinearPlot.PlotTheme.ViewBackground;
                 _OriginalToolStripButton.Click += (s, e) => { _PlotView.Model.ResetAllAxes(); };
@@ -32,6 +38,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                 _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(0.7); };
                 _viewModel.PlotModelUpdated += (s, e) => { _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true)); };
                 Task.Factory.StartNew(async () => { await _viewModel.LoadDataAsync(); });
+                _isInitialized = true;
             };
         }
 

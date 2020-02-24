@@ -29,6 +29,7 @@ namespace NKnife.MeterKnife.ViewModels
 
         public async Task LoadDataAsync()
         {
+            LinearPlot.ClearValues();
             var duts = _engineering.GetIncludedDUTs();
             // 可以转为并行计算
             // Parallel.For(0, duts.Count, (i, loopState) =>

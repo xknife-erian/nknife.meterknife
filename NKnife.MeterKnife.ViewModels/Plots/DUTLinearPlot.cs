@@ -63,30 +63,49 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <summary>
         ///     增加测量数据
         /// </summary>
-        /// <param name="value">测量数据: Item1是数据渠道编号，Item2是测量时间，Item3是测量数据值</param>
-        public void AddValues((int, DateTime, double) value)
+        /// <param name="values">测量数据集合: Item1是数据渠道编号，Item2是测量时间，Item3是测量数据值</param>
+        public void AddValues(params (int, DateTime, double)[] values)
         {
-            if (_droppedDataCounter[value.Item1] < _droppedDataCount)
+            if (values.Length == 1)
             {
-                _droppedDataCounter[value.Item1]++;
-                return;
-            }
+                var value = values[0];
+                if (_droppedDataCounter[value.Item1] < _droppedDataCount)
+                {
+                    _droppedDataCounter[value.Item1]++;
+                    return;
+                }
 
-            var axis = _axisMap[value.Item1];
-            //先根据测量数据调整纵轴的值的范围
-            if (_axisFirstMap[value.Item1])
-            {
-                UpdateRange(value.Item3, axis, PlotTheme.YSpaceLevel, true);
-                _axisFirstMap[value.Item1] = false;
+                var axis = _axisMap[value.Item1];
+                //先根据测量数据调整纵轴的值的范围
+                if (_axisFirstMap[value.Item1])
+                {
+                    UpdateRange(value.Item3, axis, PlotTheme.YSpaceLevel, true);
+                    _axisFirstMap[value.Item1] = false;
+                }
+                else
+                {
+                    UpdateRange(value.Item3, axis, PlotTheme.YSpaceLevel);
+                }
+
+                //向数据线上添加测量数据点
+                var points = DateTimeAxis.CreateDataPoint(value.Item2, value.Item3);
+                ((LineSeries) _plotModel.Series[value.Item1]).Points.Add(points);
             }
             else
             {
-                UpdateRange(value.Item3, axis, PlotTheme.YSpaceLevel);
+                
             }
+        }
 
-            //向数据线上添加测量数据点
-            var points = DateTimeAxis.CreateDataPoint(value.Item2, value.Item3);
-            ((LineSeries) _plotModel.Series[value.Item1]).Points.Add(points);
+        /// <summary>
+        /// 清除所有数据
+        /// </summary>
+        public void ClearValues()
+        {
+            foreach (var series in _plotModel.Series)
+            {
+                ((LineSeries)series).Points.Clear();
+            }
         }
 
         /// <summary>
@@ -196,5 +215,6 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         {
             return OxyColor.FromArgb(color.A, color.R, color.G, color.B);
         }
+
     }
 }

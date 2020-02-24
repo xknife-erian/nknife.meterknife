@@ -1,8 +1,10 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Net.Mime;
 using System.Windows.Forms;
 using Autofac;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.ViewModels;
@@ -25,6 +27,11 @@ namespace NKnife.MeterKnife.Workbench
     {
         private readonly WorkbenchViewModel _viewModel;
         private readonly IHabitManager _habitManager;
+
+        /// <summary>
+        /// 已打开历史数据查看面板字典，Key是工程ID，Value是数据查看窗体
+        /// </summary>
+        private readonly Dictionary<string, StaticDataPlotView> _staticDataPlotViewMap = new Dictionary<string, StaticDataPlotView>();
 
         public Workbench(WorkbenchViewModel viewModel, IHabitManager habitManager, 
             DataMenuItem dataMenu, MeasureMenuItem measureMenu,
@@ -142,8 +149,13 @@ namespace NKnife.MeterKnife.Workbench
             _viewModel.OpenedEngineerings.CollectionChanged += (sender, args) =>
             {
                 var eng = _viewModel.OpenedEngineerings[args.NewStartingIndex];
-                var view = Kernel.Container.Resolve<StaticDataPlotView>();
-                view.SetEngineering(eng);
+                if (!_staticDataPlotViewMap.TryGetValue(eng.Id, out var view))
+                {
+                    view = Kernel.Container.Resolve<StaticDataPlotView>();
+                    view.SetEngineering(eng);
+                    _staticDataPlotViewMap.Add(eng.Id, view);
+                }
+
                 view.Show(MainDockPanel, DockState.Document);
             };
         }
