@@ -12,11 +12,13 @@
     ///     1国际安培=0.99985绝对安培。
     ///     2018年11月16日，国际计量大会通过决议，1安培定义为“1s内通过导体某一横截面的1/1.602176634×10^19个电荷移动所产生的电流强度”。
     /// </summary>
-    public class ElectricCurrent : IMetrology
+    public class ElectricCurrent : BaseMetrology
     {
         #region Implementation of IMetrology
 
-        public string[] Units { get; } = { "A", "mA", "μA", "nA" };
+        public override string[] Units { get; } = { "A", "mA", "μA", "nA" };
+        public override short UnitIndex { get; } = 0;
+        public override string Name { get; set; } = "电流";
 
         #endregion
     }

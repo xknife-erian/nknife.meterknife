@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
@@ -29,7 +31,7 @@ namespace NKnife.MeterKnife.ViewModels
 
         public async Task LoadDataAsync()
         {
-            LinearPlot.ClearValues();
+            //LinearPlot.ClearValues();
             var duts = _engineering.GetIncludedDUTs();
             // 可以转为并行计算
             // Parallel.For(0, duts.Count, (i, loopState) =>
@@ -39,10 +41,7 @@ namespace NKnife.MeterKnife.ViewModels
             for (int i = 0; i < duts.Count; i++)
             {
                 var r = await _engineeringLogic.GetDUTDataAsync((_engineering, duts[i]));
-                foreach (MeasureData data in r)
-                {
-                    LinearPlot.AddValues((i, data.Time, data.Data));
-                }
+                LinearPlot.AddValues(i, r.ToArray());
             }
         }
 

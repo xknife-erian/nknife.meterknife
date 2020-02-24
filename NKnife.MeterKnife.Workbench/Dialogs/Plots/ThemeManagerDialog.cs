@@ -36,13 +36,13 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Plots
                 _AreaBackground.Color = PlotTheme.AreaBackground;
 //                foreach (var t in PlotTheme.SeriesStyles)
 //                {
-//                    _SeriesListComboBox.Items.AddValues(t);
+//                    _SeriesListComboBox.Items.AddValue(t);
 //                }
 //                if (_SeriesListComboBox.Items.Count <= 0)
 //                {
 //                    var item = new PlotTheme.SeriesStyle();
-//                    PlotTheme.SeriesStyles.AddValues(item);
-//                    _SeriesListComboBox.Items.AddValues(item);
+//                    PlotTheme.SeriesStyles.AddValue(item);
+//                    _SeriesListComboBox.Items.AddValue(item);
 //                }
 //                _SeriesListComboBox.SelectedIndex = 0;
             };

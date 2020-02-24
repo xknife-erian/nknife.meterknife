@@ -110,7 +110,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(419, 355);
-            this.tabControl1.TabIndex = 6;
+            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -140,7 +140,7 @@
             this._ExpectValueTextBox.Location = new System.Drawing.Point(224, 93);
             this._ExpectValueTextBox.Name = "_ExpectValueTextBox";
             this._ExpectValueTextBox.Size = new System.Drawing.Size(165, 23);
-            this._ExpectValueTextBox.TabIndex = 13;
+            this._ExpectValueTextBox.TabIndex = 2;
             // 
             // _DescriptionTextBox
             // 
@@ -155,7 +155,7 @@
             this._DescriptionTextBox.Name = "_DescriptionTextBox";
             this._DescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this._DescriptionTextBox.Size = new System.Drawing.Size(367, 98);
-            this._DescriptionTextBox.TabIndex = 12;
+            this._DescriptionTextBox.TabIndex = 5;
             // 
             // label6
             // 
@@ -192,7 +192,7 @@
             this._UnitComboBox.Location = new System.Drawing.Point(224, 144);
             this._UnitComboBox.Name = "_UnitComboBox";
             this._UnitComboBox.Size = new System.Drawing.Size(165, 25);
-            this._UnitComboBox.TabIndex = 8;
+            this._UnitComboBox.TabIndex = 4;
             // 
             // _ClassifyComboBox
             // 
@@ -200,7 +200,7 @@
             this._ClassifyComboBox.Location = new System.Drawing.Point(22, 144);
             this._ClassifyComboBox.Name = "_ClassifyComboBox";
             this._ClassifyComboBox.Size = new System.Drawing.Size(185, 25);
-            this._ClassifyComboBox.TabIndex = 7;
+            this._ClassifyComboBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -216,7 +216,7 @@
             this._NameTextBox.Location = new System.Drawing.Point(22, 93);
             this._NameTextBox.Name = "_NameTextBox";
             this._NameTextBox.Size = new System.Drawing.Size(185, 23);
-            this._NameTextBox.TabIndex = 4;
+            this._NameTextBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -244,7 +244,7 @@
             this._NumberTextBox.Location = new System.Drawing.Point(22, 41);
             this._NumberTextBox.Name = "_NumberTextBox";
             this._NumberTextBox.Size = new System.Drawing.Size(237, 23);
-            this._NumberTextBox.TabIndex = 1;
+            this._NumberTextBox.TabIndex = 0;
             // 
             // label1
             // 

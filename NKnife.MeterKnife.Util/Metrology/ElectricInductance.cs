@@ -3,11 +3,13 @@
     /// <summary>
     ///     电感
     /// </summary>
-    public class ElectricInductance : IMetrology
+    public class ElectricInductance : BaseMetrology
     {
         #region Implementation of IMetrology
 
-        public string[] Units { get; } = {"H", "mH", "μH", "nH"};
+        public override string[] Units { get; } = {"H", "mH", "μH", "nH"};
+        public override short UnitIndex { get; } = 1;
+        public override string Name { get; set; } = "电感";
 
         #endregion
     }

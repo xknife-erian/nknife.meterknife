@@ -150,10 +150,11 @@ namespace NKnife.MeterKnife.Workbench
             {
                 var eng = _viewModel.OpenedEngineerings[args.NewStartingIndex];
                 //每个工程只打开一个窗口
-                if (!_staticDataPlotViewMap.TryGetValue(eng.Id, out var view))
+                if (!_staticDataPlotViewMap.TryGetValue(eng.Id, out var view) || view.IsDisposed)
                 {
                     view = Kernel.Container.Resolve<StaticDataPlotView>();
                     view.SetEngineering(eng);
+                    _staticDataPlotViewMap.Remove(eng.Id);
                     _staticDataPlotViewMap.Add(eng.Id, view);
                 }
 

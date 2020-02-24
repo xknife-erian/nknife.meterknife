@@ -36,7 +36,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <summary>
         ///     数据线线径
         /// </summary>
-        public double Thickness { get; set; } = 3;
+        public double Thickness { get; set; } = 1.8;
 
         public string Text { get; set; }
         public LineStyle LineStyle { get; set; } = LineStyle.Solid;

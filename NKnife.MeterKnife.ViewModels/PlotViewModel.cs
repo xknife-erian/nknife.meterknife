@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.ViewModels
         }
 
         public DUTLinearPlot LinearPlot { get; }
-        
+
         public event EventHandler PlotModelUpdated;
 
         protected virtual void OnPlotModelUpdated()

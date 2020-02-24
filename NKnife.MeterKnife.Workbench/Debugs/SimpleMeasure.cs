@@ -48,11 +48,11 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         private ScpiCommandPool GetCommands()
         {
-            var interval = 500;
+            var interval = 300;
             var item1 = new ScpiCommand
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = "RES", Name = "520r|1K"},
+                DUT = new DUT() {Id = $"RES{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}", Name = "520r|1K"},
                 GpibAddress = 23,
                 Scpi = new SCPI {Command = "FETC?"},
 
@@ -63,7 +63,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var item2 = new ScpiCommand
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = "VOLTAGE", Name = "10v"},
+                DUT = new DUT() {Id = $"VOLTAGE{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}", Name = "10v"},
                 GpibAddress = 24,
                 Scpi = new SCPI {Command = "READ?"},
 
@@ -73,16 +73,17 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             };
             var temp5 = CareCommandHelper.Temperature(5);
             temp5.Slot = _slot;
-            temp5.DUT = new DUT() {Id = "T1", Name = "23Temp"};
+            temp5.DUT = new DUT() {Id = $"T1{UtilRandom.GetString(2,UtilRandom.RandomCharType.Lowercased)}", Name = "23Temp"};
 
             var temp6 = CareCommandHelper.Temperature(6);
             temp6.Slot = _slot;
-            temp6.DUT = new DUT() {Id = "T2", Name = "24Temp"};
+            temp6.DUT = new DUT() {Id = $"T2{UtilRandom.GetString(2,UtilRandom.RandomCharType.Lowercased)}", Name = "24Temp"};
 
             var pool = new ScpiCommandPool();
             //pool.Add(item1);
-            pool.AddRange(new[] {item2, temp5});
-            //pool.AddRange(new[] {item1, temp6});
+            //pool.AddRange(new[] { item1, item2, temp5 });
+            pool.AddRange(new[] { item1, temp5 });
+            //pool.AddRange(new[] {item2, temp6});
             return pool;
         }
 

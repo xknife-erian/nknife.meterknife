@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common.Domain;
+using NLog;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -14,11 +17,17 @@ namespace NKnife.MeterKnife.ViewModels.Plots
     /// </summary>
     public class DUTLinearPlot
     {
+        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
+
         private readonly PlotModel _plotModel = new PlotModel();
         private readonly DateTimeAxis _timeAxis = new DateTimeAxis();
 
         private readonly Dictionary<int, LinearAxis> _axisMap = new Dictionary<int, LinearAxis>();
         private readonly Dictionary<int, bool> _axisFirstMap = new Dictionary<int, bool>();
+        /// <summary>
+        /// 数轴的极值
+        /// </summary>
+        private readonly Dictionary<int, (double, double)> _axisExtremumMap = new Dictionary<int, (double, double)>();
         private readonly List<short> _droppedDataCounter = new List<short>();
         private readonly short _droppedDataCount;
 
@@ -63,38 +72,44 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <summary>
         ///     增加测量数据
         /// </summary>
-        /// <param name="values">测量数据集合: Item1是数据渠道编号，Item2是测量时间，Item3是测量数据值</param>
-        public void AddValues(params (int, DateTime, double)[] values)
+        /// <param name="value">测量数据: Item1是数据渠道编号，Item2是测量时间，Item3是测量数据值</param>
+        public void AddValue((int, DateTime, double) value)
         {
-            if (values.Length == 1)
+            if (_droppedDataCounter[value.Item1] < _droppedDataCount)
             {
-                var value = values[0];
-                if (_droppedDataCounter[value.Item1] < _droppedDataCount)
-                {
-                    _droppedDataCounter[value.Item1]++;
-                    return;
-                }
+                _droppedDataCounter[value.Item1]++;
+                return;
+            }
 
-                var axis = _axisMap[value.Item1];
-                //先根据测量数据调整纵轴的值的范围
-                if (_axisFirstMap[value.Item1])
-                {
-                    UpdateRange(value.Item3, axis, PlotTheme.YSpaceLevel, true);
-                    _axisFirstMap[value.Item1] = false;
-                }
-                else
-                {
-                    UpdateRange(value.Item3, axis, PlotTheme.YSpaceLevel);
-                }
-
-                //向数据线上添加测量数据点
-                var points = DateTimeAxis.CreateDataPoint(value.Item2, value.Item3);
-                ((LineSeries) _plotModel.Series[value.Item1]).Points.Add(points);
+            var axis = _axisMap[value.Item1];
+            //先根据测量数据调整纵轴的值的范围
+            if (_axisFirstMap[value.Item1])
+            {
+                UpdateRange(value.Item1, value.Item3, axis, PlotTheme.YSpaceLevel, true);
+                _axisFirstMap[value.Item1] = false;
             }
             else
             {
-                
+                UpdateRange(value.Item1, value.Item3, axis, PlotTheme.YSpaceLevel);
             }
+
+            //向数据线上添加测量数据点
+            var points = DateTimeAxis.CreateDataPoint(value.Item2, value.Item3);
+            ((LineSeries) _plotModel.Series[value.Item1]).Points.Add(points);
+        }
+
+        public void AddValues(int index, MeasureData[] measureDatas)
+        {
+            var list = measureDatas.Select(data => DateTimeAxis.CreateDataPoint(data.Time, data.Data)).ToList();
+            var series = ((LineSeries) _plotModel.Series[index]);
+            series.Points.AddRange(list);
+            var max = (from value in measureDatas select value.Data).Max();
+            var min = (from value in measureDatas select value.Data).Min();
+            var range = max - min;
+            var offset = Math.Abs(range / PlotTheme.YSpaceLevel);
+            series.YAxis.Maximum = max + offset;
+            series.YAxis.Minimum = min - offset;
+            _Logger.Info($"向{series}[{series.YAxisKey}]填入{list.Count}个数据。Max:{max}, Min:{min}, Y-max:{series.YAxis.Maximum}, Y-min:{series.YAxis.Minimum}");
         }
 
         /// <summary>
@@ -151,11 +166,12 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <summary>
         ///     根据当前测量值更新纵轴的显示区域
         /// </summary>
+        /// <param name="index">数据渠道编号</param>
         /// <param name="value">当前测量值</param>
         /// <param name="axis">LinearAxis的相对值</param>
         /// <param name="ySpaceLevel">Y轴上下的留白级别</param>
         /// <param name="isFirst">是第一个数据</param>
-        public static void UpdateRange(double value, Axis axis, short ySpaceLevel, bool isFirst = false)
+        public void UpdateRange(int index, double value, Axis axis, short ySpaceLevel, bool isFirst = false)
         {
             var ys = ySpaceLevel * 2;
             if (isFirst) //当第一个数据时，做一些常规处理
@@ -163,22 +179,27 @@ namespace NKnife.MeterKnife.ViewModels.Plots
                 var offset = Math.Abs(value) > 0 ? GetOffset(value) : 0.00000001;
                 axis.Maximum = value + offset;
                 axis.Minimum = value - offset;
+                _axisExtremumMap.Add(index, (value, value));
                 return;
             }
 
-            if (value >= axis.Maximum)
+            var extremum = _axisExtremumMap[index];
+            if (value >= extremum.Item2)
             {
-                var min = axis.Minimum;
+                var min = extremum.Item1;
                 var max = value;
+                _axisExtremumMap[index] = (min, max);
                 var offset = Math.Abs((max - min) / ys);
-                axis.Maximum = value + offset;
+                axis.Maximum = max + offset;
+                axis.Minimum = min - offset;
             }
-            else if (value <= axis.Minimum)
+            else if (value <= extremum.Item1)
             {
                 var min = value;
-                var max = axis.Maximum;
+                var max = extremum.Item2;
                 var offset = Math.Abs((max - min) / ys);
-                axis.Minimum = value - offset;
+                axis.Maximum = max + offset;
+                axis.Minimum = min - offset;
             }
         }
 

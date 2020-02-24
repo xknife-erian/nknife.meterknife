@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Views;
@@ -37,8 +38,25 @@ namespace NKnife.MeterKnife.Workbench.Views
                 _ZoomInToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(1.3); };
                 _ZoomOutToolStripButton.Click += (s, e) => { _PlotView.Model.ZoomAllAxes(0.7); };
                 _viewModel.PlotModelUpdated += (s, e) => { _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true)); };
-                Task.Factory.StartNew(async () => { await _viewModel.LoadDataAsync(); });
+                Task.Factory.StartNew(async () =>
+                {
+                    await _viewModel.LoadDataAsync();
+                    Thread.Sleep(200);
+                    _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true));
+                });
                 _isInitialized = true;
+                InitializePlotView();
+            };
+        }
+
+        private void InitializePlotView()
+        {
+            _PlotView.Model.TrackerChanged+= (sender, args) => 
+            {
+                // if (args.AddedItems != null && args.AddedItems.Count > 0)
+                // {
+                //     _PlotBanner.AddAxes(args.AddedItems);
+                // }
             };
         }
 

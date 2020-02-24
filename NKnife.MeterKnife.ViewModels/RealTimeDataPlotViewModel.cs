@@ -19,7 +19,7 @@ namespace NKnife.MeterKnife.ViewModels
             _Logger.Trace($"数据Index:{index},{e.Measurements.Data},{e.Time},{e.DUT},{e.Group}");
             if (index >= 0)
             {
-                LinearPlot.AddValues((index, e.Time, e.Measurements.Data + _solution[index].Offset));
+                LinearPlot.AddValue((index, e.Time, e.Measurements.Data + _solution[index].Offset));
                 OnPlotModelUpdated();
             }
         }

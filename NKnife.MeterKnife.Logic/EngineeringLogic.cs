@@ -72,7 +72,7 @@ namespace NKnife.MeterKnife.Logic
                     }
                 }
 
-                engineering.Name = sb.ToString();
+                engineering.Name = sb.ToString().TrimEnd('/');
             }
 
             _storageManager.CreateEngineering(engineering);

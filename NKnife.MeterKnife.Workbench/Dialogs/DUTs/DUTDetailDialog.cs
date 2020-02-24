@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Resources;
+using NKnife.MeterKnife.Util.Metrology;
+using NKnife.Metrology;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Workbench.Dialogs.DUTs
@@ -19,6 +21,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.DUTs
         {
             InitializeComponent();
             InitializeLanguage();
+            InitializeMetrologyControl();
             RespondToButtonClick();
         }
 
@@ -50,6 +53,25 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.DUTs
             _DeleteFileToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _AddFileToolStripButton.Image = MenuButtonResource.base_add_file_24px;
             _DeleteFileToolStripButton.Image = MenuButtonResource.base_delete_24px;
+        }
+
+        private void InitializeMetrologyControl()
+        {
+            _ClassifyComboBox.SelectedIndexChanged += (sender, args) =>
+            {
+                var met = (IMetrology)_ClassifyComboBox.SelectedItem;
+                _UnitComboBox.Items.Clear();
+                _UnitComboBox.Items.AddRange(met.Units.Cast<object>().ToArray());
+                _UnitComboBox.SelectedIndex = met.UnitIndex;
+            };
+            var mts = MetrologyHelper.Metrologies;
+            foreach (var mt in mts)
+            {
+                //更改计量单位的不同语言显示
+                mt.Name = this.Res(mt.Name);
+            }
+            _ClassifyComboBox.Items.AddRange(MetrologyHelper.Metrologies.Cast<object>().ToArray());
+            _ClassifyComboBox.SelectedIndex = 0;
         }
 
         private void RespondToButtonClick()
