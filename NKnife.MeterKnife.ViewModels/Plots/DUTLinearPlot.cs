@@ -30,6 +30,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         private readonly Dictionary<int, (double, double)> _axisExtremumMap = new Dictionary<int, (double, double)>();
         private readonly List<short> _droppedDataCounter = new List<short>();
         private readonly short _droppedDataCount;
+        private readonly short _ySpaceLevel;
 
         /// <summary>
         ///     构造函数：基础的折线图表, 横轴表示时间，纵轴代表测量值
@@ -37,6 +38,7 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         public DUTLinearPlot(PlotTheme plotTheme, short droppedDataCount, string title = "")
         {
             _droppedDataCount = droppedDataCount;
+            _ySpaceLevel = plotTheme.YSpaceLevel;
             PlotTheme = plotTheme;
 
             _plotModel.PlotAreaBackground = ToOxyColor(plotTheme.AreaBackground);
@@ -85,12 +87,12 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             //先根据测量数据调整纵轴的值的范围
             if (_axisFirstMap[value.Item1])
             {
-                UpdateRange(value.Item1, value.Item3, axis, PlotTheme.YSpaceLevel, true);
+                UpdateRange(value.Item1, value.Item3, axis, true);
                 _axisFirstMap[value.Item1] = false;
             }
             else
             {
-                UpdateRange(value.Item1, value.Item3, axis, PlotTheme.YSpaceLevel);
+                UpdateRange(value.Item1, value.Item3, axis);
             }
 
             //向数据线上添加测量数据点
@@ -105,8 +107,8 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             series.Points.AddRange(list);
             var max = (from value in measureDatas select value.Data).Max();
             var min = (from value in measureDatas select value.Data).Min();
-            var range = max - min;
-            var offset = Math.Abs(range / PlotTheme.YSpaceLevel);
+            var dataRange = max - min;
+            var offset = Math.Abs(dataRange / _ySpaceLevel);
             series.YAxis.Maximum = max + offset;
             series.YAxis.Minimum = min - offset;
             _Logger.Info($"向{series}[{series.YAxisKey}]填入{list.Count}个数据。Max:{max}, Min:{min}, Y-max:{series.YAxis.Maximum}, Y-min:{series.YAxis.Minimum}");
@@ -169,14 +171,16 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <param name="index">数据渠道编号</param>
         /// <param name="value">当前测量值</param>
         /// <param name="axis">LinearAxis的相对值</param>
-        /// <param name="ySpaceLevel">Y轴上下的留白级别</param>
         /// <param name="isFirst">是第一个数据</param>
-        public void UpdateRange(int index, double value, Axis axis, short ySpaceLevel, bool isFirst = false)
+        public void UpdateRange(int index, double value, Axis axis, bool isFirst = false)
         {
-            var ys = ySpaceLevel * 2;
+            double min = 0;
+            double max = 0;
+            double offset = 0;
+
             if (isFirst) //当第一个数据时，做一些常规处理
             {
-                var offset = Math.Abs(value) > 0 ? GetOffset(value) : 0.00000001;
+                offset = Math.Abs(value) > 0 ? GetOffset(value) : 0.00000001;
                 axis.Maximum = value + offset;
                 axis.Minimum = value - offset;
                 _axisExtremumMap.Add(index, (value, value));
@@ -186,21 +190,23 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             var extremum = _axisExtremumMap[index];
             if (value >= extremum.Item2)
             {
-                var min = extremum.Item1;
-                var max = value;
-                _axisExtremumMap[index] = (min, max);
-                var offset = Math.Abs((max - min) / ys);
-                axis.Maximum = max + offset;
-                axis.Minimum = min - offset;
+                min = extremum.Item1;
+                max = value;
             }
             else if (value <= extremum.Item1)
             {
-                var min = value;
-                var max = extremum.Item2;
-                var offset = Math.Abs((max - min) / ys);
-                axis.Maximum = max + offset;
-                axis.Minimum = min - offset;
+                min = value;
+                max = extremum.Item2;
             }
+            else
+            {
+                return;
+            }
+
+            _axisExtremumMap[index] = (min, max);
+            offset = Math.Abs((max - min) / _ySpaceLevel);
+            axis.Maximum = max + offset;
+            axis.Minimum = min - offset;
         }
 
         public static double GetOffset(double value)

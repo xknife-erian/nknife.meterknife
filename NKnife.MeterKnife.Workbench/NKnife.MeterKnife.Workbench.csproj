@@ -150,12 +150,6 @@
     <Compile Include="Controls\EngineeringTree.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\PlotBanner.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\PlotBanner.Designer.cs">
-      <DependentUpon>PlotBanner.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ScpiDetailPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -344,9 +338,6 @@
     <Compile Include="Workbench.cs">
       <SubType>Form</SubType>
     </Compile>
-    <EmbeddedResource Include="Controls\PlotBanner.resx">
-      <DependentUpon>PlotBanner.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ScpiDetailPanel.resx">
       <DependentUpon>ScpiDetailPanel.cs</DependentUpon>
     </EmbeddedResource>

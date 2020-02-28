@@ -47,7 +47,6 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._ValueRangeZoomToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._PlotThemeDropDownButton1 = new NKnife.MeterKnife.Workbench.Dialogs.Plots.PlotThemeDropDownButton();
-            this._PlotBanner = new NKnife.MeterKnife.Workbench.Controls.PlotBanner();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
             this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
             this._ToolStripContainer.SuspendLayout();
@@ -62,11 +61,11 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._PlotView.BackColor = System.Drawing.Color.LightSlateGray;
             this._PlotView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._PlotView.Font = new System.Drawing.Font("Century", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._PlotView.Location = new System.Drawing.Point(3, 43);
+            this._PlotView.Location = new System.Drawing.Point(3, 3);
             this._PlotView.Margin = new System.Windows.Forms.Padding(1);
             this._PlotView.Name = "_PlotView";
             this._PlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this._PlotView.Size = new System.Drawing.Size(770, 441);
+            this._PlotView.Size = new System.Drawing.Size(770, 481);
             this._PlotView.TabIndex = 1;
             this._PlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this._PlotView.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
@@ -110,7 +109,6 @@ namespace NKnife.MeterKnife.Workbench.Views
             // _MainTabPage
             // 
             this._MainTabPage.Controls.Add(this._PlotView);
-            this._MainTabPage.Controls.Add(this._PlotBanner);
             this._MainTabPage.Location = new System.Drawing.Point(4, 4);
             this._MainTabPage.Name = "_MainTabPage";
             this._MainTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -251,16 +249,6 @@ namespace NKnife.MeterKnife.Workbench.Views
             this._PlotThemeDropDownButton1.Size = new System.Drawing.Size(43, 34);
             this._PlotThemeDropDownButton1.Text = "主题";
             // 
-            // _PlotBanner
-            // 
-            this._PlotBanner.BackColor = System.Drawing.Color.White;
-            this._PlotBanner.Dock = System.Windows.Forms.DockStyle.Top;
-            this._PlotBanner.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this._PlotBanner.Location = new System.Drawing.Point(3, 3);
-            this._PlotBanner.Name = "_PlotBanner";
-            this._PlotBanner.Size = new System.Drawing.Size(770, 40);
-            this._PlotBanner.TabIndex = 2;
-            // 
             // StaticDataPlotView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -304,6 +292,5 @@ namespace NKnife.MeterKnife.Workbench.Views
         private TabControl _PlotTabControl;
         private TabPage _MainTabPage;
         private TabPage tabPage2;
-        private Controls.PlotBanner _PlotBanner;
     }
 }
