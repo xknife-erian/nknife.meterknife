@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.ViewModels.Plots;
+using NLog;
 using OxyPlot;
 using OxyPlot.Axes;
 
@@ -12,6 +13,8 @@ namespace NKnife.MeterKnife.ViewModels
 {
     public class StaticDataPlotViewModel : PlotViewModel
     {
+        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
+
         private readonly IEngineeringLogic _engineeringLogic;
         private Engineering _engineering;
 
@@ -25,7 +28,6 @@ namespace NKnife.MeterKnife.ViewModels
         {
             _engineering = engineering;
             var duts = _engineering.GetIncludedDUTs();
-
             SetStyleSolutionByEngineering(duts);
         }
 
@@ -33,11 +35,7 @@ namespace NKnife.MeterKnife.ViewModels
         {
             //LinearPlot.ClearValues();
             var duts = _engineering.GetIncludedDUTs();
-            // 可以转为并行计算
-            // Parallel.For(0, duts.Count, (i, loopState) =>
-            // {
-            //     var r = _engineeringLogic.GetDUTDataAsync(duts[i]);
-            // });
+            // TODO:是否可以转为并行计算
             for (int i = 0; i < duts.Count; i++)
             {
                 var r = await _engineeringLogic.GetDUTDataAsync((_engineering, duts[i]));

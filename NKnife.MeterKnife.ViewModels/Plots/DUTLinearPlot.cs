@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
 using NLog;
 using OxyPlot;
@@ -22,23 +23,25 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         private readonly PlotModel _plotModel = new PlotModel();
         private readonly DateTimeAxis _timeAxis = new DateTimeAxis();
 
-        private readonly Dictionary<int, LinearAxis> _axisMap = new Dictionary<int, LinearAxis>();
-        private readonly Dictionary<int, bool> _axisFirstMap = new Dictionary<int, bool>();
+        private readonly Dictionary<int, PlotInfo> _plotInfoMap = new Dictionary<int, PlotInfo>();
+        // private readonly Dictionary<int, LinearAxis> _axisMap = new Dictionary<int, LinearAxis>();
+        // private readonly Dictionary<int, bool> _axisFirstMap = new Dictionary<int, bool>();
+        // /// <summary>
+        // /// 数轴的极值
+        // /// </summary>
+        // private readonly Dictionary<int, (double, double)> _axisExtremumMap = new Dictionary<int, (double, double)>();
         /// <summary>
-        /// 数轴的极值
+        /// Y轴区间，图表上下方留白空间的级别，1-12级，1级留白最大，12级留白最小。默认5级。
         /// </summary>
-        private readonly Dictionary<int, (double, double)> _axisExtremumMap = new Dictionary<int, (double, double)>();
-        private readonly List<short> _droppedDataCounter = new List<short>();
-        private readonly short _droppedDataCount;
         private readonly short _ySpaceLevel;
 
         /// <summary>
         ///     构造函数：基础的折线图表, 横轴表示时间，纵轴代表测量值
         /// </summary>
-        public DUTLinearPlot(PlotTheme plotTheme, short droppedDataCount, string title = "")
+        public DUTLinearPlot(PlotTheme plotTheme, short ySpaceLevel, string title = "")
         {
-            _droppedDataCount = droppedDataCount;
-            _ySpaceLevel = plotTheme.YSpaceLevel;
+            _ySpaceLevel = ySpaceLevel;
+
             PlotTheme = plotTheme;
 
             _plotModel.PlotAreaBackground = ToOxyColor(plotTheme.AreaBackground);
@@ -77,18 +80,13 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <param name="value">测量数据: Item1是数据渠道编号，Item2是测量时间，Item3是测量数据值</param>
         public void AddValue((int, DateTime, double) value)
         {
-            if (_droppedDataCounter[value.Item1] < _droppedDataCount)
-            {
-                _droppedDataCounter[value.Item1]++;
-                return;
-            }
-
-            var axis = _axisMap[value.Item1];
+            var plotInfo = _plotInfoMap[value.Item1];
+            var axis = plotInfo.Axis;
             //先根据测量数据调整纵轴的值的范围
-            if (_axisFirstMap[value.Item1])
+            if (plotInfo.IsFirst)
             {
                 UpdateRange(value.Item1, value.Item3, axis, true);
-                _axisFirstMap[value.Item1] = false;
+                plotInfo.IsFirst = false;
             }
             else
             {
@@ -103,15 +101,38 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         public void AddValues(int index, MeasureData[] measureDatas)
         {
             var list = measureDatas.Select(data => DateTimeAxis.CreateDataPoint(data.Time, data.Data)).ToList();
-            var series = ((LineSeries) _plotModel.Series[index]);
+            var axis = _plotInfoMap[index].Axis;
+            var series = _plotInfoMap[index].Series;
             series.Points.AddRange(list);
             var max = (from value in measureDatas select value.Data).Max();
             var min = (from value in measureDatas select value.Data).Min();
+
             var dataRange = max - min;
-            var offset = Math.Abs(dataRange / _ySpaceLevel);
-            series.YAxis.Maximum = max + offset;
-            series.YAxis.Minimum = min - offset;
-            _Logger.Info($"向{series}[{series.YAxisKey}]填入{list.Count}个数据。Max:{max}, Min:{min}, Y-max:{series.YAxis.Maximum}, Y-min:{series.YAxis.Minimum}");
+            double offset = 0;
+            try
+            {
+                offset = Math.Abs(dataRange / _ySpaceLevel);
+            }
+            catch (Exception e)
+            {
+                _Logger.Warn($"DUTLinearPlot/// Double计算图表留白异常：{e}");
+            }
+
+            if (offset > 0)
+            {
+                try
+                {
+                    axis.Maximum = max + offset;
+                    axis.Minimum = min - offset;
+                }
+                catch (Exception e)
+                {
+                    _Logger.Warn($"DUTLinearPlot/// 设置Y轴的极轴有异常: {e}");
+                    return;
+                }
+            }
+
+            _Logger.Info($"向{series}[{series.YAxisKey}]填入{list.Count}个数据。Max:{max}, Min:{min}, Y-max:{axis.Maximum}, Y-min:{axis.Minimum}");
         }
 
         /// <summary>
@@ -131,10 +152,6 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         /// <param name="styles">数据线的样式</param>
         public void SetSeries(params DUTSeriesStyle[] styles)
         {
-            for (int i = 0; i < styles.Length; i++)
-            {
-                _droppedDataCounter.Add(0);
-            }
             _plotModel.Series.Clear();
             for (var index = 0; index < styles.Length; index++)
             {
@@ -155,13 +172,11 @@ namespace NKnife.MeterKnife.ViewModels.Plots
                     style.Axis.MinorGridlineStyle = LineStyle.None;
                     style.Axis.MajorGridlineStyle = LineStyle.None;
                 }
-                series.YAxisKey = style.Axis.Key;
-
-                _axisMap.Add(index, style.Axis);
-                _axisFirstMap.Add(index, true);
 
                 _plotModel.Axes.Add(style.Axis);
                 _plotModel.Series.Add(series);
+                _plotInfoMap.Add(index, new PlotInfo {Axis = style.Axis, Series = series}); //style.Axis);
+                series.YAxisKey = style.Axis.Key;
             }
         }
 
@@ -183,27 +198,29 @@ namespace NKnife.MeterKnife.ViewModels.Plots
                 offset = Math.Abs(value) > 0 ? GetOffset(value) : 0.00000001;
                 axis.Maximum = value + offset;
                 axis.Minimum = value - offset;
-                _axisExtremumMap.Add(index, (value, value));
+                _plotInfoMap[index].AxisMin = value;
+                _plotInfoMap[index].AxisMax = value;
                 return;
             }
 
-            var extremum = _axisExtremumMap[index];
-            if (value >= extremum.Item2)
+            var extremum = _plotInfoMap[index];
+            if (value >= extremum.AxisMax)
             {
-                min = extremum.Item1;
+                min = extremum.AxisMin;
                 max = value;
             }
-            else if (value <= extremum.Item1)
+            else if (value <= extremum.AxisMin)
             {
                 min = value;
-                max = extremum.Item2;
+                max = extremum.AxisMax;
             }
             else
             {
                 return;
             }
 
-            _axisExtremumMap[index] = (min, max);
+            _plotInfoMap[index].AxisMin = min;
+            _plotInfoMap[index].AxisMax = max;
             offset = Math.Abs((max - min) / _ySpaceLevel);
             axis.Maximum = max + offset;
             axis.Minimum = min - offset;
@@ -243,5 +260,13 @@ namespace NKnife.MeterKnife.ViewModels.Plots
             return OxyColor.FromArgb(color.A, color.R, color.G, color.B);
         }
 
+        private class PlotInfo
+        {
+            public LineSeries Series { get; set; }
+            public LinearAxis Axis { get; set; }
+            public bool IsFirst { get; set; } = true;
+            public double AxisMax { get; set; } = 0;
+            public double AxisMin { get; set; } = 0;
+        }
     }
 }

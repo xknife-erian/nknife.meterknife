@@ -37,12 +37,14 @@
             // 
             this._YSpaceTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this._YSpaceTrackBar.LargeChange = 2;
             this._YSpaceTrackBar.Location = new System.Drawing.Point(23, 47);
+            this._YSpaceTrackBar.Maximum = 12;
             this._YSpaceTrackBar.Minimum = 1;
             this._YSpaceTrackBar.Name = "_YSpaceTrackBar";
             this._YSpaceTrackBar.Size = new System.Drawing.Size(436, 45);
             this._YSpaceTrackBar.TabIndex = 0;
-            this._YSpaceTrackBar.Value = 5;
+            this._YSpaceTrackBar.Value = 8;
             // 
             // _Label1
             // 
@@ -51,7 +53,7 @@
             this._Label1.Name = "_Label1";
             this._Label1.Size = new System.Drawing.Size(296, 17);
             this._Label1.TabIndex = 1;
-            this._Label1.Text = "数据折线图上下方留白,空间（1级最多，10级最少）：";
+            this._Label1.Text = "数据折线图上下方留白,空间（1级最多，12级最少）：";
             // 
             // PlotOptionPanel
             // 

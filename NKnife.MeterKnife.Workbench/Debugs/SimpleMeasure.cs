@@ -36,10 +36,11 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         public async Task RunAsync(IAntService antService, IEngineeringLogic engineeringLogic)
         {
+            var dt = DateTime.Now;
             var engineering = new Engineering
             {
                 Name = "",
-                CreateTime = new DateTime(2019, UtilRandom.Next(11, 13), UtilRandom.Next(1, 25), UtilRandom.Next(1, 24), UtilRandom.Next(1, 60), UtilRandom.Next(1, 60)),
+                CreateTime = DateTime.Now//new DateTime(2019, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second),
             };
             engineering.CommandPools.Add(Pool);
             await engineeringLogic.CreateEngineeringAsync(engineering);
@@ -52,7 +53,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var item1 = new ScpiCommand
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = $"RES{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}", Name = "520r|1K"},
+                DUT = new DUT() {Id = $"RES{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}"},
                 GpibAddress = 23,
                 Scpi = new SCPI {Command = "FETC?"},
 
@@ -60,10 +61,11 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 Timeout = interval * 2,
                 IsLoop = true
             };
+            item1.DUT.Name = item1.DUT.Id;
             var item2 = new ScpiCommand
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = $"VOLTAGE{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}", Name = "10v"},
+                DUT = new DUT() {Id = $"VOLTAGE{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}"},
                 GpibAddress = 24,
                 Scpi = new SCPI {Command = "READ?"},
 
@@ -71,13 +73,16 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 Timeout = interval * 2,
                 IsLoop = true
             };
+            item2.DUT.Name = item2.DUT.Id;
             var temp5 = CareCommandHelper.Temperature(5);
             temp5.Slot = _slot;
-            temp5.DUT = new DUT() {Id = $"T1{UtilRandom.GetString(2,UtilRandom.RandomCharType.Lowercased)}", Name = "23Temp"};
+            temp5.DUT = new DUT() {Id = $"T1{UtilRandom.GetString(2,UtilRandom.RandomCharType.Lowercased)}"};
+            temp5.DUT.Name = temp5.DUT.Id;
 
             var temp6 = CareCommandHelper.Temperature(6);
             temp6.Slot = _slot;
-            temp6.DUT = new DUT() {Id = $"T2{UtilRandom.GetString(2,UtilRandom.RandomCharType.Lowercased)}", Name = "24Temp"};
+            temp6.DUT = new DUT() {Id = $"T2{UtilRandom.GetString(2,UtilRandom.RandomCharType.Lowercased)}"};
+            temp6.DUT.Name = temp6.DUT.Id;
 
             var pool = new ScpiCommandPool();
             //pool.Add(item1);

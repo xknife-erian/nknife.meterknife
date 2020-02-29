@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
+using NLog;
 
 // ReSharper disable once CheckNamespace
 namespace NKnife.MeterKnife.Holistic
@@ -11,6 +14,16 @@ namespace NKnife.MeterKnife.Holistic
     /// </summary>
     public class AcquisitionService : IAcquisitionService
     {
+        private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
+
+        private readonly short _habitDroppedDataCount;
+        private readonly Dictionary<string, short> _droppedMap = new Dictionary<string, short>();
+
+        public AcquisitionService(IHabitManager habit)
+        {
+            _habitDroppedDataCount = habit.GetOptionValue(HabitKey.Plot_DroppedDataCount, (short)5);
+        }
+
         #region Implementation of IEnvironmentItem
 
         public bool StartService()
@@ -42,6 +55,18 @@ namespace NKnife.MeterKnife.Holistic
         /// <param name="data">数据</param>
         public void AddValue((Engineering, DUT) dut, MeasureData data)
         {
+            var key = $"{dut.Item1.Id}///{dut.Item2.Id}";
+            if (!_droppedMap.ContainsKey(key))
+            {
+                _droppedMap.Add(key, 0);
+            }
+            if (_droppedMap[key] < _habitDroppedDataCount)
+            {
+                _droppedMap[key]++;
+                _Logger.Info($"按配置，丢弃起始采集的一些数据{_droppedMap[key]}：{key}:{data}");
+                return;
+            }
+
             Task.Factory.StartNew(OnAcquired, new AcquisitionEventArgs(dut, data));
         }
 

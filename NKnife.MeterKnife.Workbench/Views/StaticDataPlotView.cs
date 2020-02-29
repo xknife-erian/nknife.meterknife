@@ -41,22 +41,9 @@ namespace NKnife.MeterKnife.Workbench.Views
                 Task.Factory.StartNew(async () =>
                 {
                     await _viewModel.LoadDataAsync();
-                    Thread.Sleep(200);
                     _PlotView.ThreadSafeInvoke(() => _PlotView.InvalidatePlot(true));
                 });
                 _isInitialized = true;
-                InitializePlotView();
-            };
-        }
-
-        private void InitializePlotView()
-        {
-            _PlotView.Model.TrackerChanged+= (sender, args) => 
-            {
-                // if (args.AddedItems != null && args.AddedItems.Count > 0)
-                // {
-                //     _PlotBanner.AddAxes(args.AddedItems);
-                // }
             };
         }
 

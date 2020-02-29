@@ -12,11 +12,6 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         public string Id { get; set; }
         public string Name { get; set; } = "默认主题";
 
-        /// <summary>
-        /// Y轴区间，图表上下方留白空间的级别，1-10级，1级留白最大，10级留白最小。默认5级。
-        /// </summary>
-        public short YSpaceLevel { get; set; } = 5;
-
         public PlotTheme()
         {
             Id = Guid.NewGuid().ToString("D");

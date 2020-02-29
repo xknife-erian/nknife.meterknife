@@ -23,8 +23,8 @@ namespace NKnife.MeterKnife.ViewModels
             {
                 if (plotTheme.Name == usingTheme)
                 {
-                    var droppedDataCount = habit.GetOptionValue(HabitKey.Plot_DroppedDataCount, (short)5);
-                    LinearPlot = new DUTLinearPlot(plotTheme, droppedDataCount);
+                    var ySpaceLevel = habit.GetOptionValue(HabitKey.Plot_YSpace, (short)5);
+                    LinearPlot = new DUTLinearPlot(plotTheme, ySpaceLevel);
                 }
             }
         }
