@@ -45,6 +45,12 @@ namespace NKnife.MeterKnife.Common.Base
         Task CreateEngineeringAsync(Engineering eng);
 
         /// <summary>
+        ///     删除一个指定的工程
+        /// </summary>
+        /// <param name="eng">指定的工程</param>
+        Task DeleteEngineeringAsync(Engineering eng);
+
+        /// <summary>
         ///     获取所有工程，并按工程的创建时间倒序排列
         /// </summary>
         Task<Dictionary<DateTime, List<Engineering>>> GetEngineeringAndDateMapAsync();
@@ -60,6 +66,14 @@ namespace NKnife.MeterKnife.Common.Base
         ///     已打开的工程
         /// </summary>
         ObservableCollection<Engineering> OpenedEngineerings { get; set; }
+
+        /// <summary>
+        /// 获取指定工程的被测物的测量数据记录数
+        /// </summary>
+        /// <param name="eng">指定的工程</param>
+        /// <param name="dut">工程中的被测物</param>
+        /// <returns>测量数据记录数</returns>
+        Task<long> CountDUTDataAsync(Engineering eng, DUT dut);
 
         #endregion
 

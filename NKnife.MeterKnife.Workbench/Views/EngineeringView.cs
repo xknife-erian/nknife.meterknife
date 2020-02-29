@@ -1,54 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
-using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Resources;
-using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Controls;
-using NKnife.MeterKnife.Workbench.Dialogs;
 using NKnife.MeterKnife.Workbench.Dialogs.Engineerings;
-using NKnife.MeterKnife.Workbench.Properties;
-using NKnife.Win.Quick.Base;
 using NKnife.Win.Quick.Controls;
-using WeifenLuo.WinFormsUI.Docking;
 
 namespace NKnife.MeterKnife.Workbench.Views
 {
+    /// <summary>
+    /// 工程管理窗体
+    /// </summary>
     public sealed partial class EngineeringView : SingletonDockContent
     {
         private readonly IDialogProvider _dialogProvider;
         private readonly IWorkbenchViewModel _viewModel;
-        private readonly StaticDataPlotView _staticDataPlotView;
 
-        public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider, StaticDataPlotView staticDataPlotView)
+        public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider)
         {
             _viewModel = viewModel;
             _dialogProvider = dialogProvider;
-            _staticDataPlotView = staticDataPlotView;
+
             InitializeComponent();
-            InitializeLanguage();
+            InitializeLanguageAndImage();
             RespondToEvents();
             RespondToButtonClick();
+            UpdateControlState();
             Shown += EngineeringsBindToTree;
-            _CreateEngStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _CreateEngStripButton.Image = MenuButtonResource.base_add_24px;
-            _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _EditToolStripButton.Image = MenuButtonResource.base_edit_24px;
-            _DeleteStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            _DeleteStripButton.Image = MenuButtonResource.base_delete_24px;
         }
 
-        private void InitializeLanguage()
+        private void InitializeLanguageAndImage()
         {
+            _CreateEngStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _EditToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _DeleteStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            _CreateEngStripButton.Image = MenuButtonResource.base_add_24px;
+            _EditToolStripButton.Image = MenuButtonResource.base_edit_24px;
+            _DeleteStripButton.Image = MenuButtonResource.base_delete_24px;
+
             this.Res(this);
             this.Res(_CreateEngStripButton, _EditToolStripButton, _DeleteStripButton);
         }
@@ -65,8 +59,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                     var simpleDate = new DateTime(eng.CreateTime.Year, eng.CreateTime.Month, 1, 0, 0, 0);
                     TreeNode dateNode;
                     EngineeringCreateTimeTreeNode srcNode = null;
-                    if (_TreeView.Nodes.Count > 0)
-                        srcNode = (EngineeringCreateTimeTreeNode) _TreeView.Nodes[0];
+                    if (_TreeView.Nodes.Count > 0) srcNode = (EngineeringCreateTimeTreeNode) _TreeView.Nodes[0];
                     if (srcNode != null && srcNode.CreateTime.Equals(simpleDate))
                     {
                         dateNode = srcNode;
@@ -84,9 +77,40 @@ namespace NKnife.MeterKnife.Workbench.Views
                     _TreeView.SelectedNode = engNode;
                 }
             };
-            _DeleteStripButton.Click += (sender, args) =>
+            _EditToolStripButton.Click += async delegate
             {
+                if (_TreeView.SelectedNode is EngineeringTreeNode editNode)
+                {
+                    var eng = editNode.Engineering;
+                    var dialog = _dialogProvider.New<EngineeringDetailDialog>();
+                    dialog.Engineering = eng;
+                    if (dialog.ShowDialog(this) == DialogResult.OK)
+                    {
 
+                    }
+                }
+            };
+            _DeleteStripButton.Click += async (sender, args) =>
+            {
+                if (_TreeView.SelectedNode is EngineeringTreeNode deleteNode)
+                {
+                    var eng = deleteNode.Engineering;
+                    var info = new StringBuilder();
+                    info.AppendLine(this.Res("是否删除?"));
+                    info.Append(this.Res("工程名:")).AppendLine(eng.Name);
+                    foreach (var dut in eng.GetIncludedDUTs())
+                    {
+                        var count = await _viewModel.CountDUTDataAsync(eng, dut);
+                        info.AppendLine($"    {this.Res("被测物: ")}{dut.Name}\t{this.Res("数据数量:")}{count}");
+                    }
+
+                    var mb = MessageBox.Show($"{info}", this.Res("删除确认"), MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                    if (mb == DialogResult.Yes)
+                    {
+                        await _viewModel.DeleteEngineeringAsync(eng);
+                        _TreeView.Nodes.Remove(deleteNode);
+                    }
+                }
             };
             _RefreshStripButton.Click += EngineeringsBindToTree;
         }
@@ -95,16 +119,22 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             _TreeView.AfterSelect += (sender, args) =>
             {
-                if (args.Node is EngineeringTreeNode node)
+                if (args.Node is EngineeringTreeNode engNode)
                 {
-                    var evm = new EngineeringVm(node.Engineering);
-                    _EngPropertyGrid.SelectedObject = evm;
+                    var evm = new EngineeringVm(engNode.Engineering);
+                    _PropertyGrid.SelectedObject = evm;
                 }
+                else if (args.Node is DUTTreeNode dutNode)
+                {
+                    var dut = new DUTVm(dutNode.DUT);
+                    _PropertyGrid.SelectedObject = dut;
+                }
+                UpdateControlState();
             };
             _TreeView.MouseDoubleClick += (sender, args) =>
             {
                 var node = _TreeView.SelectedNode as EngineeringTreeNode;
-                if(node ==null)
+                if (node == null)
                     return;
                 _viewModel.OpenedEngineerings.Add(node.Engineering);
             };
@@ -136,9 +166,96 @@ namespace NKnife.MeterKnife.Workbench.Views
 
             _TreeView.Select();
             _TreeView.EndUpdate();
+            UpdateControlState();
         }
 
-        public class EngineeringVm
+        private void UpdateControlState()
+        {
+            if (_TreeView.SelectedNode is EngineeringTreeNode)
+            {
+                _DeleteStripButton.Enabled = true;
+                _EditToolStripButton.Enabled = true;
+            }
+            else
+            {
+                _DeleteStripButton.Enabled = false;
+                _EditToolStripButton.Enabled = false;
+            }
+        }
+
+        private class DUTVm
+        {
+            public DUTVm(DUT dut)
+            {
+                Id = dut.Id;
+                Name = dut.Name;
+                Classify = dut.Classify;
+                //Unit = dut.Unit.Name;
+                ExpectValue = dut.ExpectValue;
+                if (dut.MetrologyValues != null && dut.MetrologyValues.Length > 0)
+                    MetrologyValues = dut.MetrologyValues[0].Value.ToString();
+                Description = dut.Description;
+                CreateTime = dut.CreateTime.ToString("yyyy-M-d HH:mm:ss");
+            }
+
+            /// <summary>
+            ///     被测物ID，也是编号，全局不可重复
+            /// </summary>
+            [Category("被测量单元")]
+            [DisplayName("编号")]
+            public string Id { get; }
+
+            /// <summary>
+            ///     被测物名称
+            /// </summary>
+            [Category("被测量单元")]
+            [DisplayName("名称")]
+            public string Name { get; }
+
+            /// <summary>
+            ///     被测物的登记时间
+            /// </summary>
+            [Category("被测量单元")]
+            [DisplayName("登记时间")]
+            public string CreateTime { get; }
+
+            /// <summary>
+            ///     被测物分类
+            /// </summary>
+            [Category("被测量单元")]
+            [DisplayName("分类")]
+            public string Classify { get; }
+
+            /// <summary>
+            ///     计量单位
+            /// </summary>
+            [Category("被测量单元")]
+            [DisplayName("单位")]
+            public string Unit { get; set; }
+
+            /// <summary>
+            ///     被测物的设计值
+            /// </summary>
+            [Category("被测量单元")]
+            [DisplayName("设计值")]
+            public double ExpectValue { get; }
+
+            /// <summary>
+            ///     标定值
+            /// </summary>
+            [Category("被测量单元")]
+            [DisplayName("标定值")]
+            public string MetrologyValues { get; }
+
+            /// <summary>
+            ///     详细描述
+            /// </summary>
+            [Category("被测量单元")]
+            [DisplayName("详细描述")]
+            public string Description { get; }
+        }
+
+        private class EngineeringVm
         {
             public EngineeringVm(Engineering engineering)
             {
@@ -149,35 +266,22 @@ namespace NKnife.MeterKnife.Workbench.Views
                 Path = engineering.Path;
                 var ds = new List<DUT>();
                 foreach (var pool in engineering.CommandPools)
-                {
-                    foreach (var command in pool)
-                    {
-                        ds.Add(command.DUT);
-                    }
-                }
-
+                foreach (var command in pool)
+                    ds.Add(command.DUT);
                 Duts = ds.ToArray();
             }
 
-            [Category("工程"), DisplayName("编号")]
-            public string Number { get; set; }
+            [Category("工程")] [DisplayName("编号")] public string Number { get; }
 
-            [Category("工程"), DisplayName("名称")]
-            public string Name { get; set; }
+            [Category("工程")] [DisplayName("名称")] public string Name { get; }
 
-            [Category("工程"), DisplayName("创建时间")]
-            public DateTime CreateTime { get; set; }
+            [Category("工程")] [DisplayName("创建时间")] public DateTime CreateTime { get; }
 
-            [Category("工程"), DisplayName("详细描述")]
-            public string Description { get; set; }
+            [Category("工程")] [DisplayName("详细描述")] public string Description { get; }
 
-            [Category("工程"), DisplayName("数据路径")]
-            public string Path { get; set; }
+            [Category("工程")] [DisplayName("数据路径")] public string Path { get; }
 
-            [Category("工程"), DisplayName("被测物")]
-            public DUT[] Duts { get; set; }
-
+            [Category("工程")] [DisplayName("被测物")] public DUT[] Duts { get; }
         }
     }
 }
-

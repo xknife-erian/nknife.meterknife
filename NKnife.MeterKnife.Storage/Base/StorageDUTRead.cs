@@ -81,6 +81,7 @@ namespace NKnife.MeterKnife.Storage.Base
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
             var sql = $"SELECT COUNT(*) FROM {TableName}";
+            sql = sql.Replace($"{typeof(T).Name}", $"{dut.Item2.Id}");
             var count = await conn.ExecuteScalarAsync<long>(sql);
             return count;
         }

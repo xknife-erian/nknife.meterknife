@@ -33,7 +33,7 @@
             this._ToolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
             this._TreeView = new NKnife.MeterKnife.Workbench.Controls.EngineeringTree();
-            this._EngPropertyGrid = new System.Windows.Forms.PropertyGrid();
+            this._PropertyGrid = new System.Windows.Forms.PropertyGrid();
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
             this._CreateEngStripButton = new System.Windows.Forms.ToolStripButton();
             this._EditToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -81,7 +81,7 @@
             // 
             // _SplitContainer.Panel2
             // 
-            this._SplitContainer.Panel2.Controls.Add(this._EngPropertyGrid);
+            this._SplitContainer.Panel2.Controls.Add(this._PropertyGrid);
             this._SplitContainer.Size = new System.Drawing.Size(272, 699);
             this._SplitContainer.SplitterDistance = 514;
             this._SplitContainer.TabIndex = 1;
@@ -98,15 +98,15 @@
             this._TreeView.Size = new System.Drawing.Size(272, 514);
             this._TreeView.TabIndex = 0;
             // 
-            // _EngPropertyGrid
+            // _PropertyGrid
             // 
-            this._EngPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._EngPropertyGrid.HelpVisible = false;
-            this._EngPropertyGrid.Location = new System.Drawing.Point(0, 0);
-            this._EngPropertyGrid.Name = "_EngPropertyGrid";
-            this._EngPropertyGrid.Size = new System.Drawing.Size(272, 181);
-            this._EngPropertyGrid.TabIndex = 0;
-            this._EngPropertyGrid.ToolbarVisible = false;
+            this._PropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._PropertyGrid.HelpVisible = false;
+            this._PropertyGrid.Location = new System.Drawing.Point(0, 0);
+            this._PropertyGrid.Name = "_PropertyGrid";
+            this._PropertyGrid.Size = new System.Drawing.Size(272, 181);
+            this._PropertyGrid.TabIndex = 0;
+            this._PropertyGrid.ToolbarVisible = false;
             // 
             // _ToolStrip
             // 
@@ -205,7 +205,7 @@
         private NKnife.MeterKnife.Workbench.Controls.EngineeringTree _TreeView;
         private System.Windows.Forms.ToolStrip _ToolStrip;
         private System.Windows.Forms.SplitContainer _SplitContainer;
-        private System.Windows.Forms.PropertyGrid _EngPropertyGrid;
+        private System.Windows.Forms.PropertyGrid _PropertyGrid;
         private System.Windows.Forms.ToolStripButton _CreateEngStripButton;
         private System.Windows.Forms.ToolStripButton _DeleteStripButton;
         private System.Windows.Forms.ToolStripButton _RefreshStripButton;

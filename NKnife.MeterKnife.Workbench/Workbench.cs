@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Mime;
 using System.Windows.Forms;
@@ -33,8 +34,8 @@ namespace NKnife.MeterKnife.Workbench
         /// </summary>
         private readonly Dictionary<string, StaticDataPlotView> _staticDataPlotViewMap = new Dictionary<string, StaticDataPlotView>();
 
-        public Workbench(WorkbenchViewModel viewModel, IHabitManager habitManager, 
-            DataMenuItem dataMenu, MeasureMenuItem measureMenu,
+        public Workbench(WorkbenchViewModel viewModel, IHabitManager habitManager,
+            DataMenuItem dataMenu, MeasureMenuItem measureMenu, EngineeringView engineeringView,
             DebuggerManager debuggerManager)
         {
             _viewModel = viewModel;
@@ -48,11 +49,12 @@ namespace NKnife.MeterKnife.Workbench
             GithubUpdateProject = "nknife.serial-protocol-debugger";
 
             InitializeComponent();
+
             var about = new QuickAbout();
             Text = $"{about.AssemblyTitle} - {about.AssemblyVersion}";
             Icon = IconResource.app_32px;
 
-            var notifyIcon = new NotifyIcon {Icon = IconResource.app_32px };
+            var notifyIcon = new NotifyIcon {Icon = IconResource.app_32px};
             BindNotifyIcon(notifyIcon);
 
             var fileMenuItem = BuildFileMenu();
@@ -64,9 +66,9 @@ namespace NKnife.MeterKnife.Workbench
 #endif
             OptionPanelList.AddRange(new IOptionPanel[]
             {
-                new GeneralOptionPanel(), 
+                new GeneralOptionPanel(),
                 new DataOptionPanel(),
-                new PlotOptionPanel(), 
+                new PlotOptionPanel(),
             });
 
             MainDockPanel.DockLeftPortion = 230;
@@ -74,6 +76,7 @@ namespace NKnife.MeterKnife.Workbench
             MainDockPanel.DockBottomPortion = 170;
 
             RespondToViewModel();
+            Shown += delegate { engineeringView.Show(MainDockPanel, DockState.DockRight); };
         }
 
         private FileMenuItem BuildFileMenu()

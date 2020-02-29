@@ -57,6 +57,15 @@ namespace NKnife.MeterKnife.Logic
         }
 
         /// <summary>
+        ///     删除一个指定的工程
+        /// </summary>
+        /// <param name="eng">指定的工程</param>
+        public async Task RemoveEnginneringAsync(Engineering eng)
+        {
+            await _engineeringStoragePlatform.RemoveAsync(eng.Id);
+        }
+
+        /// <summary>
         /// 创建工程的数据库或者文件
         /// </summary>
         private void BuildEngineeringStore(Engineering engineering)

@@ -20,6 +20,8 @@ namespace NKnife.MeterKnife.ViewModels
         private readonly IStoragePlatform<Slot> _slotStoragePlatform;
         private readonly IStoragePlatform<DUT> _dutStoragePlatform;
 
+        private readonly IStorageDUTRead<MeasureData> _dutRead;
+
         private readonly IEngineeringLogic _engineeringLogic;
 
         private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
@@ -29,13 +31,15 @@ namespace NKnife.MeterKnife.ViewModels
             IStoragePlatform<Engineering> engineeringStoragePlatform,
             IStoragePlatform<Slot> slotStoragePlatform,
             IStoragePlatform<DUT> dutStoragePlatform,
-            IStoragePlatform<Instrument> instrumentStoragePlatform)
+            IStoragePlatform<Instrument> instrumentStoragePlatform, 
+            IStorageDUTRead<MeasureData> dutRead)
         {
             _engineeringStoragePlatform = engineeringStoragePlatform;
             _slotStoragePlatform = slotStoragePlatform;
             _dutStoragePlatform = dutStoragePlatform;
             _engineeringLogic = engineeringLogic;
             _instrumentStoragePlatform = instrumentStoragePlatform;
+            _dutRead = dutRead;
         }
 
         /// <summary>
@@ -60,6 +64,15 @@ namespace NKnife.MeterKnife.ViewModels
         public async Task CreateEngineeringAsync(Engineering eng)
         {
             await _engineeringLogic.CreateEngineeringAsync(eng);
+        }
+
+        /// <summary>
+        ///     删除一个指定的工程
+        /// </summary>
+        /// <param name="eng">指定的工程</param>
+        public async Task DeleteEngineeringAsync(Engineering eng)
+        {
+            await _engineeringLogic.RemoveEnginneringAsync(eng);
         }
 
         /// <summary>
@@ -107,6 +120,17 @@ namespace NKnife.MeterKnife.ViewModels
                 _openedEngineerings = value;
                 RaisePropertyChanged(() => OpenedEngineerings);
             }
+        }
+
+        /// <summary>
+        /// 获取指定工程的被测物的测量数据记录数
+        /// </summary>
+        /// <param name="eng">指定的工程</param>
+        /// <param name="dut">工程中的被测物</param>
+        /// <returns>测量数据记录数</returns>
+        public async Task<long> CountDUTDataAsync(Engineering eng, DUT dut)
+        {
+            return await _dutRead.CountAsync((eng, dut));
         }
 
         /// <summary>
