@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Autofac;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.MeterKnife.ViewModels.Plots;
@@ -76,54 +77,23 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         private ToolStripMenuItem BuildMeasureMenu(ToolStripMenuItem debug)
         {
-            var plot = new ToolStripMenuItem("测量曲线窗体");
-            plot.Click += async (s, e) =>
+            var menu = new ToolStripMenuItem("测量曲线窗体");
+            menu.Click += async (s, e) =>
             {
                 var form = debug.GetCurrentParent().FindForm();
                 if (form != null && form is IWorkbench wb)
                 {
                     var start = new SimpleMeasure();
                     start.Init(_antService, _connector);
+                    
+                    var solution = DUTSeriesStyleSolution.GetSolution(start.Pool);
 
-                    var left = 0;
-                    var right = 0;
-                    var solution = new DUTSeriesStyleSolution();
-                    for (var index = 0; index < start.Pool.Count; index++)
-                    {
-                        var cmd = start.Pool[index];
-                        var style = DUTSeriesStyle.Build(LineStyle.Solid); //.GetAllLineStyles()[index];
-                        style.Color = PlotTheme.CommonlyUsedColors[index];
-                        style.DUT = cmd.DUT.Id;
-
-                        style.Axis = new LinearAxis();
-                        style.Axis.Key = cmd.DUT.Id;
-                        style.Axis.FontSize = 13d;
-                        style.Axis.MajorGridlineStyle = LineStyle.Dash;
-                        style.Axis.MinorGridlineStyle = LineStyle.Dot;
-                        style.Axis.MaximumPadding = 0;
-                        style.Axis.MinimumPadding = 0;
-                        style.Axis.Angle = 0;
-                        style.Axis.Maximum = 220;
-                        style.Axis.Minimum = -220;
-                        if (index % 2 == 0)
-                        {
-                            style.Axis.AxisDistance = left++ * 60;
-                            style.Axis.Position = AxisPosition.Left;
-                        }
-                        else
-                        {
-                            style.Axis.AxisDistance = right++ * 60;
-                            style.Axis.Position = AxisPosition.Right;
-                        }
-                        solution.Add(style);
-                    }
-
-                    _realTimeDataPlotView.SetStyleSolution(solution);
+                    _realTimeDataPlotView.SetSolution(solution);
                     _realTimeDataPlotView.Show(wb.MainDockPanel, DockState.Document);
                     await start.RunAsync(_antService, _engineeringLogic);
                 }
             };
-            return plot;
+            return menu;
         }
 
         public static ToolStripMenuItem GetMockItem()

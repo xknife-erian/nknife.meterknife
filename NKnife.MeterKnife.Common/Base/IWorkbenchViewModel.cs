@@ -8,6 +8,12 @@ namespace NKnife.MeterKnife.Common.Base
 {
     public interface IWorkbenchViewModel
     {
+
+        /// <summary>
+        ///     当前激活（被选择）的工程
+        /// </summary>
+        Engineering CurrentEngineering { get; set; }
+
         #region DUT
 
         /// <summary>
@@ -73,6 +79,12 @@ namespace NKnife.MeterKnife.Common.Base
         ObservableCollection<Engineering> OpenedEngineerings { get; set; }
 
         /// <summary>
+        ///     正在测量的工程
+        /// </summary>
+        ObservableCollection<Engineering> AcquiringEngineerings { get; set; }
+
+
+        /// <summary>
         /// 获取指定工程的被测物的测量数据记录数
         /// </summary>
         /// <param name="eng">指定的工程</param>
@@ -103,17 +115,17 @@ namespace NKnife.MeterKnife.Common.Base
         /// <summary>
         /// 开始采集
         /// </summary>
-        Task StartAcquireAsync(Engineering eng);
+        Task StartAcquireAsync();
 
         /// <summary>
         /// 暂停采集
         /// </summary>
-        void PauseAcquire(Engineering eng);
+        void PauseAcquire();
 
         /// <summary>
         /// 停止采集
         /// </summary>
-        void StopAcquire(Engineering eng);
+        void StopAcquire();
 
         #endregion
     }

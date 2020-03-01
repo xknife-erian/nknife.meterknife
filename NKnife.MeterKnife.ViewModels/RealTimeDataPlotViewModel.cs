@@ -16,12 +16,12 @@ namespace NKnife.MeterKnife.ViewModels
         private void OnAcquired(object sender, AcquisitionEventArgs e)
         {
             var index = _solution.IndexOf(e.DUT.Item2.Id);
-            _Logger.Trace($"数据Index:{index},{e.Measurements.Data},{e.Time},{e.DUT},{e.Group}");
             if (index >= 0)
             {
                 LinearPlot.AddValue((index, e.Time, e.Measurements.Data + _solution[index].Offset));
                 OnPlotModelUpdated();
             }
+            // _Logger.Trace($"数据Index:{index},{e.Measurements.Data},{e.Time},{e.DUT},{e.Group}");
         }
     }
 }

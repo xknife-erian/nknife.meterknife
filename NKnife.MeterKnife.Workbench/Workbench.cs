@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Drawing;
 using System.Net.Mime;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.ViewModels;
+using NKnife.MeterKnife.ViewModels.Plots;
 using NKnife.MeterKnife.Workbench.Debugs;
 using NKnife.MeterKnife.Workbench.Menus;
 using NKnife.MeterKnife.Workbench.Options;
@@ -149,6 +151,7 @@ namespace NKnife.MeterKnife.Workbench
 
         private void RespondToViewModel()
         {
+            //打开已采集数据的窗口
             _viewModel.OpenedEngineerings.CollectionChanged += (sender, args) =>
             {
                 var eng = _viewModel.OpenedEngineerings[args.NewStartingIndex];
@@ -161,6 +164,15 @@ namespace NKnife.MeterKnife.Workbench
                     _staticDataPlotViewMap.Add(eng.Id, view);
                 }
 
+                view.Show(MainDockPanel, DockState.Document);
+            };
+            //打开正在采集数据工作中的窗口
+            _viewModel.AcquiringEngineerings.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs args)
+            {
+                var eng = _viewModel.AcquiringEngineerings[args.NewStartingIndex];
+                var view = Kernel.Container.Resolve<RealTimeDataPlotView>();
+                var sol = DUTSeriesStyleSolution.GetSolution(eng.CommandPools.ToArray());
+                view.SetSolution(sol);
                 view.Show(MainDockPanel, DockState.Document);
             };
         }

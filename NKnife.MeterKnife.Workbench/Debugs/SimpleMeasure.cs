@@ -85,10 +85,10 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             temp6.DUT.Name = temp6.DUT.Id;
 
             var pool = new ScpiCommandPool();
-            //pool.Add(item1);
-            //pool.AddRange(new[] { item1, item2, temp5 });
-            pool.AddRange(new[] { item1, temp5 });
-            //pool.AddRange(new[] {item2, temp6});
+            pool.AddRange(new[] { item1, item2, temp5, temp6 });
+            // pool.AddRange(new[] { item1, temp5 });
+            // pool.AddRange(new[] { item2, temp6 });
+            // pool.Add(item1);
             return pool;
         }
 

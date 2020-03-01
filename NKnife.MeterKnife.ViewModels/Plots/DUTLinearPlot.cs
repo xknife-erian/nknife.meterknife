@@ -24,12 +24,6 @@ namespace NKnife.MeterKnife.ViewModels.Plots
         private readonly DateTimeAxis _timeAxis = new DateTimeAxis();
 
         private readonly Dictionary<int, PlotInfo> _plotInfoMap = new Dictionary<int, PlotInfo>();
-        // private readonly Dictionary<int, LinearAxis> _axisMap = new Dictionary<int, LinearAxis>();
-        // private readonly Dictionary<int, bool> _axisFirstMap = new Dictionary<int, bool>();
-        // /// <summary>
-        // /// 数轴的极值
-        // /// </summary>
-        // private readonly Dictionary<int, (double, double)> _axisExtremumMap = new Dictionary<int, (double, double)>();
         /// <summary>
         /// Y轴区间，图表上下方留白空间的级别，1-12级，1级留白最大，12级留白最小。默认5级。
         /// </summary>

@@ -43,7 +43,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             this.Res(_MainTabPage, tabPage2);
         }
 
-        public void SetStyleSolution(DUTSeriesStyleSolution solution)
+        public void SetSolution(DUTSeriesStyleSolution solution)
         {
             _viewModel.StyleSolution = solution;
         }

@@ -28,6 +28,10 @@ namespace NKnife.MeterKnife.ViewModels
 
         private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
 
+        private ObservableCollection<Engineering> _openedEngineerings = new ObservableCollection<Engineering>();
+        private ObservableCollection<Engineering> _acquiringEngineerings = new ObservableCollection<Engineering>();
+        private Engineering _currentEngineering;
+
         public WorkbenchViewModel(
             IAntService antService,
             IEngineeringLogic engineeringLogic,
@@ -44,6 +48,15 @@ namespace NKnife.MeterKnife.ViewModels
             _instrumentStoragePlatform = instrumentStoragePlatform;
             _dutRead = dutRead;
             _antService = antService;
+        }
+
+        /// <summary>
+        ///     当前激活（被选择）的工程
+        /// </summary>
+        public Engineering CurrentEngineering
+        {
+            get => _currentEngineering;
+            set => Set(ref _currentEngineering, value);
         }
 
         /// <summary>
@@ -122,8 +135,9 @@ namespace NKnife.MeterKnife.ViewModels
             return _engineeringStoragePlatform.ExistAsync(engId).Result;
         }
 
-        private ObservableCollection<Engineering> _openedEngineerings = new ObservableCollection<Engineering>();
-
+        /// <summary>
+        ///     已打开的工程
+        /// </summary>
         public ObservableCollection<Engineering> OpenedEngineerings
         {
             get => _openedEngineerings;
@@ -131,6 +145,19 @@ namespace NKnife.MeterKnife.ViewModels
             {
                 _openedEngineerings = value;
                 RaisePropertyChanged(() => OpenedEngineerings);
+            }
+        }
+
+        /// <summary>
+        ///     正在测量的工程
+        /// </summary>
+        public ObservableCollection<Engineering> AcquiringEngineerings
+        {
+            get => _acquiringEngineerings;
+            set
+            {
+                _acquiringEngineerings = value;
+                RaisePropertyChanged(() => AcquiringEngineerings);
             }
         }
 
@@ -170,25 +197,32 @@ namespace NKnife.MeterKnife.ViewModels
         /// <summary>
         /// 开始采集
         /// </summary>
-        public async Task StartAcquireAsync(Engineering engineering)
+        public async Task StartAcquireAsync()
         {
-            await _antService.StartAsync(engineering);
+            if (CurrentEngineering != null)
+            {
+                if (!_acquiringEngineerings.Contains(CurrentEngineering))
+                    _acquiringEngineerings.Add(CurrentEngineering);
+                await _antService.StartAsync(CurrentEngineering);
+            }
         }
 
         /// <summary>
         /// 暂停采集
         /// </summary>
-        public void PauseAcquire(Engineering engineering)
+        public void PauseAcquire()
         {
-            _antService.Pause(engineering);
+            if (CurrentEngineering != null)
+                _antService.Pause(CurrentEngineering);
         }
 
         /// <summary>
         /// 停止采集
         /// </summary>
-        public void StopAcquire(Engineering engineering)
+        public void StopAcquire()
         {
-            _antService.Stop(engineering);
+            if (CurrentEngineering != null)
+                _antService.Stop(CurrentEngineering);
         }
 
         /// <summary>
