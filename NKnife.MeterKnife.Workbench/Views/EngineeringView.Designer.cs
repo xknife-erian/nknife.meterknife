@@ -31,23 +31,23 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EngineeringView));
             this._ToolStripContainer = new System.Windows.Forms.ToolStripContainer();
-            this._SplitContainer = new System.Windows.Forms.SplitContainer();
-            this._TreeView = new NKnife.MeterKnife.Workbench.Controls.EngineeringTree();
-            this._PropertyGrid = new System.Windows.Forms.PropertyGrid();
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
             this._CreateEngStripButton = new System.Windows.Forms.ToolStripButton();
             this._EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._DeleteStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._RefreshStripButton = new System.Windows.Forms.ToolStripButton();
+            this._SplitContainer = new System.Windows.Forms.SplitContainer();
+            this._TreeView = new NKnife.MeterKnife.Workbench.Controls.EngineeringTree();
+            this._PropertyGrid = new System.Windows.Forms.PropertyGrid();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
             this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
             this._ToolStripContainer.SuspendLayout();
+            this._ToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).BeginInit();
             this._SplitContainer.Panel1.SuspendLayout();
             this._SplitContainer.Panel2.SuspendLayout();
             this._SplitContainer.SuspendLayout();
-            this._ToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _ToolStripContainer
@@ -68,46 +68,6 @@
             // 
             this._ToolStripContainer.TopToolStripPanel.Controls.Add(this._ToolStrip);
             // 
-            // _SplitContainer
-            // 
-            this._SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._SplitContainer.Location = new System.Drawing.Point(0, 0);
-            this._SplitContainer.Name = "_SplitContainer";
-            this._SplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // _SplitContainer.Panel1
-            // 
-            this._SplitContainer.Panel1.Controls.Add(this._TreeView);
-            // 
-            // _SplitContainer.Panel2
-            // 
-            this._SplitContainer.Panel2.Controls.Add(this._PropertyGrid);
-            this._SplitContainer.Size = new System.Drawing.Size(272, 699);
-            this._SplitContainer.SplitterDistance = 514;
-            this._SplitContainer.TabIndex = 1;
-            // 
-            // _TreeView
-            // 
-            this._TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._TreeView.FullRowSelect = true;
-            this._TreeView.HideSelection = false;
-            this._TreeView.ImageIndex = 0;
-            this._TreeView.Location = new System.Drawing.Point(0, 0);
-            this._TreeView.Name = "_TreeView";
-            this._TreeView.SelectedImageIndex = 0;
-            this._TreeView.Size = new System.Drawing.Size(272, 514);
-            this._TreeView.TabIndex = 0;
-            // 
-            // _PropertyGrid
-            // 
-            this._PropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._PropertyGrid.HelpVisible = false;
-            this._PropertyGrid.Location = new System.Drawing.Point(0, 0);
-            this._PropertyGrid.Name = "_PropertyGrid";
-            this._PropertyGrid.Size = new System.Drawing.Size(272, 181);
-            this._PropertyGrid.TabIndex = 0;
-            this._PropertyGrid.ToolbarVisible = false;
-            // 
             // _ToolStrip
             // 
             this._ToolStrip.Dock = System.Windows.Forms.DockStyle.None;
@@ -120,7 +80,7 @@
             this._RefreshStripButton});
             this._ToolStrip.Location = new System.Drawing.Point(3, 0);
             this._ToolStrip.Name = "_ToolStrip";
-            this._ToolStrip.Size = new System.Drawing.Size(202, 33);
+            this._ToolStrip.Size = new System.Drawing.Size(233, 33);
             this._ToolStrip.TabIndex = 0;
             // 
             // _CreateEngStripButton
@@ -174,6 +134,46 @@
             this._RefreshStripButton.Size = new System.Drawing.Size(46, 31);
             this._RefreshStripButton.Text = "刷新";
             // 
+            // _SplitContainer
+            // 
+            this._SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._SplitContainer.Location = new System.Drawing.Point(0, 0);
+            this._SplitContainer.Name = "_SplitContainer";
+            this._SplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // _SplitContainer.Panel1
+            // 
+            this._SplitContainer.Panel1.Controls.Add(this._TreeView);
+            // 
+            // _SplitContainer.Panel2
+            // 
+            this._SplitContainer.Panel2.Controls.Add(this._PropertyGrid);
+            this._SplitContainer.Size = new System.Drawing.Size(272, 699);
+            this._SplitContainer.SplitterDistance = 514;
+            this._SplitContainer.TabIndex = 1;
+            // 
+            // _TreeView
+            // 
+            this._TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._TreeView.FullRowSelect = true;
+            this._TreeView.HideSelection = false;
+            this._TreeView.ImageIndex = 0;
+            this._TreeView.Location = new System.Drawing.Point(0, 0);
+            this._TreeView.Name = "_TreeView";
+            this._TreeView.SelectedImageIndex = 0;
+            this._TreeView.Size = new System.Drawing.Size(272, 514);
+            this._TreeView.TabIndex = 0;
+            // 
+            // _PropertyGrid
+            // 
+            this._PropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._PropertyGrid.HelpVisible = false;
+            this._PropertyGrid.Location = new System.Drawing.Point(0, 0);
+            this._PropertyGrid.Name = "_PropertyGrid";
+            this._PropertyGrid.Size = new System.Drawing.Size(272, 181);
+            this._PropertyGrid.TabIndex = 0;
+            this._PropertyGrid.ToolbarVisible = false;
+            // 
             // EngineeringView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -189,12 +189,12 @@
             this._ToolStripContainer.TopToolStripPanel.PerformLayout();
             this._ToolStripContainer.ResumeLayout(false);
             this._ToolStripContainer.PerformLayout();
+            this._ToolStrip.ResumeLayout(false);
+            this._ToolStrip.PerformLayout();
             this._SplitContainer.Panel1.ResumeLayout(false);
             this._SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._SplitContainer)).EndInit();
             this._SplitContainer.ResumeLayout(false);
-            this._ToolStrip.ResumeLayout(false);
-            this._ToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -23,6 +23,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
         private ListViewGroup _initializeGroup;
         private ListViewGroup _acquisitionGroup;
         private ListViewGroup _finishGroup;
+        private Engineering _engineering;
 
         public EngineeringDetailDialog(IDialogProvider dialogProvider, IWorkbenchViewModel viewModel)
         {
@@ -33,7 +34,25 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             RespondToButtonClick();
         }
 
-        public Engineering Engineering { get; set; }
+        public Engineering Engineering
+        {
+            get => _engineering;
+            set
+            {
+                _engineering = value;
+                _EngNumberTextBox.Text = value.Id;
+                _EngNameTextBox.Text = value.Name;
+                _EngDescriptionTextBox.Text = value.Description;
+                foreach (var pool in value.CommandPools)
+                {
+                    foreach (var command in pool)
+                    {
+                        var item = BuildViewItemByCommand(pool.Category, command);
+                        _CommandsListView.Items.Add(item);
+                    }
+                }
+            }
+        }
 
         private void InitializeCommandListView()
         {
@@ -59,52 +78,52 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             _UpCommandStripButton.Click += (sender, args) => { };
             _DownCommandStripButton.Click += (sender, args) => { };
             _CancelButton.Click += (sender, args) => { DialogResult = DialogResult.Cancel; };
-            _AcceptButton.Click += (sender, args) =>
+            _AcceptButton.Click += OnAcceptButtonOnClick;
+        }
+
+        private void OnAcceptButtonOnClick(object sender, EventArgs args)
+        {
+            if (!VerifyControlValue(out Control control, out string message))
             {
-                if (!VerifyControlValue(out Control control, out string message))
-                {
-                    MessageBox.Show(message, this.Res("填写有误"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    control.Focus();
-                    return;
-                }
+                MessageBox.Show(message, this.Res("填写有误"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                control.Focus();
+                return;
+            }
 
-                Engineering = new Engineering
-                {
-                    Id = _EngNumberTextBox.Text,
-                    Name = _EngNameTextBox.Text,
-                    Description = _EngDescriptionTextBox.Text,
-                    CreateTime = DateTime.Now
-                };
-                var pool = new ScpiCommandPool();
-                foreach (ListViewItem item in _initializeGroup.Items)
-                {
-                    var cmd = item.Tag as ScpiCommand;
-                    pool.Add(cmd);
-                }
+            Engineering = new Engineering {Id = _EngNumberTextBox.Text, Name = _EngNameTextBox.Text, Description = _EngDescriptionTextBox.Text, CreateTime = DateTime.Now};
 
-                if (pool.Count > 0)
-                    Engineering.CommandPools.Add(pool);
-                pool = new ScpiCommandPool();
-                foreach (ListViewItem item in _acquisitionGroup.Items)
-                {
-                    var cmd = item.Tag as ScpiCommand;
-                    pool.Add(cmd);
-                }
+            var pool = new ScpiCommandPool();
+            pool.Category = PoolCategory.Initializtion;
+            foreach (ListViewItem item in _initializeGroup.Items)
+            {
+                var cmd = item.Tag as ScpiCommand;
+                pool.Add(cmd);
+            }
+            if (pool.Count > 0) 
+                Engineering.CommandPools.Add(pool);
 
-                if (pool.Count > 0)
-                    Engineering.CommandPools.Add(pool);
-                pool = new ScpiCommandPool();
-                foreach (ListViewItem item in _finishGroup.Items)
-                {
-                    var cmd = item.Tag as ScpiCommand;
-                    pool.Add(cmd);
-                }
+            pool = new ScpiCommandPool();
+            pool.Category = PoolCategory.Acquisition;
+            foreach (ListViewItem item in _acquisitionGroup.Items)
+            {
+                var cmd = item.Tag as ScpiCommand;
+                pool.Add(cmd);
+            }
+            if (pool.Count > 0) 
+                Engineering.CommandPools.Add(pool);
 
-                if (pool.Count > 0)
-                    Engineering.CommandPools.Add(pool);
-                DialogResult = DialogResult.OK;
-                Close();
-            };
+            pool = new ScpiCommandPool();
+            pool.Category = PoolCategory.Finished;
+            foreach (ListViewItem item in _finishGroup.Items)
+            {
+                var cmd = item.Tag as ScpiCommand;
+                pool.Add(cmd);
+            }
+            if (pool.Count > 0)
+                Engineering.CommandPools.Add(pool);
+
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private bool VerifyControlValue(out Control control, out string msg)
@@ -132,30 +151,38 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 var cmd = dialog.ScpiCommand;
-                var item = new ListViewItem();
-                switch (pc)
-                {
-                    case PoolCategory.Initializtion:
-                        item.Group = _initializeGroup;
-                        break;
-                    case PoolCategory.Finished:
-                        item.Group = _finishGroup;
-                        break;
-                    case PoolCategory.Acquisition:
-                    default:
-                        item.Group = _acquisitionGroup;
-                        break;
-                }
-                item.SubItems.Add(cmd.DUT?.ToString());
-                item.SubItems.Add(cmd.Slot.ToString());
-                item.SubItems.Add(cmd.Scpi.ToString());
-                item.SubItems.Add(cmd.Interval.ToString());
-                item.SubItems.Add(cmd.Timeout.ToString());
-                item.SubItems.Add(cmd.IsLoop.ToString());
-                item.SubItems.Add(cmd.LoopCount.ToString());
-                item.Tag = cmd;
+                var item = BuildViewItemByCommand(pc, cmd);
                 _CommandsListView.Items.Add(item);
             }
+        }
+
+        private ListViewItem BuildViewItemByCommand(PoolCategory pc, ScpiCommand cmd)
+        {
+            var item = new ListViewItem();
+            switch (pc)
+            {
+                case PoolCategory.Initializtion:
+                    item.Group = _initializeGroup;
+                    break;
+                case PoolCategory.Finished:
+                    item.Group = _finishGroup;
+                    break;
+                case PoolCategory.Acquisition:
+                case PoolCategory.Other:
+                default:
+                    item.Group = _acquisitionGroup;
+                    break;
+            }
+
+            item.SubItems.Add(cmd.DUT?.ToString());
+            item.SubItems.Add(cmd.Slot.ToString());
+            item.SubItems.Add(cmd.Scpi?.ToString());
+            item.SubItems.Add(cmd.Interval.ToString());
+            item.SubItems.Add(cmd.Timeout.ToString());
+            item.SubItems.Add(cmd.IsLoop.ToString());
+            item.SubItems.Add(cmd.LoopCount.ToString());
+            item.Tag = cmd;
+            return item;
         }
     }
 }

@@ -15,6 +15,8 @@ namespace NKnife.MeterKnife.ViewModels
 {
     public class WorkbenchViewModel : ViewModelBase, IWorkbenchViewModel
     {
+        private readonly IAntService _antService;
+
         private readonly IStoragePlatform<Instrument> _instrumentStoragePlatform;
         private readonly IStoragePlatform<Engineering> _engineeringStoragePlatform;
         private readonly IStoragePlatform<Slot> _slotStoragePlatform;
@@ -27,6 +29,7 @@ namespace NKnife.MeterKnife.ViewModels
         private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
 
         public WorkbenchViewModel(
+            IAntService antService,
             IEngineeringLogic engineeringLogic,
             IStoragePlatform<Engineering> engineeringStoragePlatform,
             IStoragePlatform<Slot> slotStoragePlatform,
@@ -40,6 +43,7 @@ namespace NKnife.MeterKnife.ViewModels
             _engineeringLogic = engineeringLogic;
             _instrumentStoragePlatform = instrumentStoragePlatform;
             _dutRead = dutRead;
+            _antService = antService;
         }
 
         /// <summary>
@@ -64,6 +68,14 @@ namespace NKnife.MeterKnife.ViewModels
         public async Task CreateEngineeringAsync(Engineering eng)
         {
             await _engineeringLogic.CreateEngineeringAsync(eng);
+        }
+
+        /// <summary>
+        ///     修改一个工程
+        /// </summary>
+        public async Task UpdateEngineeringAsync(Engineering eng)
+        {
+            await _engineeringLogic.UpdateEngineeringAsync(eng);
         }
 
         /// <summary>
@@ -153,6 +165,30 @@ namespace NKnife.MeterKnife.ViewModels
         public async Task<IEnumerable<Slot>> GetAllSlotAsync()
         {
             return await _slotStoragePlatform.FindAllAsync();
+        }
+
+        /// <summary>
+        /// 开始采集
+        /// </summary>
+        public async Task StartAcquireAsync(Engineering engineering)
+        {
+            await _antService.StartAsync(engineering);
+        }
+
+        /// <summary>
+        /// 暂停采集
+        /// </summary>
+        public void PauseAcquire(Engineering engineering)
+        {
+            _antService.Pause(engineering);
+        }
+
+        /// <summary>
+        /// 停止采集
+        /// </summary>
+        public void StopAcquire(Engineering engineering)
+        {
+            _antService.Stop(engineering);
         }
 
         /// <summary>

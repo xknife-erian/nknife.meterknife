@@ -45,6 +45,11 @@ namespace NKnife.MeterKnife.Common.Base
         Task CreateEngineeringAsync(Engineering eng);
 
         /// <summary>
+        ///     修改一个工程
+        /// </summary>
+        Task UpdateEngineeringAsync(Engineering eng);
+
+        /// <summary>
         ///     删除一个指定的工程
         /// </summary>
         /// <param name="eng">指定的工程</param>
@@ -93,5 +98,23 @@ namespace NKnife.MeterKnife.Common.Base
 
         #endregion
 
+        #region Acquire
+
+        /// <summary>
+        /// 开始采集
+        /// </summary>
+        Task StartAcquireAsync(Engineering eng);
+
+        /// <summary>
+        /// 暂停采集
+        /// </summary>
+        void PauseAcquire(Engineering eng);
+
+        /// <summary>
+        /// 停止采集
+        /// </summary>
+        void StopAcquire(Engineering eng);
+
+        #endregion
     }
 }

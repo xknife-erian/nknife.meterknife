@@ -14,6 +14,11 @@ namespace NKnife.MeterKnife.Base
         Task<bool> CreateEngineeringAsync(Engineering engineering);
 
         /// <summary>
+        ///     修改一个测量工程
+        /// </summary>
+        Task UpdateEngineeringAsync(Engineering eng);
+
+        /// <summary>
         ///     获取指定被测物的测量数据
         /// </summary>
         /// <param name="dut">指定被测物</param>
@@ -24,5 +29,6 @@ namespace NKnife.MeterKnife.Base
         /// </summary>
         /// <param name="eng">指定的工程</param>
         Task RemoveEnginneringAsync(Engineering eng);
+
     }
 }

@@ -20,6 +20,7 @@ namespace NKnife.MeterKnife.Workbench.Views
     {
         private readonly IDialogProvider _dialogProvider;
         private readonly IWorkbenchViewModel _viewModel;
+        private readonly ContextMenuStrip _contextMenu = new ContextMenuStrip();
 
         public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider)
         {
@@ -28,10 +29,33 @@ namespace NKnife.MeterKnife.Workbench.Views
 
             InitializeComponent();
             InitializeLanguageAndImage();
+            InitializeContextMenu();
             RespondToEvents();
             RespondToButtonClick();
             UpdateControlState();
+
             Shown += EngineeringsBindToTree;
+            _TreeView.MouseDown += OnMouseDown;
+        }
+
+        private void InitializeContextMenu()
+        {
+            var startMenu = new ToolStripMenuItem(this.Res("开始测量"));
+            startMenu.Click += async (sender, args) =>
+            {
+                if (_contextMenu.Tag is Engineering eng) await _viewModel.StartAcquireAsync(eng);
+            };
+            var pauseMenu = new ToolStripMenuItem(this.Res("暂停测量"));
+            pauseMenu.Click += delegate (object sender, EventArgs args)
+            {
+                if (_contextMenu.Tag is Engineering eng) _viewModel.PauseAcquire(eng);
+            };
+            var stopMenu = new ToolStripMenuItem(this.Res("停止测量"));
+            stopMenu.Click += delegate (object sender, EventArgs args)
+            {
+                if (_contextMenu.Tag is Engineering eng) _viewModel.StopAcquire(eng);
+            };
+            _contextMenu.Items.AddRange(new ToolStripItem[] { startMenu, pauseMenu, stopMenu });
         }
 
         private void InitializeLanguageAndImage()
@@ -45,6 +69,20 @@ namespace NKnife.MeterKnife.Workbench.Views
 
             this.Res(this);
             this.Res(_CreateEngStripButton, _EditToolStripButton, _DeleteStripButton);
+        }
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                TreeNode node = _TreeView.GetNodeAt(e.X, e.Y);
+                if (node != null) _TreeView.SelectedNode = node;
+                if (node is EngineeringTreeNode engNode)
+                {
+                    _contextMenu.Tag = engNode.Engineering;
+                    _contextMenu.Show(_TreeView, e.X, e.Y);
+                }
+            }
         }
 
         private void RespondToButtonClick()
@@ -86,7 +124,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                     dialog.Engineering = eng;
                     if (dialog.ShowDialog(this) == DialogResult.OK)
                     {
-
+                        await _viewModel.UpdateEngineeringAsync(eng);
                     }
                 }
             };

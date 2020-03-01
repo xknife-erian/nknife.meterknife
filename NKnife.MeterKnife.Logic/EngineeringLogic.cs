@@ -48,6 +48,15 @@ namespace NKnife.MeterKnife.Logic
         }
 
         /// <summary>
+        ///     修改一个测量工程
+        /// </summary>
+        public async Task UpdateEngineeringAsync(Engineering engineering)
+        {
+            await _engineeringStoragePlatform.UpdateAsync(engineering);
+            await _engineeringStorageDUTWrite.UpdateAsync(engineering);
+        }
+
+        /// <summary>
         ///     获取指定被测物的测量数据
         /// </summary>
         /// <param name="dut">指定被测物</param>

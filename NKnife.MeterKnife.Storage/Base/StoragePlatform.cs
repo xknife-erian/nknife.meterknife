@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Newtonsoft.Json;
 using NKnife.Db;
+using NKnife.Interface;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
@@ -72,7 +73,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public virtual async Task<T> FindOneByIdAsync(string id)
         {
             var conn = _storageManager.OpenPlatformConnection();
-            return await conn.QueryFirstAsync<T>($"SELECT * FROM {TableName} WHERE {nameof(IRecord<T>.Id)}='{id}'");
+            return await conn.QueryFirstAsync<T>($"SELECT * FROM {TableName} WHERE {nameof(IId.Id)}='{id}'");
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public virtual async Task<bool> ExistAsync(string id)
         {
             var conn = _storageManager.OpenPlatformConnection();
-            var sql = $"SELECT COUNT(*) FROM {TableName} WHERE {nameof(IRecord<T>.Id)}='{id}'";
+            var sql = $"SELECT COUNT(*) FROM {TableName} WHERE {nameof(IId.Id)}='{id}'";
             return await conn.ExecuteAsync(sql) > 0;
         }
 
@@ -175,7 +176,7 @@ namespace NKnife.MeterKnife.Storage.Base
         public async Task<bool> RemoveAsync(string id)
         {
             var conn = _storageManager.OpenPlatformConnection();
-            var sql = $"DELETE FROM {TableName} WHERE {nameof(IRecord<T>.Id)}='{id}'";
+            var sql = $"DELETE FROM {TableName} WHERE {nameof(IId.Id)}='{id}'";
             var i = await conn.ExecuteAsync(sql);
             return i == 1;
         }
