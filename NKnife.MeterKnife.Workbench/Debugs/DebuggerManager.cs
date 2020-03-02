@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Autofac;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Util.Tunnel;
@@ -23,16 +24,12 @@ namespace NKnife.MeterKnife.Workbench.Debugs
     {
         private readonly RealTimeDataPlotView _realTimeDataPlotView;
 
-        private readonly IAntService _antService;
-        private readonly IDataConnector _connector;
-        private readonly IEngineeringLogic _engineeringLogic;
+        private readonly IWorkbenchViewModel _workbenchViewModel;
 
-        public DebuggerManager(RealTimeDataPlotView realTimeDataPlotView, IAntService antService, IDataConnector connector, IEngineeringLogic engineeringLogic)
+        public DebuggerManager(RealTimeDataPlotView realTimeDataPlotView, IWorkbenchViewModel workbenchViewModel)
         {
             _realTimeDataPlotView = realTimeDataPlotView;
-            _antService = antService;
-            _connector = connector;
-            _engineeringLogic = engineeringLogic;
+            _workbenchViewModel = workbenchViewModel;
         }
 
         public ToolStripMenuItem GetDebugMenu()
@@ -84,13 +81,13 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 if (form != null && form is IWorkbench wb)
                 {
                     var start = new SimpleMeasure();
-                    start.Init(_antService, _connector);
+                    start.Init();
                     
                     var solution = DUTSeriesStyleSolution.GetSolution(start.Pool);
 
                     _realTimeDataPlotView.SetSolution(solution);
                     _realTimeDataPlotView.Show(wb.MainDockPanel, DockState.Document);
-                    await start.RunAsync(_antService, _engineeringLogic);
+                    await start.RunAsync(_workbenchViewModel);
                 }
             };
             return menu;

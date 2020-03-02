@@ -38,9 +38,9 @@ namespace NKnife.MeterKnife.CLI.Commands
             var pool = new ScpiCommandPool();
             pool.AddRange(new[]
             {
-                new CareCommand {DUT = dut1},
-                new CareCommand {DUT = dut2},
-                new CareCommand {DUT = dut3}
+                new ScpiCommand {DUT = dut1},
+                new ScpiCommand {DUT = dut2},
+                new ScpiCommand {DUT = dut3}
             });
             engineering.CommandPools.Add(pool);
             //创建一个工程

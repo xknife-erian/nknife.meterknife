@@ -126,7 +126,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                     var info = new StringBuilder();
                     info.AppendLine(this.Res("是否删除?"));
                     info.Append(this.Res("工程名:")).AppendLine(eng.Name);
-                    foreach (var dut in eng.GetIncludedDUTs())
+                    foreach (var dut in eng.GetIncludedDUTArray())
                     {
                         var count = await _viewModel.CountDUTDataAsync(eng, dut);
                         info.AppendLine($"    {this.Res("被测物: ")}{dut.Name}\t{this.Res("数据数量:")}{count}");

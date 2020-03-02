@@ -1,7 +1,4 @@
-﻿using System;
-using NKnife.Util;
-
-namespace NKnife.MeterKnife.Common.Scpi
+﻿namespace NKnife.MeterKnife.Common.Scpi
 {
     /// <summary>
     ///     Care组装SCPI指令的帮助方法
@@ -11,13 +8,13 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// <summary>
         ///     查询温度
         /// </summary>
-        public static CareCommand Temperature(ushort index, int interval = 100)
+        public static ScpiCommand Temperature(ushort index, int interval = 100)
         {
-            var item = new CareCommand
+            var item = new ScpiCommand
             {
                 GpibAddress = 0,
                 Interval = interval,
-                Heads = (0xAE, (byte)index)
+                Tag = new CareCommand((0xAE, (byte) index))
             };
             return item;
         }
@@ -26,12 +23,12 @@ namespace NKnife.MeterKnife.Common.Scpi
         ///     查询Care的参数
         /// </summary>
         /// <param name="subCommand">子命令</param>
-        public static CareCommand CareGetter(byte subCommand = 0xD1)
+        public static ScpiCommand CareGetter(byte subCommand = 0xD1)
         {
-            var item = new CareCommand
+            var item = new ScpiCommand
             {
                 GpibAddress = 0,
-                Heads = (0xA0, subCommand)
+                Tag = new CareCommand((0xA0, subCommand))
             };
             return item;
         }
@@ -41,13 +38,12 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// </summary>
         /// <param name="subCommand">子命令</param>
         /// <param name="content">设置的参数内容</param>
-        public static CareCommand CareSetter(byte subCommand, params byte[] content)
+        public static ScpiCommand CareSetter(byte subCommand, params byte[] content)
         {
-            var item = new CareCommand
+            var item = new ScpiCommand
             {
                 GpibAddress = 0,
-                Heads = (0xB0, subCommand),
-                Content = content
+                Tag = new CareCommand((0xB0, subCommand), content)
             };
             return item;
         }
@@ -55,12 +51,12 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// <summary>
         ///     重新启动Care
         /// </summary>
-        public static CareCommand CareReset()
+        public static ScpiCommand CareReset()
         {
-            var item = new CareCommand
+            var item = new ScpiCommand
             {
                 GpibAddress = 0,
-                Heads = (0xB1, 0x00),
+                Tag = new CareCommand((0xB1, 0x00))
             };
             return item;
         }
@@ -68,12 +64,12 @@ namespace NKnife.MeterKnife.Common.Scpi
         /// <summary>
         ///     恢复Care的默认参数
         /// </summary>
-        public static CareCommand CareRestoreDefault()
+        public static ScpiCommand CareRestoreDefault()
         {
-            var item = new CareCommand
+            var item = new ScpiCommand
             {
                 GpibAddress = 0,
-                Heads = (0xB0, 0xD8),
+                Tag = new CareCommand((0xB0, 0xD8))
             };
             return item;
         }

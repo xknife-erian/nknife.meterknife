@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -56,7 +57,7 @@ namespace NKnife.MeterKnife.Common.Domain
         /// <summary>
         /// 获取本工程内部包含被测物
         /// </summary>
-        public List<DUT> GetIncludedDUTs()
+        public List<DUT> GetIncludedDUTArray()
         {
             List<DUT> duts = new List<DUT>();
             foreach (var cmdPool in CommandPools)
@@ -68,6 +69,20 @@ namespace NKnife.MeterKnife.Common.Domain
                 }
             }
             return duts;
+        }
+
+        public List<Slot> GetIncludedSlots()
+        {
+            List<Slot> slots = new List<Slot>();
+            foreach (var cmdPool in CommandPools)
+            {
+                foreach (var cmd in cmdPool)
+                {
+                    if (cmd.Slot != null && !slots.Contains(cmd.Slot))
+                        slots.Add(cmd.Slot);
+                }
+            }
+            return slots;
         }
 
         #region Overrides of Object
@@ -91,6 +106,8 @@ namespace NKnife.MeterKnife.Common.Domain
         }
 
         #endregion
+
+
     }
 
 }

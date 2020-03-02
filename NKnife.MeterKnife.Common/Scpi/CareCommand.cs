@@ -1,11 +1,12 @@
-﻿using System.Text;
-using NKnife.Util;
-
-namespace NKnife.MeterKnife.Common.Scpi
+﻿namespace NKnife.MeterKnife.Common.Scpi
 {
-    public class CareCommand : ScpiCommand
+    public class CareCommand
     {
-        #region MeterCare专用属性
+        public CareCommand((byte, byte) heads, byte[] content = null)
+        {
+            Heads = heads;
+            Content = content;
+        }
 
         /// <summary>
         ///     当是Care的专属协议时的主命令字与子命令字
@@ -16,7 +17,5 @@ namespace NKnife.MeterKnife.Common.Scpi
         ///     当是Care的专属协议时的协议主体内容
         /// </summary>
         public byte[] Content { get; set; }
-
-        #endregion
     }
 }

@@ -153,24 +153,45 @@ namespace NKnife.MeterKnife.Holistic
 
         private static void SendCommand(IDataConnector connector, ScpiCommand cmd)
         {
+            if (cmd == null)
+            {
+                _Logger.Warn("即将发送的指令为空。");
+                return;
+            }
+            byte[] data;
             try
             {
-                byte[] data;
-                if (cmd is CareCommand careCommand)
+                if (cmd.Tag != null && cmd.Tag is CareCommand careCommand)
+                {
                     data = careCommand.GenerateCareProtocol();
+                }
                 else
+                {
+                    if (cmd.Scpi == null)
+                    {
+                        _Logger.Warn("即将发送的指令未设置SCPI。");
+                        return;
+                    }
                     data = cmd.Scpi.GenerateCareProtocol(cmd.GpibAddress);
+                }
+            }
+            catch (Exception e)
+            {
+                _Logger.Warn($"组装发送指令(SendCommand)时出现异常:{e.Message}");
+                return;
+            }
 
-                _Logger.Trace($"<- {data.ToHexString()}");
-
-                if (data.Length != 0)
+            _Logger.Trace($"<- {data.ToHexString()}");
+            try
+            {
+                if (data?.Length != 0)
                 {
                     connector.SendAll(data, cmd.DUT.Id, cmd.Interval);
                 }
             }
             catch (Exception e)
             {
-                _Logger.Warn($"向采集器发送指令(SendCommand)时出现异常:{e.Message}");
+                _Logger.Warn($"向接驳器发送指令(SendCommand)时出现异常:{e.Message}");
             }
         }
     }

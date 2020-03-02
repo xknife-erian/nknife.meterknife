@@ -216,7 +216,7 @@ namespace NKnife.MeterKnife.Scpis
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
-                var command = new CareCommand()
+                var command = new ScpiCommand()
                 {
                     // Command = dialog.Command,
                     // Interval = dialog.Interval,
@@ -237,7 +237,7 @@ namespace NKnife.MeterKnife.Scpis
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 IsModified = true;
-                var command = new CareCommand
+                var command = new ScpiCommand
                 {
                     // Command = dialog.Command,
                     // Interval = dialog.Interval,

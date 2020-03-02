@@ -27,14 +27,14 @@ namespace NKnife.MeterKnife.ViewModels
         public void SetEngineering(Engineering engineering)
         {
             _engineering = engineering;
-            var duts = _engineering.GetIncludedDUTs();
+            var duts = _engineering.GetIncludedDUTArray();
             SetStyleSolutionByEngineering(duts);
         }
 
         public async Task LoadDataAsync()
         {
             //LinearPlot.ClearValues();
-            var duts = _engineering.GetIncludedDUTs();
+            var duts = _engineering.GetIncludedDUTArray();
             // TODO:是否可以转为并行计算
             for (int i = 0; i < duts.Count; i++)
             {

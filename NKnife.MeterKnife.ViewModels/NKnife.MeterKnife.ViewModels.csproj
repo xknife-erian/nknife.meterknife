@@ -132,6 +132,10 @@
       <Project>{179bf1b0-6fb7-4a63-8023-2bdfe44ad7eb}</Project>
       <Name>NKnife.MeterKnife.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NKnife.MeterKnife.Logic\NKnife.MeterKnife.Logic.csproj">
+      <Project>{D4840DA6-A26F-4EB4-B9A0-A15139709496}</Project>
+      <Name>NKnife.MeterKnife.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NKnife.MeterKnife.Util\NKnife.MeterKnife.Util.csproj">
       <Project>{c089e4a3-9545-441a-8e43-9fa1c2586c08}</Project>
       <Name>NKnife.MeterKnife.Util</Name>

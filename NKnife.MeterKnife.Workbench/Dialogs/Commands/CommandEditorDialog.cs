@@ -154,14 +154,14 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Commands
             var right = VerifyControlValue();
             if (right)
             {
+                    ScpiCommand = new ScpiCommand();
                 if (_ScpiRadioButton.Checked)
                 {
-                    ScpiCommand = new ScpiCommand();
                     ScpiCommand.Scpi = _ScpiDetailPanel.Scpi;
                 }
                 else if (_CareRadioButton.Checked)
                 {
-                    ScpiCommand = new CareCommand();
+                    ScpiCommand.Tag = new CareCommand((0x00,0xff));//TODO:CareCommand未解析控件
                 }
 
                 //ScpiCommand.GpibAddress = (short) _GpibNumericUpDown.Value;

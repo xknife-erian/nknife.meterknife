@@ -94,7 +94,7 @@ namespace NKnife.MeterKnife.Storage.Base
             }
             catch (Exception e)
             {
-                _Logger.Error($"数据库新增数据异常。\r\nExceptionMessage: {e.Message}\r\nSQL: {sql}\r\nDomain: {JsonConvert.SerializeObject(domain)}");
+                _Logger.Error($"数据库新增数据异常。\r\nMessage: {e.Message}\r\nSQL: {sql}\r\nDomain: {JsonConvert.SerializeObject(domain)}");
             }
             return i == 1;
         }

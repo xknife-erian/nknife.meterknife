@@ -50,6 +50,7 @@ namespace NKnife.MeterKnife.Storage.Db
 
             var jsonHandler = new ObjectToJsonTypeHandler();
 
+            SqlMapper.AddTypeHandler(typeof(object), jsonHandler);
             SqlMapper.AddTypeHandler(typeof(ScpiCommandPool), jsonHandler);
             SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), jsonHandler);
             SqlMapper.AddTypeHandler(typeof(List<ScpiCommandPool>), jsonHandler);

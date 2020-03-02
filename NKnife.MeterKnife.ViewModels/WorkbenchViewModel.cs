@@ -5,11 +5,16 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 using GalaSoft.MvvmLight;
+using Newtonsoft.Json;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Holistic;
+using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Serial.Common;
+using NKnife.MeterKnife.Util.Tunnel;
 
 namespace NKnife.MeterKnife.ViewModels
 {
@@ -203,6 +208,13 @@ namespace NKnife.MeterKnife.ViewModels
             {
                 if (!_acquiringEngineerings.Contains(CurrentEngineering))
                     _acquiringEngineerings.Add(CurrentEngineering);
+                foreach (var slot in CurrentEngineering.GetIncludedSlots())
+                {
+                    var config = JsonConvert.DeserializeObject<SerialConfig>(slot.Config);
+                    slot.SetMeterCare(slot.SlotType, (4, config));
+                    _antService.Bind((slot, Kernel.Container.Resolve<IDataConnector>()));
+                }
+
                 await _antService.StartAsync(CurrentEngineering);
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NKnife.MeterKnife.Base;
+using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Common.Tunnels;
@@ -25,16 +26,16 @@ namespace NKnife.MeterKnife.Workbench.Debugs
          * 5. 从AntService中启动这个工程；
          */
 
-        public void Init(IAntService antService, IDataConnector connector)
+        public void Init()
         {
             _slot = new Slot();
             var config = new SerialConfig() {BaudRate = 115200};
             _slot.SetMeterCare(SlotType.Serial, (4, config));
-            antService.Bind((_slot, connector));
+            //antService.Bind((_slot, connector));
             Pool = GetCommands();
         }
 
-        public async Task RunAsync(IAntService antService, IEngineeringLogic engineeringLogic)
+        public async Task RunAsync(IWorkbenchViewModel viewModel)
         {
             var dt = DateTime.Now;
             var engineering = new Engineering
@@ -43,8 +44,9 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 CreateTime = DateTime.Now//new DateTime(2019, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second),
             };
             engineering.CommandPools.Add(Pool);
-            await engineeringLogic.CreateEngineeringAsync(engineering);
-            await antService.StartAsync(engineering);
+            viewModel.CurrentEngineering = engineering;
+            await viewModel.CreateEngineeringAsync(engineering);
+            await viewModel.StartAcquireAsync();
         }
 
         private ScpiCommandPool GetCommands()
