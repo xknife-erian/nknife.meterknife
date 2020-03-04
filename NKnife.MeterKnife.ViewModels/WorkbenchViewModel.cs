@@ -210,8 +210,8 @@ namespace NKnife.MeterKnife.ViewModels
                     _acquiringEngineerings.Add(CurrentEngineering);
                 foreach (var slot in CurrentEngineering.GetIncludedSlots())
                 {
-                    var config = JsonConvert.DeserializeObject<SerialConfig>(slot.Config);
-                    slot.SetMeterCare(slot.SlotType, (4, config));
+                    var config = JsonConvert.DeserializeObject<(short, SerialConfig)>(slot.Config);
+                    slot.SetMeterCare(slot.SlotType, config);
                     _antService.Bind((slot, Kernel.Container.Resolve<IDataConnector>()));
                 }
 

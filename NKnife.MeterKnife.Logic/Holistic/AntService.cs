@@ -64,10 +64,10 @@ namespace NKnife.MeterKnife.Holistic
                             if (connector is ISerialConnector c)
                             {
                                 var portInfo = slot.GetSerialPortInfo();
+                                c.PortNumber = portInfo.Item1; 
                                 c.SerialConfig = portInfo.Item2;
-                                c.PortNumber = portInfo.Item1; //串口
+                                _Logger.Info($"ISerialConnector设置完成：\r\nSerialPort:{c.PortNumber}\r\n{c.SerialConfig.ToString()}");
                             }
-
                             break;
                         }
                     }
@@ -117,10 +117,8 @@ namespace NKnife.MeterKnife.Holistic
                         connector.Start();
                     }
                 }
-
                 _jobMap.Add(engineering.Id, jobManager);
             }
-
             Task.Factory.StartNew(() => jobManager.Run());
             return Task.Factory.StartNew(() => true);
         }

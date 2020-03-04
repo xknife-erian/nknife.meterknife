@@ -1,4 +1,5 @@
 using System.IO.Ports;
+using System.Text;
 
 namespace NKnife.MeterKnife.Util.Serial.Common
 {
@@ -29,5 +30,27 @@ namespace NKnife.MeterKnife.Util.Serial.Common
         public bool DtrEnable { get; set; }
         public Parity Parity { get; set; }
         public bool RtsEnable { get; set; }
+
+        #region Overrides of Object
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("SerialConfig:");
+            sb.Append("\tBaudRate").AppendLine($"{BaudRate}");
+            sb.Append("\tDataBits").AppendLine($"{DataBits}");
+            sb.Append("\tReadTimeout").AppendLine($"{ReadTimeout}");
+            sb.Append("\tReadBufferSize").AppendLine($"{ReadBufferSize}");
+            sb.Append("\tDtrEnable").AppendLine($"{DtrEnable}");
+            sb.Append("\tParity").AppendLine($"{Parity}");
+            sb.Append("\tRtsEnable").AppendLine($"{RtsEnable}");
+            sb.Append("\tSyncModelWaitTimeout").AppendLine($"{SyncModelWaitTimeout}");
+            sb.Append("\tReceivedBytesThreshold").AppendLine($"{ReceivedBytesThreshold}");
+            return base.ToString();
+        }
+
+        #endregion
     }
 }
