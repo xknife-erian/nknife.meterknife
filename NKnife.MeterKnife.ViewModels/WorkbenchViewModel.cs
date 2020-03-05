@@ -30,6 +30,7 @@ namespace NKnife.MeterKnife.ViewModels
         private readonly IStorageDUTRead<MeasureData> _dutRead;
 
         private readonly IEngineeringLogic _engineeringLogic;
+        private readonly IMeasuringLogic _performLogic;
 
         private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
 
@@ -39,7 +40,7 @@ namespace NKnife.MeterKnife.ViewModels
 
         public WorkbenchViewModel(
             IAntService antService,
-            IEngineeringLogic engineeringLogic,
+            IEngineeringLogic engineeringLogic, IMeasuringLogic performLogic,
             IStoragePlatform<Engineering> engineeringStoragePlatform,
             IStoragePlatform<Slot> slotStoragePlatform,
             IStoragePlatform<DUT> dutStoragePlatform,
@@ -52,6 +53,7 @@ namespace NKnife.MeterKnife.ViewModels
             _engineeringLogic = engineeringLogic;
             _instrumentStoragePlatform = instrumentStoragePlatform;
             _dutRead = dutRead;
+            _performLogic = performLogic;
             _antService = antService;
         }
 
@@ -212,6 +214,7 @@ namespace NKnife.MeterKnife.ViewModels
                 {
                     var config = JsonConvert.DeserializeObject<(short, SerialConfig)>(slot.Config);
                     slot.SetMeterCare(slot.SlotType, config);
+                    _performLogic.SetDUTMap(CurrentEngineering.CommandPools, CurrentEngineering);
                     _antService.Bind((slot, Kernel.Container.Resolve<IDataConnector>()));
                 }
 

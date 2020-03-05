@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
-using NKnife.MeterKnife.Common.Tunnels;
 using NKnife.MeterKnife.Util.Serial.Common;
-using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Workbench.Debugs
 {
-
     public class SimpleMeasure
     {
         private Slot _slot;
@@ -29,7 +25,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         public void Init()
         {
             _slot = new Slot();
-            var config = new SerialConfig() {BaudRate = 115200};
+            var config = new SerialConfig {BaudRate = 115200};
             _slot.SetMeterCare(SlotType.Serial, (4, config));
             //antService.Bind((_slot, connector));
             Pool = GetCommands();
@@ -41,7 +37,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             var engineering = new Engineering
             {
                 Name = "",
-                CreateTime = DateTime.Now//new DateTime(2019, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second),
+                CreateTime = DateTime.Now //new DateTime(2019, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second),
             };
             engineering.CommandPools.Add(Pool);
             viewModel.CurrentEngineering = engineering;
@@ -51,48 +47,66 @@ namespace NKnife.MeterKnife.Workbench.Debugs
 
         private ScpiCommandPool GetCommands()
         {
-            var interval = 300;
-            var item1 = new ScpiCommand
+            var interval = 100;
+
+            var k2700_22 = new ScpiCommand // Keithley 2700 GpibAddress = 22,
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = $"RES{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}"},
-                GpibAddress = 23,
-                Scpi = new SCPI {Command = "FETC?"},
+                DUT = new DUT {Id = $"VOLTAGE{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}"},
+                GpibAddress = 22,
+                Scpi = new SCPI {Command = "FETC?" },
 
                 Interval = interval,
                 Timeout = interval * 2,
                 IsLoop = true
             };
-            item1.DUT.Name = item1.DUT.Id;
-            var item2 = new ScpiCommand
+            k2700_22.DUT.Name = k2700_22.DUT.Id;
+
+            var fluke8840_23 = new ScpiCommand // Fluke 8840A GpibAddress = 23,
             {
                 Slot = _slot,
-                DUT = new DUT() {Id = $"VOLTAGE{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}"},
-                GpibAddress = 24,
+                DUT = new DUT {Id = $"VOLTAGE{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}"},
+                GpibAddress = 23,
                 Scpi = new SCPI {Command = "READ?"},
 
                 Interval = interval,
                 Timeout = interval * 2,
                 IsLoop = true
             };
-            item2.DUT.Name = item2.DUT.Id;
+            fluke8840_23.DUT.Name = fluke8840_23.DUT.Id;
+
+            var hp34401_24 = new ScpiCommand // HP 34401A GpibAddress = 24,
+            {
+                Slot = _slot,
+                DUT = new DUT {Id = $"RES{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}"},
+                GpibAddress = 24,
+                Scpi = new SCPI {Command = "FETC?"},
+
+                Interval = interval,
+                Timeout = interval * 2,
+                IsLoop = true
+            };
+            hp34401_24.DUT.Name = hp34401_24.DUT.Id;
+
             var temp5 = CareCommandHelper.Temperature(5);
+            temp5.Interval = 300;
             temp5.Slot = _slot;
-            temp5.DUT = new DUT() {Id = $"T1{UtilRandom.GetString(2,UtilRandom.RandomCharType.Lowercased)}"};
+            temp5.DUT = new DUT {Id = $"T1{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}"};
             temp5.DUT.Name = temp5.DUT.Id;
 
             var temp6 = CareCommandHelper.Temperature(6);
+            temp6.Interval = 300;
             temp6.Slot = _slot;
-            temp6.DUT = new DUT() {Id = $"T2{UtilRandom.GetString(2,UtilRandom.RandomCharType.Lowercased)}"};
+            temp6.DUT = new DUT {Id = $"T2{UtilRandom.GetString(2, UtilRandom.RandomCharType.Lowercased)}"};
             temp6.DUT.Name = temp6.DUT.Id;
 
             var pool = new ScpiCommandPool();
-            // pool.AddRange(new[] { item1, item2, temp5, temp6 });
-            pool.AddRange(new[] { item1, temp5 });
-            // pool.AddRange(new[] { item2, temp6 });
-            // pool.Add(item1);
+            // pool.AddRange(new[] {k2700_22, hp34401_24, fluke8840_23, temp5, temp6});
+            // pool.AddRange(new[] {k2700_22, temp5});
+            // pool.AddRange(new[] {hp34401_24, temp5});
+            // pool.AddRange(new[] {fluke8840_23, temp5});
+            pool.Add(k2700_22);
             return pool;
         }
-
     }
 }

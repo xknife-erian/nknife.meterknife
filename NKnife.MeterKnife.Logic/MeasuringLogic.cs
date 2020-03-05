@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Common.Scpi;
 
 namespace NKnife.MeterKnife.Logic
 {
@@ -38,22 +39,39 @@ namespace NKnife.MeterKnife.Logic
         /// <summary>
         ///     根据发送源命令的关系获取被测物
         /// </summary>
-        /// <param name="relation">源命令的关系</param>
+        /// <param name="dutId">源命令的关系</param>
         /// <returns>被测物</returns>
-        public (Engineering, DUT) GetDUT(string relation)
+        public (Engineering, DUT) GetDUT(string dutId)
         {
-            return DUTMap[relation];
+            return DUTMap[dutId];
         }
 
         /// <summary>
         ///     设置命令字与被测物的关系
         /// </summary>
-        /// <param name="relation">源命令的关系</param>
+        /// <param name="dutId">源命令的关系</param>
         /// <param name="dut">被测物</param>
-        public void SetDUT(string relation, (Engineering, DUT) dut)
+        public void SetDUT(string dutId, (Engineering, DUT) dut)
         {
-            if (!DUTMap.ContainsKey(relation))
-                DUTMap.Add(relation, dut);
+            if (!DUTMap.ContainsKey(dutId))
+                DUTMap.Add(dutId, dut);
+        }
+
+        /// <summary>
+        ///     设置命令字与被测物的关系
+        /// </summary>
+        public void SetDUTMap(List<ScpiCommandPool> commands, Engineering engineering)
+        {
+            foreach (var pool in commands)
+            {
+                foreach (ScpiCommand command in pool)
+                {
+                    if (command.DUT != null)
+                        this.SetDUT(command.DUT.Id, (engineering, command.DUT));
+                    //TODO:if(command.IsPool)
+                    //SetDUTMap(performLogic, command, engineering);
+                }
+            }
         }
 
         #endregion

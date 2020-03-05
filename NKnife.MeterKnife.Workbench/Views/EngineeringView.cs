@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Controls;
@@ -296,7 +297,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                 Path = engineering.Path;
                 var ds = new List<DUT>();
                 foreach (var pool in engineering.CommandPools)
-                foreach (var command in pool)
+                foreach (ScpiCommand command in pool)
                     ds.Add(command.DUT);
                 Duts = ds.ToArray();
             }

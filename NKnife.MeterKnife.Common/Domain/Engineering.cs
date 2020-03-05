@@ -62,7 +62,7 @@ namespace NKnife.MeterKnife.Common.Domain
             List<DUT> duts = new List<DUT>();
             foreach (var cmdPool in CommandPools)
             {
-                foreach (var cmd in cmdPool)
+                foreach (ScpiCommand cmd in cmdPool)
                 {
                     if(cmd.DUT!=null)
                         duts.Add(cmd.DUT);
@@ -76,7 +76,7 @@ namespace NKnife.MeterKnife.Common.Domain
             List<Slot> slots = new List<Slot>();
             foreach (var cmdPool in CommandPools)
             {
-                foreach (var cmd in cmdPool)
+                foreach (ScpiCommand cmd in cmdPool)
                 {
                     if (cmd.Slot != null && !slots.Contains(cmd.Slot))
                         slots.Add(cmd.Slot);

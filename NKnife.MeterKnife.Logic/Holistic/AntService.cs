@@ -99,7 +99,7 @@ namespace NKnife.MeterKnife.Holistic
                 jobManager = new JobManager {Pool = new ScpiCommandPool {IsOverall = true}};
                 foreach (var pool in engineering.CommandPools)
                 {
-                    foreach (var command in pool)
+                    foreach (ScpiCommand command in pool)
                     {
                         if (command.Slot == null || !_connMap.ContainsKey(command.Slot))
                         {

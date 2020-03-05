@@ -6,6 +6,7 @@ using NKnife.Db;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Util;
 using NKnife.Util;
 
@@ -45,7 +46,7 @@ namespace NKnife.MeterKnife.Storage.Db
             var dutList = new List<DUT>();
             foreach (var pool in engineering.CommandPools)
             {
-                foreach (var command in pool)
+                foreach (ScpiCommand command in pool)
                 {
                     if (command.DUT != null && !dutList.Contains(command.DUT))
                     {

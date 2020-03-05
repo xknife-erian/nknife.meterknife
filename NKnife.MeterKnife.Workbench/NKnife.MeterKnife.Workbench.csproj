@@ -65,7 +65,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NKnife, Version=19.0.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.20.1.0\lib\netstandard2.0\NKnife.dll</HintPath>
+      <HintPath>..\packages\NKnife.20.2.0\lib\netstandard2.0\NKnife.dll</HintPath>
     </Reference>
     <Reference Include="NKnife.NLog.WinForm, Version=19.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.NLog.WinForm.19.0.3\lib\net40\NKnife.NLog.WinForm.dll</HintPath>

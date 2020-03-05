@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Common.Scpi;
 
 // ReSharper disable once CheckNamespace
 namespace NKnife.MeterKnife.Base
@@ -26,8 +28,14 @@ namespace NKnife.MeterKnife.Base
         /// <summary>
         ///     设置命令字与指定的工程与被测物的关系
         /// </summary>
-        /// <param name="relation">源命令的关系</param>
+        /// <param name="dutId">源命令的关系</param>
         /// <param name="dut">指定的工程与被测物</param>
-        void SetDUT(string relation, (Engineering, DUT) dut);
+        void SetDUT(string dutId, (Engineering, DUT) dut);
+
+        /// <summary>
+        ///     设置命令字与被测物的关系
+        /// </summary>
+        void SetDUTMap(List<ScpiCommandPool> commands, Engineering engineering);
+
     }
 }

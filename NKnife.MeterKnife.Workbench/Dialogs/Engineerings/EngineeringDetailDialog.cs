@@ -45,7 +45,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 _EngDescriptionTextBox.Text = value.Description;
                 foreach (var pool in value.CommandPools)
                 {
-                    foreach (var command in pool)
+                    foreach (ScpiCommand command in pool)
                     {
                         var item = BuildViewItemByCommand(pool.Category, command);
                         _CommandsListView.Items.Add(item);

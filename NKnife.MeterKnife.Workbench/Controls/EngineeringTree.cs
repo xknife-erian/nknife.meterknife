@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
+using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.Workbench.Properties;
 
@@ -60,7 +61,7 @@ namespace NKnife.MeterKnife.Workbench.Controls
             Engineering = engineering;
             foreach (var pool in engineering.CommandPools)
             {
-                foreach (var command in pool)
+                foreach (ScpiCommand command in pool)
                 {
                     if (command.DUT != null)
                     {

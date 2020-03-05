@@ -42,7 +42,7 @@ namespace NKnife.MeterKnife.Logic
             BuildEngineeringStore(engineering);
             //将工程的相关信息存入到工程库
             await _engineeringStorageDUTWrite.InsertAsync(engineering);
-            SetDUTMap(_performLogic, engineering.CommandPools, engineering);
+            _performLogic.SetDUTMap(engineering.CommandPools, engineering);
             //同时也在平台库中存储一份
             return await _engineeringStoragePlatform.InsertAsync(engineering);
         }
@@ -84,7 +84,7 @@ namespace NKnife.MeterKnife.Logic
                 var sb = new StringBuilder();
                 foreach (var pool in engineering.CommandPools)
                 {
-                    foreach (var command in pool)
+                    foreach (ScpiCommand command in pool)
                     {
                         sb.Append(command.DUT.Name).Append('/');
                     }
@@ -94,20 +94,6 @@ namespace NKnife.MeterKnife.Logic
             }
 
             _storageManager.CreateEngineering(engineering);
-        }
-
-        private static void SetDUTMap(IMeasuringLogic performLogic, List<ScpiCommandPool> commands, Engineering engineering)
-        {
-            foreach (var pool in commands)
-            {
-                foreach (var command in pool)
-                {
-                    if (command.DUT != null)
-                        performLogic.SetDUT(command.DUT.Id, (engineering, command.DUT));
-                    //TODO:if(command.IsPool)
-                    //SetDUTMap(performLogic, command, engineering);
-                }
-            }
         }
 
         #endregion
