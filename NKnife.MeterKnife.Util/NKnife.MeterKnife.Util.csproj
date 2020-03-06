@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="MathNet.Numerics" Version="4.9.0" />
-    <PackageReference Include="NKnife" Version="20.2.0" />
+    <PackageReference Include="NKnife" Version="20.3.0" />
     <PackageReference Include="NLog" Version="4.6.8" />
     <PackageReference Include="NPOI" Version="2.4.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />

@@ -43,7 +43,7 @@
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="NKnife, Version=19.0.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.20.2.0\lib\netstandard2.0\NKnife.dll</HintPath>
+      <HintPath>..\packages\NKnife.20.3.0\lib\netstandard2.0\NKnife.dll</HintPath>
     </Reference>
     <Reference Include="NKnife.Win, Version=19.0.0.1119, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.Win.Forms.19.0.0.1119\lib\net462\NKnife.Win.dll</HintPath>

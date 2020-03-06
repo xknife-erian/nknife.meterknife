@@ -125,7 +125,7 @@
       <HintPath>..\packages\MySql.Data.8.0.19\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="NKnife, Version=19.0.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.20.2.0\lib\netstandard2.0\NKnife.dll</HintPath>
+      <HintPath>..\packages\NKnife.20.3.0\lib\netstandard2.0\NKnife.dll</HintPath>
     </Reference>
     <Reference Include="NKnife.NLog.WinForm, Version=19.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.NLog.WinForm.19.0.3\lib\net40\NKnife.NLog.WinForm.dll</HintPath>
@@ -233,7 +233,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.manifest" />
-    <None Include="Appsettings.json">
+    <None Include="AppSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="nlog.config">

@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NKnife, Version=19.0.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.20.2.0\lib\netstandard2.0\NKnife.dll</HintPath>
+      <HintPath>..\packages\NKnife.20.3.0\lib\netstandard2.0\NKnife.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

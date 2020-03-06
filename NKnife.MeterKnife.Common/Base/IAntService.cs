@@ -39,5 +39,12 @@ namespace NKnife.MeterKnife.Base
         /// <param name="engineering">指定的工程</param>
         /// <returns>停止是否成功</returns>
         bool Stop(Engineering engineering);
+
+        /// <summary>
+        ///     恢复指定的工程
+        /// </summary>
+        /// <param name="engineering">指定的工程</param>
+        /// <returns>停止是否成功</returns>
+        bool Resume(Engineering engineering);
     }
 }

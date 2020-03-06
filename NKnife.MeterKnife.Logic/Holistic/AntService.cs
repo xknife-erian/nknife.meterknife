@@ -147,6 +147,18 @@ namespace NKnife.MeterKnife.Holistic
             return true;
         }
 
+        /// <summary>
+        ///     恢复指定的工程
+        /// </summary>
+        /// <param name="engineering">指定的工程</param>
+        /// <returns>停止是否成功</returns>
+        public bool Resume(Engineering engineering)
+        {
+            if (_jobMap.ContainsKey(engineering.Id))
+                _jobMap[engineering.Id].Resume();
+            return true;
+        }
+
         #endregion
 
         private static void SendCommand(IDataConnector connector, ScpiCommand cmd)

@@ -32,10 +32,24 @@ namespace NKnife.MeterKnife.ViewModels
         private readonly IEngineeringLogic _engineeringLogic;
         private readonly IMeasuringLogic _performLogic;
 
+        /// <summary>
+        ///     按时间排序的工程列表，供工程列表窗体显示
+        /// </summary>
         private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
 
+        /// <summary>
+        ///     已打开的工程列表
+        /// </summary>
         private ObservableCollection<Engineering> _openedEngineerings = new ObservableCollection<Engineering>();
+
+        /// <summary>
+        ///     正在采集的工程列表
+        /// </summary>
         private ObservableCollection<Engineering> _acquiringEngineerings = new ObservableCollection<Engineering>();
+
+        /// <summary>
+        ///     当前激活的工程
+        /// </summary>
         private Engineering _currentEngineering;
 
         public WorkbenchViewModel(
@@ -44,7 +58,7 @@ namespace NKnife.MeterKnife.ViewModels
             IStoragePlatform<Engineering> engineeringStoragePlatform,
             IStoragePlatform<Slot> slotStoragePlatform,
             IStoragePlatform<DUT> dutStoragePlatform,
-            IStoragePlatform<Instrument> instrumentStoragePlatform, 
+            IStoragePlatform<Instrument> instrumentStoragePlatform,
             IStorageDUTRead<MeasureData> dutRead)
         {
             _engineeringStoragePlatform = engineeringStoragePlatform;
@@ -58,13 +72,23 @@ namespace NKnife.MeterKnife.ViewModels
         }
 
         /// <summary>
+        ///     工程的采集状态
+        /// </summary>
+        public ObservableCollection<EngineeringState> EngineeringStateList { get; set; } = new ObservableCollection<EngineeringState>();
+
+        /// <summary>
         ///     当前激活（被选择）的工程
         /// </summary>
-        public Engineering CurrentEngineering
+        public Engineering CurrentActiveEngineering
         {
             get => _currentEngineering;
             set => Set(ref _currentEngineering, value);
         }
+
+        /// <summary>
+        ///     当前选择的工程
+        /// </summary>
+        public Engineering CurrentSelectedEngineering { get; set; }
 
         /// <summary>
         ///     创建一台仪器
@@ -188,7 +212,7 @@ namespace NKnife.MeterKnife.ViewModels
         {
             var slot = new Slot();
             slot.SetMeterCare(SlotType.MeterCare, (port, new SerialConfig() {BaudRate = 115200}));
-            var insertSuccess =  await _slotStoragePlatform.InsertAsync(slot);
+            var insertSuccess = await _slotStoragePlatform.InsertAsync(slot);
             return insertSuccess ? slot : null;
         }
 
@@ -206,19 +230,20 @@ namespace NKnife.MeterKnife.ViewModels
         /// </summary>
         public async Task StartAcquireAsync()
         {
-            if (CurrentEngineering != null)
+            if (CurrentActiveEngineering != null)
             {
-                if (!_acquiringEngineerings.Contains(CurrentEngineering))
-                    _acquiringEngineerings.Add(CurrentEngineering);
-                foreach (var slot in CurrentEngineering.GetIncludedSlots())
+                if (!_acquiringEngineerings.Contains(CurrentActiveEngineering))
+                    _acquiringEngineerings.Add(CurrentActiveEngineering);
+                foreach (var slot in CurrentActiveEngineering.GetIncludedSlots())
                 {
                     var config = JsonConvert.DeserializeObject<(short, SerialConfig)>(slot.Config);
                     slot.SetMeterCare(slot.SlotType, config);
-                    _performLogic.SetDUTMap(CurrentEngineering.CommandPools, CurrentEngineering);
+                    _performLogic.SetDUTMap(CurrentActiveEngineering.CommandPools, CurrentActiveEngineering);
                     _antService.Bind((slot, Kernel.Container.Resolve<IDataConnector>()));
                 }
 
-                await _antService.StartAsync(CurrentEngineering);
+                EngineeringStateList.Add(new EngineeringState(CurrentActiveEngineering.Id));
+                await _antService.StartAsync(CurrentActiveEngineering);
             }
         }
 
@@ -227,8 +252,27 @@ namespace NKnife.MeterKnife.ViewModels
         /// </summary>
         public void PauseAcquire()
         {
-            if (CurrentEngineering != null)
-                _antService.Pause(CurrentEngineering);
+            if (CurrentActiveEngineering != null)
+            {
+                EngineeringState es = EngineeringStateList.FirstOrDefault(state => state.EngineeringId == CurrentActiveEngineering.Id);
+                if (es != null) 
+                    es.EngState = EngineeringState.State.Pause;
+                _antService.Pause(CurrentActiveEngineering);
+            }
+        }
+
+        /// <summary>
+        /// 恢复采集
+        /// </summary>
+        public void ResumeAcquire()
+        {
+            if (CurrentActiveEngineering != null)
+            {
+                EngineeringState es = EngineeringStateList.FirstOrDefault(state => state.EngineeringId == CurrentActiveEngineering.Id);
+                if (es != null)
+                    es.EngState = EngineeringState.State.Start;
+                _antService.Resume(CurrentActiveEngineering);
+            }
         }
 
         /// <summary>
@@ -236,8 +280,13 @@ namespace NKnife.MeterKnife.ViewModels
         /// </summary>
         public void StopAcquire()
         {
-            if (CurrentEngineering != null)
-                _antService.Stop(CurrentEngineering);
+            if (CurrentActiveEngineering != null)
+            {
+                EngineeringState es = EngineeringStateList.FirstOrDefault(state => state.EngineeringId == CurrentActiveEngineering.Id);
+                if (es != null)
+                    es.EngState = EngineeringState.State.Stop;
+                _antService.Stop(CurrentActiveEngineering);
+            }
         }
 
         /// <summary>
@@ -256,5 +305,6 @@ namespace NKnife.MeterKnife.ViewModels
         {
             return await _dutStoragePlatform.FindAllAsync();
         }
+
     }
 }

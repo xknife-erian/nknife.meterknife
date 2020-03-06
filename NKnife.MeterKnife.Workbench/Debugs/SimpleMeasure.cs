@@ -40,7 +40,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
                 CreateTime = DateTime.Now //new DateTime(2019, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second),
             };
             engineering.CommandPools.Add(Pool);
-            viewModel.CurrentEngineering = engineering;
+            viewModel.CurrentActiveEngineering = engineering;
             await viewModel.CreateEngineeringAsync(engineering);
             await viewModel.StartAcquireAsync();
         }

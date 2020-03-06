@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 
 namespace NKnife.MeterKnife.Common.Base
 {
     public interface IWorkbenchViewModel
     {
+        /// <summary>
+        ///     工程的采集状态
+        /// </summary>
+        ObservableCollection<EngineeringState> EngineeringStateList { get; set; }
 
         /// <summary>
-        ///     当前激活（被选择）的工程
+        ///     当前激活的工程
         /// </summary>
-        Engineering CurrentEngineering { get; set; }
+        Engineering CurrentActiveEngineering { get; set; }
+
+        /// <summary>
+        ///     当前选择的工程
+        /// </summary>
+        Engineering CurrentSelectedEngineering { get; set; }
 
         #region DUT
 
@@ -123,10 +133,16 @@ namespace NKnife.MeterKnife.Common.Base
         void PauseAcquire();
 
         /// <summary>
+        /// 恢复采集
+        /// </summary>
+        void ResumeAcquire();
+
+        /// <summary>
         /// 停止采集
         /// </summary>
         void StopAcquire();
 
         #endregion
+
     }
 }

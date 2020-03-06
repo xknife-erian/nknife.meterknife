@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
@@ -36,18 +39,64 @@ namespace NKnife.MeterKnife.Workbench.Views
             UpdateControlState();
 
             Shown += EngineeringsBindToTree;
-            _TreeView.MouseDown += OnMouseDown;
+            _TreeView.MouseDown += OnTreeViewMouseDown;
         }
 
         private void InitializeContextMenu()
         {
+            _viewModel.EngineeringStateList.CollectionChanged += delegate(object o, NotifyCollectionChangedEventArgs e) { };
             var startMenu = new ToolStripMenuItem(this.Res("开始测量"));
             startMenu.Click += async delegate { await _viewModel.StartAcquireAsync(); };
             var pauseMenu = new ToolStripMenuItem(this.Res("暂停测量"));
-            pauseMenu.Click += delegate { _viewModel.PauseAcquire(); };
+            pauseMenu.Click += delegate
+            {
+                var isPause = (bool) pauseMenu.Tag;
+                if (isPause)
+                    _viewModel.ResumeAcquire();
+                else
+                    _viewModel.PauseAcquire();
+            };
             var stopMenu = new ToolStripMenuItem(this.Res("停止测量"));
             stopMenu.Click += delegate { _viewModel.StopAcquire(); };
             _contextMenu.Items.AddRange(new ToolStripItem[] {startMenu, pauseMenu, stopMenu});
+            _contextMenu.Opening += delegate(object sender, CancelEventArgs args)
+            {
+                var eng = _viewModel.CurrentActiveEngineering;
+                EngineeringState engState = _viewModel.EngineeringStateList.FirstOrDefault(state => eng.Id.Equals(state.EngineeringId));
+                if (engState == null)
+                {
+                    startMenu.Enabled = true;
+                    pauseMenu.Enabled = false;
+                    pauseMenu.Tag = false; 
+                    pauseMenu.Text = this.Res("暂停测量");
+                    stopMenu.Enabled = false;
+                    return;
+                }
+                switch (engState.EngState)
+                {
+                    case EngineeringState.State.Stop:
+                        startMenu.Enabled = true;
+                        pauseMenu.Enabled = false;
+                        pauseMenu.Tag = false;
+                        pauseMenu.Text = this.Res("暂停测量");
+                        stopMenu.Enabled = false;
+                        break;
+                    case EngineeringState.State.Pause:
+                        startMenu.Enabled = false;
+                        pauseMenu.Enabled = true;
+                        pauseMenu.Tag = true;
+                        pauseMenu.Text = this.Res("恢复测量");
+                        stopMenu.Enabled = false;
+                        break;
+                    case EngineeringState.State.Start:
+                        startMenu.Enabled = false;
+                        pauseMenu.Enabled = true;
+                        pauseMenu.Tag = false;
+                        pauseMenu.Text = this.Res("暂停测量");
+                        stopMenu.Enabled = true;
+                        break;
+                }
+            };
         }
 
         private void InitializeLanguageAndImage()
@@ -63,14 +112,15 @@ namespace NKnife.MeterKnife.Workbench.Views
             this.Res(_CreateEngStripButton, _EditToolStripButton, _DeleteStripButton);
         }
 
-        private void OnMouseDown(object sender, MouseEventArgs e)
+        private void OnTreeViewMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
                 TreeNode node = _TreeView.GetNodeAt(e.X, e.Y);
                 if (node != null) _TreeView.SelectedNode = node;
-                if (node is EngineeringTreeNode)
+                if (node is EngineeringTreeNode engNode)
                 {
+                    _viewModel.CurrentSelectedEngineering = engNode.Engineering;
                     _contextMenu.Show(_TreeView, e.X, e.Y);
                 }
             }
@@ -151,7 +201,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                 if (args.Node is EngineeringTreeNode engNode)
                 {
                     //当工程节点被点击后，设置全局的当前工程为该工程
-                    _viewModel.CurrentEngineering = engNode.Engineering;
+                    _viewModel.CurrentActiveEngineering = engNode.Engineering;
                     var evm = new EngineeringVm(engNode.Engineering);
                     _PropertyGrid.SelectedObject = evm;
                 }

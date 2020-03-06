@@ -32,7 +32,7 @@ namespace NKnife.MeterKnife.App
             //程序员配置。（非用户自行配置）
             var conf = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile("AppSettings.json", true, true)
                 .Build();
 
             IServiceCollection serviceCollection = new ServiceCollection();
@@ -48,7 +48,17 @@ namespace NKnife.MeterKnife.App
 
             using (Kernel.Container = builder.Build())
             {
-                var startup = Kernel.Container.Resolve<Startup>();
+                Startup startup;
+                try
+                {
+                    startup = Kernel.Container.Resolve<Startup>();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+
                 //开启当前程序作用域下的 ApplicationContext 实例
                 Application.Run(startup);
             }
