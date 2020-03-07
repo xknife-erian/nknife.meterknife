@@ -242,7 +242,11 @@ namespace NKnife.MeterKnife.ViewModels
                     _antService.Bind((slot, Kernel.Container.Resolve<IDataConnector>()));
                 }
 
-                EngineeringStateList.Add(new EngineeringState(CurrentActiveEngineering.Id));
+                EngineeringState es = EngineeringStateList.FirstOrDefault(state => state.EngineeringId == CurrentActiveEngineering.Id);
+                if (es != null)
+                    es.EngState = EngineeringState.State.Start;
+                else
+                    EngineeringStateList.Add(new EngineeringState(CurrentActiveEngineering.Id));
                 await _antService.StartAsync(CurrentActiveEngineering);
             }
         }
