@@ -55,6 +55,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             debugMenu.DropDownItems.Add(menu);
 
             menu = new ToolStripMenuItem("指令编辑器");
+            menu.ShortcutKeys = Keys.F5;
             menu.Click += (sender, args) =>
             {
                 var form = debugMenu.GetCurrentParent().FindForm();
@@ -66,7 +67,6 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             debugMenu.DropDownItems.Add(new ToolStripSeparator());
 
             menu = BuildMeasureMenu(debugMenu);
-            menu.ShortcutKeys = Keys.F5;
             debugMenu.DropDownItems.Add(menu);
 
             return debugMenu;

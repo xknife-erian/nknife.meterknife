@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.MeterKnife.Workbench.Dialogs;
+using NKnife.MeterKnife.Workbench.Dialogs.Slots;
 using NKnife.MeterKnife.Workbench.Properties;
 using NKnife.Win.Quick.Base;
 using NKnife.Win.Quick.Controls;
@@ -71,10 +73,12 @@ namespace NKnife.MeterKnife.Workbench.Views
             _NewCareToolStripMenuItem.Click += async (sender, args) =>
             {
                 var dialog = new SerialPortSelectorDialog();
+                dialog.LockSerialParams(115200);
                 dialog.Text = this.Res("选择MeterCare所在的串口");
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    var result = dialog.SerialPort;
+                    var num = dialog.SerialPort.PortName.ToUpper().Trim('C', 'O', 'M');
+                    var result = short.Parse(num);
                     var slot = await _viewModel.CreateMeterCareSlotAsync(result);
                     var item = GetSlotListItem(slot);
                     _SlotListView.Items.Add(item);
