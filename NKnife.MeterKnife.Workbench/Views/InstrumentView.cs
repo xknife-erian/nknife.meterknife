@@ -31,16 +31,38 @@ namespace NKnife.MeterKnife.Workbench.Views
             InitializeLanguage();
             InitializeImageList();
             RespondToControlClick();
-            Shown += async (sender, args) =>
-            {
+            UpdateControlState();
+            Shown += async (sender, args) => { await FillListView(); };
+        }
 
-                IEnumerable<Instrument> instArray = await viewModel.GetAllInstrumentAsync();
-                foreach (var inst in instArray)
-                {
-                    var item = GetInstrumentListItem(inst);
-                    _InstrumentListView.Items.Add(item);
-                }
-            };
+        private async Task FillListView()
+        {
+            SuspendLayout(); 
+            _InstrumentListView.Items.Clear();
+            IEnumerable<Instrument> instArray = await _viewModel.GetAllInstrumentAsync();
+            foreach (var inst in instArray)
+            {
+                var item = BuildInstrumentListItem(inst);
+                _InstrumentListView.Items.Add(item);
+            }
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        private void UpdateControlState()
+        {
+            if (_InstrumentListView.SelectedItems.Count > 0)
+            {
+                _NewToolStripButton.Enabled = true;
+                _EditToolStripButton.Enabled = true;
+                _DeleteToolStripButton.Enabled = true;
+            }
+            else
+            {
+                _NewToolStripButton.Enabled = true;
+                _EditToolStripButton.Enabled = false;
+                _DeleteToolStripButton.Enabled = false;
+            }
         }
 
         private void InitializeImageList()
@@ -65,6 +87,7 @@ namespace NKnife.MeterKnife.Workbench.Views
 
         private void RespondToControlClick()
         {
+            _InstrumentListView.ItemSelectionChanged += delegate { UpdateControlState(); };
             _NewToolStripButton.Click += async (sender, args) =>
             {
                 var dialog = _dialogProvider.New<InstrumentDetailDialog>();
@@ -72,16 +95,52 @@ namespace NKnife.MeterKnife.Workbench.Views
                 if (ds == DialogResult.OK)
                 {
                     var inst = dialog.Instrument;
-                    var item = GetInstrumentListItem(inst);
+                    var item = BuildInstrumentListItem(inst);
                     _InstrumentListView.Items.Add(item);
                     await _viewModel.CreateInstrumentAsync(inst);
                 }
             };
+            _EditToolStripButton.Click += async delegate(object sender, EventArgs args)
+            {
+                if (_InstrumentListView.SelectedItems.Count <= 0)
+                    return;
+                var inst = (Instrument) _InstrumentListView.SelectedItems[0].Tag;
+                var dialog = _dialogProvider.New<InstrumentDetailDialog>();
+                dialog.Instrument = inst;
+                var ds = dialog.ShowDialog();
+                if (ds == DialogResult.OK)
+                {
+                    UpdateInstrumentListItem(_InstrumentListView.SelectedItems[0], dialog.Instrument);
+                    await _viewModel.UpdateInstrumentAsync(inst);
+                }
+            };
+            _DeleteToolStripButton.Click += async delegate(object sender, EventArgs args)
+            {
+                if (_InstrumentListView.SelectedItems.Count <= 0)
+                    return;
+                var inst = (Instrument) _InstrumentListView.SelectedItems[0].Tag;
+                var info = $"{inst.Name}\r\n{inst.Manufacturer}/{inst.Model1}/{inst.Model2}".TrimEnd('/');
+                var ds = MessageBox.Show($"{this.Res("是否删除？")}\r\n{this.Res("仪器：")}{info}", $"{this.Res("删除")}",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (ds == DialogResult.Yes)
+                {
+                    await _viewModel.DeleteInstrumentAsync(inst);
+                    await FillListView();
+                }
+            };
         }
 
-        private ListViewItem GetInstrumentListItem(Instrument inst)
+        private ListViewItem BuildInstrumentListItem(Instrument inst)
         {
             var item = new ListViewItem();
+            item.Tag = inst;
+            item.Text = $"{inst.Manufacturer} {inst.Model1}";
+            item.ImageKey = nameof(LargeImageResource.instrument);
+            return item;
+        }
+
+        private ListViewItem UpdateInstrumentListItem(ListViewItem item, Instrument inst)
+        {
             item.Tag = inst;
             item.Text = $"{inst.Manufacturer} {inst.Model1}";
             item.ImageKey = nameof(LargeImageResource.instrument);

@@ -157,7 +157,7 @@ namespace NKnife.MeterKnife.Storage.Base
             var sql = _sqlSet[GetSqlKey()].Update;
             try
             {
-                var d = (IRecord<T>) domain;
+                var d = (IId) domain;
                 sql = $"{sql} Where Id='{d.Id}'"; //TODO:有巨大的问题，此处需要再好好构思一下。
                 var i = await conn.ExecuteAsync(sql, domain);
                 return i == 1;

@@ -86,10 +86,10 @@ namespace NKnife.MeterKnife.Workbench
             var fileMenuItem = new FileMenuItem();
             fileMenuItem.DropDownItems.Insert(0, new ToolStripSeparator());
 
-            var newQuickEng = new ToolStripMenuItem(this.Res("新建快速测量..."));
+            var newQuickEng = new ToolStripMenuItem(this.Res("新建快速工程..."));
             newQuickEng.ShortcutKeys = Keys.Control | Keys.N;
             fileMenuItem.DropDownItems.Insert(0, newQuickEng);
-            var newEng = new ToolStripMenuItem(this.Res("新建测量(&N)..."));
+            var newEng = new ToolStripMenuItem(this.Res("新建工程(&N)..."));
             fileMenuItem.DropDownItems.Insert(0, newEng);
             return fileMenuItem;
         }

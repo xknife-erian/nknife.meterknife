@@ -65,6 +65,11 @@ namespace NKnife.MeterKnife.Common.Domain
         /// </summary>
         public string Description { get; set; } = string.Empty;
 
+        /// <summary>
+        ///     购买日期
+        /// </summary>
+        public DateTime PurchasingDate { get; set; }
+
         public DateTime CreateTime { get; set; }
 
         /// <summary>

@@ -7,6 +7,7 @@ using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Resources;
+using NKnife.MeterKnife.Workbench.Base;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
@@ -14,11 +15,13 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
     public partial class InstrumentDetailDialog : Form
     {
         private readonly ICloudDataService _cloudDataService;
+        private readonly IDialogProvider _dialogProvider;
         private Instrument _instrument;
 
-        public InstrumentDetailDialog(ICloudDataService cloudDataService)
+        public InstrumentDetailDialog(ICloudDataService cloudDataService, IDialogProvider dialogProvider)
         {
             _cloudDataService = cloudDataService;
+            _dialogProvider = dialogProvider;
             InitializeComponent();
             InitializeLanguage();
             RespondToMenuButtonClick();
@@ -36,7 +39,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
                     _instrument = new Instrument();
                 _instrument.CreateTime = DateTime.Now; 
                 _instrument.Id = _NumberTextBox.Text;
-                _instrument.Name = _NameTextBox.Text;
                 _instrument.Manufacturer = _ManufacturerComboBox.Text;
                 _instrument.UseClassification = _UseClassificationComboBox.Text;
                 _instrument.Model1 = _ModelTextBox.Text;
@@ -44,25 +46,54 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
                 _instrument.Description = _DescriptionTextBox.Text;
                 _instrument.GPIBAddress = (short) _GPIBNumericUpDown.Value;
                 _instrument.IPAddress = _IpAddressControl.GetAddressBytes();
+                _instrument.PurchasingDate = _PurchasingDatePicker.Value;
                 _instrument.ScpiList = GetScpiList();
                 //下述路径，当按确定键后会被创建。
                 _instrument.PhotosPath = _PhotosPathToolStripStatusLabel.Text;
                 _instrument.FilesPath = _FilesPathToolStripStatusLabel.Text;
+                _instrument.Name = $"{_ManufacturerComboBox.Text}/{_ModelTextBox.Text}/{_SubModelTextBox.Text}".TrimEnd('/');
                 return _instrument;
             }
-            set => _instrument = value;
+            set
+            {
+                _instrument = value;
+                _NumberTextBox.Text = value.Id;
+                _ManufacturerComboBox.Text = value.Manufacturer;
+                _UseClassificationComboBox.Text = value.UseClassification;
+                _ModelTextBox.Text = _instrument.Model1;
+                _SubModelTextBox.Text = _instrument.Model2;
+                _DescriptionTextBox.Text = _instrument.Description;
+                _GPIBNumericUpDown.Value = _instrument.GPIBAddress;
+                _IpAddressControl.SetAddressBytes(_instrument.IPAddress);
+                _PhotosPathToolStripStatusLabel.Text = value.PhotosPath;
+                _FilesPathToolStripStatusLabel.Text = value.FilesPath;
+                _PurchasingDatePicker.Value = value.PurchasingDate;
+                InitializeScpiList(value.ScpiList);
+            }
+        }
+
+        private void InitializeScpiList(List<SCPI> scpiList)
+        {
+            if (scpiList == null)
+                return;
+            foreach (var scpi in scpiList)
+            {
+                var node = new ScpiTreeNode(scpi);
+                _ScpiTreeView.Nodes.Add(node);
+            }
         }
 
         private void InitializeLanguage()
         {
             this.Res(this, _AcceptButton, _CancelButton, _AutoNumberButton, _GetInstrumentScpiTemplateButton);
             this.Res(tabPage1, tabPage2, tabPage3, tabPage4);
-            this.Res(label1, label2, label4, label5, label6, label7, label8, label9, label10, label11);
+            this.Res(label1, label2, label3, label4, label5, label6, label7, label8, label9, label10);
             this.Res(_AddScpiToolStripButton, _DeleteScpiToolStripButton);
             this.Res(_AddPhotoToolStripButton, _DeletePhotoToolStripButton);
             this.Res(_AddFileToolStripButton, _DeleteFileToolStripButton);
+            this.Res(_ScpiInfoGroupBox, _ScpiGroupBox, _ScpiTestButton);
 
-            _AddScpiToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image; 
+            _AddScpiToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _DeleteScpiToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _AddPhotoToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             _DeletePhotoToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -75,6 +106,8 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
             _DeletePhotoToolStripButton.Image = MenuButtonResource.base_delete_24px;
             _AddFileToolStripButton.Image = MenuButtonResource.base_add_24px;
             _DeleteFileToolStripButton.Image = MenuButtonResource.base_delete_24px;
+
+            _PurchasingDatePicker.Value = DateTime.Now;
         }
 
         private void RespondToControlEvent()
@@ -82,6 +115,15 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
             _ManufacturerComboBox.LostFocus += ControlOnLostFocus;
             _ModelTextBox.LostFocus += ControlOnLostFocus;
             _SubModelTextBox.LostFocus += ControlOnLostFocus;
+            _ScpiTestButton.Click += delegate
+            {
+                var testDialog = _dialogProvider.New<ScpiDebugDialog>();
+                testDialog.Height = this.Height;
+                var x = this.Location.X + this.Width;
+                var y = this.Location.Y;
+                testDialog.Location = new Point(x,y);
+                testDialog.Show();
+            };
             _AutoNumberButton.Click += (sender, args) =>
             {
                 var rand = UtilRandom.GetString(1, UtilRandom.RandomCharType.Uppercased);
@@ -213,7 +255,6 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Instruments
                 _DeleteScpiToolStripButton.Enabled = true;
             };
         }
-
 
         private List<SCPI> GetScpiList()
         {

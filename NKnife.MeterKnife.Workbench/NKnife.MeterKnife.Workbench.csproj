@@ -182,6 +182,12 @@
     <Compile Include="Dialogs\Instruments\InstrumentDetailDialog.Designer.cs">
       <DependentUpon>InstrumentDetailDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\Instruments\ScpiDebugDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Instruments\ScpiDebugDialog.Designer.cs">
+      <DependentUpon>ScpiDebugDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Plots\DataSeriesEditorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Instruments\InstrumentDetailDialog.resx">
       <DependentUpon>InstrumentDetailDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Instruments\ScpiDebugDialog.resx">
+      <DependentUpon>ScpiDebugDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Plots\DataSeriesEditorDialog.resx">
       <DependentUpon>DataSeriesEditorDialog.cs</DependentUpon>

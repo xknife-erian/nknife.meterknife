@@ -47,6 +47,16 @@ namespace NKnife.MeterKnife.Common.Base
         Task CreateInstrumentAsync(Instrument inst);
 
         /// <summary>
+        ///     修改一台仪器
+        /// </summary>
+        Task UpdateInstrumentAsync(Instrument inst);
+
+        /// <summary>
+        ///     删除一台仪器
+        /// </summary>
+        Task DeleteInstrumentAsync(Instrument inst);
+
+        /// <summary>
         ///     获取所有的仪器
         /// </summary>
         Task<IEnumerable<Instrument>> GetAllInstrumentAsync();
@@ -92,7 +102,6 @@ namespace NKnife.MeterKnife.Common.Base
         ///     正在测量的工程
         /// </summary>
         ObservableCollection<Engineering> AcquiringEngineerings { get; set; }
-
 
         /// <summary>
         /// 获取指定工程的被测物的测量数据记录数

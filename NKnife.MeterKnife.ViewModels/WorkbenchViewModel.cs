@@ -99,6 +99,22 @@ namespace NKnife.MeterKnife.ViewModels
         }
 
         /// <summary>
+        ///     修改一台仪器
+        /// </summary>
+        public async Task UpdateInstrumentAsync(Instrument inst)
+        {
+            await _instrumentStoragePlatform.UpdateAsync(inst);
+        }
+
+        /// <summary>
+        ///     删除一台仪器
+        /// </summary>
+        public async Task DeleteInstrumentAsync(Instrument inst)
+        {
+            await _instrumentStoragePlatform.RemoveAsync(inst.Id);
+        }
+
+        /// <summary>
         ///     获取所有的仪器
         /// </summary>
         public async Task<IEnumerable<Instrument>> GetAllInstrumentAsync()
