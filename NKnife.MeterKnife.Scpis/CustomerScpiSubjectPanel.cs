@@ -142,13 +142,15 @@ namespace NKnife.MeterKnife.Scpis
             {
                 foreach (var command in _currentScpiSubject.Initializtion)
                 {
-                    AddListItem(PoolCategory.Initializtion, command);
+                    AddListItem(PoolCategory.Initializtion, (ScpiCommand) command);
                 }
+
                 foreach (var command in _currentScpiSubject.Collect)
                 {
-                    AddListItem(PoolCategory.Acquisition, command);
+                    AddListItem(PoolCategory.Acquisition, (ScpiCommand) command);
                 }
             }
+
             _ListView.EndUpdate();
             _ListView.Refresh();
             _ListView.Focus();
@@ -290,12 +292,13 @@ namespace NKnife.MeterKnife.Scpis
                 switch (group.Name)
                 {
                     case "INIT":
-                        _currentScpiSubject.Initializtion.RemoveAt(n);
+                        _currentScpiSubject.Initializtion.Remove((ScpiCommand) item.Tag);
                         break;
                     case "COLLECT":
-                        _currentScpiSubject.Collect.RemoveAt(n);
+                        _currentScpiSubject.Collect.Remove((ScpiCommand) item.Tag);
                         break;
                 }
+
                 IsModified = true;
             }
             else
