@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.MeterKnife.Scpis", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.MeterKnife.Resources", "NKnife.MeterKnife.Resources\NKnife.MeterKnife.Resources.csproj", "{455D8D91-D56F-4FCC-BA84-AF9E5A945214}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Win.Quick", "Win.Quick", "{1612594F-1EB8-4270-BD77-B050A37A4202}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3FFE21D2-DC0A-4BD7-BEFB-B25823FB5058} = {DD44C453-9B81-4258-A5CD-97FB64342613}
+		{16F785C4-1E9A-4432-A041-A2118FD3FD01} = {1612594F-1EB8-4270-BD77-B050A37A4202}
+		{A40CEC09-5E09-4950-860D-62D8F93E248B} = {1612594F-1EB8-4270-BD77-B050A37A4202}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D98A22A-519B-463C-97E1-57C979C9754C}
