@@ -27,7 +27,6 @@
     <ProjectReference Include="..\NKnife.MeterKnife.Logic\NKnife.MeterKnife.Logic.csproj" />
     <ProjectReference Include="..\NKnife.MeterKnife.Storage\NKnife.MeterKnife.Storage.csproj" />
     <ProjectReference Include="..\NKnife.MeterKnife.Util\NKnife.MeterKnife.Util.csproj" />
-    <ProjectReference Include="..\NKnife.MeterKnife.ViewModels\NKnife.MeterKnife.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
