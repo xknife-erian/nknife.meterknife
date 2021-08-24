@@ -1,1 +1,2 @@
-#meterknife
+这是MeterKnife软件构想的Lite版，也可以理解最精简的实现版。
+仅简单实现了利用MeterCare硬件通过GPIB接口进行仪器的基本采集，以及对采集数据的图表展现。
