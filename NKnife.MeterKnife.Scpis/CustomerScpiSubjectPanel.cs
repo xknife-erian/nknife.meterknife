@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Autofac;
 using NKnife.MeterKnife.Common.Scpi;
 
 namespace NKnife.MeterKnife.Scpis

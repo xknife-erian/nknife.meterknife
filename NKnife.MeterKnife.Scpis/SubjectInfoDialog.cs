@@ -6,11 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using NKnife.Win.Forms;
 
 namespace NKnife.MeterKnife.Scpis
 {
-    public partial class SubjectInfoDialog : SimpleForm
+    public partial class SubjectInfoDialog : Form
     {
         public SubjectInfoDialog()
         {

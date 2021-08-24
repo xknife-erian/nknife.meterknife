@@ -10,12 +10,11 @@ using System.Threading;
 using System.Windows.Forms;
 using Autofac;
 using NKnife.MeterKnife.Scpis.Properties;
-using NKnife.Win.Forms;
 using IContainer = Autofac.IContainer;
 
 namespace NKnife.MeterKnife.Scpis
 {
-    public partial class ScpiMangerForm : SimpleForm
+    public partial class ScpiMangerForm : Form
     {
         public ScpiMangerForm()
         {

@@ -3,11 +3,10 @@ using System.IO;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Scpis.ScpiTree;
-using NKnife.Win.Forms;
 
 namespace NKnife.MeterKnife.Scpis
 {
-    public partial class InstrumentScpiGroupTreeDialog : SimpleForm
+    public partial class InstrumentScpiGroupTreeDialog : Form
     {
         private readonly IScpiInfoGetter _scpiInfoGetter;
 
