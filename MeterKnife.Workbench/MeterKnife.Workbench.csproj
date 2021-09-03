@@ -54,6 +54,7 @@
       <HintPath>..\NKnife-DLL\NKnife.NLog3.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -79,27 +80,19 @@
       <DependentUpon>MainWorkbench.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\OwnerAssemblyInfo.cs" />
-    <Compile Include="Views\DataMangerView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Views\DataMangerView.cs" />
     <Compile Include="Views\DataMangerView.Designer.cs">
       <DependentUpon>DataMangerView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\InterfaceTreeView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Views\InterfaceTreeView.cs" />
     <Compile Include="Views\InterfaceTreeView.Designer.cs">
       <DependentUpon>InterfaceTreeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoggerView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Views\LoggerView.cs" />
     <Compile Include="Views\LoggerView.Designer.cs">
       <DependentUpon>LoggerView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\CommandConsoleView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Views\CommandConsoleView.cs" />
     <Compile Include="Views\CommandConsoleView.Designer.cs">
       <DependentUpon>CommandConsoleView.cs</DependentUpon>
     </Compile>
