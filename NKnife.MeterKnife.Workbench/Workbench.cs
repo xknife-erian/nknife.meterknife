@@ -137,6 +137,9 @@ namespace NKnife.MeterKnife.Workbench
                 case nameof(VS2012LightTheme):
                     MainDockPanel.Theme = new VS2012LightTheme();
                     break;
+                case nameof(VS2005Theme):
+                    MainDockPanel.Theme = new VS2005Theme();
+                    break;
                 case nameof(VS2005MultithreadingTheme):
                     MainDockPanel.Theme = new VS2005MultithreadingTheme();
                     break;
