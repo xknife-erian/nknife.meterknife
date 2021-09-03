@@ -2,10 +2,11 @@
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Scpis;
+using NKnife.Win.Forms;
 
 namespace NKnife.MeterKnife.Scpis
 {
-    public partial class InstrumentAndSubjectInfoDialog : Form
+    public partial class InstrumentAndSubjectInfoDialog : SimpleForm
     {
         private readonly ManufacturerMap _manufacturerMap;
         private readonly IScpiInfoGetter _scpiInfoGetter;

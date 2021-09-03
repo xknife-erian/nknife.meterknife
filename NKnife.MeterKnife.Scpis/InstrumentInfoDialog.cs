@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Scpi;
+using NKnife.Win.Forms;
 
 namespace NKnife.MeterKnife.Scpis
 {
-    public partial class InstrumentInfoDialog : Form
+    public partial class InstrumentInfoDialog : SimpleForm
     {
         public InstrumentInfoDialog()
         {

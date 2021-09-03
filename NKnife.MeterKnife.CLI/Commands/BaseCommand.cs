@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using CliFx;
 using CliFx.Attributes;
+using CliFx.Infrastructure;
 
 namespace NKnife.MeterKnife.CLI.Commands
 {

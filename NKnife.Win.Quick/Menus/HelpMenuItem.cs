@@ -140,16 +140,12 @@ namespace NKnife.Win.Quick.Menus
             _themeMenuItems.Add(nameof(VS2005MultithreadingTheme), t2);
             t2.Click += (s, e) => { SetThemeAction(s, new VS2005MultithreadingTheme()); };
 
-            var t3 = new ToolStripMenuItem("优雅");
-            _themeMenuItems.Add(nameof(VS2005Theme), t3);
-            t3.Click += (s, e) => { SetThemeAction(s, new VS2005Theme()); };
-
             var t1 = new ToolStripMenuItem(this.Res("传统"));
             _themeMenuItems.Add(nameof(VS2003Theme), t1);
             t1.Click += (s, e) => { SetThemeAction(s, new VS2003Theme()); };
 
             theme.DropDownItems.AddRange(new ToolStripItem[]
-                {t11, t12, t13, new ToolStripSeparator(), t7, t9, t10, new ToolStripSeparator(), t4, t5, t6, new ToolStripSeparator(), t2, t3, t1});
+                {t11, t12, t13, new ToolStripSeparator(), t7, t9, t10, new ToolStripSeparator(), t4, t5, t6, new ToolStripSeparator(), t2, t1});
             DropDownItems.Add(theme);
         }
 

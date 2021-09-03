@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CliFx;
 using CliFx.Attributes;
+using CliFx.Infrastructure;
 using NKnife.MeterKnife.Util.Serial;
 using NKnife.MeterKnife.Util.Serial.Common;
 using NKnife.Util;

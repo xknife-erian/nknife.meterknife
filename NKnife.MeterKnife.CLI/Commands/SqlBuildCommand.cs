@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using CliFx;
 using CliFx.Attributes;
+using CliFx.Infrastructure;
 using Newtonsoft.Json;
 using NKnife.Db;
 using NKnife.MeterKnife.Common.Domain;
