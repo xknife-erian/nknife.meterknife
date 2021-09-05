@@ -18,17 +18,15 @@ namespace NKnife.Win.QuickDemo
     {
         public DemoForm()
         {
-            GithubUpdateUser = "xknife-erian";
-            GithubUpdateProject = "nknife.serial-protocol-debugger";
             var notifyIcon = new NotifyIcon();
             notifyIcon.Icon = Resources.demo;
             BindNotifyIcon(notifyIcon);
 
-            var file = new FileMenuItem();
+            var file = new FileMenuItem(this);
             file.DropDownItems.Insert(0, new ToolStripSeparator());
             file.DropDownItems.Insert(0, GetItem());
 
-            BindMainMenu(file, new DataMenuItem(), new MeasureMenuItem(), new HelpMenuItem());
+            BindMainMenu(file, new DataMenuItem(), new MeasureMenuItem(), new HelpMenuItem(this));
             BindTrayMenu(GetItem(), GetItem());
         }
 

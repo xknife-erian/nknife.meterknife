@@ -43,9 +43,6 @@
     <Reference Include="CommonServiceLocator, Version=2.0.6.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.6\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
-    <Reference Include="fastJSON, Version=2.4.0.0, Culture=neutral, PublicKeyToken=6b75a806b86095cd, processorArchitecture=MSIL">
-      <HintPath>..\packages\fastJSON.2.4.0.4\lib\net40\fastJSON.dll</HintPath>
-    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -126,29 +123,8 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UpdaterFromGitHub, Version=1.5.0.1211, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.UpdaterFromGitHub.1.5.0.1211\lib\net462\UpdaterFromGitHub.exe</HintPath>
-    </Reference>
     <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
       <HintPath>..\packages\DockPanelSuite.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
-    </Reference>
-    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2003, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.ThemeVS2003.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2003.dll</HintPath>
-    </Reference>
-    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2005, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.ThemeVS2005.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2005.dll</HintPath>
-    </Reference>
-    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.ThemeVS2005Multithreading.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading.dll</HintPath>
-    </Reference>
-    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2012, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.ThemeVS2012.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll</HintPath>
-    </Reference>
-    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2013, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.ThemeVS2013.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll</HintPath>
-    </Reference>
-    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2015, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.ThemeVS2015.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -486,55 +462,6 @@
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_in.png" />
     <Content Include="Properties\Images\PlotOperateStripIcon\PlotOperateStripIcon_zoom_out.png" />
     <Content Include="Properties\Images\ThemeStripIcon\ThemeStripIcon_theme_selection.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Bottom.png" />
-    <Content Include="ThemeVS2005\Resources\Dockindicator_PaneDiamond_Fill.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Left.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Right.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Top.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelBottom.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelBottom_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelFill.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelFill_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelLeft.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelLeft_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelRight.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelRight_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelTop.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelTop_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_AutoHide.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_Close.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_Dock.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_Option.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_OptionOverflow.png" />
-    <Content Include="ThemeVS2012\Resources\Dockindicator_PaneDiamond_Hotspot.png" />
-    <Content Include="ThemeVS2012\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
-    <Content Include="ThemeVS2012\Resources\MaskArrowBottom.png" />
-    <Content Include="ThemeVS2012\Resources\MaskArrowLeft.png" />
-    <Content Include="ThemeVS2012\Resources\MaskArrowRight.png" />
-    <Content Include="ThemeVS2012\Resources\MaskArrowTop.png" />
-    <Content Include="ThemeVS2012\Resources\MaskCoreBottom.png" />
-    <Content Include="ThemeVS2012\Resources\MaskCoreCenter.png" />
-    <Content Include="ThemeVS2012\Resources\MaskCoreLeft.png" />
-    <Content Include="ThemeVS2012\Resources\MaskCoreRight.png" />
-    <Content Include="ThemeVS2012\Resources\MaskCoreTop.png" />
-    <Content Include="ThemeVS2012\Resources\MaskDock.png" />
-    <Content Include="ThemeVS2012\Resources\MaskDockFive.png" />
-    <Content Include="ThemeVS2012\Resources\MaskTabClose.png" />
-    <Content Include="ThemeVS2012\Resources\MaskTabList.png" />
-    <Content Include="ThemeVS2012\Resources\MaskTabOverflow.png" />
-    <Content Include="ThemeVS2012\Resources\MaskToolWindowAutoHide.png" />
-    <Content Include="ThemeVS2012\Resources\MaskToolWindowClose.png" />
-    <Content Include="ThemeVS2012\Resources\MaskToolWindowDock.png" />
-    <Content Include="ThemeVS2012\Resources\MaskToolWindowOption.png" />
-    <Content Include="ThemeVS2012\Resources\MaskWindowBottom.png" />
-    <Content Include="ThemeVS2012\Resources\MaskWindowCenter.png" />
-    <Content Include="ThemeVS2012\Resources\MaskWindowLeft.png" />
-    <Content Include="ThemeVS2012\Resources\MaskWindowRight.png" />
-    <Content Include="ThemeVS2012\Resources\MaskWindowTop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

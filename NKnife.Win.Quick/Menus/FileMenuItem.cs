@@ -8,31 +8,27 @@ namespace NKnife.Win.Quick.Menus
 {
     public sealed class FileMenuItem : ToolStripMenuItem
     {
+        private IWorkbench _workbench;
         private readonly LoggerDockContent _loggerDock = new LoggerDockContent();
         private readonly OptionDialog _optionDialog = new OptionDialog();
 
-        public FileMenuItem()
+        public FileMenuItem(IWorkbench workbench)
         {
+            _workbench = workbench;
             Text = this.Res("文件(&F)");
 
             var loggerMenu = new ToolStripMenuItem(this.Res("日志(&L)"));
             loggerMenu.Click += (s, e) =>
             {
-                var form = Parent.FindForm();
-                if (form != null && form is IWorkbench wb)
-                    _loggerDock.Show(wb.MainDockPanel, DockState.DockBottom);
+                    _loggerDock.Show(_workbench.MainDockPanel, DockState.DockBottom);
             };
             DropDownItems.Add(loggerMenu);
 
             var optionMenu = new ToolStripMenuItem(this.Res("选项(&O)"));
             optionMenu.Click += (s, e) =>
             {
-                var form = Parent.FindForm();
-                if (form != null && form is IWorkbench workbench)
-                {
                     _optionDialog.InitializeOptionPanelList(workbench);
-                    _optionDialog.ShowDialog(form);
-                }
+                    _optionDialog.ShowDialog((Form)workbench);
             };
             DropDownItems.Add(optionMenu);
             DropDownItems.Add(new ToolStripSeparator());
@@ -40,8 +36,7 @@ namespace NKnife.Win.Quick.Menus
             var exit = new ToolStripMenuItem(this.Res("退出(&X)"));
             exit.Click += (e, s) =>
             {
-                var form = this.Parent.FindForm();
-                form?.Close();
+                ((Form)workbench).Close();
             };
             DropDownItems.Add(exit);
         }

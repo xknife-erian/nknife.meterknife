@@ -47,8 +47,6 @@ namespace NKnife.MeterKnife.Workbench
             SetHabitAction = _habitManager.SetHabitValue;
             GetOptionValueFunc = _habitManager.GetOptionValue;
             SetOptionAction = _habitManager.SetOptionValue;
-            GithubUpdateUser = "xknife-erian";
-            GithubUpdateProject = "nknife.serial-protocol-debugger";
 
             InitializeComponent();
 
@@ -83,7 +81,7 @@ namespace NKnife.MeterKnife.Workbench
 
         private FileMenuItem BuildFileMenu()
         {
-            var fileMenuItem = new FileMenuItem();
+            var fileMenuItem = new FileMenuItem(this);
             fileMenuItem.DropDownItems.Insert(0, new ToolStripSeparator());
 
             var newQuickEng = new ToolStripMenuItem(this.Res("新建快速工程..."));
@@ -96,58 +94,58 @@ namespace NKnife.MeterKnife.Workbench
 
         private HelpMenuItem BuildHelpMenu()
         {
-            var menu = new HelpMenuItem();
-            var culture = _habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
-            var themeName = _habitManager.GetHabitValue("MainTheme", nameof(VS2015BlueTheme));
-            menu.SetActiveCulture(culture);
-            menu.SetActiveTheme(themeName);
-            ActiveDockPanelTheme(themeName);
+            var menu = new HelpMenuItem(this);
+            // var culture = _habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
+            // var themeName = _habitManager.GetHabitValue("MainTheme", "VS2015BlueTheme");//nameof(VS2015BlueTheme));
+            // menu.SetActiveCultureAtMenu(culture);
+            // menu.SetActiveThemeAtMenu(themeName);
+            //ActiveDockPanelTheme(themeName);
             return menu;
         }
 
-        private void ActiveDockPanelTheme(string themeName)
-        {
-            switch (themeName)
-            {
-                case nameof(VS2015BlueTheme):
-                default:
-                    MainDockPanel.Theme = new VS2015BlueTheme();
-                    break;
-                case nameof(VS2015DarkTheme):
-                    MainDockPanel.Theme = new VS2015DarkTheme();
-                    break;
-                case nameof(VS2015LightTheme):
-                    MainDockPanel.Theme = new VS2015LightTheme();
-                    break;
-                case nameof(VS2013BlueTheme):
-                    MainDockPanel.Theme = new VS2013BlueTheme();
-                    break;
-                case nameof(VS2013DarkTheme):
-                    MainDockPanel.Theme = new VS2013DarkTheme();
-                    break;
-                case nameof(VS2013LightTheme):
-                    MainDockPanel.Theme = new VS2013LightTheme();
-                    break;
-                case nameof(VS2012BlueTheme):
-                    MainDockPanel.Theme = new VS2012BlueTheme();
-                    break;
-                case nameof(VS2012DarkTheme):
-                    MainDockPanel.Theme = new VS2012DarkTheme();
-                    break;
-                case nameof(VS2012LightTheme):
-                    MainDockPanel.Theme = new VS2012LightTheme();
-                    break;
-                case nameof(VS2005Theme):
-                    MainDockPanel.Theme = new VS2005Theme();
-                    break;
-                case nameof(VS2005MultithreadingTheme):
-                    MainDockPanel.Theme = new VS2005MultithreadingTheme();
-                    break;
-                case nameof(VS2003Theme):
-                    MainDockPanel.Theme = new VS2003Theme();
-                    break;
-            }
-        }
+        // private void ActiveDockPanelTheme(string themeName)
+        // {
+        //     switch (themeName)
+        //     {
+        //         case nameof(VS2015BlueTheme):
+        //         default:
+        //             MainDockPanel.Theme = new VS2015BlueTheme();
+        //             break;
+        //         case nameof(VS2015DarkTheme):
+        //             MainDockPanel.Theme = new VS2015DarkTheme();
+        //             break;
+        //         case nameof(VS2015LightTheme):
+        //             MainDockPanel.Theme = new VS2015LightTheme();
+        //             break;
+        //         case nameof(VS2013BlueTheme):
+        //             MainDockPanel.Theme = new VS2013BlueTheme();
+        //             break;
+        //         case nameof(VS2013DarkTheme):
+        //             MainDockPanel.Theme = new VS2013DarkTheme();
+        //             break;
+        //         case nameof(VS2013LightTheme):
+        //             MainDockPanel.Theme = new VS2013LightTheme();
+        //             break;
+        //         case nameof(VS2012BlueTheme):
+        //             MainDockPanel.Theme = new VS2012BlueTheme();
+        //             break;
+        //         case nameof(VS2012DarkTheme):
+        //             MainDockPanel.Theme = new VS2012DarkTheme();
+        //             break;
+        //         case nameof(VS2012LightTheme):
+        //             MainDockPanel.Theme = new VS2012LightTheme();
+        //             break;
+        //         case nameof(VS2005Theme):
+        //             MainDockPanel.Theme = new VS2005Theme();
+        //             break;
+        //         case nameof(VS2005MultithreadingTheme):
+        //             MainDockPanel.Theme = new VS2005MultithreadingTheme();
+        //             break;
+        //         case nameof(VS2003Theme):
+        //             MainDockPanel.Theme = new VS2003Theme();
+        //             break;
+        //     }
+        // }
 
         private void RespondToViewModel()
         {
