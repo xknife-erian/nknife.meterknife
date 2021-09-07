@@ -1,6 +1,6 @@
-﻿namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
+﻿namespace NKnife.MeterKnife.Workbench.Dialogs.Projects
 {
-    partial class EngineeringDetailDialog
+    partial class ProjectDetailDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EngineeringDetailDialog));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectDetailDialog));
             this._CancelButton = new System.Windows.Forms.Button();
             this._AcceptButton = new System.Windows.Forms.Button();
             this._TabControl = new System.Windows.Forms.TabControl();
@@ -362,7 +362,7 @@
             this._DownCommandStripButton.Size = new System.Drawing.Size(36, 22);
             this._DownCommandStripButton.Text = "下移";
             // 
-            // EngineeringDetailDialog
+            // ProjectDetailDialog
             // 
             this.AcceptButton = this._AcceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -375,7 +375,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "EngineeringDetailDialog";
+            this.Name = "ProjectDetailDialog";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "工程详细信息";

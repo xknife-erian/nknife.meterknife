@@ -65,7 +65,7 @@ namespace NKnife.MeterKnife.Workbench.Views
             }
         }
 
-        public void SetEngineering(Engineering eng)
+        public void SetEngineering(Project eng)
         {
             _viewModel.SetEngineering(eng);
             Text = eng.Name;

@@ -15,12 +15,12 @@ namespace NKnife.MeterKnife.CLI.Commands
     [Command("d", Description = "模拟数据存储")]
     public class DataCommand : BaseCommand
     {
-        private readonly IEngineeringLogic _engineeringLogic;
+        private readonly IProjectLogic _projectLogic;
         private readonly IMeasuringLogic _measuringLogic;
 
-        public DataCommand(IEngineeringLogic engineeringLogic, IMeasuringLogic measuringLogic)
+        public DataCommand(IProjectLogic projectLogic, IMeasuringLogic measuringLogic)
         {
-            _engineeringLogic = engineeringLogic;
+            _projectLogic = projectLogic;
             _measuringLogic = measuringLogic;
         }
 
@@ -35,7 +35,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             var dut1 = new DUT {Name = "100K电阻"};
             var dut2 = new DUT {Name = "10K电阻"};
             var dut3 = new DUT {Name = "1K电阻"};
-            var engineering = new Engineering();
+            var engineering = new Project();
             var pool = new ScpiCommandPool();
             pool.AddRange(new[]
             {
@@ -45,7 +45,7 @@ namespace NKnife.MeterKnife.CLI.Commands
             });
             engineering.CommandPools.Add(pool);
             //创建一个工程
-            await _engineeringLogic.CreateEngineeringAsync(engineering);
+            await _projectLogic.CreateProjectAsync(engineering);
             //模拟处理一些数据
             for (int i = 0; i < 3 * 10000; i++)
             {

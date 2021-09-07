@@ -128,6 +128,9 @@
       <DependentUpon>QuickForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UpdateHelper.cs" />
+    <EmbeddedResource Include="Controls\SingletonDockContent.resx">
+      <DependentUpon>SingletonDockContent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoggerDockContent.resx">
       <DependentUpon>LoggerDockContent.cs</DependentUpon>
     </EmbeddedResource>

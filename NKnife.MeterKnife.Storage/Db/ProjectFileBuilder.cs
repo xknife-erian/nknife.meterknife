@@ -12,25 +12,25 @@ using NKnife.Util;
 
 namespace NKnife.MeterKnife.Storage.Db
 {
-    public class EngineeringFileBuilder
+    public class ProjectFileBuilder
     {
         private readonly IHabitManager _habitManager;
         private readonly IPathManager _pathManager;
 
-        public EngineeringFileBuilder(IHabitManager habitManager, IPathManager pathManager)
+        public ProjectFileBuilder(IHabitManager habitManager, IPathManager pathManager)
         {
             _habitManager = habitManager;
             _pathManager = pathManager;
         }
 
-        public void CreateEngineeringSqliteFile(IStorageManager storageManager, Engineering engineering)
+        public void CreateEngineeringSqliteFile(IStorageManager storageManager, Project project)
         {
-            var fileFullName = GetEngineeringSqliteFileName(engineering);
+            var fileFullName = GetEngineeringSqliteFileName(project);
             var dir = Path.GetDirectoryName(fileFullName);
             UtilFile.CreateDirectory(dir);
-            using (var command = storageManager.OpenConnection(engineering).CreateCommand())
+            using (var command = storageManager.OpenConnection(project).CreateCommand())
             {
-                DbUtil.CheckTable(command, storageManager.CurrentDbType, GetTablesSqlMap(storageManager.CurrentDbType, engineering));
+                DbUtil.CheckTable(command, storageManager.CurrentDbType, GetTablesSqlMap(storageManager.CurrentDbType, project));
             }
         }
 
@@ -38,13 +38,13 @@ namespace NKnife.MeterKnife.Storage.Db
         /// 获取指定工程的建表SQL语句
         /// </summary>
         /// <param name="dbType">数据库类型</param>
-        /// <param name="engineering">指定工程</param>
+        /// <param name="project">指定工程</param>
         /// <returns>SQL语句的字典，Key是表名，Value是建表的语句</returns>
-        private Dictionary<string, string> GetTablesSqlMap(DatabaseType dbType, Engineering engineering)
+        private Dictionary<string, string> GetTablesSqlMap(DatabaseType dbType, Project project)
         {
             var map = new Dictionary<string, string>();
             var dutList = new List<DUT>();
-            foreach (var pool in engineering.CommandPools)
+            foreach (var pool in project.CommandPools)
             {
                 foreach (ScpiCommand command in pool)
                 {
@@ -56,19 +56,19 @@ namespace NKnife.MeterKnife.Storage.Db
                     }
                 }
             }
-            map.Add(nameof(Engineering), SqlHelper.GetCreateTableSql(dbType, typeof(Engineering)));
+            map.Add(nameof(Project), SqlHelper.GetCreateTableSql(dbType, typeof(Project)));
             return map;
         }
 
-        private string GetEngineeringSqliteFileName(Engineering engineering)
+        private string GetEngineeringSqliteFileName(Project project)
         {
-            var t = engineering.CreateTime;
+            var t = project.CreateTime;
             var fileFullName = $"E-{t:yyMMdd-HHmmss}.mks";
             var path = _habitManager.GetOptionValue(HabitKey.Data_MetricalData_Path, _pathManager.UserDocumentsPath);
             if (!Directory.Exists(path))
                 UtilFile.CreateDirectory(path);
             fileFullName = Path.Combine(path, $"{t:yyyyMM}{Path.DirectorySeparatorChar}", fileFullName);
-            engineering.Path = fileFullName;
+            project.Path = fileFullName;
             return fileFullName;
         }
 

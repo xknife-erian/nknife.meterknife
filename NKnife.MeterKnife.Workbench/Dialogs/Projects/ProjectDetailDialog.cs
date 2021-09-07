@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.MeterKnife.Common.Base;
 using NKnife.MeterKnife.Common.Domain;
@@ -14,18 +7,18 @@ using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Dialogs.Commands;
 using NKnife.Util;
 
-namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
+namespace NKnife.MeterKnife.Workbench.Dialogs.Projects
 {
-    public partial class EngineeringDetailDialog : Form
+    public partial class ProjectDetailDialog : Form
     {
         private readonly IWorkbenchViewModel _viewModel;
         private readonly IDialogProvider _dialogProvider;
         private ListViewGroup _initializeGroup;
         private ListViewGroup _acquisitionGroup;
         private ListViewGroup _finishGroup;
-        private Engineering _engineering;
+        private Project _project;
 
-        public EngineeringDetailDialog(IDialogProvider dialogProvider, IWorkbenchViewModel viewModel)
+        public ProjectDetailDialog(IDialogProvider dialogProvider, IWorkbenchViewModel viewModel)
         {
             _dialogProvider = dialogProvider;
             _viewModel = viewModel;
@@ -34,12 +27,12 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
             RespondToButtonClick();
         }
 
-        public Engineering Engineering
+        public Project Project
         {
-            get => _engineering;
+            get => _project;
             set
             {
-                _engineering = value;
+                _project = value;
                 _EngNumberTextBox.Text = value.Id;
                 _EngNameTextBox.Text = value.Name;
                 _EngDescriptionTextBox.Text = value.Description;
@@ -90,7 +83,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 return;
             }
 
-            Engineering = new Engineering {Id = _EngNumberTextBox.Text, Name = _EngNameTextBox.Text, Description = _EngDescriptionTextBox.Text, CreateTime = DateTime.Now};
+            Project = new Project {Id = _EngNumberTextBox.Text, Name = _EngNameTextBox.Text, Description = _EngDescriptionTextBox.Text, CreateTime = DateTime.Now};
 
             var pool = new ScpiCommandPool();
             pool.Category = PoolCategory.Initializtion;
@@ -100,7 +93,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 pool.Add(cmd);
             }
             if (pool.Count > 0) 
-                Engineering.CommandPools.Add(pool);
+                Project.CommandPools.Add(pool);
 
             pool = new ScpiCommandPool();
             pool.Category = PoolCategory.Acquisition;
@@ -110,7 +103,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 pool.Add(cmd);
             }
             if (pool.Count > 0) 
-                Engineering.CommandPools.Add(pool);
+                Project.CommandPools.Add(pool);
 
             pool = new ScpiCommandPool();
             pool.Category = PoolCategory.Finished;
@@ -120,7 +113,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 pool.Add(cmd);
             }
             if (pool.Count > 0)
-                Engineering.CommandPools.Add(pool);
+                Project.CommandPools.Add(pool);
 
             DialogResult = DialogResult.OK;
             Close();
@@ -136,7 +129,7 @@ namespace NKnife.MeterKnife.Workbench.Dialogs.Engineerings
                 return false;
             }
 
-            if (_viewModel.ExistEngineering(_EngNumberTextBox.Text))
+            if (_viewModel.ExistProject(_EngNumberTextBox.Text))
             {
                 msg = this.Res("工程编号已存在，请重新编号。");
                 return false;

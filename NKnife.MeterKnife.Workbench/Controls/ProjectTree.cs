@@ -13,11 +13,11 @@ using NKnife.MeterKnife.Workbench.Properties;
 
 namespace NKnife.MeterKnife.Workbench.Controls
 {
-    public class EngineeringTree : TreeView
+    public class ProjectTree : TreeView
     {
         private readonly ImageList _imageList = new ImageList();
 
-        public EngineeringTree()
+        public ProjectTree()
         {
             FullRowSelect = true;
             InitializeImageList();
@@ -25,8 +25,8 @@ namespace NKnife.MeterKnife.Workbench.Controls
 
         private void InitializeImageList()
         {
-            _imageList.Images.Add(nameof(EngineeringCreateTimeTreeNode), TreeNodeResource.eng_node_date);
-            _imageList.Images.Add(nameof(EngineeringTreeNode), TreeNodeResource.eng_node_eng);
+            _imageList.Images.Add(nameof(ProjectCreateTimeTreeNode), TreeNodeResource.eng_node_date);
+            _imageList.Images.Add(nameof(ProjectTreeNode), TreeNodeResource.eng_node_eng);
             _imageList.Images.Add(nameof(DUTTreeNode), TreeNodeResource.eng_node_dut1);
             _imageList.Images.Add(TreeNodeResource.eng_node_dut2);
             _imageList.Images.Add(TreeNodeResource.eng_node_dut3);
@@ -53,13 +53,13 @@ namespace NKnife.MeterKnife.Workbench.Controls
         #endregion
     }
 
-    public class EngineeringTreeNode : TreeNode
+    public class ProjectTreeNode : TreeNode
     {
-        public EngineeringTreeNode(Engineering engineering)
-            : this(engineering.Name)
+        public ProjectTreeNode(Project project)
+            : this(project.Name)
         {
-            Engineering = engineering;
-            foreach (var pool in engineering.CommandPools)
+            Project = project;
+            foreach (var pool in project.CommandPools)
             {
                 foreach (ScpiCommand command in pool)
                 {
@@ -72,29 +72,29 @@ namespace NKnife.MeterKnife.Workbench.Controls
             }
         }
 
-        public EngineeringTreeNode(string text) 
+        public ProjectTreeNode(string text) 
             : base(text)
         {
-            this.ImageKey = nameof(EngineeringTreeNode);
-            this.SelectedImageKey = nameof(EngineeringTreeNode);
+            this.ImageKey = nameof(ProjectTreeNode);
+            this.SelectedImageKey = nameof(ProjectTreeNode);
         }
 
-        public Engineering Engineering { get; set; }
+        public Project Project { get; set; }
     }
 
-    public class EngineeringCreateTimeTreeNode : TreeNode
+    public class ProjectCreateTimeTreeNode : TreeNode
     {
-        public EngineeringCreateTimeTreeNode(DateTime createTime)
+        public ProjectCreateTimeTreeNode(DateTime createTime)
             : this(createTime.ToString("yyyy-MM"))
         {
             CreateTime = createTime;
         }
 
-        public EngineeringCreateTimeTreeNode(string text) 
+        public ProjectCreateTimeTreeNode(string text) 
             : base(text)
         {
-            this.ImageKey = nameof(EngineeringCreateTimeTreeNode);
-            this.SelectedImageKey = nameof(EngineeringCreateTimeTreeNode);
+            this.ImageKey = nameof(ProjectCreateTimeTreeNode);
+            this.SelectedImageKey = nameof(ProjectCreateTimeTreeNode);
         }
 
         public DateTime CreateTime { get; set; }

@@ -37,7 +37,7 @@ namespace NKnife.MeterKnife.Workbench
         private readonly Dictionary<string, StaticDataPlotView> _staticDataPlotViewMap = new Dictionary<string, StaticDataPlotView>();
 
         public Workbench(WorkbenchViewModel viewModel, IHabitManager habitManager,
-            DataMenuItem dataMenu, MeasureMenuItem measureMenu, EngineeringView engineeringView,
+            DataMenuItem dataMenu, MeasureMenuItem measureMenu, ProjectView projectView,
             DebuggerManager debuggerManager)
         {
             _viewModel = viewModel;
@@ -76,7 +76,7 @@ namespace NKnife.MeterKnife.Workbench
             MainDockPanel.DockBottomPortion = 170;
 
             RespondToViewModel();
-            Shown += delegate { engineeringView.Show(MainDockPanel, DockState.DockRight); };
+            Shown += delegate { projectView.Show(MainDockPanel, DockState.DockRight); };
         }
 
         private FileMenuItem BuildFileMenu()
@@ -150,9 +150,9 @@ namespace NKnife.MeterKnife.Workbench
         private void RespondToViewModel()
         {
             //打开已采集数据的窗口
-            _viewModel.OpenedEngineerings.CollectionChanged += (sender, args) =>
+            _viewModel.OpenedProjects.CollectionChanged += (sender, args) =>
             {
-                var eng = _viewModel.OpenedEngineerings[args.NewStartingIndex];
+                var eng = _viewModel.OpenedProjects[args.NewStartingIndex];
                 //每个工程只打开一个窗口
                 if (!_staticDataPlotViewMap.TryGetValue(eng.Id, out var view) || view.IsDisposed)
                 {
@@ -165,9 +165,9 @@ namespace NKnife.MeterKnife.Workbench
                 view.Show(MainDockPanel, DockState.Document);
             };
             //打开正在采集数据工作中的窗口
-            _viewModel.AcquiringEngineerings.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs args)
+            _viewModel.AcquiringProjects.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs args)
             {
-                var eng = _viewModel.AcquiringEngineerings[args.NewStartingIndex];
+                var eng = _viewModel.AcquiringProjects[args.NewStartingIndex];
                 var view = Kernel.Container.Resolve<RealTimeDataPlotView>();
                 var sol = DUTSeriesStyleSolution.GetSolution(eng.CommandPools.ToArray());
                 view.SetSolution(sol);

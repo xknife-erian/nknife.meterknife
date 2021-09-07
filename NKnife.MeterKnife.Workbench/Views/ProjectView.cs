@@ -12,7 +12,7 @@ using NKnife.MeterKnife.Common.Scpi;
 using NKnife.MeterKnife.Resources;
 using NKnife.MeterKnife.Workbench.Base;
 using NKnife.MeterKnife.Workbench.Controls;
-using NKnife.MeterKnife.Workbench.Dialogs.Engineerings;
+using NKnife.MeterKnife.Workbench.Dialogs.Projects;
 using NKnife.Win.Quick.Controls;
 
 namespace NKnife.MeterKnife.Workbench.Views
@@ -20,13 +20,13 @@ namespace NKnife.MeterKnife.Workbench.Views
     /// <summary>
     /// 工程管理窗体
     /// </summary>
-    public sealed partial class EngineeringView : SingletonDockContent
+    public sealed partial class ProjectView : SingletonDockContent
     {
         private readonly IDialogProvider _dialogProvider;
         private readonly IWorkbenchViewModel _viewModel;
         private readonly ContextMenuStrip _contextMenu = new ContextMenuStrip();
 
-        public EngineeringView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider)
+        public ProjectView(IWorkbenchViewModel viewModel, IDialogProvider dialogProvider)
         {
             _viewModel = viewModel;
             _dialogProvider = dialogProvider;
@@ -44,9 +44,12 @@ namespace NKnife.MeterKnife.Workbench.Views
 
         private void InitializeContextMenu()
         {
-            _viewModel.EngineeringStateList.CollectionChanged += delegate(object o, NotifyCollectionChangedEventArgs e) { };
+            _viewModel.ProjectStateList.CollectionChanged += delegate(object o, NotifyCollectionChangedEventArgs e) { };
             var startMenu = new ToolStripMenuItem(this.Res("开始测量"));
-            startMenu.Click += async delegate { await _viewModel.StartAcquireAsync(); };
+            startMenu.Click += async delegate
+            {
+                await _viewModel.StartAcquireAsync();
+            };
             var pauseMenu = new ToolStripMenuItem(this.Res("暂停测量"));
             pauseMenu.Click += delegate
             {
@@ -61,8 +64,8 @@ namespace NKnife.MeterKnife.Workbench.Views
             _contextMenu.Items.AddRange(new ToolStripItem[] {startMenu, pauseMenu, stopMenu});
             _contextMenu.Opening += delegate(object sender, CancelEventArgs args)
             {
-                var eng = _viewModel.CurrentActiveEngineering;
-                EngineeringState engState = _viewModel.EngineeringStateList.FirstOrDefault(state => eng.Id.Equals(state.EngineeringId));
+                var eng = _viewModel.CurrentActiveProject;
+                ProjectState engState = _viewModel.ProjectStateList.FirstOrDefault(state => eng.Id.Equals(state.ProjectId));
                 if (engState == null)
                 {
                     startMenu.Enabled = true;
@@ -74,21 +77,21 @@ namespace NKnife.MeterKnife.Workbench.Views
                 }
                 switch (engState.EngState)
                 {
-                    case EngineeringState.State.Stop:
+                    case ProjectState.State.Stop:
                         startMenu.Enabled = true;
                         pauseMenu.Enabled = false;
                         pauseMenu.Tag = false;
                         pauseMenu.Text = this.Res("暂停测量");
                         stopMenu.Enabled = false;
                         break;
-                    case EngineeringState.State.Pause:
+                    case ProjectState.State.Pause:
                         startMenu.Enabled = false;
                         pauseMenu.Enabled = true;
                         pauseMenu.Tag = true;
                         pauseMenu.Text = this.Res("恢复测量");
                         stopMenu.Enabled = false;
                         break;
-                    case EngineeringState.State.Start:
+                    case ProjectState.State.Start:
                         startMenu.Enabled = false;
                         pauseMenu.Enabled = true;
                         pauseMenu.Tag = false;
@@ -118,9 +121,9 @@ namespace NKnife.MeterKnife.Workbench.Views
             {
                 TreeNode node = _TreeView.GetNodeAt(e.X, e.Y);
                 if (node != null) _TreeView.SelectedNode = node;
-                if (node is EngineeringTreeNode engNode)
+                if (node is ProjectTreeNode engNode)
                 {
-                    _viewModel.CurrentSelectedEngineering = engNode.Engineering;
+                    _viewModel.CurrentSelectedProject = engNode.Project;
                     _contextMenu.Show(_TreeView, e.X, e.Y);
                 }
             }
@@ -130,26 +133,26 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             _CreateEngStripButton.Click += async (sender, args) =>
             {
-                var dialog = _dialogProvider.New<EngineeringDetailDialog>();
+                var dialog = _dialogProvider.New<ProjectDetailDialog>();
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    var eng = dialog.Engineering;
-                    await _viewModel.CreateEngineeringAsync(eng);
+                    var eng = dialog.Project;
+                    await _viewModel.CreateProjectAsync(eng);
                     var simpleDate = new DateTime(eng.CreateTime.Year, eng.CreateTime.Month, 1, 0, 0, 0);
                     TreeNode dateNode;
-                    EngineeringCreateTimeTreeNode srcNode = null;
-                    if (_TreeView.Nodes.Count > 0) srcNode = (EngineeringCreateTimeTreeNode) _TreeView.Nodes[0];
+                    ProjectCreateTimeTreeNode srcNode = null;
+                    if (_TreeView.Nodes.Count > 0) srcNode = (ProjectCreateTimeTreeNode) _TreeView.Nodes[0];
                     if (srcNode != null && srcNode.CreateTime.Equals(simpleDate))
                     {
                         dateNode = srcNode;
                     }
                     else
                     {
-                        dateNode = new EngineeringCreateTimeTreeNode(simpleDate);
+                        dateNode = new ProjectCreateTimeTreeNode(simpleDate);
                         _TreeView.Nodes.Insert(0, dateNode);
                     }
 
-                    var engNode = new EngineeringTreeNode(eng);
+                    var engNode = new ProjectTreeNode(eng);
                     dateNode.Nodes.Add(engNode);
                     engNode.Expand();
                     engNode.EnsureVisible();
@@ -158,22 +161,22 @@ namespace NKnife.MeterKnife.Workbench.Views
             };
             _EditToolStripButton.Click += async delegate
             {
-                if (_TreeView.SelectedNode is EngineeringTreeNode editNode)
+                if (_TreeView.SelectedNode is ProjectTreeNode editNode)
                 {
-                    var eng = editNode.Engineering;
-                    var dialog = _dialogProvider.New<EngineeringDetailDialog>();
-                    dialog.Engineering = eng;
+                    var eng = editNode.Project;
+                    var dialog = _dialogProvider.New<ProjectDetailDialog>();
+                    dialog.Project = eng;
                     if (dialog.ShowDialog(this) == DialogResult.OK)
                     {
-                        await _viewModel.UpdateEngineeringAsync(eng);
+                        await _viewModel.UpdateProjectAsync(eng);
                     }
                 }
             };
             _DeleteStripButton.Click += async (sender, args) =>
             {
-                if (_TreeView.SelectedNode is EngineeringTreeNode deleteNode)
+                if (_TreeView.SelectedNode is ProjectTreeNode deleteNode)
                 {
-                    var eng = deleteNode.Engineering;
+                    var eng = deleteNode.Project;
                     var info = new StringBuilder();
                     info.AppendLine(this.Res("是否删除?"));
                     info.Append(this.Res("工程名:")).AppendLine(eng.Name);
@@ -186,7 +189,7 @@ namespace NKnife.MeterKnife.Workbench.Views
                     var mb = MessageBox.Show($"{info}", this.Res("删除确认"), MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
                     if (mb == DialogResult.Yes)
                     {
-                        await _viewModel.DeleteEngineeringAsync(eng);
+                        await _viewModel.DeleteProjectAsync(eng);
                         _TreeView.Nodes.Remove(deleteNode);
                     }
                 }
@@ -198,11 +201,11 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             _TreeView.AfterSelect += (sender, args) =>
             {
-                if (args.Node is EngineeringTreeNode engNode)
+                if (args.Node is ProjectTreeNode engNode)
                 {
                     //当工程节点被点击后，设置全局的当前工程为该工程
-                    _viewModel.CurrentActiveEngineering = engNode.Engineering;
-                    var evm = new EngineeringVm(engNode.Engineering);
+                    _viewModel.CurrentActiveProject = engNode.Project;
+                    var evm = new EngineeringVm(engNode.Project);
                     _PropertyGrid.SelectedObject = evm;
                 }
                 else if (args.Node is DUTTreeNode dutNode)
@@ -214,10 +217,10 @@ namespace NKnife.MeterKnife.Workbench.Views
             };
             _TreeView.MouseDoubleClick += (sender, args) =>
             {
-                var node = _TreeView.SelectedNode as EngineeringTreeNode;
+                var node = _TreeView.SelectedNode as ProjectTreeNode;
                 if (node == null)
                     return;
-                _viewModel.OpenedEngineerings.Add(node.Engineering);
+                _viewModel.OpenedProjects.Add(node.Project);
             };
         }
 
@@ -225,15 +228,15 @@ namespace NKnife.MeterKnife.Workbench.Views
         {
             _TreeView.BeginUpdate();
             _TreeView.Nodes.Clear();
-            var engList = await _viewModel.GetEngineeringAndDateMapAsync();
+            var engList = await _viewModel.GetProjectAndDateMapAsync();
             foreach (var pair in engList)
             {
                 var date = pair.Key;
-                var dateNode = new EngineeringCreateTimeTreeNode(date.ToString("yyyy-MM")) {CreateTime = date};
+                var dateNode = new ProjectCreateTimeTreeNode(date.ToString("yyyy-MM")) {CreateTime = date};
                 _TreeView.Nodes.Add(dateNode);
                 foreach (var engineering in pair.Value)
                 {
-                    var engNode = new EngineeringTreeNode(engineering);
+                    var engNode = new ProjectTreeNode(engineering);
                     dateNode.Nodes.Add(engNode);
                 }
             }
@@ -252,7 +255,7 @@ namespace NKnife.MeterKnife.Workbench.Views
 
         private void UpdateControlState()
         {
-            if (_TreeView.SelectedNode is EngineeringTreeNode)
+            if (_TreeView.SelectedNode is ProjectTreeNode)
             {
                 _DeleteStripButton.Enabled = true;
                 _EditToolStripButton.Enabled = true;
@@ -338,15 +341,15 @@ namespace NKnife.MeterKnife.Workbench.Views
 
         private class EngineeringVm
         {
-            public EngineeringVm(Engineering engineering)
+            public EngineeringVm(Project project)
             {
-                Number = engineering.Id;
-                Name = engineering.Name;
-                CreateTime = engineering.CreateTime;
-                Description = engineering.Description;
-                Path = engineering.Path;
+                Number = project.Id;
+                Name = project.Name;
+                CreateTime = project.CreateTime;
+                Description = project.Description;
+                Path = project.Path;
                 var ds = new List<DUT>();
-                foreach (var pool in engineering.CommandPools)
+                foreach (var pool in project.CommandPools)
                 foreach (ScpiCommand command in pool)
                     ds.Add(command.DUT);
                 Duts = ds.ToArray();

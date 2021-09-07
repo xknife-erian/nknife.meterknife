@@ -8,15 +8,15 @@ namespace NKnife.MeterKnife.Workbench.Menus
 {
     public sealed class DataMenuItem : ToolStripMenuItem
     {
-        private readonly EngineeringView _engineeringView;
+        private readonly ProjectView _projectView;
         private readonly InstrumentView _instrumentView;
         private readonly SlotView _slotView;
         private readonly DUTView _dutView;
 
-        public DataMenuItem(SlotView slotView, EngineeringView engineeringView, InstrumentView instrumentView, DUTView dutView)
+        public DataMenuItem(SlotView slotView, ProjectView projectView, InstrumentView instrumentView, DUTView dutView)
         {
             _slotView = slotView;
-            _engineeringView = engineeringView;
+            _projectView = projectView;
             _instrumentView = instrumentView;
             _dutView = dutView;
             Text = this.Res("数据(&D)");
@@ -77,10 +77,10 @@ namespace NKnife.MeterKnife.Workbench.Menus
             {
                 IWorkbench wb = this.GetWorkbench();
                 if (wb == null) return;
-                if (engManagerMenu.Checked)
-                    _engineeringView.Close();
+                if (!engManagerMenu.Checked)
+                    _projectView.Show(wb.MainDockPanel, DockState.DockRight);
                 else
-                    _engineeringView.Show(wb.MainDockPanel, DockState.DockRight);
+                    _projectView.Close();
                 engManagerMenu.Checked = !engManagerMenu.Checked;
             };
             return engManagerMenu;

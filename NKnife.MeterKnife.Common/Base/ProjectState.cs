@@ -4,16 +4,16 @@ using NKnife.Events;
 // ReSharper disable once CheckNamespace
 namespace NKnife.MeterKnife.Base
 {
-    public class EngineeringState
+    public class ProjectState
     {
         private State _engState  = State.Start;
 
-        public EngineeringState(string engineeringId)
+        public ProjectState(string projectId)
         {
-            EngineeringId = engineeringId;
+            ProjectId = projectId;
         }
 
-        public string EngineeringId { get; set; }
+        public string ProjectId { get; set; }
 
         public State EngState
         {

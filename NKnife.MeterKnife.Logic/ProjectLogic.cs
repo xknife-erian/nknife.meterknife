@@ -12,55 +12,55 @@ using NKnife.MeterKnife.Storage.Base;
 
 namespace NKnife.MeterKnife.Logic
 {
-    public class EngineeringLogic : IEngineeringLogic
+    public class ProjectLogic : IProjectLogic
     {
         private readonly IStorageManager _storageManager;
-        private readonly IStorageDUTWrite<Engineering> _engineeringStorageDUTWrite;
+        private readonly IStorageDUTWrite<Project> _projectStorageDUTWrite;
         private readonly IStorageDUTRead<MeasureData> _measureDataRead;
-        private readonly IStoragePlatform<Engineering> _engineeringStoragePlatform;
+        private readonly IStoragePlatform<Project> _projectStoragePlatform;
         private readonly IMeasuringLogic _performLogic;
 
-        public EngineeringLogic(IStorageManager storageManager, IStoragePlatform<Engineering> engineeringStoragePlatform, IStorageDUTWrite<Engineering> engineeringStorageDUTWrite,
+        public ProjectLogic(IStorageManager storageManager, IStoragePlatform<Project> projectStoragePlatform, IStorageDUTWrite<Project> projectStorageDUTWrite,
             IMeasuringLogic performLogic, IStorageDUTRead<MeasureData> measureDataRead)
         {
             _storageManager = storageManager;
-            _engineeringStoragePlatform = engineeringStoragePlatform;
-            _engineeringStorageDUTWrite = engineeringStorageDUTWrite;
+            _projectStoragePlatform = projectStoragePlatform;
+            _projectStorageDUTWrite = projectStorageDUTWrite;
             _performLogic = performLogic;
             _measureDataRead = measureDataRead;
         }
 
-        #region Implementation of IEngineeringLogic
+        #region Implementation of IProjectLogic
 
         /// <summary>
         /// 新建一个测量工程
         /// </summary>
         /// <returns>是否创建成功</returns>
-        public async Task<bool> CreateEngineeringAsync(Engineering engineering)
+        public async Task<bool> CreateProjectAsync(Project project)
         {
             //创建工程的数据库或者文件
-            BuildEngineeringStore(engineering);
+            BuildEngineeringStore(project);
             //将工程的相关信息存入到工程库
-            await _engineeringStorageDUTWrite.InsertAsync(engineering);
-            _performLogic.SetDUTMap(engineering.CommandPools, engineering);
+            await _projectStorageDUTWrite.InsertAsync(project);
+            _performLogic.SetDUTMap(project.CommandPools, project);
             //同时也在平台库中存储一份
-            return await _engineeringStoragePlatform.InsertAsync(engineering);
+            return await _projectStoragePlatform.InsertAsync(project);
         }
 
         /// <summary>
         ///     修改一个测量工程
         /// </summary>
-        public async Task UpdateEngineeringAsync(Engineering engineering)
+        public async Task UpdateProjectAsync(Project project)
         {
-            await _engineeringStoragePlatform.UpdateAsync(engineering);
-            await _engineeringStorageDUTWrite.UpdateAsync(engineering);
+            await _projectStoragePlatform.UpdateAsync(project);
+            await _projectStorageDUTWrite.UpdateAsync(project);
         }
 
         /// <summary>
         ///     获取指定被测物的测量数据
         /// </summary>
         /// <param name="dut">指定被测物</param>
-        public async Task<IEnumerable<MeasureData>> GetDUTDataAsync((Engineering, DUT) dut)
+        public async Task<IEnumerable<MeasureData>> GetDUTDataAsync((Project, DUT) dut)
         {
             return await _measureDataRead.FindAllAsync(dut);
         }
@@ -69,20 +69,20 @@ namespace NKnife.MeterKnife.Logic
         ///     删除一个指定的工程
         /// </summary>
         /// <param name="eng">指定的工程</param>
-        public async Task RemoveEnginneringAsync(Engineering eng)
+        public async Task RemoveProjectAsync(Project eng)
         {
-            await _engineeringStoragePlatform.RemoveAsync(eng.Id);
+            await _projectStoragePlatform.RemoveAsync(eng.Id);
         }
 
         /// <summary>
         /// 创建工程的数据库或者文件
         /// </summary>
-        private void BuildEngineeringStore(Engineering engineering)
+        private void BuildEngineeringStore(Project project)
         {
-            if (string.IsNullOrEmpty(engineering.Name))
+            if (string.IsNullOrEmpty(project.Name))
             {
                 var sb = new StringBuilder();
-                foreach (var pool in engineering.CommandPools)
+                foreach (var pool in project.CommandPools)
                 {
                     foreach (ScpiCommand command in pool)
                     {
@@ -90,10 +90,10 @@ namespace NKnife.MeterKnife.Logic
                     }
                 }
 
-                engineering.Name = sb.ToString().TrimEnd('/');
+                project.Name = sb.ToString().TrimEnd('/');
             }
 
-            _storageManager.CreateEngineering(engineering);
+            _storageManager.CreateEngineering(project);
         }
 
         #endregion

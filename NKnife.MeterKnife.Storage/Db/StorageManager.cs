@@ -30,7 +30,7 @@ namespace NKnife.MeterKnife.Storage.Db
         private readonly Dictionary<string, IDbConnection> _engineeringSqliteConnMap = new Dictionary<string, IDbConnection>();
         private readonly IDbConnection _dutMysqlConn = null;
         private readonly IDbConnection _platformConn = null;
-        private readonly EngineeringFileBuilder _engineeringFileBuilder;
+        private readonly ProjectFileBuilder _projectFileBuilder;
         private readonly StorageSetting _setting;
         private readonly IHabitManager _habitManager;
         private readonly IPathManager _pathManager;
@@ -39,9 +39,9 @@ namespace NKnife.MeterKnife.Storage.Db
         /// </summary>
         private bool _isFirst = true;
 
-        public StorageManager(IOptions<StorageSetting> setting, EngineeringFileBuilder engineeringFileBuilder, IHabitManager habitManager, IPathManager pathManager)
+        public StorageManager(IOptions<StorageSetting> setting, ProjectFileBuilder projectFileBuilder, IHabitManager habitManager, IPathManager pathManager)
         {
-            _engineeringFileBuilder = engineeringFileBuilder;
+            _projectFileBuilder = projectFileBuilder;
             _habitManager = habitManager;
             _pathManager = pathManager;
             _setting = setting.Value;
@@ -73,9 +73,9 @@ namespace NKnife.MeterKnife.Storage.Db
         /// <summary>
         ///     打开指定的工程数据库连接，并返回该连接
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>数据库连接</returns>
-        public IDbConnection OpenConnection(Engineering engineering)
+        public IDbConnection OpenConnection(Project project)
         {
             IDbConnection conn;
             switch (CurrentDbType)
@@ -87,10 +87,10 @@ namespace NKnife.MeterKnife.Storage.Db
                 }
                 default:
                 {
-                    if (!_engineeringSqliteConnMap.TryGetValue(engineering.Id, out conn))
+                    if (!_engineeringSqliteConnMap.TryGetValue(project.Id, out conn))
                     {
-                        conn = new SQLiteConnection(BuildEngineeringSqliteConnectionString(engineering));
-                        _engineeringSqliteConnMap.Add(engineering.Id, conn);
+                        conn = new SQLiteConnection(BuildEngineeringSqliteConnectionString(project));
+                        _engineeringSqliteConnMap.Add(project.Id, conn);
                     }
 
                     break;
@@ -113,10 +113,10 @@ namespace NKnife.MeterKnife.Storage.Db
         /// <summary>
         ///     关闭指定的工程数据库连接
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
-        public void CloseConnection(Engineering engineering)
+        /// <param name="project">指定的工程</param>
+        public void CloseConnection(Project project)
         {
-            if (_engineeringSqliteConnMap.TryGetValue(engineering.Id, out var conn))
+            if (_engineeringSqliteConnMap.TryGetValue(project.Id, out var conn))
                 conn?.Close();
         }
 
@@ -168,7 +168,7 @@ namespace NKnife.MeterKnife.Storage.Db
         {
             var map = new Dictionary<string, string>();
             map.Add(nameof(DUT), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(DUT)));
-            map.Add(nameof(Engineering), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Engineering)));
+            map.Add(nameof(Project), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Project)));
             map.Add(nameof(Slot), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Slot)));
             map.Add(nameof(Instrument), SqlHelper.GetCreateTableSql(CurrentDbType, typeof(Instrument)));
             return map;
@@ -185,8 +185,8 @@ namespace NKnife.MeterKnife.Storage.Db
         /// <summary>
         ///     创建工程存储
         /// </summary>
-        /// <param name="engineering">用来建立工程存储的名称</param>
-        public void CreateEngineering(Engineering engineering)
+        /// <param name="project">用来建立工程存储的名称</param>
+        public void CreateEngineering(Project project)
         {
             switch (CurrentDbType)
             {
@@ -194,14 +194,14 @@ namespace NKnife.MeterKnife.Storage.Db
                     //TODO:每个工程是否独立建库呢？这一块怎么整还没有想明白。
                     break;
                 case DatabaseType.SqLite:
-                    _engineeringFileBuilder.CreateEngineeringSqliteFile(this, engineering);
+                    _projectFileBuilder.CreateEngineeringSqliteFile(this, project);
                     break;
             }
         }
 
-        private string BuildEngineeringSqliteConnectionString(Engineering engineering)
+        private string BuildEngineeringSqliteConnectionString(Project project)
         {
-            return string.Format(_setting.SqliteEngineeringConnection, engineering.Path);
+            return string.Format(_setting.SqliteEngineeringConnection, project.Path);
         }
     }
 }

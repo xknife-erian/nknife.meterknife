@@ -23,15 +23,15 @@ namespace NKnife.MeterKnife.Base
         /// <summary>
         ///     打开指定的工程数据库连接，并返回该连接
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>数据库连接</returns>
-        IDbConnection OpenConnection(Engineering engineering);
+        IDbConnection OpenConnection(Project project);
 
         /// <summary>
         ///     关闭指定的工程数据库连接
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
-        void CloseConnection(Engineering engineering);
+        /// <param name="project">指定的工程</param>
+        void CloseConnection(Project project);
 
         /// <summary>
         ///     打开本软件管理信息数据库连接，并返回该连接
@@ -46,7 +46,7 @@ namespace NKnife.MeterKnife.Base
         /// <summary>
         ///     创建工程存储
         /// </summary>
-        /// <param name="engineeringName">用来建立工程存储的名称</param>
-        void CreateEngineering(Engineering engineeringName);
+        /// <param name="projectName">用来建立工程存储的名称</param>
+        void CreateEngineering(Project projectName);
     }
 }

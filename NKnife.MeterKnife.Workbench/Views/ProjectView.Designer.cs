@@ -1,6 +1,6 @@
 ﻿namespace NKnife.MeterKnife.Workbench.Views
 {
-    partial class EngineeringView
+    partial class ProjectView
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EngineeringView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectView));
             this._ToolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this._ToolStrip = new System.Windows.Forms.ToolStrip();
             this._CreateEngStripButton = new System.Windows.Forms.ToolStripButton();
@@ -38,7 +38,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this._SplitContainer = new System.Windows.Forms.SplitContainer();
-            this._TreeView = new NKnife.MeterKnife.Workbench.Controls.EngineeringTree();
+            this._TreeView = new NKnife.MeterKnife.Workbench.Controls.ProjectTree();
             this._PropertyGrid = new System.Windows.Forms.PropertyGrid();
             this._ToolStripContainer.ContentPanel.SuspendLayout();
             this._ToolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -174,7 +174,7 @@
             this._PropertyGrid.TabIndex = 0;
             this._PropertyGrid.ToolbarVisible = false;
             // 
-            // EngineeringView
+            // ProjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -182,7 +182,7 @@
             this.Controls.Add(this._ToolStripContainer);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "EngineeringView";
+            this.Name = "ProjectView";
             this.Text = "工程管理";
             this._ToolStripContainer.ContentPanel.ResumeLayout(false);
             this._ToolStripContainer.TopToolStripPanel.ResumeLayout(false);
@@ -202,7 +202,7 @@
         #endregion
 
         private System.Windows.Forms.ToolStripContainer _ToolStripContainer;
-        private NKnife.MeterKnife.Workbench.Controls.EngineeringTree _TreeView;
+        private NKnife.MeterKnife.Workbench.Controls.ProjectTree _TreeView;
         private System.Windows.Forms.ToolStrip _ToolStrip;
         private System.Windows.Forms.SplitContainer _SplitContainer;
         private System.Windows.Forms.PropertyGrid _PropertyGrid;

@@ -53,7 +53,7 @@ namespace NKnife.MeterKnife.Holistic
         /// </summary>
         /// <param name="dut">指定的工程与被测物</param>
         /// <param name="data">数据</param>
-        public void AddValue((Engineering, DUT) dut, MeasureData data)
+        public void AddValue((Project, DUT) dut, MeasureData data)
         {
             var key = $"{dut.Item1.Id}///{dut.Item2.Id}";
             if (!_droppedMap.ContainsKey(key))

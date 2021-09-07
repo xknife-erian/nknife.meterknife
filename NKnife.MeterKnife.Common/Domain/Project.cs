@@ -14,9 +14,9 @@ namespace NKnife.MeterKnife.Common.Domain
     /// <summary>
     /// 一个测量工程
     /// </summary>
-    public class Engineering : IId, ICloneable
+    public class Project : IId, ICloneable
     {
-        public Engineering()
+        public Project()
         {
             Id = SequentialGuid.Create().ToString("N").ToUpper();
         }

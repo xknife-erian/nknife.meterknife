@@ -12,17 +12,17 @@ namespace NKnife.MeterKnife.Common.Base
         /// <summary>
         ///     工程的采集状态
         /// </summary>
-        ObservableCollection<EngineeringState> EngineeringStateList { get; set; }
+        ObservableCollection<ProjectState> ProjectStateList { get; set; }
 
         /// <summary>
         ///     当前激活的工程
         /// </summary>
-        Engineering CurrentActiveEngineering { get; set; }
+        Project CurrentActiveProject { get; set; }
 
         /// <summary>
         ///     当前选择的工程
         /// </summary>
-        Engineering CurrentSelectedEngineering { get; set; }
+        Project CurrentSelectedProject { get; set; }
 
         #region DUT
 
@@ -61,55 +61,55 @@ namespace NKnife.MeterKnife.Common.Base
         /// </summary>
         Task<IEnumerable<Instrument>> GetAllInstrumentAsync();
 
-        #region Engineering
+        #region Project
 
         #endregion
 
         /// <summary>
         ///     创建一个工程
         /// </summary>
-        Task CreateEngineeringAsync(Engineering eng);
+        Task CreateProjectAsync(Project eng);
 
         /// <summary>
         ///     修改一个工程
         /// </summary>
-        Task UpdateEngineeringAsync(Engineering eng);
+        Task UpdateProjectAsync(Project eng);
 
         /// <summary>
         ///     删除一个指定的工程
         /// </summary>
         /// <param name="eng">指定的工程</param>
-        Task DeleteEngineeringAsync(Engineering eng);
+        Task DeleteProjectAsync(Project eng);
 
         /// <summary>
         ///     获取所有工程，并按工程的创建时间倒序排列
         /// </summary>
-        Task<Dictionary<DateTime, List<Engineering>>> GetEngineeringAndDateMapAsync();
+        Task<Dictionary<DateTime, List<Project>>> GetProjectAndDateMapAsync();
 
         /// <summary>
         ///     是否存在相同编号的工程
         /// </summary>
-        /// <param name="engId">工程编号</param>
+        /// <param name="projectId">工程编号</param>
         /// <returns>是否存在</returns>
-        bool ExistEngineering(string engId);
+        bool ExistProject(string projectId);
 
         /// <summary>
         ///     已打开的工程
         /// </summary>
-        ObservableCollection<Engineering> OpenedEngineerings { get; set; }
+        ObservableCollection<Project> OpenedProjects { get; set; }
 
         /// <summary>
         ///     正在测量的工程
         /// </summary>
-        ObservableCollection<Engineering> AcquiringEngineerings { get; set; }
+        ObservableCollection<Project> AcquiringProjects { get; set; }
 
         /// <summary>
         /// 获取指定工程的被测物的测量数据记录数
         /// </summary>
-        /// <param name="eng">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <param name="dut">工程中的被测物</param>
         /// <returns>测量数据记录数</returns>
-        Task<long> CountDUTDataAsync(Engineering eng, DUT dut);
+        Task<long> CountDUTDataAsync(Project project, DUT dut);
 
         #endregion
 

@@ -22,5 +22,25 @@ namespace NKnife.Win.Quick.Controls
         }
 
         #endregion
+
+        protected SingletonDockContent()
+        {
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // SingletonDockContent
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Name = "SingletonDockContent";
+            this.ResumeLayout(false);
+
+        }
     }
 }

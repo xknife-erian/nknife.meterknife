@@ -133,6 +133,9 @@
     <Reference Include="NKnife, Version=21.1.0.430, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.21.1.0\lib\netstandard2.0\NKnife.dll</HintPath>
     </Reference>
+    <Reference Include="NKnife.Bytes, Version=21.1.0.430, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.Bytes.21.1.0\lib\netstandard2.0\NKnife.Bytes.dll</HintPath>
+    </Reference>
     <Reference Include="NKnife.NLog.WinForm, Version=20.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.NLog.WinForm.20.0.0\lib\net40\NKnife.NLog.WinForm.dll</HintPath>
     </Reference>
