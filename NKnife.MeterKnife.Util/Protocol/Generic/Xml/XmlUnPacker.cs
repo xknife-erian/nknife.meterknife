@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
 using NKnife.Interface;
+using NKnife.Reflection;
 using NKnife.Util;
 
 namespace NKnife.MeterKnife.Util.Protocol.Generic.Xml

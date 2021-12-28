@@ -6,13 +6,14 @@
 
   <ItemGroup>
     <PackageReference Include="MathNet.Numerics" Version="4.15.0" />
-    <PackageReference Include="NKnife" Version="21.1.0" />
+    <PackageReference Include="NKnife" Version="21.1.1" />
     <PackageReference Include="NKnife.Bytes" Version="21.1.0" />
-    <PackageReference Include="NLog" Version="4.7.11" />
-    <PackageReference Include="NPOI" Version="2.5.4" />
+    <PackageReference Include="NKnife.Reflection" Version="21.0.0" />
+    <PackageReference Include="NLog" Version="4.7.13" />
+    <PackageReference Include="NPOI" Version="2.5.5" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.IO.Ports" Version="5.0.1" />
-    <PackageReference Include="System.Management" Version="5.0.0" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+    <PackageReference Include="System.Management" Version="6.0.0" />
   </ItemGroup>
 
 </Project>
