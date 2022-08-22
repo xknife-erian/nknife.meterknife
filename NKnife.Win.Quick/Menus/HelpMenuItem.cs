@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows.Forms;
 using NKnife.Win.Quick.Base;
 using WeifenLuo.WinFormsUI.Docking;
@@ -9,9 +8,13 @@ namespace NKnife.Win.Quick.Menus
 {
     public sealed class HelpMenuItem : ToolStripMenuItem
     {
+        private readonly Dictionary<string, ToolStripMenuItem> _cultureMenuItems =
+            new Dictionary<string, ToolStripMenuItem>();
+
+        private readonly Dictionary<string, ToolStripMenuItem> _themeMenuItems =
+            new Dictionary<string, ToolStripMenuItem>();
+
         private readonly IWorkbench _workbench;
-        private readonly Dictionary<string, ToolStripMenuItem> _themeMenuItems = new Dictionary<string, ToolStripMenuItem>();
-        private readonly Dictionary<string, ToolStripMenuItem> _cultureMenuItems = new Dictionary<string, ToolStripMenuItem>();
 
         public HelpMenuItem(IWorkbench workbench)
         {
@@ -33,8 +36,10 @@ namespace NKnife.Win.Quick.Menus
 
             var culture = workbench.GetHabitValueFunc?.Invoke(nameof(Global.Culture), Global.Culture);
             var themeName = workbench.GetHabitValueFunc?.Invoke("MainTheme", nameof(VS2015BlueTheme));
-            SetActiveCultureAtMenu(culture?.ToString());
-            SetActiveThemeAtMenu(themeName?.ToString());
+            if (culture != null)
+                SetActiveCultureAtMenu(culture.ToString());
+            if (themeName != null)
+                SetActiveThemeAtMenu(themeName.ToString());
         }
 
         private void UpdateMenu_OnClick(object sender, EventArgs e)
@@ -83,7 +88,7 @@ namespace NKnife.Win.Quick.Menus
             var en = new ToolStripMenuItem("英文");
             en.Click += (s, e) => { SetCultureAction("en"); };
             _cultureMenuItems.Add("en", en);
-            lang.DropDownItems.AddRange(new ToolStripItem[] { zh, tw, en });
+            lang.DropDownItems.AddRange(new ToolStripItem[] {zh, tw, en});
             DropDownItems.Add(lang);
         }
 
@@ -163,7 +168,7 @@ namespace NKnife.Win.Quick.Menus
         }
 
         /// <summary>
-        /// 设置激活的主题显示在菜单上
+        ///     设置激活的主题显示在菜单上
         /// </summary>
         /// <param name="themeName">主题名</param>
         public void SetActiveThemeAtMenu(string themeName)
