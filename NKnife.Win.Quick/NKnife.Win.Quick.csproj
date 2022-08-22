@@ -36,31 +36,31 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife, Version=21.1.0.430, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.21.1.0\lib\netstandard2.0\NKnife.dll</HintPath>
+    <Reference Include="NKnife, Version=22.0.0.310, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.22.0.0\lib\netstandard2.0\NKnife.dll</HintPath>
     </Reference>
-    <Reference Include="NKnife.NLog.WinForm, Version=20.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NKnife.NLog.WinForm.20.0.0\lib\net40\NKnife.NLog.WinForm.dll</HintPath>
+    <Reference Include="NKnife.NLog.WinForm, Version=22.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.NLog.WinForm.22.1.0\lib\net462\NKnife.NLog.WinForm.dll</HintPath>
     </Reference>
     <Reference Include="NKnife.Win.Forms, Version=20.0.3.528, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.Win.Forms.20.0.5.529\lib\net461\NKnife.Win.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.7.11\lib\net45\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.5.0.2\lib\net46\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />

@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NKnife" Version="21.1.0" />
+    <PackageReference Include="NKnife" Version="22.0.0" />
     <PackageReference Include="NKnife.Bytes" Version="21.1.0" />
   </ItemGroup>
 
