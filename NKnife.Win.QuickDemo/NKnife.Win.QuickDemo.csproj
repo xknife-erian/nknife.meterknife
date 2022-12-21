@@ -33,8 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Reference Include="NKnife, Version=21.1.0.430, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NKnife.21.1.1\lib\netstandard2.0\NKnife.dll</HintPath>
+=======
+    <Reference Include="NKnife, Version=22.0.0.310, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NKnife.22.0.0\lib\netstandard2.0\NKnife.dll</HintPath>
+>>>>>>> remotes/origin/delevop
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

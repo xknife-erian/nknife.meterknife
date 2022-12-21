@@ -20,16 +20,6 @@ namespace NKnife.Win.Quick.Base
         bool HideOnClosing { get; set; }
 
         /// <summary>
-        /// 当启用自动更新时，更新包在GitHub的项目的用户名
-        /// </summary>
-        string GithubUpdateUser { get; set; }
-
-        /// <summary>
-        /// 当启用自动更新时，更新包在Github的项目名称
-        /// </summary>
-        string GithubUpdateProject { get; set; }
-
-        /// <summary>
         /// 窗体的选项面板
         /// </summary>
         List<IOptionPanel> OptionPanelList { get; set; }

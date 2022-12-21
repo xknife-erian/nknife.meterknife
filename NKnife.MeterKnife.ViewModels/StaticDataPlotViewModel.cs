@@ -15,30 +15,30 @@ namespace NKnife.MeterKnife.ViewModels
     {
         private static readonly ILogger _Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly IEngineeringLogic _engineeringLogic;
-        private Engineering _engineering;
+        private readonly IProjectLogic _projectLogic;
+        private Project _project;
 
-        public StaticDataPlotViewModel(IHabitManager habit, IEngineeringLogic engineeringLogic) 
+        public StaticDataPlotViewModel(IHabitManager habit, IProjectLogic projectLogic) 
             : base(habit)
         {
-            _engineeringLogic = engineeringLogic;
+            _projectLogic = projectLogic;
         }
 
-        public void SetEngineering(Engineering engineering)
+        public void SetEngineering(Project project)
         {
-            _engineering = engineering;
-            var duts = _engineering.GetIncludedDUTArray();
+            _project = project;
+            var duts = _project.GetIncludedDUTArray();
             SetStyleSolutionByEngineering(duts);
         }
 
         public async Task LoadDataAsync()
         {
             //LinearPlot.ClearValues();
-            var duts = _engineering.GetIncludedDUTArray();
+            var duts = _project.GetIncludedDUTArray();
             // TODO:是否可以转为并行计算
             for (int i = 0; i < duts.Count; i++)
             {
-                var r = await _engineeringLogic.GetDUTDataAsync((_engineering, duts[i]));
+                var r = await _projectLogic.GetDUTDataAsync((_project, duts[i]));
                 LinearPlot.AddValues(i, r.ToArray());
             }
         }

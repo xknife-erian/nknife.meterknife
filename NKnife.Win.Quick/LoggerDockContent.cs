@@ -12,7 +12,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace NKnife.Win.Quick
 {
-    public  sealed partial class LoggerDockContent : SingletonDockContent
+    public sealed partial class LoggerDockContent : SingletonDockContent
     {
         public LoggerDockContent()
         {

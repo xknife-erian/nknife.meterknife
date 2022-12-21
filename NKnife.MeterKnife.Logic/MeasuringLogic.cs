@@ -22,7 +22,7 @@ namespace NKnife.MeterKnife.Logic
         /// <summary>
         ///     被测单元字典。Key是命令体，Value是工程与被测物。
         /// </summary>
-        public Dictionary<string, (Engineering, DUT)> DUTMap { get; set; } = new Dictionary<string, (Engineering, DUT)>();
+        public Dictionary<string, (Project, DUT)> DUTMap { get; set; } = new Dictionary<string, (Project, DUT)>();
 
         #region Implementation of IMeasuringLogic
 
@@ -31,7 +31,7 @@ namespace NKnife.MeterKnife.Logic
         /// </summary>
         /// <param name="dut">指定的被测物</param>
         /// <param name="data">数据</param>
-        public async Task<bool> ProcessAsync((Engineering, DUT) dut, MeasureData data)
+        public async Task<bool> ProcessAsync((Project, DUT) dut, MeasureData data)
         {
             return await _dataStorageDUTWrite.InsertAsync(dut, data);
         }
@@ -41,7 +41,7 @@ namespace NKnife.MeterKnife.Logic
         /// </summary>
         /// <param name="dutId">源命令的关系</param>
         /// <returns>被测物</returns>
-        public (Engineering, DUT) GetDUT(string dutId)
+        public (Project, DUT) GetDUT(string dutId)
         {
             return DUTMap[dutId];
         }
@@ -51,7 +51,7 @@ namespace NKnife.MeterKnife.Logic
         /// </summary>
         /// <param name="dutId">源命令的关系</param>
         /// <param name="dut">被测物</param>
-        public void SetDUT(string dutId, (Engineering, DUT) dut)
+        public void SetDUT(string dutId, (Project, DUT) dut)
         {
             if (!DUTMap.ContainsKey(dutId))
                 DUTMap.Add(dutId, dut);
@@ -60,16 +60,16 @@ namespace NKnife.MeterKnife.Logic
         /// <summary>
         ///     设置命令字与被测物的关系
         /// </summary>
-        public void SetDUTMap(List<ScpiCommandPool> commands, Engineering engineering)
+        public void SetDUTMap(List<ScpiCommandPool> commands, Project project)
         {
             foreach (var pool in commands)
             {
                 foreach (ScpiCommand command in pool)
                 {
                     if (command.DUT != null)
-                        this.SetDUT(command.DUT.Id, (engineering, command.DUT));
+                        this.SetDUT(command.DUT.Id, (project, command.DUT));
                     //TODO:if(command.IsPool)
-                    //SetDUTMap(performLogic, command, engineering);
+                    //SetDUTMap(performLogic, command, project);
                 }
             }
         }

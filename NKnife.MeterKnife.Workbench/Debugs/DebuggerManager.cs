@@ -9,8 +9,8 @@ using NKnife.MeterKnife.Holistic;
 using NKnife.MeterKnife.Util.Tunnel;
 using NKnife.MeterKnife.ViewModels.Plots;
 using NKnife.MeterKnife.Workbench.Dialogs.Commands;
-using NKnife.MeterKnife.Workbench.Dialogs.Engineerings;
 using NKnife.MeterKnife.Workbench.Dialogs.Instruments;
+using NKnife.MeterKnife.Workbench.Dialogs.Projects;
 using NKnife.MeterKnife.Workbench.Views;
 using NKnife.Util;
 using NKnife.Win.Quick.Base;
@@ -49,7 +49,7 @@ namespace NKnife.MeterKnife.Workbench.Debugs
             menu.Click += (sender, args) =>
             {
                 var form = debugMenu.GetCurrentParent().FindForm();
-                var dialog = Kernel.Container.Resolve<EngineeringDetailDialog>();
+                var dialog = Kernel.Container.Resolve<ProjectDetailDialog>();
                 dialog.ShowDialog(form);
             };
             debugMenu.DropDownItems.Add(menu);

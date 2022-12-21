@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NKnife.Win.Quick.Base;
 using NKnife.Win.Quick.Controls;
-using NKnife.Win.UpdaterFromGitHub;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace NKnife.Win.Quick
@@ -56,9 +55,9 @@ namespace NKnife.Win.Quick
             HideOnClosing = true;
         }
 
-        protected void BindMainMenu(params ToolStripMenuItem[] meunItems)
+        protected void BindMainMenu(params ToolStripMenuItem[] menuItems)
         {
-            _MenuStrip.Items.AddRange(meunItems.Cast<ToolStripItem>().ToArray());
+            _MenuStrip.Items.AddRange(menuItems.Cast<ToolStripItem>().ToArray());
         }
 
         protected void BindTrayMenu(params ToolStripMenuItem[] menuItems)
@@ -95,9 +94,9 @@ namespace NKnife.Win.Quick
             {
                 Thread.Sleep(10 * 1000);
                 var localVersion = Assembly.GetEntryAssembly()?.GetName().Version;
-                if (Helper.TryGetLatestRelease(GithubUpdateUser, GithubUpdateProject, out var latestRelease, out var errorMessage))
+                if (true)//(Helper.TryGetLatestRelease(GithubUpdateUser, GithubUpdateProject, out var latestRelease, out var errorMessage))
                 {
-                    var latestVersion = latestRelease.Version.TrimStart('v', 'V', '.', '-', '_').Trim();
+                    var latestVersion = localVersion.ToString();//latestRelease.Version.TrimStart('v', 'V', '.', '-', '_').Trim();
                     if (Version.TryParse(latestVersion, out var version))
                     {
                         _StatusStrip.ThreadSafeInvoke(() =>
@@ -198,16 +197,6 @@ namespace NKnife.Win.Quick
         /// 当主窗体的Close方法被调用后，是立即关闭还是先隐藏窗体
         /// </summary>
         public bool HideOnClosing { get; set; } = false;
-
-        /// <summary>
-        /// 当启用自动更新时，更新包在GitHub的项目的用户名
-        /// </summary>
-        public string GithubUpdateUser { get; set; }
-
-        /// <summary>
-        /// 当启用自动更新时，更新包在Github的项目名称
-        /// </summary>
-        public string GithubUpdateProject { get; set; }
 
         /// <summary>
         /// 窗体的选项面板

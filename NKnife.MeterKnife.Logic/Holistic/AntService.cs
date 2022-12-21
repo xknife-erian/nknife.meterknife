@@ -90,14 +90,14 @@ namespace NKnife.MeterKnife.Holistic
         /// <summary>
         ///     启动指定的工程
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>启动是否成功</returns>
-        public Task<bool> StartAsync(Engineering engineering)
+        public Task<bool> StartAsync(Project project)
         {
-            if (!_jobMap.TryGetValue(engineering.Id, out var jobManager))
+            if (!_jobMap.TryGetValue(project.Id, out var jobManager))
             {
                 jobManager = new JobManager {Pool = new ScpiCommandPool {IsOverall = true}};
-                foreach (var pool in engineering.CommandPools)
+                foreach (var pool in project.CommandPools)
                 {
                     foreach (ScpiCommand command in pool)
                     {
@@ -117,7 +117,7 @@ namespace NKnife.MeterKnife.Holistic
                         connector.Start();
                     }
                 }
-                _jobMap.Add(engineering.Id, jobManager);
+                _jobMap.Add(project.Id, jobManager);
             }
             Task.Factory.StartNew(() => jobManager.Run());
             return Task.Factory.StartNew(() => true);
@@ -126,36 +126,36 @@ namespace NKnife.MeterKnife.Holistic
         /// <summary>
         ///     启动指定的工程
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>启动是否成功</returns>
-        public bool Pause(Engineering engineering)
+        public bool Pause(Project project)
         {
-            if (_jobMap.ContainsKey(engineering.Id))
-                _jobMap[engineering.Id].Pause();
+            if (_jobMap.ContainsKey(project.Id))
+                _jobMap[project.Id].Pause();
             return true;
         }
 
         /// <summary>
         ///     停止指定的工程
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>停止是否成功</returns>
-        public bool Stop(Engineering engineering)
+        public bool Stop(Project project)
         {
-            if (_jobMap.ContainsKey(engineering.Id))
-                _jobMap[engineering.Id].Break();
+            if (_jobMap.ContainsKey(project.Id))
+                _jobMap[project.Id].Break();
             return true;
         }
 
         /// <summary>
         ///     恢复指定的工程
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>停止是否成功</returns>
-        public bool Resume(Engineering engineering)
+        public bool Resume(Project project)
         {
-            if (_jobMap.ContainsKey(engineering.Id))
-                _jobMap[engineering.Id].Resume();
+            if (_jobMap.ContainsKey(project.Id))
+                _jobMap[project.Id].Resume();
             return true;
         }
 

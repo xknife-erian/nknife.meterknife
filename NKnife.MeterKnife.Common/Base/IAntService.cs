@@ -22,29 +22,29 @@ namespace NKnife.MeterKnife.Base
         /// <summary>
         ///     启动指定的工程
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>启动是否成功</returns>
-        Task<bool> StartAsync(Engineering engineering);
+        Task<bool> StartAsync(Project project);
 
         /// <summary>
         ///     启动指定的工程
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>启动是否成功</returns>
-        bool Pause(Engineering engineering);
+        bool Pause(Project project);
 
         /// <summary>
         ///     停止指定的工程
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>停止是否成功</returns>
-        bool Stop(Engineering engineering);
+        bool Stop(Project project);
 
         /// <summary>
         ///     恢复指定的工程
         /// </summary>
-        /// <param name="engineering">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <returns>停止是否成功</returns>
-        bool Resume(Engineering engineering);
+        bool Resume(Project project);
     }
 }

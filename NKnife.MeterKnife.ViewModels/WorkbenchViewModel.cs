@@ -23,48 +23,48 @@ namespace NKnife.MeterKnife.ViewModels
         private readonly IAntService _antService;
 
         private readonly IStoragePlatform<Instrument> _instrumentStoragePlatform;
-        private readonly IStoragePlatform<Engineering> _engineeringStoragePlatform;
+        private readonly IStoragePlatform<Project> _projectStoragePlatform;
         private readonly IStoragePlatform<Slot> _slotStoragePlatform;
         private readonly IStoragePlatform<DUT> _dutStoragePlatform;
 
         private readonly IStorageDUTRead<MeasureData> _dutRead;
 
-        private readonly IEngineeringLogic _engineeringLogic;
+        private readonly IProjectLogic _projectLogic;
         private readonly IMeasuringLogic _performLogic;
 
         /// <summary>
         ///     按时间排序的工程列表，供工程列表窗体显示
         /// </summary>
-        private readonly Dictionary<DateTime, List<Engineering>> _engMap = new Dictionary<DateTime, List<Engineering>>();
+        private readonly Dictionary<DateTime, List<Project>> _projectMap = new Dictionary<DateTime, List<Project>>();
 
         /// <summary>
         ///     已打开的工程列表
         /// </summary>
-        private ObservableCollection<Engineering> _openedEngineerings = new ObservableCollection<Engineering>();
+        private ObservableCollection<Project> _openedProjects = new ObservableCollection<Project>();
 
         /// <summary>
         ///     正在采集的工程列表
         /// </summary>
-        private ObservableCollection<Engineering> _acquiringEngineerings = new ObservableCollection<Engineering>();
+        private ObservableCollection<Project> _acquiringProjects = new ObservableCollection<Project>();
 
         /// <summary>
         ///     当前激活的工程
         /// </summary>
-        private Engineering _currentEngineering;
+        private Project _currentProject;
 
         public WorkbenchViewModel(
             IAntService antService,
-            IEngineeringLogic engineeringLogic, IMeasuringLogic performLogic,
-            IStoragePlatform<Engineering> engineeringStoragePlatform,
+            IProjectLogic projectLogic, IMeasuringLogic performLogic,
+            IStoragePlatform<Project> projectStoragePlatform,
             IStoragePlatform<Slot> slotStoragePlatform,
             IStoragePlatform<DUT> dutStoragePlatform,
             IStoragePlatform<Instrument> instrumentStoragePlatform,
             IStorageDUTRead<MeasureData> dutRead)
         {
-            _engineeringStoragePlatform = engineeringStoragePlatform;
+            _projectStoragePlatform = projectStoragePlatform;
             _slotStoragePlatform = slotStoragePlatform;
             _dutStoragePlatform = dutStoragePlatform;
-            _engineeringLogic = engineeringLogic;
+            _projectLogic = projectLogic;
             _instrumentStoragePlatform = instrumentStoragePlatform;
             _dutRead = dutRead;
             _performLogic = performLogic;
@@ -74,21 +74,21 @@ namespace NKnife.MeterKnife.ViewModels
         /// <summary>
         ///     工程的采集状态
         /// </summary>
-        public ObservableCollection<EngineeringState> EngineeringStateList { get; set; } = new ObservableCollection<EngineeringState>();
+        public ObservableCollection<ProjectState> ProjectStateList { get; set; } = new ObservableCollection<ProjectState>();
 
         /// <summary>
         ///     当前激活（被选择）的工程
         /// </summary>
-        public Engineering CurrentActiveEngineering
+        public Project CurrentActiveProject
         {
-            get => _currentEngineering;
-            set => Set(ref _currentEngineering, value);
+            get => _currentProject;
+            set => Set(ref _currentProject, value);
         }
 
         /// <summary>
         ///     当前选择的工程
         /// </summary>
-        public Engineering CurrentSelectedEngineering { get; set; }
+        public Project CurrentSelectedProject { get; set; }
 
         /// <summary>
         ///     创建一台仪器
@@ -125,98 +125,98 @@ namespace NKnife.MeterKnife.ViewModels
         /// <summary>
         /// 创建一个工程
         /// </summary>
-        public async Task CreateEngineeringAsync(Engineering eng)
+        public async Task CreateProjectAsync(Project eng)
         {
-            await _engineeringLogic.CreateEngineeringAsync(eng);
+            await _projectLogic.CreateProjectAsync(eng);
         }
 
         /// <summary>
         ///     修改一个工程
         /// </summary>
-        public async Task UpdateEngineeringAsync(Engineering eng)
+        public async Task UpdateProjectAsync(Project eng)
         {
-            await _engineeringLogic.UpdateEngineeringAsync(eng);
+            await _projectLogic.UpdateProjectAsync(eng);
         }
 
         /// <summary>
         ///     删除一个指定的工程
         /// </summary>
         /// <param name="eng">指定的工程</param>
-        public async Task DeleteEngineeringAsync(Engineering eng)
+        public async Task DeleteProjectAsync(Project eng)
         {
-            await _engineeringLogic.RemoveEnginneringAsync(eng);
+            await _projectLogic.RemoveProjectAsync(eng);
         }
 
         /// <summary>
         /// 获取所有工程，并按工程的创建时间倒序排列
         /// </summary>
-        public async Task<Dictionary<DateTime, List<Engineering>>> GetEngineeringAndDateMapAsync()
+        public async Task<Dictionary<DateTime, List<Project>>> GetProjectAndDateMapAsync()
         {
-            _engMap.Clear();
-            var engList = (await _engineeringStoragePlatform.FindAllAsync()).ToList();
-            engList.Sort((x, y) => y.CreateTime.CompareTo(x.CreateTime));
-            foreach (var engineering in engList)
+            _projectMap.Clear();
+            var projects = (await _projectStoragePlatform.FindAllAsync()).ToList();
+            projects.Sort((x, y) => y.CreateTime.CompareTo(x.CreateTime));
+            foreach (var project in projects)
             {
-                var date = new DateTime(engineering.CreateTime.Year, engineering.CreateTime.Month, 1, 0, 0, 0);
-                if (_engMap.TryGetValue(date, out var list))
+                var date = new DateTime(project.CreateTime.Year, project.CreateTime.Month, 1, 0, 0, 0);
+                if (_projectMap.TryGetValue(date, out var list))
                 {
-                    list.Add(engineering);
+                    list.Add(project);
                 }
                 else
                 {
-                    list = new List<Engineering> {engineering};
-                    _engMap.Add(date, list);
+                    list = new List<Project> {project};
+                    _projectMap.Add(date, list);
                 }
             }
 
-            return _engMap;
+            return _projectMap;
         }
 
         /// <summary>
         /// 是否存在相同编号的工程
         /// </summary>
-        /// <param name="engId">工程编号</param>
+        /// <param name="projectId">工程编号</param>
         /// <returns>是否存在</returns>
-        public bool ExistEngineering(string engId)
+        public bool ExistProject(string projectId)
         {
-            return _engineeringStoragePlatform.ExistAsync(engId).Result;
+            return _projectStoragePlatform.ExistAsync(projectId).Result;
         }
 
         /// <summary>
         ///     已打开的工程
         /// </summary>
-        public ObservableCollection<Engineering> OpenedEngineerings
+        public ObservableCollection<Project> OpenedProjects
         {
-            get => _openedEngineerings;
+            get => _openedProjects;
             set
             {
-                _openedEngineerings = value;
-                RaisePropertyChanged(() => OpenedEngineerings);
+                _openedProjects = value;
+                RaisePropertyChanged(() => OpenedProjects);
             }
         }
 
         /// <summary>
         ///     正在测量的工程
         /// </summary>
-        public ObservableCollection<Engineering> AcquiringEngineerings
+        public ObservableCollection<Project> AcquiringProjects
         {
-            get => _acquiringEngineerings;
+            get => _acquiringProjects;
             set
             {
-                _acquiringEngineerings = value;
-                RaisePropertyChanged(() => AcquiringEngineerings);
+                _acquiringProjects = value;
+                RaisePropertyChanged(() => AcquiringProjects);
             }
         }
 
         /// <summary>
         /// 获取指定工程的被测物的测量数据记录数
         /// </summary>
-        /// <param name="eng">指定的工程</param>
+        /// <param name="project">指定的工程</param>
         /// <param name="dut">工程中的被测物</param>
         /// <returns>测量数据记录数</returns>
-        public async Task<long> CountDUTDataAsync(Engineering eng, DUT dut)
+        public async Task<long> CountDUTDataAsync(Project project, DUT dut)
         {
-            return await _dutRead.CountAsync((eng, dut));
+            return await _dutRead.CountAsync((project, dut));
         }
 
         /// <summary>
@@ -246,24 +246,24 @@ namespace NKnife.MeterKnife.ViewModels
         /// </summary>
         public async Task StartAcquireAsync()
         {
-            if (CurrentActiveEngineering != null)
+            if (CurrentActiveProject != null)
             {
-                if (!_acquiringEngineerings.Contains(CurrentActiveEngineering))
-                    _acquiringEngineerings.Add(CurrentActiveEngineering);
-                foreach (var slot in CurrentActiveEngineering.GetIncludedSlots())
+                if (!_acquiringProjects.Contains(CurrentActiveProject))
+                    _acquiringProjects.Add(CurrentActiveProject);
+                foreach (var slot in CurrentActiveProject.GetIncludedSlots())
                 {
                     var config = JsonConvert.DeserializeObject<(short, SerialConfig)>(slot.Config);
                     slot.SetMeterCare(slot.SlotType, config);
-                    _performLogic.SetDUTMap(CurrentActiveEngineering.CommandPools, CurrentActiveEngineering);
+                    _performLogic.SetDUTMap(CurrentActiveProject.CommandPools, CurrentActiveProject);
                     _antService.Bind((slot, Kernel.Container.Resolve<IDataConnector>()));
                 }
 
-                EngineeringState es = EngineeringStateList.FirstOrDefault(state => state.EngineeringId == CurrentActiveEngineering.Id);
+                ProjectState es = ProjectStateList.FirstOrDefault(state => state.ProjectId == CurrentActiveProject.Id);
                 if (es != null)
-                    es.EngState = EngineeringState.State.Start;
+                    es.EngState = ProjectState.State.Start;
                 else
-                    EngineeringStateList.Add(new EngineeringState(CurrentActiveEngineering.Id));
-                await _antService.StartAsync(CurrentActiveEngineering);
+                    ProjectStateList.Add(new ProjectState(CurrentActiveProject.Id));
+                await _antService.StartAsync(CurrentActiveProject);
             }
         }
 
@@ -272,12 +272,12 @@ namespace NKnife.MeterKnife.ViewModels
         /// </summary>
         public void PauseAcquire()
         {
-            if (CurrentActiveEngineering != null)
+            if (CurrentActiveProject != null)
             {
-                EngineeringState es = EngineeringStateList.FirstOrDefault(state => state.EngineeringId == CurrentActiveEngineering.Id);
+                ProjectState es = ProjectStateList.FirstOrDefault(state => state.ProjectId == CurrentActiveProject.Id);
                 if (es != null) 
-                    es.EngState = EngineeringState.State.Pause;
-                _antService.Pause(CurrentActiveEngineering);
+                    es.EngState = ProjectState.State.Pause;
+                _antService.Pause(CurrentActiveProject);
             }
         }
 
@@ -286,12 +286,12 @@ namespace NKnife.MeterKnife.ViewModels
         /// </summary>
         public void ResumeAcquire()
         {
-            if (CurrentActiveEngineering != null)
+            if (CurrentActiveProject != null)
             {
-                EngineeringState es = EngineeringStateList.FirstOrDefault(state => state.EngineeringId == CurrentActiveEngineering.Id);
+                ProjectState es = ProjectStateList.FirstOrDefault(state => state.ProjectId == CurrentActiveProject.Id);
                 if (es != null)
-                    es.EngState = EngineeringState.State.Start;
-                _antService.Resume(CurrentActiveEngineering);
+                    es.EngState = ProjectState.State.Start;
+                _antService.Resume(CurrentActiveProject);
             }
         }
 
@@ -300,12 +300,12 @@ namespace NKnife.MeterKnife.ViewModels
         /// </summary>
         public void StopAcquire()
         {
-            if (CurrentActiveEngineering != null)
+            if (CurrentActiveProject != null)
             {
-                EngineeringState es = EngineeringStateList.FirstOrDefault(state => state.EngineeringId == CurrentActiveEngineering.Id);
+                ProjectState es = ProjectStateList.FirstOrDefault(state => state.ProjectId == CurrentActiveProject.Id);
                 if (es != null)
-                    es.EngState = EngineeringState.State.Stop;
-                _antService.Stop(CurrentActiveEngineering);
+                    es.EngState = ProjectState.State.Stop;
+                _antService.Stop(CurrentActiveProject);
             }
         }
 

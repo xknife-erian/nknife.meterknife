@@ -34,14 +34,14 @@ namespace NKnife.MeterKnife.Workbench.Debugs
         public async Task RunAsync(IWorkbenchViewModel viewModel)
         {
             var dt = DateTime.Now;
-            var engineering = new Engineering
+            var engineering = new Project
             {
                 Name = "",
                 CreateTime = DateTime.Now //new DateTime(2019, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second),
             };
             engineering.CommandPools.Add(Pool);
-            viewModel.CurrentActiveEngineering = engineering;
-            await viewModel.CreateEngineeringAsync(engineering);
+            viewModel.CurrentActiveProject = engineering;
+            await viewModel.CreateProjectAsync(engineering);
             await viewModel.StartAcquireAsync();
         }
 

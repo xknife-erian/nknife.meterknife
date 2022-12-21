@@ -21,7 +21,7 @@ namespace NKnife.MeterKnife.Logic.IoC
         /// registered.</param>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<EngineeringFileBuilder>().AsSelf().SingleInstance();
+            builder.RegisterType<ProjectFileBuilder>().AsSelf().SingleInstance();
             builder.RegisterType<StorageManager>().As<IStorageManager>().SingleInstance();
 
             builder.RegisterGeneric(typeof(StoragePlatform<>)).As(typeof(IStoragePlatform<>)).SingleInstance();

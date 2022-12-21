@@ -37,7 +37,7 @@ namespace NKnife.MeterKnife.Workbench
         private readonly Dictionary<string, StaticDataPlotView> _staticDataPlotViewMap = new Dictionary<string, StaticDataPlotView>();
 
         public Workbench(WorkbenchViewModel viewModel, IHabitManager habitManager,
-            DataMenuItem dataMenu, MeasureMenuItem measureMenu, EngineeringView engineeringView,
+            DataMenuItem dataMenu, MeasureMenuItem measureMenu, ProjectView projectView,
             DebuggerManager debuggerManager)
         {
             _viewModel = viewModel;
@@ -47,8 +47,6 @@ namespace NKnife.MeterKnife.Workbench
             SetHabitAction = _habitManager.SetHabitValue;
             GetOptionValueFunc = _habitManager.GetOptionValue;
             SetOptionAction = _habitManager.SetOptionValue;
-            GithubUpdateUser = "xknife-erian";
-            GithubUpdateProject = "nknife.serial-protocol-debugger";
 
             InitializeComponent();
 
@@ -78,12 +76,12 @@ namespace NKnife.MeterKnife.Workbench
             MainDockPanel.DockBottomPortion = 170;
 
             RespondToViewModel();
-            Shown += delegate { engineeringView.Show(MainDockPanel, DockState.DockRight); };
+            Shown += delegate { projectView.Show(MainDockPanel, DockState.DockRight); };
         }
 
         private FileMenuItem BuildFileMenu()
         {
-            var fileMenuItem = new FileMenuItem();
+            var fileMenuItem = new FileMenuItem(this);
             fileMenuItem.DropDownItems.Insert(0, new ToolStripSeparator());
 
             var newQuickEng = new ToolStripMenuItem(this.Res("新建快速工程..."));
@@ -96,62 +94,65 @@ namespace NKnife.MeterKnife.Workbench
 
         private HelpMenuItem BuildHelpMenu()
         {
-            var menu = new HelpMenuItem();
-            var culture = _habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
-            var themeName = _habitManager.GetHabitValue("MainTheme", nameof(VS2015BlueTheme));
-            menu.SetActiveCulture(culture);
-            menu.SetActiveTheme(themeName);
-            ActiveDockPanelTheme(themeName);
+            var menu = new HelpMenuItem(this);
+            // var culture = _habitManager.GetHabitValue(nameof(Global.Culture), Global.Culture);
+            // var themeName = _habitManager.GetHabitValue("MainTheme", "VS2015BlueTheme");//nameof(VS2015BlueTheme));
+            // menu.SetActiveCultureAtMenu(culture);
+            // menu.SetActiveThemeAtMenu(themeName);
+            //ActiveDockPanelTheme(themeName);
             return menu;
         }
 
-        private void ActiveDockPanelTheme(string themeName)
-        {
-            switch (themeName)
-            {
-                case nameof(VS2015BlueTheme):
-                default:
-                    MainDockPanel.Theme = new VS2015BlueTheme();
-                    break;
-                case nameof(VS2015DarkTheme):
-                    MainDockPanel.Theme = new VS2015DarkTheme();
-                    break;
-                case nameof(VS2015LightTheme):
-                    MainDockPanel.Theme = new VS2015LightTheme();
-                    break;
-                case nameof(VS2013BlueTheme):
-                    MainDockPanel.Theme = new VS2013BlueTheme();
-                    break;
-                case nameof(VS2013DarkTheme):
-                    MainDockPanel.Theme = new VS2013DarkTheme();
-                    break;
-                case nameof(VS2013LightTheme):
-                    MainDockPanel.Theme = new VS2013LightTheme();
-                    break;
-                case nameof(VS2012BlueTheme):
-                    MainDockPanel.Theme = new VS2012BlueTheme();
-                    break;
-                case nameof(VS2012DarkTheme):
-                    MainDockPanel.Theme = new VS2012DarkTheme();
-                    break;
-                case nameof(VS2012LightTheme):
-                    MainDockPanel.Theme = new VS2012LightTheme();
-                    break;
-                case nameof(VS2005MultithreadingTheme):
-                    MainDockPanel.Theme = new VS2005MultithreadingTheme();
-                    break;
-                case nameof(VS2003Theme):
-                    MainDockPanel.Theme = new VS2003Theme();
-                    break;
-            }
-        }
+        // private void ActiveDockPanelTheme(string themeName)
+        // {
+        //     switch (themeName)
+        //     {
+        //         case nameof(VS2015BlueTheme):
+        //         default:
+        //             MainDockPanel.Theme = new VS2015BlueTheme();
+        //             break;
+        //         case nameof(VS2015DarkTheme):
+        //             MainDockPanel.Theme = new VS2015DarkTheme();
+        //             break;
+        //         case nameof(VS2015LightTheme):
+        //             MainDockPanel.Theme = new VS2015LightTheme();
+        //             break;
+        //         case nameof(VS2013BlueTheme):
+        //             MainDockPanel.Theme = new VS2013BlueTheme();
+        //             break;
+        //         case nameof(VS2013DarkTheme):
+        //             MainDockPanel.Theme = new VS2013DarkTheme();
+        //             break;
+        //         case nameof(VS2013LightTheme):
+        //             MainDockPanel.Theme = new VS2013LightTheme();
+        //             break;
+        //         case nameof(VS2012BlueTheme):
+        //             MainDockPanel.Theme = new VS2012BlueTheme();
+        //             break;
+        //         case nameof(VS2012DarkTheme):
+        //             MainDockPanel.Theme = new VS2012DarkTheme();
+        //             break;
+        //         case nameof(VS2012LightTheme):
+        //             MainDockPanel.Theme = new VS2012LightTheme();
+        //             break;
+        //         case nameof(VS2005Theme):
+        //             MainDockPanel.Theme = new VS2005Theme();
+        //             break;
+        //         case nameof(VS2005MultithreadingTheme):
+        //             MainDockPanel.Theme = new VS2005MultithreadingTheme();
+        //             break;
+        //         case nameof(VS2003Theme):
+        //             MainDockPanel.Theme = new VS2003Theme();
+        //             break;
+        //     }
+        // }
 
         private void RespondToViewModel()
         {
             //打开已采集数据的窗口
-            _viewModel.OpenedEngineerings.CollectionChanged += (sender, args) =>
+            _viewModel.OpenedProjects.CollectionChanged += (sender, args) =>
             {
-                var eng = _viewModel.OpenedEngineerings[args.NewStartingIndex];
+                var eng = _viewModel.OpenedProjects[args.NewStartingIndex];
                 //每个工程只打开一个窗口
                 if (!_staticDataPlotViewMap.TryGetValue(eng.Id, out var view) || view.IsDisposed)
                 {
@@ -164,9 +165,9 @@ namespace NKnife.MeterKnife.Workbench
                 view.Show(MainDockPanel, DockState.Document);
             };
             //打开正在采集数据工作中的窗口
-            _viewModel.AcquiringEngineerings.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs args)
+            _viewModel.AcquiringProjects.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs args)
             {
-                var eng = _viewModel.AcquiringEngineerings[args.NewStartingIndex];
+                var eng = _viewModel.AcquiringProjects[args.NewStartingIndex];
                 var view = Kernel.Container.Resolve<RealTimeDataPlotView>();
                 var sol = DUTSeriesStyleSolution.GetSolution(eng.CommandPools.ToArray());
                 view.SetSolution(sol);

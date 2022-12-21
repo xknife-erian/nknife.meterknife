@@ -16,26 +16,26 @@ namespace NKnife.MeterKnife.Base
         /// </summary>
         /// <param name="dut">指定的工程与被测物</param>
         /// <param name="data">数据</param>
-        Task<bool> ProcessAsync((Engineering, DUT) dut, MeasureData data);
+        Task<bool> ProcessAsync((Project, DUT) dut, MeasureData data);
 
         /// <summary>
         ///     根据发送源命令的关系获取被测物
         /// </summary>
         /// <param name="relation">源命令的关系</param>
         /// <returns>工程与被测物</returns>
-        (Engineering, DUT) GetDUT(string relation);
+        (Project, DUT) GetDUT(string relation);
 
         /// <summary>
         ///     设置命令字与指定的工程与被测物的关系
         /// </summary>
         /// <param name="dutId">源命令的关系</param>
         /// <param name="dut">指定的工程与被测物</param>
-        void SetDUT(string dutId, (Engineering, DUT) dut);
+        void SetDUT(string dutId, (Project, DUT) dut);
 
         /// <summary>
         ///     设置命令字与被测物的关系
         /// </summary>
-        void SetDUTMap(List<ScpiCommandPool> commands, Engineering engineering);
+        void SetDUTMap(List<ScpiCommandPool> commands, Project project);
 
     }
 }

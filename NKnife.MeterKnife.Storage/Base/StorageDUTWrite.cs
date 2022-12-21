@@ -46,22 +46,22 @@ namespace NKnife.MeterKnife.Storage.Base
         /// <summary>
         /// 将指定的工程实体插入数据库中
         /// </summary>
-        /// <param name="engineering">指定的被测试物</param>
-        public async Task<bool> InsertAsync(Engineering engineering)
+        /// <param name="project">指定的被测试物</param>
+        public async Task<bool> InsertAsync(Project project)
         {
-            if (engineering == null)
+            if (project == null)
                 return false;
-            var conn = _storageManager.OpenConnection(engineering);
+            var conn = _storageManager.OpenConnection(project);
             var key = GetSqlKey();
             var sql = _sqlSet[key].Insert;
             int i = 0;
             try
             {
-                i = await conn.ExecuteAsync(sql, engineering);
+                i = await conn.ExecuteAsync(sql, project);
             }
             catch (Exception e)
             {
-                _Logger.Error($"数据库新增数据异常。\r\nExceptionMessage: {e.Message}\r\nSQL: {sql}\r\nDomain: {JsonConvert.SerializeObject(engineering)}");
+                _Logger.Error($"数据库新增数据异常。\r\nExceptionMessage: {e.Message}\r\nSQL: {sql}\r\nDomain: {JsonConvert.SerializeObject(project)}");
             }
             return i == 1;
         }
@@ -71,7 +71,7 @@ namespace NKnife.MeterKnife.Storage.Base
         /// </summary>
         /// <param name="dut">指定的被测试物</param>
         /// <param name="domain">指定的对象</param>
-        public async Task<bool> InsertAsync((Engineering, DUT) dut, T domain)
+        public async Task<bool> InsertAsync((Project, DUT) dut, T domain)
         {
             if (domain == null)
                 return false;
@@ -104,7 +104,7 @@ namespace NKnife.MeterKnife.Storage.Base
         /// </summary>
         /// <param name="dut">指定的被测试物</param>
         /// <param name="domains">指定的对象</param>
-        public async Task<bool> InsertManyAsync((Engineering, DUT) dut, IEnumerable<T> domains)
+        public async Task<bool> InsertManyAsync((Project, DUT) dut, IEnumerable<T> domains)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
             var key = GetSqlKey();
@@ -118,7 +118,7 @@ namespace NKnife.MeterKnife.Storage.Base
         /// </summary>
         /// <param name="dut">指定的被测试物</param>
         /// <param name="domain">指定的对象</param>
-        public async Task<bool> UpdateAsync((Engineering, DUT) dut, T domain)
+        public async Task<bool> UpdateAsync((Project, DUT) dut, T domain)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
             var key = GetSqlKey();
@@ -140,8 +140,8 @@ namespace NKnife.MeterKnife.Storage.Base
         /// <summary>
         /// 更新指定的工程实体
         /// </summary>
-        /// <param name="engineering">指定的工程实体</param>
-        public Task<bool> UpdateAsync(Engineering engineering)
+        /// <param name="project">指定的工程实体</param>
+        public Task<bool> UpdateAsync(Project project)
         {
             throw new NotImplementedException();
         }
@@ -151,7 +151,7 @@ namespace NKnife.MeterKnife.Storage.Base
         /// </summary>
         /// <param name="dut">指定的被测试物</param>
         /// <param name="id">指定的记录ID</param>
-        public async Task<bool> RemoveAsync((Engineering, DUT) dut, DateTime id)
+        public async Task<bool> RemoveAsync((Project, DUT) dut, DateTime id)
         {
             var conn = _storageManager.OpenConnection(dut.Item1);
             var sql = $"DELETE FROM {TableName} WHERE {nameof(IRecord<T>.Id)}='{id}'";

@@ -20,7 +20,7 @@ namespace NKnife.MeterKnife.Base
         /// </summary>
         /// <param name="dut">指定的工程与被测物</param>
         /// <param name="data">数据</param>
-        void AddValue((Engineering, DUT) dut, MeasureData data);
+        void AddValue((Project, DUT) dut, MeasureData data);
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ namespace NKnife.MeterKnife.Base
     /// </summary>
     public class AcquisitionEventArgs : EventArgs
     {
-        public AcquisitionEventArgs((Engineering, DUT) dut, MeasureData measurements)
+        public AcquisitionEventArgs((Project, DUT) dut, MeasureData measurements)
         {
             Time = DateTime.Now;
             DUT = dut;
@@ -48,7 +48,7 @@ namespace NKnife.MeterKnife.Base
         /// <summary>
         /// 被测物
         /// </summary>
-        public (Engineering, DUT) DUT { get; set; }
+        public (Project, DUT) DUT { get; set; }
 
         /// <summary>
         /// 测量值

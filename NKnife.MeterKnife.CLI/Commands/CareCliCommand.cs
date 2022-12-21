@@ -17,14 +17,14 @@ namespace NKnife.MeterKnife.CLI.Commands
     {
         private readonly IAntService _antService;
         private readonly IDataConnector _connector;
-        private readonly IEngineeringLogic _engineeringLogic;
+        private readonly IProjectLogic _projectLogic;
         private Slot _slot;
 
-        public CareCliCommand(IAntService antService, IDataConnector dataConnector, IEngineeringLogic engineeringLogic)
+        public CareCliCommand(IAntService antService, IDataConnector dataConnector, IProjectLogic projectLogic)
         {
             _antService = antService;
             _connector = dataConnector;
-            _engineeringLogic = engineeringLogic;
+            _projectLogic = projectLogic;
         }
 
         public override async ValueTask ExecuteAsync(IConsole console)
@@ -42,9 +42,9 @@ namespace NKnife.MeterKnife.CLI.Commands
             _slot.SetMeterCare(SlotType.Serial, ((short)Port, config));
 
             _antService.Bind((_slot, _connector));
-            var engineering = new Engineering();
+            var engineering = new Project();
             engineering.CommandPools.Add(GetCommands());
-            await _engineeringLogic.CreateEngineeringAsync(engineering);
+            await _projectLogic.CreateProjectAsync(engineering);
             await _antService.StartAsync(engineering);
         }
 

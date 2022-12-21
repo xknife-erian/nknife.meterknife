@@ -18,7 +18,7 @@ namespace NKnife.MeterKnife.Base
         /// <param name="id">指定的记录ID</param>
         /// <param name="dut">指定的被测试物</param>
         /// <returns>记录是否存在，true时存在指定ID的记录，false反之。</returns>
-        Task<bool> ExistAsync((Engineering, DUT) dut, DateTime id);
+        Task<bool> ExistAsync((Project, DUT) dut, DateTime id);
 
         /// <summary>
         ///     分页查询方法
@@ -28,13 +28,13 @@ namespace NKnife.MeterKnife.Base
         /// <param name="direction">查询数据时的排序方向。</param>
         /// <param name="dut">指定的被测试物</param>
         /// <returns>当前页的数据集合</returns>
-        Task<IEnumerable<T>> PageAsync((Engineering, DUT) dut, int pageNumber, int pageSize, SortDirection direction = SortDirection.NONE);
+        Task<IEnumerable<T>> PageAsync((Project, DUT) dut, int pageNumber, int pageSize, SortDirection direction = SortDirection.NONE);
 
         /// <summary>
         ///     查询数据记录的总数量
         /// </summary>
         /// <returns>数量</returns>
-        Task<long> CountAsync((Engineering, DUT) dut);
+        Task<long> CountAsync((Project, DUT) dut);
 
         /// <summary>
         ///     根据指定的ID获取指定的记录并转换为对象
@@ -42,13 +42,13 @@ namespace NKnife.MeterKnife.Base
         /// <param name="dut">指定的被测试物</param>
         /// <param name="id">指定的ID</param>
         /// <returns></returns>
-        Task<T> FindOneByIdAsync((Engineering, DUT) dut, DateTime id);
+        Task<T> FindOneByIdAsync((Project, DUT) dut, DateTime id);
 
         /// <summary>
         ///     获取所有的记录
         /// </summary>
         /// <param name="dut">指定的被测试物</param>
         /// <returns>所有的记录</returns>
-        Task<IEnumerable<T>> FindAllAsync((Engineering, DUT) dut);
+        Task<IEnumerable<T>> FindAllAsync((Project, DUT) dut);
     }
 }
