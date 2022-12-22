@@ -34,7 +34,7 @@ namespace NKnife.Win.Quick
                     Font = new Font("微软雅黑", 9F, FontStyle.Regular);
                     break;
                 case "en":
-                    Font = new Font("Tahoma", 9F, FontStyle.Regular);
+                    Font = new Font("Segoe UI", 9F, FontStyle.Regular);
                     break;
                 case "zh-tw":
                     Font = new Font("PMingLiU", 9F, FontStyle.Regular);

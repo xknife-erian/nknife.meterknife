@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using GalaSoft.MvvmLight;
+using CommunityToolkit.Mvvm.ComponentModel;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common;
 using NKnife.MeterKnife.ViewModels.Plots;
-using NLog;
 
 namespace NKnife.MeterKnife.ViewModels
 {
-    public abstract class PlotViewModel : ViewModelBase
+    public abstract class PlotViewModel : ObservableRecipient
     {
         protected DUTSeriesStyleSolution _solution = new DUTSeriesStyleSolution();
 
@@ -34,7 +33,7 @@ namespace NKnife.MeterKnife.ViewModels
             get => _solution;
             set
             {
-                Set(() => StyleSolution, ref _solution, value);
+                SetProperty(ref _solution, value);
                 LinearPlot.SetSeries(value.ToArray());
             }
         }

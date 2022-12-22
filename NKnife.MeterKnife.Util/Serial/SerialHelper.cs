@@ -87,7 +87,7 @@ namespace NKnife.MeterKnife.Util.Serial
                 var hardInfos = searcher.Get();
                 foreach (var serialName in list)
                 {
-                    var des = "";
+                    var des = "";                                                                                                                                                                                                           
                     foreach (var hardInfo in hardInfos)
                     {
                         var name = hardInfo.Properties["Name"].Value;

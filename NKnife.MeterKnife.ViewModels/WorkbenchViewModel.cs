@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
-using GalaSoft.MvvmLight;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 using NKnife.MeterKnife.Base;
 using NKnife.MeterKnife.Common.Base;
@@ -18,7 +18,7 @@ using NKnife.MeterKnife.Util.Tunnel;
 
 namespace NKnife.MeterKnife.ViewModels
 {
-    public class WorkbenchViewModel : ViewModelBase, IWorkbenchViewModel
+    public class WorkbenchViewModel : ObservableRecipient, IWorkbenchViewModel
     {
         private readonly IAntService _antService;
 
@@ -82,7 +82,7 @@ namespace NKnife.MeterKnife.ViewModels
         public Project CurrentActiveProject
         {
             get => _currentProject;
-            set => Set(ref _currentProject, value);
+            set => SetProperty(ref _currentProject, value);
         }
 
         /// <summary>
@@ -188,11 +188,7 @@ namespace NKnife.MeterKnife.ViewModels
         public ObservableCollection<Project> OpenedProjects
         {
             get => _openedProjects;
-            set
-            {
-                _openedProjects = value;
-                RaisePropertyChanged(() => OpenedProjects);
-            }
+            set => SetProperty(ref _openedProjects, value);
         }
 
         /// <summary>
@@ -201,11 +197,7 @@ namespace NKnife.MeterKnife.ViewModels
         public ObservableCollection<Project> AcquiringProjects
         {
             get => _acquiringProjects;
-            set
-            {
-                _acquiringProjects = value;
-                RaisePropertyChanged(() => AcquiringProjects);
-            }
+            set => SetProperty(ref _acquiringProjects, value);
         }
 
         /// <summary>
