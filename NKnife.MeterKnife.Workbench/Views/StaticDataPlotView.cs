@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GalaSoft.MvvmLight.Views;
 using NKnife.MeterKnife.Common.Domain;
 using NKnife.MeterKnife.ViewModels;
 using NKnife.MeterKnife.ViewModels.Plots;
