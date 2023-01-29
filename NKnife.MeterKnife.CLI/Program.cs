@@ -34,10 +34,7 @@ namespace NKnife.MeterKnife.CLI
             builder.RegisterAssemblyModules(typeof(Kernel).Assembly);
 
             builder.RegisterType<SerialCliCommand>().Named<ICommand>(nameof(SerialCliCommand)).SingleInstance();
-            builder.RegisterType<CareConfigCliCommand>().Named<ICommand>(nameof(CareConfigCliCommand)).SingleInstance();
             builder.RegisterType<CareCliCommand>().Named<ICommand>(nameof(CareCliCommand)).SingleInstance();
-            builder.RegisterType<DataCommand>().Named<ICommand>(nameof(DataCommand)).SingleInstance();
-            builder.RegisterType<SqlBuildCommand>().Named<ICommand>(nameof(SqlBuildCommand)).SingleInstance();
 
             var container = builder.Build();
 

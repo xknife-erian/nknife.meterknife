@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>mkant</AssemblyName>
+    <AssemblyName>mk</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,10 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NKnife.MeterKnife.Common\NKnife.MeterKnife.Common.csproj" />
-    <ProjectReference Include="..\NKnife.MeterKnife.Logic\NKnife.MeterKnife.Logic.csproj" />
-    <ProjectReference Include="..\NKnife.MeterKnife.Storage\NKnife.MeterKnife.Storage.csproj" />
-    <ProjectReference Include="..\NKnife.MeterKnife.Util\NKnife.MeterKnife.Util.csproj" />
     <ProjectReference Include="..\NKnife.MeterKnife.ViewModels\NKnife.MeterKnife.ViewModels.csproj" />
   </ItemGroup>
 
