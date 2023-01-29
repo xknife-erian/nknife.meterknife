@@ -1,6 +1,6 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
+using System.IO.Pipelines;
 using System.IO.Ports;
 using System.Threading;
 using NKnife.MeterKnife.Util.Serial.Common;
@@ -56,6 +56,10 @@ namespace NKnife.MeterKnife.Util.Serial
             };
             _serialPort.DataReceived += SerialPortDataReceived;
             _serialPort.ErrorReceived += SerialPortErrorReceived;
+
+            var pipe = new Pipe();
+            var writer = pipe.Writer;
+            var reader = pipe.Reader;
 
             try
             {

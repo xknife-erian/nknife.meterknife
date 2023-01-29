@@ -12,6 +12,7 @@
     <PackageReference Include="NLog" Version="5.1.1" />
     <PackageReference Include="NPOI" Version="2.6.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.IO.Pipelines" Version="7.0.0" />
     <PackageReference Include="System.IO.Ports" Version="7.0.0" />
     <PackageReference Include="System.Management" Version="7.0.0" />
   </ItemGroup>
