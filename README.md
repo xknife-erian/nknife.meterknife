@@ -1,25 +1,25 @@
-# MeterKnife Ant **2**
+# MeterKnife Third **3**
 
 - 本项目是一个开源软件项目。
 - 本项目开源协议是《木兰宽松许可证, 第2版》
 - 本项目开发语言：C#
 
-## 关于 MeterKnife Ant
-  1. MeterKnife Ant版在Gitee上保持开源，主要实现面向多仪器多通道多传感器的触发、采集与数据存储、图表显示、分析；
-  2. MeterKnife Ant将遵循由常用到全部的迭代原则实现SCPI标准语法和命令的可视化快速使用；
-  3. MeterKnife Ant将实现仪器仪表常用的GPIB,TCPIP,串口,USB通讯手段的单独与复合使用；
-  4. MeterKnife Ant采用.Net6做为开发框架，界面采用.NET MAUI做为界面层框架；
-  5. MeterKnife Ant将逐步支持NI PXI系统；
-  6. 定义为2023年12月完成Beta版研发；
-
-## 关于 MeterKnife Professional
-  1. MeterKnife Professional（简称 MeterKnifePro）将定义为一个自动化工业采集平台，仪器仪表采集将是其重要的一部份，但会更加深入的面向各种通讯手段的数据采集，例如485总线、Can总线、MBUS总线、RTU/DTU、Socket主从、IVI.Visa、自定义设备等等……。作者希望MeterKnifePro平台能为仪器仪表、传感器、自控集成、以及最终用户提供实时的物联网数据采集平台、生产运行监控平台、实时数据存储平台。
-  2. MeterKnife Professional 将采用.Net6做为开发平台，采用BS的方式；采集将作为一个后台服务存在于系统中；可以运行在包括树莓派等Linux/Windows主机里；多进程；数据采用ZeroMQ进行发布与订阅处理；先期面向局域网内部，后期会考虑作为一个互联网应用；
-  3. MeterKnife Professional 将新立项目，不在此项目中开发；
-  4. MeterKnife Professional 有想法实现一套类似组态，基于拖拽配置式的可视化快速开发平台，但是想法还不成熟，待定；
-  5. 未启动开发，定义为2023-2024研发计划；
+## 关于 MeterKnife Third
+  0. MeterKnife Third 将定义为一个自动化工业采集平台，仪器仪表采集将是其重要的一部份，但会更加深入的面向各种通讯手段的数据采集，例如485总线、Can总线、MBUS总线、RTU/DTU、Socket主从、IVI.Visa、自定义设备等等……。作者希望MeterKnife平台能为仪器仪表、传感器、自控集成、以及最终用户提供实时的物联网数据采集平台、生产运行监控平台、实时数据存储平台。
+  1. MeterKnife Third在Gitee与Github上保持开源，主要实现面向多仪器多通道多传感器的触发、采集与数据存储、图表显示、分析；
+  2. MeterKnife Third将遵循由常用到全部的迭代原则实现SCPI标准语法和命令的可视化快速使用；
+  3. MeterKnife Third将实现仪器仪表常用的GPIB,TCPIP,串口,USB通讯手段的单独与复合使用；
+  4. MeterKnife Third采用.Net6做为开发框架，界面采用.NET MAUI做为界面层框架；
+  5. MeterKnife Third将逐步支持NI PXI系统；
+  6. 定义为2024年10月完成Beta版研发；
 
 ## 开发历史
+
+### 2024-4-29
+
+- 忙于工作，又停滞了一年多的时间，这些时间又积累了一些开发思路；
+- 近期开始从0开始研发，会采用一些新的技术；
+- 所有代码移到历史代码分支，如有朋友感兴趣可以去history分支查看；
 
 ### 2023-1-29
 
