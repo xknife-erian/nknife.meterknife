@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "MeterKnife.CLI": {
-      "commandName": "Project",
-      "commandLineArgs": "serial -p 3"
-    }
-  }
-}

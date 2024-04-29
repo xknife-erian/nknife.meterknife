@@ -1,5 +1,36 @@
 <Project>
- <PropertyGroup>
-   <LangVersion>latest</LangVersion>
- </PropertyGroup>
+    <PropertyGroup>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <!-- AssemblyInfo -->
+    <PropertyGroup>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+
+        <Company>xknife.net</Company>
+        <Product>MeterKnife</Product>
+        <Copyright>Copyright © 2013-2024 - $([System.DateTime]::Today.ToString(yyyy)) xknife.net</Copyright>
+
+        <!-- 手动定义主要版本号 -->
+        <VersionMajor>1</VersionMajor>
+
+        <!-- 手动定义次要版本号（与内部研发迭代基本对齐） -->
+        <VersionMinor>1</VersionMinor>
+
+        <!-- 设置构建版本号为每次修改. -->
+        <VersionBuild>22</VersionBuild>
+
+        <!-- 定义修订版本号，当前月份和日期 -->
+        <VersionRevision>$([System.DateTime]::Now.ToString("MMdd"))</VersionRevision>
+    </PropertyGroup>
+
+    <!-- 定义完整的版本号、程序集版本号和文件版本号 -->
+    <PropertyGroup>
+        <Version>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</Version>
+        <AssemblyVersion>$(VersionMajor).$(VersionMinor).$(VersionBuild).$(VersionRevision)</AssemblyVersion>
+        <FileVersion>$(VersionMajor).$(VersionMinor).0</FileVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PluginBuildCfg>Debug</PluginBuildCfg> <!-- Module独立加载，请设置为Isolated；非独立加载为Debug-->
+    </PropertyGroup>
 </Project>
