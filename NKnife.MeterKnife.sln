@@ -14,7 +14,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{2D
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Circe.Base", "NKnife.Circe.Base\NKnife.Circe.Base.csproj", "{21EC3E38-00B2-4FA8-8780-ECC59C1A073D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Circe.App", "NKnife.Circe.App\NKnife.Circe.App.csproj", "{3458DD80-D42F-4E9E-A0D4-05E54CB80FBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{0839C8C2-F3EA-4CF7-B310-799B378425D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{B63E9AE2-E324-4E5B-810A-88FB42FF9D78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kernel", "Kernel", "{DF4F63BD-B475-4535-B95F-9A8056B4DCE4}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21EC3E38-00B2-4FA8-8780-ECC59C1A073D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21EC3E38-00B2-4FA8-8780-ECC59C1A073D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21EC3E38-00B2-4FA8-8780-ECC59C1A073D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21EC3E38-00B2-4FA8-8780-ECC59C1A073D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3458DD80-D42F-4E9E-A0D4-05E54CB80FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3458DD80-D42F-4E9E-A0D4-05E54CB80FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3458DD80-D42F-4E9E-A0D4-05E54CB80FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3458DD80-D42F-4E9E-A0D4-05E54CB80FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
