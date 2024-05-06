@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{2D
 		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
 		LICENSE = LICENSE
+		NKnife.MeterKnife.sln.DotSettings = NKnife.MeterKnife.sln.DotSettings
 		README.md = README.md
 	EndProjectSection
 EndProject
