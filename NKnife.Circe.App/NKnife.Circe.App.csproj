@@ -8,4 +8,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NKnife.Circe.Common\NKnife.Circe.Common.csproj" />
+  </ItemGroup>
+
 </Project>
