@@ -9,7 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NKnife.Circe.Common\NKnife.Circe.Common.csproj" />
+    <ProjectReference Include="..\..\Mercury\Common\RAY.Commlink\RAY.Commlink.csproj" />
+    <ProjectReference Include="..\..\Mercury\Common\RAY.Common\RAY.Common.csproj" />
+    <ProjectReference Include="..\..\Mercury\Common\RAY.Library\RAY.Library.csproj" />
+    <ProjectReference Include="..\..\Mercury\Common\RAY.Plugins.WPF\RAY.Plugins.WPF.csproj" />
+    <ProjectReference Include="..\..\Mercury\Common\RAY.Plugins\RAY.Plugins.csproj" />
+    <ProjectReference Include="..\..\Mercury\Common\RAY.Windows\RAY.Windows.csproj" />
+    <ProjectReference Include="..\Features\NKnife.Feature.MainWorkbench\NKnife.Feature.MainWorkbench.csproj" />
+    <ProjectReference Include="..\NKnife.Circe.Base\NKnife.Circe.Base.csproj" />
   </ItemGroup>
 
 </Project>
