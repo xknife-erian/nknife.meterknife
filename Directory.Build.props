@@ -1,23 +1,23 @@
 <Project>
     <PropertyGroup>
-        <LangVersion>latest</LangVersion>
+        <LangVersion>preview</LangVersion>
     </PropertyGroup>
     <!-- AssemblyInfo -->
     <PropertyGroup>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 
-        <Company>xknife.net</Company>
-        <Product>MeterKnife</Product>
-        <Copyright>Copyright © 2013-2024 - $([System.DateTime]::Today.ToString(yyyy)) xknife.net</Copyright>
+        <Company>Jeelu Software & Hardware Development Studio</Company>
+        <Product>Jeelu NKnife Circe</Product>
+        <Copyright>Copyright © 2014 - $([System.DateTime]::Today.ToString(yyyy)) RAY Everest.</Copyright>
 
         <!-- 手动定义主要版本号 -->
-        <VersionMajor>1</VersionMajor>
+        <VersionMajor>5</VersionMajor>
 
         <!-- 手动定义次要版本号（与内部研发迭代基本对齐） -->
-        <VersionMinor>1</VersionMinor>
+        <VersionMinor>0</VersionMinor>
 
         <!-- 设置构建版本号为每次修改. -->
-        <VersionBuild>22</VersionBuild>
+        <VersionBuild>1</VersionBuild>
 
         <!-- 定义修订版本号，当前月份和日期 -->
         <VersionRevision>$([System.DateTime]::Now.ToString("MMdd"))</VersionRevision>

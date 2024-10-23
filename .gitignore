@@ -9,6 +9,10 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.drawio.dtmp
+*.drawio.bkp
+*.dtmp
+*.bkp
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -362,3 +366,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /merge-lukan.bat
+/Modules/Flows/LEIAO.Module.Flows.Nodes.ConditionNode/.$全局变量,条件分支.drawio.dtmp

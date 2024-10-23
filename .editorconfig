@@ -544,6 +544,7 @@ csharp_style_unused_value_expression_statement_preference = discard_variable:sil
 
 # Standard properties
 end_of_line = crlf
+csharp_prefer_static_anonymous_function = true:suggestion
 
 [*.{appxmanifest,axml,build,config,csproj,dbml,discomap,dtd,jsproj,lsproj,njsproj,nuspec,proj,props,resw,resx,StyleCop,targets,tasks,vbproj,xml,xsd}]
 indent_style = space
@@ -554,3 +555,4 @@ tab_width = 4
 indent_style = space
 indent_size = 4
 tab_width = 4
+dotnet_style_prefer_collection_expression = when_types_loosely_match:suggestion
