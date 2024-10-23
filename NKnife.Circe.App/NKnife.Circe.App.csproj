@@ -15,7 +15,8 @@
     <ProjectReference Include="..\..\Mercury\Common\RAY.Plugins.WPF\RAY.Plugins.WPF.csproj" />
     <ProjectReference Include="..\..\Mercury\Common\RAY.Plugins\RAY.Plugins.csproj" />
     <ProjectReference Include="..\..\Mercury\Common\RAY.Windows\RAY.Windows.csproj" />
-    <ProjectReference Include="..\Features\NKnife.Feature.MainWorkbench\NKnife.Feature.MainWorkbench.csproj" />
+    <ProjectReference Include="..\..\Mercury\Features\LEIAO.Feature.PluginBrowser\LEIAO.Feature.PluginBrowser.csproj" />
+    <ProjectReference Include="..\Modules\UI\NKnife.Module.UI.MainWorkbench\NKnife.Module.UI.MainWorkbench.csproj" />
     <ProjectReference Include="..\NKnife.Circe.Base\NKnife.Circe.Base.csproj" />
   </ItemGroup>
 

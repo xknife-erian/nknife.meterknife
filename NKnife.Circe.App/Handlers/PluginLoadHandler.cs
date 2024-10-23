@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using LEIAO.Mercury.Extensions;
 using RAY.Common.Plugin.Manager;
 using RAY.Plugins;
 using RAY.Plugins.WPF;
@@ -14,7 +13,6 @@ namespace NKnife.Circe.App.Handlers
         {
             var pluginManager = LaunchPicoPluginSystem();
 
-            await pluginManager.InjectMoreModuleIntoPluginAsync();
             await pluginManager.StartAsync();
             await pluginManager.RegisterUIAddinsAsync();
 
