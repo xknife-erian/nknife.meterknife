@@ -1,4 +1,5 @@
-﻿using NKnife.Circe.Base.Modules;
+﻿using Moq;
+using NKnife.Circe.Base.Modules;
 using NKnife.Circe.Base.Modules.Manager;
 using RAY.Common.Plugin.Modules;
 
@@ -6,6 +7,11 @@ namespace NKnife.Module.Manager.SurroundingManager
 {
     public class SurroundingManagerModule : BasePicoModule<ISurroundingsManager>
     {
+        public override Lazy<ISurroundings> Build(params object[] args)
+        {
+            return new Lazy<ISurroundings>(() => new Mock<ISurroundings>().Object);
+        }   
+        
         public override Task<bool> StartServiceAsync()
         {
             return Task.FromResult(true);
