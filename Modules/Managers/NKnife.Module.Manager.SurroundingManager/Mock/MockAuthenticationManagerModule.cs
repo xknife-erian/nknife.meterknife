@@ -3,7 +3,7 @@ using RAY.Common.Authentication;
 using RAY.Common.Plugin.Modules;
 using System.Security.Claims;
 
-namespace NKnife.Module.Manager.SurroundingManager
+namespace NKnife.Module.Manager.SurroundingManager.Mock
 {
     public class MockAuthenticationManagerModule : BasePicoModule<IAuthenticationManager>
     {
