@@ -1,5 +1,4 @@
-﻿using Moq;
-using NKnife.Circe.Base.Modules;
+﻿using NKnife.Circe.Base.Modules;
 using NKnife.Circe.Base.Modules.Manager;
 using NKnife.Module.Manager.SurroundingManager.Internal;
 using RAY.Common.Plugin.Modules;

@@ -70,6 +70,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LEIAO.Feature.PluginBrowser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Module.Manager.OptionManager", "Modules\Managers\NKnife.Module.Manager.OptionManager\NKnife.Module.Manager.OptionManager.csproj", "{4C757E00-AD61-4328-ACD6-5792C20B2B23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKnife.Module.Mock", "Modules\NKnife.Module.Mock\NKnife.Module.Mock.csproj", "{B50D8FC4-4D89-422D-ABCC-73A168CF58ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -140,6 +142,10 @@ Global
 		{4C757E00-AD61-4328-ACD6-5792C20B2B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C757E00-AD61-4328-ACD6-5792C20B2B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C757E00-AD61-4328-ACD6-5792C20B2B23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B50D8FC4-4D89-422D-ABCC-73A168CF58ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B50D8FC4-4D89-422D-ABCC-73A168CF58ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B50D8FC4-4D89-422D-ABCC-73A168CF58ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B50D8FC4-4D89-422D-ABCC-73A168CF58ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,6 +170,7 @@ Global
 		{2B9DEE8E-55D6-451E-BDA1-4CE84F36B2C4} = {B63E9AE2-E324-4E5B-810A-88FB42FF9D78}
 		{3F1FEA16-0199-4D9E-9CD5-00DF48AEDC90} = {2B9DEE8E-55D6-451E-BDA1-4CE84F36B2C4}
 		{4C757E00-AD61-4328-ACD6-5792C20B2B23} = {3180208E-0D55-45C8-91E1-ADB903A66B07}
+		{B50D8FC4-4D89-422D-ABCC-73A168CF58ED} = {0839C8C2-F3EA-4CF7-B310-799B378425D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D98A22A-519B-463C-97E1-57C979C9754C}

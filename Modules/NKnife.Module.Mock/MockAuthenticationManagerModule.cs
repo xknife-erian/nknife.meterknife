@@ -1,9 +1,9 @@
-﻿using Moq;
+﻿using System.Security.Claims;
+using Moq;
 using RAY.Common.Authentication;
 using RAY.Common.Plugin.Modules;
-using System.Security.Claims;
 
-namespace NKnife.Module.Manager.SurroundingManager.Mock
+namespace NKnife.Module.Mock
 {
     public class MockAuthenticationManagerModule : BasePicoModule<IAuthenticationManager>
     {
