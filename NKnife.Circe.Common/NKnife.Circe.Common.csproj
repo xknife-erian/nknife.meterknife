@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Domains\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Rays.Plugins" Version="1.1.37.1010" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Mercury\Pendings\Rays.Commlink\Rays.Commlink.csproj" />
+    <ProjectReference Include="..\..\Mercury\Pendings\Rays.Core\Rays.Core.csproj" />
+    <ProjectReference Include="..\..\Mercury\Pendings\Rays.Library\Rays.Library.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -47,7 +47,7 @@
         <ProjectReference Include="..\Modules\Services\NKnife.Module.LogService\NKnife.Module.LogService.csproj" />
         <ProjectReference Include="..\Modules\Services\NKnife.Module.PreferenceService\NKnife.Module.PreferenceService.csproj" />
         <ProjectReference Include="..\Modules\Services\NKnife.Module.WelcomeService\NKnife.Module.WelcomeService.csproj" />
-        <ProjectReference Include="..\NKnife.Circe.Base\NKnife.Circe.Base.csproj" />
+        <ProjectReference Include="..\NKnife.Circe.Base\NKnife.Circe.Core.csproj" />
         <ProjectReference Include="..\NKnife.Circe.Domain\NKnife.Circe.Domain.csproj" />
         <ProjectReference Include="..\NKnife.Circe.Theme\NKnife.Circe.Theme.csproj" />
     </ItemGroup>

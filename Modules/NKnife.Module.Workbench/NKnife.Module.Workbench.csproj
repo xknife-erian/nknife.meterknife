@@ -17,7 +17,7 @@
     <ProjectReference Include="..\..\..\Mercury\Common\RAY.Common\RAY.Common.csproj" />
     <ProjectReference Include="..\..\..\Mercury\Common\RAY.Plugins.WPF\RAY.Plugins.WPF.csproj" />
     <ProjectReference Include="..\..\..\Mercury\Common\RAY.Windows\RAY.Windows.csproj" />
-    <ProjectReference Include="..\..\NKnife.Circe.Base\NKnife.Circe.Base.csproj" />
+    <ProjectReference Include="..\..\NKnife.Circe.Base\NKnife.Circe.Core.csproj" />
   </ItemGroup>
 
 </Project>

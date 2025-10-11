@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Mercury\Common\RAY.Plugins.WPF\RAY.Plugins.WPF.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="NKnife.Feature.LogService.plugindesc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

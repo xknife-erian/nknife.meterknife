@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Mercury\Common\RAY.Common\RAY.Common.csproj" />
-    <ProjectReference Include="..\..\..\NKnife.Circe.Base\NKnife.Circe.Base.csproj" />
-  </ItemGroup>
-
 </Project>

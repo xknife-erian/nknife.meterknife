@@ -8,13 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <ProjectReference Include="..\..\NKnife.Circe.Feature.Common\NKnife.Circe.Feature.Common.csproj" />
+    <PackageReference Include="Rays.Plugins.WPF" Version="1.1.37.1010" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="NKnife.Feature.ExperimentManager.plugindesc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\NKnife.Circe.Common\NKnife.Circe.Common.csproj" />
+    <ProjectReference Include="..\NKnife.Circe.Theme\NKnife.Circe.Theme.csproj" />
   </ItemGroup>
 
 </Project>
